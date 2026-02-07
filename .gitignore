@@ -39,3 +39,11 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# デプロイ関連
+app.zip
+public/uploads/*
+!public/uploads/.gitkeep
+
+# ローカル開発用データ（本番では使用しない）
+data/inquiries.json
