@@ -7,11 +7,12 @@ import { Upload, X, Loader2, Image as ImageIcon, Trash2 } from "lucide-react";
 interface ImageUploaderProps {
     value: string | null;
     onChange: (url: string | null) => void;
+    onUploadSuccess?: (url: string, path: string) => void;
     folder?: string;
     label?: string;
 }
 
-export const ImageUploader = ({ value, onChange, folder = "misc", label = "画像" }: ImageUploaderProps) => {
+export const ImageUploader = ({ value, onChange, onUploadSuccess, folder = "misc", label = "画像" }: ImageUploaderProps) => {
     const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
     const [isUploading, setIsUploading] = useState(false);
     const [error, setError] = useState<string | null>(null);
@@ -46,8 +47,12 @@ export const ImageUploader = ({ value, onChange, folder = "misc", label = "画�
             const data = await res.json();
 
             if (!res.ok) throw new Error(data.error || "Upload failed");
+            if (!data.url) throw new Error("Invalid response from upload API");
 
             onChange(data.url);
+            if (onUploadSuccess && data.path) {
+                onUploadSuccess(data.url, data.path);
+            }
         } catch (err) {
             console.error(err);
             setError("アップロードに失敗しました");

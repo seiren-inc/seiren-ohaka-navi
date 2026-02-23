@@ -1,8 +1,8 @@
-
-import { InquiryDB } from "../../../../lib/inquiry-db";
+import prisma from "@/lib/prisma";
 import { CheckCircle2, ChevronLeft, MapPin, Phone, Mail, Calendar, User, FileText, Globe, Building } from "lucide-react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import InquiryStatusUpdater from "./InquiryStatusUpdater";
 
 const BONE_STATUS_LABELS: Record<string, string> = {
     exist: 'あり',
@@ -12,12 +12,12 @@ const BONE_STATUS_LABELS: Record<string, string> = {
 
 export default async function InquiryDetail(props: { params: Promise<{ id: string }> }) {
     const params = await props.params;
-
-    // Debug Logging
-    console.log("[AdminDetail] Requested ID:", params.id);
-
     const decodedId = decodeURIComponent(params.id);
-    const inquiry = InquiryDB.getById(decodedId);
+
+    // Fetch from Prisma
+    const inquiry = await prisma.inquiry.findUnique({
+        where: { id: decodedId }
+    }) as any;
 
     if (!inquiry) {
         return notFound();
@@ -64,22 +64,22 @@ export default async function InquiryDetail(props: { params: Promise<{ id: strin
                                 <div>
                                     <div className="text-xs text-gray-500 mb-1">希望墓地</div>
                                     <div className="text-lg font-bold text-gray-800">
-                                        {inquiry.context?.templeName || inquiry.desiredTempleName || '未指定'}
+                                        {inquiry.context?.temple?.name || inquiry.context?.templeName || inquiry.desiredTempleName || '未指定'}
                                     </div>
-                                    <div className="text-xs text-gray-400 mt-1">ID: {inquiry.context?.templeId || '-'}</div>
+                                    <div className="text-xs text-gray-400 mt-1">ID: {inquiry.context?.temple?.id || inquiry.context?.templeId || '-'}</div>
                                 </div>
                                 <div>
                                     <div className="text-xs text-gray-500 mb-1">希望プラン</div>
                                     <div className="flex items-center gap-2">
-                                        {inquiry.context?.planName || inquiry.desiredPlanName ? (
+                                        {(inquiry.context?.plan?.name || inquiry.context?.planName || inquiry.desiredPlanName) ? (
                                             <div className="text-lg font-bold text-seiren-navy bg-white px-3 py-1 rounded border border-blue-100 inline-block">
-                                                {inquiry.context?.planName || inquiry.desiredPlanName}
+                                                {inquiry.context?.plan?.name || inquiry.context?.planName || inquiry.desiredPlanName}
                                             </div>
                                         ) : (
                                             <div className="text-gray-400">未指定</div>
                                         )}
                                     </div>
-                                    <div className="text-xs text-gray-400 mt-1">ID: {inquiry.context?.planId || '-'}</div>
+                                    <div className="text-xs text-gray-400 mt-1">ID: {inquiry.context?.plan?.id || inquiry.context?.planId || '-'}</div>
                                 </div>
                                 <div className="col-span-2 pt-2 border-t border-blue-100/50 mt-2">
                                     <div className="text-xs text-gray-500 mb-1">流入元参照 (Ref)</div>
@@ -255,7 +255,7 @@ export default async function InquiryDetail(props: { params: Promise<{ id: strin
                                             <dd>
                                                 {inquiry.graveTypes && inquiry.graveTypes.length > 0 ? (
                                                     <div className="flex flex-wrap gap-2">
-                                                        {inquiry.graveTypes.map(t => (
+                                                        {inquiry.graveTypes.map((t: string) => (
                                                             <span key={t} className="bg-gray-100 text-gray-700 px-2 py-1 rounded text-sm">{t}</span>
                                                         ))}
                                                     </div>
@@ -279,6 +279,15 @@ export default async function InquiryDetail(props: { params: Promise<{ id: strin
                                 </div>
                             </dl>
                         </div>
+                    </div>
+
+                    {/* Status Updater */}
+                    <div className="mt-8 border-t border-gray-100 pt-4">
+                        <InquiryStatusUpdater
+                            inquiryId={inquiry.id}
+                            initialStatus={inquiry.status || 'new'}
+                            initialAdminNotes={inquiry.adminNotes || ''}
+                        />
                     </div>
                 </div>
             </div >

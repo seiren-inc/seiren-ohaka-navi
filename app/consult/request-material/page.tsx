@@ -5,6 +5,7 @@ import { useSearchParams, useRouter } from "next/navigation";
 import { Navbar } from "../../components/layout/Navbar";
 import { Footer } from "../../components/layout/Footer";
 import { Button } from "../../components/ui/Button";
+import { Input } from "../../components/ui/Input";
 import Link from "next/link";
 import { CheckCircle2, ChevronRight, AlertCircle, Building2, MapPin } from "lucide-react";
 import { useForm } from "react-hook-form";
@@ -42,6 +43,7 @@ function RequestForm() {
     const router = useRouter(); // Need for redirect? No, link is fine.
     const [isSubmitted, setIsSubmitted] = useState(false);
     const [step, setStep] = useState<1 | 2>(1);
+    const [submitError, setSubmitError] = useState<string | null>(null);
 
     // Context Params
     const paramTempleId = searchParams.get('templeId') || "";
@@ -125,9 +127,11 @@ function RequestForm() {
 
     const onSubmit = async (data: InquiryFormData) => {
         try {
+            const requestId = crypto.randomUUID();
             // Prepare Payload
             const payload = {
                 ...data, // Send all granular fields
+                requestId,
                 phoneRaw: data.phone.replace(/-/g, ''),
                 name: `${data.lastName} ${data.firstName}`, // Legacy support
                 kana: `${data.lastNameKana} ${data.firstNameKana}`, // Legacy support
@@ -174,15 +178,24 @@ function RequestForm() {
                 body: JSON.stringify(payload)
             });
 
-            if (!response.ok) throw new Error("API Error");
-
             const result = await response.json();
-            if (!result.received || !result.received.context) {
-                console.error("Payload Integrity Error: Context mismatch", result);
-                throw new Error("送信データの整合性エラーが発生しました");
+
+            if (!result.success) {
+                const msg = result.error?.message || "送信に失敗しました。時間をおいて再度お試しください。";
+                setSubmitError(msg);
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                return;
             }
 
-            // Sync to Client Store (Legacy Mirror)
+            if (!result.saved?.id) {
+                setSubmitError("サーバーでの保存確認ができませんでした。管理者にご連絡ください。");
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                return;
+            }
+
+            console.log(`[INQUIRY_SENT] id=${result.saved.id} receipt=${result.saved.receiptNumber}`);
+
+            // Sync to Client Store (Legacy Mirror - Optional)
             Store.addInquiry({
                 templeId: data.templeId,
                 desiredTempleId: data.templeId,
@@ -192,7 +205,7 @@ function RequestForm() {
                 ref: data.ref,
                 refUrl: data.refUrl,
                 context: payload.context,
-                preferredDateTime: "資料請求のみ", // Not applicable
+                preferredDateTime: "資料請求のみ",
                 user: payload.user,
                 message: data.message || "",
                 boneStatus: data.boneStatus,
@@ -200,13 +213,15 @@ function RequestForm() {
                 nearbyCemeteryOptIn: data.nearbyCemeteryOptIn,
                 visitDate: data.visitDate,
                 visitTime: data.visitTime,
-            } as any); // Cast to any because store definitions might lag behind slightly if we don't fix store type perfectly, but we did fix store type.
+                receiptNumber: result.saved.receiptNumber,
+            } as any);
 
             setIsSubmitted(true);
             window.scrollTo({ top: 0, behavior: 'smooth' });
         } catch (e) {
             console.error(e);
-            alert("送信に失敗しました");
+            setSubmitError("通信エラーが発生しました。インターネット接続を確認して再度お試しください。");
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
     };
 
@@ -263,6 +278,13 @@ function RequestForm() {
                 </div>
             )}
 
+            {submitError && (
+                <div className="mb-8 bg-red-50 border border-red-200 text-red-700 px-6 py-4 rounded-xl flex items-start gap-3">
+                    <AlertCircle className="w-5 h-5 shrink-0 mt-0.5" />
+                    <p className="text-sm font-medium">{submitError}</p>
+                </div>
+            )}
+
             <form onSubmit={handleSubmit(onSubmit)}>
                 {/* STEP 1 */}
                 <div className={step === 1 ? 'block space-y-8' : 'hidden'}>
@@ -276,24 +298,24 @@ function RequestForm() {
                         <div className="grid md:grid-cols-2 gap-4">
                             <div>
                                 <label className="block text-sm font-bold text-gray-700 mb-2">氏名 (姓) <span className="text-red-500">*</span></label>
-                                <input {...register("lastName")} className={`w-full border rounded-lg p-3 ${errors.lastName ? 'border-red-500 bg-red-50' : 'border-gray-300'}`} placeholder="例：山田" />
+                                <Input {...register("lastName")} className={`w-full bg-white ${errors.lastName ? 'border-red-500 bg-red-50' : ''}`} placeholder="例：山田" />
                                 {errors.lastName && <p className="text-red-500 text-xs mt-1">{errors.lastName.message}</p>}
                             </div>
                             <div>
                                 <label className="block text-sm font-bold text-gray-700 mb-2">氏名 (名) <span className="text-red-500">*</span></label>
-                                <input {...register("firstName")} className={`w-full border rounded-lg p-3 ${errors.firstName ? 'border-red-500 bg-red-50' : 'border-gray-300'}`} placeholder="例：太郎" />
+                                <Input {...register("firstName")} className={`w-full bg-white ${errors.firstName ? 'border-red-500 bg-red-50' : ''}`} placeholder="例：太郎" />
                                 {errors.firstName && <p className="text-red-500 text-xs mt-1">{errors.firstName.message}</p>}
                             </div>
                         </div>
                         <div className="grid md:grid-cols-2 gap-4">
                             <div>
                                 <label className="block text-sm font-bold text-gray-700 mb-2">ふりがな (せい) <span className="text-red-500">*</span></label>
-                                <input {...register("lastNameKana")} className={`w-full border rounded-lg p-3 ${errors.lastNameKana ? 'border-red-500 bg-red-50' : 'border-gray-300'}`} placeholder="例：やまだ" />
+                                <Input {...register("lastNameKana")} className={`w-full bg-white ${errors.lastNameKana ? 'border-red-500 bg-red-50' : ''}`} placeholder="例：やまだ" />
                                 {errors.lastNameKana && <p className="text-red-500 text-xs mt-1">{errors.lastNameKana.message}</p>}
                             </div>
                             <div>
                                 <label className="block text-sm font-bold text-gray-700 mb-2">ふりがな (めい) <span className="text-red-500">*</span></label>
-                                <input {...register("firstNameKana")} className={`w-full border rounded-lg p-3 ${errors.firstNameKana ? 'border-red-500 bg-red-50' : 'border-gray-300'}`} placeholder="例：たろう" />
+                                <Input {...register("firstNameKana")} className={`w-full bg-white ${errors.firstNameKana ? 'border-red-500 bg-red-50' : ''}`} placeholder="例：たろう" />
                                 {errors.firstNameKana && <p className="text-red-500 text-xs mt-1">{errors.firstNameKana.message}</p>}
                             </div>
                         </div>
@@ -304,12 +326,12 @@ function RequestForm() {
                         <div className="grid md:grid-cols-2 gap-4">
                             <div>
                                 <label className="block text-sm font-bold text-gray-700 mb-2">電話番号 <span className="text-red-500">*</span></label>
-                                <input {...register("phone")} onBlur={(e) => { register("phone").onBlur(e); handlePhoneBlur(e); }} className={`w-full border rounded-lg p-3 ${errors.phone ? 'border-red-500 bg-red-50' : 'border-gray-300'}`} placeholder="090-1234-5678" type="tel" />
+                                <Input type="tel" {...register("phone")} onBlur={(e) => { register("phone").onBlur(e); handlePhoneBlur(e); }} className={`w-full bg-white ${errors.phone ? 'border-red-500 bg-red-50' : ''}`} placeholder="090-1234-5678" />
                                 {errors.phone && <p className="text-red-500 text-xs mt-1">{errors.phone.message}</p>}
                             </div>
                             <div>
                                 <label className="block text-sm font-bold text-gray-700 mb-2">メールアドレス <span className="text-red-500">*</span></label>
-                                <input {...register("email")} className={`w-full border rounded-lg p-3 ${errors.email ? 'border-red-500 bg-red-50' : 'border-gray-300'}`} placeholder="example@seiren.jp" type="email" />
+                                <Input type="email" {...register("email")} className={`w-full bg-white ${errors.email ? 'border-red-500 bg-red-50' : ''}`} placeholder="example@seiren.jp" />
                                 {errors.email && <p className="text-red-500 text-xs mt-1">{errors.email.message}</p>}
                             </div>
                         </div>
@@ -322,7 +344,7 @@ function RequestForm() {
                         <div className="grid md:grid-cols-3 gap-4">
                             <div className="col-span-1">
                                 <label className="text-xs text-gray-500 mb-1 block">郵便番号</label>
-                                <input {...register("zipCode")} onBlur={(e) => { register("zipCode").onBlur(e); handleZipBlur(e); }} className={`w-full border rounded-lg p-3 ${errors.zipCode ? 'border-red-500 bg-red-50' : 'border-gray-300'}`} placeholder="123-4567" maxLength={8} inputMode="numeric" />
+                                <Input {...register("zipCode")} onBlur={(e) => { register("zipCode").onBlur(e); handleZipBlur(e); }} className={`w-full bg-white ${errors.zipCode ? 'border-red-500 bg-red-50' : ''}`} placeholder="123-4567" maxLength={8} inputMode="numeric" />
                                 {errors.zipCode && <p className="text-red-500 text-xs mt-1">{errors.zipCode.message}</p>}
                             </div>
                             <div className="col-span-2">
@@ -338,19 +360,19 @@ function RequestForm() {
                         <div className="grid md:grid-cols-2 gap-4">
                             <div>
                                 <label className="text-xs text-gray-500 mb-1 block">市区町村</label>
-                                <input {...register("city")} className={`w-full border rounded-lg p-3 ${errors.city ? 'border-red-500 bg-red-50' : 'border-gray-300'}`} placeholder="港区" />
+                                <Input {...register("city")} className={`w-full bg-white ${errors.city ? 'border-red-500 bg-red-50' : ''}`} placeholder="港区" />
                                 {errors.city && <p className="text-red-500 text-xs mt-1">{errors.city.message}</p>}
                             </div>
                             <div>
                                 <label className="text-xs text-gray-500 mb-1 block">番地</label>
-                                <input {...register("addressLine")} className={`w-full border rounded-lg p-3 ${errors.addressLine ? 'border-red-500 bg-red-50' : 'border-gray-300'}`} placeholder="芝公園4-2-8" />
+                                <Input {...register("addressLine")} className={`w-full bg-white ${errors.addressLine ? 'border-red-500 bg-red-50' : ''}`} placeholder="芝公園4-2-8" />
                                 {errors.addressLine && <p className="text-red-500 text-xs mt-1">{errors.addressLine.message}</p>}
                             </div>
                         </div>
 
                         <div>
                             <label className="text-xs text-gray-500 mb-1 block">建物名・部屋番号 <span className="text-gray-400 font-normal">(任意)</span></label>
-                            <input {...register("building")} className="w-full border border-gray-300 rounded-lg p-3" placeholder="東京タワービル 3F" />
+                            <Input {...register("building")} className="w-full bg-white" placeholder="東京タワービル 3F" />
                         </div>
                     </div>
 
@@ -422,7 +444,7 @@ function RequestForm() {
                         <div className="grid md:grid-cols-2 gap-4">
                             <div>
                                 <label className="text-xs text-gray-500 mb-1 block">見学希望日</label>
-                                <input type="date" {...register("visitDate")} className="w-full border border-gray-300 rounded-lg p-3" />
+                                <Input type="date" {...register("visitDate")} className="w-full bg-white" />
                             </div>
                             <div>
                                 <label className="text-xs text-gray-500 mb-1 block">時間帯</label>

@@ -71,15 +71,27 @@ export default function PartnerContactPage() {
         setSubmitError(null);
 
         try {
+            const requestId = crypto.randomUUID();
             const payload = {
                 ...data,
                 kind: "business",
+                requestId, // Add requestId
                 context: {
                     source: "partner_contact",
                     pagePath: typeof window !== 'undefined' ? window.location.pathname : '/partner/contact',
                     referrer: typeof document !== 'undefined' ? document.referrer : '',
                 },
-                createdAt: new Date().toISOString(),
+                // createdAt is handled by server timestamp usually, but keeping if API expects it? 
+                // The API standardized in previous turn uses `prisma.inquiry.create`. 
+                // It likely ignores `createdAt` in body or uses it. 
+                // Let's rely on server time or keep it if schema necessitates.
+                // Standard API usually ignores `createdAt` from client for security.
+                // But I'll leave it to be safe or remove it if I know for sure. 
+                // API `app/api/inquiries/route.ts` (viewed in Step 1018) does:
+                // `const { requestId = 'no-request-id', ...inquiryData } = body;`
+                // `data: { ...inquiryData, ... }`
+                // So it passes everything to Prisma. 
+                // If I send createdAt, Prisma might accept it if defined.
             };
 
             const response = await fetch("/api/inquiries", {
@@ -88,14 +100,21 @@ export default function PartnerContactPage() {
                 body: JSON.stringify(payload),
             });
 
+            const resData = await response.json();
+
             if (!response.ok) {
-                throw new Error("送信に失敗しました");
+                throw new Error(resData.error || "送信に失敗しました");
             }
 
+            if (!resData.success || !resData.saved?.id) {
+                throw new Error("サーバーでの保存を確認できませんでした");
+            }
+
+            console.log(`[INQUIRY_SENT] id=${resData.saved.id} receipt=${resData.saved.receiptNumber}`);
             router.push("/partner/contact/thanks");
-        } catch (error) {
+        } catch (error: any) {
             console.error(error);
-            setSubmitError("送信中にエラーが発生しました。時間をおいて再度お試しください。");
+            setSubmitError(error.message || "送信中にエラーが発生しました。時間をおいて再度お試しください。");
         } finally {
             setIsSubmitting(false);
         }

@@ -1,0 +1,186 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+}
+
+// Enums
+enum FacilityType {
+  TEMPLE_GRAVE    @map("寺院墓地")
+  PRIVATE_CEMETERY @map("民営霊園")
+  PUBLIC_CEMETERY  @map("公営霊園")
+  OSSUARY         @map("納骨堂")
+  COMPLEX         @map("複合型")
+  OTHER           @map("その他")
+}
+
+enum ReligionCategory {
+  BUDDHISM      @map("buddhism")
+  SHINTO        @map("shinto")
+  CHRISTIANITY  @map("christianity")
+  OTHER         @map("other")
+  UNKNOWN       @map("unknown")
+}
+
+enum BuddhistSect {
+  KEGON          @map("kegon")
+  HOSSO          @map("hosso")
+  SANRON         @map("sanron")
+  RITSU          @map("ritsu")
+  KUSHA          @map("kusha")
+  JOJITSU        @map("jojitsu")
+  TENDAI         @map("tendai")
+  SHINGON        @map("shingon")
+  JODO           @map("jodo")
+  JODO_SHIN      @map("jodoShin")
+  JISHU          @map("jishu")
+  NICHIREN       @map("nichiren")
+  ZEN            @map("zen")
+  SOTO           @map("soto")
+  RINZAI         @map("rinzai")
+  OBAKU          @map("obaku")
+  NICHIREN_SHOSHU @map("nichirenShoshu")
+  HOKKE_SHU      @map("hokkeShu")
+  KENPON_HOKKE   @map("kenponHokke")
+  HONMON_BUTSURYU @map("honmonButsuryu")
+  OTHER          @map("other")
+  UNKNOWN        @map("unknown")
+}
+
+// Main Models
+
+model Temple {
+  id              String   @id @default(uuid())
+  name            String
+  kana            String?
+  type            FacilityType
+  managementBody  String? 
+  religion        ReligionCategory
+  buddhistSect    BuddhistSect?
+  
+  // Location
+  prefecture      String
+  prefectureCode  Int?
+  cityName        String?
+  addressLine     String?
+  address         String
+  lat             Float?
+  lng             Float?
+  access          String?
+  
+  // Facility Attributes
+  parkingAvailable Boolean @default(false)
+  parking         String? // Legacy enum stored as string
+  
+  indoorOutdoor   String? // 'indoor' | 'outdoor' | 'both'
+  barrierFree     Boolean @default(false)
+  barrierFreeLabel String? // Legacy enum
+  
+  petAllowed      String? // 'allowed' | 'notAllowed' | 'conditional' | 'unknown'
+  petSupport      String?
+  
+  // Arrays (Postgres specific)
+  sects                 String[] // Supported Sects
+  supportedMemorialTypes String[]
+  
+  nearestStations Json? // Array of objects
+  
+  // Pricing Aggregates
+  priceAggMin     Int?
+  priceAggMax     Int?
+  managementFeeAggType String?
+  
+  // Content
+  catchphrase     String?
+  overview        String?
+  suitableFor     String[]
+  notesPoints     String[]
+  tags            String[]
+  aiSummary       String?
+  
+  mainImage       String?
+  galleryImages   String[]
+  
+  // Specs
+  phone           String?
+  officeHours     String?
+  status          String   @default("public") // 'public', 'private', 'draft'
+  listedInSearch  Boolean  @default(true)
+  successorRequirements String?
+
+  // Sub-objects stored as JSON
+  seo             Json?
+  calendar        Json?
+  keyFeatures     Json?
+
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  version         Int      @default(0)
+  
+  plans           Plan[]
+}
+
+model Plan {
+  id              String   @id @default(uuid())
+  templeId        String
+  temple          Temple   @relation(fields: [templeId], references: [id])
+  
+  category        String // PlanCategoryType
+  name            String
+  subDescription  String?
+  
+  price           Int
+  priceNote       String?
+  managementFee   Int      @default(0)
+  
+  availability    String   @default("available") // PlanAvailability
+  
+  burialMethod    String?  // BurialMethodType
+  periodType      String   @default("perpetual") // PeriodType
+  periodYears     Int?
+  
+  capacity        String?
+  capacityNote    String?
+  petAllowed      String?
+  
+  images          String[]
+  note            String?
+  order           Int      @default(0)
+  
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  version         Int      @default(0)
+}
+
+model Inquiry {
+  id              String   @id @default(uuid())
+  receiptNumber   String   @unique
+  status          String   @default("new") // InquiryStatus
+  
+  kind            String   @default("general") // 'general', 'business'
+  organizationName String?
+
+  type            String?  // 'consult', 'grave_closure'
+  category        String?
+  
+  user            Json?    // Detailed user info
+  
+  // Tracking
+  templeId        String?
+  templeNameSnapshot String?
+  planId          String?
+  planName        String?
+  
+  context         Json?
+  
+  message         String?
+  preferredDateTime String?
+  
+  adminNotes      String?
+  
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  version         Int      @default(0)
+}

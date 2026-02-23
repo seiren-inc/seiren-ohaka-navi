@@ -4,6 +4,10 @@ import { useState, Suspense } from "react";
 import { Navbar } from "../../components/layout/Navbar";
 import { Footer } from "../../components/layout/Footer";
 import { Button } from "../../components/ui/Button";
+import { Input } from "../../components/ui/Input";
+import { Textarea } from "../../components/ui/Textarea";
+import { Checkbox } from "../../components/ui/Checkbox";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../../components/ui/Select";
 import { CheckCircle, Phone, Mail, ArrowDown, Heart } from "lucide-react";
 
 function IkotsuServiceConsultForm() {
@@ -28,6 +32,7 @@ function IkotsuServiceConsultForm() {
     const [postalError, setPostalError] = useState("");
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [isSuccess, setIsSuccess] = useState(false);
+    const [submitError, setSubmitError] = useState<string | null>(null);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
         const { name, value } = e.target;
@@ -71,9 +76,14 @@ function IkotsuServiceConsultForm() {
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
+        if (isSubmitting) return; // 二重送信防止
         setIsSubmitting(true);
+        setSubmitError(null);
+
+        const requestId = crypto.randomUUID();
 
         const payload = {
+            requestId,
             type: "consult",
             category: "ikotsu_service",
             contact: {
@@ -100,6 +110,12 @@ function IkotsuServiceConsultForm() {
                 sourceLabel: "HeaderConsultDropdown",
                 sourcePath: "/consult/ikotsu-service",
                 refUrl: window.location.href,
+            },
+            user: {
+                name: formData.name,
+                kana: formData.furigana,
+                phone: formData.phone,
+                email: formData.email,
             }
         };
 
@@ -110,15 +126,29 @@ function IkotsuServiceConsultForm() {
                 body: JSON.stringify(payload),
             });
 
-            if (res.ok) {
-                setIsSuccess(true);
-                window.scrollTo(0, 0);
-            } else {
-                alert("送信に失敗しました。");
+            const data = await res.json();
+
+            if (!data.success) {
+                const msg = data.error?.message || "送信に失敗しました。時間をおいて再度お試しください。";
+                setSubmitError(msg);
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                return;
             }
+
+            if (!data.saved?.id) {
+                setSubmitError("サーバーでの保存確認ができませんでした。管理者にご連絡ください。");
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                return;
+            }
+
+            console.log(`[IKOTSU_SENT] id=${data.saved.id} receipt=${data.saved.receiptNumber}`);
+
+            setIsSuccess(true);
+            window.scrollTo(0, 0);
         } catch (error) {
             console.error(error);
-            alert("エラーが発生しました。");
+            setSubmitError("通信エラーが発生しました。インターネット接続を確認して再度お試しください。");
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         } finally {
             setIsSubmitting(false);
         }
@@ -176,6 +206,12 @@ function IkotsuServiceConsultForm() {
                 </div>
 
                 {/* Form */}
+                {submitError && (
+                    <div className="max-w-3xl mx-auto mb-8 bg-red-50 border border-red-200 text-red-700 px-6 py-4 rounded-xl flex items-start gap-3">
+                        <div className="w-1.5 h-1.5 rounded-full bg-red-600 mt-2 shrink-0" />
+                        <p className="text-sm font-medium">{submitError}</p>
+                    </div>
+                )}
                 <form onSubmit={handleSubmit} className="bg-white p-6 sm:p-10 rounded-2xl shadow-lg border border-gray-100 space-y-8 max-w-3xl mx-auto">
 
                     <section className="space-y-6">
@@ -186,12 +222,18 @@ function IkotsuServiceConsultForm() {
                             <div className="flex flex-wrap gap-4">
                                 {["粉骨（パウダー化）", "洗骨（洗浄・乾燥）", "手元供養品", "散骨", "その他"].map(type => (
                                     <label key={type} className="flex items-center gap-2 cursor-pointer">
-                                        <input
-                                            type="checkbox"
+                                        <Checkbox
                                             value={type}
                                             checked={formData.serviceItems.includes(type)}
-                                            onChange={handleCheckbox}
-                                            className="w-4 h-4 text-primary rounded border-gray-300 focus:ring-primary"
+                                            onCheckedChange={(checked: boolean | "indeterminate") => {
+                                                setFormData(prev => ({
+                                                    ...prev,
+                                                    serviceItems: checked === true
+                                                        ? [...prev.serviceItems, type]
+                                                        : prev.serviceItems.filter(t => t !== type)
+                                                }))
+                                            }}
+                                            className="w-4 h-4 text-primary rounded border-gray-300"
                                         />
                                         <span className="text-gray-700">{type}</span>
                                     </label>
@@ -202,32 +244,47 @@ function IkotsuServiceConsultForm() {
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                             <div className="space-y-2">
                                 <label className="block text-sm font-bold text-gray-700">現在のご遺骨の状態</label>
-                                <select name="boneStatus" className="w-full h-12 px-4 border rounded-lg bg-white" value={formData.boneStatus} onChange={handleChange}>
-                                    <option value="不明">不明・相談したい</option>
-                                    <option value="骨壷のまま">骨壷に入っている</option>
-                                    <option value="お墓の中">お墓の中にある</option>
-                                    <option value="一部">分骨・一部のみ</option>
-                                </select>
+                                <Select value={formData.boneStatus} onValueChange={(val: string) => setFormData(p => ({ ...p, boneStatus: val }))}>
+                                    <SelectTrigger className="w-full h-12 px-4 border rounded-lg bg-white">
+                                        <SelectValue placeholder="選択してください" />
+                                    </SelectTrigger>
+                                    <SelectContent>
+                                        <SelectItem value="不明">不明・相談したい</SelectItem>
+                                        <SelectItem value="骨壷のまま">骨壷に入っている</SelectItem>
+                                        <SelectItem value="お墓の中">お墓の中にある</SelectItem>
+                                        <SelectItem value="一部">分骨・一部のみ</SelectItem>
+                                    </SelectContent>
+                                </Select>
                             </div>
                             <div className="space-y-2">
                                 <label className="block text-sm font-bold text-gray-700">お引き渡し方法</label>
-                                <select name="deliveryMethod" className="w-full h-12 px-4 border rounded-lg bg-white" value={formData.deliveryMethod} onChange={handleChange}>
-                                    <option value="未定">未定（相談）</option>
-                                    <option value="郵送">郵送希望</option>
-                                    <option value="持込">持ち込み希望</option>
-                                    <option value="訪問">訪問引き取り希望（有料）</option>
-                                </select>
+                                <Select value={formData.deliveryMethod} onValueChange={(val: string) => setFormData(p => ({ ...p, deliveryMethod: val }))}>
+                                    <SelectTrigger className="w-full h-12 px-4 border rounded-lg bg-white">
+                                        <SelectValue placeholder="選択してください" />
+                                    </SelectTrigger>
+                                    <SelectContent>
+                                        <SelectItem value="未定">未定（相談）</SelectItem>
+                                        <SelectItem value="郵送">郵送希望</SelectItem>
+                                        <SelectItem value="持込">持ち込み希望</SelectItem>
+                                        <SelectItem value="訪問">訪問引き取り希望（有料）</SelectItem>
+                                    </SelectContent>
+                                </Select>
                             </div>
                         </div>
 
                         <div className="space-y-2">
                             <label className="block text-sm font-bold text-gray-700">実施希望時期</label>
-                            <select name="desiredTiming" className="w-full h-12 px-4 border rounded-lg bg-white" value={formData.desiredTiming} onChange={handleChange}>
-                                <option value="未定">未定</option>
-                                <option value="急ぎ">急ぎ</option>
-                                <option value="1ヶ月以内">1ヶ月以内</option>
-                                <option value="3ヶ月以内">3ヶ月以内</option>
-                            </select>
+                            <Select value={formData.desiredTiming} onValueChange={(val: string) => setFormData(p => ({ ...p, desiredTiming: val }))}>
+                                <SelectTrigger className="w-full h-12 px-4 border rounded-lg bg-white">
+                                    <SelectValue placeholder="選択してください" />
+                                </SelectTrigger>
+                                <SelectContent>
+                                    <SelectItem value="未定">未定</SelectItem>
+                                    <SelectItem value="急ぎ">急ぎ</SelectItem>
+                                    <SelectItem value="1ヶ月以内">1ヶ月以内</SelectItem>
+                                    <SelectItem value="3ヶ月以内">3ヶ月以内</SelectItem>
+                                </SelectContent>
+                            </Select>
                         </div>
                     </section>
 
@@ -237,22 +294,22 @@ function IkotsuServiceConsultForm() {
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                             <div className="space-y-2">
                                 <label className="block text-sm font-bold text-gray-700">お名前 <span className="text-red-500">*</span></label>
-                                <input type="text" name="name" required className="w-full h-12 px-4 border rounded-lg" placeholder="山田 太郎" value={formData.name} onChange={handleChange} />
+                                <Input type="text" name="name" required placeholder="山田 太郎" value={formData.name} onChange={handleChange} />
                             </div>
                             <div className="space-y-2">
                                 <label className="block text-sm font-bold text-gray-700">フリガナ <span className="text-red-500">*</span></label>
-                                <input type="text" name="furigana" required className="w-full h-12 px-4 border rounded-lg" placeholder="やまだ たろう" value={formData.furigana} onChange={handleChange} />
+                                <Input type="text" name="furigana" required placeholder="やまだ たろう" value={formData.furigana} onChange={handleChange} />
                             </div>
                         </div>
 
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                             <div className="space-y-2">
                                 <label className="block text-sm font-bold text-gray-700">電話番号 <span className="text-red-500">*</span></label>
-                                <input type="tel" name="phone" required className="w-full h-12 px-4 border rounded-lg" placeholder="090-1234-5678" value={formData.phone} onChange={handleChange} />
+                                <Input type="tel" name="phone" required placeholder="090-1234-5678" value={formData.phone} onChange={handleChange} />
                             </div>
                             <div className="space-y-2">
                                 <label className="block text-sm font-bold text-gray-700">メールアドレス <span className="text-red-500">*</span></label>
-                                <input type="email" name="email" required className="w-full h-12 px-4 border rounded-lg" placeholder="example@email.com" value={formData.email} onChange={handleChange} />
+                                <Input type="email" name="email" required placeholder="example@email.com" value={formData.email} onChange={handleChange} />
                             </div>
                         </div>
 
@@ -260,11 +317,11 @@ function IkotsuServiceConsultForm() {
                             <div className="space-y-2">
                                 <label className="block text-sm font-bold text-gray-700">郵便番号 (住所自動入力)</label>
                                 <div className="flex gap-4">
-                                    <input
+                                    <Input
                                         type="text"
                                         name="zipCode"
                                         maxLength={8}
-                                        className="w-32 h-12 px-4 border rounded-lg"
+                                        className="w-32"
                                         placeholder="123-4567"
                                         value={formData.zipCode}
                                         onChange={handleChange}
@@ -275,18 +332,18 @@ function IkotsuServiceConsultForm() {
                             </div>
 
                             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                                <input type="text" name="prefecture" className="w-full h-12 px-4 border rounded-lg" placeholder="都道府県" value={formData.prefecture} onChange={handleChange} />
-                                <input type="text" name="city" className="w-full h-12 px-4 border rounded-lg" placeholder="市区町村" value={formData.city} onChange={handleChange} />
+                                <Input type="text" name="prefecture" placeholder="都道府県" value={formData.prefecture} onChange={handleChange} />
+                                <Input type="text" name="city" placeholder="市区町村" value={formData.city} onChange={handleChange} />
                             </div>
                             <div className="space-y-2">
-                                <input type="text" name="address1" className="w-full h-12 px-4 border rounded-lg" placeholder="番地" value={formData.address1} onChange={handleChange} />
-                                <input type="text" name="address2" className="w-full h-12 px-4 border rounded-lg" placeholder="建物名・部屋番号" value={formData.address2} onChange={handleChange} />
+                                <Input type="text" name="address1" placeholder="番地" value={formData.address1} onChange={handleChange} />
+                                <Input type="text" name="address2" placeholder="建物名・部屋番号" value={formData.address2} onChange={handleChange} />
                             </div>
                         </div>
 
                         <div className="space-y-2">
                             <label className="block text-sm font-bold text-gray-700">その他・ご要望</label>
-                            <textarea name="message" className="w-full h-32 p-4 border rounded-lg" placeholder="具体的なご質問があればご記入ください" value={formData.message} onChange={handleChange} />
+                            <Textarea name="message" className="w-full h-32 p-4 border rounded-lg" placeholder="具体的なご質問があればご記入ください" value={formData.message} onChange={handleChange} />
                         </div>
                     </section>
 

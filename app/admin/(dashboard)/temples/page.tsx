@@ -1,11 +1,13 @@
-
-import Link from "next/link";
-import { Button } from "../../components/ui/Button";
-import { Store } from "../../../lib/store";
+import prisma from "@/lib/prisma";
+import { Temple } from "@/lib/store";
 import { Pencil } from "lucide-react";
+import Link from "next/link";
+import { Button } from "@/app/components/ui/Button";
 
-export default function TempleList() {
-    const temples = Store.getTemples();
+export default async function TempleList() {
+    const temples = await prisma.temple.findMany({
+        orderBy: { updatedAt: 'desc' }
+    }) as unknown as Temple[];
 
     return (
         <div>

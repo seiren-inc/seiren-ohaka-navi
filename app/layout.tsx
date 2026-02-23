@@ -16,7 +16,7 @@ const shipporiMincho = Noto_Sans_JP({
 
 export const metadata: Metadata = {
   title: "清蓮（Seiren) | お墓探しナビ",
-  description: "墓地、永代供養、樹木葬、納骨堂の検索・比較なら清蓮。専門家が中立な立場で「あなたに合った供養」をご提案。改葬や墓じまいもワンストップサポート。【相談無料】",
+  description: "墓地、永代供養、樹木葬、納骨堂の検索・比較ならお墓探しナビ。専門家が中立な立場で「あなたに合った供養」をご提案。費用・アクセス・口コミで霊園を比較し、見学予約まで完結。【相談無料】",
   icons: {
     icon: "/icon.png",
     apple: "/icon.png",

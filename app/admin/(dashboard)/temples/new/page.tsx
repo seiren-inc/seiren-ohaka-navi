@@ -2,10 +2,10 @@
 
 import { useState, useMemo } from "react";
 import { useRouter } from "next/navigation";
-import { Button } from "../../../components/ui/Button";
-import { Store, Temple, Plan, FacilityType, ManagementBody, ReligionCategory, Parking, BarrierFree, PetSupport, SuccessorReq, PublishStatus, Prefecture, ContentIcon, AppealTag, PlanCategory, PlanCapacity, BurialType, PlanPeriod, LocationType, WorshipType, PetSupportPlan, PlanStatus, BookingStatus, BookingChannel, SlotInterval, VisitDuration, BufferMinutes, CutoffRule, BookingWindow, SeoSettings, Sect, MemorialType, IndoorOutdoor, PetAllowed, ManagementFeeType, RELIGION_CATEGORIES, BUDDHIST_SECTS, BUDDHIST_SECT_GROUPS, BuddhistSect } from "../../../../lib/store";
-import { ImageUploader } from "../../../components/admin/ImageUploader";
-import { GalleryUploader } from "../../../components/admin/GalleryUploader";
+import { Button } from "@/app/components/ui/Button";
+import { Store, Temple, Plan, FacilityType, ManagementBody, ReligionCategory, Parking, BarrierFree, PetSupport, SuccessorReq, PublishStatus, Prefecture, ContentIcon, AppealTag, BookingStatus, BookingChannel, SlotInterval, VisitDuration, BufferMinutes, CutoffRule, BookingWindow, SeoSettings, Sect, MemorialType, IndoorOutdoor, PetAllowed, ManagementFeeType, RELIGION_CATEGORIES, BUDDHIST_SECTS, BUDDHIST_SECT_GROUPS, BuddhistSect } from "@/lib/store";
+import { ImageUploader } from "@/app/components/admin/ImageUploader";
+import { GalleryUploader } from "@/app/components/admin/GalleryUploader";
 import { Loader2, Plus, Trash2, GripVertical, Image as ImageIcon, MapPin, Calendar as CalIcon, FileText, Tag, Search, Sparkles, X, ChevronDown, ChevronRight, Save, Clock, Settings, Bell, Ban, Globe, HelpCircle, Code, DollarSign, CheckSquare, Info } from "lucide-react";
 
 // Lists (Reused)
@@ -42,6 +42,7 @@ export default function NewTemplePage() {
     const router = useRouter();
     const [isLoading, setIsLoading] = useState(false);
     const [activeTab, setActiveTab] = useState('basic');
+    const [newlyUploadedPaths, setNewlyUploadedPaths] = useState<Set<string>>(new Set());
 
 
 
@@ -58,7 +59,7 @@ export default function NewTemplePage() {
         petAllowed: 'unknown', petSupport: "不可",
         successorRequirements: "継承者不要",
         // C. Price
-        priceMin: 0, priceMax: 0, managementFeeType: "unknown", managementFeeMin: 0, managementFeeMax: 0,
+        managementFeeAggType: "unknown",
         // D. Publish
         status: "draft", listedInSearch: true,
         // Specs 
@@ -109,17 +110,59 @@ export default function NewTemplePage() {
         }
 
         // Data Prep
-        const templeToSave = { ...temple };
+        const requestId = crypto.randomUUID();
+        const templeToSave = {
+            ...temple,
+            requestId
+        };
+
         if (!templeToSave.address && templeToSave.cityName && templeToSave.addressLine) {
             templeToSave.address = `${templeToSave.cityName}${templeToSave.addressLine}`;
         }
 
         setIsLoading(true);
-        const newTemple = Store.createTemple(templeToSave as unknown as Temple);
-        await new Promise(r => setTimeout(r, 500));
-        setIsLoading(false);
-        alert("保存しました。続いて区画プランの登録へ進みます。");
-        router.push(`/admin/temples/${newTemple.id}/edit`);
+        try {
+            const response = await fetch('/api/temples', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(templeToSave)
+            });
+
+            const data = await response.json();
+
+            if (!response.ok) {
+                throw new Error(data.error || 'Failed to save');
+            }
+
+            if (!data.success || !data.saved?.id) {
+                throw new Error('保存の成功をサーバーから確認できませんでした。');
+            }
+
+            // --- Success Phase ---
+            setNewlyUploadedPaths(new Set());
+
+            console.log(`[SAVE_SUCCESS] id=${data.saved.id} requestId=${data.requestId}`);
+            alert("保存しました。続いて区画プランの登録へ進みます。");
+            router.push(`/admin/temples/${data.saved.id}/edit`);
+        } catch (e: any) {
+            console.error('Save Error:', e);
+
+            // --- Rollback Phase ---
+            if (newlyUploadedPaths.size > 0) {
+                console.log(`[ROLLBACK_START] Rolling back ${newlyUploadedPaths.size} files...`);
+                for (const path of Array.from(newlyUploadedPaths)) {
+                    fetch('/api/upload/image', {
+                        method: 'DELETE',
+                        body: JSON.stringify({ path })
+                    }).catch(e => console.error(`[ROLLBACK_FAIL] ${path}:`, e));
+                }
+                setNewlyUploadedPaths(new Set());
+            }
+
+            alert(`保存に失敗しました。一時的にアップロードされた画像は削除されました: ${e.message}`);
+        } finally {
+            setIsLoading(false);
+        }
     };
 
     // --- Tab Renderers ---
@@ -461,6 +504,7 @@ export default function NewTemplePage() {
                                 <ImageUploader
                                     label="メイン画像 (一覧・詳細ヘッダー)"
                                     value={temple.mainImage}
+                                    onUploadSuccess={(url, path) => setNewlyUploadedPaths(prev => new Set(prev).add(path))}
                                     onChange={(url: string | null) => setTemple({ ...temple, mainImage: url || "" })}
                                     folder="temples/main"
                                 />
@@ -468,6 +512,7 @@ export default function NewTemplePage() {
                                 <GalleryUploader
                                     label="ギャラリー画像 (詳細ページ)"
                                     images={temple.galleryImages}
+                                    onUploadSuccess={(url, path) => setNewlyUploadedPaths(prev => new Set(prev).add(path))}
                                     onChange={(urls: string[]) => setTemple({ ...temple, galleryImages: urls })}
                                     folder="temples/gallery"
                                 />

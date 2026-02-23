@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import Image from "next/image";
 import { MapPin, Tag, ArrowRight, Image as ImageIcon, FileText } from "lucide-react";
 import { Temple } from "@/lib/store";
 import { Card } from "../../ui/Card";
@@ -37,10 +38,12 @@ export function GraveyardCard({ data }: GraveyardCardProps) {
             {/* Thumbnail */}
             <div className="w-full md:w-1/3 bg-gray-100 aspect-video md:aspect-auto relative overflow-hidden group">
                 {data.mainImage ? (
-                    <img
+                    <Image
                         src={data.mainImage}
                         alt={data.name}
-                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                        fill
+                        className="object-cover transition-transform duration-500 group-hover:scale-105"
+                        sizes="(max-width: 768px) 100vw, 33vw"
                     />
                 ) : (
                     <div className="absolute inset-0 flex items-center justify-center text-gray-400">

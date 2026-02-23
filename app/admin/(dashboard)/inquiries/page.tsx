@@ -1,17 +1,19 @@
-
-import { InquiryStatus, Inquiry } from "../../../lib/store";
-import { InquiryDB } from "../../../lib/inquiry-db";
+import prisma from "@/lib/prisma";
+import { InquiryStatus, Inquiry } from "@/lib/store";
 import { CheckCircle2, Circle, Clock, ChevronRight, Filter } from "lucide-react";
 import Link from "next/link";
 
-export default async function InquiryList(props: { searchParams: Promise<{ category?: string }> }) {
+export default async function InquiryList(props: { searchParams: Promise<{ category?: string, status?: string }> }) {
     const searchParams = await props.searchParams;
     const categoryFilter = searchParams.category || 'all';
+    const statusFilter = searchParams.status || 'all';
 
-    // Determine Environment: Server Component can read DB directly
-    let inquiries = InquiryDB.getAll();
+    // Fetch from Prisma
+    let inquiries = await prisma.inquiry.findMany({
+        orderBy: { createdAt: 'desc' }
+    }) as unknown as Inquiry[];
 
-    // Filter by Category
+    // --- Filter by Category ---
     if (categoryFilter !== 'all') {
         if (categoryFilter === 'business') {
             inquiries = inquiries.filter(i => i.kind === 'business');
@@ -21,6 +23,36 @@ export default async function InquiryList(props: { searchParams: Promise<{ categ
             inquiries = inquiries.filter(i => i.category === categoryFilter || i.type === categoryFilter);
         }
     }
+
+    // --- Filter by Status ---
+    if (statusFilter !== 'all') {
+        if (statusFilter === 'active') {
+            inquiries = inquiries.filter(i => i.status === 'new' || i.status === 'contacted');
+        } else {
+            inquiries = inquiries.filter(i => i.status === statusFilter);
+        }
+    }
+
+    // --- Custom Sorting (Active first, then by date) ---
+    const statusOrder: Record<string, number> = {
+        'new': 0,
+        'contacted': 1,
+        'pending': 2,
+        'done': 3,
+        'spam': 4
+    };
+
+    inquiries.sort((a, b) => {
+        const orderA = statusOrder[a.status] ?? 99;
+        const orderB = statusOrder[b.status] ?? 99;
+
+        if (orderA !== orderB) {
+            return orderA - orderB;
+        }
+
+        // If same status, sort by date descending (already sorted by Prisma, but just to be sure)
+        return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
+    });
 
     const getStatusBadge = (status: InquiryStatus) => {
         switch (status) {
@@ -52,28 +84,67 @@ export default async function InquiryList(props: { searchParams: Promise<{ categ
                 </div>
 
                 {/* Filter UI */}
-                <div className="flex items-center gap-2">
-                    <Filter className="w-4 h-4 text-gray-400" />
-                    {/* Fallback to simple links for now */}
-                    <div className="flex bg-gray-100 rounded-lg p-1">
-                        {[
-                            { id: 'all', label: 'すべて' },
-                            { id: 'grave_search', label: 'お墓探' },
-                            { id: 'grave_closure', label: '墓じまい' },
-                            { id: 'ikotsu_service', label: '遺骨' },
-                            { id: 'business', label: '事業者' },
-                        ].map(f => (
-                            <Link
-                                key={f.id}
-                                href={f.id === 'all' ? '/admin/inquiries' : `/admin/inquiries?category=${f.id}`}
-                                className={`px-3 py-1.5 text-xs font-bold rounded-md transition-colors ${categoryFilter === f.id
-                                    ? 'bg-white text-gray-800 shadow-sm'
-                                    : 'text-gray-500 hover:text-gray-700'
-                                    }`}
-                            >
-                                {f.label}
-                            </Link>
-                        ))}
+                <div className="flex flex-col gap-3 items-end">
+                    {/* Status Filter */}
+                    <div className="flex items-center gap-2">
+                        <span className="text-xs text-gray-400 font-bold">ステータス</span>
+                        <div className="flex bg-gray-100 rounded-lg p-1">
+                            {[
+                                { id: 'all', label: 'すべて' },
+                                { id: 'active', label: '未完了のみ' },
+                                { id: 'done', label: '完了' },
+                            ].map(f => {
+                                const params = new URLSearchParams();
+                                if (categoryFilter !== 'all') params.set('category', categoryFilter);
+                                if (f.id !== 'all') params.set('status', f.id);
+                                const query = params.toString() ? `?${params.toString()}` : '';
+
+                                return (
+                                    <Link
+                                        key={f.id}
+                                        href={`/admin/inquiries${query}`}
+                                        className={`px-3 py-1.5 text-xs font-bold rounded-md transition-colors ${statusFilter === f.id
+                                            ? 'bg-blue-600 text-white shadow-sm'
+                                            : 'text-gray-500 hover:text-gray-700 hover:bg-gray-200'
+                                            }`}
+                                    >
+                                        {f.label}
+                                    </Link>
+                                );
+                            })}
+                        </div>
+                    </div>
+
+                    {/* Category Filter */}
+                    <div className="flex items-center gap-2">
+                        <Filter className="w-4 h-4 text-gray-400" />
+                        <div className="flex bg-gray-100 rounded-lg p-1">
+                            {[
+                                { id: 'all', label: 'すべて' },
+                                { id: 'grave_search', label: 'お墓探し' },
+                                { id: 'grave_closure', label: '墓じまい' },
+                                { id: 'ikotsu_service', label: '遺骨供養' },
+                                { id: 'business', label: '事業者' },
+                            ].map(f => {
+                                const params = new URLSearchParams();
+                                if (f.id !== 'all') params.set('category', f.id);
+                                if (statusFilter !== 'all') params.set('status', statusFilter);
+                                const query = params.toString() ? `?${params.toString()}` : '';
+
+                                return (
+                                    <Link
+                                        key={f.id}
+                                        href={`/admin/inquiries${query}`}
+                                        className={`px-3 py-1.5 text-xs font-bold rounded-md transition-colors ${categoryFilter === f.id
+                                            ? 'bg-white text-gray-800 shadow-sm'
+                                            : 'text-gray-500 hover:text-gray-700'
+                                            }`}
+                                    >
+                                        {f.label}
+                                    </Link>
+                                );
+                            })}
+                        </div>
                     </div>
                 </div>
             </div>

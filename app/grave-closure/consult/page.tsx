@@ -37,8 +37,11 @@ function GraveClosureForm() {
         e.preventDefault();
         setIsSubmitting(true);
 
+        const requestId = crypto.randomUUID();
+
         try {
             const payload = {
+                requestId,
                 type: "grave_closure",
                 category: "grave_closure_consult",
                 contact: {
@@ -62,6 +65,12 @@ function GraveClosureForm() {
                     source: "grave-closure",
                     sourcePath: "/grave-closure/consult",
                     refUrl: window.location.href,
+                },
+                user: {
+                    name: formData.name,
+                    kana: formData.furigana,
+                    phone: formData.phone,
+                    email: formData.email,
                 }
             };
 
@@ -71,15 +80,23 @@ function GraveClosureForm() {
                 body: JSON.stringify(payload),
             });
 
-            if (res.ok) {
-                setIsSuccess(true);
-                window.scrollTo(0, 0);
-            } else {
-                alert("送信に失敗しました。時間をおいて再度お試しください。");
+            const data = await res.json();
+
+            if (!res.ok) {
+                throw new Error(data.error || "送信に失敗しました");
             }
+
+            if (!data.success || !data.saved?.id) {
+                throw new Error("サーバーでの保存を確認できませんでした");
+            }
+
+            console.log(`[GRAVE_CLOSURE_CONSULT_SENT] id=${data.saved.id} receipt=${data.saved.receiptNumber}`);
+
+            setIsSuccess(true);
+            window.scrollTo(0, 0);
         } catch (error) {
             console.error("Submission error", error);
-            alert("エラーが発生しました。");
+            alert("エラーが発生しました。時間をおいて再度お試しください。");
         } finally {
             setIsSubmitting(false);
         }

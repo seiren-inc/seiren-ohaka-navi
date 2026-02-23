@@ -1,6 +1,7 @@
 "use client";
 
 import { Temple } from "@/lib/store";
+import Image from "next/image";
 import { Image as ImageIcon } from "lucide-react";
 
 interface TempleGalleryProps {
@@ -23,10 +24,12 @@ export function TempleGallery({ gallery }: TempleGalleryProps) {
                     <div key={i} className="flex flex-col gap-2">
                         <div className="aspect-video bg-gray-100 rounded-lg overflow-hidden relative group border border-gray-200">
                             {src ? (
-                                <img
+                                <Image
                                     src={src}
                                     alt={`Gallery ${i + 1}`}
-                                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                                    fill
+                                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                                    sizes="(max-width: 768px) 50vw, 25vw"
                                 />
                             ) : (
                                 <div className="w-full h-full flex flex-col items-center justify-center text-gray-300">

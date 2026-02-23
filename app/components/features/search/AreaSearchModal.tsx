@@ -4,7 +4,6 @@ import { useState, useMemo, useEffect } from "react";
 import { X, ChevronRight, MapPin } from "lucide-react";
 import { Store } from "@/lib/store";
 import Link from "next/link";
-import { PREFECTURES } from "@/lib/prefectures";
 
 interface AreaSearchModalProps {
     isOpen: boolean;

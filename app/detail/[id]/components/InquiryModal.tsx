@@ -53,11 +53,61 @@ export function InquiryModal({ isOpen, onClose, temple, defaultDate }: InquiryMo
     const handleSubmit = async () => {
         setIsSubmitting(true);
         try {
-            // Mock API Call
-            await new Promise(r => setTimeout(r, 1000));
-            // In real app: POST /api/inquiries
-            setReceiptNumber(`R-${Math.floor(Math.random() * 10000)}`);
-        } catch (e) { alert("送信に失敗しました"); } finally { setIsSubmitting(false); }
+            const requestId = crypto.randomUUID();
+
+            // Construct payload based on formData
+            // Note: formData has preferredDate/Time, name, phone, email, message
+            // We need to map this to Inquiry object expected by API
+            const payload = {
+                kind: 'general', // Default for general inquiry
+                requestId,
+                // Context
+                context: {
+                    source: 'inquiry_modal',
+                    templeId: temple.id,
+                    templeName: temple.name,
+                    pagePath: typeof window !== 'undefined' ? window.location.pathname : '',
+                },
+                // User Info
+                user: {
+                    name: formData.name,
+                    phone: formData.phone,
+                    email: formData.email,
+                },
+                // Inquiry details
+                message: formData.message,
+                preferredDateTime: `${formData.preferredDate} ${formData.preferredTime}`,
+                preferredDateTime2: formData.preferredDate2 ? `${formData.preferredDate2} ${formData.preferredTime2}` : undefined,
+
+                // Honeypot check (if implemented on server, but for now just send empty hidden field if exists)
+                honeypot: formData.honeypot
+            };
+
+            const response = await fetch('/api/inquiries', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            });
+
+            const resData = await response.json();
+
+            if (!response.ok) {
+                throw new Error(resData.error || '送信に失敗しました');
+            }
+
+            if (!resData.success || !resData.saved?.receiptNumber) {
+                throw new Error('完了を確認できませんでした');
+            }
+
+            // Success
+            console.log(`[INQUIRY_SENT_MODAL] id=${resData.saved.id} receipt=${resData.saved.receiptNumber}`);
+            setReceiptNumber(resData.saved.receiptNumber);
+        } catch (e: any) {
+            console.error(e);
+            alert(`送信に失敗しました: ${e.message}`);
+        } finally {
+            setIsSubmitting(false);
+        }
     };
 
     if (!isOpen) return null;

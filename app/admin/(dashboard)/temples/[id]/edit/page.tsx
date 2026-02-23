@@ -2,10 +2,10 @@
 
 import { useEffect, useState, useMemo } from "react";
 import { useRouter } from "next/navigation";
-import { Button } from "../../../../components/ui/Button";
-import { Store, Temple, Plan, FacilityType, ManagementBody, ReligionCategory, Parking, BarrierFree, PetSupport, SuccessorReq, PublishStatus, Prefecture, ContentIcon, AppealTag, RELIGION_CATEGORIES, BUDDHIST_SECTS, BUDDHIST_SECT_GROUPS, BuddhistSect, PLAN_CATEGORIES, PLAN_AVAILABILITY_LABELS, PlanCategoryType, PlanAvailability, ManagementFeeType, IndoorOutdoor, PetAllowed, BookingStatus, Sect, MemorialType } from "../../../../../lib/store";
-import { ImageUploader } from "../../../../components/admin/ImageUploader";
-import { GalleryUploader } from "../../../../components/admin/GalleryUploader";
+import { Button } from "@/app/components/ui/Button";
+import { Store, Temple, Plan, FacilityType, ManagementBody, ReligionCategory, Parking, BarrierFree, PetSupport, SuccessorReq, PublishStatus, Prefecture, ContentIcon, AppealTag, RELIGION_CATEGORIES, BUDDHIST_SECTS, BUDDHIST_SECT_GROUPS, BuddhistSect, PLAN_CATEGORIES, PLAN_AVAILABILITY_LABELS, PlanCategoryType, PlanAvailability, ManagementFeeType, IndoorOutdoor, PetAllowed, BookingStatus, Sect, MemorialType } from "@/lib/store";
+import { ImageUploader } from "@/app/components/admin/ImageUploader";
+import { GalleryUploader } from "@/app/components/admin/GalleryUploader";
 import { Loader2, Plus, Trash2, GripVertical, Image as ImageIcon, MapPin, Calendar as CalIcon, FileText, Tag, Search, Sparkles, X, ChevronDown, ChevronRight, Save, Clock, Settings, Bell, Ban, Globe, HelpCircle, Code, DollarSign, CheckSquare, Info } from "lucide-react";
 
 // Lists (Reused)
@@ -54,6 +54,7 @@ export default function EditTemplePage({ params }: { params: { id: string } }) {
     const [activeTab, setActiveTab] = useState('basic');
     const [temple, setTemple] = useState<Temple | null>(null);
     const [plans, setPlans] = useState<Plan[]>([]);
+    const [newlyUploadedPaths, setNewlyUploadedPaths] = useState<Set<string>>(new Set());
 
     // Plan Modal
     const [isPlanModalOpen, setIsPlanModalOpen] = useState(false);
@@ -61,73 +62,44 @@ export default function EditTemplePage({ params }: { params: { id: string } }) {
     const [editingPlan, setEditingPlan] = useState<Partial<Plan>>({});
     const [planModalTab, setPlanModalTab] = useState<'basic' | 'specs' | 'extra'>('basic');
 
-    // Derived Cities for suggestion
+    // Derived Cities for suggestion (Optional, can be kept as empty or fetched separately)
+    const [allTemples, setAllTemples] = useState<Temple[]>([]);
     const citySuggestions = useMemo(() => {
         if (!temple) return [];
-        return Array.from(new Set(Store.getTemples()
+        return Array.from(new Set(allTemples
             .filter(t => t.prefecture === temple.prefecture)
             .map(t => t.cityName)
             .filter(Boolean)
         )) as string[];
-    }, [temple?.prefecture]);
+    }, [temple?.prefecture, allTemples]);
 
     useEffect(() => {
-        Promise.resolve(params).then(p => {
-            const t = Store.getTemple(p.id);
-            if (t) {
-                // Initialize new fields with defaults if migrating
-                // Data Migration Logic
-                const rawRel = t.religion as unknown as string;
-                let newRel: ReligionCategory = 'other';
-                if (rawRel === '仏教' || rawRel === 'buddhism') newRel = 'buddhism';
-                else if (rawRel === '神道' || rawRel === 'shinto') newRel = 'shinto';
-                else if (rawRel === 'キリスト教' || rawRel === 'christianity') newRel = 'christianity';
-                else if (rawRel === '宗教不問') newRel = 'unknown';
+        const loadData = async () => {
+            setIsLoading(true);
+            try {
+                const p = await params;
+                // Fetch Temple
+                const res = await fetch(`/api/temples/${p.id}`);
+                if (!res.ok) throw new Error('Failed to fetch temple');
+                const data = await res.json();
 
-                const migratedTemple: Temple = {
-                    ...t,
-                    religion: newRel,
-                    // Attempt to map first sect from array or default
-                    buddhistSect: t.buddhistSect || (newRel === 'buddhism' ? 'jodo' : undefined),
+                setTemple(data);
+                setPlans(data.plans || []);
 
-                    prefectureCode: t.prefectureCode || 13,
-                    cityName: t.cityName || "",
-                    addressLine: t.addressLine || t.address, // fallback
-                    nearestStations: t.nearestStations || [],
-
-                    sects: t.sects || ['無宗派'],
-                    supportedMemorialTypes: t.supportedMemorialTypes || [],
-                    indoorOutdoor: t.indoorOutdoor || 'both',
-                    petAllowed: t.petAllowed || 'unknown',
-
-                    // Aggregated fields are auto-calculated, but load if present
-                    priceAggMin: t.priceAggMin,
-                    priceAggMax: t.priceAggMax,
-                    managementFeeAggType: t.managementFeeAggType || 'unknown',
-
-                    listedInSearch: t.listedInSearch ?? true,
-                    // Ensure SEO exists
-                    seo: t.seo || {
-                        title: (t as any).seoTitle || "",
-                        description: (t as any).seoDescription || "",
-                        summary: "",
-                        primaryKeywords: [],
-                        secondaryKeywords: [],
-                        structuredDataEnabled: true,
-                        faqSource: 'facilityFaq',
-                        indexControl: 'index'
-                    },
-                    // Ensure Calendar exists
-                    calendar: t.calendar || {
-                        bookingStatus: 'paused', bookingChannels: ['form', 'phone'], availableWeekdays: [1, 2, 4, 5, 6, 0], startTime: "10:00", endTime: "16:00", slotIntervalMinutes: 60, visitDurationMinutes: 60, bufferMinutes: 0, cutoffRule: "hours48", bookingWindowDays: 60, dailyCapacity: 3, blackoutDates: [], requestMessage: ""
-                    }
-                };
-                setTemple(migratedTemple);
-                setPlans(Store.getPlans(t.id));
-            } else {
+                // Fetch all temples for city suggestions (optional optimization)
+                const allRes = await fetch('/api/temples');
+                if (allRes.ok) {
+                    const allData = await allRes.json();
+                    setAllTemples(allData);
+                }
+            } catch (error) {
+                console.error('Load Error:', error);
                 router.push("/admin/temples");
+            } finally {
+                setIsLoading(false);
             }
-        });
+        };
+        loadData();
     }, [params, router]);
 
     if (!temple) return <div className="p-8">Loading...</div>;
@@ -154,17 +126,72 @@ export default function EditTemplePage({ params }: { params: { id: string } }) {
         }
 
         // Data Prep
-        const finalTemple = { ...temple };
+        const requestId = crypto.randomUUID();
+        const finalTemple = {
+            ...temple,
+            requestId
+        };
         // Sync address for legacy compatibility
         if (!finalTemple.address && finalTemple.cityName && finalTemple.addressLine) {
             finalTemple.address = `${finalTemple.cityName}${finalTemple.addressLine}`;
         }
 
         setIsLoading(true);
-        Store.saveTemple(finalTemple);
-        await new Promise(r => setTimeout(r, 500));
-        setIsLoading(false);
-        alert("保存しました");
+        try {
+            const res = await fetch(`/api/temples/${temple.id}`, {
+                method: 'PATCH',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(finalTemple)
+            });
+
+            const data = await res.json();
+
+            if (!res.ok) {
+                if (res.status === 409) {
+                    alert("他の担当者によって更新されています。一度ページを更新してから再度お試しください。");
+                    return;
+                }
+                throw new Error(data.error || 'Failed to update temple');
+            }
+
+            if (!data.success) {
+                throw new Error('保存の成功をサーバーから確認できませんでした。');
+            }
+
+            // --- Success Phase ---
+            // Clear temporary paths as they are now committed
+            setNewlyUploadedPaths(new Set());
+
+            // Sync version from response to allow further saves without reload
+            setTemple({
+                ...temple,
+                version: data.saved.version,
+                updatedAt: data.saved.savedAt
+            });
+
+            console.log(`[SAVE_SUCCESS] id=${data.saved.id} requestId=${data.requestId}`);
+            alert("保存しました");
+        } catch (error: any) {
+            console.error('Update Error:', error);
+
+            // --- Rollback Phase ---
+            if (newlyUploadedPaths.size > 0) {
+                console.log(`[ROLLBACK_START] Rolling back ${newlyUploadedPaths.size} files...`);
+                for (const path of Array.from(newlyUploadedPaths)) {
+                    fetch('/api/upload/image', {
+                        method: 'DELETE',
+                        body: JSON.stringify({ path })
+                    }).then(r => {
+                        if (r.ok) console.log(`[ROLLBACK_OK] Deleted: ${path}`);
+                    }).catch(e => console.error(`[ROLLBACK_FAIL] ${path}:`, e));
+                }
+                setNewlyUploadedPaths(new Set()); // Clear regardless of outcome to avoid double rollback
+            }
+
+            alert(`保存に失敗しました。以前の画像は削除されました: ${error.message}`);
+        } finally {
+            setIsLoading(false);
+        }
     };
 
     const handleSavePlan = () => {
@@ -183,15 +210,70 @@ export default function EditTemplePage({ params }: { params: { id: string } }) {
             category: editingPlan.category || 'generalGrave',
             periodType: editingPlan.periodType || 'perpetual',
             images: editingPlan.images || []
-        } as Plan;
+        };
 
-        Store.savePlan(planToSave);
-        // Refresh Temple to get updated Agg Prices
-        const updatedTemple = Store.getTemple(temple.id);
-        if (updatedTemple) setTemple({ ...updatedTemple });
+        const save = async () => {
+            const requestId = crypto.randomUUID();
+            setIsLoading(true);
+            try {
+                const method = planToSave.id ? 'PATCH' : 'POST';
+                const url = planToSave.id ? `/api/plans/${planToSave.id}` : '/api/plans';
 
-        setPlans(Store.getPlans(temple.id));
-        setIsPlanModalOpen(false);
+                // Add requestId to body
+                const body = { ...planToSave, requestId };
+
+                const res = await fetch(url, {
+                    method,
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(body)
+                });
+
+                const data = await res.json();
+
+                if (!res.ok) {
+                    if (res.status === 409) {
+                        alert("このプランは他の担当者によって更新されています。一度画面を閉じて再読み込みしてください。");
+                        return;
+                    }
+                    throw new Error(data.error || 'Failed to save plan');
+                }
+
+                if (!data.success) {
+                    throw new Error('保存の成功を確認できませんでした。');
+                }
+
+                console.log(`[PLAN_SAVE_SUCCESS] id=${data.saved.id} requestId=${data.requestId}`);
+
+                // Success: Clear paths
+                setNewlyUploadedPaths(new Set());
+
+                // Refresh data to get latest state and version
+                const refreshRes = await fetch(`/api/temples/${temple.id}`);
+                const refreshed = await refreshRes.json();
+                setTemple(refreshed);
+                setPlans(refreshed.plans || []);
+                setIsPlanModalOpen(false);
+            } catch (error: any) {
+                console.error('Plan Save Error:', error);
+
+                // --- Rollback Phase ---
+                if (newlyUploadedPaths.size > 0) {
+                    console.log(`[ROLLBACK_START] Rolling back ${newlyUploadedPaths.size} plan files...`);
+                    for (const path of Array.from(newlyUploadedPaths)) {
+                        fetch('/api/upload/image', {
+                            method: 'DELETE',
+                            body: JSON.stringify({ path })
+                        }).catch(e => console.error(`[ROLLBACK_FAIL] ${path}:`, e));
+                    }
+                    setNewlyUploadedPaths(new Set());
+                }
+
+                alert(`プランの保存に失敗しました。アップロードされた画像は削除されました: ${error.message}`);
+            } finally {
+                setIsLoading(false);
+            }
+        };
+        save();
     };
 
     // --- Tab Renderers ---
@@ -464,7 +546,23 @@ export default function EditTemplePage({ params }: { params: { id: string } }) {
 
                                     <div className="flex gap-2">
                                         <Button size="sm" variant="outline" onClick={() => { setEditingPlan(plan); setIsPlanModalOpen(true); }}>編集</Button>
-                                        <Button size="sm" variant="outline" className="border-red-200 text-red-600 hover:bg-red-50" onClick={() => { if (confirm("削除しますか？")) { Store.deletePlan(plan.id); setPlans(Store.getPlans(temple.id)); } }}>削除</Button>
+                                        <Button size="sm" variant="outline" className="border-red-200 text-red-600 hover:bg-red-50" onClick={async () => {
+                                            if (confirm("削除しますか？")) {
+                                                setIsLoading(true);
+                                                try {
+                                                    await fetch(`/api/plans/${plan.id}`, { method: 'DELETE' });
+                                                    // Refresh
+                                                    const refreshRes = await fetch(`/api/temples/${temple.id}`);
+                                                    const data = await refreshRes.json();
+                                                    setTemple(data);
+                                                    setPlans(data.plans || []);
+                                                } catch (e) {
+                                                    alert("削除に失敗しました");
+                                                } finally {
+                                                    setIsLoading(false);
+                                                }
+                                            }
+                                        }}>削除</Button>
                                     </div>
                                 </div>
                             ))}
@@ -580,6 +678,9 @@ export default function EditTemplePage({ params }: { params: { id: string } }) {
                                 <ImageUploader
                                     label="メイン画像 (一覧・詳細ヘッダー)"
                                     value={temple.mainImage}
+                                    onUploadSuccess={(url, path) => {
+                                        setNewlyUploadedPaths(prev => new Set(prev).add(path));
+                                    }}
                                     onChange={(url: string | null) => {
                                         try {
                                             console.log("MainImage onChange called with:", url);
@@ -597,6 +698,9 @@ export default function EditTemplePage({ params }: { params: { id: string } }) {
                                 <GalleryUploader
                                     label="ギャラリー画像 (詳細ページ)"
                                     images={temple.galleryImages}
+                                    onUploadSuccess={(url, path) => {
+                                        setNewlyUploadedPaths(prev => new Set(prev).add(path));
+                                    }}
                                     onChange={(urls: string[]) => {
                                         try {
                                             console.log("GalleryImages onChange called with:", urls);
@@ -683,7 +787,18 @@ export default function EditTemplePage({ params }: { params: { id: string } }) {
                                 </select>
                             </div>
 
-                            {/* 7. Notes */}
+                            {/* 7. Images */}
+                            <div>
+                                <GalleryUploader
+                                    images={editingPlan.images || []}
+                                    onUploadSuccess={(url, path) => setNewlyUploadedPaths(prev => new Set(prev).add(path))}
+                                    onChange={(urls) => setEditingPlan({ ...editingPlan, images: urls })}
+                                    folder={`temples/${temple.id}/plans`}
+                                    label="プラン画像"
+                                />
+                            </div>
+
+                            {/* 8. Notes */}
                             <div>
                                 <label className="block text-sm font-bold text-gray-700 mb-1">備考 (任意)</label>
                                 <textarea className="w-full border p-2.5 rounded-lg h-24" placeholder="区画に関する補足情報など" value={editingPlan.note || ''} onChange={e => setEditingPlan({ ...editingPlan, note: e.target.value })} />

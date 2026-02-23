@@ -1,31 +1,19 @@
-import { NextResponse } from 'next/server';
-import type { NextRequest } from 'next/server';
+import { type NextRequest } from 'next/server'
+import { updateSession } from '@/lib/supabase/middleware'
 
-export function middleware(req: NextRequest) {
-    if (req.nextUrl.pathname.startsWith('/admin')) {
-        const basicAuth = req.headers.get('authorization');
-
-        if (basicAuth) {
-            const authValue = basicAuth.split(' ')[1];
-            const [user, pwd] = atob(authValue).split(':');
-
-            // TODO: Move credentials to env vars in production
-            if (user === 'admin' && pwd === 'admin') {
-                return NextResponse.next();
-            }
-        }
-
-        return new NextResponse('Auth Required', {
-            status: 401,
-            headers: {
-                'WWW-Authenticate': 'Basic realm="Secure Area"',
-            },
-        });
-    }
-
-    return NextResponse.next();
+export async function middleware(request: NextRequest) {
+    return await updateSession(request)
 }
 
 export const config = {
-    matcher: ['/admin/:path*'],
-};
+    matcher: [
+        /*
+         * Match all request paths except for the ones starting with:
+         * - _next/static (static files)
+         * - _next/image (image optimization files)
+         * - favicon.ico (favicon file)
+         * Feel free to modify this pattern to include more paths.
+         */
+        '/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)',
+    ],
+}

@@ -1,14 +1,17 @@
-import { Suspense } from "react";
-import { Navbar } from "../components/layout/Navbar";
-import { Footer } from "../components/layout/Footer";
-import { SearchFilter } from "../components/features/search/SearchFilter";
-import { GraveyardCard } from "../components/features/search/GraveyardCard";
-import { Store, FacilityType, MemorialType, Sect, BuddhistSect } from "@/lib/store";
+import prisma from "@/lib/prisma";
 import { Metadata } from "next";
-
+import { Temple, FacilityType, MemorialType, Sect, BuddhistSect } from "@/lib/store";
+import { Suspense } from "react";
+import { Navbar } from "@/app/components/layout/Navbar";
+import { Footer } from "@/app/components/layout/Footer";
+import { SearchFilter } from "@/app/components/features/search/SearchFilter";
+import { GraveyardCard } from "@/app/components/features/search/GraveyardCard";
 export const metadata: Metadata = {
     title: "墓地・霊園をさがす｜清蓮(Seiren)",
     description: "条件に合わせて最適な墓地・永代供養墓・樹木葬を検索できます。",
+    robots: {
+        index: false,
+    }
 };
 
 export default async function SearchPage(props: { searchParams: Promise<{ [key: string]: string | string[] | undefined }> }) {
@@ -23,9 +26,11 @@ export default async function SearchPage(props: { searchParams: Promise<{ [key: 
     const features = makeArray(searchParams.feature);
     const priceMax = searchParams.priceMax ? Number(searchParams.priceMax) : undefined;
 
-    // Get Data from Store (Single Source of Truth)
-    // In a real app, this would be a DB query. Here we filter in memory.
-    const allTemples = Store.getTemples();
+    // Get Data from Database
+    const allTemples = await prisma.temple.findMany({
+        where: { status: 'public', listedInSearch: true },
+        orderBy: { updatedAt: 'desc' }
+    }) as unknown as Temple[];
 
     // Filter Logic
     const filteredGraveyards = allTemples.filter(t => {

@@ -9,9 +9,10 @@ interface GalleryUploaderProps {
     onChange: (urls: string[]) => void;
     folder?: string;
     label?: string;
+    onUploadSuccess?: (url: string, path: string) => void;
 }
 
-export const GalleryUploader = ({ images = [], onChange, folder = "gallery", label = "ギャラリー画像" }: GalleryUploaderProps) => {
+export const GalleryUploader = ({ images = [], onChange, folder = "gallery", label = "ギャラリー画像", onUploadSuccess }: GalleryUploaderProps) => {
     const [isUploading, setIsUploading] = useState(false);
     const [error, setError] = useState<string | null>(null);
     const inputRef = useRef<HTMLInputElement>(null);
@@ -48,7 +49,12 @@ export const GalleryUploader = ({ images = [], onChange, folder = "gallery", lab
 
                 const res = await fetch("/api/upload/image", { method: "POST", body: formData });
                 const data = await res.json();
-                if (!res.ok) throw new Error(data.error);
+                if (!res.ok) throw new Error(data.error || "Upload failed");
+                if (!data.url) throw new Error("Invalid response from upload API");
+
+                if (onUploadSuccess && data.url && data.path) {
+                    onUploadSuccess(data.url, data.path);
+                }
                 return data.url as string;
             });
 

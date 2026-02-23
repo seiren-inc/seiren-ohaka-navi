@@ -4,6 +4,10 @@ import { useState, Suspense, useEffect, useRef } from "react";
 import { Navbar } from "../../components/layout/Navbar";
 import { Footer } from "../../components/layout/Footer";
 import { Button } from "../../components/ui/Button";
+import { Input } from "../../components/ui/Input";
+import { Textarea } from "../../components/ui/Textarea";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../../components/ui/Select";
+import { RadioGroup, RadioGroupItem } from "../../components/ui/RadioGroup";
 import { CheckCircle, Phone, Mail, ArrowDown, Calculator, Search, MapPin, Building, X } from "lucide-react";
 import Link from "next/link";
 import { cn } from "../../../lib/utils";
@@ -62,6 +66,7 @@ function GraveClosureConsultForm() {
     const [postalError, setPostalError] = useState("");
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [isSuccess, setIsSuccess] = useState(false);
+    const [submitError, setSubmitError] = useState<string | null>(null);
 
     // Temple Search State
     const [templeQuery, setTempleQuery] = useState("");
@@ -193,11 +198,15 @@ function GraveClosureConsultForm() {
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
+        if (isSubmitting) return; // 二重送信防止
         setIsSubmitting(true);
+        setSubmitError(null);
 
         const fullTempleAddress = `${formData.graveTemplePref}${formData.graveTempleCity}${formData.graveTempleAddressLine}`;
+        const requestId = crypto.randomUUID();
 
         const payload = {
+            requestId,
             type: "consult",
             category: "grave_closure",
             kind: "hakajimai",
@@ -234,6 +243,12 @@ function GraveClosureConsultForm() {
                 sourceLabel: "GraveClosureForm",
                 sourcePath: "/consult/grave-closure",
                 refUrl: window.location.href,
+            },
+            user: { // Add user object to match schema if needed by API validation, though API likely constructs it or uses contact
+                name: formData.name,
+                kana: formData.furigana,
+                phone: formData.phone,
+                email: formData.email,
             }
         };
 
@@ -244,15 +259,29 @@ function GraveClosureConsultForm() {
                 body: JSON.stringify(payload),
             });
 
-            if (res.ok) {
-                setIsSuccess(true);
-                window.scrollTo(0, 0);
-            } else {
-                alert("送信に失敗しました。");
+            const data = await res.json();
+
+            if (!data.success) {
+                const msg = data.error?.message || "送信に失敗しました。時間をおいて再度お試しください。";
+                setSubmitError(msg);
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                return;
             }
+
+            if (!data.saved?.id) {
+                setSubmitError("サーバーでの保存確認ができませんでした。管理者にご連絡ください。");
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                return;
+            }
+
+            console.log(`[GRAVE_CLOSURE_SENT] id=${data.saved.id} receipt=${data.saved.receiptNumber}`);
+
+            setIsSuccess(true);
+            window.scrollTo(0, 0);
         } catch (error) {
             console.error(error);
-            alert("エラーが発生しました。");
+            setSubmitError("通信エラーが発生しました。インターネット接続を確認して再度お試しください。");
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         } finally {
             setIsSubmitting(false);
         }
@@ -310,6 +339,12 @@ function GraveClosureConsultForm() {
                 </div>
 
                 {/* Form */}
+                {submitError && (
+                    <div className="max-w-3xl mx-auto mb-8 bg-red-50 border border-red-200 text-red-700 px-6 py-4 rounded-xl flex items-start gap-3">
+                        <div className="w-1.5 h-1.5 rounded-full bg-red-600 mt-2 shrink-0" />
+                        <p className="text-sm font-medium">{submitError}</p>
+                    </div>
+                )}
                 <form onSubmit={handleSubmit} className="bg-white p-6 sm:p-10 rounded-2xl shadow-lg border border-gray-100 space-y-8 max-w-3xl mx-auto">
 
                     <section className="space-y-6">
@@ -317,21 +352,16 @@ function GraveClosureConsultForm() {
 
                         <div className="space-y-3">
                             <label className="block text-sm font-bold text-gray-700">ご希望の内容</label>
-                            <div className="flex flex-wrap gap-6">
+                            <RadioGroup value={formData.serviceMode} onValueChange={(val: string) => setFormData(p => ({ ...p, serviceMode: val }))} className="flex flex-wrap gap-6">
                                 {["墓じまい（撤去のみ）", "改葬（お墓の引越し）", "未定"].map(mode => (
-                                    <label key={mode} className="flex items-center gap-2 cursor-pointer">
-                                        <input
-                                            type="radio"
-                                            name="serviceMode"
-                                            value={mode.split("（")[0]}
-                                            checked={formData.serviceMode === mode.split("（")[0]}
-                                            onChange={handleChange}
-                                            className="text-primary focus:ring-primary w-4 h-4"
-                                        />
-                                        <span className="text-gray-700">{mode}</span>
-                                    </label>
+                                    <div key={mode} className="flex items-center gap-2">
+                                        <RadioGroupItem value={mode.split("（")[0]} id={mode} />
+                                        <label htmlFor={mode} className="text-gray-700 cursor-pointer">
+                                            {mode}
+                                        </label>
+                                    </div>
                                 ))}
-                            </div>
+                            </RadioGroup>
                         </div>
 
                         {/* Updated Temple Section */}
@@ -350,12 +380,12 @@ function GraveClosureConsultForm() {
                                     お寺・霊園の名前 <span className="text-red-500">*</span>
                                 </label>
                                 <div className="relative">
-                                    <input
+                                    <Input
                                         ref={inputRef}
                                         type="text"
                                         name="graveTempleName"
                                         required
-                                        className="w-full h-12 pl-10 pr-10 border rounded-lg focus:ring-2 focus:ring-secondary/20 focus:border-secondary outline-none placeholder:text-gray-400"
+                                        className="pl-10 pr-10"
                                         placeholder="例：〇〇寺、〇〇霊園（入力で候補表示）"
                                         value={templeQuery}
                                         onChange={handleTempleNameChange}
@@ -426,32 +456,31 @@ function GraveClosureConsultForm() {
                                     <label className="block text-sm font-bold text-gray-700">
                                         都道府県 <span className="text-red-500">*</span>
                                     </label>
-                                    <select
-                                        name="graveTemplePref"
-                                        required
-                                        className={cn(
+                                    <Select value={formData.graveTemplePref} onValueChange={(val: string) => setFormData(p => ({ ...p, graveTemplePref: val }))}>
+                                        <SelectTrigger className={cn(
                                             "w-full h-12 px-4 border rounded-lg bg-white focus:ring-2 focus:ring-secondary/20 focus:border-secondary outline-none transition-colors",
                                             addressHighlight && "bg-yellow-100 border-yellow-300"
-                                        )}
-                                        value={formData.graveTemplePref}
-                                        onChange={handleChange}
-                                    >
-                                        <option value="">選択してください</option>
-                                        {PREFECTURES.map(pref => (
-                                            <option key={pref} value={pref}>{pref}</option>
-                                        ))}
-                                    </select>
+                                        )}>
+                                            <SelectValue placeholder="選択してください" />
+                                        </SelectTrigger>
+                                        <SelectContent>
+                                            <SelectItem value="未定">選択してください</SelectItem>
+                                            {PREFECTURES.map(pref => (
+                                                <SelectItem key={pref} value={pref}>{pref}</SelectItem>
+                                            ))}
+                                        </SelectContent>
+                                    </Select>
                                 </div>
                                 <div className="space-y-2">
                                     <label className="block text-sm font-bold text-gray-700">
                                         市区町村 <span className="text-red-500">*</span>
                                     </label>
-                                    <input
+                                    <Input
                                         type="text"
                                         name="graveTempleCity"
                                         required
                                         className={cn(
-                                            "w-full h-12 px-4 border rounded-lg focus:ring-2 focus:ring-secondary/20 focus:border-secondary outline-none transition-colors",
+                                            "transition-colors",
                                             addressHighlight && "bg-yellow-100 border-yellow-300"
                                         )}
                                         placeholder="例：港区、横浜市"
@@ -464,11 +493,11 @@ function GraveClosureConsultForm() {
                                 <label className="block text-sm font-bold text-gray-700">
                                     以降の住所（町名・番地等）
                                 </label>
-                                <input
+                                <Input
                                     type="text"
                                     name="graveTempleAddressLine"
                                     className={cn(
-                                        "w-full h-12 px-4 border rounded-lg focus:ring-2 focus:ring-secondary/20 focus:border-secondary outline-none transition-colors",
+                                        "transition-colors",
                                         addressHighlight && "bg-yellow-100 border-yellow-300"
                                     )}
                                     placeholder="例：芝公園4-7-35"
@@ -481,19 +510,29 @@ function GraveClosureConsultForm() {
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                             <div className="space-y-2">
                                 <label className="block text-sm font-bold text-gray-700">実施希望時期</label>
-                                <select name="desiredTiming" className="w-full h-12 px-4 border rounded-lg bg-white" value={formData.desiredTiming} onChange={handleChange}>
-                                    <option value="未定">未定</option>
-                                    <option value="急ぎ">急ぎ</option>
-                                    <option value="3ヶ月以内">3ヶ月以内</option>
-                                    <option value="半年以内">半年以内</option>
-                                </select>
+                                <Select value={formData.desiredTiming} onValueChange={(val: string) => setFormData(p => ({ ...p, desiredTiming: val }))}>
+                                    <SelectTrigger className="w-full h-12 px-4 border rounded-lg bg-white">
+                                        <SelectValue placeholder="選択してください" />
+                                    </SelectTrigger>
+                                    <SelectContent>
+                                        <SelectItem value="未定">未定</SelectItem>
+                                        <SelectItem value="急ぎ">急ぎ</SelectItem>
+                                        <SelectItem value="3ヶ月以内">3ヶ月以内</SelectItem>
+                                        <SelectItem value="半年以内">半年以内</SelectItem>
+                                    </SelectContent>
+                                </Select>
                             </div>
                             <div className="space-y-2">
                                 <label className="block text-sm font-bold text-gray-700">次の供養先</label>
-                                <select name="hasNextPlace" className="w-full h-12 px-4 border rounded-lg bg-white" value={formData.hasNextPlace} onChange={handleChange}>
-                                    <option value="未定">決まっていない（提案希望）</option>
-                                    <option value="決まっている">すでに決まっている</option>
-                                </select>
+                                <Select value={formData.hasNextPlace} onValueChange={(val: string) => setFormData(p => ({ ...p, hasNextPlace: val }))}>
+                                    <SelectTrigger className="w-full h-12 px-4 border rounded-lg bg-white">
+                                        <SelectValue placeholder="選択してください" />
+                                    </SelectTrigger>
+                                    <SelectContent>
+                                        <SelectItem value="未定">決まっていない（提案希望）</SelectItem>
+                                        <SelectItem value="決まっている">すでに決まっている</SelectItem>
+                                    </SelectContent>
+                                </Select>
                             </div>
                         </div>
 
@@ -512,22 +551,22 @@ function GraveClosureConsultForm() {
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                             <div className="space-y-2">
                                 <label className="block text-sm font-bold text-gray-700">お名前 <span className="text-red-500">*</span></label>
-                                <input type="text" name="name" required className="w-full h-12 px-4 border rounded-lg" placeholder="山田 太郎" value={formData.name} onChange={handleChange} />
+                                <Input type="text" name="name" required placeholder="山田 太郎" value={formData.name} onChange={handleChange} />
                             </div>
                             <div className="space-y-2">
                                 <label className="block text-sm font-bold text-gray-700">フリガナ <span className="text-red-500">*</span></label>
-                                <input type="text" name="furigana" required className="w-full h-12 px-4 border rounded-lg" placeholder="やまだ たろう" value={formData.furigana} onChange={handleChange} />
+                                <Input type="text" name="furigana" required placeholder="やまだ たろう" value={formData.furigana} onChange={handleChange} />
                             </div>
                         </div>
 
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                             <div className="space-y-2">
                                 <label className="block text-sm font-bold text-gray-700">電話番号 <span className="text-red-500">*</span></label>
-                                <input type="tel" name="phone" required className="w-full h-12 px-4 border rounded-lg" placeholder="090-1234-5678" value={formData.phone} onChange={handleChange} />
+                                <Input type="tel" name="phone" required placeholder="090-1234-5678" value={formData.phone} onChange={handleChange} />
                             </div>
                             <div className="space-y-2">
                                 <label className="block text-sm font-bold text-gray-700">メールアドレス <span className="text-red-500">*</span></label>
-                                <input type="email" name="email" required className="w-full h-12 px-4 border rounded-lg" placeholder="example@email.com" value={formData.email} onChange={handleChange} />
+                                <Input type="email" name="email" required placeholder="example@email.com" value={formData.email} onChange={handleChange} />
                             </div>
                         </div>
 
@@ -535,11 +574,11 @@ function GraveClosureConsultForm() {
                             <div className="space-y-2">
                                 <label className="block text-sm font-bold text-gray-700">郵便番号 (住所自動入力)</label>
                                 <div className="flex gap-4">
-                                    <input
+                                    <Input
                                         type="text"
                                         name="zipCode"
                                         maxLength={8}
-                                        className="w-32 h-12 px-4 border rounded-lg"
+                                        className="w-32"
                                         placeholder="123-4567"
                                         value={formData.zipCode}
                                         onChange={handleChange}
@@ -550,18 +589,18 @@ function GraveClosureConsultForm() {
                             </div>
 
                             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                                <input type="text" name="prefecture" className="w-full h-12 px-4 border rounded-lg" placeholder="都道府県" value={formData.prefecture} onChange={handleChange} />
-                                <input type="text" name="city" className="w-full h-12 px-4 border rounded-lg" placeholder="市区町村" value={formData.city} onChange={handleChange} />
+                                <Input type="text" name="prefecture" placeholder="都道府県" value={formData.prefecture} onChange={handleChange} />
+                                <Input type="text" name="city" placeholder="市区町村" value={formData.city} onChange={handleChange} />
                             </div>
                             <div className="space-y-2">
-                                <input type="text" name="address1" className="w-full h-12 px-4 border rounded-lg" placeholder="番地" value={formData.address1} onChange={handleChange} />
-                                <input type="text" name="address2" className="w-full h-12 px-4 border rounded-lg" placeholder="建物名・部屋番号" value={formData.address2} onChange={handleChange} />
+                                <Input type="text" name="address1" placeholder="番地" value={formData.address1} onChange={handleChange} />
+                                <Input type="text" name="address2" placeholder="建物名・部屋番号" value={formData.address2} onChange={handleChange} />
                             </div>
                         </div>
 
                         <div className="space-y-2">
                             <label className="block text-sm font-bold text-gray-700">その他・ご詳細</label>
-                            <textarea name="message" className="w-full h-32 p-4 border rounded-lg" placeholder="お墓の場所（山の上、階段があるなど）や、具体的なご事情があればご記入ください" value={formData.message} onChange={handleChange} />
+                            <Textarea name="message" className="w-full h-32 p-4 border rounded-lg" placeholder="お墓の場所（山の上、階段があるなど）や、具体的なご事情があればご記入ください" value={formData.message} onChange={handleChange} />
                         </div>
                     </section>
 

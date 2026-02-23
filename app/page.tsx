@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { PrefectureSelector } from "./components/features/search/PrefectureSelector";
 
 import { Navbar } from "./components/layout/Navbar";
@@ -16,54 +17,55 @@ export default function Home() {
       <Navbar />
 
       <main className="flex-grow">
-        {/* HERO SECTION */}
-        <section className="relative min-h-[85vh] flex items-center justify-center bg-gray-100 overflow-hidden pt-20">
-          {/* Background Placeholder (Gradient for Prototype) */}
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-gray-100 via-gray-200 to-gray-300 z-0" />
-
-          {/* Abstract Lotus shapes/water effect overlay could go here */}
-          <div className="absolute inset-0 bg-white/30 backdrop-blur-[2px] z-0" />
-
-          <div className="relative z-10 w-full max-w-7xl mx-auto px-4 py-12 flex flex-col items-center">
-
-            {/* Catch Copy */}
-            <div className="text-center mb-12 animate-fade-in">
-              <h1 className="sr-only">清蓮｜お墓探し・永代供養・墓じまいの無料相談</h1>
-              <h2 className="font-serif text-2xl md:text-4xl lg:text-5xl font-bold text-primary-dark leading-tight mb-6">
-                墓地・永代供養で迷ったら<br />
-                <span className="text-secondary">清蓮</span>のお墓探しナビ
-              </h2>
-              <p className="text-gray-600 text-sm md:text-lg tracking-wide max-w-2xl mx-auto">
-                比較も相談も、供養の専門家が中立の立場でご案内します。<br className="hidden sm:block" />
-                あなたとご家族にとって、最適な選択を一緒に探しませんか？
-              </p>
-            </div>
-
-            {/* Search Widget */}
-            <div className="w-full animate-slide-up" style={{ animationDelay: "0.2s" }}>
-              <SearchWidget />
-            </div>
-
-            {/* Consult Guidance */}
-            <div className="mt-8 text-center animate-fade-in" style={{ animationDelay: "0.3s" }}>
-              <p className="text-gray-500 text-sm mb-3">＼ どの供養がいいか迷っている方へ ／</p>
-              <div className="flex flex-wrap justify-center gap-3">
-                <a href="/consult/grave-search" className="inline-flex items-center px-4 py-2 bg-primary/10 text-primary-dark rounded-full text-sm font-bold hover:bg-primary/20 transition-colors">
-                  まずは専門家に相談する
-                  <ChevronRight className="w-4 h-4 ml-1" />
-                </a>
-                <a href="/consult/grave-closure" className="inline-flex items-center px-4 py-2 bg-gray-200 text-gray-700 rounded-full text-sm font-bold hover:bg-gray-300 transition-colors">
-                  墓じまい・改葬の相談
-                  <ChevronRight className="w-4 h-4 ml-1" />
-                </a>
+        {/* HERO SECTION - Image on Top, CTA Below */}
+        <section className="relative bg-white pt-20">
+          <div className="w-full">
+            {/* Hero Image - Full Width */}
+            <div className="w-full bg-white">
+              <div className="max-w-7xl mx-auto">
+                <Image
+                  src="/hero-consultant-v2.png"
+                  alt="清蓮の供養コンサルタント"
+                  width={1280}
+                  height={720}
+                  className="w-full h-auto object-contain"
+                  priority
+                />
               </div>
             </div>
 
-            {/* Sub Link */}
-            <div className="mt-8 text-center animate-fade-in" style={{ animationDelay: "0.4s" }}>
-              <a href="#about" className="text-primary border-b border-primary pb-0.5 hover:opacity-70 transition-opacity text-sm font-medium">
-                清蓮が選ばれる理由とは
-              </a>
+            {/* CTA Section Below Image */}
+            <div className="max-w-7xl mx-auto px-4 py-12">
+              <div className="max-w-3xl mx-auto text-center">
+                {/* CTA Buttons */}
+                <div className="flex flex-col sm:flex-row gap-4 justify-center mb-6">
+                  <Link href="/consult/request-material" className="sm:w-auto">
+                    <Button size="lg" className="w-full sm:w-auto px-8 bg-primary hover:bg-primary-dark text-white font-bold">
+                      無料相談する（WEB相談）
+                    </Button>
+                  </Link>
+                  <a href="tel:0120-000-000" className="sm:w-auto">
+                    <Button size="lg" variant="outline" className="w-full sm:w-auto px-8 border-2 border-primary text-primary hover:bg-primary hover:text-white font-bold">
+                      <Phone className="w-5 h-5 mr-2" />
+                      電話で相談する
+                    </Button>
+                  </a>
+                </div>
+
+                <p className="text-sm text-gray-500">
+                  📞 0120-000-000（受付時間：9:00〜18:00）
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Search Widget Section */}
+          <div className="bg-gray-50 py-12">
+            <div className="max-w-7xl mx-auto px-4">
+              <div className="text-center mb-8">
+                <p className="text-gray-600 text-sm mb-2">＼ お近くの霊園・墓地を探す ／</p>
+              </div>
+              <SearchWidget />
             </div>
           </div>
         </section>

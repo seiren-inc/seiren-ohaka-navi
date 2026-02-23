@@ -212,6 +212,7 @@ export interface Temple {
     calendar: CalendarSettings;
     createdAt?: string;
     updatedAt?: string;
+    version?: number;
 }
 
 // --- Other Existing Types ---
