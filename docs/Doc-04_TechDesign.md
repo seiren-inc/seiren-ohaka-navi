@@ -1,168 +1,188 @@
 # 技術設計書 — seiren-ohaka-navi
 
+> Project: お墓探しナビ
+> Version: v1.0
 > 最終更新: 2026-02-24
-> ステータス: 実装からの逆算による再構成版（初稿）
 
 ---
 
 ## 1. 技術スタック
 
-| カテゴリ | 採用技術 | バージョン |
-|----------|---------|-----------|
-| フレームワーク | Next.js (App Router) | 16.1.6 |
-| 言語 | TypeScript | ^5 |
-| UIライブラリ | React | 19.2.3 |
-| スタイリング | Tailwind CSS v4 | ^4 |
-| アイコン | lucide-react | ^0.563.0 |
-| フォーム | react-hook-form + zod | ^7 / ^4 |
-| アニメーション | framer-motion | ^12 |
-| 日付処理 | date-fns | ^4 |
-| ユーティリティ | clsx, tailwind-merge | - |
+| カテゴリ | 技術 |
+|----------|------|
+| Frontend | Next.js 16 (App Router), React 19, TypeScript |
+| Backend | Next.js Route Handlers |
+| ORM | Prisma |
+| データベース | Supabase (PostgreSQL) |
+| 認証 | Supabase Auth |
+| Storage | Supabase Storage |
+| デプロイ | Vercel |
+| Runtime | Node.js v22 (LTS固定) |
 
 ---
 
-## 2. ディレクトリ構成
+## 2. システム構成図（論理構造）
 
 ```
-seiren-ohaka-navi/
-├── app/                      Next.js App Router
-│   ├── page.tsx              トップページ
-│   ├── layout.tsx            ルートレイアウト（メタ・フォント）
-│   ├── globals.css           グローバルスタイル
-│   ├── components/           共通コンポーネント
-│   │   ├── layout/           Header, Footer, Nav
-│   │   ├── ui/               Button, Card, Badge...
-│   │   ├── features/         PrefectureSelector, GraveyardCard...
-│   │   └── admin/            管理画面コンポーネント
-│   ├── lib/                  ユーティリティ
-│   │   ├── address.ts        住所・都道府県ユーティリティ
-│   │   ├── mockData.ts       初期モックデータ定義
-│   │   └── prefectures.ts    都道府県マスタ
-│   ├── [各ページディレクトリ]
-│   ├── api/                  Route Handlers
-│   │   ├── inquiries/        問い合わせ API
-│   │   ├── temples/          霊園 API
-│   │   └── upload/           画像アップロード API
-│   └── admin/                管理画面
-├── lib/                      アプリケーション共通ロジック
-│   └── store.ts              In-Memory データストア
-├── public/                   静的ファイル
-│   └── uploads/temples/      アップロード画像
-├── docs/                     設計・運用ドキュメント
-├── .agent/workflows/         AIエージェント用ワークフロー
-├── package.json
-├── tsconfig.json
-└── next.config.ts
+User
+↓
+Next.js (Server Components / Route Handlers)
+↓
+Prisma
+↓
+Supabase PostgreSQL
+↓
+Supabase Storage
+
+Admin
+↓
+Auth Middleware
+↓
+API
+↓
+DB
 ```
 
 ---
 
-## 3. データフロー
+## 3. データベース設計方針
 
-### フロントエンドからの読み取り
+### 3.1 原則
 
-```
-Server Component
-  → Store.getTemples() / Store.getTemple(id)
-  → JSX へレンダリング
-```
+- 破壊的変更禁止
+- Add-only migration
+- versionカラム必須（更新対象テーブル）
+- 論理削除優先
+- 外部キー明示
 
-### フォーム送信（問い合わせ）
+### 3.2 主要テーブル
 
-```
-Client Component (react-hook-form)
-  → fetch('/api/inquiries', { method: 'POST', body: JSON })
-  → Route Handler: Store.addInquiry(data)
-  → { receiptNumber: 'R-XXXX' }
-  → 完了画面表示
-```
+#### temples
 
-### 管理画面での霊園保存
+| カラム | 型 | 備考 |
+|--------|-----|------|
+| id | uuid | PK |
+| name | string | |
+| slug | string | |
+| prefecture | string | |
+| city | string | |
+| address | string | |
+| description | text | |
+| priceMin | number | |
+| priceMax | number | |
+| version | integer | 楽観ロック用 |
+| createdAt | timestamp | |
+| updatedAt | timestamp | |
+| deletedAt | timestamp | nullable, 論理削除 |
 
-```
-Client Component
-  → 画像: POST /api/upload → URL取得
-  → 霊園データ: POST /api/temples → Store.saveTemple()
-  → Plan更新: Store.savePlan() → recalculateTemplePrice()
-```
+#### plans
 
----
+| カラム | 型 | 備考 |
+|--------|-----|------|
+| id | uuid | PK |
+| templeId | uuid | FK → temples |
+| name | string | |
+| price | number | |
+| description | text | |
+| version | integer | |
 
-## 4. 型定義
+#### inquiries
 
-主要な型は `lib/store.ts` に集中管理。
+| カラム | 型 | 備考 |
+|--------|-----|------|
+| id | uuid | PK |
+| name | string | |
+| email | string | |
+| phone | string | |
+| templeId | uuid | nullable |
+| message | text | |
+| status | string | new / replied / closed |
+| createdAt | timestamp | |
 
-```typescript
-type Temple = {
-  id: string;
-  name: string;
-  type: string;
-  prefecture: string;
-  cityName: string;
-  status: 'public' | 'draft' | 'closed';
-  listedInSearch: boolean;
-  priceAggMin?: number;
-  priceAggMax?: number;
-  seo: { title: string; description: string; ... };
-  calendar: { bookingStatus: string; ... };
-  // ... その他多数
-};
+#### municipalities
 
-type Plan = {
-  id: string;
-  templeId: string;
-  category: 'perpetualMemorial' | 'treeBurial' | 'columbarium' | ...;
-  price: number;
-  availability: 'available' | 'limited' | 'full' | 'none';
-  burialMethod: 'joint' | 'individual' | 'collective';
-  // ...
-};
-
-type Inquiry = {
-  id: string;
-  receiptNumber: string;
-  status: 'new' | 'replied' | 'closed';
-  createdAt: string;
-  // ...
-};
-```
+| カラム | 型 | 備考 |
+|--------|-----|------|
+| id | uuid | PK |
+| prefecture | string | |
+| city | string | |
+| slug | string | |
+| url | string | 自治体ページURL |
+| pdfUrl | string | PDF直リンク（url と分離管理）|
+| linkType | string | |
+| linkStatus | string | |
+| version | integer | |
 
 ---
 
-## 5. 環境変数
+## 4. 保存保証設計
 
-| 変数名 | 用途 | 現状 |
-|--------|------|------|
-| （未定義）| DB接続情報 | 未使用（モックデータ）|
-| （未定義）| メール送信APIキー | 未実装 |
+### 4.1 楽観ロック
 
-`.env.local` を使用し、`.gitignore` で除外すること（現時点は変数なし）。
-
----
-
-## 6. ビルド・開発コマンド
-
-```bash
-# 開発サーバー起動
-npm run dev
-
-# 型チェック
-npx tsc --noEmit
-
-# Lint
-npm run lint
-
-# 本番ビルド
-npm run build
+```sql
+UPDATE table
+SET ...
+WHERE id = ?
+AND version = ?
 ```
 
+成功時: version +1
+失敗時: 409返却
+
+### 4.2 二重送信対策
+
+- UUIDベースの一意キー
+- submitボタンdisable
+- サーバー側で重複拒否
+
 ---
 
-## 7. 既知の技術的課題
+## 5. 認証設計
 
-| 課題 | 詳細 | 優先度 |
-|------|------|--------|
-| モックデータ | `lib/store.ts` はサーバー再起動でリセットされる | 高 |
-| 画像アップロード | ローカルファイル保存（Vercel等サーバーレス環境では使用不可）| 高 |
-| 管理認証なし | `/admin/*` が認証なしでアクセス可能 | 高 |
-| 型の一貫性 | `as any` キャストが一部に残存 | 中 |
+- Supabase Auth使用
+- allowlistテーブルで管理
+- middleware.tsでadmin保護
+- API単位でセッション確認
+
+---
+
+## 6. Storage設計
+
+- 画像はSupabase Storageへ保存
+- DBにはURLのみ保存
+- 物理削除は原則禁止
+- 更新時も旧URL保持可能設計
+
+---
+
+## 7. SEO設計
+
+- sitemap.tsで動的生成
+- robots.ts制御
+- generateMetadata使用
+- 静的生成優先
+
+---
+
+## 8. デプロイ設計
+
+- Vercel Production
+- Preview環境
+- Environment VariablesはVercel管理
+- .envはGitに含めない
+
+---
+
+## 9. ログ設計
+
+- 重要APIはconsole.error出力
+- 将来は外部ロギング基盤導入可能設計
+
+---
+
+## 10. セキュリティ設計
+
+- SQLインジェクション防止（Prisma使用）
+- XSS対策（dangerouslySetInnerHTML禁止）
+- 管理画面CSRF対策
+- Admin Route完全保護

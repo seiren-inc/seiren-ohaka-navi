@@ -1,126 +1,151 @@
 # 基本設計書 — seiren-ohaka-navi
 
+> Project: お墓探しナビ
+> Version: v1.0
 > 最終更新: 2026-02-24
-> ステータス: 実装からの逆算による再構成版（初稿）
 
 ---
 
-## 1. システム構成
+## 1. 全体アーキテクチャ構成
+
+本システムは以下のレイヤーで構成する。
+
+- フロントエンド：Next.js (App Router)
+- API層：Next.js Route Handlers
+- データ層：Supabase (PostgreSQL)
+- ORM：Prisma
+- 認証：Supabase Auth
+- デプロイ：Vercel
+
+設計思想：
+- 非破壊
+- 可逆
+- 拡張可能
+- SEO最適
+
+---
+
+## 2. サイト構造（ページ一覧）
+
+### 2.1 公開ページ
+
+| パス | 内容 |
+|------|------|
+| / | トップページ |
+| /search | 検索ページ |
+| /area/[prefecture] | 都道府県一覧 |
+| /area/[prefecture]/[city] | 市区町村一覧 |
+| /detail/[id] | 施設詳細 |
+| /consult | 相談トップ |
+| /consult/request-material | 資料請求 |
+| /grave-closure | 墓じまい特設 |
+| /privacy | プライバシーポリシー |
+| /terms | 利用規約 |
+| /sitemap.xml | サイトマップ |
+| /robots.txt | robots |
+
+### 2.2 管理画面
+
+| パス | 内容 |
+|------|------|
+| /admin/login | ログイン |
+| /admin | ダッシュボード |
+| /admin/temples | 施設一覧 |
+| /admin/temples/new | 新規作成 |
+| /admin/temples/[id]/edit | 編集 |
+| /admin/inquiries | 問い合わせ一覧 |
+| /admin/inquiries/[id] | 詳細 |
+
+---
+
+## 3. 情報設計（IA）
+
+### 3.1 トップページ構成
+
+1. Heroセクション
+2. 検索導線
+3. エリアナビ
+4. 特集導線
+5. 墓じまい導線
+6. フッター
+
+目的：検索導線を最優先に配置する。
+
+### 3.2 検索導線
+
+- 都道府県選択
+- 市区町村選択
+- 結果一覧表示
+
+将来：
+- 条件絞り込み
+- 価格帯フィルタ
+- 宗派フィルタ
+
+### 3.3 施設詳細ページ構成
+
+1. 施設名
+2. 基本情報
+3. ギャラリー
+4. プラン一覧
+5. アクセス情報
+6. FAQ
+7. 問い合わせCTA
+
+CTAは常に視認性の高い位置に配置。
+
+---
+
+## 4. データフロー設計
+
+### 4.1 公開側
 
 ```
-[ユーザー/管理者ブラウザ]
-        ↓
-[Next.js App Router (16.x)]
-        ↓
-[Route Handlers (API)]
-        ↓
-[In-Memory Store (lib/store.ts)]  ← 現在はモックデータ
-        ↓
-[（将来）外部DB / メールサービス]
+User → Next.js Server Component → API Route → Prisma → Supabase
 ```
 
----
-
-## 2. 画面グループ設計
-
-### 2-1. ユーザー向け
-
-| グループ | パス | 説明 |
-|---------|-----|------|
-| トップ | `/` | ヒーロー・エリア検索・コンセプト・CTA |
-| 検索 | `/search`, `/area/...` | キーワード・都道府県・市区町村検索 |
-| 霊園詳細 | `/detail/[id]` | 個別霊園ページ |
-| 供養ガイド | `/choices/...`, `/guide/...` | コンテンツマーケティング記事 |
-| 墓じまい | `/grave-closure/...` | 専用コンテンツ群 |
-| 相談・CTA | `/consult/...`, `/contact` | リード獲得導線 |
-| 会社情報 | `/about/...`, `/partner/...` | コーポレート情報 |
-
-### 2-2. 管理者向け
-
-| グループ | パス | 説明 |
-|---------|-----|------|
-| 管理トップ | `/admin` | ダッシュボード |
-| 霊園管理 | `/admin/temples/...` | 霊園CRUD + プラン管理 |
-| 問い合わせ | `/admin/inquiries/...` | 問い合わせ一覧・詳細 |
-
----
-
-## 3. データ設計（現在の主要エンティティ）
-
-### Temple（霊園・寺院）
-
-| フィールド | 型 | 説明 |
-|-----------|-----|------|
-| id | string | 一意ID |
-| name | string | 施設名 |
-| type | string | 種別（寺院霊園 / 公営霊園 等）|
-| prefecture | string | 都道府県 |
-| cityName | string | 市区町村 |
-| address | string | 住所 |
-| lat / lng | number | 緯度・経度 |
-| priceAggMin / Max | number | 最低・最高価格（プランから集計）|
-| status | 'public' \| 'draft' \| 'closed' | 公開状態 |
-| listedInSearch | boolean | 検索対象フラグ |
-| tags | string[] | 検索タグ |
-| seo | object | SEO設定（title / description等）|
-| calendar | object | 来場予約設定 |
-
-### Plan（プラン）
-
-| フィールド | 型 | 説明 |
-|-----------|-----|------|
-| id | string | 一意ID |
-| templeId | string | 紐付け霊園ID |
-| category | string | 永代供養 / 樹木葬 / 納骨堂 等 |
-| name | string | プラン名 |
-| price | number | 価格（円）|
-| managementFee | number | 年間管理費（円）|
-| availability | string | 空き状況 |
-| burialMethod | string | 合祀 / 個別 / 集合 |
-| petAllowed | string | ペット可否 |
-
-### Inquiry（問い合わせ）
-
-| フィールド | 型 | 説明 |
-|-----------|-----|------|
-| id | string | 一意ID |
-| receiptNumber | string | 受付番号（R-XXXX）|
-| status | 'new' \| 'replied' \| 'closed' | ステータス |
-| createdAt | string | 受付日時（ISO8601）|
-
----
-
-## 4. ルーティング設計
-
-Next.js App Router を使用。`app/` 配下のディレクトリ構造がそのままURLになる。
-
-動的ルート:
-- `/area/[prefecture]` — 都道府県コード
-- `/area/[prefecture]/[city]` — 市区町村名（URLエンコード）
-- `/detail/[id]` — 霊園ID
-- `/admin/inquiries/[id]` — 問い合わせID
-- `/admin/temples/[id]/edit` — 霊園編集
-
----
-
-## 5. コンポーネント設計
+### 4.2 管理画面
 
 ```
-app/components/
-├── layout/        ヘッダー・フッター・ナビゲーション
-├── ui/            Button, Card, Badge 等の汎用UI部品
-├── features/      PrefectureSelector, GraveyardCard 等の機能コンポーネント
-└── admin/         管理画面専用コンポーネント
+Admin → Authチェック → API Route → Prisma → Supabase
 ```
 
 ---
 
-## 6. 外部連携（現状・将来）
+## 5. 保存設計原則
 
-| 機能 | 現状 | 将来 |
-|------|------|------|
-| データ | In-Memory（store.ts）| PostgreSQL / Firestore 等 |
-| 画像 | `/public/uploads/` ローカル | Cloud Storage |
-| メール | 未実装 | SendGrid / SES |
-| 認証 | 未実装 | NextAuth.js / Clerk |
-| 地図 | 未実装 | Google Maps API |
+- 非破壊更新
+- versionカラムによる楽観ロック
+- 二重送信防止
+- 失敗時の明確なエラー表示
+
+---
+
+## 6. URL設計原則
+
+- SEOフレンドリー
+- slug安定化
+- IDとslugの分離
+- PDFは url ではなく pdfUrl に保存
+
+---
+
+## 7. パフォーマンス設計
+
+- 静的生成優先
+- キャッシュ活用
+- 画像最適化
+- 不要なクライアントコンポーネント削減
+
+---
+
+## 8. 将来拡張前提
+
+- エリア制圧型モデル
+- AIレコメンド
+- 有料掲載枠
+- CRM統合
+
+---
+
+本基本設計は、すべての詳細設計の基盤とする。

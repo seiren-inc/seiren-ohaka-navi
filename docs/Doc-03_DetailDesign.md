@@ -1,116 +1,192 @@
 # 詳細設計書 — seiren-ohaka-navi
 
+> Project: お墓探しナビ
+> Version: v1.0
 > 最終更新: 2026-02-24
-> ステータス: 実装からの逆算による再構成版（初稿）
 
 ---
 
-## 1. 検索処理の設計
+## 1. フロントエンド構造設計
 
-### 1-1. キーワード検索（`/search`）
+### 1.1 コンポーネント分類
 
-**入力**: `q`（クエリパラメータ）
+1. Layout系
+   - Navbar
+   - Footer
+   - Breadcrumbs
 
-**対象フィールド**:
-- `name`（霊園名）
-- `address`（住所）
-- `cityName`（市区町村）
-- `tags`（タグ配列）
-- `catchphrase`（キャッチコピー）
+2. 検索系
+   - AreaSearchModal
+   - PrefectureSelector
+   - SearchFilter
+   - GraveyardCard
 
-**フィルタ条件**:
-- `status === 'public'`
-- `listedInSearch === true`
+3. 詳細ページ系
+   - TempleHero
+   - PlanList
+   - TempleAccess
+   - TempleGallery
+   - InquiryModal
 
-**ソート**: 該当なし（現在は登録順）
-
----
-
-### 1-2. エリア検索（`/area/[prefecture]`）
-
-- 都道府県コード（`prefecture` フィールド）で前方一致または完全一致
-- URLは /area/`tokyo`, /area/`osaka` 等（英字スラグ）
-
----
-
-## 2. 霊園詳細ページ（`/detail/[id]`）
-
-### 表示データ
-- Temple（基本情報・概要・アクセス）
-- Plan（プランリスト） — `Store.getPlans(id)` で取得
-- FAQ — Temple に内包または静的データ
-- SEOメタ — `temple.seo` から生成
-
-### 価格表示ロジック
-- `priceAggMin` / `priceAggMax` は Plan 追加・更新・削除時に `recalculateTemplePrice()` で自動再計算
-- 「〇〇万円〜」の形式で表示
+4. フォーム系
+   - Input
+   - Select
+   - Textarea
+   - RadioGroup
+   - Checkbox
 
 ---
 
-## 3. 管理画面の設計
+## 2. 施設詳細ページ設計
 
-### 3-1. 霊園新規登録（`/admin/temples/new`）
+### 2.1 データ取得
 
-- react-hook-form + zod でバリデーション
-- 画像は `/api/upload` へ POST し、返却パスを Temple に保存
-- 保存: `Store.createTemple(data)`
+Server Componentで取得。
 
-### 3-2. 霊園編集（`/admin/temples/[id]/edit`）
+API:
+`GET /api/temples/[id]`
 
-- 初期値: `Store.getTemple(id)` で取得
-- 保存: `Store.saveTemple(temple)`
-- プラン管理（追加・編集・削除）を同一画面に配置
-- Plan 操作時は `recalculateTemplePrice()` が自動発火
+レスポンス例:
 
-### 3-3. 問い合わせ一覧（`/admin/inquiries`）
-
-- `Store.getInquiries()` で取得
-- ステータス（new / replied / closed）でフィルタ可能
-- 受付番号 R-XXXX でソート（降順）
-
----
-
-## 4. お問い合わせ・相談フォームの設計
-
-### フォーム種別
-
-| 種別 | パス | 送信先API |
-|------|-----|----------|
-| 一般問い合わせ | `/contact` | `/api/inquiries` |
-| 霊園探し相談 | `/consult/grave-search` | `/api/inquiries` |
-| 墓じまい相談 | `/consult/grave-closure` | `/api/inquiries` |
-| 遺骨サービス相談 | `/consult/ikotsu-service` | `/api/inquiries` |
-| 資料請求 | `/consult/request-material` | `/api/inquiries` |
-| パートナー申込 | `/partner/contact` | `/api/inquiries` |
-
-### バリデーション（共通）
-- 名前: 必須
-- 電話番号 or メール: どちらか必須
-- 内容: 最大1000文字
-
----
-
-## 5. SEOメタ生成
-
-各ページは `metadata` export または `generateMetadata()` で設定。
-
-```typescript
-// 霊園詳細の例
-export async function generateMetadata({ params }) {
-  const temple = Store.getTemple(params.id);
-  return {
-    title: temple.seo.title,
-    description: temple.seo.description,
-    openGraph: { ... },
-  };
+```json
+{
+  "id": "string",
+  "name": "string",
+  "slug": "string",
+  "address": "string",
+  "priceMin": 0,
+  "priceMax": 0,
+  "plans": [],
+  "images": []
 }
 ```
 
 ---
 
-## 6. 画像アップロード（`/api/upload`）
+## 3. API設計
 
-- `multipart/form-data` で受信
-- 保存先: `/public/uploads/temples/[filename]`
-- 返却: `{ url: '/uploads/temples/[filename]' }`
-- **注意**: 現在サーバーレス非対応。本番では Cloud Storage へ変更が必要。
+### 3.1 施設API
+
+| メソッド | パス | 処理 |
+|---------|------|------|
+| GET | /api/temples | 一覧取得 |
+| GET | /api/temples/[id] | 詳細取得 |
+| POST | /api/temples | 新規作成（Admin）|
+| PATCH | /api/temples/[id] | 更新（非破壊）|
+| DELETE | /api/temples/[id] | 論理削除推奨 |
+
+### 3.2 問い合わせAPI
+
+`POST /api/inquiries`
+
+保存処理フロー:
+
+1. 入力検証
+2. DB保存
+3. 保存確認
+4. 成功レスポンス
+
+二重送信防止:
+
+- UUID生成
+- versionチェック
+
+---
+
+## 4. 状態管理設計
+
+基本方針:
+- Server Component優先
+- 必要最小限のClient Component
+- useState最小化
+
+フォーム:
+- react-hook-form使用
+- Zodでバリデーション
+
+---
+
+## 5. 保存保証設計
+
+### 5.1 楽観ロック
+
+テーブルに version カラムを持たせる。
+
+更新時:
+
+```sql
+UPDATE table
+SET ...
+WHERE id = ?
+AND version = ?
+```
+
+成功時: version +1
+失敗時: 409エラー返却
+
+### 5.2 二重送信防止
+
+- submit中はボタン無効化
+- サーバー側でUUID重複チェック
+
+---
+
+## 6. 画像アップロード設計
+
+- Supabase Storage使用
+- 公開URL生成
+- DBにはURLのみ保存
+- 物理削除は原則行わない
+
+---
+
+## 7. 管理画面設計
+
+### 7.1 認証
+
+- Supabase Auth
+- allowlist管理
+- middlewareで保護
+
+### 7.2 施設CRUD
+
+- フォームは共通化
+- 編集画面は初期値セット
+- 更新はPATCH
+
+---
+
+## 8. SEO動的生成設計
+
+### 8.1 generateMetadata使用
+
+各ページで:
+
+- title動的生成
+- description生成
+- OGタグ設定
+
+---
+
+## 9. エラーハンドリング設計
+
+| コード | 意味 |
+|--------|------|
+| 400 | 入力不正 |
+| 401 | 認証エラー |
+| 403 | 権限不足 |
+| 404 | データなし |
+| 409 | version競合 |
+| 500 | サーバーエラー |
+
+---
+
+## 10. 非破壊原則
+
+- DELETEは論理削除推奨
+- マイグレーションはAdd-only
+- カラム削除禁止
+
+---
+
+本詳細設計は、実装レベルの基準とする。
