@@ -16,6 +16,7 @@
 | 04 | [Doc-04_TechDesign.md](./Doc-04_TechDesign.md) | 技術設計書 |
 | 05 | [Doc-05_TestPlan.md](./Doc-05_TestPlan.md) | テスト計画書 |
 | 06 | [Doc-06_Operations.md](./Doc-06_Operations.md) | 運用設計書 |
+| 16 | [Doc-16_Exit_Strategy_Design.md](./Doc-16_Exit_Strategy_Design.md) | Exit戦略 & 企業価値最大化設計書 |
 
 ---
 
