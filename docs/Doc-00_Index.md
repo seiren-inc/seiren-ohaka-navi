@@ -16,6 +16,7 @@
 | 04 | [Doc-04_TechDesign.md](./Doc-04_TechDesign.md) | 技術設計書 |
 | 05 | [Doc-05_TestPlan.md](./Doc-05_TestPlan.md) | テスト計画書 |
 | 06 | [Doc-06_Operations.md](./Doc-06_Operations.md) | 運用設計書 |
+| 12 | [Doc-12_Product_Governance_Design.md](./Doc-12_Product_Governance_Design.md) | プロダクトガバナンス & KPI設計書 |
 
 ---
 
