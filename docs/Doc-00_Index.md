@@ -16,7 +16,17 @@
 | 04 | [Doc-04_TechDesign.md](./Doc-04_TechDesign.md) | 技術設計書 |
 | 05 | [Doc-05_TestPlan.md](./Doc-05_TestPlan.md) | テスト計画書 |
 | 06 | [Doc-06_Operations.md](./Doc-06_Operations.md) | 運用設計書 |
+| 08 | [Doc-08_CI_CD_Design.md](./Doc-08_CI_CD_Design.md) | CI/CD & Quality Gate 設計書 |
+| 09 | [Doc-09_Data_Governance_Design.md](./Doc-09_Data_Governance_Design.md) | データガバナンス設計書 |
+| 10 | [Doc-10_Revenue_Architecture_Design.md](./Doc-10_Revenue_Architecture_Design.md) | 収益モデル設計書 |
+| 11 | [Doc-11_AI_Search_Design.md](./Doc-11_AI_Search_Design.md) | AI検索設計書 |
+| 12 | [Doc-12_Product_Governance_Design.md](./Doc-12_Product_Governance_Design.md) | プロダクトガバナンス & KPI設計書 |
+| 13 | [Doc-13_Legal_Compliance_Design.md](./Doc-13_Legal_Compliance_Design.md) | 法令遵守 & リスク管理設計書 |
+| 14 | [Doc-14_Scalability_Design.md](./Doc-14_Scalability_Design.md) | スケーラビリティ設計書 |
+| 15 | [Doc-15_Analytics_Growth_Design.md](./Doc-15_Analytics_Growth_Design.md) | 分析基盤 & グロース設計書 |
 | 16 | [Doc-16_Exit_Strategy_Design.md](./Doc-16_Exit_Strategy_Design.md) | Exit戦略 & 企業価値最大化設計書 |
+| 17 | [Doc-17_Cross_Site_Interlink_Design.md](./Doc-17_Cross_Site_Interlink_Design.md) | クロスサイト連携設計書 |
+| 18 | [Doc-18_Implementation_Roadmap.md](./Doc-18_Implementation_Roadmap.md) | 実装ロードマップ |
 
 ---
 
