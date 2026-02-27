@@ -1,20 +1,20 @@
 @import "tailwindcss";
 
 @theme {
-  /* New Color Tokens from Logo */
-  --color-primary: #519DB0;
-  --color-primary-dark: #3A7A8A;
-  /* Darker variant for text contrast */
-  --color-secondary: #D79CBA;
-  --color-accent: #B6C970;
-  --color-tint: #AAD0D6;
-  --color-bg: #F6F5F2;
-  --color-surface: #FCFCFC;
+  /* Primary: 深い青緑 */
+  --color-primary: #1e4c5f;
+  --color-primary-dark: #0f2e3a;
+  /* Secondary: 淡い真鍮 */
+  --color-secondary: #b89a5e;
+  --color-accent: #b6c970;
+  --color-tint: #aad0d6;
+  --color-bg: #f4f3f0;
+  --color-surface: #fafaf8;
 
   /* Legacy Variable Mapping */
   --color-seiren-navy: var(--color-primary);
   --color-lotus-pink: var(--color-secondary);
-  --color-warm-gold: var(--color-accent);
+  --color-warm-gold: var(--color-secondary);
   --color-safe-green: var(--color-accent);
   --color-white-smoke: var(--color-bg);
   --color-dark-grey: #333333;
@@ -26,12 +26,12 @@
   /* Animations */
   --animate-fade-in: fade-in 0.5s ease-out forwards;
   --animate-slide-up: slide-up 0.5s ease-out forwards;
+  --animate-fade-up: fade-up 0.28s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 
   @keyframes fade-in {
     from {
       opacity: 0;
     }
-
     to {
       opacity: 1;
     }
@@ -42,7 +42,17 @@
       transform: translateY(20px);
       opacity: 0;
     }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
 
+  @keyframes fade-up {
+    from {
+      transform: translateY(16px);
+      opacity: 0;
+    }
     to {
       transform: translateY(0);
       opacity: 1;
@@ -51,12 +61,22 @@
 }
 
 :root {
-  --background: #F5F5F5;
-  --foreground: #333333;
+  --background: #f4f3f0;
+  --foreground: #1a1a1a;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-sans);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
