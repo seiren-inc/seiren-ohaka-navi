@@ -61,12 +61,12 @@ export function ContactForm() {
     };
 
     return (
-        <form onSubmit={handleSubmit} className="space-y-8 bg-white p-6 sm:p-10 rounded-2xl shadow-xl border border-gray-100">
+        <form onSubmit={handleSubmit} className="space-y-8 bg-white p-6 sm:p-10 rounded-2xl shadow-xl border border-border">
 
             {/* Name */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <div className="space-y-2">
-                    <label htmlFor="name" className="block text-sm font-bold text-gray-700">
+                    <label htmlFor="name" className="block text-sm font-bold text-text-primary">
                         お名前 <span className="text-red-500">*</span>
                     </label>
                     <input
@@ -74,14 +74,14 @@ export function ContactForm() {
                         id="name"
                         name="name"
                         required
-                        className="w-full h-12 px-4 border border-gray-200 rounded-lg focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all bg-gray-50/50"
+                        className="w-full h-12 px-4 border border-border rounded-lg focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all bg-bg/50"
                         placeholder="山田 太郎"
                         value={formData.name}
                         onChange={handleChange}
                     />
                 </div>
                 <div className="space-y-2">
-                    <label htmlFor="furigana" className="block text-sm font-bold text-gray-700">
+                    <label htmlFor="furigana" className="block text-sm font-bold text-text-primary">
                         ふりがな <span className="text-red-500">*</span>
                     </label>
                     <input
@@ -89,7 +89,7 @@ export function ContactForm() {
                         id="furigana"
                         name="furigana"
                         required
-                        className="w-full h-12 px-4 border border-gray-200 rounded-lg focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all bg-gray-50/50"
+                        className="w-full h-12 px-4 border border-border rounded-lg focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all bg-bg/50"
                         placeholder="やまだ たろう"
                         value={formData.furigana}
                         onChange={handleChange}
@@ -99,7 +99,7 @@ export function ContactForm() {
 
             {/* Phone */}
             <div className="space-y-2">
-                <label htmlFor="phone" className="block text-sm font-bold text-gray-700">
+                <label htmlFor="phone" className="block text-sm font-bold text-text-primary">
                     電話番号 <span className="text-red-500">*</span>
                 </label>
                 <input
@@ -107,7 +107,7 @@ export function ContactForm() {
                     id="phone"
                     name="phone"
                     required
-                    className="w-full h-12 px-4 border border-gray-200 rounded-lg focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all bg-gray-50/50"
+                    className="w-full h-12 px-4 border border-border rounded-lg focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all bg-bg/50"
                     placeholder="090-1234-5678"
                     value={formData.phone}
                     onChange={handleChange}
@@ -115,13 +115,13 @@ export function ContactForm() {
             </div>
 
             {/* Address Section */}
-            <div className="p-6 bg-gray-50 rounded-xl space-y-6 border border-gray-100">
-                <h3 className="font-bold text-gray-700 border-b border-gray-200 pb-2">ご住所</h3>
+            <div className="p-6 bg-bg rounded-xl space-y-6 border border-border">
+                <h3 className="font-bold text-text-primary border-b border-border pb-2">ご住所</h3>
 
                 {/* Zip */}
                 <div className="space-y-2">
-                    <label htmlFor="postalCode" className="block text-sm font-bold text-gray-700">
-                        郵便番号 <span className="text-red-500">*</span> <span className="text-xs font-normal text-gray-500 ml-2">（ハイフンなしで自動入力）</span>
+                    <label htmlFor="postalCode" className="block text-sm font-bold text-text-primary">
+                        郵便番号 <span className="text-red-500">*</span> <span className="text-xs font-normal text-text-muted ml-2">（ハイフンなしで自動入力）</span>
                     </label>
                     <div className="flex gap-4 items-center">
                         <input
@@ -130,7 +130,7 @@ export function ContactForm() {
                             name="postalCode"
                             required
                             maxLength={7}
-                            className="w-40 h-12 px-4 border border-gray-200 rounded-lg focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all bg-white"
+                            className="w-40 h-12 px-4 border border-border rounded-lg focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all bg-white"
                             placeholder="1000001"
                             value={formData.postalCode}
                             onChange={handleChange}
@@ -151,7 +151,7 @@ export function ContactForm() {
                 {/* Prefecture & City */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                     <div className="space-y-2">
-                        <label htmlFor="prefecture" className="block text-sm font-bold text-gray-700">
+                        <label htmlFor="prefecture" className="block text-sm font-bold text-text-primary">
                             都道府県 <span className="text-red-500">*</span>
                         </label>
                         <input
@@ -159,13 +159,13 @@ export function ContactForm() {
                             id="prefecture"
                             name="prefecture"
                             required
-                            className="w-full h-12 px-4 border border-gray-200 rounded-lg focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all bg-white"
+                            className="w-full h-12 px-4 border border-border rounded-lg focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all bg-white"
                             value={formData.prefecture}
                             onChange={handleChange}
                         />
                     </div>
                     <div className="space-y-2">
-                        <label htmlFor="city" className="block text-sm font-bold text-gray-700">
+                        <label htmlFor="city" className="block text-sm font-bold text-text-primary">
                             市区町村 <span className="text-red-500">*</span>
                         </label>
                         <input
@@ -173,7 +173,7 @@ export function ContactForm() {
                             id="city"
                             name="city"
                             required
-                            className="w-full h-12 px-4 border border-gray-200 rounded-lg focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all bg-white"
+                            className="w-full h-12 px-4 border border-border rounded-lg focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all bg-white"
                             value={formData.city}
                             onChange={handleChange}
                         />
@@ -182,7 +182,7 @@ export function ContactForm() {
 
                 {/* Address1 & 2 */}
                 <div className="space-y-2">
-                    <label htmlFor="address1" className="block text-sm font-bold text-gray-700">
+                    <label htmlFor="address1" className="block text-sm font-bold text-text-primary">
                         番地・地名 <span className="text-red-500">*</span>
                     </label>
                     <input
@@ -190,20 +190,20 @@ export function ContactForm() {
                         id="address1"
                         name="address1"
                         required
-                        className="w-full h-12 px-4 border border-gray-200 rounded-lg focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all bg-white"
+                        className="w-full h-12 px-4 border border-border rounded-lg focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all bg-white"
                         value={formData.address1}
                         onChange={handleChange}
                     />
                 </div>
                 <div className="space-y-2">
-                    <label htmlFor="address2" className="block text-sm font-bold text-gray-700">
+                    <label htmlFor="address2" className="block text-sm font-bold text-text-primary">
                         建物名・部屋番号
                     </label>
                     <input
                         type="text"
                         id="address2"
                         name="address2"
-                        className="w-full h-12 px-4 border border-gray-200 rounded-lg focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all bg-white"
+                        className="w-full h-12 px-4 border border-border rounded-lg focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all bg-white"
                         placeholder="○○マンション 101号室"
                         value={formData.address2}
                         onChange={handleChange}
@@ -213,13 +213,13 @@ export function ContactForm() {
 
             {/* Remarks */}
             <div className="space-y-2">
-                <label htmlFor="remarks" className="block text-sm font-bold text-gray-700">
+                <label htmlFor="remarks" className="block text-sm font-bold text-text-primary">
                     備考・ご相談内容
                 </label>
                 <textarea
                     id="remarks"
                     name="remarks"
-                    className="w-full h-32 p-4 border border-gray-200 rounded-lg focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all bg-gray-50/50 resize-y"
+                    className="w-full h-32 p-4 border border-border rounded-lg focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all bg-bg/50 resize-y"
                     placeholder="ご質問やご希望があればご記入ください。"
                     value={formData.remarks}
                     onChange={handleChange}

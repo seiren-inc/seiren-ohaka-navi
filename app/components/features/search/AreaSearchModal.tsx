@@ -64,32 +64,32 @@ export function AreaSearchModal({ isOpen, onClose, initialPrefecture }: AreaSear
             {/* Modal Content */}
             <div className="relative w-full max-w-4xl bg-white rounded-xl shadow-2xl overflow-hidden flex flex-col max-h-[90vh] animate-in fade-in zoom-in-95 duration-200">
                 {/* Header */}
-                <div className="bg-gray-50 border-b border-gray-100 p-4 md:p-6 flex justify-between items-center shrink-0">
+                <div className="bg-bg border-b border-border p-4 md:p-6 flex justify-between items-center shrink-0">
                     <div>
                         <h2 className="text-xl md:text-2xl font-bold text-primary flex items-center gap-2">
                             <MapPin className="w-6 h-6 text-secondary" /> 地域から探す
                         </h2>
-                        <p className="text-xs text-gray-500 mt-1 hidden md:block">
+                        <p className="text-xs text-text-muted mt-1 hidden md:block">
                             ご希望のエリアを選択してください。市区町村ごとに霊園・墓地を検索できます。
                         </p>
                     </div>
                     <button
                         onClick={onClose}
-                        className="p-2 hover:bg-gray-200 rounded-full transition-colors"
+                        className="p-2 hover:bg-border rounded-full transition-colors"
                     >
-                        <X className="w-6 h-6 text-gray-500" />
+                        <X className="w-6 h-6 text-text-muted" />
                     </button>
                 </div>
 
                 {/* Mobile/Tablet Prefecture Scroll Tabs (Horizontal) */}
-                <div className="border-b border-gray-200 overflow-x-auto shrink-0 bg-white">
+                <div className="border-b border-border overflow-x-auto shrink-0 bg-white">
                     <div className="flex px-4 pt-2 min-w-max">
                         {/* Major Prefectures Quick Access */}
                         {["東京都", "神奈川県", "埼玉県", "千葉県", "大阪府", "兵庫県", "愛知県", "北海道", "福岡県"].map(pref => (
                             <button
                                 key={pref}
                                 onClick={() => setSelectedPref(pref)}
-                                className={`px-4 py-3 text-sm font-bold border-b-4 transition-colors ${selectedPref === pref ? 'border-secondary text-secondary' : 'border-transparent text-gray-500 hover:text-gray-800'}`}
+                                className={`px-4 py-3 text-sm font-bold border-b-4 transition-colors ${selectedPref === pref ? 'border-secondary text-secondary' : 'border-transparent text-text-muted hover:text-primary-dark'}`}
                             >
                                 {pref}
                             </button>
@@ -99,8 +99,8 @@ export function AreaSearchModal({ isOpen, onClose, initialPrefecture }: AreaSear
 
                 {/* Main Content Area */}
                 <div className="flex-1 overflow-y-auto p-4 md:p-8 bg-white min-h-[300px]">
-                    <div className="mb-6 flex items-baseline justify-between border-b pb-2 border-gray-100">
-                        <h3 className="font-bold text-xl text-gray-800">
+                    <div className="mb-6 flex items-baseline justify-between border-b pb-2 border-border">
+                        <h3 className="font-bold text-xl text-primary-dark">
                             {selectedPref}の霊園・墓地
                         </h3>
                         <Link
@@ -118,14 +118,14 @@ export function AreaSearchModal({ isOpen, onClose, initialPrefecture }: AreaSear
                                 <Link
                                     key={city}
                                     href={`/area/${encodeURIComponent(selectedPref)}/${encodeURIComponent(city)}`}
-                                    className="block p-3 rounded border border-gray-100 hover:border-primary hover:bg-blue-50 transition-all group"
+                                    className="block p-3 rounded border border-border hover:border-primary hover:bg-blue-50 transition-all group"
                                     onClick={onClose}
                                 >
                                     <div className="flex justify-between items-center">
-                                        <span className="text-sm font-medium text-gray-700 group-hover:text-primary transition-colors">
+                                        <span className="text-sm font-medium text-text-primary group-hover:text-primary transition-colors">
                                             {city}
                                         </span>
-                                        <span className="text-xs font-bold text-gray-400 bg-gray-100 px-2 py-0.5 rounded-full group-hover:bg-white group-hover:text-primary">
+                                        <span className="text-xs font-bold text-text-muted bg-bg px-2 py-0.5 rounded-full group-hover:bg-white group-hover:text-primary">
                                             {count}件
                                         </span>
                                     </div>
@@ -133,8 +133,8 @@ export function AreaSearchModal({ isOpen, onClose, initialPrefecture }: AreaSear
                             ))}
                         </div>
                     ) : (
-                        <div className="text-center py-12 bg-gray-50 rounded-lg border border-dashed border-gray-200">
-                            <p className="text-gray-500 text-sm">現在、このエリア（{selectedPref}）の登録情報は準備中です。</p>
+                        <div className="text-center py-12 bg-bg rounded-lg border border-dashed border-border">
+                            <p className="text-text-muted text-sm">現在、このエリア（{selectedPref}）の登録情報は準備中です。</p>
                             <Link href="/search" className="text-primary text-sm mt-2 inline-block hover:underline" onClick={onClose}>
                                 他の条件で探す
                             </Link>

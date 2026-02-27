@@ -15,7 +15,7 @@ export function Gallery({ images }: GalleryProps) {
     const next = () => setCurrentIndex(i => (i === images.length - 1 ? 0 : i + 1));
 
     if (!images.length) return (
-        <div className="bg-gray-200 w-full aspect-[4/3] flex items-center justify-center text-gray-400">
+        <div className="bg-border w-full aspect-[4/3] flex items-center justify-center text-text-muted">
             <ImageIcon className="w-12 h-12" />
         </div>
     );
@@ -23,7 +23,7 @@ export function Gallery({ images }: GalleryProps) {
     return (
         <div className="bg-white p-4">
             {/* Main Image */}
-            <div className="relative aspect-[4/3] md:aspect-video bg-gray-100 rounded-lg overflow-hidden mb-2 group">
+            <div className="relative aspect-[4/3] md:aspect-video bg-bg rounded-lg overflow-hidden mb-2 group">
                 <div className={`w-full h-full ${images[currentIndex].url} bg-cover bg-center transition-colors`} />
 
                 {/* Navigation Arrows */}

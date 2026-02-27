@@ -4,7 +4,7 @@ import Link from "next/link";
 
 export function StickyCtaBar() {
     return (
-        <div className="fixed bottom-0 left-0 right-0 py-3 px-4 bg-white/90 backdrop-blur-md border-t border-gray-200 z-50 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.1)]">
+        <div className="fixed bottom-0 left-0 right-0 py-3 px-4 bg-white/90 backdrop-blur-md border-t border-border z-50 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.1)]">
             <div className="max-w-4xl mx-auto flex gap-3">
                 <Link href="/consult/grave-search" className="flex-1">
                     <Button variant="outline" className="w-full text-xs sm:text-sm font-bold border-primary text-primary h-12">

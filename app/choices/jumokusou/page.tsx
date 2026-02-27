@@ -62,7 +62,7 @@ export default function JumokusouPage() {
     };
 
     return (
-        <div className="min-h-screen flex flex-col bg-white text-gray-800">
+        <div className="min-h-screen flex flex-col bg-white text-primary-dark">
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
             <Navbar />
 
@@ -80,7 +80,7 @@ export default function JumokusouPage() {
                         </h1>
 
                         <div className="bg-primary/5 border border-primary/20 rounded-xl p-6 md:p-8 text-left max-w-3xl mx-auto mt-8">
-                            <p className="text-gray-700 leading-loose">
+                            <p className="text-text-primary leading-loose">
                                 近年、急速に関心が高まっている「樹木葬」。<br />
                                 <br />
                                 自然に還るイメージや、明るい雰囲気が人気ですが、<br />
@@ -100,7 +100,7 @@ export default function JumokusouPage() {
                             <TreeDeciduous className="w-6 h-6 mr-3 text-secondary" />
                             樹木葬とは何か
                         </h2>
-                        <div className="prose max-w-none text-gray-600 leading-loose">
+                        <div className="prose max-w-none text-text-secondary leading-loose">
                             <p className="mb-6">
                                 樹木葬（じゅもくそう）とは、<br />
                                 墓石の代わりに「樹木」や「草花」を墓標（シンボル）とする供養方法です。<br />
@@ -121,11 +121,11 @@ export default function JumokusouPage() {
                             <CheckCircle className="w-6 h-6 mr-3 text-secondary" />
                             樹木葬が選ばれる理由
                         </h2>
-                        <div className="bg-gray-50 border border-gray-100 rounded-xl p-8">
+                        <div className="bg-bg border border-border rounded-xl p-8">
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                                 <div>
                                     <h4 className="font-bold text-primary mb-3">自然に還るイメージ</h4>
-                                    <p className="text-sm text-gray-600 leading-loose">
+                                    <p className="text-sm text-text-secondary leading-loose">
                                         「冷たい石の下より、花や木の下で眠りたい」<br />
                                         「最後は土に還りたい」という、<br />
                                         自然志向の想いを叶えることができます。
@@ -133,7 +133,7 @@ export default function JumokusouPage() {
                                 </div>
                                 <div>
                                     <h4 className="font-bold text-primary mb-3">墓石を持たない形</h4>
-                                    <p className="text-sm text-gray-600 leading-loose">
+                                    <p className="text-sm text-text-secondary leading-loose">
                                         高価な墓石を建てる必要がないため、<br />
                                         費用を抑えられるだけでなく、<br />
                                         形式張ったものが苦手な方にも選ばれています。
@@ -141,7 +141,7 @@ export default function JumokusouPage() {
                                 </div>
                                 <div>
                                     <h4 className="font-bold text-primary mb-3">後継ぎの負担軽減</h4>
-                                    <p className="text-sm text-gray-600 leading-loose">
+                                    <p className="text-sm text-text-secondary leading-loose">
                                         永代供養がついているため、<br />
                                         子供にお墓の管理や継承といった<br />
                                         重荷を背負わせたくない方に適しています。
@@ -149,7 +149,7 @@ export default function JumokusouPage() {
                                 </div>
                                 <div>
                                     <h4 className="font-bold text-primary mb-3">管理の手間を抑制</h4>
-                                    <p className="text-sm text-gray-600 leading-loose">
+                                    <p className="text-sm text-text-secondary leading-loose">
                                         植栽の手入れは霊園側が行うことが多く、<br />
                                         家族が頻繁に草むしり等をする必要がありません。
                                     </p>
@@ -167,7 +167,7 @@ export default function JumokusouPage() {
                         <div className="space-y-8">
                             <div className="border-l-4 border-secondary pl-6 py-2">
                                 <h3 className="font-bold text-lg text-primary-dark mb-3">1. 個別型</h3>
-                                <p className="text-gray-600 leading-loose mb-3">
+                                <p className="text-text-secondary leading-loose mb-3">
                                     一人一人、あるいは夫婦や家族ごとに区画が分かれているタイプです。<br />
                                     それぞれの区画に小さなプレートやシンボルツリーを配置します。<br />
                                     一般的なお墓に近い感覚で個別に手を合わせることができます。
@@ -177,7 +177,7 @@ export default function JumokusouPage() {
 
                             <div className="border-l-4 border-secondary pl-6 py-2">
                                 <h3 className="font-bold text-lg text-primary-dark mb-3">2. 合同型（シンボルツリー型）</h3>
-                                <p className="text-gray-600 leading-loose mb-3">
+                                <p className="text-text-secondary leading-loose mb-3">
                                     一本の大きなシンボルツリー（桜やモミジなど）の周囲に、<br />
                                     複数の方の遺骨を一緒に埋葬するタイプです。<br />
                                     特定のご自身の木を持つのではなく、大きな木を共有します。
@@ -187,7 +187,7 @@ export default function JumokusouPage() {
 
                             <div className="border-l-4 border-secondary pl-6 py-2">
                                 <h3 className="font-bold text-lg text-primary-dark mb-3">3. 期間後合祀型</h3>
-                                <p className="text-gray-600 leading-loose mb-3">
+                                <p className="text-text-secondary leading-loose mb-3">
                                     最初は個別に埋葬されますが、<br />
                                     契約期間（13年や33年など）が過ぎると、合祀墓へ移されるタイプです。<br />
                                     多くの都市型樹木葬で採用されているシステムです。
@@ -203,26 +203,26 @@ export default function JumokusouPage() {
                             <Calculator className="w-6 h-6 mr-3 text-secondary" />
                             費用の考え方
                         </h2>
-                        <div className="bg-white border border-gray-200 rounded-xl p-8">
-                            <p className="text-gray-600 leading-loose mb-6">
+                        <div className="bg-white border border-border rounded-xl p-8">
+                            <p className="text-text-secondary leading-loose mb-6">
                                 樹木葬は墓石代がかからない分、一般墓よりは安価ですが、<br />
                                 立地や個別の広さによって金額には幅があります。
                             </p>
 
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-                                <div className="bg-gray-50 p-4 rounded text-center">
-                                    <span className="block text-sm font-bold text-gray-500 mb-2">合同型（合祀）</span>
+                                <div className="bg-bg p-4 rounded text-center">
+                                    <span className="block text-sm font-bold text-text-muted mb-2">合同型（合祀）</span>
                                     <span className="block text-xl font-bold text-primary-dark">5万円 〜 30万円</span>
                                 </div>
-                                <div className="bg-gray-50 p-4 rounded text-center">
-                                    <span className="block text-sm font-bold text-gray-500 mb-2">個別型・家族型</span>
+                                <div className="bg-bg p-4 rounded text-center">
+                                    <span className="block text-sm font-bold text-text-muted mb-2">個別型・家族型</span>
                                     <span className="block text-xl font-bold text-primary-dark">30万円 〜 150万円</span>
                                 </div>
                             </div>
 
                             <div className="space-y-4">
                                 <h4 className="font-bold text-primary">費用のポイント</h4>
-                                <ul className="list-disc list-inside text-sm text-gray-600 leading-loose">
+                                <ul className="list-disc list-inside text-sm text-text-secondary leading-loose">
                                     <li>価格差の主な要因は「立地（都心か郊外か）」と「個別区画の広さ」です。</li>
                                     <li>プレート（石の銘板）を設置する場合は、数万円の彫刻料が必要な場合があります。</li>
                                     <li>年間管理費がかからないプランが多いですが、確認は必須です。</li>
@@ -243,7 +243,7 @@ export default function JumokusouPage() {
                                     <CheckCircle className="w-5 h-5 mr-2" />
                                     メリット
                                 </h3>
-                                <ul className="space-y-4 text-gray-700 leading-loose text-sm">
+                                <ul className="space-y-4 text-text-primary leading-loose text-sm">
                                     <li className="flex items-start">
                                         <span className="text-secondary mr-2">●</span>
                                         <span>
@@ -268,14 +268,14 @@ export default function JumokusouPage() {
                                 </ul>
                             </div>
 
-                            <div className="bg-gray-50 p-6 rounded-xl">
-                                <h3 className="font-bold text-lg text-gray-600 mb-4 flex items-center">
+                            <div className="bg-bg p-6 rounded-xl">
+                                <h3 className="font-bold text-lg text-text-secondary mb-4 flex items-center">
                                     <AlertCircle className="w-5 h-5 mr-2" />
                                     注意点
                                 </h3>
-                                <ul className="space-y-4 text-gray-700 leading-loose text-sm">
+                                <ul className="space-y-4 text-text-primary leading-loose text-sm">
                                     <li className="flex items-start">
-                                        <span className="text-gray-400 mr-2">●</span>
+                                        <span className="text-text-muted mr-2">●</span>
                                         <span>
                                             多くは屋外にあるため、<br />
                                             お参りのしやすさが天候に左右されます。<br />
@@ -283,14 +283,14 @@ export default function JumokusouPage() {
                                         </span>
                                     </li>
                                     <li className="flex items-start">
-                                        <span className="text-gray-400 mr-2">●</span>
+                                        <span className="text-text-muted mr-2">●</span>
                                         <span>
                                             土に還る（または合祀される）と、<br />
                                             後から遺骨を取り出すことは難しくなります。
                                         </span>
                                     </li>
                                     <li className="flex items-start">
-                                        <span className="text-gray-400 mr-2">●</span>
+                                        <span className="text-text-muted mr-2">●</span>
                                         <span>
                                             季節によっては草花が枯れていたり、<br />
                                             イメージ写真と実際の景観が異なる場合があります。
@@ -307,31 +307,31 @@ export default function JumokusouPage() {
                             <Search className="w-6 h-6 mr-3 text-secondary" />
                             他の供養方法との違い
                         </h2>
-                        <p className="text-gray-600 leading-loose mb-6">
+                        <p className="text-text-secondary leading-loose mb-6">
                             樹木葬は「永代供養の一種」ですが、他の選択肢とは以下の点で異なります。<br />
                             「何を優先したいか」で比較してみてください。
                         </p>
 
                         <div className="space-y-6">
-                            <div className="bg-white border border-gray-100 p-6 rounded-lg shadow-sm">
+                            <div className="bg-white border border-border p-6 rounded-lg shadow-sm">
                                 <h3 className="font-bold text-primary mb-2">永代供養墓との違い</h3>
-                                <p className="text-sm text-gray-600 leading-loose">
+                                <p className="text-sm text-text-secondary leading-loose">
                                     <Link href="/choices/eitai-kuyou" className="text-primary font-bold hover:underline">永代供養墓</Link>の多くは石の塔やモニュメントを墓標とします。<br />
                                     「自然の草花」を好むか、「堅牢な石」に安心感を感じるか、<br />
                                     雰囲気の好みが分かれ目になります。
                                 </p>
                             </div>
-                            <div className="bg-white border border-gray-100 p-6 rounded-lg shadow-sm">
+                            <div className="bg-white border border-border p-6 rounded-lg shadow-sm">
                                 <h3 className="font-bold text-primary mb-2">納骨堂との違い</h3>
-                                <p className="text-sm text-gray-600 leading-loose">
+                                <p className="text-sm text-text-secondary leading-loose">
                                     <Link href="/choices/noukotsudou" className="text-primary font-bold hover:underline">納骨堂</Link>は屋内施設のため、天候や汚れを気にする必要がありません。<br />
                                     「自然の中で眠りたい」という気持ちと、<br />
                                     「快適にお参りしたい（させたい）」という利便性のどちらを取るかです。
                                 </p>
                             </div>
-                            <div className="bg-white border border-gray-100 p-6 rounded-lg shadow-sm">
+                            <div className="bg-white border border-border p-6 rounded-lg shadow-sm">
                                 <h3 className="font-bold text-primary mb-2">海洋散骨との違い</h3>
-                                <p className="text-sm text-gray-600 leading-loose">
+                                <p className="text-sm text-text-secondary leading-loose">
                                     <Link href="/choices/sankotsu" className="text-primary font-bold hover:underline">海洋散骨</Link>はお墓自体を残さないため、手を合わせる特定の場所がなくなります。<br />
                                     樹木葬は「手を合わせる場所（シンボル）」が残る点が大きな違いです。
                                 </p>
@@ -346,12 +346,12 @@ export default function JumokusouPage() {
                             診断で「樹木葬」が候補に出た方へ
                         </h2>
                         <div className="bg-primary/5 p-8 rounded-xl">
-                            <p className="text-gray-700 leading-loose mb-4">
+                            <p className="text-text-primary leading-loose mb-4">
                                 <Link href="/choices/diagnosis" className="text-primary font-bold hover:underline">供養の選択肢診断</Link>で樹木葬がおすすめされた場合、<br />
                                 あなたは「自然志向」や「形式にとらわれない供養」を<br />
                                 求めている傾向にあります。
                             </p>
-                            <p className="text-gray-700 leading-loose mb-0">
+                            <p className="text-text-primary leading-loose mb-0">
                                 ただし、樹木葬は施設によって<br />
                                 「森のような場所」もあれば「ガーデニング霊園」のような場所もあり、<br />
                                 雰囲気が全く異なります。<br />
@@ -370,14 +370,14 @@ export default function JumokusouPage() {
 
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-left">
                             {/* Search */}
-                            <div className="flex flex-col bg-white border border-gray-200 rounded-xl p-6 hover:shadow-lg transition-shadow">
+                            <div className="flex flex-col bg-white border border-border rounded-xl p-6 hover:shadow-lg transition-shadow">
                                 <div className="mb-4 text-center">
-                                    <span className="inline-block p-3 bg-gray-100 rounded-full mb-3">
-                                        <Search className="w-8 h-8 text-gray-500" />
+                                    <span className="inline-block p-3 bg-bg rounded-full mb-3">
+                                        <Search className="w-8 h-8 text-text-muted" />
                                     </span>
                                     <h3 className="font-bold text-lg text-primary-dark">樹木葬を探してみる</h3>
                                 </div>
-                                <p className="text-sm text-gray-500 text-center mb-6 flex-grow">
+                                <p className="text-sm text-text-muted text-center mb-6 flex-grow">
                                     ご希望のエリアや予算条件から、<br />
                                     実際の樹木葬（霊園）を検索できます。
                                 </p>
@@ -389,14 +389,14 @@ export default function JumokusouPage() {
                             </div>
 
                             {/* Choices */}
-                            <div className="flex flex-col bg-white border border-gray-200 rounded-xl p-6 hover:shadow-lg transition-shadow">
+                            <div className="flex flex-col bg-white border border-border rounded-xl p-6 hover:shadow-lg transition-shadow">
                                 <div className="mb-4 text-center">
                                     <span className="inline-block p-3 bg-primary/10 rounded-full mb-3">
                                         <BookOpen className="w-8 h-8 text-primary" />
                                     </span>
                                     <h3 className="font-bold text-lg text-primary-dark">他の供養方法も比較する</h3>
                                 </div>
-                                <p className="text-sm text-gray-500 text-center mb-6 flex-grow">
+                                <p className="text-sm text-text-muted text-center mb-6 flex-grow">
                                     やっぱり屋内の納骨堂がいいかも？など<br />
                                     他の選択肢とも比較してみたい方へ。
                                 </p>
@@ -418,7 +418,7 @@ export default function JumokusouPage() {
                                     </span>
                                     <h3 className="font-bold text-lg text-secondary">状況を整理して相談する</h3>
                                 </div>
-                                <p className="text-sm text-gray-500 text-center mb-6 flex-grow">
+                                <p className="text-sm text-text-muted text-center mb-6 flex-grow">
                                     無理に決める必要はありません。<br />
                                     まずは現在の状況を整理するところから始めませんか？
                                 </p>
@@ -445,12 +445,12 @@ export default function JumokusouPage() {
                                 { q: "管理費はかかる？", a: "初期費用に含まれているケースと、個別埋葬の期間中のみ年間管理費がかかるケースがあります。\n永代供養墓と同様、比較的負担は少ない傾向にあります。" },
                                 { q: "雨の日でも参拝できる？", a: "樹木葬は基本的に屋外にあるため、天候の影響を受けます。\n足場が整備されている霊園であれば問題ありませんが、自然の山に近いタイプの場合は注意が必要です。" }
                             ].map((item, i) => (
-                                <div key={i} className="bg-gray-50 rounded-lg p-5">
+                                <div key={i} className="bg-bg rounded-lg p-5">
                                     <h4 className="font-bold text-primary mb-2 flex flex-row items-center">
                                         <span className="bg-secondary text-white text-xs font-bold px-2 py-1 rounded mr-3 flex-shrink-0">Q</span>
                                         {item.q}
                                     </h4>
-                                    <p className="text-sm text-gray-600 ml-10 leading-relaxed whitespace-pre-line">
+                                    <p className="text-sm text-text-secondary ml-10 leading-relaxed whitespace-pre-line">
                                         {item.a}
                                     </p>
                                 </div>

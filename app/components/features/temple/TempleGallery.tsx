@@ -13,7 +13,7 @@ export function TempleGallery({ gallery }: TempleGalleryProps) {
     const categories = ["全景・外観", "園内・風景", "施設・設備", "周辺環境"];
 
     return (
-        <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6 md:p-8">
+        <div className="bg-white rounded-xl shadow-sm border border-border p-6 md:p-8">
             <h2 className="text-xl font-bold text-primary border-l-4 border-secondary pl-4 py-1 mb-6">
                 写真ギャラリー
             </h2>
@@ -21,7 +21,7 @@ export function TempleGallery({ gallery }: TempleGalleryProps) {
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                 {displayItems.map((src, i) => (
                     <div key={i} className="flex flex-col gap-2">
-                        <div className="aspect-video bg-gray-100 rounded-lg overflow-hidden relative group border border-gray-200">
+                        <div className="aspect-video bg-bg rounded-lg overflow-hidden relative group border border-border">
                             {src ? (
                                 <img
                                     src={src}
@@ -29,13 +29,13 @@ export function TempleGallery({ gallery }: TempleGalleryProps) {
                                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                                 />
                             ) : (
-                                <div className="w-full h-full flex flex-col items-center justify-center text-gray-300">
+                                <div className="w-full h-full flex flex-col items-center justify-center text-text-muted">
                                     <ImageIcon className="w-8 h-8 opacity-50 mb-1" />
                                     <span className="text-[10px]">No Image</span>
                                 </div>
                             )}
                         </div>
-                        <div className="text-center text-xs font-bold text-gray-500">
+                        <div className="text-center text-xs font-bold text-text-muted">
                             {categories[i] || "その他"}
                         </div>
                     </div>

@@ -217,7 +217,7 @@ function RequestForm() {
                     <CheckCircle2 className="w-10 h-10" />
                 </div>
                 <h1 className="text-2xl font-bold text-primary mb-4">資料請求を受け付けました</h1>
-                <p className="text-gray-600 mb-8 leading-relaxed">
+                <p className="text-text-secondary mb-8 leading-relaxed">
                     お問い合わせありがとうございます。<br />
                     資料の発送準備が整い次第、郵送にてお送りさせていただきます。
                 </p>
@@ -229,34 +229,34 @@ function RequestForm() {
     }
 
     return (
-        <div className="max-w-3xl mx-auto bg-white p-8 rounded-xl shadow-sm border border-gray-100">
+        <div className="max-w-3xl mx-auto bg-white p-8 rounded-xl shadow-sm border border-border">
             <h1 className="text-2xl font-bold text-primary mb-6 text-center">資料請求・お問い合わせ</h1>
 
             {/* Step Indicator */}
             <div className="flex items-center justify-center gap-4 mb-8 text-sm font-bold">
-                <div className={`px-4 py-2 rounded-full ${step === 1 ? 'bg-primary text-white' : 'bg-gray-100 text-gray-400'}`}>1. お客様情報</div>
-                <div className="text-gray-300">→</div>
-                <div className={`px-4 py-2 rounded-full ${step === 2 ? 'bg-primary text-white' : 'bg-gray-100 text-gray-400'}`}>2. アンケート・確認</div>
+                <div className={`px-4 py-2 rounded-full ${step === 1 ? 'bg-primary text-white' : 'bg-bg text-text-muted'}`}>1. お客様情報</div>
+                <div className="text-text-muted">→</div>
+                <div className={`px-4 py-2 rounded-full ${step === 2 ? 'bg-primary text-white' : 'bg-bg text-text-muted'}`}>2. アンケート・確認</div>
             </div>
 
             {/* Context Card */}
             {(displayTempleName || displayPlanName) && (
                 <div className="bg-blue-50 border border-blue-100 rounded-lg p-6 mb-8">
-                    <h3 className="text-sm font-bold text-gray-500 mb-3 flex items-center gap-2">
+                    <h3 className="text-sm font-bold text-text-muted mb-3 flex items-center gap-2">
                         <Building2 className="w-4 h-4" /> 資料請求およびお問い合わせの対象
                     </h3>
                     <div className="flex flex-col gap-2">
                         {displayTempleName && (
                             <div className="text-xl font-bold text-primary">
                                 {displayTempleName}
-                                {displayTemplePref && <span className="text-sm font-normal text-gray-600 ml-2">({displayTemplePref})</span>}
+                                {displayTemplePref && <span className="text-sm font-normal text-text-secondary ml-2">({displayTemplePref})</span>}
                             </div>
                         )}
                         {displayPlanName && (
                             <div className="bg-white p-3 rounded border border-blue-100 mt-1">
                                 <span className="text-xs font-bold bg-blue-100 text-blue-800 px-2 py-1 rounded mr-2">希望プラン</span>
-                                <span className="font-bold text-gray-800">{displayPlanName}</span>
-                                {displayPlanPrice && <span className="text-sm text-gray-500 ml-2">{displayPlanPrice}</span>}
+                                <span className="font-bold text-primary-dark">{displayPlanName}</span>
+                                {displayPlanPrice && <span className="text-sm text-text-muted ml-2">{displayPlanPrice}</span>}
                             </div>
                         )}
                     </div>
@@ -266,7 +266,7 @@ function RequestForm() {
             <form onSubmit={handleSubmit(onSubmit)}>
                 {/* STEP 1 */}
                 <div className={step === 1 ? 'block space-y-8' : 'hidden'}>
-                    <p className="text-gray-600 mb-8 text-center text-sm">
+                    <p className="text-text-secondary mb-8 text-center text-sm">
                         下記フォームに必要事項をご入力の上、「次に進む」を押してください。<br />
                         <span className="text-xs text-red-500">※ 全て必須項目です</span>
                     </p>
@@ -275,25 +275,25 @@ function RequestForm() {
                     <div className="space-y-4">
                         <div className="grid md:grid-cols-2 gap-4">
                             <div>
-                                <label className="block text-sm font-bold text-gray-700 mb-2">氏名 (姓) <span className="text-red-500">*</span></label>
-                                <input {...register("lastName")} className={`w-full border rounded-lg p-3 ${errors.lastName ? 'border-red-500 bg-red-50' : 'border-gray-300'}`} placeholder="例：山田" />
+                                <label className="block text-sm font-bold text-text-primary mb-2">氏名 (姓) <span className="text-red-500">*</span></label>
+                                <input {...register("lastName")} className={`w-full border rounded-lg p-3 ${errors.lastName ? 'border-red-500 bg-red-50' : 'border-border'}`} placeholder="例：山田" />
                                 {errors.lastName && <p className="text-red-500 text-xs mt-1">{errors.lastName.message}</p>}
                             </div>
                             <div>
-                                <label className="block text-sm font-bold text-gray-700 mb-2">氏名 (名) <span className="text-red-500">*</span></label>
-                                <input {...register("firstName")} className={`w-full border rounded-lg p-3 ${errors.firstName ? 'border-red-500 bg-red-50' : 'border-gray-300'}`} placeholder="例：太郎" />
+                                <label className="block text-sm font-bold text-text-primary mb-2">氏名 (名) <span className="text-red-500">*</span></label>
+                                <input {...register("firstName")} className={`w-full border rounded-lg p-3 ${errors.firstName ? 'border-red-500 bg-red-50' : 'border-border'}`} placeholder="例：太郎" />
                                 {errors.firstName && <p className="text-red-500 text-xs mt-1">{errors.firstName.message}</p>}
                             </div>
                         </div>
                         <div className="grid md:grid-cols-2 gap-4">
                             <div>
-                                <label className="block text-sm font-bold text-gray-700 mb-2">ふりがな (せい) <span className="text-red-500">*</span></label>
-                                <input {...register("lastNameKana")} className={`w-full border rounded-lg p-3 ${errors.lastNameKana ? 'border-red-500 bg-red-50' : 'border-gray-300'}`} placeholder="例：やまだ" />
+                                <label className="block text-sm font-bold text-text-primary mb-2">ふりがな (せい) <span className="text-red-500">*</span></label>
+                                <input {...register("lastNameKana")} className={`w-full border rounded-lg p-3 ${errors.lastNameKana ? 'border-red-500 bg-red-50' : 'border-border'}`} placeholder="例：やまだ" />
                                 {errors.lastNameKana && <p className="text-red-500 text-xs mt-1">{errors.lastNameKana.message}</p>}
                             </div>
                             <div>
-                                <label className="block text-sm font-bold text-gray-700 mb-2">ふりがな (めい) <span className="text-red-500">*</span></label>
-                                <input {...register("firstNameKana")} className={`w-full border rounded-lg p-3 ${errors.firstNameKana ? 'border-red-500 bg-red-50' : 'border-gray-300'}`} placeholder="例：たろう" />
+                                <label className="block text-sm font-bold text-text-primary mb-2">ふりがな (めい) <span className="text-red-500">*</span></label>
+                                <input {...register("firstNameKana")} className={`w-full border rounded-lg p-3 ${errors.firstNameKana ? 'border-red-500 bg-red-50' : 'border-border'}`} placeholder="例：たろう" />
                                 {errors.firstNameKana && <p className="text-red-500 text-xs mt-1">{errors.firstNameKana.message}</p>}
                             </div>
                         </div>
@@ -303,13 +303,13 @@ function RequestForm() {
                     <div className="space-y-4">
                         <div className="grid md:grid-cols-2 gap-4">
                             <div>
-                                <label className="block text-sm font-bold text-gray-700 mb-2">電話番号 <span className="text-red-500">*</span></label>
-                                <input {...register("phone")} onBlur={(e) => { register("phone").onBlur(e); handlePhoneBlur(e); }} className={`w-full border rounded-lg p-3 ${errors.phone ? 'border-red-500 bg-red-50' : 'border-gray-300'}`} placeholder="090-1234-5678" type="tel" />
+                                <label className="block text-sm font-bold text-text-primary mb-2">電話番号 <span className="text-red-500">*</span></label>
+                                <input {...register("phone")} onBlur={(e) => { register("phone").onBlur(e); handlePhoneBlur(e); }} className={`w-full border rounded-lg p-3 ${errors.phone ? 'border-red-500 bg-red-50' : 'border-border'}`} placeholder="090-1234-5678" type="tel" />
                                 {errors.phone && <p className="text-red-500 text-xs mt-1">{errors.phone.message}</p>}
                             </div>
                             <div>
-                                <label className="block text-sm font-bold text-gray-700 mb-2">メールアドレス <span className="text-red-500">*</span></label>
-                                <input {...register("email")} className={`w-full border rounded-lg p-3 ${errors.email ? 'border-red-500 bg-red-50' : 'border-gray-300'}`} placeholder="example@seiren.jp" type="email" />
+                                <label className="block text-sm font-bold text-text-primary mb-2">メールアドレス <span className="text-red-500">*</span></label>
+                                <input {...register("email")} className={`w-full border rounded-lg p-3 ${errors.email ? 'border-red-500 bg-red-50' : 'border-border'}`} placeholder="example@seiren.jp" type="email" />
                                 {errors.email && <p className="text-red-500 text-xs mt-1">{errors.email.message}</p>}
                             </div>
                         </div>
@@ -317,17 +317,17 @@ function RequestForm() {
 
                     {/* Address */}
                     <div className="space-y-4">
-                        <label className="block text-sm font-bold text-gray-700 mb-2">送付先住所 <span className="text-red-500">*</span></label>
+                        <label className="block text-sm font-bold text-text-primary mb-2">送付先住所 <span className="text-red-500">*</span></label>
 
                         <div className="grid md:grid-cols-3 gap-4">
                             <div className="col-span-1">
-                                <label className="text-xs text-gray-500 mb-1 block">郵便番号</label>
-                                <input {...register("zipCode")} onBlur={(e) => { register("zipCode").onBlur(e); handleZipBlur(e); }} className={`w-full border rounded-lg p-3 ${errors.zipCode ? 'border-red-500 bg-red-50' : 'border-gray-300'}`} placeholder="123-4567" maxLength={8} inputMode="numeric" />
+                                <label className="text-xs text-text-muted mb-1 block">郵便番号</label>
+                                <input {...register("zipCode")} onBlur={(e) => { register("zipCode").onBlur(e); handleZipBlur(e); }} className={`w-full border rounded-lg p-3 ${errors.zipCode ? 'border-red-500 bg-red-50' : 'border-border'}`} placeholder="123-4567" maxLength={8} inputMode="numeric" />
                                 {errors.zipCode && <p className="text-red-500 text-xs mt-1">{errors.zipCode.message}</p>}
                             </div>
                             <div className="col-span-2">
-                                <label className="text-xs text-gray-500 mb-1 block">都道府県</label>
-                                <select {...register("prefecture")} className={`w-full border rounded-lg p-3 ${errors.prefecture ? 'border-red-500 bg-red-50' : 'border-gray-300'}`}>
+                                <label className="text-xs text-text-muted mb-1 block">都道府県</label>
+                                <select {...register("prefecture")} className={`w-full border rounded-lg p-3 ${errors.prefecture ? 'border-red-500 bg-red-50' : 'border-border'}`}>
                                     <option value="">選択してください</option>
                                     {PREFECTURES.map(p => <option key={p} value={p}>{p}</option>)}
                                 </select>
@@ -337,25 +337,25 @@ function RequestForm() {
 
                         <div className="grid md:grid-cols-2 gap-4">
                             <div>
-                                <label className="text-xs text-gray-500 mb-1 block">市区町村</label>
-                                <input {...register("city")} className={`w-full border rounded-lg p-3 ${errors.city ? 'border-red-500 bg-red-50' : 'border-gray-300'}`} placeholder="港区" />
+                                <label className="text-xs text-text-muted mb-1 block">市区町村</label>
+                                <input {...register("city")} className={`w-full border rounded-lg p-3 ${errors.city ? 'border-red-500 bg-red-50' : 'border-border'}`} placeholder="港区" />
                                 {errors.city && <p className="text-red-500 text-xs mt-1">{errors.city.message}</p>}
                             </div>
                             <div>
-                                <label className="text-xs text-gray-500 mb-1 block">番地</label>
-                                <input {...register("addressLine")} className={`w-full border rounded-lg p-3 ${errors.addressLine ? 'border-red-500 bg-red-50' : 'border-gray-300'}`} placeholder="芝公園4-2-8" />
+                                <label className="text-xs text-text-muted mb-1 block">番地</label>
+                                <input {...register("addressLine")} className={`w-full border rounded-lg p-3 ${errors.addressLine ? 'border-red-500 bg-red-50' : 'border-border'}`} placeholder="芝公園4-2-8" />
                                 {errors.addressLine && <p className="text-red-500 text-xs mt-1">{errors.addressLine.message}</p>}
                             </div>
                         </div>
 
                         <div>
-                            <label className="text-xs text-gray-500 mb-1 block">建物名・部屋番号 <span className="text-gray-400 font-normal">(任意)</span></label>
-                            <input {...register("building")} className="w-full border border-gray-300 rounded-lg p-3" placeholder="東京タワービル 3F" />
+                            <label className="text-xs text-text-muted mb-1 block">建物名・部屋番号 <span className="text-text-muted font-normal">(任意)</span></label>
+                            <input {...register("building")} className="w-full border border-border rounded-lg p-3" placeholder="東京タワービル 3F" />
                         </div>
                     </div>
 
                     <div className="pt-4">
-                        <Button type="button" onClick={handleNextStep} className="w-full font-bold py-4 bg-primary text-white hover:bg-gray-800">
+                        <Button type="button" onClick={handleNextStep} className="w-full font-bold py-4 bg-primary text-white hover:bg-primary-dark">
                             次に進む <ChevronRight className="w-4 h-4 ml-2" />
                         </Button>
                     </div>
@@ -363,23 +363,23 @@ function RequestForm() {
 
                 {/* STEP 2 */}
                 <div className={step === 2 ? 'block space-y-8' : 'hidden'}>
-                    <p className="text-gray-600 mb-8 text-center text-sm">
+                    <p className="text-text-secondary mb-8 text-center text-sm">
                         簡単なアンケートにご協力ください。
                     </p>
 
                     {/* Bone Status */}
                     <div>
-                        <label className="block text-sm font-bold text-gray-700 mb-3">ご遺骨の有無 <span className="text-red-500">*</span></label>
+                        <label className="block text-sm font-bold text-text-primary mb-3">ご遺骨の有無 <span className="text-red-500">*</span></label>
                         <div className="space-y-2">
-                            <label className="flex items-center gap-2 p-3 border rounded-lg cursor-pointer hover:bg-gray-50">
+                            <label className="flex items-center gap-2 p-3 border rounded-lg cursor-pointer hover:bg-bg">
                                 <input type="radio" value="exist" {...register("boneStatus")} className="text-primary focus:ring-primary" />
                                 <span>ご遺骨あり</span>
                             </label>
-                            <label className="flex items-center gap-2 p-3 border rounded-lg cursor-pointer hover:bg-gray-50">
+                            <label className="flex items-center gap-2 p-3 border rounded-lg cursor-pointer hover:bg-bg">
                                 <input type="radio" value="none" {...register("boneStatus")} className="text-primary focus:ring-primary" />
                                 <span>ご遺骨なし</span>
                             </label>
-                            <label className="flex items-center gap-2 p-3 border rounded-lg cursor-pointer hover:bg-gray-50">
+                            <label className="flex items-center gap-2 p-3 border rounded-lg cursor-pointer hover:bg-bg">
                                 <input type="radio" value="unknown" {...register("boneStatus")} className="text-primary focus:ring-primary" />
                                 <span>未定・その他</span>
                             </label>
@@ -389,10 +389,10 @@ function RequestForm() {
 
                     {/* Checkboxes */}
                     <div>
-                        <label className="block text-sm font-bold text-gray-700 mb-3">ご検討中のお墓の種類 <span className="text-gray-400 text-xs font-normal">(複数選択可・任意)</span></label>
+                        <label className="block text-sm font-bold text-text-primary mb-3">ご検討中のお墓の種類 <span className="text-text-muted text-xs font-normal">(複数選択可・任意)</span></label>
                         <div className="grid grid-cols-2 gap-3">
                             {['一般墓', '永代供養墓', '樹木葬', '納骨堂'].map(type => (
-                                <label key={type} className="flex items-center gap-2 p-3 border rounded-lg cursor-pointer hover:bg-gray-50">
+                                <label key={type} className="flex items-center gap-2 p-3 border rounded-lg cursor-pointer hover:bg-bg">
                                     <input type="checkbox" value={type} {...register("graveTypes")} className="text-primary rounded focus:ring-primary" />
                                     <span className="text-sm">{type}</span>
                                 </label>
@@ -401,12 +401,12 @@ function RequestForm() {
                     </div>
 
                     {/* Opt-in */}
-                    <div className="bg-gray-50 p-4 rounded-lg">
+                    <div className="bg-bg p-4 rounded-lg">
                         <label className="flex items-start gap-3 cursor-pointer">
                             <input type="checkbox" {...register("nearbyCemeteryOptIn")} className="mt-1 text-primary rounded focus:ring-primary" />
                             <div className="text-sm">
                                 <span className="font-bold">周辺のおすすめ霊園の資料も受け取る（無料）</span>
-                                <p className="text-xs text-gray-500 mt-1">
+                                <p className="text-xs text-text-muted mt-1">
                                     ご希望の条件に近い、近隣の優良霊園の資料もあわせてお送りします。
                                 </p>
                             </div>
@@ -414,19 +414,19 @@ function RequestForm() {
                     </div>
 
                     {/* Visit Invite (Optional) */}
-                    <div className="border-t border-gray-200 pt-6 mt-6">
-                        <h3 className="font-bold text-gray-800 mb-4 flex items-center gap-2">
+                    <div className="border-t border-border pt-6 mt-6">
+                        <h3 className="font-bold text-primary-dark mb-4 flex items-center gap-2">
                             <span className="bg-orange-100 text-orange-600 text-xs px-2 py-1 rounded">任意</span>
                             この機会に霊園見学しませんか？
                         </h3>
                         <div className="grid md:grid-cols-2 gap-4">
                             <div>
-                                <label className="text-xs text-gray-500 mb-1 block">見学希望日</label>
-                                <input type="date" {...register("visitDate")} className="w-full border border-gray-300 rounded-lg p-3" />
+                                <label className="text-xs text-text-muted mb-1 block">見学希望日</label>
+                                <input type="date" {...register("visitDate")} className="w-full border border-border rounded-lg p-3" />
                             </div>
                             <div>
-                                <label className="text-xs text-gray-500 mb-1 block">時間帯</label>
-                                <select {...register("visitTime")} className="w-full border border-gray-300 rounded-lg p-3">
+                                <label className="text-xs text-text-muted mb-1 block">時間帯</label>
+                                <select {...register("visitTime")} className="w-full border border-border rounded-lg p-3">
                                     <option value="">指定なし</option>
                                     <option value="午前">午前</option>
                                     <option value="午後">午後</option>
@@ -437,12 +437,12 @@ function RequestForm() {
 
                     {/* Remarks */}
                     <div>
-                        <label className="block text-sm font-bold text-gray-700 mb-2">備考 <span className="text-gray-400 text-xs font-normal">（任意）</span></label>
-                        <textarea {...register("message")} className="w-full border border-gray-300 rounded-lg p-3 h-24 focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="ご質問などございましたらご自由にご記入ください。"></textarea>
+                        <label className="block text-sm font-bold text-text-primary mb-2">備考 <span className="text-text-muted text-xs font-normal">（任意）</span></label>
+                        <textarea {...register("message")} className="w-full border border-border rounded-lg p-3 h-24 focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="ご質問などございましたらご自由にご記入ください。"></textarea>
                     </div>
 
                     {/* Terms */}
-                    <div className="border-t border-gray-200 pt-6">
+                    <div className="border-t border-border pt-6">
                         <label className="flex items-center justify-center gap-2 cursor-pointer mb-4">
                             <input type="checkbox" {...register("agreedToTerms")} className="text-primary rounded focus:ring-primary w-5 h-5" />
                             <span className="text-sm font-bold">
@@ -452,10 +452,10 @@ function RequestForm() {
                         {errors.agreedToTerms && <p className="text-red-500 text-xs text-center mb-4">{errors.agreedToTerms.message}</p>}
 
                         <div className="flex gap-4">
-                            <Button type="button" onClick={() => { setStep(1); window.scrollTo({ top: 0, behavior: 'smooth' }); }} className="flex-1 bg-gray-100 text-gray-600 hover:bg-gray-200 py-4 font-bold">
+                            <Button type="button" onClick={() => { setStep(1); window.scrollTo({ top: 0, behavior: 'smooth' }); }} className="flex-1 bg-bg text-text-secondary hover:bg-border py-4 font-bold">
                                 戻る
                             </Button>
-                            <Button disabled={isSubmitting} type="submit" className="flex-[2] bg-primary text-white hover:bg-gray-800 py-4 font-bold">
+                            <Button disabled={isSubmitting} type="submit" className="flex-[2] bg-primary text-white hover:bg-primary-dark py-4 font-bold">
                                 {isSubmitting ? '送信中...' : '資料を請求する (無料)'}
                             </Button>
                         </div>

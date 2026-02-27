@@ -29,7 +29,7 @@ export function TempleHero({ data }: TempleHeroProps) {
     return (
         <section className="bg-white pb-8">
             {/* Main Image */}
-            <div className="w-full h-64 md:h-96 relative bg-gray-200">
+            <div className="w-full h-64 md:h-96 relative bg-border">
                 {data.mainImage ? (
                     <img
                         src={data.mainImage}
@@ -37,7 +37,7 @@ export function TempleHero({ data }: TempleHeroProps) {
                         className="w-full h-full object-cover"
                     />
                 ) : (
-                    <div className="w-full h-full flex items-center justify-center text-gray-400">No Image</div>
+                    <div className="w-full h-full flex items-center justify-center text-text-muted">No Image</div>
                 )}
             </div>
 
@@ -45,16 +45,16 @@ export function TempleHero({ data }: TempleHeroProps) {
                 <div className="bg-white rounded-xl shadow-lg p-6 md:shadow-none md:p-0 md:bg-transparent">
                     {/* Area & Name */}
                     <div className="mb-4">
-                        <div className="flex items-center text-sm text-gray-500 mb-2 font-bold">
+                        <div className="flex items-center text-sm text-text-muted mb-2 font-bold">
                             <MapPin className="w-4 h-4 text-primary mr-1" />
                             {data.prefecture} {data.cityName}
                         </div>
                         <h1 className="text-2xl md:text-3xl font-bold text-primary font-serif leading-tight mb-2">
                             {data.name}
                         </h1>
-                        <div className="text-sm text-gray-600">
+                        <div className="text-sm text-text-secondary">
                             {data.addressLine}
-                            <span className="ml-2 bg-gray-100 text-gray-700 text-xs px-2 py-0.5 rounded">
+                            <span className="ml-2 bg-bg text-text-primary text-xs px-2 py-0.5 rounded">
                                 {data.access}
                             </span>
                         </div>
@@ -63,18 +63,18 @@ export function TempleHero({ data }: TempleHeroProps) {
                     {/* Tags */}
                     <div className="flex flex-wrap gap-2 mb-6">
                         {displayTags.map((tag) => (
-                            <span key={tag} className="bg-gray-50 text-gray-600 text-xs px-2 py-1 rounded border border-gray-200">
+                            <span key={tag} className="bg-bg text-text-secondary text-xs px-2 py-1 rounded border border-border">
                                 {tag}
                             </span>
                         ))}
                     </div>
 
-                    <div className="border-t border-gray-100 pt-6 md:border-none md:pt-0">
+                    <div className="border-t border-border pt-6 md:border-none md:pt-0">
                         {/* Price */}
                         <div className="mb-6 flex items-baseline gap-2">
-                            <span className="text-sm text-gray-500 font-bold">最安価格</span>
+                            <span className="text-sm text-text-muted font-bold">最安価格</span>
                             <span className="text-3xl font-bold text-red-600">{minPrice}</span>
-                            <span className="text-sm text-gray-800 font-bold">円から</span>
+                            <span className="text-sm text-primary-dark font-bold">円から</span>
                         </div>
 
                         {/* CTAs */}
@@ -87,7 +87,7 @@ export function TempleHero({ data }: TempleHeroProps) {
                                         </div>
                                     </Button>
                                 </Link>
-                                <p className="text-[10px] text-gray-400 text-center mt-2">
+                                <p className="text-[10px] text-text-muted text-center mt-2">
                                     資料請求は無料です。<br className="md:hidden" />しつこい営業は行いません。
                                 </p>
                             </div>

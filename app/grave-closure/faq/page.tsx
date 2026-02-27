@@ -28,7 +28,7 @@ export default function GraveClosureFaqPage() {
                 <div className="max-w-4xl mx-auto">
                     {/* Breadcrumb */}
                     <div className="mb-8">
-                        <Link href="/grave-closure" className="text-gray-500 hover:text-primary flex items-center text-sm">
+                        <Link href="/grave-closure" className="text-text-muted hover:text-primary flex items-center text-sm">
                             <ArrowLeft className="w-4 h-4 mr-1" /> 墓じまいトップへ戻る
                         </Link>
                     </div>
@@ -45,24 +45,24 @@ export default function GraveClosureFaqPage() {
                     {/* FAQ List */}
                     <div className="space-y-6">
                         {faqs.map((item, idx) => (
-                            <details key={idx} className="group bg-white border border-gray-200 p-6 rounded-xl cursor-pointer hover:shadow-sm transition-shadow">
-                                <summary className="font-bold text-gray-800 flex justify-between items-center list-none">
+                            <details key={idx} className="group bg-white border border-border p-6 rounded-xl cursor-pointer hover:shadow-sm transition-shadow">
+                                <summary className="font-bold text-primary-dark flex justify-between items-center list-none">
                                     <span className="flex items-start gap-4 text-left">
                                         <HelpCircle className="w-6 h-6 text-secondary shrink-0 mt-0.5" />
                                         <span className="text-lg">{item.q}</span>
                                     </span>
-                                    <span className="text-gray-400 group-open:rotate-180 transition-transform ml-4">▼</span>
+                                    <span className="text-text-muted group-open:rotate-180 transition-transform ml-4">▼</span>
                                 </summary>
-                                <div className="mt-4 pl-10 text-gray-600 leading-relaxed border-l-2 border-secondary/20 pt-2">
+                                <div className="mt-4 pl-10 text-text-secondary leading-relaxed border-l-2 border-secondary/20 pt-2">
                                     {item.a}
                                 </div>
                             </details>
                         ))}
                     </div>
 
-                    <div className="text-center mt-16 bg-gray-50 p-10 rounded-2xl">
-                        <h3 className="font-bold text-lg text-gray-800 mb-4">その他のご質問はありますか？</h3>
-                        <p className="text-gray-600 mb-8">
+                    <div className="text-center mt-16 bg-bg p-10 rounded-2xl">
+                        <h3 className="font-bold text-lg text-primary-dark mb-4">その他のご質問はありますか？</h3>
+                        <p className="text-text-secondary mb-8">
                             掲載されていないご質問についても、<br />
                             専門スタッフが丁寧にお答えします。
                         </p>

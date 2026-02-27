@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 
 export default function CompanyPage() {
     return (
-        <div className="min-h-screen flex flex-col bg-white text-gray-800">
+        <div className="min-h-screen flex flex-col bg-white text-primary-dark">
             <Navbar />
             <main className="flex-grow pt-24 px-4 pb-20">
                 <div className="max-w-4xl mx-auto">
@@ -35,26 +35,26 @@ export default function CompanyPage() {
                             <Building2 className="w-5 h-5 mr-3 text-secondary" />
                             会社概要
                         </h2>
-                        <div className="bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm">
+                        <div className="bg-white border border-border rounded-xl overflow-hidden shadow-sm">
                             <dl className="divide-y divide-gray-100">
-                                <div className="p-6 grid grid-cols-1 md:grid-cols-4 gap-4 bg-gray-50/50">
-                                    <dt className="font-bold text-gray-700">商号</dt>
-                                    <dd className="md:col-span-3 text-gray-600">株式会社清蓮</dd>
+                                <div className="p-6 grid grid-cols-1 md:grid-cols-4 gap-4 bg-bg/50">
+                                    <dt className="font-bold text-text-primary">商号</dt>
+                                    <dd className="md:col-span-3 text-text-secondary">株式会社清蓮</dd>
                                 </div>
                                 <div className="p-6 grid grid-cols-1 md:grid-cols-4 gap-4">
-                                    <dt className="font-bold text-gray-700">本社所在地</dt>
-                                    <dd className="md:col-span-3 text-gray-600">
+                                    <dt className="font-bold text-text-primary">本社所在地</dt>
+                                    <dd className="md:col-span-3 text-text-secondary">
                                         〒244-0003<br />
                                         神奈川県横浜市戸塚区戸塚町4170 高橋ビル1F
                                     </dd>
                                 </div>
-                                <div className="p-6 grid grid-cols-1 md:grid-cols-4 gap-4 bg-gray-50/50">
-                                    <dt className="font-bold text-gray-700">設立</dt>
-                                    <dd className="md:col-span-3 text-gray-600">2008年8月6日</dd>
+                                <div className="p-6 grid grid-cols-1 md:grid-cols-4 gap-4 bg-bg/50">
+                                    <dt className="font-bold text-text-primary">設立</dt>
+                                    <dd className="md:col-span-3 text-text-secondary">2008年8月6日</dd>
                                 </div>
                                 <div className="p-6 grid grid-cols-1 md:grid-cols-4 gap-4">
-                                    <dt className="font-bold text-gray-700">代表取締役</dt>
-                                    <dd className="md:col-span-3 text-gray-600">眞如 りえ</dd>
+                                    <dt className="font-bold text-text-primary">代表取締役</dt>
+                                    <dd className="md:col-span-3 text-text-secondary">眞如 りえ</dd>
                                 </div>
                             </dl>
                         </div>
@@ -78,7 +78,7 @@ export default function CompanyPage() {
                                     "国際遺骨搬送コンサルティング",
                                     "墓地・納骨先検索プラットフォーム運営"
                                 ].map((item, i) => (
-                                    <li key={i} className="flex items-start text-gray-700">
+                                    <li key={i} className="flex items-start text-text-primary">
                                         <span className="text-secondary mr-2 font-bold">・</span>
                                         {item}
                                     </li>
@@ -94,16 +94,16 @@ export default function CompanyPage() {
                                 <Landmark className="w-5 h-5 mr-3 text-secondary" />
                                 取引銀行
                             </h2>
-                            <ul className="space-y-4 text-gray-600 bg-white border border-gray-100 p-6 rounded-xl shadow-sm">
+                            <ul className="space-y-4 text-text-secondary bg-white border border-border p-6 rounded-xl shadow-sm">
                                 <li className="flex items-center">
-                                    <span className="w-2 h-2 bg-gray-300 rounded-full mr-3"></span>
+                                    <span className="w-2 h-2 bg-border rounded-full mr-3"></span>
                                     PayPay銀行 本店
                                 </li>
                                 <li className="flex items-center">
-                                    <span className="w-2 h-2 bg-gray-300 rounded-full mr-3"></span>
+                                    <span className="w-2 h-2 bg-border rounded-full mr-3"></span>
                                     横浜信用金庫 本店
                                 </li>
-                                <li className="flex items-center text-sm text-gray-400 pl-5">
+                                <li className="flex items-center text-sm text-text-muted pl-5">
                                     他
                                 </li>
                             </ul>
@@ -115,7 +115,7 @@ export default function CompanyPage() {
                                 <Users className="w-5 h-5 mr-3 text-secondary" />
                                 取引先・提携先
                             </h2>
-                            <ul className="space-y-4 text-gray-600 bg-white border border-gray-100 p-6 rounded-xl shadow-sm">
+                            <ul className="space-y-4 text-text-secondary bg-white border border-border p-6 rounded-xl shadow-sm">
                                 {[
                                     "国内寺院・納骨堂",
                                     "大手石材店",

@@ -19,7 +19,7 @@ export function StickyCTA({ temple }: StickyCTAProps) {
     const requestUrl = `/consult/request-material?templeId=${temple.id}&templeName=${encodeURIComponent(temple.name)}&ref=sticky&refUrl=${encodeURIComponent(currentUrl)}`;
 
     return (
-        <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 p-3 shadow-[0_-5px_20px_rgba(0,0,0,0.1)] z-50 md:hidden pb-6">
+        <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-border p-3 shadow-[0_-5px_20px_rgba(0,0,0,0.1)] z-50 md:hidden pb-6">
             <div className="flex gap-3 max-w-lg mx-auto">
                 {/* Secondary: Visit */}
                 <Link href={requestUrl} className="flex-1">

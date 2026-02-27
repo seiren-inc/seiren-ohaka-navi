@@ -16,12 +16,12 @@ export function TempleClosing({ data }: TempleClosingProps) {
     const requestUrl = `/consult/request-material?templeId=${data.id}&templeName=${encodeURIComponent(data.name)}&ref=closing&refUrl=${encodeURIComponent(currentUrl)}`;
 
     return (
-        <div className="bg-gray-800 text-white rounded-xl p-8 md:p-12 text-center">
+        <div className="bg-primary-dark text-white rounded-xl p-8 md:p-12 text-center">
             <h2 className="text-xl md:text-2xl font-bold font-serif mb-6">
                 最後までご覧いただき<br className="md:hidden" />ありがとうございます
             </h2>
 
-            <p className="text-gray-300 text-sm md:text-base leading-relaxed mb-8 max-w-2xl mx-auto">
+            <p className="text-white/50 text-sm md:text-base leading-relaxed mb-8 max-w-2xl mx-auto">
                 他の霊園と比較しながら、じっくりご検討いただいて問題ありません。<br />
                 条件整理やご相談だけでも、お気軽にご利用ください。
             </p>

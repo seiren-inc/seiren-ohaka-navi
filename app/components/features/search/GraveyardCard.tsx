@@ -51,7 +51,7 @@ export function GraveyardCard({ data }: GraveyardCardProps) {
                     <span className="bg-primary-dark/85 text-white text-[10px] px-2.5 py-1 rounded-[--radius-sm] uppercase tracking-wider font-medium backdrop-blur-sm">
                         {data.type}
                     </span>
-                    {data.status === 'private' && <span className="bg-gray-500/85 text-white text-[10px] px-2.5 py-1 rounded-[--radius-sm] backdrop-blur-sm">非公開</span>}
+                    {data.status === 'private' && <span className="bg-bg0/85 text-white text-[10px] px-2.5 py-1 rounded-[--radius-sm] backdrop-blur-sm">非公開</span>}
                 </div>
             </div>
 

@@ -23,7 +23,7 @@ export function InquiryActions() {
             <div className="flex flex-wrap gap-2 justify-center sm:justify-start">
                 {["費用の見積もりが欲しい", "空き区画が知りたい", "納骨可能数が知りたい", "埋葬方法が知りたい", "宗派を確認したい", "支払い方法を確認したい"].map((label, idx) => (
                     <Link key={idx} href="/consult/grave-search">
-                        <span className="inline-block bg-gray-50 border border-gray-200 text-gray-500 text-xs px-3 py-2 rounded-full hover:border-warm-gold hover:text-warm-gold transition-colors">
+                        <span className="inline-block bg-bg border border-border text-text-muted text-xs px-3 py-2 rounded-full hover:border-warm-gold hover:text-warm-gold transition-colors">
                             {label}
                         </span>
                     </Link>

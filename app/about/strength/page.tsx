@@ -64,7 +64,7 @@ export default function StrengthPage() {
     };
 
     return (
-        <div className="min-h-screen flex flex-col bg-white text-gray-800">
+        <div className="min-h-screen flex flex-col bg-white text-primary-dark">
             <Navbar />
 
             <main className="flex-grow">
@@ -77,10 +77,10 @@ export default function StrengthPage() {
                         <h1 className="font-serif text-3xl md:text-5xl font-bold text-primary mb-6 leading-tight">
                             清蓮の強み
                         </h1>
-                        <p className="text-xl md:text-2xl font-bold text-gray-700 mb-6">
+                        <p className="text-xl md:text-2xl font-bold text-text-primary mb-6">
                             「売る」ではなく「納得」のために。
                         </p>
-                        <p className="text-gray-600 text-sm md:text-lg max-w-2xl mx-auto mb-10 leading-relaxed">
+                        <p className="text-text-secondary text-sm md:text-lg max-w-2xl mx-auto mb-10 leading-relaxed">
                             中立な立場で最適解を一緒に探す、<br />
                             それが私たちの約束です。
                         </p>
@@ -126,12 +126,12 @@ export default function StrengthPage() {
                                     desc: "情報の提供だけでなく、見学予約や契約手続き、行政への申請サポートまで、最後まで親身に寄り添います。"
                                 }
                             ].map((item, i) => (
-                                <div key={i} className="bg-white p-8 rounded-2xl border border-gray-100 shadow-sm text-center transform hover:scale-105 transition-transform duration-300">
+                                <div key={i} className="bg-white p-8 rounded-2xl border border-border shadow-sm text-center transform hover:scale-105 transition-transform duration-300">
                                     <div className="bg-primary/5 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6">
                                         {item.icon}
                                     </div>
-                                    <h3 className="font-bold text-xl text-gray-800 mb-4">{item.title}</h3>
-                                    <p className="text-gray-600 text-sm leading-relaxed">{item.desc}</p>
+                                    <h3 className="font-bold text-xl text-primary-dark mb-4">{item.title}</h3>
+                                    <p className="text-text-secondary text-sm leading-relaxed">{item.desc}</p>
                                 </div>
                             ))}
                         </div>
@@ -143,18 +143,18 @@ export default function StrengthPage() {
                             <h2 className="font-serif text-2xl md:text-3xl font-bold text-primary">
                                 私たちができること
                             </h2>
-                            <p className="text-gray-500 mt-4">お墓に関するあらゆるお悩みに対応します</p>
+                            <p className="text-text-muted mt-4">お墓に関するあらゆるお悩みに対応します</p>
                         </div>
 
                         <div className="space-y-6">
                             {/* Service 1 */}
-                            <div className="bg-gray-50 rounded-2xl p-8 md:p-10 flex flex-col md:flex-row items-center gap-8">
+                            <div className="bg-bg rounded-2xl p-8 md:p-10 flex flex-col md:flex-row items-center gap-8">
                                 <div className="bg-white p-6 rounded-full shadow-sm flex-shrink-0">
                                     <MapPin className="w-8 h-8 text-emerald-600" />
                                 </div>
                                 <div className="flex-grow text-center md:text-left">
-                                    <h3 className="text-xl font-bold text-gray-800 mb-2">お墓探し</h3>
-                                    <p className="text-sm text-gray-600 mb-4">
+                                    <h3 className="text-xl font-bold text-primary-dark mb-2">お墓探し</h3>
+                                    <p className="text-sm text-text-secondary mb-4">
                                         永代供養墓、樹木葬、納骨堂、一般墓など、ご希望の条件に合わせて全国の霊園から最適な場所をご提案します。
                                     </p>
                                 </div>
@@ -167,13 +167,13 @@ export default function StrengthPage() {
                             </div>
 
                             {/* Service 2 */}
-                            <div className="bg-gray-50 rounded-2xl p-8 md:p-10 flex flex-col md:flex-row items-center gap-8">
+                            <div className="bg-bg rounded-2xl p-8 md:p-10 flex flex-col md:flex-row items-center gap-8">
                                 <div className="bg-white p-6 rounded-full shadow-sm flex-shrink-0">
                                     <Home className="w-8 h-8 text-amber-600" />
                                 </div>
                                 <div className="flex-grow text-center md:text-left">
-                                    <h3 className="text-xl font-bold text-gray-800 mb-2">墓じまい・改葬</h3>
-                                    <p className="text-sm text-gray-600 mb-4">
+                                    <h3 className="text-xl font-bold text-primary-dark mb-2">墓じまい・改葬</h3>
+                                    <p className="text-sm text-text-secondary mb-4">
                                         田舎のお墓の撤去（墓じまい）や、近くへの引越し（改葬）。書類手続きから石材店の手配までワンストップで支援。
                                     </p>
                                 </div>
@@ -186,13 +186,13 @@ export default function StrengthPage() {
                             </div>
 
                             {/* Service 3 */}
-                            <div className="bg-gray-50 rounded-2xl p-8 md:p-10 flex flex-col md:flex-row items-center gap-8">
+                            <div className="bg-bg rounded-2xl p-8 md:p-10 flex flex-col md:flex-row items-center gap-8">
                                 <div className="bg-white p-6 rounded-full shadow-sm flex-shrink-0">
                                     <Bone className="w-8 h-8 text-purple-600" />
                                 </div>
                                 <div className="flex-grow text-center md:text-left">
-                                    <h3 className="text-xl font-bold text-gray-800 mb-2">遺骨サービス</h3>
-                                    <p className="text-sm text-gray-600 mb-4">
+                                    <h3 className="text-xl font-bold text-primary-dark mb-2">遺骨サービス</h3>
+                                    <p className="text-sm text-text-secondary mb-4">
                                         ご遺骨のパウダー化（粉骨）、洗浄（洗骨）、手元供養品のご案内や、海洋散骨の手配など、供養の形を広げます。
                                     </p>
                                 </div>
@@ -215,12 +215,12 @@ export default function StrengthPage() {
                         </div>
                         <div className="grid md:grid-cols-4 gap-4">
                             {FLOW_STEPS.map((step, i) => (
-                                <div key={i} className="relative bg-white border border-gray-200 rounded-xl p-6">
+                                <div key={i} className="relative bg-white border border-border rounded-xl p-6">
                                     <div className="text-4xl font-serif text-gray-100 font-bold mb-4 absolute top-4 right-4">
                                         {step.step}
                                     </div>
-                                    <h3 className="font-bold text-lg text-gray-800 mb-3 relative z-10">{step.title}</h3>
-                                    <p className="text-xs text-gray-600 leading-relaxed relative z-10">
+                                    <h3 className="font-bold text-lg text-primary-dark mb-3 relative z-10">{step.title}</h3>
+                                    <p className="text-xs text-text-secondary leading-relaxed relative z-10">
                                         {step.desc}
                                     </p>
                                 </div>
@@ -237,16 +237,16 @@ export default function StrengthPage() {
                         </div>
                         <div className="space-y-4">
                             {FAQS.map((faq, idx) => (
-                                <div key={idx} className="border border-gray-200 rounded-lg overflow-hidden">
+                                <div key={idx} className="border border-border rounded-lg overflow-hidden">
                                     <button
-                                        className="w-full text-left p-5 bg-white flex justify-between items-center hover:bg-gray-50 transition-colors"
+                                        className="w-full text-left p-5 bg-white flex justify-between items-center hover:bg-bg transition-colors"
                                         onClick={() => toggleFaq(idx)}
                                     >
-                                        <span className="font-bold text-gray-800 pr-4">Q. {faq.q}</span>
-                                        {openFaqIndex === idx ? <ChevronUp className="w-5 h-5 text-gray-400" /> : <ChevronDown className="w-5 h-5 text-gray-400" />}
+                                        <span className="font-bold text-primary-dark pr-4">Q. {faq.q}</span>
+                                        {openFaqIndex === idx ? <ChevronUp className="w-5 h-5 text-text-muted" /> : <ChevronDown className="w-5 h-5 text-text-muted" />}
                                     </button>
                                     {openFaqIndex === idx && (
-                                        <div className="p-5 bg-gray-50 text-sm text-gray-700 border-t border-gray-100 leading-relaxed">
+                                        <div className="p-5 bg-bg text-sm text-text-primary border-t border-border leading-relaxed">
                                             A. {faq.a}
                                         </div>
                                     )}
@@ -260,13 +260,13 @@ export default function StrengthPage() {
                         <h2 className="font-serif text-2xl md:text-3xl font-bold mb-6">
                             迷ったら、まず状況を整理しましょう
                         </h2>
-                        <p className="text-gray-300 mb-10 max-w-2xl mx-auto">
+                        <p className="text-text-muted mb-10 max-w-2xl mx-auto">
                             ご家族だけで悩まず、第三者のプロにご相談ください。<br />
                             知識豊富なスタッフが、あなたのペースに合わせてサポートします。
                         </p>
                         <div className="flex flex-col sm:flex-row gap-4 justify-center">
                             <Link href="/consult">
-                                <Button size="lg" className="bg-white text-primary hover:bg-gray-100 border-transparent w-full sm:w-auto px-10">
+                                <Button size="lg" className="bg-white text-primary hover:bg-bg border-transparent w-full sm:w-auto px-10">
                                     無料相談予約
                                 </Button>
                             </Link>

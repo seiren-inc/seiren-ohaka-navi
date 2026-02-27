@@ -263,7 +263,7 @@ function GraveClosureConsultForm() {
             <div className="min-h-screen pt-32 pb-20 px-4 text-center">
                 <div className="max-w-2xl mx-auto">
                     <h1 className="text-3xl font-bold text-primary mb-6">送信完了</h1>
-                    <p className="text-gray-600 mb-10">
+                    <p className="text-text-secondary mb-10">
                         お問い合わせありがとうございます。<br />
                         担当者より折り返しご連絡させていただきます。
                     </p>
@@ -278,14 +278,14 @@ function GraveClosureConsultForm() {
             <Navbar />
 
             {/* Hero */}
-            <div className="bg-white pt-32 pb-16 px-4 text-center border-b border-gray-100">
+            <div className="bg-white pt-32 pb-16 px-4 text-center border-b border-border">
                 <span className="text-secondary font-bold tracking-widest text-xs uppercase mb-4 block">
                     Grave Closure
                 </span>
                 <h1 className="font-serif text-3xl md:text-4xl font-bold text-primary-dark mb-4">
                     お墓じまい・改葬の無料相談
                 </h1>
-                <p className="text-gray-600">
+                <p className="text-text-secondary">
                     書類手続き、寺院との調整、撤去工事、<br className="sm:hidden" />次の供養先までワンストップでサポート
                 </p>
             </div>
@@ -299,24 +299,24 @@ function GraveClosureConsultForm() {
                         { title: "トラブル防止", text: "「離檀」などのお寺様との調整もサポート" },
                         { title: "明朗会計", text: "事前にしっかり現地調査し、お見積もりを出します" },
                     ].map((item, idx) => (
-                        <div key={idx} className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 text-center">
+                        <div key={idx} className="bg-white p-6 rounded-xl shadow-sm border border-border text-center">
                             <div className="inline-flex items-center justify-center w-12 h-12 bg-secondary/10 text-secondary rounded-full mb-4">
                                 <CheckCircle className="w-6 h-6" />
                             </div>
-                            <h3 className="font-bold text-gray-800 mb-2">{item.title}</h3>
-                            <p className="text-sm text-gray-600">{item.text}</p>
+                            <h3 className="font-bold text-primary-dark mb-2">{item.title}</h3>
+                            <p className="text-sm text-text-secondary">{item.text}</p>
                         </div>
                     ))}
                 </div>
 
                 {/* Form */}
-                <form onSubmit={handleSubmit} className="bg-white p-6 sm:p-10 rounded-2xl shadow-lg border border-gray-100 space-y-8 max-w-3xl mx-auto">
+                <form onSubmit={handleSubmit} className="bg-white p-6 sm:p-10 rounded-2xl shadow-lg border border-border space-y-8 max-w-3xl mx-auto">
 
                     <section className="space-y-6">
-                        <h2 className="text-lg font-bold text-gray-800 border-b pb-2">ご相談内容</h2>
+                        <h2 className="text-lg font-bold text-primary-dark border-b pb-2">ご相談内容</h2>
 
                         <div className="space-y-3">
-                            <label className="block text-sm font-bold text-gray-700">ご希望の内容</label>
+                            <label className="block text-sm font-bold text-text-primary">ご希望の内容</label>
                             <div className="flex flex-wrap gap-6">
                                 {["墓じまい（撤去のみ）", "改葬（お墓の引越し）", "未定"].map(mode => (
                                     <label key={mode} className="flex items-center gap-2 cursor-pointer">
@@ -328,7 +328,7 @@ function GraveClosureConsultForm() {
                                             onChange={handleChange}
                                             className="text-primary focus:ring-primary w-4 h-4"
                                         />
-                                        <span className="text-gray-700">{mode}</span>
+                                        <span className="text-text-primary">{mode}</span>
                                     </label>
                                 ))}
                             </div>
@@ -341,12 +341,12 @@ function GraveClosureConsultForm() {
                         )}>
                             <div className="flex items-center gap-2 mb-2">
                                 <Building className="w-5 h-5 text-secondary" />
-                                <h3 className="font-bold text-gray-800">現在のお墓について</h3>
+                                <h3 className="font-bold text-primary-dark">現在のお墓について</h3>
                             </div>
 
                             {/* Temple Name with Suggestions */}
                             <div className="relative space-y-2">
-                                <label className="block text-sm font-bold text-gray-700">
+                                <label className="block text-sm font-bold text-text-primary">
                                     お寺・霊園の名前 <span className="text-red-500">*</span>
                                 </label>
                                 <div className="relative">
@@ -355,7 +355,7 @@ function GraveClosureConsultForm() {
                                         type="text"
                                         name="graveTempleName"
                                         required
-                                        className="w-full h-12 pl-10 pr-10 border rounded-lg focus:ring-2 focus:ring-secondary/20 focus:border-secondary outline-none placeholder:text-gray-400"
+                                        className="w-full h-12 pl-10 pr-10 border rounded-lg focus:ring-2 focus:ring-secondary/20 focus:border-secondary outline-none placeholder:text-text-muted"
                                         placeholder="例：〇〇寺、〇〇霊園（入力で候補表示）"
                                         value={templeQuery}
                                         onChange={handleTempleNameChange}
@@ -363,7 +363,7 @@ function GraveClosureConsultForm() {
                                         onBlur={() => setTimeout(() => setShowCandidates(false), 200)}
                                         autoComplete="off"
                                     />
-                                    <Search className="w-5 h-5 text-gray-400 absolute left-3 top-1/2 -translate-y-1/2" />
+                                    <Search className="w-5 h-5 text-text-muted absolute left-3 top-1/2 -translate-y-1/2" />
 
                                     {/* Actions Right: Loading or Clear */}
                                     <div className="absolute right-3 top-1/2 -translate-y-1/2 flex items-center">
@@ -373,7 +373,7 @@ function GraveClosureConsultForm() {
                                             <button
                                                 type="button"
                                                 onClick={clearTempleSearch}
-                                                className="text-gray-400 hover:text-gray-600 focus:outline-none"
+                                                className="text-text-muted hover:text-text-secondary focus:outline-none"
                                             >
                                                 <X className="w-5 h-5" />
                                             </button>
@@ -383,7 +383,7 @@ function GraveClosureConsultForm() {
 
                                 {/* Suggestions Dropdown */}
                                 {showCandidates && (
-                                    <div className="absolute z-50 w-full bg-white border border-gray-200 rounded-lg shadow-xl mt-1 max-h-60 overflow-y-auto">
+                                    <div className="absolute z-50 w-full bg-white border border-border rounded-lg shadow-xl mt-1 max-h-60 overflow-y-auto">
                                         {templeCandidates.length > 0 ? (
                                             <ul>
                                                 {templeCandidates.map(temple => (
@@ -392,7 +392,7 @@ function GraveClosureConsultForm() {
                                                         onClick={() => selectTempleCandidate(temple)}
                                                         className="px-4 py-3 hover:bg-secondary/5 cursor-pointer border-b border-gray-50 last:border-0"
                                                     >
-                                                        <div className="font-bold text-gray-800">
+                                                        <div className="font-bold text-primary-dark">
                                                             {temple.name}
                                                             {temple.sect && (
                                                                 <span className="text-xs text-secondary ml-2 font-normal">
@@ -400,7 +400,7 @@ function GraveClosureConsultForm() {
                                                                 </span>
                                                             )}
                                                         </div>
-                                                        <div className="text-xs text-gray-500 flex items-center mt-1">
+                                                        <div className="text-xs text-text-muted flex items-center mt-1">
                                                             <MapPin className="w-3 h-3 mr-1" />
                                                             {temple.fullAddress}
                                                         </div>
@@ -408,14 +408,14 @@ function GraveClosureConsultForm() {
                                                 ))}
                                             </ul>
                                         ) : (
-                                            <div className="px-4 py-3 text-sm text-gray-400 text-center">
+                                            <div className="px-4 py-3 text-sm text-text-muted text-center">
                                                 該当する寺院が見つかりません。<br />
                                                 手入力してください。
                                             </div>
                                         )}
                                     </div>
                                 )}
-                                <p className="text-xs text-gray-500">
+                                <p className="text-xs text-text-muted">
                                     ※候補が出ない場合は、そのまま正式名称をご入力ください。
                                 </p>
                             </div>
@@ -423,7 +423,7 @@ function GraveClosureConsultForm() {
                             {/* Temple Address Logic: Split Pref / City / Line */}
                             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                 <div className="space-y-2">
-                                    <label className="block text-sm font-bold text-gray-700">
+                                    <label className="block text-sm font-bold text-text-primary">
                                         都道府県 <span className="text-red-500">*</span>
                                     </label>
                                     <select
@@ -443,7 +443,7 @@ function GraveClosureConsultForm() {
                                     </select>
                                 </div>
                                 <div className="space-y-2">
-                                    <label className="block text-sm font-bold text-gray-700">
+                                    <label className="block text-sm font-bold text-text-primary">
                                         市区町村 <span className="text-red-500">*</span>
                                     </label>
                                     <input
@@ -461,7 +461,7 @@ function GraveClosureConsultForm() {
                                 </div>
                             </div>
                             <div className="space-y-2">
-                                <label className="block text-sm font-bold text-gray-700">
+                                <label className="block text-sm font-bold text-text-primary">
                                     以降の住所（町名・番地等）
                                 </label>
                                 <input
@@ -480,7 +480,7 @@ function GraveClosureConsultForm() {
 
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                             <div className="space-y-2">
-                                <label className="block text-sm font-bold text-gray-700">実施希望時期</label>
+                                <label className="block text-sm font-bold text-text-primary">実施希望時期</label>
                                 <select name="desiredTiming" className="w-full h-12 px-4 border rounded-lg bg-white" value={formData.desiredTiming} onChange={handleChange}>
                                     <option value="未定">未定</option>
                                     <option value="急ぎ">急ぎ</option>
@@ -489,7 +489,7 @@ function GraveClosureConsultForm() {
                                 </select>
                             </div>
                             <div className="space-y-2">
-                                <label className="block text-sm font-bold text-gray-700">次の供養先</label>
+                                <label className="block text-sm font-bold text-text-primary">次の供養先</label>
                                 <select name="hasNextPlace" className="w-full h-12 px-4 border rounded-lg bg-white" value={formData.hasNextPlace} onChange={handleChange}>
                                     <option value="未定">決まっていない（提案希望）</option>
                                     <option value="決まっている">すでに決まっている</option>
@@ -497,8 +497,8 @@ function GraveClosureConsultForm() {
                             </div>
                         </div>
 
-                        <div className="flex items-center gap-2 text-sm text-gray-600 bg-gray-50 p-4 rounded-lg">
-                            <Calculator className="w-5 h-5 text-gray-400" />
+                        <div className="flex items-center gap-2 text-sm text-text-secondary bg-bg p-4 rounded-lg">
+                            <Calculator className="w-5 h-5 text-text-muted" />
                             <span>費用でお悩みですか？</span>
                             <Link href="/grave-closure/cost" target="_blank" className="text-primary underline font-bold ml-1">
                                 費用の目安を確認する
@@ -507,33 +507,33 @@ function GraveClosureConsultForm() {
                     </section>
 
                     <section className="space-y-6">
-                        <h2 className="text-lg font-bold text-gray-800 border-b pb-2">お客様情報</h2>
+                        <h2 className="text-lg font-bold text-primary-dark border-b pb-2">お客様情報</h2>
 
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                             <div className="space-y-2">
-                                <label className="block text-sm font-bold text-gray-700">お名前 <span className="text-red-500">*</span></label>
+                                <label className="block text-sm font-bold text-text-primary">お名前 <span className="text-red-500">*</span></label>
                                 <input type="text" name="name" required className="w-full h-12 px-4 border rounded-lg" placeholder="山田 太郎" value={formData.name} onChange={handleChange} />
                             </div>
                             <div className="space-y-2">
-                                <label className="block text-sm font-bold text-gray-700">フリガナ <span className="text-red-500">*</span></label>
+                                <label className="block text-sm font-bold text-text-primary">フリガナ <span className="text-red-500">*</span></label>
                                 <input type="text" name="furigana" required className="w-full h-12 px-4 border rounded-lg" placeholder="やまだ たろう" value={formData.furigana} onChange={handleChange} />
                             </div>
                         </div>
 
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                             <div className="space-y-2">
-                                <label className="block text-sm font-bold text-gray-700">電話番号 <span className="text-red-500">*</span></label>
+                                <label className="block text-sm font-bold text-text-primary">電話番号 <span className="text-red-500">*</span></label>
                                 <input type="tel" name="phone" required className="w-full h-12 px-4 border rounded-lg" placeholder="090-1234-5678" value={formData.phone} onChange={handleChange} />
                             </div>
                             <div className="space-y-2">
-                                <label className="block text-sm font-bold text-gray-700">メールアドレス <span className="text-red-500">*</span></label>
+                                <label className="block text-sm font-bold text-text-primary">メールアドレス <span className="text-red-500">*</span></label>
                                 <input type="email" name="email" required className="w-full h-12 px-4 border rounded-lg" placeholder="example@email.com" value={formData.email} onChange={handleChange} />
                             </div>
                         </div>
 
-                        <div className="space-y-4 bg-gray-50 p-6 rounded-lg">
+                        <div className="space-y-4 bg-bg p-6 rounded-lg">
                             <div className="space-y-2">
-                                <label className="block text-sm font-bold text-gray-700">郵便番号 (住所自動入力)</label>
+                                <label className="block text-sm font-bold text-text-primary">郵便番号 (住所自動入力)</label>
                                 <div className="flex gap-4">
                                     <input
                                         type="text"
@@ -544,7 +544,7 @@ function GraveClosureConsultForm() {
                                         value={formData.zipCode}
                                         onChange={handleChange}
                                     />
-                                    <span className="text-xs text-gray-500 self-center">ハイフンなしでもOK</span>
+                                    <span className="text-xs text-text-muted self-center">ハイフンなしでもOK</span>
                                 </div>
                                 {postalError && <p className="text-red-500 text-xs">{postalError}</p>}
                             </div>
@@ -560,7 +560,7 @@ function GraveClosureConsultForm() {
                         </div>
 
                         <div className="space-y-2">
-                            <label className="block text-sm font-bold text-gray-700">その他・ご詳細</label>
+                            <label className="block text-sm font-bold text-text-primary">その他・ご詳細</label>
                             <textarea name="message" className="w-full h-32 p-4 border rounded-lg" placeholder="お墓の場所（山の上、階段があるなど）や、具体的なご事情があればご記入ください" value={formData.message} onChange={handleChange} />
                         </div>
                     </section>
@@ -575,7 +575,7 @@ function GraveClosureConsultForm() {
                         >
                             {isSubmitting ? "送信中..." : "上記の内容で無料相談する"}
                         </Button>
-                        <p className="text-xs text-gray-400 mt-4">
+                        <p className="text-xs text-text-muted mt-4">
                             個人情報は厳重に管理し、許可なく第三者に提供することはありません。
                         </p>
                     </div>
@@ -583,21 +583,21 @@ function GraveClosureConsultForm() {
 
                 {/* Flow */}
                 <div className="mt-16 max-w-3xl mx-auto">
-                    <h3 className="text-center font-bold text-gray-800 mb-8">送信後の流れ</h3>
+                    <h3 className="text-center font-bold text-primary-dark mb-8">送信後の流れ</h3>
                     <div className="grid grid-cols-3 gap-4 text-center">
                         <div className="relative">
                             <div className="bg-white border rounded-lg p-4 mb-2 z-10 relative">
                                 <Mail className="w-6 h-6 text-primary mx-auto mb-2" />
                                 <div className="font-bold text-sm">受付完了</div>
                             </div>
-                            <ArrowDown className="w-4 h-4 text-gray-300 absolute -right-2 top-1/2 -translate-y-1/2 -rotate-90" />
+                            <ArrowDown className="w-4 h-4 text-text-muted absolute -right-2 top-1/2 -translate-y-1/2 -rotate-90" />
                         </div>
                         <div className="relative">
                             <div className="bg-white border rounded-lg p-4 mb-2 z-10 relative">
                                 <CheckCircle className="w-6 h-6 text-primary mx-auto mb-2" />
                                 <div className="font-bold text-sm">内容確認</div>
                             </div>
-                            <ArrowDown className="w-4 h-4 text-gray-300 absolute -right-2 top-1/2 -translate-y-1/2 -rotate-90" />
+                            <ArrowDown className="w-4 h-4 text-text-muted absolute -right-2 top-1/2 -translate-y-1/2 -rotate-90" />
                         </div>
                         <div>
                             <div className="bg-white border rounded-lg p-4 mb-2">

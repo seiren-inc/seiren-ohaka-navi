@@ -32,7 +32,7 @@ export function SectionTabs() {
     };
 
     return (
-        <div className="sticky top-[60px] z-30 bg-white shadow-sm border-b border-gray-200 overflow-x-auto scrollbar-hide">
+        <div className="sticky top-[60px] z-30 bg-white shadow-sm border-b border-border overflow-x-auto scrollbar-hide">
             <div className="flex md:justify-center min-w-max px-4">
                 {tabs.map((tab) => (
                     <button
@@ -42,7 +42,7 @@ export function SectionTabs() {
                             px-4 py-3 text-sm font-bold border-b-2 transition-colors whitespace-nowrap
                             ${activeId === tab.id
                                 ? 'border-primary text-primary'
-                                : 'border-transparent text-gray-500 hover:text-gray-800'
+                                : 'border-transparent text-text-muted hover:text-primary-dark'
                             }
                         `}
                     >

@@ -106,7 +106,7 @@ export function DiagnosticChart() {
     const result = getResult();
 
     return (
-        <div className="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden max-w-3xl mx-auto my-12">
+        <div className="bg-white rounded-2xl shadow-lg border border-border overflow-hidden max-w-3xl mx-auto my-12">
             <div className="bg-primary p-6 text-center text-white">
                 <h3 className="font-serif text-xl font-bold flex items-center justify-center gap-2">
                     <CheckCircle className="w-6 h-6 text-secondary" />
@@ -130,24 +130,24 @@ export function DiagnosticChart() {
                             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                                 <button
                                     onClick={() => handleSuccessor("yes")}
-                                    className="flex flex-col items-center justify-center p-6 rounded-xl border-2 border-gray-200 hover:border-secondary hover:bg-secondary/5 transition-all group"
+                                    className="flex flex-col items-center justify-center p-6 rounded-xl border-2 border-border hover:border-secondary hover:bg-secondary/5 transition-all group"
                                 >
-                                    <Users className="w-8 h-8 text-gray-400 group-hover:text-secondary mb-3" />
-                                    <span className="font-bold text-gray-700">いる</span>
+                                    <Users className="w-8 h-8 text-text-muted group-hover:text-secondary mb-3" />
+                                    <span className="font-bold text-text-primary">いる</span>
                                 </button>
                                 <button
                                     onClick={() => handleSuccessor("no")}
-                                    className="flex flex-col items-center justify-center p-6 rounded-xl border-2 border-gray-200 hover:border-secondary hover:bg-secondary/5 transition-all group"
+                                    className="flex flex-col items-center justify-center p-6 rounded-xl border-2 border-border hover:border-secondary hover:bg-secondary/5 transition-all group"
                                 >
-                                    <User className="w-8 h-8 text-gray-400 group-hover:text-secondary mb-3" />
-                                    <span className="font-bold text-gray-700">いない</span>
+                                    <User className="w-8 h-8 text-text-muted group-hover:text-secondary mb-3" />
+                                    <span className="font-bold text-text-primary">いない</span>
                                 </button>
                                 <button
                                     onClick={() => handleSuccessor("unsure")}
-                                    className="flex flex-col items-center justify-center p-6 rounded-xl border-2 border-gray-200 hover:border-secondary hover:bg-secondary/5 transition-all group"
+                                    className="flex flex-col items-center justify-center p-6 rounded-xl border-2 border-border hover:border-secondary hover:bg-secondary/5 transition-all group"
                                 >
-                                    <span className="text-xl font-bold text-gray-400 group-hover:text-secondary mb-3">?</span>
-                                    <span className="font-bold text-gray-700">わからない</span>
+                                    <span className="text-xl font-bold text-text-muted group-hover:text-secondary mb-3">?</span>
+                                    <span className="font-bold text-text-primary">わからない</span>
                                 </button>
                             </div>
                         </motion.div>
@@ -167,35 +167,35 @@ export function DiagnosticChart() {
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                 <button
                                     onClick={() => handlePriority("tradition")}
-                                    className="flex items-center p-5 rounded-xl border-2 border-gray-200 hover:border-secondary hover:bg-secondary/5 transition-all text-left group"
+                                    className="flex items-center p-5 rounded-xl border-2 border-border hover:border-secondary hover:bg-secondary/5 transition-all text-left group"
                                 >
-                                    <Landmark className="w-6 h-6 text-gray-400 group-hover:text-secondary mr-4 flex-shrink-0" />
-                                    <span className="font-bold text-gray-700">伝統や格式を大切にしたい</span>
+                                    <Landmark className="w-6 h-6 text-text-muted group-hover:text-secondary mr-4 flex-shrink-0" />
+                                    <span className="font-bold text-text-primary">伝統や格式を大切にしたい</span>
                                 </button>
                                 <button
                                     onClick={() => handlePriority("cost")}
-                                    className="flex items-center p-5 rounded-xl border-2 border-gray-200 hover:border-secondary hover:bg-secondary/5 transition-all text-left group"
+                                    className="flex items-center p-5 rounded-xl border-2 border-border hover:border-secondary hover:bg-secondary/5 transition-all text-left group"
                                 >
-                                    <Wallet className="w-6 h-6 text-gray-400 group-hover:text-secondary mr-4 flex-shrink-0" />
-                                    <span className="font-bold text-gray-700">費用をなるべく抑えたい</span>
+                                    <Wallet className="w-6 h-6 text-text-muted group-hover:text-secondary mr-4 flex-shrink-0" />
+                                    <span className="font-bold text-text-primary">費用をなるべく抑えたい</span>
                                 </button>
                                 <button
                                     onClick={() => handlePriority("nature")}
-                                    className="flex items-center p-5 rounded-xl border-2 border-gray-200 hover:border-secondary hover:bg-secondary/5 transition-all text-left group"
+                                    className="flex items-center p-5 rounded-xl border-2 border-border hover:border-secondary hover:bg-secondary/5 transition-all text-left group"
                                 >
-                                    <Sprout className="w-6 h-6 text-gray-400 group-hover:text-secondary mr-4 flex-shrink-0" />
-                                    <span className="font-bold text-gray-700">自然な雰囲気・明るさ</span>
+                                    <Sprout className="w-6 h-6 text-text-muted group-hover:text-secondary mr-4 flex-shrink-0" />
+                                    <span className="font-bold text-text-primary">自然な雰囲気・明るさ</span>
                                 </button>
                                 <button
                                     onClick={() => handlePriority("convenience")}
-                                    className="flex items-center p-5 rounded-xl border-2 border-gray-200 hover:border-secondary hover:bg-secondary/5 transition-all text-left group"
+                                    className="flex items-center p-5 rounded-xl border-2 border-border hover:border-secondary hover:bg-secondary/5 transition-all text-left group"
                                 >
-                                    <Building className="w-6 h-6 text-gray-400 group-hover:text-secondary mr-4 flex-shrink-0" />
-                                    <span className="font-bold text-gray-700">お参りのしやすさ・手軽さ</span>
+                                    <Building className="w-6 h-6 text-text-muted group-hover:text-secondary mr-4 flex-shrink-0" />
+                                    <span className="font-bold text-text-primary">お参りのしやすさ・手軽さ</span>
                                 </button>
                             </div>
                             <div className="mt-6 text-center">
-                                <button onClick={() => setStep("successor")} className="text-sm text-gray-400 hover:text-gray-600 underline">
+                                <button onClick={() => setStep("successor")} className="text-sm text-text-muted hover:text-text-secondary underline">
                                     戻る
                                 </button>
                             </div>
@@ -209,7 +209,7 @@ export function DiagnosticChart() {
                             animate={{ opacity: 1, scale: 1 }}
                             className="w-full text-center"
                         >
-                            <p className="text-sm font-bold text-gray-500 mb-2">診断結果</p>
+                            <p className="text-sm font-bold text-text-muted mb-2">診断結果</p>
                             <h4 className="text-xl md:text-3xl font-bold text-primary-dark mb-6">
                                 あなたにおすすめなのは<br />
                                 <span className="text-secondary mt-2 inline-block font-serif text-3xl md:text-4xl border-b-4 border-secondary/20 pb-1">
@@ -217,9 +217,9 @@ export function DiagnosticChart() {
                                 </span>
                             </h4>
 
-                            <div className="bg-gray-50 p-6 rounded-xl mb-8 border border-gray-100 max-w-lg mx-auto">
+                            <div className="bg-bg p-6 rounded-xl mb-8 border border-border max-w-lg mx-auto">
                                 <result.icon className="w-12 h-12 text-primary mx-auto mb-4" />
-                                <p className="text-gray-700 leading-relaxed">
+                                <p className="text-text-primary leading-relaxed">
                                     {result.description}
                                 </p>
                             </div>
@@ -232,7 +232,7 @@ export function DiagnosticChart() {
                                 </Link>
                                 <button
                                     onClick={reset}
-                                    className="flex items-center text-gray-400 hover:text-primary-dark px-4 py-3 text-sm font-bold transition-colors"
+                                    className="flex items-center text-text-muted hover:text-primary-dark px-4 py-3 text-sm font-bold transition-colors"
                                 >
                                     <RefreshCw className="w-4 h-4 mr-2" />
                                     はじめからやり直す

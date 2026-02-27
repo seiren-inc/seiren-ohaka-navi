@@ -22,13 +22,13 @@ export default function GraveClosurePage() {
                     <span className="inline-block py-1 px-3 rounded-full bg-secondary/10 text-secondary text-sm font-bold mb-6 tracking-wider">
                         全国対応・相談無料
                     </span>
-                    <h1 className="font-serif text-3xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
+                    <h1 className="font-serif text-3xl md:text-5xl lg:text-6xl font-bold text-primary-dark mb-6 leading-tight">
                         お墓じまい・改葬<br />
                         <span className="text-secondary text-2xl md:text-4xl mt-2 block">
                             手続き・調整・施工までワンストップ
                         </span>
                     </h1>
-                    <p className="text-gray-600 text-lg md:text-xl max-w-2xl mx-auto mb-10 leading-relaxed">
+                    <p className="text-text-secondary text-lg md:text-xl max-w-2xl mx-auto mb-10 leading-relaxed">
                         「お墓が遠くて行けない」「跡継ぎがいない」<br className="md:hidden" />そんなお悩みを解決します。<br />
                         面倒な役所手続きや寺院との調整も、<br className="md:hidden" />専門スタッフが丁寧にサポート。
                     </p>
@@ -41,7 +41,7 @@ export default function GraveClosurePage() {
                             </Button>
                         </Link>
                         <Link href="/grave-closure/cost">
-                            <Button variant="outline" size="lg" className="w-full sm:w-auto px-8 py-6 text-lg bg-white hover:bg-gray-50">
+                            <Button variant="outline" size="lg" className="w-full sm:w-auto px-8 py-6 text-lg bg-white hover:bg-bg">
                                 <Calculator className="mr-2 h-5 w-5" />
                                 費用の目安を見る
                             </Button>
@@ -65,12 +65,12 @@ export default function GraveClosurePage() {
                             { title: "遺骨先が決まらない", text: "お墓を閉じた後、遺骨をどこに移せばいいか分からない。" },
                             { title: "費用が不透明", text: "撤去工事や離檀料など、総額でいくらかかるのか不安。" },
                         ].map((item, idx) => (
-                            <div key={idx} className="bg-white p-8 rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+                            <div key={idx} className="bg-white p-8 rounded-xl border border-border shadow-sm hover:shadow-md transition-shadow">
                                 <div className="text-secondary mb-4">
                                     <AlertCircle className="w-10 h-10" />
                                 </div>
-                                <h3 className="font-bold text-lg text-gray-800 mb-3">{item.title}</h3>
-                                <p className="text-gray-600 text-sm leading-relaxed">{item.text}</p>
+                                <h3 className="font-bold text-lg text-primary-dark mb-3">{item.title}</h3>
+                                <p className="text-text-secondary text-sm leading-relaxed">{item.text}</p>
                             </div>
                         ))}
                     </div>
@@ -78,13 +78,13 @@ export default function GraveClosurePage() {
             </section>
 
             {/* 3. Definition Section */}
-            <section className="py-20 px-4 bg-gray-50">
+            <section className="py-20 px-4 bg-bg">
                 <div className="max-w-7xl mx-auto">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
                         <div>
                             <span className="text-secondary font-bold text-sm tracking-widest uppercase mb-2 block">Difference</span>
                             <h2 className="font-serif text-3xl font-bold text-primary-dark mb-6">「改葬」と「墓じまい」の違い</h2>
-                            <p className="text-gray-600 mb-8 leading-loose">
+                            <p className="text-text-secondary mb-8 leading-loose">
                                 お墓を片付けることは共通していますが、その後のご遺骨の行方によって呼び方が変わります。
                                 どちらの場合も、現在のお墓の撤去工事と行政手続きが必要です。
                             </p>
@@ -100,8 +100,8 @@ export default function GraveClosurePage() {
                                     <CheckCircle className="w-6 h-6 text-primary" />
                                 </div>
                                 <div>
-                                    <h3 className="font-bold text-lg text-gray-800 mb-2">改葬（お墓の引越し）</h3>
-                                    <p className="text-sm text-gray-600">
+                                    <h3 className="font-bold text-lg text-primary-dark mb-2">改葬（お墓の引越し）</h3>
+                                    <p className="text-sm text-text-secondary">
                                         現在の墓石を撤去し、遺骨を新しいお墓（霊園・納骨堂・樹木葬など）へ移すこと。
                                     </p>
                                 </div>
@@ -111,8 +111,8 @@ export default function GraveClosurePage() {
                                     <CheckCircle className="w-6 h-6 text-secondary" />
                                 </div>
                                 <div>
-                                    <h3 className="font-bold text-lg text-gray-800 mb-2">墓じまい（撤去・粉骨）</h3>
-                                    <p className="text-sm text-gray-600">
+                                    <h3 className="font-bold text-lg text-primary-dark mb-2">墓じまい（撤去・粉骨）</h3>
+                                    <p className="text-sm text-text-secondary">
                                         お墓を撤去して更地に戻し、遺骨を自宅で保管（手元供養）したり、海へ散骨したりすること。
                                     </p>
                                 </div>
@@ -127,36 +127,36 @@ export default function GraveClosurePage() {
                 <div className="max-w-5xl mx-auto">
                     <div className="text-center mb-16">
                         <h2 className="font-serif text-3xl font-bold text-primary-dark mb-4">費用の目安</h2>
-                        <p className="text-gray-600">お墓の広さや立地条件によって変動します</p>
+                        <p className="text-text-secondary">お墓の広さや立地条件によって変動します</p>
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
-                        <div className="bg-white border border-gray-200 rounded-xl p-8 text-center relative overflow-hidden">
-                            <div className="absolute top-0 inset-x-0 h-1 bg-gray-200" />
-                            <h3 className="text-lg font-bold text-gray-800 mb-2">撤去工事費</h3>
+                        <div className="bg-white border border-border rounded-xl p-8 text-center relative overflow-hidden">
+                            <div className="absolute top-0 inset-x-0 h-1 bg-border" />
+                            <h3 className="text-lg font-bold text-primary-dark mb-2">撤去工事費</h3>
                             <p className="text-3xl font-bold text-secondary font-serif mb-1">
-                                <span className="text-sm text-gray-500 font-sans font-normal mr-1">目安</span>
+                                <span className="text-sm text-text-muted font-sans font-normal mr-1">目安</span>
                                 10<span className="text-base font-sans font-normal ml-1">万円〜</span>
                             </p>
-                            <p className="text-xs text-gray-400 mt-2">1㎡あたり / 立地により変動</p>
+                            <p className="text-xs text-text-muted mt-2">1㎡あたり / 立地により変動</p>
                         </div>
-                        <div className="bg-white border border-gray-200 rounded-xl p-8 text-center relative overflow-hidden">
-                            <div className="absolute top-0 inset-x-0 h-1 bg-gray-200" />
-                            <h3 className="text-lg font-bold text-gray-800 mb-2">行政手続き代行</h3>
+                        <div className="bg-white border border-border rounded-xl p-8 text-center relative overflow-hidden">
+                            <div className="absolute top-0 inset-x-0 h-1 bg-border" />
+                            <h3 className="text-lg font-bold text-primary-dark mb-2">行政手続き代行</h3>
                             <p className="text-3xl font-bold text-secondary font-serif mb-1">
-                                <span className="text-sm text-gray-500 font-sans font-normal mr-1">目安</span>
+                                <span className="text-sm text-text-muted font-sans font-normal mr-1">目安</span>
                                 3<span className="text-base font-sans font-normal ml-1">万円〜</span>
                             </p>
-                            <p className="text-xs text-gray-400 mt-2">改葬許可申請など</p>
+                            <p className="text-xs text-text-muted mt-2">改葬許可申請など</p>
                         </div>
-                        <div className="bg-white border border-gray-200 rounded-xl p-8 text-center relative overflow-hidden">
-                            <div className="absolute top-0 inset-x-0 h-1 bg-gray-200" />
-                            <h3 className="text-lg font-bold text-gray-800 mb-2">新しい供養先</h3>
+                        <div className="bg-white border border-border rounded-xl p-8 text-center relative overflow-hidden">
+                            <div className="absolute top-0 inset-x-0 h-1 bg-border" />
+                            <h3 className="text-lg font-bold text-primary-dark mb-2">新しい供養先</h3>
                             <p className="text-3xl font-bold text-secondary font-serif mb-1">
-                                <span className="text-sm text-gray-500 font-sans font-normal mr-1">目安</span>
+                                <span className="text-sm text-text-muted font-sans font-normal mr-1">目安</span>
                                 5<span className="text-base font-sans font-normal ml-1">万円〜</span>
                             </p>
-                            <p className="text-xs text-gray-400 mt-2">合祀墓・散骨の場合</p>
+                            <p className="text-xs text-text-muted mt-2">合祀墓・散骨の場合</p>
                         </div>
                     </div>
 
@@ -166,7 +166,7 @@ export default function GraveClosurePage() {
                                 無料見積もりを依頼する
                             </Button>
                         </Link>
-                        <p className="mt-4 text-sm text-gray-500">
+                        <p className="mt-4 text-sm text-text-muted">
                             ※ 正確な金額は現地確認が必要です（全国対応・見積り無料）
                         </p>
                     </div>
@@ -192,7 +192,7 @@ export default function GraveClosurePage() {
                             <div key={idx} className="relative p-6 border border-white/10 rounded-xl bg-white/5">
                                 <span className="text-4xl font-bold text-secondary/40 font-serif absolute top-4 right-4">{step.num}</span>
                                 <h3 className="font-bold text-lg mb-2 relative z-10">{step.title}</h3>
-                                <p className="text-sm text-gray-400 relative z-10">{step.text}</p>
+                                <p className="text-sm text-text-muted relative z-10">{step.text}</p>
                             </div>
                         ))}
                     </div>
@@ -213,15 +213,15 @@ export default function GraveClosurePage() {
                             { q: "まだ新しい納骨先が決まっていませんが相談できますか？", a: "もちろん可能です。ご遺骨の一時預かりや、ご予算に合わせた永代供養墓のご提案も行っています。" },
                             { q: "書類の手続きは自分で行う必要がありますか？", a: "基本的には弊社が代行またはサポートいたします。お客様にご用意いただく書類（印鑑証明など）については丁寧にご案内します。" },
                         ].map((item, idx) => (
-                            <details key={idx} className="group bg-white border border-gray-200 p-6 rounded-xl cursor-pointer">
-                                <summary className="font-bold text-gray-800 flex justify-between items-center list-none">
+                            <details key={idx} className="group bg-white border border-border p-6 rounded-xl cursor-pointer">
+                                <summary className="font-bold text-primary-dark flex justify-between items-center list-none">
                                     <span className="flex items-center gap-3">
                                         <HelpCircle className="w-5 h-5 text-secondary" />
                                         {item.q}
                                     </span>
-                                    <span className="text-gray-400 group-open:rotate-180 transition-transform">▼</span>
+                                    <span className="text-text-muted group-open:rotate-180 transition-transform">▼</span>
                                 </summary>
-                                <div className="mt-4 pl-8 text-gray-600 leading-relaxed border-l-2 border-secondary/20">
+                                <div className="mt-4 pl-8 text-text-secondary leading-relaxed border-l-2 border-secondary/20">
                                     {item.a}
                                     <div className="mt-2 text-right">
                                         <Link href="/grave-closure/consult" className="text-sm text-primary hover:underline">
@@ -246,7 +246,7 @@ export default function GraveClosurePage() {
                     <h2 className="font-serif text-3xl font-bold text-primary-dark mb-6">
                         まずはお気軽にご相談ください
                     </h2>
-                    <p className="text-gray-600 mb-10 leading-loose">
+                    <p className="text-text-secondary mb-10 leading-loose">
                         お墓じまい・改葬は、ご家族の状況によって最適な進め方が異なります。<br />
                         経験豊富な専門スタッフが、あなたに寄り添ってサポートいたします。
                     </p>
@@ -264,7 +264,7 @@ export default function GraveClosurePage() {
                             </Button>
                         </a>
                     </div>
-                    <p className="mt-4 text-sm text-gray-500">
+                    <p className="mt-4 text-sm text-text-muted">
                         受付時間: 9:00 - 18:00（年中無休）
                     </p>
                 </div>

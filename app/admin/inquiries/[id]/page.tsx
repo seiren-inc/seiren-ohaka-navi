@@ -28,18 +28,18 @@ export default async function InquiryDetail(props: { params: Promise<{ id: strin
     return (
         <div className="max-w-4xl mx-auto">
             <div className="mb-6 flex items-center gap-4">
-                <Link href="/admin/inquiries" className="text-gray-500 hover:text-gray-800 flex items-center gap-1">
+                <Link href="/admin/inquiries" className="text-text-muted hover:text-primary-dark flex items-center gap-1">
                     <ChevronLeft className="w-4 h-4" /> 一覧へ戻る
                 </Link>
-                <span className="text-gray-300">|</span>
-                <span className="text-sm text-gray-400">ID: {inquiry.id}</span>
+                <span className="text-text-muted">|</span>
+                <span className="text-sm text-text-muted">ID: {inquiry.id}</span>
             </div>
 
-            <div className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden mb-8">
-                <div className="bg-gray-50 px-8 py-6 border-b border-gray-100 flex justify-between items-center">
+            <div className="bg-white rounded-xl shadow-sm border border-border overflow-hidden mb-8">
+                <div className="bg-bg px-8 py-6 border-b border-border flex justify-between items-center">
                     <div>
-                        <div className="text-xs font-bold text-gray-400 mb-1">受信日時</div>
-                        <div className="text-xl font-bold text-gray-800">{new Date(inquiry.createdAt).toLocaleString('ja-JP')}</div>
+                        <div className="text-xs font-bold text-text-muted mb-1">受信日時</div>
+                        <div className="text-xl font-bold text-primary-dark">{new Date(inquiry.createdAt).toLocaleString('ja-JP')}</div>
                     </div>
                     <div className="flex items-center gap-2">
                         {isBusiness && (
@@ -62,28 +62,28 @@ export default async function InquiryDetail(props: { params: Promise<{ id: strin
                             </h3>
                             <div className="grid md:grid-cols-2 gap-6">
                                 <div>
-                                    <div className="text-xs text-gray-500 mb-1">希望墓地</div>
-                                    <div className="text-lg font-bold text-gray-800">
+                                    <div className="text-xs text-text-muted mb-1">希望墓地</div>
+                                    <div className="text-lg font-bold text-primary-dark">
                                         {inquiry.context?.templeName || inquiry.desiredTempleName || '未指定'}
                                     </div>
-                                    <div className="text-xs text-gray-400 mt-1">ID: {inquiry.context?.templeId || '-'}</div>
+                                    <div className="text-xs text-text-muted mt-1">ID: {inquiry.context?.templeId || '-'}</div>
                                 </div>
                                 <div>
-                                    <div className="text-xs text-gray-500 mb-1">希望プラン</div>
+                                    <div className="text-xs text-text-muted mb-1">希望プラン</div>
                                     <div className="flex items-center gap-2">
                                         {inquiry.context?.planName || inquiry.desiredPlanName ? (
                                             <div className="text-lg font-bold text-primary bg-white px-3 py-1 rounded border border-blue-100 inline-block">
                                                 {inquiry.context?.planName || inquiry.desiredPlanName}
                                             </div>
                                         ) : (
-                                            <div className="text-gray-400">未指定</div>
+                                            <div className="text-text-muted">未指定</div>
                                         )}
                                     </div>
-                                    <div className="text-xs text-gray-400 mt-1">ID: {inquiry.context?.planId || '-'}</div>
+                                    <div className="text-xs text-text-muted mt-1">ID: {inquiry.context?.planId || '-'}</div>
                                 </div>
                                 <div className="col-span-2 pt-2 border-t border-blue-100/50 mt-2">
-                                    <div className="text-xs text-gray-500 mb-1">流入元参照 (Ref)</div>
-                                    <div className="text-sm text-gray-600">{inquiry.context?.sourceLabel || inquiry.ref || '-'}</div>
+                                    <div className="text-xs text-text-muted mb-1">流入元参照 (Ref)</div>
+                                    <div className="text-sm text-text-secondary">{inquiry.context?.sourceLabel || inquiry.ref || '-'}</div>
                                     {inquiry.context?.refUrl && (
                                         <a href={inquiry.context.refUrl} target="_blank" className="text-xs text-blue-500 underline mt-1 block">
                                             {inquiry.context.refUrl}
@@ -102,27 +102,27 @@ export default async function InquiryDetail(props: { params: Promise<{ id: strin
                             </h3>
                             <div className="grid md:grid-cols-2 gap-6">
                                 <div>
-                                    <div className="text-xs text-gray-500 mb-1">会社名・寺院名</div>
-                                    <div className="text-xl font-bold text-gray-900">{inquiry.organizationName}</div>
+                                    <div className="text-xs text-text-muted mb-1">会社名・寺院名</div>
+                                    <div className="text-xl font-bold text-primary-dark">{inquiry.organizationName}</div>
                                 </div>
                                 <div>
-                                    <div className="text-xs text-gray-500 mb-1">お問い合わせ種別</div>
-                                    <div className="text-lg font-bold text-gray-900">{inquiry.inquiryType}</div>
+                                    <div className="text-xs text-text-muted mb-1">お問い合わせ種別</div>
+                                    <div className="text-lg font-bold text-primary-dark">{inquiry.inquiryType}</div>
                                 </div>
                                 <div className="col-span-2">
-                                    <div className="text-xs text-gray-500 mb-1">ウェブサイト</div>
+                                    <div className="text-xs text-text-muted mb-1">ウェブサイト</div>
                                     {inquiry.websiteUrl ? (
                                         <a href={inquiry.websiteUrl} target="_blank" rel="noopener noreferrer" className="flex items-center text-blue-600 hover:underline font-medium">
                                             <Globe className="w-4 h-4 mr-1" />
                                             {inquiry.websiteUrl}
                                         </a>
                                     ) : (
-                                        <span className="text-gray-400">-</span>
+                                        <span className="text-text-muted">-</span>
                                     )}
                                 </div>
                                 <div className="col-span-2">
-                                    <div className="text-xs text-gray-500 mb-1">取扱エリア</div>
-                                    <div className="text-gray-700 font-medium">{inquiry.areas || '-'}</div>
+                                    <div className="text-xs text-text-muted mb-1">取扱エリア</div>
+                                    <div className="text-text-primary font-medium">{inquiry.areas || '-'}</div>
                                 </div>
                             </div>
                         </div>
@@ -131,34 +131,34 @@ export default async function InquiryDetail(props: { params: Promise<{ id: strin
                     <div className="grid md:grid-cols-2 gap-10">
                         {/* User Info */}
                         <div>
-                            <h3 className="text-lg font-bold text-gray-800 mb-6 pb-2 border-b border-gray-100 flex items-center gap-2">
-                                <User className="w-5 h-5 text-gray-400" /> {isBusiness ? '担当者情報' : '顧客情報'}
+                            <h3 className="text-lg font-bold text-primary-dark mb-6 pb-2 border-b border-border flex items-center gap-2">
+                                <User className="w-5 h-5 text-text-muted" /> {isBusiness ? '担当者情報' : '顧客情報'}
                             </h3>
                             <dl className="space-y-6">
                                 <div>
-                                    <dt className="text-xs font-bold text-gray-400 mb-1">お名前</dt>
+                                    <dt className="text-xs font-bold text-text-muted mb-1">お名前</dt>
                                     <dd className="font-bold text-lg">
                                         {inquiry.user?.lastName ? `${inquiry.user.lastName} ${inquiry.user.firstName}` : (inquiry.user?.name || inquiry.contactName || (inquiry as any).name || '（不明）')}
                                     </dd>
-                                    <dd className="text-sm text-gray-500">
+                                    <dd className="text-sm text-text-muted">
                                         {inquiry.user?.lastNameKana ? `${inquiry.user.lastNameKana} ${inquiry.user.firstNameKana}` : (inquiry.user?.kana || (inquiry as any).furigana || '-')}
                                     </dd>
                                 </div>
                                 <div>
-                                    <dt className="text-xs font-bold text-gray-400 mb-1">連絡先</dt>
+                                    <dt className="text-xs font-bold text-text-muted mb-1">連絡先</dt>
                                     <dd className="flex items-center gap-2 mb-1">
-                                        <Phone className="w-4 h-4 text-gray-400" />
+                                        <Phone className="w-4 h-4 text-text-muted" />
                                         <span className="font-bold font-mono">{inquiry.user?.phone || (inquiry as any).phone || inquiry.phone || '-'}</span>
                                     </dd>
                                     <dd className="flex items-center gap-2">
-                                        <Mail className="w-4 h-4 text-gray-400" />
+                                        <Mail className="w-4 h-4 text-text-muted" />
                                         <span className="font-mono">{inquiry.user?.email || (inquiry as any).email || inquiry.email || '-'}</span>
                                     </dd>
                                 </div>
                                 <div>
-                                    <dt className="text-xs font-bold text-gray-400 mb-1">ご住所</dt>
+                                    <dt className="text-xs font-bold text-text-muted mb-1">ご住所</dt>
                                     <dd className="flex items-start gap-2">
-                                        <MapPin className="w-4 h-4 text-gray-400 mt-1" />
+                                        <MapPin className="w-4 h-4 text-text-muted mt-1" />
                                         <div>
                                             <div className="font-mono text-sm mb-1">〒{inquiry.user?.zipCode || (inquiry as any).zipCode || '-'}</div>
                                             {inquiry.user?.prefecture ? (
@@ -173,8 +173,8 @@ export default async function InquiryDetail(props: { params: Promise<{ id: strin
                                 </div>
                                 {isBusiness && (
                                     <div>
-                                        <dt className="text-xs font-bold text-gray-400 mb-1">希望連絡方法・時間帯</dt>
-                                        <dd className="text-sm text-gray-700">
+                                        <dt className="text-xs font-bold text-text-muted mb-1">希望連絡方法・時間帯</dt>
+                                        <dd className="text-sm text-text-primary">
                                             <div>方法: {(inquiry as any).preferredContact === 'email' ? 'メール' : '電話'}</div>
                                             <div>時間: {(inquiry as any).preferredTime || '-'}</div>
                                         </dd>
@@ -185,14 +185,14 @@ export default async function InquiryDetail(props: { params: Promise<{ id: strin
 
                         {/* Inquiry Content */}
                         <div>
-                            <h3 className="text-lg font-bold text-gray-800 mb-6 pb-2 border-b border-gray-100 flex items-center gap-2">
-                                <FileText className="w-5 h-5 text-gray-400" /> {isBusiness ? 'ご相談内容' : 'アンケート・内容'}
+                            <h3 className="text-lg font-bold text-primary-dark mb-6 pb-2 border-b border-border flex items-center gap-2">
+                                <FileText className="w-5 h-5 text-text-muted" /> {isBusiness ? 'ご相談内容' : 'アンケート・内容'}
                             </h3>
                             <dl className="space-y-6">
                                 {!isBusiness && (
                                     <>
                                         <div>
-                                            <dt className="text-xs font-bold text-gray-400 mb-1">ご遺骨の有無</dt>
+                                            <dt className="text-xs font-bold text-text-muted mb-1">ご遺骨の有無</dt>
                                             <dd className="font-bold text-lg">
                                                 {inquiry.boneStatus ? BONE_STATUS_LABELS[inquiry.boneStatus] : '-'}
                                             </dd>
@@ -208,7 +208,7 @@ export default async function InquiryDetail(props: { params: Promise<{ id: strin
                                                 <dl className="grid grid-cols-1 gap-y-3">
                                                     <div>
                                                         <dt className="text-xs font-bold text-amber-600/70 mb-1">寺院・霊園名</dt>
-                                                        <dd className="font-bold text-gray-800 text-lg">
+                                                        <dd className="font-bold text-primary-dark text-lg">
                                                             {inquiry.graveTempleName || '未指定'}
                                                         </dd>
                                                         {inquiry.graveTempleId && (
@@ -218,7 +218,7 @@ export default async function InquiryDetail(props: { params: Promise<{ id: strin
                                                     {(inquiry.graveTempleAddress || inquiry.graveTemplePref) && (
                                                         <div>
                                                             <dt className="text-xs font-bold text-amber-600/70 mb-1">所在地</dt>
-                                                            <dd className="text-sm text-gray-700">
+                                                            <dd className="text-sm text-text-primary">
                                                                 {inquiry.graveTempleAddress || `${inquiry.graveTemplePref || ''} ${inquiry.graveTempleCity || ''}`}
                                                             </dd>
                                                         </div>
@@ -232,14 +232,14 @@ export default async function InquiryDetail(props: { params: Promise<{ id: strin
                                 {/* Generic Additional Fields */}
                                 {inquiry.additionalFields && Object.keys(inquiry.additionalFields).length > 0 && (
                                     <div className="pt-2">
-                                        <h4 className="text-sm font-bold text-gray-800 border-b pb-1 mb-4 flex items-center gap-2">
+                                        <h4 className="text-sm font-bold text-primary-dark border-b pb-1 mb-4 flex items-center gap-2">
                                             <span className="bg-primary/10 text-primary px-2 py-0.5 rounded text-xs">詳細情報</span>
                                         </h4>
                                         <dl className="grid grid-cols-1 gap-y-4">
                                             {Object.entries(inquiry.additionalFields).map(([key, value]) => (
                                                 <div key={key}>
-                                                    <dt className="text-xs font-bold text-gray-400 mb-1 capitalize">{key}</dt>
-                                                    <dd className="font-medium bg-gray-50 px-3 py-2 rounded text-sm break-all">
+                                                    <dt className="text-xs font-bold text-text-muted mb-1 capitalize">{key}</dt>
+                                                    <dd className="font-medium bg-bg px-3 py-2 rounded text-sm break-all">
                                                         {Array.isArray(value) ? value.join(', ') : (typeof value === 'object' ? JSON.stringify(value) : String(value))}
                                                     </dd>
                                                 </div>
@@ -251,19 +251,19 @@ export default async function InquiryDetail(props: { params: Promise<{ id: strin
                                 {!isBusiness && (
                                     <>
                                         <div>
-                                            <dt className="text-xs font-bold text-gray-400 mb-1">検討中のお墓の種類</dt>
+                                            <dt className="text-xs font-bold text-text-muted mb-1">検討中のお墓の種類</dt>
                                             <dd>
                                                 {inquiry.graveTypes && inquiry.graveTypes.length > 0 ? (
                                                     <div className="flex flex-wrap gap-2">
                                                         {inquiry.graveTypes.map(t => (
-                                                            <span key={t} className="bg-gray-100 text-gray-700 px-2 py-1 rounded text-sm">{t}</span>
+                                                            <span key={t} className="bg-bg text-text-primary px-2 py-1 rounded text-sm">{t}</span>
                                                         ))}
                                                     </div>
                                                 ) : '-'}
                                             </dd>
                                         </div>
                                         <div>
-                                            <dt className="text-xs font-bold text-gray-400 mb-1">周辺のおすすめ霊園資料</dt>
+                                            <dt className="text-xs font-bold text-text-muted mb-1">周辺のおすすめ霊園資料</dt>
                                             <dd className="font-bold">
                                                 {inquiry.nearbyCemeteryOptIn ? <span className="text-green-600">希望する</span> : '希望しない'}
                                             </dd>
@@ -272,8 +272,8 @@ export default async function InquiryDetail(props: { params: Promise<{ id: strin
                                 )}
 
                                 <div>
-                                    <dt className="text-xs font-bold text-gray-400 mb-1">{isBusiness ? '詳細メッセージ' : '備考'}</dt>
-                                    <dd className="bg-gray-50 p-4 rounded-lg text-sm leading-relaxed whitespace-pre-wrap text-gray-700 min-h-[100px]">
+                                    <dt className="text-xs font-bold text-text-muted mb-1">{isBusiness ? '詳細メッセージ' : '備考'}</dt>
+                                    <dd className="bg-bg p-4 rounded-lg text-sm leading-relaxed whitespace-pre-wrap text-text-primary min-h-[100px]">
                                         {inquiry.message || '（なし）'}
                                     </dd>
                                 </div>

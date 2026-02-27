@@ -48,7 +48,7 @@ export function PrefectureSelector() {
                         <button
                             key={region.region}
                             onClick={() => openModal(region.items[0])} // Open with first pref of region
-                            className="bg-white p-3 rounded border border-gray-200 text-sm font-bold text-gray-700 hover:bg-gray-50 flex justify-between items-center"
+                            className="bg-white p-3 rounded border border-border text-sm font-bold text-text-primary hover:bg-bg flex justify-between items-center"
                         >
                             {region.region}
                             <span className="text-primary text-xs">選択 &gt;</span>
@@ -63,7 +63,7 @@ export function PrefectureSelector() {
                 {/* Left Column: West Japan */}
                 <div className="w-1/3 flex flex-col justify-center space-y-4">
                     {[PREFECTURES[6], PREFECTURES[4], PREFECTURES[5], PREFECTURES[3]].map((region) => (
-                        <div key={region.region} className="bg-white/50 rounded-lg p-3 border border-gray-100/50 hover:border-primary/20 transition-colors">
+                        <div key={region.region} className="bg-white/50 rounded-lg p-3 border border-border/50 hover:border-primary/20 transition-colors">
                             <h4 className="font-bold text-primary text-xs border-b border-primary/20 pb-1 mb-2">
                                 {region.region}
                             </h4>
@@ -72,7 +72,7 @@ export function PrefectureSelector() {
                                     <button
                                         key={pref}
                                         onClick={() => openModal(pref)}
-                                        className="text-xs px-1 py-1 rounded bg-white border border-gray-200 text-gray-600 hover:border-primary hover:text-primary hover:bg-primary/5 transition-all text-center whitespace-nowrap"
+                                        className="text-xs px-1 py-1 rounded bg-white border border-border text-text-secondary hover:border-primary hover:text-primary hover:bg-primary/5 transition-all text-center whitespace-nowrap"
                                     >
                                         {pref}
                                     </button>
@@ -86,7 +86,7 @@ export function PrefectureSelector() {
                 <div className="w-1/3 flex items-center justify-center px-4 relative">
                     <div className="relative w-full cursor-pointer group" onClick={() => openModal()}>
                         <JapanMap className="w-full h-auto drop-shadow-xl group-hover:scale-105 transition-transform duration-300" />
-                        <div className="absolute bottom-10 right-0 left-0 text-center text-xs text-gray-400 bg-white/80 py-1 rounded backdrop-blur-sm pointer-events-none">
+                        <div className="absolute bottom-10 right-0 left-0 text-center text-xs text-text-muted bg-white/80 py-1 rounded backdrop-blur-sm pointer-events-none">
                             地図をクリックして地域を選択
                         </div>
                     </div>
@@ -95,7 +95,7 @@ export function PrefectureSelector() {
                 {/* Right Column: East Japan */}
                 <div className="w-1/3 flex flex-col justify-center space-y-4">
                     {[PREFECTURES[0], PREFECTURES[1], PREFECTURES[2]].map((region) => (
-                        <div key={region.region} className="bg-white/50 rounded-lg p-3 border border-gray-100/50 hover:border-primary/20 transition-colors">
+                        <div key={region.region} className="bg-white/50 rounded-lg p-3 border border-border/50 hover:border-primary/20 transition-colors">
                             <h4 className="font-bold text-primary text-xs border-b border-primary/20 pb-1 mb-2">
                                 {region.region}
                             </h4>
@@ -104,7 +104,7 @@ export function PrefectureSelector() {
                                     <button
                                         key={pref}
                                         onClick={() => openModal(pref)}
-                                        className="text-xs px-1 py-1 rounded bg-white border border-gray-200 text-gray-600 hover:border-primary hover:text-primary hover:bg-primary/5 transition-all text-center whitespace-nowrap"
+                                        className="text-xs px-1 py-1 rounded bg-white border border-border text-text-secondary hover:border-primary hover:text-primary hover:bg-primary/5 transition-all text-center whitespace-nowrap"
                                     >
                                         {pref}
                                     </button>

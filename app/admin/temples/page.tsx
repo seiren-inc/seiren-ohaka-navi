@@ -10,16 +10,16 @@ export default function TempleList() {
     return (
         <div>
             <div className="flex justify-between items-center mb-6">
-                <h2 className="text-2xl font-bold text-gray-800">登録寺院一覧</h2>
+                <h2 className="text-2xl font-bold text-primary-dark">登録寺院一覧</h2>
                 <Link href="/admin/temples/new">
                     <Button className="font-bold">＋ 新規登録</Button>
                 </Link>
             </div>
 
-            <div className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
+            <div className="bg-white rounded-xl shadow-sm border border-border overflow-hidden">
                 <table className="w-full text-left border-collapse">
                     <thead>
-                        <tr className="bg-gray-50 border-b border-gray-100 text-sm text-gray-500">
+                        <tr className="bg-bg border-b border-border text-sm text-text-muted">
                             <th className="p-4 font-medium">ID</th>
                             <th className="p-4 font-medium">寺院名</th>
                             <th className="p-4 font-medium">電話番号</th>
@@ -29,8 +29,8 @@ export default function TempleList() {
                     </thead>
                     <tbody className="divide-y divide-gray-100">
                         {temples.map(t => (
-                            <tr key={t.id} className="hover:bg-gray-50">
-                                <td className="p-4 text-xs text-gray-400 font-mono">{t.id}</td>
+                            <tr key={t.id} className="hover:bg-bg">
+                                <td className="p-4 text-xs text-text-muted font-mono">{t.id}</td>
                                 <td className="p-4 font-bold text-primary">{t.name}</td>
                                 <td className="p-4 text-sm">{t.phone}</td>
                                 <td className="p-4 text-sm">

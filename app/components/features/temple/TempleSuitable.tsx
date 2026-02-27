@@ -16,8 +16,8 @@ export function TempleSuitable({ data }: TempleSuitableProps) {
     const requestUrl = `/consult/request-material?templeId=${data.id}&templeName=${encodeURIComponent(data.name)}&ref=suitable&refUrl=${encodeURIComponent(currentUrl)}`;
 
     return (
-        <div className="bg-gray-50 rounded-xl p-6 md:p-8">
-            <h2 className="text-center font-bold text-gray-800 mb-6">
+        <div className="bg-bg rounded-xl p-6 md:p-8">
+            <h2 className="text-center font-bold text-primary-dark mb-6">
                 <span className="text-primary">この霊園</span> はあなたに合っている？
             </h2>
 
@@ -30,7 +30,7 @@ export function TempleSuitable({ data }: TempleSuitableProps) {
                     </div>
                     <ul className="space-y-3">
                         {data.suitableFor.slice(0, 3).map((text, i) => (
-                            <li key={i} className="flex items-start gap-2 text-sm text-gray-700">
+                            <li key={i} className="flex items-start gap-2 text-sm text-text-primary">
                                 <span className="text-blue-200 mt-1">●</span>
                                 {text}
                             </li>
@@ -40,17 +40,17 @@ export function TempleSuitable({ data }: TempleSuitableProps) {
 
                 {/* Not Suitable */}
                 <div className="bg-white rounded-lg p-5 shadow-sm border-t-4 border-t-gray-400">
-                    <div className="flex items-center gap-2 mb-4 text-gray-500 font-bold">
+                    <div className="flex items-center gap-2 mb-4 text-text-muted font-bold">
                         <XCircle className="w-5 h-5" />
                         合わない可能性がある方
                     </div>
                     <ul className="space-y-3">
-                        <li className="flex items-start gap-2 text-sm text-gray-700">
-                            <span className="text-gray-300 mt-1">●</span>
+                        <li className="flex items-start gap-2 text-sm text-text-primary">
+                            <span className="text-text-muted mt-1">●</span>
                             自宅からのアクセスを最優先したいが、遠いと感じる方
                         </li>
-                        <li className="flex items-start gap-2 text-sm text-gray-700">
-                            <span className="text-gray-300 mt-1">●</span>
+                        <li className="flex items-start gap-2 text-sm text-text-primary">
+                            <span className="text-text-muted mt-1">●</span>
                             どうしても公営霊園しか検討したくない方
                         </li>
                     </ul>

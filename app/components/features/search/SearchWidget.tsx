@@ -51,7 +51,7 @@ export function SearchWidget() {
     return (
         <div className="bg-white/90 backdrop-blur-sm rounded-2xl shadow-xl shadow-black/8 overflow-hidden w-full max-w-4xl mx-auto border border-white/60">
             {/* Tabs */}
-            <div className="flex relative border-b border-gray-100 bg-gray-50/60">
+            <div className="flex relative border-b border-border bg-bg/60">
                 {TABS.map((tab) => (
                     <button
                         key={tab.id}
@@ -60,7 +60,7 @@ export function SearchWidget() {
                             "flex-1 py-4 text-sm sm:text-base font-medium transition-colors duration-200 relative",
                             activeTab === tab.id
                                 ? "text-primary font-bold"
-                                : "text-gray-400 hover:text-gray-700"
+                                : "text-text-muted hover:text-text-primary"
                         )}
                     >
                         {tab.label}
@@ -88,7 +88,7 @@ export function SearchWidget() {
                     >
                         {/* Area Selection */}
                         <div className="space-y-3">
-                            <label className="flex items-center gap-2 text-sm font-bold text-gray-700">
+                            <label className="flex items-center gap-2 text-sm font-bold text-text-primary">
                                 <MapPin className="w-4 h-4 text-secondary" />
                                 エリアから探す
                             </label>
@@ -96,21 +96,21 @@ export function SearchWidget() {
                                 <select
                                     value={selectedPrefecture}
                                     onChange={(e) => setSelectedPrefecture(e.target.value)}
-                                    className="w-full h-12 pl-4 pr-10 border border-gray-200 rounded-xl appearance-none bg-white focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all text-gray-700"
+                                    className="w-full h-12 pl-4 pr-10 border border-border rounded-xl appearance-none bg-white focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all text-text-primary"
                                 >
                                     <option value="">都道府県を選択</option>
                                     {PREFECTURES.map(pref => (
                                         <option key={pref} value={pref}>{pref}</option>
                                     ))}
                                 </select>
-                                <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-gray-400 text-xs">
+                                <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-text-muted text-xs">
                                     ▼
                                 </div>
                             </div>
 
                             <div className="mt-4">
-                                <p className="text-xs text-gray-400 mb-2">人気の市区町村</p>
-                                <div className="flex flex-wrap gap-2 text-xs text-gray-500">
+                                <p className="text-xs text-text-muted mb-2">人気の市区町村</p>
+                                <div className="flex flex-wrap gap-2 text-xs text-text-muted">
                                     {["世田谷区", "八王子市", "府中市", "横浜市"].map(city => (
                                         <button
                                             key={city}
@@ -126,7 +126,7 @@ export function SearchWidget() {
 
                         {/* Condition Tags */}
                         <div className="space-y-3">
-                            <label className="flex items-center gap-2 text-sm font-bold text-gray-700">
+                            <label className="flex items-center gap-2 text-sm font-bold text-text-primary">
                                 <Tag className="w-4 h-4 text-secondary" />
                                 こだわり条件
                             </label>
@@ -139,7 +139,7 @@ export function SearchWidget() {
                                             checked={selectedTags.includes(tag)}
                                             onChange={() => handleTagToggle(tag)}
                                         />
-                                        <span className="px-3 py-1.5 rounded-full border border-gray-200 text-xs text-gray-600 bg-white peer-checked:bg-primary peer-checked:text-white peer-checked:border-primary hover:border-primary/50 hover:text-primary transition-all duration-200 select-none">
+                                        <span className="px-3 py-1.5 rounded-full border border-border text-xs text-text-secondary bg-white peer-checked:bg-primary peer-checked:text-white peer-checked:border-primary hover:border-primary/50 hover:text-primary transition-all duration-200 select-none">
                                             {tag}
                                         </span>
                                     </label>

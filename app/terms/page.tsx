@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 
 export default function TermsPage() {
     return (
-        <div className="min-h-screen flex flex-col bg-white text-gray-800">
+        <div className="min-h-screen flex flex-col bg-white text-primary-dark">
             <Navbar />
             <main className="flex-grow pt-24 px-4 pb-20">
                 <div className="max-w-4xl mx-auto">
@@ -17,7 +17,7 @@ export default function TermsPage() {
                         利用規約
                     </h1>
 
-                    <div className="prose max-w-none text-sm text-gray-700 leading-loose space-y-8">
+                    <div className="prose max-w-none text-sm text-text-primary leading-loose space-y-8">
                         <section>
                             <h2 className="text-xl font-bold text-primary-dark mb-4">第1条（適用）</h2>
                             <p>
