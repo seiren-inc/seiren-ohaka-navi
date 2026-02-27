@@ -74,7 +74,7 @@ export default function IkotsuDiamondPage() {
                         <span className="text-secondary font-bold tracking-widest text-xs uppercase mb-4 block">
                             Cremation Diamond
                         </span>
-                        <h1 className="font-serif text-2xl md:text-3xl lg:text-4xl font-bold text-seiren-navy mb-6 leading-relaxed">
+                        <h1 className="font-serif text-2xl md:text-3xl lg:text-4xl font-bold text-primary mb-6 leading-relaxed">
                             遺骨ダイヤモンドとは<br />
                             <span className="text-lg md:text-2xl mt-2 block opacity-80">仕組みと判断ポイントを中立に整理</span>
                         </h1>
@@ -96,7 +96,7 @@ export default function IkotsuDiamondPage() {
 
                     {/* H2: 遺骨ダイヤモンドとは何か */}
                     <section className="mb-20">
-                        <h2 className="font-serif text-2xl font-bold text-seiren-navy border-b pb-4 mb-8 flex items-center">
+                        <h2 className="font-serif text-2xl font-bold text-primary border-b pb-4 mb-8 flex items-center">
                             <Gem className="w-6 h-6 mr-3 text-secondary" />
                             遺骨ダイヤモンドとは何か
                         </h2>
@@ -116,14 +116,14 @@ export default function IkotsuDiamondPage() {
 
                     {/* H2: 遺骨ダイヤモンドが向きやすいケース */}
                     <section className="mb-20">
-                        <h2 className="font-serif text-2xl font-bold text-seiren-navy border-b pb-4 mb-8 flex items-center">
+                        <h2 className="font-serif text-2xl font-bold text-primary border-b pb-4 mb-8 flex items-center">
                             <CheckCircle className="w-6 h-6 mr-3 text-secondary" />
                             遺骨ダイヤモンドが向きやすいケース
                         </h2>
                         <div className="bg-white border border-gray-200 rounded-xl p-8 mb-8">
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                                 <div>
-                                    <h3 className="font-bold text-seiren-navy mb-2">手元で故人を感じたい</h3>
+                                    <h3 className="font-bold text-primary mb-2">手元で故人を感じたい</h3>
                                     <p className="text-sm text-gray-600 leading-loose">
                                         ただ骨壺を置くのではなく、美しく昇華された形で手元に残したい。<br />
                                         いつでも触れられるアクセサリーとして身につけたい。<br />
@@ -131,7 +131,7 @@ export default function IkotsuDiamondPage() {
                                     </p>
                                 </div>
                                 <div>
-                                    <h3 className="font-bold text-seiren-navy mb-2">形として残したい</h3>
+                                    <h3 className="font-bold text-primary mb-2">形として残したい</h3>
                                     <p className="text-sm text-gray-600 leading-loose">
                                         散骨などで遺骨がなくなってしまうのは寂しいが、<br />
                                         骨壺のままでは抵抗があるという場合に、<br />
@@ -139,7 +139,7 @@ export default function IkotsuDiamondPage() {
                                     </p>
                                 </div>
                                 <div>
-                                    <h3 className="font-bold text-seiren-navy mb-2">お墓を持たない供養と相性が良い</h3>
+                                    <h3 className="font-bold text-primary mb-2">お墓を持たない供養と相性が良い</h3>
                                     <p className="text-sm text-gray-600 leading-loose">
                                         お墓を継承する人がいない場合でも、<br />
                                         ダイヤモンドであれば場所を取らず、<br />
@@ -147,7 +147,7 @@ export default function IkotsuDiamondPage() {
                                     </p>
                                 </div>
                                 <div>
-                                    <h3 className="font-bold text-seiren-navy mb-2">分骨して家族で持つ</h3>
+                                    <h3 className="font-bold text-primary mb-2">分骨して家族で持つ</h3>
                                     <p className="text-sm text-gray-600 leading-loose">
                                         一つの遺骨から複数のダイヤモンド（またはジュエリー）を作ることで、<br />
                                         離れて暮らす家族それぞれが、故人を分かち合うことができます。
@@ -159,7 +159,7 @@ export default function IkotsuDiamondPage() {
 
                     {/* H2: 費用と期間の考え方 */}
                     <section className="mb-20">
-                        <h2 className="font-serif text-2xl font-bold text-seiren-navy border-b pb-4 mb-8 flex items-center">
+                        <h2 className="font-serif text-2xl font-bold text-primary border-b pb-4 mb-8 flex items-center">
                             <Clock className="w-6 h-6 mr-3 text-secondary" />
                             費用と期間の考え方
                         </h2>
@@ -199,7 +199,7 @@ export default function IkotsuDiamondPage() {
 
                     {/* H2: 確認しておきたいポイント */}
                     <section className="mb-20">
-                        <h2 className="font-serif text-2xl font-bold text-seiren-navy border-b pb-4 mb-8 flex items-center">
+                        <h2 className="font-serif text-2xl font-bold text-primary border-b pb-4 mb-8 flex items-center">
                             <FileText className="w-6 h-6 mr-3 text-secondary" />
                             注文前に確認しておきたいポイント
                         </h2>
@@ -242,7 +242,7 @@ export default function IkotsuDiamondPage() {
 
                     {/* H2: メリットと注意点 */}
                     <section className="mb-20">
-                        <h2 className="font-serif text-2xl font-bold text-seiren-navy border-b pb-4 mb-8 flex items-center">
+                        <h2 className="font-serif text-2xl font-bold text-primary border-b pb-4 mb-8 flex items-center">
                             <AlertCircle className="w-6 h-6 mr-3 text-secondary" />
                             メリットと注意点
                         </h2>
@@ -311,7 +311,7 @@ export default function IkotsuDiamondPage() {
 
                     {/* H2: 診断で遺骨ダイヤモンドが候補に出た方へ */}
                     <section className="mb-20">
-                        <h2 className="font-serif text-2xl font-bold text-seiren-navy border-b pb-4 mb-8 flex items-center">
+                        <h2 className="font-serif text-2xl font-bold text-primary border-b pb-4 mb-8 flex items-center">
                             <Calculator className="w-6 h-6 mr-3 text-secondary" />
                             診断で「遺骨ダイヤモンド」が候補に出た方へ
                         </h2>
@@ -331,7 +331,7 @@ export default function IkotsuDiamondPage() {
 
                     {/* H2: 迷った場合の次の行動 (CTA) */}
                     <section className="text-center">
-                        <h2 className="font-serif text-2xl font-bold text-seiren-navy border-b pb-4 mb-10 inline-block px-12">
+                        <h2 className="font-serif text-2xl font-bold text-primary border-b pb-4 mb-10 inline-block px-12">
                             迷った場合の次の行動
                         </h2>
 
@@ -401,7 +401,7 @@ export default function IkotsuDiamondPage() {
 
                     {/* FAQ */}
                     <section className="my-20">
-                        <h2 className="font-serif text-2xl font-bold text-seiren-navy border-b pb-4 mb-8 flex items-center">
+                        <h2 className="font-serif text-2xl font-bold text-primary border-b pb-4 mb-8 flex items-center">
                             <HelpCircle className="w-6 h-6 mr-3 text-secondary" />
                             よくある質問（FAQ）
                         </h2>
@@ -414,7 +414,7 @@ export default function IkotsuDiamondPage() {
                                 { q: "分骨して作れる？", a: "可能です。\n遺骨の一部を使ってダイヤモンドを作り、\n残りを散骨や納骨にするという組み合わせが多く選ばれています。" }
                             ].map((item, i) => (
                                 <div key={i} className="bg-gray-50 rounded-lg p-5">
-                                    <h4 className="font-bold text-seiren-navy mb-2 flex flex-row items-center">
+                                    <h4 className="font-bold text-primary mb-2 flex flex-row items-center">
                                         <span className="bg-secondary text-white text-xs font-bold px-2 py-1 rounded mr-3 flex-shrink-0">Q</span>
                                         {item.q}
                                     </h4>

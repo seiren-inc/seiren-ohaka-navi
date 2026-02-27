@@ -107,7 +107,7 @@ function GraveClosureForm() {
     }
 
     return (
-        <div className="min-h-screen flex flex-col bg-slate-50">
+        <div className="min-h-screen flex flex-col bg-bg">
             <Navbar />
 
             <main className="flex-grow pt-32 px-4 pb-20">

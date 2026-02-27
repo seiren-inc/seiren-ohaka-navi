@@ -10,19 +10,19 @@ export const metadata: Metadata = {
 
 export default function ContactPage() {
     return (
-        <div className="min-h-screen flex flex-col bg-slate-50">
+        <div className="min-h-screen flex flex-col bg-bg">
             <Navbar />
 
-            <main className="flex-grow pt-32 px-4 pb-20">
+            <main className="flex-grow pt-32 px-[--content-px] pb-24">
                 <div className="max-w-3xl mx-auto">
-                    <div className="text-center mb-10">
-                        <span className="text-secondary font-bold tracking-widest text-xs uppercase mb-4 block">
+                    <div className="text-center mb-14">
+                        <span className="text-secondary font-medium tracking-[0.2em] text-xs uppercase mb-4 block">
                             Contact
                         </span>
-                        <h1 className="font-serif text-3xl md:text-4xl font-bold text-primary-dark mb-6">
+                        <h1 className="font-serif text-2xl md:text-3xl text-primary-dark mb-6">
                             お問い合わせ・無料相談
                         </h1>
-                        <p className="text-gray-600 leading-loose">
+                        <p className="text-text-muted text-sm leading-[1.8]">
                             お墓に関するお悩みやご質問など、お気軽にご相談ください。<br />
                             以下のフォームより必要事項をご入力の上、送信してください。
                         </p>

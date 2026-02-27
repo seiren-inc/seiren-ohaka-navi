@@ -24,7 +24,7 @@ export default async function AreaPage(props: { params: Promise<{ prefecture: st
     const temples = Store.getTemples().filter(t => t.prefecture === decodedPrefecture);
 
     return (
-        <div className="min-h-screen flex flex-col bg-white-smoke">
+        <div className="min-h-screen flex flex-col bg-bg">
             <Navbar />
 
             <main className="flex-grow pt-20">
@@ -33,7 +33,7 @@ export default async function AreaPage(props: { params: Promise<{ prefecture: st
                     count={temples.length}
                 />
 
-                <div className="max-w-7xl mx-auto px-4 py-8 md:py-12">
+                <div className="max-w-7xl mx-auto px-[--content-px] py-10 md:py-14">
                     <div className="flex flex-col md:flex-row gap-8">
                         {/* Sidebar Filter (Desktop) / Modal Trigger (Mobile inside) */}
                         <aside className="w-full md:w-64 shrink-0">

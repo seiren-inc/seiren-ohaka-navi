@@ -69,12 +69,12 @@ export default function StrengthPage() {
 
             <main className="flex-grow">
                 {/* Hero */}
-                <section className="bg-slate-50 pt-32 pb-20 px-4 text-center">
+                <section className="bg-bg pt-32 pb-20 px-4 text-center">
                     <div className="max-w-4xl mx-auto">
                         <span className="text-secondary font-bold tracking-widest text-xs uppercase mb-4 block">
                             Our Strength
                         </span>
-                        <h1 className="font-serif text-3xl md:text-5xl font-bold text-seiren-navy mb-6 leading-tight">
+                        <h1 className="font-serif text-3xl md:text-5xl font-bold text-primary mb-6 leading-tight">
                             清蓮の強み
                         </h1>
                         <p className="text-xl md:text-2xl font-bold text-gray-700 mb-6">
@@ -104,7 +104,7 @@ export default function StrengthPage() {
                     {/* 3 Promises */}
                     <div className="mb-24">
                         <div className="text-center mb-12">
-                            <h2 className="font-serif text-2xl md:text-3xl font-bold text-seiren-navy">
+                            <h2 className="font-serif text-2xl md:text-3xl font-bold text-primary">
                                 清蓮の3つの約束
                             </h2>
                         </div>
@@ -140,7 +140,7 @@ export default function StrengthPage() {
                     {/* Service Scopes */}
                     <div className="mb-24">
                         <div className="text-center mb-12">
-                            <h2 className="font-serif text-2xl md:text-3xl font-bold text-seiren-navy">
+                            <h2 className="font-serif text-2xl md:text-3xl font-bold text-primary">
                                 私たちができること
                             </h2>
                             <p className="text-gray-500 mt-4">お墓に関するあらゆるお悩みに対応します</p>
@@ -209,7 +209,7 @@ export default function StrengthPage() {
                     {/* Flow */}
                     <div className="mb-24">
                         <div className="text-center mb-12">
-                            <h2 className="font-serif text-2xl md:text-3xl font-bold text-seiren-navy">
+                            <h2 className="font-serif text-2xl md:text-3xl font-bold text-primary">
                                 納得までの流れ
                             </h2>
                         </div>
@@ -231,7 +231,7 @@ export default function StrengthPage() {
                     {/* FAQ */}
                     <div className="mb-24 max-w-3xl mx-auto">
                         <div className="text-center mb-12">
-                            <h2 className="font-serif text-2xl md:text-3xl font-bold text-seiren-navy">
+                            <h2 className="font-serif text-2xl md:text-3xl font-bold text-primary">
                                 よくある不安
                             </h2>
                         </div>
@@ -256,7 +256,7 @@ export default function StrengthPage() {
                     </div>
 
                     {/* Final CTA */}
-                    <div className="bg-seiren-navy text-white rounded-3xl p-10 md:p-16 text-center shadow-xl">
+                    <div className="bg-primary text-white rounded-3xl p-10 md:p-16 text-center shadow-xl">
                         <h2 className="font-serif text-2xl md:text-3xl font-bold mb-6">
                             迷ったら、まず状況を整理しましょう
                         </h2>
@@ -266,12 +266,12 @@ export default function StrengthPage() {
                         </p>
                         <div className="flex flex-col sm:flex-row gap-4 justify-center">
                             <Link href="/consult">
-                                <Button size="lg" className="bg-white text-seiren-navy hover:bg-gray-100 border-transparent w-full sm:w-auto px-10">
+                                <Button size="lg" className="bg-white text-primary hover:bg-gray-100 border-transparent w-full sm:w-auto px-10">
                                     無料相談予約
                                 </Button>
                             </Link>
                             <Link href="/search">
-                                <Button size="lg" variant="outline" className="text-white border-white hover:bg-white hover:text-seiren-navy w-full sm:w-auto px-10">
+                                <Button size="lg" variant="outline" className="text-white border-white hover:bg-white hover:text-primary w-full sm:w-auto px-10">
                                     墓地を探す
                                 </Button>
                             </Link>

@@ -343,7 +343,7 @@ export function DiagnosisWizard() {
         return (
             <div className="max-w-4xl mx-auto">
                 <div className="bg-white rounded-3xl shadow-xl overflow-hidden border border-gray-100">
-                    <div className="bg-seiren-navy p-8 text-center text-white">
+                    <div className="bg-primary p-8 text-center text-white">
                         <h2 className="text-2xl font-serif font-bold mb-4">あなたの考え方に近い供養の選択肢</h2>
                         <p className="text-sm opacity-90 leading-relaxed">
                             診断結果はあくまで目安です。状況や気持ちによって最適な選択は変わります。<br />
@@ -504,7 +504,7 @@ export function DiagnosisWizard() {
                     exit={{ opacity: 0, x: -20 }}
                     className="bg-white rounded-2xl shadow-lg border border-gray-100 p-8 min-h-[400px] flex flex-col"
                 >
-                    <h3 className="text-xl md:text-2xl font-bold text-seiren-navy mb-8 text-center leading-relaxed">
+                    <h3 className="text-xl md:text-2xl font-bold text-primary mb-8 text-center leading-relaxed">
                         {currentQuestion.title}
                     </h3>
 

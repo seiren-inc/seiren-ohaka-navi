@@ -13,7 +13,7 @@ export default function TermsPage() {
             <Navbar />
             <main className="flex-grow pt-24 px-4 pb-20">
                 <div className="max-w-4xl mx-auto">
-                    <h1 className="font-serif text-3xl font-bold text-seiren-navy mb-8 border-b pb-4">
+                    <h1 className="font-serif text-3xl font-bold text-primary mb-8 border-b pb-4">
                         利用規約
                     </h1>
 

@@ -66,7 +66,7 @@ export function AreaSearchModal({ isOpen, onClose, initialPrefecture }: AreaSear
                 {/* Header */}
                 <div className="bg-gray-50 border-b border-gray-100 p-4 md:p-6 flex justify-between items-center shrink-0">
                     <div>
-                        <h2 className="text-xl md:text-2xl font-bold text-seiren-navy flex items-center gap-2">
+                        <h2 className="text-xl md:text-2xl font-bold text-primary flex items-center gap-2">
                             <MapPin className="w-6 h-6 text-secondary" /> 地域から探す
                         </h2>
                         <p className="text-xs text-gray-500 mt-1 hidden md:block">

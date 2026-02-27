@@ -51,7 +51,7 @@ export function AreaFilter() {
         <>
             {/* Mobile Trigger */}
             <div className="md:hidden mb-4">
-                <Button onClick={toggleModal} variant="outline" className="w-full border-seiren-navy text-seiren-navy">
+                <Button onClick={toggleModal} variant="outline" className="w-full border-primary text-primary">
                     <SlidersHorizontal className="w-4 h-4 mr-2" /> 条件を絞り込む
                 </Button>
             </div>
@@ -82,7 +82,7 @@ export function AreaFilter() {
                                             type="checkbox"
                                             checked={currentTypes.includes(type)}
                                             onChange={() => handleTypeChange(type)}
-                                            className="w-4 h-4 text-seiren-navy border-gray-300 rounded focus:ring-seiren-navy"
+                                            className="w-4 h-4 text-primary border-gray-300 rounded focus:ring-primary"
                                         />
                                         <span className="ml-2 text-sm text-gray-600">{type}</span>
                                     </label>
@@ -99,7 +99,7 @@ export function AreaFilter() {
                                         key={tag}
                                         onClick={() => handleTagChange(tag)}
                                         className={`px-3 py-1 text-xs rounded-full border transition-colors ${currentTags.includes(tag)
-                                                ? 'bg-seiren-navy text-white border-seiren-navy'
+                                                ? 'bg-primary text-white border-primary'
                                                 : 'bg-white text-gray-600 border-gray-200 hover:border-gray-300'
                                             }`}
                                     >
@@ -111,7 +111,7 @@ export function AreaFilter() {
 
                         {/* Close Button (Mobile) */}
                         <div className="md:hidden pt-4 mt-auto">
-                            <Button onClick={toggleModal} className="w-full bg-seiren-navy text-white">
+                            <Button onClick={toggleModal} className="w-full bg-primary text-white">
                                 この条件で検索
                             </Button>
                         </div>

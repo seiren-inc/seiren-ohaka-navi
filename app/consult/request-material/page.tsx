@@ -216,7 +216,7 @@ function RequestForm() {
                 <div className="w-20 h-20 bg-green-100 text-green-600 rounded-lg flex items-center justify-center mx-auto mb-6">
                     <CheckCircle2 className="w-10 h-10" />
                 </div>
-                <h1 className="text-2xl font-bold text-seiren-navy mb-4">資料請求を受け付けました</h1>
+                <h1 className="text-2xl font-bold text-primary mb-4">資料請求を受け付けました</h1>
                 <p className="text-gray-600 mb-8 leading-relaxed">
                     お問い合わせありがとうございます。<br />
                     資料の発送準備が整い次第、郵送にてお送りさせていただきます。
@@ -230,13 +230,13 @@ function RequestForm() {
 
     return (
         <div className="max-w-3xl mx-auto bg-white p-8 rounded-xl shadow-sm border border-gray-100">
-            <h1 className="text-2xl font-bold text-seiren-navy mb-6 text-center">資料請求・お問い合わせ</h1>
+            <h1 className="text-2xl font-bold text-primary mb-6 text-center">資料請求・お問い合わせ</h1>
 
             {/* Step Indicator */}
             <div className="flex items-center justify-center gap-4 mb-8 text-sm font-bold">
-                <div className={`px-4 py-2 rounded-full ${step === 1 ? 'bg-seiren-navy text-white' : 'bg-gray-100 text-gray-400'}`}>1. お客様情報</div>
+                <div className={`px-4 py-2 rounded-full ${step === 1 ? 'bg-primary text-white' : 'bg-gray-100 text-gray-400'}`}>1. お客様情報</div>
                 <div className="text-gray-300">→</div>
-                <div className={`px-4 py-2 rounded-full ${step === 2 ? 'bg-seiren-navy text-white' : 'bg-gray-100 text-gray-400'}`}>2. アンケート・確認</div>
+                <div className={`px-4 py-2 rounded-full ${step === 2 ? 'bg-primary text-white' : 'bg-gray-100 text-gray-400'}`}>2. アンケート・確認</div>
             </div>
 
             {/* Context Card */}
@@ -247,7 +247,7 @@ function RequestForm() {
                     </h3>
                     <div className="flex flex-col gap-2">
                         {displayTempleName && (
-                            <div className="text-xl font-bold text-seiren-navy">
+                            <div className="text-xl font-bold text-primary">
                                 {displayTempleName}
                                 {displayTemplePref && <span className="text-sm font-normal text-gray-600 ml-2">({displayTemplePref})</span>}
                             </div>
@@ -355,7 +355,7 @@ function RequestForm() {
                     </div>
 
                     <div className="pt-4">
-                        <Button type="button" onClick={handleNextStep} className="w-full font-bold py-4 bg-seiren-navy text-white hover:bg-gray-800">
+                        <Button type="button" onClick={handleNextStep} className="w-full font-bold py-4 bg-primary text-white hover:bg-gray-800">
                             次に進む <ChevronRight className="w-4 h-4 ml-2" />
                         </Button>
                     </div>
@@ -372,15 +372,15 @@ function RequestForm() {
                         <label className="block text-sm font-bold text-gray-700 mb-3">ご遺骨の有無 <span className="text-red-500">*</span></label>
                         <div className="space-y-2">
                             <label className="flex items-center gap-2 p-3 border rounded-lg cursor-pointer hover:bg-gray-50">
-                                <input type="radio" value="exist" {...register("boneStatus")} className="text-seiren-navy focus:ring-seiren-navy" />
+                                <input type="radio" value="exist" {...register("boneStatus")} className="text-primary focus:ring-primary" />
                                 <span>ご遺骨あり</span>
                             </label>
                             <label className="flex items-center gap-2 p-3 border rounded-lg cursor-pointer hover:bg-gray-50">
-                                <input type="radio" value="none" {...register("boneStatus")} className="text-seiren-navy focus:ring-seiren-navy" />
+                                <input type="radio" value="none" {...register("boneStatus")} className="text-primary focus:ring-primary" />
                                 <span>ご遺骨なし</span>
                             </label>
                             <label className="flex items-center gap-2 p-3 border rounded-lg cursor-pointer hover:bg-gray-50">
-                                <input type="radio" value="unknown" {...register("boneStatus")} className="text-seiren-navy focus:ring-seiren-navy" />
+                                <input type="radio" value="unknown" {...register("boneStatus")} className="text-primary focus:ring-primary" />
                                 <span>未定・その他</span>
                             </label>
                         </div>
@@ -393,7 +393,7 @@ function RequestForm() {
                         <div className="grid grid-cols-2 gap-3">
                             {['一般墓', '永代供養墓', '樹木葬', '納骨堂'].map(type => (
                                 <label key={type} className="flex items-center gap-2 p-3 border rounded-lg cursor-pointer hover:bg-gray-50">
-                                    <input type="checkbox" value={type} {...register("graveTypes")} className="text-seiren-navy rounded focus:ring-seiren-navy" />
+                                    <input type="checkbox" value={type} {...register("graveTypes")} className="text-primary rounded focus:ring-primary" />
                                     <span className="text-sm">{type}</span>
                                 </label>
                             ))}
@@ -403,7 +403,7 @@ function RequestForm() {
                     {/* Opt-in */}
                     <div className="bg-gray-50 p-4 rounded-lg">
                         <label className="flex items-start gap-3 cursor-pointer">
-                            <input type="checkbox" {...register("nearbyCemeteryOptIn")} className="mt-1 text-seiren-navy rounded focus:ring-seiren-navy" />
+                            <input type="checkbox" {...register("nearbyCemeteryOptIn")} className="mt-1 text-primary rounded focus:ring-primary" />
                             <div className="text-sm">
                                 <span className="font-bold">周辺のおすすめ霊園の資料も受け取る（無料）</span>
                                 <p className="text-xs text-gray-500 mt-1">
@@ -438,13 +438,13 @@ function RequestForm() {
                     {/* Remarks */}
                     <div>
                         <label className="block text-sm font-bold text-gray-700 mb-2">備考 <span className="text-gray-400 text-xs font-normal">（任意）</span></label>
-                        <textarea {...register("message")} className="w-full border border-gray-300 rounded-lg p-3 h-24 focus:ring-2 focus:ring-seiren-navy focus:border-transparent" placeholder="ご質問などございましたらご自由にご記入ください。"></textarea>
+                        <textarea {...register("message")} className="w-full border border-gray-300 rounded-lg p-3 h-24 focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="ご質問などございましたらご自由にご記入ください。"></textarea>
                     </div>
 
                     {/* Terms */}
                     <div className="border-t border-gray-200 pt-6">
                         <label className="flex items-center justify-center gap-2 cursor-pointer mb-4">
-                            <input type="checkbox" {...register("agreedToTerms")} className="text-seiren-navy rounded focus:ring-seiren-navy w-5 h-5" />
+                            <input type="checkbox" {...register("agreedToTerms")} className="text-primary rounded focus:ring-primary w-5 h-5" />
                             <span className="text-sm font-bold">
                                 <a href="#" className="text-blue-600 underline">利用規約</a> と <a href="#" className="text-blue-600 underline">プライバシーポリシー</a> に同意する
                             </span>
@@ -455,7 +455,7 @@ function RequestForm() {
                             <Button type="button" onClick={() => { setStep(1); window.scrollTo({ top: 0, behavior: 'smooth' }); }} className="flex-1 bg-gray-100 text-gray-600 hover:bg-gray-200 py-4 font-bold">
                                 戻る
                             </Button>
-                            <Button disabled={isSubmitting} type="submit" className="flex-[2] bg-seiren-navy text-white hover:bg-gray-800 py-4 font-bold">
+                            <Button disabled={isSubmitting} type="submit" className="flex-[2] bg-primary text-white hover:bg-gray-800 py-4 font-bold">
                                 {isSubmitting ? '送信中...' : '資料を請求する (無料)'}
                             </Button>
                         </div>
@@ -468,7 +468,7 @@ function RequestForm() {
 
 export default function RequestMaterialPage() {
     return (
-        <div className="min-h-screen flex flex-col bg-white-smoke">
+        <div className="min-h-screen flex flex-col bg-bg">
             <Navbar />
             <main className="flex-grow pt-32 px-4 pb-20">
                 <Suspense fallback={<div className="text-center py-20">Loading form...</div>}>

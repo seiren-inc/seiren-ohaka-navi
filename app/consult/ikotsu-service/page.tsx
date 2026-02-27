@@ -140,7 +140,7 @@ function IkotsuServiceConsultForm() {
     }
 
     return (
-        <div className="min-h-screen bg-slate-50 flex flex-col">
+        <div className="min-h-screen bg-bg flex flex-col">
             <Navbar />
 
             {/* Hero */}

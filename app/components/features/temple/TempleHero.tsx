@@ -49,7 +49,7 @@ export function TempleHero({ data }: TempleHeroProps) {
                             <MapPin className="w-4 h-4 text-primary mr-1" />
                             {data.prefecture} {data.cityName}
                         </div>
-                        <h1 className="text-2xl md:text-3xl font-bold text-seiren-navy font-serif leading-tight mb-2">
+                        <h1 className="text-2xl md:text-3xl font-bold text-primary font-serif leading-tight mb-2">
                             {data.name}
                         </h1>
                         <div className="text-sm text-gray-600">
@@ -96,7 +96,7 @@ export function TempleHero({ data }: TempleHeroProps) {
                                 <Link href={requestUrl}>
                                     {/* Secondary CTA also links to Request Material but with potentially different intent if needed, or simplified as "Visit" -> same form */}
                                     {/* Note: User request says "Visit/Consult" as secondary. Logic matches sticky CTA. */}
-                                    <Button variant="outline" className="w-full h-14 border-2 border-seiren-navy text-seiren-navy hover:bg-seiren-navy hover:text-white font-bold text-lg rounded-lg">
+                                    <Button variant="outline" className="w-full h-14 border-2 border-primary text-primary hover:bg-primary hover:text-white font-bold text-lg rounded-lg">
                                         <CalendarCheck className="w-5 h-5 mr-2" /> 見学・相談する
                                     </Button>
                                 </Link>

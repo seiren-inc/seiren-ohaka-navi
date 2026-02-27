@@ -11,8 +11,8 @@ export function NearbyTemples({ currentId }: { currentId: string }) {
 
     return (
         <div className="space-y-6">
-            <h2 className="text-xl font-bold text-seiren-navy text-center mb-8 relative">
-                <span className="bg-white-smoke px-4 relative z-10">近隣・関連の霊園</span>
+            <h2 className="text-xl font-bold text-primary text-center mb-8 relative">
+                <span className="bg-bg px-4 relative z-10">近隣・関連の霊園</span>
                 <div className="absolute top-1/2 left-0 right-0 h-px bg-gray-200 -z-0"></div>
             </h2>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">

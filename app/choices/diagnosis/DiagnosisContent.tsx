@@ -12,7 +12,7 @@ export function DiagnosisContent() {
     const [showConsultModal, setShowConsultModal] = useState(false);
 
     return (
-        <div className="min-h-screen flex flex-col bg-slate-50 text-gray-800">
+        <div className="min-h-screen flex flex-col bg-bg text-gray-800">
             <Navbar />
 
             <main className="flex-grow pt-24 px-4 pb-20">
@@ -42,7 +42,7 @@ export function DiagnosisContent() {
 
                         {/* 診断でわかること */}
                         <section>
-                            <h2 className="font-serif text-2xl font-bold text-seiren-navy border-b pb-4 mb-8">
+                            <h2 className="font-serif text-2xl font-bold text-primary border-b pb-4 mb-8">
                                 この診断で分かること
                             </h2>
                             <p className="text-gray-700 leading-loose mb-6">
@@ -74,7 +74,7 @@ export function DiagnosisContent() {
 
                         {/* 質問の意図と判断軸 */}
                         <section>
-                            <h2 className="font-serif text-2xl font-bold text-seiren-navy border-b pb-4 mb-8">
+                            <h2 className="font-serif text-2xl font-bold text-primary border-b pb-4 mb-8">
                                 5つの質問の意図と判断軸
                             </h2>
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -108,7 +108,7 @@ export function DiagnosisContent() {
 
                         {/* FAQ */}
                         <section>
-                            <h2 className="font-serif text-2xl font-bold text-seiren-navy border-b pb-4 mb-8">
+                            <h2 className="font-serif text-2xl font-bold text-primary border-b pb-4 mb-8">
                                 よくある質問（FAQ）
                             </h2>
                             <div className="space-y-4">
@@ -154,7 +154,7 @@ export function DiagnosisContent() {
 
                     {/* Next Actions */}
                     <section className="text-center border-t border-gray-200 pt-16">
-                        <h2 className="font-serif text-2xl font-bold text-seiren-navy pb-4 mb-10 inline-block px-12">
+                        <h2 className="font-serif text-2xl font-bold text-primary pb-4 mb-10 inline-block px-12">
                             迷ったら次にできること
                         </h2>
 

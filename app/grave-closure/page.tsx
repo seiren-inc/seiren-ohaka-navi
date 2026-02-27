@@ -16,7 +16,7 @@ export default function GraveClosurePage() {
             <Navbar />
 
             {/* 1. Hero Section */}
-            <section className="relative pt-32 pb-20 px-4 bg-slate-50 overflow-hidden">
+            <section className="relative pt-32 pb-20 px-4 bg-bg overflow-hidden">
                 <div className="absolute top-0 right-0 w-1/3 h-full bg-secondary/5 -skew-x-12 translate-x-1/2" />
                 <div className="max-w-7xl mx-auto relative z-10 text-center">
                     <span className="inline-block py-1 px-3 rounded-full bg-secondary/10 text-secondary text-sm font-bold mb-6 tracking-wider">
