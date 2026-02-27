@@ -143,24 +143,14 @@ export default function Home() {
                   transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
                   className="relative aspect-[4/5] rounded-3xl overflow-hidden border border-white/10 shadow-2xl"
                 >
-                  {/* 仮背景（差し替え: /public/images/hero_main.jpg） */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-primary/40 via-primary-dark/60 to-[#050f13]" />
-                  <div className="absolute inset-0 flex flex-col items-center justify-center text-white/20 text-sm font-serif tracking-widest">
-                    <div className="w-16 h-px bg-white/20 mb-4" />
-                    <span>hero_main.jpg</span>
-                    <div className="w-16 h-px bg-white/20 mt-4" />
-                  </div>
-                  {/*
-                    本番画像差し替え時は上記 div を削除して以下を有効化:
-                    <Image
-                      src="/images/hero_main.jpg"
-                      alt="お墓・霊園のイメージ"
-                      fill
-                      className="object-cover"
-                      priority
-                      sizes="(max-width: 1024px) 0vw, 50vw"
-                    />
-                  */}
+                  <Image
+                    src="/images/hero_main.jpg"
+                    alt="石灯籠と桜咲く日本庭園"
+                    fill
+                    className="object-cover"
+                    priority
+                    sizes="(max-width: 1024px) 0vw, 50vw"
+                  />
                 </motion.div>
               </div>
 
@@ -196,23 +186,13 @@ export default function Home() {
 
               {/* 画像 */}
               <motion.div {...useFadeUp()} className="relative aspect-[4/3] rounded-2xl overflow-hidden bg-primary-dark/5 border border-gray-200/60">
-                {/* 仮（差し替え: /public/images/concept_main.jpg） */}
-                <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-primary-dark/20" />
-                <div className="absolute inset-0 flex flex-col items-center justify-center text-gray-300 text-sm font-serif tracking-widest">
-                  <div className="w-12 h-px bg-gray-300 mb-3" />
-                  <span>concept_main.jpg</span>
-                  <div className="w-12 h-px bg-gray-300 mt-3" />
-                </div>
-                {/*
-                  本番差し替え:
-                  <Image
-                    src="/images/concept_main.jpg"
-                    alt="清蓮の供養サポートイメージ"
-                    fill
-                    className="object-cover"
-                    sizes="(max-width: 768px) 100vw, 50vw"
-                  />
-                */}
+                <Image
+                  src="/images/concept_main.jpg"
+                  alt="和室で行われる丁寧な供養相談のイメージ"
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                />
               </motion.div>
 
               {/* テキスト */}
