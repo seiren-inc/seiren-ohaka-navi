@@ -1,6 +1,5 @@
 
 import { Store } from "../../lib/store";
-import { Card } from "../../components/ui/Card";
 
 export default function AdminDashboard() {
     // Note: In real app, this should be server component fetching data via API or DB

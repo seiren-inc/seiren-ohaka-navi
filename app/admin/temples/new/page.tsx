@@ -3,7 +3,7 @@
 import { useState, useMemo } from "react";
 import { useRouter } from "next/navigation";
 import { Button } from "../../../components/ui/Button";
-import { Store, Temple, Plan, FacilityType, ManagementBody, ReligionCategory, Parking, BarrierFree, PetSupport, SuccessorReq, PublishStatus, Prefecture, ContentIcon, AppealTag, PlanCategory, PlanCapacity, BurialType, PlanPeriod, LocationType, WorshipType, PetSupportPlan, PlanStatus, BookingStatus, BookingChannel, SlotInterval, VisitDuration, BufferMinutes, CutoffRule, BookingWindow, SeoSettings, Sect, MemorialType, IndoorOutdoor, PetAllowed, ManagementFeeType, RELIGION_CATEGORIES, BUDDHIST_SECTS, BUDDHIST_SECT_GROUPS, BuddhistSect } from "../../../../lib/store";
+import { Store, Temple, FacilityType, ManagementBody, ReligionCategory, Parking, PetSupport, SuccessorReq, PublishStatus, Prefecture, ContentIcon, AppealTag, BookingStatus, BookingChannel, SlotInterval, VisitDuration, BufferMinutes, CutoffRule, BookingWindow, Sect, MemorialType, IndoorOutdoor, PetAllowed, ManagementFeeType, RELIGION_CATEGORIES, BUDDHIST_SECTS, BUDDHIST_SECT_GROUPS, BuddhistSect } from "../../../../lib/store";
 import { ImageUploader } from "../../../components/admin/ImageUploader";
 import { GalleryUploader } from "../../../components/admin/GalleryUploader";
 import { Loader2, Plus, Trash2, GripVertical, Image as ImageIcon, MapPin, Calendar as CalIcon, FileText, Tag, Search, Sparkles, X, ChevronDown, ChevronRight, Save, Clock, Settings, Bell, Ban, Globe, HelpCircle, Code, DollarSign, CheckSquare, Info } from "lucide-react";
@@ -58,7 +58,7 @@ export default function NewTemplePage() {
         petAllowed: 'unknown', petSupport: "不可",
         successorRequirements: "継承者不要",
         // C. Price
-        priceMin: 0, priceMax: 0, managementFeeType: "unknown", managementFeeMin: 0, managementFeeMax: 0,
+        managementFeeAggType: "unknown" as ManagementFeeType,
         // D. Publish
         status: "draft", listedInSearch: true,
         // Specs 
