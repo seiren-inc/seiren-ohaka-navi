@@ -4,7 +4,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { CheckCircle, RefreshCw, ArrowRight, User, Users, Heart, Sprout, Building, Wallet, Landmark } from "lucide-react";
 import Link from "next/link";
-import { Button } from "../../ui/Button";
+import { Button } from "../ui/Button";
 
 type Step = "successor" | "priority" | "result";
 type SuccessorAnswer = "yes" | "no" | "unsure";

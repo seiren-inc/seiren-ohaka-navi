@@ -4,7 +4,7 @@ import { useState, useMemo } from "react";
 import { format, addDays, startOfDay, getDay, isAfter, isBefore, addMinutes, parse, set } from "date-fns";
 import { ja } from "date-fns/locale";
 import { ChevronLeft, ChevronRight, Clock, Info, Phone } from "lucide-react";
-import { Temple, CalendarSettings } from "../../../lib/store";
+import { Temple, CalendarSettings } from "@/lib/store";
 
 interface ReservationCalendarProps {
     temple: Temple;
@@ -101,7 +101,7 @@ export function ReservationCalendar({ temple, onSelectDate }: ReservationCalenda
         );
     }
 
-    if (cal.bookingChannels.every(c => c !== 'form') && cal.bookingChannels.includes('phone')) {
+    if (cal.bookingChannels.every((c: string) => c !== 'form') && cal.bookingChannels.includes('phone')) {
         return (
             <div className="text-center bg-gray-50 p-6 rounded-xl border border-gray-200">
                 <p className="font-bold text-gray-700 mb-4">この寺院は見学予約を「お電話のみ」で受け付けています</p>
