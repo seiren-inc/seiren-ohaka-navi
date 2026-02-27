@@ -144,8 +144,8 @@ export default function Home() {
                   className="relative aspect-[4/5] rounded-3xl overflow-hidden border border-white/10 shadow-2xl"
                 >
                   <Image
-                    src="/images/hero_main.jpg"
-                    alt="石灯籠と桜咲く日本庭園"
+                    src="/hero.png"
+                    alt="豪華な納骨堂内観。黄金の仏像とクリスタルシャンデリア"
                     fill
                     className="object-cover"
                     priority
