@@ -37,26 +37,26 @@ export function GraveyardCard({ data }: GraveyardCardProps) {
     return (
         <Card hoverEffect className="p-0 overflow-hidden flex flex-col md:flex-row h-full transition-all duration-300 hover:shadow-md">
             {/* Thumbnail */}
-            <div className="w-full md:w-1/3 bg-gray-100 aspect-video md:aspect-auto relative overflow-hidden group">
+            <div className="w-full md:w-[280px] shrink-0 bg-gray-100 aspect-video md:aspect-auto relative overflow-hidden group">
                 {data.mainImage ? (
                     <Image
                         src={data.mainImage}
-                        alt={data.name}
+                        alt={`${data.name}の外観写真`}
                         fill
                         className="object-cover transition-transform duration-500 group-hover:scale-105"
-                        sizes="(max-width: 768px) 100vw, 33vw"
+                        sizes="(max-width: 768px) 100vw, 280px"
                     />
                 ) : (
-                    <div className="absolute inset-0 flex items-center justify-center text-gray-400">
-                        <ImageIcon className="w-12 h-12 opacity-20" />
+                    <div className="absolute inset-0 flex items-center justify-center text-gray-400 bg-gray-50">
+                        <ImageIcon className="w-8 h-8 opacity-20" />
                     </div>
                 )}
 
                 <div className="absolute top-2 left-2 flex flex-wrap gap-1">
-                    <span className="bg-primary/90 text-white text-[10px] px-2 py-1 rounded-sm uppercase tracking-wider font-bold shadow-sm backdrop-blur-sm">
+                    <span className="bg-primary-soft/90 text-white text-[10px] px-2 py-1 rounded-[4px] font-bold shadow-sm backdrop-blur-sm">
                         {data.type}
                     </span>
-                    {data.status === 'private' && <span className="bg-gray-500 text-white text-[10px] px-2 py-1 rounded-sm">非公開</span>}
+                    {data.status === 'private' && <span className="bg-gray-500/90 text-white text-[10px] px-2 py-1 rounded-[4px] backdrop-blur-sm">非公開</span>}
                 </div>
             </div>
 
@@ -93,16 +93,16 @@ export function GraveyardCard({ data }: GraveyardCardProps) {
                     </div>
                 </div>
 
-                <div className="mt-4 flex gap-2 justify-end">
+                <div className="mt-4 flex flex-col sm:flex-row gap-2 justify-end">
                     <Link href={requestUrl} className="block w-full sm:w-auto">
-                        <div className="inline-flex items-center justify-center rounded-[8px] font-medium transition-transform active:scale-[0.98] duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 border border-border bg-white text-primary hover:bg-primary/5 px-4 h-10 text-sm w-full sm:w-auto">
+                        <button className="inline-flex items-center justify-center rounded-[10px] font-bold transition-all active:scale-[0.98] duration-200 border border-primary text-primary hover:bg-primary/5 px-4 h-11 text-sm w-full sm:w-auto">
                             <FileText className="w-4 h-4 mr-2" /> 資料請求
-                        </div>
+                        </button>
                     </Link>
                     <Link href={`/detail/${data.id}`} className="block w-full sm:w-auto">
-                        <div className="inline-flex items-center justify-center rounded-[8px] font-medium transition-transform active:scale-[0.98] duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 border-2 border-primary text-white bg-primary hover:bg-primary-hover px-4 h-10 text-sm w-full sm:w-auto transition-colors">
+                        <button className="inline-flex items-center justify-center rounded-[10px] font-bold transition-all active:scale-[0.98] duration-200 bg-primary text-white hover:bg-primary-hover px-6 h-11 text-sm w-full sm:w-auto shadow-sm">
                             詳細を見る <ArrowRight className="w-4 h-4 ml-2" />
-                        </div>
+                        </button>
                     </Link>
                 </div>
             </div>

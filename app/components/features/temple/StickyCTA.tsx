@@ -29,8 +29,8 @@ export function StickyCTA({ temple }: StickyCTAProps) {
                 </Link>
 
                 {/* Primary: Request Material */}
-                <Link href={requestUrl} className="flex-[2]">
-                    <Button className="w-full h-12 bg-red-600 hover:bg-red-700 text-white font-bold text-sm shadow-md">
+                <Link href={requestUrl} className="flex-2">
+                    <Button className="w-full h-12 bg-primary hover:bg-primary-hover text-white font-bold text-sm shadow-md transition-colors rounded-lg">
                         <FileText className="w-4 h-4 mr-1" /> 資料請求（無料）
                     </Button>
                 </Link>

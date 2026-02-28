@@ -122,10 +122,10 @@ export default async function SearchPage(props: { searchParams: Promise<{ [key: 
                             {/* Consult Banner */}
                             <div className="bg-primary/5 border border-primary/20 rounded-lg p-4 mb-8 flex flex-col sm:flex-row items-center justify-between gap-4">
                                 <div>
-                                    <h3 className="text-primary-dark font-bold text-lg mb-1">条件が決まらない・迷っている方へ</h3>
+                                    <h3 className="text-primary font-bold text-lg mb-1">条件が決まらない・迷っている方へ</h3>
                                     <p className="text-sm text-gray-600">専門スタッフがご希望に合わせて最適な墓地・霊園をご提案します。</p>
                                 </div>
-                                <Link href="/consult/grave-search" className="shrink-0 px-6 py-2 bg-primary text-white rounded-md font-bold text-sm hover:bg-primary-dark transition-colors shadow-sm">
+                                <Link href="/consult/grave-search" className="shrink-0 px-6 py-2 bg-primary text-white rounded-md font-bold text-sm hover:bg-primary-hover transition-colors shadow-sm">
                                     無料で相談する
                                 </Link>
                             </div>
@@ -142,10 +142,7 @@ export default async function SearchPage(props: { searchParams: Promise<{ [key: 
                             <div className="grid gap-6">
                                 {filteredGraveyards.length > 0 ? (
                                     filteredGraveyards.map((temple) => (
-                                        // TODO: Refactor GraveyardCard to accept 'Temple' type instead of old mock type
-                                        // For now, filtering works, but Card might need updates.
-                                        // Passing 'temple' as 'any' to avoid type conflict until Card is refactored.
-                                        <GraveyardCard key={temple.id} data={temple as any} />
+                                        <GraveyardCard key={temple.id} data={temple} />
                                     ))
                                 ) : (
                                     <div className="p-12 text-center bg-white rounded-xl border border-gray-100 flex flex-col items-center justify-center gap-4">

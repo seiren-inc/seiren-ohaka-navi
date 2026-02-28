@@ -17,7 +17,7 @@ export default function Home() {
       <OpeningAnimation />
       <Navbar />
 
-      <main className="grow pt-[72px]">
+      <main className="grow pt-20">
         {/* 1. HERO SECTION & SEARCH */}
         <section className="relative min-h-[85vh] flex items-center justify-center bg-bg-muted overflow-hidden py-12 md:py-20 lg:py-24">
           <div className="absolute inset-0 bg-white/40 backdrop-blur-[2px] z-0" />

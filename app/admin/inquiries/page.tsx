@@ -18,7 +18,7 @@ export default async function InquiryList(props: { searchParams: Promise<{ categ
         } else if (categoryFilter === 'other') {
             inquiries = inquiries.filter(i => !['grave_search', 'grave_closure', 'ikotsu_service'].includes(i.category || '') && i.kind !== 'business');
         } else {
-            inquiries = inquiries.filter(i => i.category === categoryFilter || i.type === categoryFilter);
+            inquiries = inquiries.filter(i => i.category === categoryFilter);
         }
     }
 
@@ -34,7 +34,7 @@ export default async function InquiryList(props: { searchParams: Promise<{ categ
         if (inquiry.kind === 'business') {
             return <span className="bg-slate-100 text-slate-700 border border-slate-200 px-2 py-1 rounded text-xs font-bold">事業者</span>;
         }
-        const cat = inquiry.category || inquiry.type;
+        const cat = inquiry.category;
         switch (cat) {
             case 'grave_search': return <span className="bg-emerald-100 text-emerald-700 px-2 py-1 rounded text-xs font-bold">お墓探し</span>;
             case 'grave_closure': return <span className="bg-amber-100 text-amber-700 px-2 py-1 rounded text-xs font-bold">墓じまい</span>;
@@ -136,9 +136,9 @@ export default async function InquiryList(props: { searchParams: Promise<{ categ
                                                 <div className="text-xs text-gray-400 mb-0.5">
                                                     {i.category === 'grave_closure' ? '次の供養先' : '希望プラン'}
                                                 </div>
-                                                {i.context?.planName || i.desiredPlanName || i.additionalFields?.hasNextPlace ? (
+                                                {i.context?.planName || i.desiredPlanName || String(i.additionalFields?.hasNextPlace || '') ? (
                                                     <span className="text-sm text-primary bg-blue-50 px-2 py-1 rounded">
-                                                        {i.context?.planName || i.desiredPlanName || i.additionalFields?.hasNextPlace}
+                                                        {i.context?.planName || i.desiredPlanName || String(i.additionalFields?.hasNextPlace || '')}
                                                     </span>
                                                 ) : (
                                                     <span className="text-sm text-gray-400">未指定</span>
@@ -162,7 +162,7 @@ export default async function InquiryList(props: { searchParams: Promise<{ categ
                                         </div>
                                     ) : (
                                         <div className="mb-1 text-xs text-gray-400">
-                                            希望: {i.additionalFields?.visitHope || i.additionalFields?.timing || i.preferredDateTime || '-'}
+                                            希望: {(i.additionalFields?.visitHope as string) || (i.additionalFields?.timing as string) || i.preferredDateTime || '-'}
                                         </div>
                                     )}
                                     <div className="truncate text-gray-600 mt-1" title={i.message}>{i.message}</div>
