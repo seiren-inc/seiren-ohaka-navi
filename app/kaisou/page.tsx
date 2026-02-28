@@ -4,6 +4,7 @@ import { KaisouFlow } from "../components/features/KaisouFlow";
 import { Button } from "../components/ui/Button";
 import { ExternalLink, ChevronRight, AlertCircle, RefreshCw } from "lucide-react";
 import Link from "next/link";
+import { SeoSummary } from "../components/ui/SeoSummary";
 
 export const metadata = {
     title: "お墓じまい・改葬について｜清蓮（せいれん）",
@@ -12,7 +13,7 @@ export const metadata = {
 
 export default function KaisouPage() {
     return (
-        <div className="min-h-screen flex flex-col pt-[72px]">
+        <div className="min-h-screen flex flex-col pt-section-tablet">
             <Navbar />
 
             <main className="grow">
@@ -119,6 +120,19 @@ export default function KaisouPage() {
                                 <ChevronRight className="w-4 h-4 ml-1" />
                             </Button>
                         </Link>
+                    </div>
+                </section>
+
+                {/* SEO Summary for AI/Search Engines */}
+                <section className="bg-white py-12">
+                    <div className="max-w-4xl mx-auto px-4">
+                        <SeoSummary
+                            title="改葬・お墓じまいについて"
+                            description="お墓の引越し（改葬）や墓じまいの理由、手続きの流れ、必要書類から費用面までを網羅した解説記事です。少子高齢化やライフスタイルの変化により、墓じまいを選択して永代供養墓や散骨など新たな供養先へ移行するケースが増加しています。"
+                            regions={["全国（離島等一部地域を除く）"]}
+                            priceRange="30万円〜300万円程度（撤去工事、離檀料、新規供養先費用などを合計した目安）"
+                            lastUpdated="2024-03-01"
+                        />
                     </div>
                 </section>
             </main>

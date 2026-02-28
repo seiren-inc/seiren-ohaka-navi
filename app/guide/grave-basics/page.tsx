@@ -4,6 +4,7 @@ import { Footer } from "../../components/layout/Footer";
 import { Button } from "../../components/ui/Button";
 import { Metadata } from "next";
 import { ArrowRight, CheckCircle, AlertCircle, HelpCircle, BookOpen, Info, Calculator, Search, Phone } from "lucide-react";
+import { SeoSummary } from "../../components/ui/SeoSummary";
 
 export const metadata: Metadata = {
     title: "お墓の基礎知識｜種類・費用・管理・選び方を中立に整理",
@@ -91,7 +92,7 @@ export default function GuideGraveBasicsPage() {
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
             <Navbar />
 
-            <main className="flex-grow pt-24 px-4 pb-20">
+            <main className="grow pt-24 px-4 pb-20">
                 <div className="max-w-4xl mx-auto">
 
                     {/* Header Section */}
@@ -325,7 +326,7 @@ export default function GuideGraveBasicsPage() {
                             ].map((item, i) => (
                                 <div key={i} className="bg-gray-50 rounded-lg p-5">
                                     <h4 className="font-bold text-primary mb-2 flex flex-row items-center">
-                                        <span className="bg-secondary text-white text-xs font-bold px-2 py-1 rounded mr-3 flex-shrink-0">Q</span>
+                                        <span className="bg-secondary text-white text-xs font-bold px-2 py-1 rounded mr-3 shrink-0">Q</span>
                                         {item.q}
                                     </h4>
                                     <p className="text-sm text-gray-600 ml-10 leading-relaxed">
@@ -351,7 +352,7 @@ export default function GuideGraveBasicsPage() {
                                     </span>
                                     <h3 className="font-bold text-lg text-primary-dark">供養方法を診断する</h3>
                                 </div>
-                                <p className="text-sm text-gray-500 text-center mb-6 flex-grow">
+                                <p className="text-sm text-gray-500 text-center mb-6 grow">
                                     予算や重視するポイントから、あなたに合うお墓のタイプを約1分で診断します。
                                 </p>
                                 <Link href="/choices/diagnosis" className="w-full">
@@ -369,7 +370,7 @@ export default function GuideGraveBasicsPage() {
                                     </span>
                                     <h3 className="font-bold text-lg text-primary-dark">条件から探してみる</h3>
                                 </div>
-                                <p className="text-sm text-gray-500 text-center mb-6 flex-grow">
+                                <p className="text-sm text-gray-500 text-center mb-6 grow">
                                     希望のエリアや予算などの条件から、実際の霊園・墓地を検索できます。
                                 </p>
                                 <Link href="/search" className="w-full">
@@ -390,7 +391,7 @@ export default function GuideGraveBasicsPage() {
                                     </span>
                                     <h3 className="font-bold text-lg text-secondary">専門家に相談する</h3>
                                 </div>
-                                <p className="text-sm text-gray-500 text-center mb-6 flex-grow">
+                                <p className="text-sm text-gray-500 text-center mb-6 grow">
                                     「自分の状況に合うものが分からない」という方は、専門家が無料でアドバイスします。
                                 </p>
                                 <Link href="/consult" className="w-full">
@@ -401,6 +402,17 @@ export default function GuideGraveBasicsPage() {
                             </div>
                         </div>
                     </section>
+
+                    {/* SEO Summary for AI/Search Engines */}
+                    <div className="mt-20">
+                        <SeoSummary
+                            title="お墓の基礎知識（種類・費用・選び方）"
+                            description="一般墓から永代供養墓、樹木葬、納骨堂、海洋散骨、自宅供養まで、現代の多様化する供養方法6種類について、それぞれの特徴や管理・継承の要否、費用感（目安）、後悔しない選び方を中立的に比較・解説したページです。"
+                            regions={["全国対応"]}
+                            priceRange="数千円（手元供養）〜300万円（一般墓）程度まで、選択により大きく異なります"
+                            lastUpdated="2024-03-01"
+                        />
+                    </div>
                 </div>
             </main>
             <Footer />

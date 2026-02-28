@@ -224,12 +224,12 @@ function GraveSearchConsultForm() {
 
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                             <div className="space-y-2">
-                                <label className="block text-sm font-bold text-gray-700">希望エリア（都道府県）</label>
-                                <input type="text" name="areaPref" className="w-full h-12 px-4 border rounded-lg" placeholder="例：東京都" value={formData.areaPref} onChange={handleChange} />
+                                <label className="flex items-center text-sm font-bold text-gray-700">希望エリア（都道府県） <span className="bg-gray-200 text-gray-600 text-[10px] px-2 py-0.5 rounded-sm ml-2 font-normal">任意</span></label>
+                                <input type="text" name="areaPref" className="w-full h-12 px-4 border rounded-lg focus:border-primary focus:ring-1 focus:ring-primary" placeholder="例：東京都" value={formData.areaPref} onChange={handleChange} />
                             </div>
                             <div className="space-y-2">
-                                <label className="block text-sm font-bold text-gray-700">希望エリア（市区町村）</label>
-                                <input type="text" name="areaCity" className="w-full h-12 px-4 border rounded-lg" placeholder="例：世田谷区" value={formData.areaCity} onChange={handleChange} />
+                                <label className="flex items-center text-sm font-bold text-gray-700">希望エリア（市区町村） <span className="bg-gray-200 text-gray-600 text-[10px] px-2 py-0.5 rounded-sm ml-2 font-normal">任意</span></label>
+                                <input type="text" name="areaCity" className="w-full h-12 px-4 border rounded-lg focus:border-primary focus:ring-1 focus:ring-primary" placeholder="例：世田谷区" value={formData.areaCity} onChange={handleChange} />
                             </div>
                         </div>
 
@@ -281,68 +281,70 @@ function GraveSearchConsultForm() {
 
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                             <div className="space-y-2">
-                                <label className="block text-sm font-bold text-gray-700">お名前 <span className="text-red-500">*</span></label>
-                                <input type="text" name="name" required className="w-full h-12 px-4 border rounded-lg" placeholder="山田 太郎" value={formData.name} onChange={handleChange} />
+                                <label className="flex items-center text-sm font-bold text-gray-700">お名前 <span className="bg-red-500 text-white text-[10px] px-2 py-0.5 rounded-sm ml-2 font-normal">必須</span></label>
+                                <input type="text" name="name" required className="w-full h-12 px-4 border rounded-lg focus:border-primary focus:ring-1 focus:ring-primary" placeholder="山田 太郎" value={formData.name} onChange={handleChange} />
                             </div>
                             <div className="space-y-2">
-                                <label className="block text-sm font-bold text-gray-700">フリガナ <span className="text-red-500">*</span></label>
-                                <input type="text" name="furigana" required className="w-full h-12 px-4 border rounded-lg" placeholder="やまだ たろう" value={formData.furigana} onChange={handleChange} />
+                                <label className="flex items-center text-sm font-bold text-gray-700">フリガナ <span className="bg-red-500 text-white text-[10px] px-2 py-0.5 rounded-sm ml-2 font-normal">必須</span></label>
+                                <input type="text" name="furigana" required className="w-full h-12 px-4 border rounded-lg focus:border-primary focus:ring-1 focus:ring-primary" placeholder="やまだ たろう" value={formData.furigana} onChange={handleChange} />
                             </div>
                         </div>
 
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                             <div className="space-y-2">
-                                <label className="block text-sm font-bold text-gray-700">電話番号 <span className="text-red-500">*</span></label>
-                                <input type="tel" name="phone" required className="w-full h-12 px-4 border rounded-lg" placeholder="090-1234-5678" value={formData.phone} onChange={handleChange} />
+                                <label className="flex items-center text-sm font-bold text-gray-700">電話番号 <span className="bg-red-500 text-white text-[10px] px-2 py-0.5 rounded-sm ml-2 font-normal">必須</span></label>
+                                <input type="tel" name="phone" required className="w-full h-12 px-4 border rounded-lg focus:border-primary focus:ring-1 focus:ring-primary" placeholder="090-1234-5678" value={formData.phone} onChange={handleChange} />
                             </div>
                             <div className="space-y-2">
-                                <label className="block text-sm font-bold text-gray-700">メールアドレス <span className="text-red-500">*</span></label>
-                                <input type="email" name="email" required className="w-full h-12 px-4 border rounded-lg" placeholder="example@email.com" value={formData.email} onChange={handleChange} />
+                                <label className="flex items-center text-sm font-bold text-gray-700">メールアドレス <span className="bg-red-500 text-white text-[10px] px-2 py-0.5 rounded-sm ml-2 font-normal">必須</span></label>
+                                <input type="email" name="email" required className="w-full h-12 px-4 border rounded-lg focus:border-primary focus:ring-1 focus:ring-primary" placeholder="example@email.com" value={formData.email} onChange={handleChange} />
                             </div>
                         </div>
 
-                        <div className="space-y-4 bg-gray-50 p-6 rounded-lg">
+                        <div className="space-y-4 bg-gray-50 p-6 rounded-lg border border-gray-100">
                             <div className="space-y-2">
-                                <label className="block text-sm font-bold text-gray-700">郵便番号 (住所自動入力)</label>
+                                <label className="flex items-center text-sm font-bold text-gray-700">送付先 / お住まいの住所 <span className="bg-gray-200 text-gray-600 text-[10px] px-2 py-0.5 rounded-sm ml-2 font-normal">任意</span></label>
                                 <div className="flex gap-4">
                                     <input
                                         type="text"
                                         name="zipCode"
                                         maxLength={8}
-                                        className="w-32 h-12 px-4 border rounded-lg"
+                                        className="w-32 h-12 px-4 border rounded-lg focus:border-primary focus:ring-1 focus:ring-primary"
                                         placeholder="123-4567"
                                         value={formData.zipCode}
                                         onChange={handleChange}
                                     />
-                                    <span className="text-xs text-gray-500 self-center">ハイフンなしでもOK</span>
+                                    <span className="text-xs text-gray-500 self-center">※郵便番号で住所を自動入力</span>
                                 </div>
                                 {postalError && <p className="text-red-500 text-xs">{postalError}</p>}
                             </div>
 
                             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                                <input type="text" name="prefecture" className="w-full h-12 px-4 border rounded-lg" placeholder="都道府県" value={formData.prefecture} onChange={handleChange} />
-                                <input type="text" name="city" className="w-full h-12 px-4 border rounded-lg" placeholder="市区町村" value={formData.city} onChange={handleChange} />
+                                <input type="text" name="prefecture" className="w-full h-12 px-4 border rounded-lg focus:border-primary focus:ring-1 focus:ring-primary" placeholder="都道府県" value={formData.prefecture} onChange={handleChange} />
+                                <input type="text" name="city" className="w-full h-12 px-4 border rounded-lg focus:border-primary focus:ring-1 focus:ring-primary" placeholder="市区町村" value={formData.city} onChange={handleChange} />
                             </div>
                             <div className="space-y-2">
-                                <input type="text" name="address1" className="w-full h-12 px-4 border rounded-lg" placeholder="番地" value={formData.address1} onChange={handleChange} />
-                                <input type="text" name="address2" className="w-full h-12 px-4 border rounded-lg" placeholder="建物名・部屋番号" value={formData.address2} onChange={handleChange} />
+                                <input type="text" name="address1" className="w-full h-12 px-4 border rounded-lg focus:border-primary focus:ring-1 focus:ring-primary" placeholder="番地" value={formData.address1} onChange={handleChange} />
+                                <input type="text" name="address2" className="w-full h-12 px-4 border rounded-lg focus:border-primary focus:ring-1 focus:ring-primary" placeholder="建物名・部屋番号" value={formData.address2} onChange={handleChange} />
                             </div>
                         </div>
 
                         <div className="space-y-2">
-                            <label className="block text-sm font-bold text-gray-700">その他・ご要望</label>
-                            <textarea name="message" className="w-full h-32 p-4 border rounded-lg" placeholder="ご質問や、特に重視したい条件などがあればご記入ください" value={formData.message} onChange={handleChange} />
+                            <label className="flex items-center text-sm font-bold text-gray-700">その他・ご要望 <span className="bg-gray-200 text-gray-600 text-[10px] px-2 py-0.5 rounded-sm ml-2 font-normal">任意</span></label>
+                            <textarea name="message" className="w-full h-32 p-4 border rounded-lg focus:border-primary focus:ring-1 focus:ring-primary" placeholder="ご質問や、特に重視したい条件などがあればご記入ください" value={formData.message} onChange={handleChange} />
                         </div>
                     </section>
 
-                    <div className="text-center pt-4">
-                        <Button type="submit" size="lg" className="w-full sm:w-2/3 py-4 text-lg shadow-xl" disabled={isSubmitting}>
+                    <div className="text-center pt-8 border-t border-gray-100">
+                        <Button type="submit" size="lg" className="w-full sm:w-2/3 py-4 h-auto text-lg shadow-md font-bold transition-transform active:scale-[0.98]" disabled={isSubmitting}>
                             {isSubmitting ? "送信中..." : "無料で相談する"}
                         </Button>
-                        <p className="mt-4 text-xs text-gray-500">
-                            ご入力いただいた情報は、お問い合わせ対応のみに利用いたします。<br />
-                            無理な営業などは一切ございません。
-                        </p>
+                        <div className="mt-6 text-center">
+                            <p className="text-xs font-bold text-gray-600 flex items-center justify-center gap-1">
+                                <span role="img" aria-label="lock">🔒</span> ご入力いただいた情報はSSL暗号化通信で安全に送信されます
+                            </p>
+                            <p className="text-[11px] text-gray-500 mt-2">※無理な営業電話等は一切行いませんので、安心してご相談ください。</p>
+                        </div>
                     </div>
                 </form>
 

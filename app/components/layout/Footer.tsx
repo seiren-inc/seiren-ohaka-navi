@@ -22,6 +22,12 @@ export function Footer() {
                             中立的な立場で、あなたに最適な<br />
                             墓地・永代供養をご提案します。
                         </p>
+                        {/* Company Info for E-E-A-T */}
+                        <div className="text-xs text-gray-500 space-y-1">
+                            <p className="font-bold text-gray-700">株式会社清蓮 (Seiren Co., Ltd.)</p>
+                            <p>〒105-0011 東京都港区芝公園4-7-35</p>
+                            <p>法人番号: 101040116XXXX</p>
+                        </div>
                     </div>
 
                     {/* Links 1: 探す・知る */}
