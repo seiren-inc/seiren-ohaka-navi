@@ -5,11 +5,13 @@ import { Button } from "../components/ui/Button";
 import { ExternalLink, ChevronRight, AlertCircle, RefreshCw } from "lucide-react";
 import Link from "next/link";
 import { SeoSummary } from "../components/ui/SeoSummary";
+import { Metadata } from "next";
 
-export const metadata = {
-    title: "お墓じまい・改葬について｜清蓮（せいれん）",
-    description: "お墓じまいや改葬（お墓の引っ越し）の基本的な流れや費用、注意点について解説します。",
+export const metadata: Metadata = {
+    title: "改葬・お墓じまいとは｜手順・費用・注意点を専門家が解説",
+    description: "お墓じまいや改葬（お墓の引越し）の基本的な流れ・費用・必要書類・行政手続きについて、供養の専門家が中立な立場で解説。墓じまい後の供養先の選び方も解説します。",
 };
+
 
 export default function KaisouPage() {
     return (
