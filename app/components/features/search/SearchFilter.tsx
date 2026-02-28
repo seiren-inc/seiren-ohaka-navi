@@ -4,6 +4,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
 import { PREFECTURES } from "../../../lib/prefectures";
 import { FacilityType, MemorialType, Sect, BuddhistSect, BUDDHIST_SECTS, BUDDHIST_SECT_GROUPS } from "@/lib/store";
+import { trackEvent, SearchEvents } from "@/lib/analytics/events";
 import { Button } from "../../ui/Button";
 import { Filter, RotateCcw, Search } from "lucide-react";
 
@@ -43,6 +44,14 @@ export function SearchFilter() {
 
         // Reset pagination if exists
         params.delete("page");
+
+        // GA4 / Clarity Event Tracking
+        trackEvent(SearchEvents.SUBMIT, {
+            pref_count: prefs.length,
+            type_count: types.length,
+            memorial_count: memorials.length,
+            has_price_limit: !!priceMax,
+        });
 
         router.push(`/search?${params.toString()}`, { scroll: false });
     }, [router, prefs, types, sects, buddhistSects, memorials, features, priceMax]);

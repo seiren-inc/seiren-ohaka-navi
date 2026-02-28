@@ -17,9 +17,9 @@ export default function SankotsuPage() {
             {
                 "@type": "BreadcrumbList",
                 "itemListElement": [
-                    { "@type": "ListItem", "position": 1, "name": "BEYOND GRAVE", "item": "https://beyond-grave.com/" },
-                    { "@type": "ListItem", "position": 2, "name": "Choices", "item": "https://beyond-grave.com/choices" },
-                    { "@type": "ListItem", "position": 3, "name": "海洋散骨", "item": "https://beyond-grave.com/choices/sankotsu" }
+                    { "@type": "ListItem", "position": 1, "name": "お墓探しナビ", "item": "https://ohakanavi.jp/" },
+                    { "@type": "ListItem", "position": 2, "name": "供養の選択肢", "item": "https://ohakanavi.jp/choices" },
+                    { "@type": "ListItem", "position": 3, "name": "海洋散骨", "item": "https://ohakanavi.jp/choices/sankotsu" }
                 ]
             },
             {

@@ -1,5 +1,13 @@
 import Link from "next/link";
 import { LayoutDashboard, TentTree, MessageSquare, Settings } from "lucide-react";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+    title: "管理画面｜清蓮(Seiren)",
+    robots: {
+        index: false,
+    },
+};
 
 export default function AdminLayout({
     children,

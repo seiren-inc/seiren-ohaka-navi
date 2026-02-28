@@ -1,6 +1,7 @@
 "use client";
 
 import { Temple } from "@/lib/store";
+import { trackEvent, FacilityEvents } from "@/lib/analytics/events";
 import { Button } from "../../ui/Button";
 import { Tag } from "../../ui/Tag";
 import { MapPin, FileText, CalendarCheck } from "lucide-react";
@@ -17,8 +18,16 @@ export function TempleHero({ data }: TempleHeroProps) {
     const [currentUrl, setCurrentUrl] = useState("");
 
     useEffect(() => {
-        if (typeof window !== 'undefined') setCurrentUrl(window.location.href);
-    }, []);
+        if (typeof window !== 'undefined') {
+            setCurrentUrl(window.location.href);
+        }
+
+        trackEvent(FacilityEvents.VIEW, {
+            facility_id: data.id,
+            prefecture: data.prefecture || "",
+            city: data.cityName || "",
+        });
+    }, [data.id, data.prefecture, data.cityName]);
 
     const requestUrl = `/consult/request-material?templeId=${data.id}&templeName=${encodeURIComponent(data.name)}&ref=hero&refUrl=${encodeURIComponent(currentUrl)}`;
 
@@ -85,7 +94,7 @@ export function TempleHero({ data }: TempleHeroProps) {
                         {/* CTAs */}
                         <div className="flex flex-col sm:flex-row gap-4">
                             <div className="flex-1">
-                                <Link href={requestUrl}>
+                                <Link href={requestUrl} onClick={() => trackEvent(FacilityEvents.CTA_CLICK, { facility_id: data.id, cta_type: 'request' })}>
                                     <Button className="w-full text-lg shadow-card flex flex-col justify-center items-center leading-none gap-1">
                                         <div className="flex items-center gap-2">
                                             <FileText className="w-5 h-5" /> 無料で資料請求する
@@ -98,7 +107,7 @@ export function TempleHero({ data }: TempleHeroProps) {
                             </div>
 
                             <div className="flex-1">
-                                <Link href={requestUrl}>
+                                <Link href={requestUrl} onClick={() => trackEvent(FacilityEvents.CTA_CLICK, { facility_id: data.id, cta_type: 'consult' })}>
                                     <Button variant="secondary" className="w-full text-lg">
                                         <CalendarCheck className="w-5 h-5 mr-2" /> 見学・相談する
                                     </Button>

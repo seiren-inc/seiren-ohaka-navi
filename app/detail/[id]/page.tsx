@@ -1,5 +1,6 @@
 import { Store } from "@/lib/store";
 import { notFound } from "next/navigation";
+import { Metadata, ResolvingMetadata } from "next";
 import { Navbar } from "../../components/layout/Navbar";
 import { Footer } from "../../components/layout/Footer";
 import { TempleHero } from "../../components/features/temple/TempleHero";
@@ -13,7 +14,48 @@ import { TempleSuitable } from "../../components/features/temple/TempleSuitable"
 import { TempleGuide } from "../../components/features/temple/TempleGuide";
 import { TempleClosing } from "../../components/features/temple/TempleClosing";
 
-export default async function TempleDetailPage(props: { params: Promise<{ id: string }> }) {
+type Props = {
+    params: Promise<{ id: string }>;
+};
+
+export async function generateMetadata(
+    { params }: Props,
+    parent: ResolvingMetadata
+): Promise<Metadata> {
+    const id = (await params).id;
+    const temple = Store.getTemple(id);
+
+    if (!temple) {
+        return {
+            title: "ページが見つかりません | お墓探しナビ",
+        };
+    }
+
+    const title = temple.seo?.title || `${temple.name}の費用・見学予約 | お墓探しナビ`;
+    const description = temple.seo?.description || temple.catchphrase || `${temple.name}（${temple.prefecture}${temple.cityName}）のアクセス、費用、設備情報など。`;
+    const images = temple.mainImage ? [temple.mainImage] : [];
+
+    return {
+        title,
+        description,
+        openGraph: {
+            title,
+            description,
+            url: `https://ohakanavi.jp/detail/${temple.id}`,
+            siteName: "お墓探しナビ",
+            images,
+            type: "article",
+        },
+        twitter: {
+            card: "summary_large_image",
+            title,
+            description,
+            images,
+        },
+    };
+}
+
+export default async function TempleDetailPage(props: Props) {
     // Next.js 15+ params are async
     const params = await props.params;
     const temple = Store.getTemple(params.id);
