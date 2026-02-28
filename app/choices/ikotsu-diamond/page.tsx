@@ -66,7 +66,7 @@ export default function IkotsuDiamondPage() {
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
             <Navbar />
 
-            <main className="flex-grow pt-24 px-4 pb-20">
+            <main className="grow pt-24 px-4 pb-20">
                 <div className="max-w-4xl mx-auto">
 
                     {/* Header Section */}
@@ -344,7 +344,7 @@ export default function IkotsuDiamondPage() {
                                     </span>
                                     <h3 className="font-bold text-lg text-primary-dark">自宅供養全体を整理する</h3>
                                 </div>
-                                <p className="text-sm text-gray-500 text-center mb-6 flex-grow">
+                                <p className="text-sm text-gray-500 text-center mb-6 grow">
                                     ダイヤモンド以外にも、骨箱やペンダントなど、<br />
                                     手元に残す方法は他にもあります。
                                 </p>
@@ -363,7 +363,7 @@ export default function IkotsuDiamondPage() {
                                     </span>
                                     <h3 className="font-bold text-lg text-primary-dark">他の供養方法も比較する</h3>
                                 </div>
-                                <p className="text-sm text-gray-500 text-center mb-6 flex-grow">
+                                <p className="text-sm text-gray-500 text-center mb-6 grow">
                                     手元に残すだけでなく、<br />
                                     最終的な納骨先もあわせて検討したい方へ。
                                 </p>
@@ -385,7 +385,7 @@ export default function IkotsuDiamondPage() {
                                     </span>
                                     <h3 className="font-bold text-lg text-secondary">状況を整理して相談する</h3>
                                 </div>
-                                <p className="text-sm text-gray-500 text-center mb-6 flex-grow">
+                                <p className="text-sm text-gray-500 text-center mb-6 grow">
                                     ダイヤモンドの信頼できる業者は？など<br />
                                     個別のご質問にお答えします。<br />
                                     もちろん、無理に依頼する必要はありません。
@@ -415,7 +415,7 @@ export default function IkotsuDiamondPage() {
                             ].map((item, i) => (
                                 <div key={i} className="bg-gray-50 rounded-lg p-5">
                                     <h4 className="font-bold text-primary mb-2 flex flex-row items-center">
-                                        <span className="bg-secondary text-white text-xs font-bold px-2 py-1 rounded mr-3 flex-shrink-0">Q</span>
+                                        <span className="bg-secondary text-white text-xs font-bold px-2 py-1 rounded mr-3 shrink-0">Q</span>
                                         {item.q}
                                     </h4>
                                     <p className="text-sm text-gray-600 ml-10 leading-relaxed whitespace-pre-line">

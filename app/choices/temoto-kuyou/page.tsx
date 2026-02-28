@@ -66,7 +66,7 @@ export default function TemotoKuyouPage() {
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
             <Navbar />
 
-            <main className="flex-grow pt-24 px-4 pb-20">
+            <main className="grow pt-24 px-4 pb-20">
                 <div className="max-w-4xl mx-auto">
 
                     {/* Header Section */}
@@ -162,7 +162,7 @@ export default function TemotoKuyouPage() {
                         <div className="space-y-8">
                             {/* 骨箱・自宅安置 */}
                             <div className="flex flex-col md:flex-row gap-6 bg-gray-50 p-6 rounded-xl">
-                                <div className="flex-shrink-0 flex items-center justify-center w-16 h-16 bg-white rounded-full shadow-sm text-secondary">
+                                <div className="shrink-0 flex items-center justify-center w-16 h-16 bg-white rounded-full shadow-sm text-secondary">
                                     <Box className="w-8 h-8" />
                                 </div>
                                 <div>
@@ -181,7 +181,7 @@ export default function TemotoKuyouPage() {
 
                             {/* 手元供養（分骨・アクセサリー等） */}
                             <div className="flex flex-col md:flex-row gap-6 bg-gray-50 p-6 rounded-xl">
-                                <div className="flex-shrink-0 flex items-center justify-center w-16 h-16 bg-white rounded-full shadow-sm text-secondary">
+                                <div className="shrink-0 flex items-center justify-center w-16 h-16 bg-white rounded-full shadow-sm text-secondary">
                                     <HeartIcon className="w-8 h-8" />
                                 </div>
                                 <div>
@@ -200,7 +200,7 @@ export default function TemotoKuyouPage() {
 
                             {/* 遺骨ダイヤモンド */}
                             <div className="flex flex-col md:flex-row gap-6 bg-gray-50 p-6 rounded-xl border border-gray-200">
-                                <div className="flex-shrink-0 flex items-center justify-center w-16 h-16 bg-white rounded-full shadow-sm text-secondary">
+                                <div className="shrink-0 flex items-center justify-center w-16 h-16 bg-white rounded-full shadow-sm text-secondary">
                                     <Gem className="w-8 h-8" />
                                 </div>
                                 <div>
@@ -360,7 +360,7 @@ export default function TemotoKuyouPage() {
                                     </span>
                                     <h3 className="font-bold text-lg text-primary-dark">他の供養方法も比較する</h3>
                                 </div>
-                                <p className="text-sm text-gray-500 text-center mb-6 flex-grow">
+                                <p className="text-sm text-gray-500 text-center mb-6 grow">
                                     いずれは納骨も考えておきたい。<br />
                                     どのような選択肢があるのか改めて確認する方へ。
                                 </p>
@@ -379,7 +379,7 @@ export default function TemotoKuyouPage() {
                                     </span>
                                     <h3 className="font-bold text-lg text-primary-dark">納骨先（出口）を探しておく</h3>
                                 </div>
-                                <p className="text-sm text-gray-500 text-center mb-6 flex-grow">
+                                <p className="text-sm text-gray-500 text-center mb-6 grow">
                                     将来のために、どのような霊園やお墓があるのか、<br />
                                     近隣の情報を調べておきたい方へ。
                                 </p>
@@ -401,7 +401,7 @@ export default function TemotoKuyouPage() {
                                     </span>
                                     <h3 className="font-bold text-lg text-secondary">状況を整理して相談する</h3>
                                 </div>
-                                <p className="text-sm text-gray-500 text-center mb-6 flex-grow">
+                                <p className="text-sm text-gray-500 text-center mb-6 grow">
                                     「とりあえず自宅に置いているが、これでいいのか不安」<br />
                                     という方は、専門家にご相談ください。
                                 </p>
@@ -430,7 +430,7 @@ export default function TemotoKuyouPage() {
                             ].map((item, i) => (
                                 <div key={i} className="bg-gray-50 rounded-lg p-5">
                                     <h4 className="font-bold text-primary mb-2 flex flex-row items-center">
-                                        <span className="bg-secondary text-white text-xs font-bold px-2 py-1 rounded mr-3 flex-shrink-0">Q</span>
+                                        <span className="bg-secondary text-white text-xs font-bold px-2 py-1 rounded mr-3 shrink-0">Q</span>
                                         {item.q}
                                     </h4>
                                     <p className="text-sm text-gray-600 ml-10 leading-relaxed whitespace-pre-line">
