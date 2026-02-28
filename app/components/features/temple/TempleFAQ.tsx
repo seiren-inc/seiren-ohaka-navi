@@ -2,6 +2,7 @@
 
 import { ChevronDown, ChevronUp, HelpCircle } from "lucide-react";
 import { useState } from "react";
+import { FAQItem } from "../../ui/FAQItem";
 
 const FAQ_DATA = [
     { q: "見学は必須ですか？", a: "必須ではありませんが、実際の雰囲気や設備をご確認いただくことをおすすめしております。" },
@@ -13,7 +14,7 @@ const FAQ_DATA = [
 export function TempleFAQ() {
     return (
         <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6 md:p-8">
-            <h2 className="text-xl font-bold text-seiren-navy border-l-4 border-secondary pl-4 py-1 mb-6">
+            <h2 className="text-xl font-bold text-primary border-l-4 border-secondary pl-4 py-1 mb-6">
                 よくある質問
             </h2>
 
@@ -26,30 +27,6 @@ export function TempleFAQ() {
             <p className="text-right text-xs text-gray-400 mt-4">
                 ※ 詳細は資料請求にてご確認ください
             </p>
-        </div>
-    );
-}
-
-function FAQItem({ question, answer }: { question: string, answer: string }) {
-    const [isOpen, setIsOpen] = useState(false);
-    return (
-        <div className="border border-gray-200 rounded-lg overflow-hidden">
-            <button
-                onClick={() => setIsOpen(!isOpen)}
-                className="w-full flex items-center justify-between p-4 bg-gray-50 hover:bg-gray-100 transition-colors text-left"
-            >
-                <div className="flex items-center gap-3 font-bold text-gray-800 text-sm">
-                    <span className="text-primary font-serif italic text-lg">Q.</span>
-                    {question}
-                </div>
-                {isOpen ? <ChevronUp className="w-5 h-5 text-gray-400" /> : <ChevronDown className="w-5 h-5 text-gray-400" />}
-            </button>
-            {isOpen && (
-                <div className="p-4 bg-white text-gray-600 text-sm leading-relaxed border-t border-gray-100 flex gap-3">
-                    <span className="text-red-500 font-serif italic text-lg font-bold">A.</span>
-                    <div>{answer}</div>
-                </div>
-            )}
         </div>
     );
 }

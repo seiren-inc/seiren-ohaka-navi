@@ -30,7 +30,7 @@ export function PlanList({ plans, temple }: PlanListProps) {
 
     return (
         <div id="plans" className="space-y-6">
-            <h2 className="text-xl font-bold text-seiren-navy border-l-4 border-secondary pl-4 py-1">
+            <h2 className="text-xl font-bold text-primary border-l-4 border-secondary pl-4 py-1">
                 プラン・費用一覧
             </h2>
 
@@ -39,7 +39,7 @@ export function PlanList({ plans, temple }: PlanListProps) {
                     const requestUrl = `/consult/request-material?templeId=${temple.id}&templeName=${encodeURIComponent(temple.name)}&planId=${plan.id}&planName=${encodeURIComponent(plan.name)}&ref=plan_list&refUrl=${encodeURIComponent(currentUrl)}`;
 
                     return (
-                        <Card key={plan.id} className="flex flex-col h-full overflow-hidden border-t-4 border-t-seiren-navy p-0 bg-white shadow-sm">
+                        <Card key={plan.id} className="flex flex-col h-full overflow-hidden border-t-4 border-t-primary p-0 bg-white shadow-sm">
                             {/* Header / Name */}
                             <div className="p-5 border-b border-gray-100 flex justify-between items-start gap-4">
                                 <div>
@@ -65,7 +65,7 @@ export function PlanList({ plans, temple }: PlanListProps) {
                                     <div>
                                         <div className="text-xs font-bold text-gray-500 mb-1">販売価格</div>
                                         <div className="flex items-baseline gap-1">
-                                            <span className="text-2xl font-bold text-seiren-navy">{plan.price.toLocaleString()}</span>
+                                            <span className="text-2xl font-bold text-primary">{plan.price.toLocaleString()}</span>
                                             <span className="text-sm text-gray-600">円</span>
                                         </div>
                                     </div>

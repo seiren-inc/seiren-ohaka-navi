@@ -17,7 +17,7 @@ export default function PartnerPage() {
                 <div className="max-w-3xl mx-auto">
 
                     <div className="text-center mb-12">
-                        <h1 className="font-serif text-2xl md:text-3xl font-bold text-seiren-navy mb-6">
+                        <h1 className="font-serif text-2xl md:text-3xl font-bold text-primary mb-6">
                             提携をご希望の<br className="md:hidden" />寺院・事業者様へ
                         </h1>
                         <p className="text-gray-600 text-sm leading-loose">
@@ -27,7 +27,7 @@ export default function PartnerPage() {
                     </div>
 
                     <div className="bg-gray-50 p-8 rounded-xl mb-12">
-                        <h2 className="font-bold text-xl text-seiren-navy mb-4">掲載・提携の基準について</h2>
+                        <h2 className="font-bold text-xl text-primary mb-4">掲載・提携の基準について</h2>
                         <ul className="list-disc list-outside pl-5 space-y-3 text-gray-600 text-sm leading-relaxed">
                             <li>
                                 <strong>情報の開示性:</strong> 費用体系、契約内容、解約条件などを明確にご開示いただけること。
@@ -50,7 +50,7 @@ export default function PartnerPage() {
                             本フォームは法人・提携希望専用です。
                         </p>
                         <Link href="/partner/contact">
-                            <Button variant="primary" className="px-8 bg-seiren-navy text-white hover:bg-seiren-navy/90 h-14 text-lg font-bold shadow-lg">
+                            <Button variant="primary" className="px-8 bg-primary text-white hover:bg-primary/90 h-14 text-lg font-bold shadow-lg">
                                 提携・掲載のお問い合わせ
                             </Button>
                         </Link>

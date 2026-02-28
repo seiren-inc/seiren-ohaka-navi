@@ -35,7 +35,7 @@ export default function GuideGraveClosurePage() {
 
                     {/* H2: 墓じまいとは */}
                     <section className="mb-20">
-                        <h2 className="font-serif text-2xl font-bold text-seiren-navy border-b pb-4 mb-8 flex items-center">
+                        <h2 className="font-serif text-2xl font-bold text-primary border-b pb-4 mb-8 flex items-center">
                             <Info className="w-6 h-6 mr-3 text-secondary" />
                             墓じまいとは
                         </h2>
@@ -59,7 +59,7 @@ export default function GuideGraveClosurePage() {
 
                     {/* H2: 墓じまいを考える主な理由 */}
                     <section className="mb-20">
-                        <h2 className="font-serif text-2xl font-bold text-seiren-navy border-b pb-4 mb-8 flex items-center">
+                        <h2 className="font-serif text-2xl font-bold text-primary border-b pb-4 mb-8 flex items-center">
                             <CheckCircle className="w-6 h-6 mr-3 text-secondary" />
                             墓じまいを考える主な理由
                         </h2>
@@ -85,7 +85,7 @@ export default function GuideGraveClosurePage() {
 
                     {/* H2: 一般的な流れ */}
                     <section className="mb-20">
-                        <h2 className="font-serif text-2xl font-bold text-seiren-navy border-b pb-4 mb-8">
+                        <h2 className="font-serif text-2xl font-bold text-primary border-b pb-4 mb-8">
                             墓じまいの一般的な流れ
                         </h2>
                         <div className="space-y-6">
@@ -112,7 +112,7 @@ export default function GuideGraveClosurePage() {
 
                     {/* H2: 費用の目安 */}
                     <section className="mb-20">
-                        <h2 className="font-serif text-2xl font-bold text-seiren-navy border-b pb-4 mb-8">
+                        <h2 className="font-serif text-2xl font-bold text-primary border-b pb-4 mb-8">
                             墓じまいにかかる費用の目安
                         </h2>
                         <div className="bg-white border border-gray-200 rounded-xl overflow-hidden">
@@ -153,7 +153,7 @@ export default function GuideGraveClosurePage() {
 
                     {/* H2: 注意すべきポイント */}
                     <section className="mb-20">
-                        <h2 className="font-serif text-2xl font-bold text-seiren-navy border-b pb-4 mb-8 flex items-center">
+                        <h2 className="font-serif text-2xl font-bold text-primary border-b pb-4 mb-8 flex items-center">
                             <AlertCircle className="w-6 h-6 mr-3 text-secondary" />
                             墓じまいで注意すべきポイント
                         </h2>
@@ -202,7 +202,7 @@ export default function GuideGraveClosurePage() {
 
                     {/* H2: 墓じまいを一貫して任せられる体制について */}
                     <section className="mb-20">
-                        <h2 className="font-serif text-2xl font-bold text-seiren-navy border-b pb-4 mb-8 flex items-center">
+                        <h2 className="font-serif text-2xl font-bold text-primary border-b pb-4 mb-8 flex items-center">
                             <CheckCircle className="w-6 h-6 mr-3 text-secondary" />
                             墓じまいを一貫して任せられる体制について
                         </h2>
@@ -265,7 +265,7 @@ export default function GuideGraveClosurePage() {
 
                     {/* H2: 墓じまいを考えている方へ (CTA) */}
                     <section className="mt-20 text-center">
-                        <h2 className="font-serif text-2xl font-bold text-seiren-navy border-b pb-4 mb-10 inline-block px-12">
+                        <h2 className="font-serif text-2xl font-bold text-primary border-b pb-4 mb-10 inline-block px-12">
                             墓じまいを考えている方へ
                         </h2>
 

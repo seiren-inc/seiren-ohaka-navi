@@ -72,7 +72,7 @@ export default async function InquiryDetail(props: { params: Promise<{ id: strin
                                     <div className="text-xs text-gray-500 mb-1">希望プラン</div>
                                     <div className="flex items-center gap-2">
                                         {inquiry.context?.planName || inquiry.desiredPlanName ? (
-                                            <div className="text-lg font-bold text-seiren-navy bg-white px-3 py-1 rounded border border-blue-100 inline-block">
+                                            <div className="text-lg font-bold text-primary bg-white px-3 py-1 rounded border border-blue-100 inline-block">
                                                 {inquiry.context?.planName || inquiry.desiredPlanName}
                                             </div>
                                         ) : (

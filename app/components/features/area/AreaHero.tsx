@@ -33,7 +33,7 @@ export function AreaHero({ prefecture, city, count }: AreaHeroProps) {
             {/* Hero Content */}
             <div className="bg-blue-50 py-8 md:py-12">
                 <div className="max-w-7xl mx-auto px-4">
-                    <h1 className="text-2xl md:text-3xl font-bold text-seiren-navy font-serif mb-3">
+                    <h1 className="text-2xl md:text-3xl font-bold text-primary font-serif mb-3">
                         {title}
                     </h1>
                     <p className="text-sm text-gray-600 mb-4 max-w-3xl leading-relaxed">

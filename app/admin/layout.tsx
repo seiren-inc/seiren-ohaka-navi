@@ -1,5 +1,13 @@
 import Link from "next/link";
 import { LayoutDashboard, TentTree, MessageSquare, Settings } from "lucide-react";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+    title: "管理画面｜清蓮(Seiren)",
+    robots: {
+        index: false,
+    },
+};
 
 export default function AdminLayout({
     children,
@@ -9,7 +17,7 @@ export default function AdminLayout({
     return (
         <div className="flex h-screen bg-gray-100 font-sans">
             {/* Sidebar */}
-            <aside className="w-64 bg-seiren-navy text-white flex-shrink-0">
+            <aside className="w-64 bg-primary text-white flex-shrink-0">
                 <div className="p-6 border-b border-navy-700">
                     <h1 className="text-xl font-bold tracking-wider">SEIREN<br /><span className="text-sm font-normal opacity-70">Admin System</span></h1>
                 </div>

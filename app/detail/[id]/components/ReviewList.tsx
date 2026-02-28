@@ -18,7 +18,7 @@ export function ReviewList({ reviews }: ReviewListProps) {
                                 <User className="w-5 h-5 text-gray-400" />
                             </div>
                             <div>
-                                <p className="text-sm font-bold text-seiren-navy">{review.user}</p>
+                                <p className="text-sm font-bold text-primary">{review.user}</p>
                                 <div className="flex items-center">
                                     <div className="flex text-warm-gold mr-2">
                                         {[...Array(5)].map((_, i) => (
@@ -29,7 +29,7 @@ export function ReviewList({ reviews }: ReviewListProps) {
                                 </div>
                             </div>
                         </div>
-                        <div className="text-lg font-bold text-seiren-navy">{review.score}.0</div>
+                        <div className="text-lg font-bold text-primary">{review.score}.0</div>
                     </div>
 
                     <p className="text-sm text-gray-700 leading-loose mb-4">
@@ -48,7 +48,7 @@ export function ReviewList({ reviews }: ReviewListProps) {
                 </div>
             ))}
 
-            <button className="w-full py-3 text-sm text-seiren-navy font-bold border border-seiren-navy rounded-lg hover:bg-seiren-navy hover:text-white transition-colors">
+            <button className="w-full py-3 text-sm text-primary font-bold border border-primary rounded-lg hover:bg-primary hover:text-white transition-colors">
                 すべての口コミを見る
             </button>
         </div>

@@ -1,32 +1,57 @@
 @import "tailwindcss";
 
 @theme {
-  /* Primary: 深い青緑 */
-  --color-primary: #1e4c5f;
-  --color-primary-dark: #0f2e3a;
-  /* Secondary: 淡い真鍮 */
-  --color-secondary: #b89a5e;
-  --color-accent: #b6c970;
-  --color-tint: #aad0d6;
-  --color-bg: #f4f3f0;
-  --color-surface: #fafaf8;
+  /* =========================================
+     Doc-31 Revised Color System
+     ========================================= */
+  --color-primary: #1F3A5F;
+  --color-primary-hover: #162B4A;
+  --color-soft-teal: #4FA7A0;
+  --color-lotus-pink: #E8CFCF;
+  
+  --color-bg: #FFFFFF;
+  --color-bg-muted: #F7F8FA;
+  
+  --color-text: #111111;
+  --color-text-muted: #6B6B6B;
+  --color-border: #ECECEC;
+  --color-danger: #B00020;
 
-  /* Legacy Variable Mapping */
+  /* Legacy Variable Mapping (Backward Compatibility) */
   --color-seiren-navy: var(--color-primary);
-  --color-lotus-pink: var(--color-secondary);
-  --color-warm-gold: var(--color-secondary);
-  --color-safe-green: var(--color-accent);
-  --color-white-smoke: var(--color-bg);
-  --color-dark-grey: #333333;
+  --color-primary-dark: var(--color-primary-hover);
+  --color-secondary: var(--color-lotus-pink);
+  --color-accent: var(--color-soft-teal);
+  --color-accent-green: var(--color-soft-teal);
+  --color-accent-pink: var(--color-lotus-pink);
+  --color-warm-gold: var(--color-soft-teal);
+  --color-safe-green: var(--color-soft-teal);
+  --color-tint: var(--color-soft-teal);
+  --color-primary-soft: var(--color-soft-teal);
+  --color-white-smoke: var(--color-bg-muted);
+  --color-surface: var(--color-bg-muted);
+  --color-dark-grey: var(--color-text);
 
-  /* Fonts */
+  /* =========================================
+     Typography & Layout
+     ========================================= */
   --font-sans: var(--font-noto-sans-jp), sans-serif;
   --font-serif: var(--font-shippori-mincho), serif;
 
-  /* Animations */
-  --animate-fade-in: fade-in 0.5s ease-out forwards;
-  --animate-slide-up: slide-up 0.5s ease-out forwards;
-  --animate-fade-up: fade-up 0.28s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  /* Additional Layout Variables (Doc-27/31) */
+  --spacing-section-desktop: 96px;
+  --spacing-section-tablet: 72px;
+  --spacing-section-mobile: 56px;
+
+  /* Shadows (Doc-31) */
+  --shadow-card: 0 4px 16px rgba(0,0,0,0.06);
+  --shadow-card-hover: 0 8px 24px rgba(0,0,0,0.08);
+
+  /* =========================================
+     Animations & Motion (Doc-09)
+     ========================================= */
+  --animate-fade-in: fade-in 0.25s ease-out forwards;
+  --animate-slide-up: slide-up 0.25s ease-out forwards;
 
   @keyframes fade-in {
     from {
@@ -39,18 +64,7 @@
 
   @keyframes slide-up {
     from {
-      transform: translateY(20px);
-      opacity: 0;
-    }
-    to {
-      transform: translateY(0);
-      opacity: 1;
-    }
-  }
-
-  @keyframes fade-up {
-    from {
-      transform: translateY(16px);
+      transform: translateY(12px);
       opacity: 0;
     }
     to {
@@ -61,22 +75,13 @@
 }
 
 :root {
-  --background: #f4f3f0;
-  --foreground: #1a1a1a;
+  --background: #FFFFFF;
+  --foreground: #111111;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-sans);
-}
-
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-  }
+  line-height: 1.7;
 }

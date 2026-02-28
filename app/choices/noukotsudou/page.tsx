@@ -17,9 +17,9 @@ export default function NoukotsudouPage() {
             {
                 "@type": "BreadcrumbList",
                 "itemListElement": [
-                    { "@type": "ListItem", "position": 1, "name": "BEYOND GRAVE", "item": "https://beyond-grave.com/" },
-                    { "@type": "ListItem", "position": 2, "name": "Choices", "item": "https://beyond-grave.com/choices" },
-                    { "@type": "ListItem", "position": 3, "name": "納骨堂", "item": "https://beyond-grave.com/choices/noukotsudou" }
+                    { "@type": "ListItem", "position": 1, "name": "お墓探しナビ", "item": "https://ohakanavi.jp/" },
+                    { "@type": "ListItem", "position": 2, "name": "供養の選択肢", "item": "https://ohakanavi.jp/choices" },
+                    { "@type": "ListItem", "position": 3, "name": "納骨堂", "item": "https://ohakanavi.jp/choices/noukotsudou" }
                 ]
             },
             {
@@ -66,7 +66,7 @@ export default function NoukotsudouPage() {
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
             <Navbar />
 
-            <main className="flex-grow pt-24 px-4 pb-20">
+            <main className="grow pt-24 px-4 pb-20">
                 <div className="max-w-4xl mx-auto">
 
                     {/* Header Section */}
@@ -74,7 +74,7 @@ export default function NoukotsudouPage() {
                         <span className="text-secondary font-bold tracking-widest text-xs uppercase mb-4 block">
                             Ossuary / Charnel House
                         </span>
-                        <h1 className="font-serif text-2xl md:text-3xl lg:text-4xl font-bold text-seiren-navy mb-6 leading-relaxed">
+                        <h1 className="font-serif text-2xl md:text-3xl lg:text-4xl font-bold text-primary mb-6 leading-relaxed">
                             納骨堂とは<br />
                             <span className="text-lg md:text-2xl mt-2 block opacity-80">屋内型の供養方法を中立に解説</span>
                         </h1>
@@ -96,7 +96,7 @@ export default function NoukotsudouPage() {
 
                     {/* H2: 納骨堂とは何か */}
                     <section className="mb-20">
-                        <h2 className="font-serif text-2xl font-bold text-seiren-navy border-b pb-4 mb-8 flex items-center">
+                        <h2 className="font-serif text-2xl font-bold text-primary border-b pb-4 mb-8 flex items-center">
                             <Building className="w-6 h-6 mr-3 text-secondary" />
                             納骨堂とは何か
                         </h2>
@@ -117,14 +117,14 @@ export default function NoukotsudouPage() {
 
                     {/* H2: 納骨堂が選ばれる理由 */}
                     <section className="mb-20">
-                        <h2 className="font-serif text-2xl font-bold text-seiren-navy border-b pb-4 mb-8 flex items-center">
+                        <h2 className="font-serif text-2xl font-bold text-primary border-b pb-4 mb-8 flex items-center">
                             <CheckCircle className="w-6 h-6 mr-3 text-secondary" />
                             納骨堂が選ばれる理由
                         </h2>
                         <div className="bg-gray-50 border border-gray-100 rounded-xl p-8">
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                                 <div>
-                                    <h4 className="font-bold text-seiren-navy mb-3">参拝環境の快適さ</h4>
+                                    <h4 className="font-bold text-primary mb-3">参拝環境の快適さ</h4>
                                     <p className="text-sm text-gray-600 leading-loose">
                                         屋内にあるため、雨風や暑さ寒さを気にする必要がありません。<br />
                                         ご高齢の方でも身体的な負担が少なく、<br />
@@ -132,7 +132,7 @@ export default function NoukotsudouPage() {
                                     </p>
                                 </div>
                                 <div>
-                                    <h4 className="font-bold text-seiren-navy mb-3">アクセスの良い立地</h4>
+                                    <h4 className="font-bold text-primary mb-3">アクセスの良い立地</h4>
                                     <p className="text-sm text-gray-600 leading-loose">
                                         多くの納骨堂は駅の近くや市街地に建設されています。<br />
                                         「思い立った時にすぐ行ける」距離感は、<br />
@@ -140,7 +140,7 @@ export default function NoukotsudouPage() {
                                     </p>
                                 </div>
                                 <div>
-                                    <h4 className="font-bold text-seiren-navy mb-3">管理の手間が少ない</h4>
+                                    <h4 className="font-bold text-primary mb-3">管理の手間が少ない</h4>
                                     <p className="text-sm text-gray-600 leading-loose">
                                         墓石の掃除や草むしりをする必要がありません。<br />
                                         掃除用具を持っていく必要もなく、<br />
@@ -148,7 +148,7 @@ export default function NoukotsudouPage() {
                                     </p>
                                 </div>
                                 <div>
-                                    <h4 className="font-bold text-seiren-navy mb-3">継承の柔軟性</h4>
+                                    <h4 className="font-bold text-primary mb-3">継承の柔軟性</h4>
                                     <p className="text-sm text-gray-600 leading-loose">
                                         後継ぎ不要のプランから、家族で使えるプランまで幅広く、<br />
                                         「子供に負担をかけたくない」<br />
@@ -161,7 +161,7 @@ export default function NoukotsudouPage() {
 
                     {/* H2: 納骨堂の主な種類 */}
                     <section className="mb-20">
-                        <h2 className="font-serif text-2xl font-bold text-seiren-navy border-b pb-4 mb-8 flex items-center">
+                        <h2 className="font-serif text-2xl font-bold text-primary border-b pb-4 mb-8 flex items-center">
                             <Info className="w-6 h-6 mr-3 text-secondary" />
                             納骨堂の主な種類
                         </h2>
@@ -200,7 +200,7 @@ export default function NoukotsudouPage() {
 
                     {/* H2: 費用の考え方 */}
                     <section className="mb-20">
-                        <h2 className="font-serif text-2xl font-bold text-seiren-navy border-b pb-4 mb-8 flex items-center">
+                        <h2 className="font-serif text-2xl font-bold text-primary border-b pb-4 mb-8 flex items-center">
                             <Calculator className="w-6 h-6 mr-3 text-secondary" />
                             費用の考え方
                         </h2>
@@ -226,7 +226,7 @@ export default function NoukotsudouPage() {
                             </div>
 
                             <div className="space-y-4">
-                                <h4 className="font-bold text-seiren-navy">費用のポイント</h4>
+                                <h4 className="font-bold text-primary">費用のポイント</h4>
                                 <ul className="list-disc list-inside text-sm text-gray-600 leading-loose">
                                     <li>初期費用のほかに、年間管理費（1〜3万円程度）がかかるのが一般的です。</li>
                                     <li>契約期間（33年など）が終了した後は、追加費用なしで合祀されることが多いですが確認が必要です。</li>
@@ -238,7 +238,7 @@ export default function NoukotsudouPage() {
 
                     {/* H2: 納骨堂のメリットと注意点 */}
                     <section className="mb-20">
-                        <h2 className="font-serif text-2xl font-bold text-seiren-navy border-b pb-4 mb-8 flex items-center">
+                        <h2 className="font-serif text-2xl font-bold text-primary border-b pb-4 mb-8 flex items-center">
                             <AlertCircle className="w-6 h-6 mr-3 text-secondary" />
                             メリットと注意点
                         </h2>
@@ -307,7 +307,7 @@ export default function NoukotsudouPage() {
 
                     {/* H2: 他の供養方法との違い */}
                     <section className="mb-20">
-                        <h2 className="font-serif text-2xl font-bold text-seiren-navy border-b pb-4 mb-8 flex items-center">
+                        <h2 className="font-serif text-2xl font-bold text-primary border-b pb-4 mb-8 flex items-center">
                             <Search className="w-6 h-6 mr-3 text-secondary" />
                             他の供養方法との違い
                         </h2>
@@ -318,7 +318,7 @@ export default function NoukotsudouPage() {
 
                         <div className="space-y-6">
                             <div className="bg-white border border-gray-100 p-6 rounded-lg shadow-sm">
-                                <h3 className="font-bold text-seiren-navy mb-2">永代供養墓（屋外）との違い</h3>
+                                <h3 className="font-bold text-primary mb-2">永代供養墓（屋外）との違い</h3>
                                 <p className="text-sm text-gray-600 leading-loose">
                                     <Link href="/choices/eitai-kuyou" className="text-primary font-bold hover:underline">永代供養墓</Link>は屋外にあるため、空の下で開放的にお参りできます。<br />
                                     「土や自然の近くが良い」か「空調の効いた快適な室内が良い」か、<br />
@@ -326,7 +326,7 @@ export default function NoukotsudouPage() {
                                 </p>
                             </div>
                             <div className="bg-white border border-gray-100 p-6 rounded-lg shadow-sm">
-                                <h3 className="font-bold text-seiren-navy mb-2">樹木葬との違い</h3>
+                                <h3 className="font-bold text-primary mb-2">樹木葬との違い</h3>
                                 <p className="text-sm text-gray-600 leading-loose">
                                     <Link href="/choices/jumokusou" className="text-primary font-bold hover:underline">樹木葬</Link>は自然に還ることを主眼としていますが、<br />
                                     納骨堂は「遺骨をしっかり守る・保管する」場所です。<br />
@@ -334,7 +334,7 @@ export default function NoukotsudouPage() {
                                 </p>
                             </div>
                             <div className="bg-white border border-gray-100 p-6 rounded-lg shadow-sm">
-                                <h3 className="font-bold text-seiren-navy mb-2">海洋散骨・自宅供養との違い</h3>
+                                <h3 className="font-bold text-primary mb-2">海洋散骨・自宅供養との違い</h3>
                                 <p className="text-sm text-gray-600 leading-loose">
                                     <Link href="/choices/ctas" className="text-primary font-bold hover:underline">海洋散骨</Link>や<Link href="/choices/temoto-kuyou" className="text-primary font-bold hover:underline">自宅供養</Link>は、遺骨を「施設に預けない」方法です。<br />
                                     「どこかに出向いてお参りする場所」が必要かどうか、<br />
@@ -346,7 +346,7 @@ export default function NoukotsudouPage() {
 
                     {/* H2: 診断で納骨堂が候補に出た方へ */}
                     <section className="mb-20">
-                        <h2 className="font-serif text-2xl font-bold text-seiren-navy border-b pb-4 mb-8 flex items-center">
+                        <h2 className="font-serif text-2xl font-bold text-primary border-b pb-4 mb-8 flex items-center">
                             <Calculator className="w-6 h-6 mr-3 text-secondary" />
                             診断で「納骨堂」が候補に出た方へ
                         </h2>
@@ -368,7 +368,7 @@ export default function NoukotsudouPage() {
 
                     {/* H2: 迷った場合の次の行動 (CTA) */}
                     <section className="text-center">
-                        <h2 className="font-serif text-2xl font-bold text-seiren-navy border-b pb-4 mb-10 inline-block px-12">
+                        <h2 className="font-serif text-2xl font-bold text-primary border-b pb-4 mb-10 inline-block px-12">
                             迷った場合の次の行動
                         </h2>
 
@@ -381,7 +381,7 @@ export default function NoukotsudouPage() {
                                     </span>
                                     <h3 className="font-bold text-lg text-primary-dark">納骨堂を探してみる</h3>
                                 </div>
-                                <p className="text-sm text-gray-500 text-center mb-6 flex-grow">
+                                <p className="text-sm text-gray-500 text-center mb-6 grow">
                                     ご希望のエリアや予算条件から、<br />
                                     実際の納骨堂を検索できます。
                                 </p>
@@ -400,7 +400,7 @@ export default function NoukotsudouPage() {
                                     </span>
                                     <h3 className="font-bold text-lg text-primary-dark">他の供養方法も比較する</h3>
                                 </div>
-                                <p className="text-sm text-gray-500 text-center mb-6 flex-grow">
+                                <p className="text-sm text-gray-500 text-center mb-6 grow">
                                     やっぱり自然の近くがいいかも？など<br />
                                     他の選択肢とも比較してみたい方へ。
                                 </p>
@@ -422,7 +422,7 @@ export default function NoukotsudouPage() {
                                     </span>
                                     <h3 className="font-bold text-lg text-secondary">状況を整理して相談する</h3>
                                 </div>
-                                <p className="text-sm text-gray-500 text-center mb-6 flex-grow">
+                                <p className="text-sm text-gray-500 text-center mb-6 grow">
                                     決めきれなくて全く問題ありません。<br />
                                     まずは現在の状況を整理するところから始めませんか？
                                 </p>
@@ -437,7 +437,7 @@ export default function NoukotsudouPage() {
 
                     {/* FAQ */}
                     <section className="my-20">
-                        <h2 className="font-serif text-2xl font-bold text-seiren-navy border-b pb-4 mb-8 flex items-center">
+                        <h2 className="font-serif text-2xl font-bold text-primary border-b pb-4 mb-8 flex items-center">
                             <HelpCircle className="w-6 h-6 mr-3 text-secondary" />
                             よくある質問（FAQ）
                         </h2>
@@ -450,8 +450,8 @@ export default function NoukotsudouPage() {
                                 { q: "家族で参拝できる？", a: "もちろん可能です。\nただし、自動搬送型などは参拝ブースの数に限りがあるため、\nお盆やお彼岸などの混雑時には予約や待ち時間が必要なことがあります。" }
                             ].map((item, i) => (
                                 <div key={i} className="bg-gray-50 rounded-lg p-5">
-                                    <h4 className="font-bold text-seiren-navy mb-2 flex flex-row items-center">
-                                        <span className="bg-secondary text-white text-xs font-bold px-2 py-1 rounded mr-3 flex-shrink-0">Q</span>
+                                    <h4 className="font-bold text-primary mb-2 flex flex-row items-center">
+                                        <span className="bg-secondary text-white text-xs font-bold px-2 py-1 rounded mr-3 shrink-0">Q</span>
                                         {item.q}
                                     </h4>
                                     <p className="text-sm text-gray-600 ml-10 leading-relaxed whitespace-pre-line">

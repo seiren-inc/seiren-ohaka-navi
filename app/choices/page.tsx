@@ -15,7 +15,7 @@ export default function ChoicesHub() {
         <div className="min-h-screen flex flex-col bg-white text-gray-800">
             <Navbar />
 
-            <main className="flex-grow pt-24 px-4 pb-20">
+            <main className="grow pt-24 px-4 pb-20">
                 <div className="max-w-6xl mx-auto">
 
                     {/* Header Section */}
@@ -34,7 +34,7 @@ export default function ChoicesHub() {
 
                     {/* Diagnostic CTA Section */}
                     <section className="mb-24">
-                        <div className="bg-seiren-navy rounded-3xl p-8 md:p-12 text-center relative overflow-hidden shadow-xl">
+                        <div className="bg-primary rounded-3xl p-8 md:p-12 text-center relative overflow-hidden shadow-xl">
                             {/* Decorative element */}
                             <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full -translate-y-1/2 translate-x-1/2 blur-3xl pointer-events-none" />
 
@@ -48,7 +48,7 @@ export default function ChoicesHub() {
                             </p>
                             <div className="relative z-10">
                                 <Link href="/choices/diagnosis">
-                                    <Button size="lg" className="bg-white text-seiren-navy hover:bg-gray-100 border-none px-10 py-6 text-lg shadow-lg">
+                                    <Button size="lg" className="bg-white text-primary hover:bg-gray-100 border-none px-10 py-6 text-lg shadow-lg">
                                         診断チャートをスタートする <ArrowRight className="w-5 h-5 ml-2" />
                                     </Button>
                                 </Link>
@@ -58,7 +58,7 @@ export default function ChoicesHub() {
 
                     {/* H2: 主な供養の選択肢 */}
                     <section className="mb-24">
-                        <h2 className="font-serif text-2xl font-bold text-seiren-navy border-b pb-4 mb-10 text-center">
+                        <h2 className="font-serif text-2xl font-bold text-primary border-b pb-4 mb-10 text-center">
                             主な供養の選択肢
                         </h2>
 
@@ -199,12 +199,12 @@ export default function ChoicesHub() {
 
                     {/* H2: 供養方法の比較ポイント (Table) */}
                     <section className="mb-24">
-                        <h2 className="font-serif text-2xl font-bold text-seiren-navy border-b pb-4 mb-8 text-center">
+                        <h2 className="font-serif text-2xl font-bold text-primary border-b pb-4 mb-8 text-center">
                             供養方法の比較ポイント
                         </h2>
                         <div className="overflow-x-auto pb-4">
                             <table className="w-full text-sm text-left border-collapse min-w-[600px]">
-                                <thead className="bg-seiren-navy text-white">
+                                <thead className="bg-primary text-white">
                                     <tr>
                                         <th className="p-4 rounded-tl-lg">比較項目</th>
                                         <th className="p-4">一般墓</th>
@@ -274,7 +274,7 @@ export default function ChoicesHub() {
 
                     {/* H2: 迷ったら次にできること (CTA) */}
                     <section className="text-center">
-                        <h2 className="font-serif text-2xl font-bold text-seiren-navy border-b pb-4 mb-10 inline-block px-12">
+                        <h2 className="font-serif text-2xl font-bold text-primary border-b pb-4 mb-10 inline-block px-12">
                             迷ったら次にできること
                         </h2>
 
@@ -287,7 +287,7 @@ export default function ChoicesHub() {
                                     </span>
                                     <h3 className="font-bold text-lg text-primary-dark">供養の基礎から知る</h3>
                                 </div>
-                                <p className="text-sm text-gray-500 text-center mb-6 flex-grow">
+                                <p className="text-sm text-gray-500 text-center mb-6 grow">
                                     用語や仕組みがよく分からない場合は、基礎知識から確認してみましょう。
                                 </p>
                                 <Link href="/guide" className="w-full">
@@ -305,7 +305,7 @@ export default function ChoicesHub() {
                                     </span>
                                     <h3 className="font-bold text-lg text-primary-dark">条件から探してみる</h3>
                                 </div>
-                                <p className="text-sm text-gray-500 text-center mb-6 flex-grow">
+                                <p className="text-sm text-gray-500 text-center mb-6 grow">
                                     エリア、予算、こだわり条件などから、実際の候補地を検索できます。
                                 </p>
                                 <Link href="/search" className="w-full">
@@ -326,7 +326,7 @@ export default function ChoicesHub() {
                                     </span>
                                     <h3 className="font-bold text-lg text-secondary">一度整理してみる</h3>
                                 </div>
-                                <p className="text-sm text-gray-500 text-center mb-6 flex-grow">
+                                <p className="text-sm text-gray-500 text-center mb-6 grow">
                                     考えがまとまっていなくても大丈夫です。第三者に話すことで、頭の中が整理されます。
                                 </p>
                                 <Link href="/consult" className="w-full">

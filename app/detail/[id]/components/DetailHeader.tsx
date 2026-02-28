@@ -18,7 +18,7 @@ export function DetailHeader({ data }: DetailHeaderProps) {
             </div>
 
             {/* Title */}
-            <h1 className="font-serif text-2xl md:text-3xl font-bold text-seiren-navy mb-2">
+            <h1 className="font-serif text-2xl md:text-3xl font-bold text-primary mb-2">
                 {data.name}
             </h1>
             {data.ruby && (
@@ -33,7 +33,7 @@ export function DetailHeader({ data }: DetailHeaderProps) {
                             <Star key={i} className={`w-4 h-4 ${i < Math.floor(data.rating.score) ? 'fill-current' : 'text-gray-300'}`} />
                         ))}
                     </div>
-                    <span className="text-lg font-bold text-seiren-navy mr-1">{data.rating.score}</span>
+                    <span className="text-lg font-bold text-primary mr-1">{data.rating.score}</span>
                     <span className="text-xs text-gray-400">({data.rating.count}件)</span>
                 </div>
                 <div className="flex items-center text-sm text-gray-600">

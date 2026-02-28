@@ -7,6 +7,7 @@ import { Button } from "../../components/ui/Button";
 import { CheckCircle, Phone, Mail, ArrowDown, Calculator, Search, MapPin, Building, X } from "lucide-react";
 import Link from "next/link";
 import { cn } from "../../../lib/utils";
+import { trackEvent, FormEvents } from "@/lib/analytics/events";
 
 const PREFECTURES = [
     "北海道", "青森県", "岩手県", "宮城県", "秋田県", "山形県", "福島県",
@@ -31,6 +32,10 @@ type TempleCandidate = {
 };
 
 function GraveClosureConsultForm() {
+    useEffect(() => {
+        trackEvent(FormEvents.START, { form_type: 'grave_closure' });
+    }, []);
+
     // Basic Form Data
     const [formData, setFormData] = useState({
         name: "",
@@ -51,6 +56,11 @@ function GraveClosureConsultForm() {
         graveTempleCity: "",
         graveTempleAddressLine: "", // Street/Building
         graveTempleId: "",
+
+        areaPref: "",
+        areaCity: "",
+        newPref: "",
+        newCity: "",
 
         graveType: "不明", // 一般墓 | 納骨堂 | 不明
         hasNextPlace: "未定",
@@ -245,13 +255,16 @@ function GraveClosureConsultForm() {
             });
 
             if (res.ok) {
+                trackEvent(FormEvents.COMPLETE, { form_type: 'grave_closure' });
                 setIsSuccess(true);
                 window.scrollTo(0, 0);
             } else {
+                trackEvent(FormEvents.ERROR, { form_type: 'grave_closure', error_type: 'submit_failed' });
                 alert("送信に失敗しました。");
             }
         } catch (error) {
             console.error(error);
+            trackEvent(FormEvents.ERROR, { form_type: 'grave_closure', error_type: 'submit_error' });
             alert("エラーが発生しました。");
         } finally {
             setIsSubmitting(false);
@@ -290,7 +303,7 @@ function GraveClosureConsultForm() {
                 </p>
             </div>
 
-            <main className="flex-grow container mx-auto px-4 py-12 max-w-4xl">
+            <main className="grow container mx-auto px-4 py-12 max-w-4xl">
 
                 {/* 3 Reassurances */}
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
@@ -559,25 +572,38 @@ function GraveClosureConsultForm() {
                             </div>
                         </div>
 
+                        <div className="space-y-4">
+                            <label className="flex items-center text-sm font-bold text-gray-700 mb-2">現在のお墓がある場所 <span className="bg-red-500 text-white text-[10px] px-2 py-0.5 rounded-sm ml-2 font-normal">必須</span></label>
+                            <div className="grid grid-cols-2 gap-4">
+                                <input type="text" name="areaPref" className="w-full h-12 px-4 border rounded-lg focus:border-primary focus:ring-1 focus:ring-primary" placeholder="都道府県 (例: 静岡県)" value={formData.areaPref} onChange={handleChange} required />
+                                <input type="text" name="areaCity" className="w-full h-12 px-4 border rounded-lg focus:border-primary focus:ring-1 focus:ring-primary" placeholder="市区町村 (例: 沼津市)" value={formData.areaCity} onChange={handleChange} required />
+                            </div>
+                        </div>
+                        <div className="space-y-4">
+                            <label className="flex items-center text-sm font-bold text-gray-700 mb-2">新しい供養先の希望エリア <span className="bg-gray-200 text-gray-600 text-[10px] px-2 py-0.5 rounded-sm ml-2 font-normal">任意</span></label>
+                            <div className="grid grid-cols-2 gap-4">
+                                <input type="text" name="newPref" className="w-full h-12 px-4 border rounded-lg focus:border-primary focus:ring-1 focus:ring-primary" placeholder="都道府県 (例: 東京都)" value={formData.newPref} onChange={handleChange} />
+                                <input type="text" name="newCity" className="w-full h-12 px-4 border rounded-lg focus:border-primary focus:ring-1 focus:ring-primary" placeholder="市区町村 (例: 港区)" value={formData.newCity} onChange={handleChange} />
+                            </div>
+                        </div>
+
                         <div className="space-y-2">
-                            <label className="block text-sm font-bold text-gray-700">その他・ご詳細</label>
+                            <label className="flex items-center text-sm font-bold text-gray-700">その他・ご詳細 <span className="bg-gray-200 text-gray-600 text-[10px] px-2 py-0.5 rounded-sm ml-2 font-normal">任意</span></label>
                             <textarea name="message" className="w-full h-32 p-4 border rounded-lg" placeholder="お墓の場所（山の上、階段があるなど）や、具体的なご事情があればご記入ください" value={formData.message} onChange={handleChange} />
                         </div>
                     </section>
 
                     {/* Updated Submit Button */}
-                    <div className="text-center pt-4">
-                        <Button
-                            type="submit"
-                            size="lg"
-                            className="w-full sm:w-2/3 py-6 text-lg font-bold shadow-xl shadow-primary/20 bg-primary hover:bg-primary-dark text-white rounded-full transition-all hover:scale-105"
-                            disabled={isSubmitting}
-                        >
-                            {isSubmitting ? "送信中..." : "上記の内容で無料相談する"}
+                    <div className="text-center pt-8 border-t border-gray-100">
+                        <Button type="submit" size="lg" className="w-full sm:w-2/3 py-4 h-auto text-lg shadow-md font-bold transition-transform active:scale-[0.98]" disabled={isSubmitting}>
+                            {isSubmitting ? "送信中..." : "無料で相談する"}
                         </Button>
-                        <p className="text-xs text-gray-400 mt-4">
-                            個人情報は厳重に管理し、許可なく第三者に提供することはありません。
-                        </p>
+                        <div className="mt-6 text-center">
+                            <p className="text-xs font-bold text-gray-600 flex items-center justify-center gap-1">
+                                <span role="img" aria-label="lock">🔒</span> ご入力いただいた情報はSSL暗号化通信で安全に送信されます
+                            </p>
+                            <p className="text-[11px] text-gray-500 mt-2">※無理な営業電話等は一切行いませんので、安心してご相談ください。</p>
+                        </div>
                     </div>
                 </form>
 

@@ -143,7 +143,7 @@ export const GalleryUploader = ({ images = [], onChange, folder = "gallery", lab
 
                 {/* Adding Placeholder (Always visible at end or if empty) */}
                 <div
-                    className="aspect-video bg-gray-50 border-2 border-dashed border-gray-300 rounded-lg flex flex-col items-center justify-center cursor-pointer hover:bg-white hover:border-seiren-navy transition-all text-gray-400 hover:text-seiren-navy"
+                    className="aspect-video bg-gray-50 border-2 border-dashed border-gray-300 rounded-lg flex flex-col items-center justify-center cursor-pointer hover:bg-white hover:border-primary transition-all text-gray-400 hover:text-primary"
                     onClick={() => inputRef.current?.click()}
                 >
                     {isUploading ? (

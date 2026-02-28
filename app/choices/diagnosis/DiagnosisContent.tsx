@@ -15,7 +15,7 @@ export function DiagnosisContent() {
         <div className="min-h-screen flex flex-col bg-slate-50 text-gray-800">
             <Navbar />
 
-            <main className="flex-grow pt-24 px-4 pb-20">
+            <main className="grow pt-24 px-4 pb-20">
                 <div className="max-w-6xl mx-auto">
 
                     {/* Header Section */}
@@ -42,7 +42,7 @@ export function DiagnosisContent() {
 
                         {/* 診断でわかること */}
                         <section>
-                            <h2 className="font-serif text-2xl font-bold text-seiren-navy border-b pb-4 mb-8">
+                            <h2 className="font-serif text-2xl font-bold text-primary border-b pb-4 mb-8">
                                 この診断で分かること
                             </h2>
                             <p className="text-gray-700 leading-loose mb-6">
@@ -74,7 +74,7 @@ export function DiagnosisContent() {
 
                         {/* 質問の意図と判断軸 */}
                         <section>
-                            <h2 className="font-serif text-2xl font-bold text-seiren-navy border-b pb-4 mb-8">
+                            <h2 className="font-serif text-2xl font-bold text-primary border-b pb-4 mb-8">
                                 5つの質問の意図と判断軸
                             </h2>
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -108,7 +108,7 @@ export function DiagnosisContent() {
 
                         {/* FAQ */}
                         <section>
-                            <h2 className="font-serif text-2xl font-bold text-seiren-navy border-b pb-4 mb-8">
+                            <h2 className="font-serif text-2xl font-bold text-primary border-b pb-4 mb-8">
                                 よくある質問（FAQ）
                             </h2>
                             <div className="space-y-4">
@@ -154,7 +154,7 @@ export function DiagnosisContent() {
 
                     {/* Next Actions */}
                     <section className="text-center border-t border-gray-200 pt-16">
-                        <h2 className="font-serif text-2xl font-bold text-seiren-navy pb-4 mb-10 inline-block px-12">
+                        <h2 className="font-serif text-2xl font-bold text-primary pb-4 mb-10 inline-block px-12">
                             迷ったら次にできること
                         </h2>
 
@@ -167,7 +167,7 @@ export function DiagnosisContent() {
                                     </span>
                                     <h3 className="font-bold text-lg text-primary-dark">供養の基礎から知る</h3>
                                 </div>
-                                <p className="text-sm text-gray-500 text-center mb-6 flex-grow">
+                                <p className="text-sm text-gray-500 text-center mb-6 grow">
                                     「そもそも用語がわからない」「基礎知識を確認したい」という方はガイドページへ。
                                 </p>
                                 <Link href="/guide/grave-basics" className="w-full">
@@ -185,7 +185,7 @@ export function DiagnosisContent() {
                                     </span>
                                     <h3 className="font-bold text-lg text-primary-dark">条件から探してみる</h3>
                                 </div>
-                                <p className="text-sm text-gray-500 text-center mb-6 flex-grow">
+                                <p className="text-sm text-gray-500 text-center mb-6 grow">
                                     エリアや予算、「ペットと入れる」などの条件から、具体的な候補地を検索できます。
                                 </p>
                                 <Link href="/search" className="w-full">
@@ -206,7 +206,7 @@ export function DiagnosisContent() {
                                     </span>
                                     <h3 className="font-bold text-lg text-secondary">迷ったら相談する</h3>
                                 </div>
-                                <p className="text-sm text-gray-500 text-center mb-6 flex-grow">
+                                <p className="text-sm text-gray-500 text-center mb-6 grow">
                                     診断結果を見ても迷う場合や、個別の事情がある場合は、専門家に直接相談できます。
                                 </p>
                                 <div className="w-full">

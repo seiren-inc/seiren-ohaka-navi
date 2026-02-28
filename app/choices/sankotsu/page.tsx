@@ -17,9 +17,9 @@ export default function SankotsuPage() {
             {
                 "@type": "BreadcrumbList",
                 "itemListElement": [
-                    { "@type": "ListItem", "position": 1, "name": "BEYOND GRAVE", "item": "https://beyond-grave.com/" },
-                    { "@type": "ListItem", "position": 2, "name": "Choices", "item": "https://beyond-grave.com/choices" },
-                    { "@type": "ListItem", "position": 3, "name": "海洋散骨", "item": "https://beyond-grave.com/choices/sankotsu" }
+                    { "@type": "ListItem", "position": 1, "name": "お墓探しナビ", "item": "https://ohakanavi.jp/" },
+                    { "@type": "ListItem", "position": 2, "name": "供養の選択肢", "item": "https://ohakanavi.jp/choices" },
+                    { "@type": "ListItem", "position": 3, "name": "海洋散骨", "item": "https://ohakanavi.jp/choices/sankotsu" }
                 ]
             },
             {
@@ -66,7 +66,7 @@ export default function SankotsuPage() {
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
             <Navbar />
 
-            <main className="flex-grow pt-24 px-4 pb-20">
+            <main className="grow pt-24 px-4 pb-20">
                 <div className="max-w-4xl mx-auto">
 
                     {/* Header Section */}
@@ -74,7 +74,7 @@ export default function SankotsuPage() {
                         <span className="text-secondary font-bold tracking-widest text-xs uppercase mb-4 block">
                             Marine Scattering
                         </span>
-                        <h1 className="font-serif text-2xl md:text-3xl lg:text-4xl font-bold text-seiren-navy mb-6 leading-relaxed">
+                        <h1 className="font-serif text-2xl md:text-3xl lg:text-4xl font-bold text-primary mb-6 leading-relaxed">
                             海洋散骨とは<br />
                             <span className="text-lg md:text-2xl mt-2 block opacity-80">仕組みと注意点を中立に解説</span>
                         </h1>
@@ -97,7 +97,7 @@ export default function SankotsuPage() {
 
                     {/* H2: 海洋散骨とは何か */}
                     <section className="mb-20">
-                        <h2 className="font-serif text-2xl font-bold text-seiren-navy border-b pb-4 mb-8 flex items-center">
+                        <h2 className="font-serif text-2xl font-bold text-primary border-b pb-4 mb-8 flex items-center">
                             <Waves className="w-6 h-6 mr-3 text-secondary" />
                             海洋散骨とは何か
                         </h2>
@@ -116,7 +116,7 @@ export default function SankotsuPage() {
 
                     {/* H2: 海洋散骨が向きやすいケース */}
                     <section className="mb-20">
-                        <h2 className="font-serif text-2xl font-bold text-seiren-navy border-b pb-4 mb-8 flex items-center">
+                        <h2 className="font-serif text-2xl font-bold text-primary border-b pb-4 mb-8 flex items-center">
                             <CheckCircle className="w-6 h-6 mr-3 text-secondary" />
                             海洋散骨が向きやすいケース
                         </h2>
@@ -152,14 +152,14 @@ export default function SankotsuPage() {
 
                     {/* H2: 向かない可能性があるケース */}
                     <section className="mb-20">
-                        <h2 className="font-serif text-2xl font-bold text-seiren-navy border-b pb-4 mb-8 flex items-center">
+                        <h2 className="font-serif text-2xl font-bold text-primary border-b pb-4 mb-8 flex items-center">
                             <AlertCircle className="w-6 h-6 mr-3 text-gray-500" />
                             向かない可能性があるケース
                         </h2>
                         <div className="bg-gray-50 rounded-xl p-8">
                             <ul className="space-y-6">
                                 <li className="flex items-start">
-                                    <span className="text-gray-400 mr-3 flex-shrink-0 mt-1">●</span>
+                                    <span className="text-gray-400 mr-3 shrink-0 mt-1">●</span>
                                     <div>
                                         <h3 className="font-bold text-gray-700 mb-1">手を合わせる「場所」が必要な場合</h3>
                                         <p className="text-sm text-gray-600 leading-loose">
@@ -170,7 +170,7 @@ export default function SankotsuPage() {
                                     </div>
                                 </li>
                                 <li className="flex items-start">
-                                    <span className="text-gray-400 mr-3 flex-shrink-0 mt-1">●</span>
+                                    <span className="text-gray-400 mr-3 shrink-0 mt-1">●</span>
                                     <div>
                                         <h3 className="font-bold text-gray-700 mb-1">親族間の合意形成が難しい場合</h3>
                                         <p className="text-sm text-gray-600 leading-loose">
@@ -181,7 +181,7 @@ export default function SankotsuPage() {
                                     </div>
                                 </li>
                                 <li className="flex items-start">
-                                    <span className="text-gray-400 mr-3 flex-shrink-0 mt-1">●</span>
+                                    <span className="text-gray-400 mr-3 shrink-0 mt-1">●</span>
                                     <div>
                                         <h3 className="font-bold text-gray-700 mb-1">後から遺骨を取り出したくなる可能性がある場合</h3>
                                         <p className="text-sm text-gray-600 leading-loose">
@@ -197,7 +197,7 @@ export default function SankotsuPage() {
 
                     {/* H2: 実施方法の種類 */}
                     <section className="mb-20">
-                        <h2 className="font-serif text-2xl font-bold text-seiren-navy border-b pb-4 mb-8 flex items-center">
+                        <h2 className="font-serif text-2xl font-bold text-primary border-b pb-4 mb-8 flex items-center">
                             <Ship className="w-6 h-6 mr-3 text-secondary" />
                             実施方法の種類
                         </h2>
@@ -236,7 +236,7 @@ export default function SankotsuPage() {
 
                     {/* H2: 費用の考え方 */}
                     <section className="mb-20">
-                        <h2 className="font-serif text-2xl font-bold text-seiren-navy border-b pb-4 mb-8 flex items-center">
+                        <h2 className="font-serif text-2xl font-bold text-primary border-b pb-4 mb-8 flex items-center">
                             <Calculator className="w-6 h-6 mr-3 text-secondary" />
                             費用の考え方
                         </h2>
@@ -261,7 +261,7 @@ export default function SankotsuPage() {
                             </div>
 
                             <div className="space-y-4">
-                                <h4 className="font-bold text-seiren-navy">価格差が出る主な要因</h4>
+                                <h4 className="font-bold text-primary">価格差が出る主な要因</h4>
                                 <ul className="list-disc list-inside text-sm text-gray-600 leading-loose">
                                     <li>使用するクルーザーの大きさやグレード</li>
                                     <li>乗船人数（人数が増えると追加料金がかかる場合がある）</li>
@@ -274,13 +274,13 @@ export default function SankotsuPage() {
 
                     {/* H2: 注意点と確認事項 */}
                     <section className="mb-20">
-                        <h2 className="font-serif text-2xl font-bold text-seiren-navy border-b pb-4 mb-8 flex items-center">
+                        <h2 className="font-serif text-2xl font-bold text-primary border-b pb-4 mb-8 flex items-center">
                             <AlertCircle className="w-6 h-6 mr-3 text-secondary" />
                             注意点と確認事項
                         </h2>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                             <div>
-                                <h3 className="font-bold text-seiren-navy mb-3">粉骨（ふんこつ）の必要性</h3>
+                                <h3 className="font-bold text-primary mb-3">粉骨（ふんこつ）の必要性</h3>
                                 <p className="text-sm text-gray-600 leading-loose mb-4">
                                     遺骨をそのままの形で撒くことは、「遺骨遺棄」と誤解される恐れがあるため厳禁です。<br />
                                     必ずパウダー状（2mm以下）に粉骨する必要があります。<br />
@@ -288,7 +288,7 @@ export default function SankotsuPage() {
                                 </p>
                             </div>
                             <div>
-                                <h3 className="font-bold text-seiren-navy mb-3">法令とマナーの遵守</h3>
+                                <h3 className="font-bold text-primary mb-3">法令とマナーの遵守</h3>
                                 <p className="text-sm text-gray-600 leading-loose mb-4">
                                     海水浴場の近くや漁場の近くでの散骨は、風評被害を防ぐために避けなければなりません。<br />
                                     「陸地から〇km以上離れる」といった業界のガイドラインや、<br />
@@ -296,7 +296,7 @@ export default function SankotsuPage() {
                                 </p>
                             </div>
                             <div>
-                                <h3 className="font-bold text-seiren-navy mb-3">服装への配慮</h3>
+                                <h3 className="font-bold text-primary mb-3">服装への配慮</h3>
                                 <p className="text-sm text-gray-600 leading-loose mb-4">
                                     乗船場所（桟橋）までは公共の場を通るため、<br />
                                     喪服ではなく「平服（動きやすい服装）」での参加を推奨する業者が多いです。<br />
@@ -304,7 +304,7 @@ export default function SankotsuPage() {
                                 </p>
                             </div>
                             <div>
-                                <h3 className="font-bold text-seiren-navy mb-3">家族・親族の合意</h3>
+                                <h3 className="font-bold text-primary mb-3">家族・親族の合意</h3>
                                 <p className="text-sm text-gray-600 leading-loose mb-4">
                                     最もトラブルになりやすい点です。<br />
                                     たとえ故人の遺言であっても、残された家族が納得していないと、後のしこりになります。<br />
@@ -316,7 +316,7 @@ export default function SankotsuPage() {
 
                     {/* H2: 他の供養方法との違い */}
                     <section className="mb-20">
-                        <h2 className="font-serif text-2xl font-bold text-seiren-navy border-b pb-4 mb-8 flex items-center">
+                        <h2 className="font-serif text-2xl font-bold text-primary border-b pb-4 mb-8 flex items-center">
                             <Search className="w-6 h-6 mr-3 text-secondary" />
                             他の供養方法との違い
                         </h2>
@@ -327,7 +327,7 @@ export default function SankotsuPage() {
 
                         <div className="space-y-6">
                             <div className="bg-white border border-gray-100 p-6 rounded-lg shadow-sm">
-                                <h3 className="font-bold text-seiren-navy mb-2">樹木葬との違い</h3>
+                                <h3 className="font-bold text-primary mb-2">樹木葬との違い</h3>
                                 <p className="text-sm text-gray-600 leading-loose">
                                     <Link href="/choices/jumokusou" className="text-primary font-bold hover:underline">樹木葬</Link>も自然志向ですが、手を合わせる場所（木や花）があります。<br />
                                     「自然に還したいが、お参りに行く場所も欲しい」という場合は樹木葬、<br />
@@ -335,7 +335,7 @@ export default function SankotsuPage() {
                                 </p>
                             </div>
                             <div className="bg-white border border-gray-100 p-6 rounded-lg shadow-sm">
-                                <h3 className="font-bold text-seiren-navy mb-2">永代供養墓・納骨堂との違い</h3>
+                                <h3 className="font-bold text-primary mb-2">永代供養墓・納骨堂との違い</h3>
                                 <p className="text-sm text-gray-600 leading-loose">
                                     <Link href="/choices/eitai-kuyou" className="text-primary font-bold hover:underline">永代供養墓</Link>や<Link href="/choices/noukotsudou" className="text-primary font-bold hover:underline">納骨堂</Link>は、遺骨を「保管・管理」する場所です。<br />
                                     散骨は「撤去・完了」させる行為に近いため、<br />
@@ -343,7 +343,7 @@ export default function SankotsuPage() {
                                 </p>
                             </div>
                             <div className="bg-white border border-gray-100 p-6 rounded-lg shadow-sm">
-                                <h3 className="font-bold text-seiren-navy mb-2">自宅供養（手元供養）との関係</h3>
+                                <h3 className="font-bold text-primary mb-2">自宅供養（手元供養）との関係</h3>
                                 <p className="text-sm text-gray-600 leading-loose">
                                     多くのケースで、散骨と<Link href="/choices/temoto-kuyou" className="text-primary font-bold hover:underline">自宅供養</Link>はセットで検討されます。<br />
                                     遺骨の大部分は散骨し、少しだけ手元に残す。<br />
@@ -355,7 +355,7 @@ export default function SankotsuPage() {
 
                     {/* H2: 診断で海洋散骨が候補に出た方へ */}
                     <section className="mb-20">
-                        <h2 className="font-serif text-2xl font-bold text-seiren-navy border-b pb-4 mb-8 flex items-center">
+                        <h2 className="font-serif text-2xl font-bold text-primary border-b pb-4 mb-8 flex items-center">
                             <Calculator className="w-6 h-6 mr-3 text-secondary" />
                             診断で「海洋散骨」が候補に出た方へ
                         </h2>
@@ -376,7 +376,7 @@ export default function SankotsuPage() {
 
                     {/* H2: 迷った場合の次の行動 (CTA) */}
                     <section className="text-center">
-                        <h2 className="font-serif text-2xl font-bold text-seiren-navy border-b pb-4 mb-10 inline-block px-12">
+                        <h2 className="font-serif text-2xl font-bold text-primary border-b pb-4 mb-10 inline-block px-12">
                             迷った場合の次の行動
                         </h2>
 
@@ -389,7 +389,7 @@ export default function SankotsuPage() {
                                     </span>
                                     <h3 className="font-bold text-lg text-primary-dark">散骨業者を探してみる</h3>
                                 </div>
-                                <p className="text-sm text-gray-500 text-center mb-6 flex-grow">
+                                <p className="text-sm text-gray-500 text-center mb-6 grow">
                                     信頼できる海洋散骨の専門業者や、<br />
                                     実施プランを検索できます。
                                 </p>
@@ -408,7 +408,7 @@ export default function SankotsuPage() {
                                     </span>
                                     <h3 className="font-bold text-lg text-primary-dark">他の供養方法も比較する</h3>
                                 </div>
-                                <p className="text-sm text-gray-500 text-center mb-6 flex-grow">
+                                <p className="text-sm text-gray-500 text-center mb-6 grow">
                                     やっぱりお墓があったほうがいいかも？など<br />
                                     他の選択肢とも比較してみたい方へ。
                                 </p>
@@ -430,7 +430,7 @@ export default function SankotsuPage() {
                                     </span>
                                     <h3 className="font-bold text-lg text-secondary">状況を整理して相談する</h3>
                                 </div>
-                                <p className="text-sm text-gray-500 text-center mb-6 flex-grow">
+                                <p className="text-sm text-gray-500 text-center mb-6 grow">
                                     家族の説得に迷っている、粉骨だけ頼める？など<br />
                                     個別の事情に合わせて専門家がアドバイスします。
                                 </p>
@@ -445,7 +445,7 @@ export default function SankotsuPage() {
 
                     {/* FAQ */}
                     <section className="my-20">
-                        <h2 className="font-serif text-2xl font-bold text-seiren-navy border-b pb-4 mb-8 flex items-center">
+                        <h2 className="font-serif text-2xl font-bold text-primary border-b pb-4 mb-8 flex items-center">
                             <HelpCircle className="w-6 h-6 mr-3 text-secondary" />
                             よくある質問（FAQ）
                         </h2>
@@ -458,8 +458,8 @@ export default function SankotsuPage() {
                                 { q: "証明書は出る？", a: "多くの専門業者では、実施後に「散骨証明書」を発行しています。\n緯度経度や日時が記載されており、実施した記録として手元に残すことができます。" }
                             ].map((item, i) => (
                                 <div key={i} className="bg-gray-50 rounded-lg p-5">
-                                    <h4 className="font-bold text-seiren-navy mb-2 flex flex-row items-center">
-                                        <span className="bg-secondary text-white text-xs font-bold px-2 py-1 rounded mr-3 flex-shrink-0">Q</span>
+                                    <h4 className="font-bold text-primary mb-2 flex flex-row items-center">
+                                        <span className="bg-secondary text-white text-xs font-bold px-2 py-1 rounded mr-3 shrink-0">Q</span>
                                         {item.q}
                                     </h4>
                                     <p className="text-sm text-gray-600 ml-10 leading-relaxed whitespace-pre-line">

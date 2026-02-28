@@ -2,6 +2,7 @@
 
 import { Temple } from "@/lib/store";
 import { Image as ImageIcon } from "lucide-react";
+import Image from "next/image";
 
 interface TempleGalleryProps {
     gallery: string[];
@@ -14,7 +15,7 @@ export function TempleGallery({ gallery }: TempleGalleryProps) {
 
     return (
         <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6 md:p-8">
-            <h2 className="text-xl font-bold text-seiren-navy border-l-4 border-secondary pl-4 py-1 mb-6">
+            <h2 className="text-xl font-bold text-primary border-l-4 border-secondary pl-4 py-1 mb-6">
                 写真ギャラリー
             </h2>
 
@@ -23,10 +24,12 @@ export function TempleGallery({ gallery }: TempleGalleryProps) {
                     <div key={i} className="flex flex-col gap-2">
                         <div className="aspect-video bg-gray-100 rounded-lg overflow-hidden relative group border border-gray-200">
                             {src ? (
-                                <img
+                                <Image
                                     src={src}
                                     alt={`Gallery ${i + 1}`}
-                                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                                    fill
+                                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                                    sizes="(max-width: 768px) 50vw, 25vw"
                                 />
                             ) : (
                                 <div className="w-full h-full flex flex-col items-center justify-center text-gray-300">
