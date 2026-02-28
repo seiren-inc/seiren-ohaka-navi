@@ -18,9 +18,9 @@ export default function GuideGraveBasicsPage() {
             {
                 "@type": "BreadcrumbList",
                 "itemListElement": [
-                    { "@type": "ListItem", "position": 1, "name": "BEYOND GRAVE", "item": "https://beyond-grave.com/" },
-                    { "@type": "ListItem", "position": 2, "name": "Guide", "item": "https://beyond-grave.com/guide" },
-                    { "@type": "ListItem", "position": 3, "name": "お墓の基礎知識", "item": "https://beyond-grave.com/guide/grave-basics" }
+                    { "@type": "ListItem", "position": 1, "name": "お墓探しナビ", "item": "https://ohakanavi.jp/" },
+                    { "@type": "ListItem", "position": 2, "name": "基礎知識", "item": "https://ohakanavi.jp/guide" },
+                    { "@type": "ListItem", "position": 3, "name": "お墓の基礎知識", "item": "https://ohakanavi.jp/guide/grave-basics" }
                 ]
             },
             {
