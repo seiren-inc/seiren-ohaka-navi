@@ -1,17 +1,22 @@
 "use client";
 
-import { useState, Suspense } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import { Navbar } from "../../components/layout/Navbar";
 import { Footer } from "../../components/layout/Footer";
 import { Button } from "../../components/ui/Button";
 import Link from "next/link";
 import { CheckCircle, Phone, Mail, FileText, ArrowDown } from "lucide-react";
+import { trackEvent, FormEvents } from "@/lib/analytics/events";
 
 function GraveSearchConsultForm() {
     const searchParams = useSearchParams();
     const templeId = searchParams.get("templeId");
     const templeName = searchParams.get("templeName");
+
+    useEffect(() => {
+        trackEvent(FormEvents.START, { form_type: 'grave_search' });
+    }, []);
 
     const [formData, setFormData] = useState({
         name: "",
@@ -123,13 +128,16 @@ function GraveSearchConsultForm() {
             });
 
             if (res.ok) {
+                trackEvent(FormEvents.COMPLETE, { form_type: 'grave_search' });
                 setIsSuccess(true);
                 window.scrollTo(0, 0);
             } else {
+                trackEvent(FormEvents.ERROR, { form_type: 'grave_search', error_type: 'submit_failed' });
                 alert("送信に失敗しました。");
             }
         } catch (error) {
             console.error(error);
+            trackEvent(FormEvents.ERROR, { form_type: 'grave_search', error_type: 'submit_error' });
             alert("エラーが発生しました。");
         } finally {
             setIsSubmitting(false);

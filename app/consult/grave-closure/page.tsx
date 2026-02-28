@@ -7,6 +7,7 @@ import { Button } from "../../components/ui/Button";
 import { CheckCircle, Phone, Mail, ArrowDown, Calculator, Search, MapPin, Building, X } from "lucide-react";
 import Link from "next/link";
 import { cn } from "../../../lib/utils";
+import { trackEvent, FormEvents } from "@/lib/analytics/events";
 
 const PREFECTURES = [
     "北海道", "青森県", "岩手県", "宮城県", "秋田県", "山形県", "福島県",
@@ -31,6 +32,10 @@ type TempleCandidate = {
 };
 
 function GraveClosureConsultForm() {
+    useEffect(() => {
+        trackEvent(FormEvents.START, { form_type: 'grave_closure' });
+    }, []);
+
     // Basic Form Data
     const [formData, setFormData] = useState({
         name: "",
@@ -51,6 +56,11 @@ function GraveClosureConsultForm() {
         graveTempleCity: "",
         graveTempleAddressLine: "", // Street/Building
         graveTempleId: "",
+
+        areaPref: "",
+        areaCity: "",
+        newPref: "",
+        newCity: "",
 
         graveType: "不明", // 一般墓 | 納骨堂 | 不明
         hasNextPlace: "未定",
@@ -245,13 +255,16 @@ function GraveClosureConsultForm() {
             });
 
             if (res.ok) {
+                trackEvent(FormEvents.COMPLETE, { form_type: 'grave_closure' });
                 setIsSuccess(true);
                 window.scrollTo(0, 0);
             } else {
+                trackEvent(FormEvents.ERROR, { form_type: 'grave_closure', error_type: 'submit_failed' });
                 alert("送信に失敗しました。");
             }
         } catch (error) {
             console.error(error);
+            trackEvent(FormEvents.ERROR, { form_type: 'grave_closure', error_type: 'submit_error' });
             alert("エラーが発生しました。");
         } finally {
             setIsSubmitting(false);

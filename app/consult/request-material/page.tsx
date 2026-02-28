@@ -12,6 +12,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { inquirySchema, InquiryFormData } from "./schema";
 import { fetchAddressFromZip } from "../../lib/address";
 import { Store } from "../../../lib/store";
+import { trackEvent, FormEvents } from "@/lib/analytics/events";
 
 // Helper Formatters
 const formatPhoneNumber = (val: string) => {
@@ -83,6 +84,11 @@ function RequestForm() {
         }
     });
 
+    // Form Start tracking
+    useEffect(() => {
+        trackEvent(FormEvents.START, { form_type: 'request_material' });
+    }, []);
+
     // Formatting Handlers
     const handleZipBlur = async (e: React.FocusEvent<HTMLInputElement>) => {
         let val = e.target.value;
@@ -120,6 +126,16 @@ function RequestForm() {
         if (isStep1Valid) {
             setStep(2);
             window.scrollTo({ top: 0, behavior: 'smooth' });
+        } else {
+            // Track Step 1 errors
+            const currentErrors = Object.keys(getValues()).filter(k => 
+                step1Fields.includes(k as keyof InquiryFormData) && errors[k as keyof InquiryFormData]
+            );
+            trackEvent(FormEvents.ERROR, { 
+                form_type: 'request_material', 
+                step: 1, 
+                error_fields: currentErrors.join(',') 
+            });
         }
     };
 
@@ -202,12 +218,27 @@ function RequestForm() {
                 visitTime: data.visitTime,
             } as any); // Cast to any because store definitions might lag behind slightly if we don't fix store type perfectly, but we did fix store type.
 
+            // Track Success
+            trackEvent(FormEvents.COMPLETE, { form_type: 'request_material', facility_id: data.templeId || "" });
+
             setIsSubmitted(true);
             window.scrollTo({ top: 0, behavior: 'smooth' });
         } catch (e) {
             console.error(e);
+            
+            // Track Server/API Error
+            trackEvent(FormEvents.ERROR, { form_type: 'request_material', error_type: 'submit_failed' });
+            
             alert("送信に失敗しました");
         }
+    };
+
+    const onSubmitError = (errors: any) => {
+        trackEvent(FormEvents.ERROR, { 
+            form_type: 'request_material', 
+            step: 2, 
+            error_fields: Object.keys(errors).join(',') 
+        });
     };
 
     if (isSubmitted) {
@@ -263,7 +294,7 @@ function RequestForm() {
                 </div>
             )}
 
-            <form onSubmit={handleSubmit(onSubmit)}>
+            <form onSubmit={handleSubmit(onSubmit, onSubmitError)}>
                 {/* STEP 1 */}
                 <div className={step === 1 ? 'block space-y-8' : 'hidden'}>
                     <p className="text-gray-600 mb-8 text-center text-sm">
