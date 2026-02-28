@@ -50,7 +50,6 @@ export function SearchWidget() {
 
     return (
         <div className="bg-white/90 backdrop-blur-sm rounded-2xl shadow-xl shadow-black/8 overflow-hidden w-full max-w-4xl mx-auto border border-white/60">
-            {/* Tabs */}
             <div className="flex relative border-b border-border bg-bg/60">
                 {TABS.map((tab) => (
                     <button

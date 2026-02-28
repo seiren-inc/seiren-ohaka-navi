@@ -248,7 +248,7 @@ export default function Home() {
                       <h3 className="font-serif text-xl text-primary-dark mb-3 group-hover:text-primary transition-colors">
                         {item.title}
                       </h3>
-                      <p className="text-text-muted text-sm leading-relaxed flex-grow mb-7">
+                      <p className="text-text-muted text-sm leading-relaxed grow mb-7">
                         {item.desc}
                       </p>
                       <span className="text-primary/60 text-xs font-medium flex items-center gap-1 group-hover:text-primary group-hover:gap-2 transition-all">
