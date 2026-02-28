@@ -52,6 +52,11 @@ function GraveClosureConsultForm() {
         graveTempleAddressLine: "", // Street/Building
         graveTempleId: "",
 
+        areaPref: "",
+        areaCity: "",
+        newPref: "",
+        newCity: "",
+
         graveType: "不明", // 一般墓 | 納骨堂 | 不明
         hasNextPlace: "未定",
         desiredTiming: "未定",
