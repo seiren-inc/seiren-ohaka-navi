@@ -5,6 +5,7 @@ import { Button } from "../../ui/Button";
 import { Tag } from "../../ui/Tag";
 import { MapPin, FileText, CalendarCheck } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 import { useState, useEffect } from "react";
 
 interface TempleHeroProps {
@@ -32,10 +33,13 @@ export function TempleHero({ data }: TempleHeroProps) {
             {/* Main Image */}
             <div className="w-full h-64 md:h-96 relative bg-gray-200">
                 {data.mainImage ? (
-                    <img
+                    <Image
                         src={data.mainImage}
                         alt={data.name}
-                        className="w-full h-full object-cover"
+                        fill
+                        priority
+                        className="object-cover"
+                        sizes="100vw"
                     />
                 ) : (
                     <div className="w-full h-full flex items-center justify-center text-gray-400">No Image</div>

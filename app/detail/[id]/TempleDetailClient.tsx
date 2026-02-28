@@ -3,6 +3,7 @@
 import { useEffect, useState, useRef } from "react";
 import { useRouter, usePathname } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 import { ChevronRight, MapPin, Phone, Info, Car, Train, CheckCircle2, AlertTriangle, Sparkles, Building2, Trees, Accessibility, CreditCard, Users, Home, X, Tag, FileText, Dog, Sun, Umbrella } from "lucide-react";
 import { Button } from "../../components/ui/Button";
 import { Temple, Plan, ContentIcon, PlanCategoryType, PlanAvailability, RELIGION_CATEGORIES, BUDDHIST_SECTS, PLAN_CATEGORIES, PLAN_PERIOD_LABELS, BURIAL_METHOD_LABELS, PET_ALLOWED_LABELS, PLAN_AVAILABILITY_LABELS } from "../../../lib/store";
@@ -23,10 +24,10 @@ function Gallery({ images, mainImage }: { images: string[], mainImage: string })
     return (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 h-[400px] mb-8">
             <div className="relative h-full rounded-2xl overflow-hidden shadow-lg group bg-gray-100">
-                {selected ? <img src={selected} alt="Main" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" /> : <div className="flex items-center justify-center h-full text-gray-400 font-bold">No Image</div>}
+                {selected ? <Image src={selected} alt="Main" fill className="object-cover transition-transform duration-700 group-hover:scale-105" sizes="(max-width: 768px) 100vw, 50vw" /> : <div className="flex items-center justify-center h-full text-gray-400 font-bold">No Image</div>}
             </div>
             <div className="grid grid-cols-2 gap-4 h-full content-start">
-                {displayImages.slice(1, 5).map((src, i) => <div key={i} className="relative rounded-xl overflow-hidden cursor-pointer h-48 bg-gray-100" onClick={() => setSelected(src)}><img src={src} className="w-full h-full object-cover hover:opacity-80 transition-opacity" /></div>)}
+                {displayImages.slice(1, 5).map((src, i) => <div key={i} className="relative rounded-xl overflow-hidden cursor-pointer h-48 bg-gray-100" onClick={() => setSelected(src)}><Image src={src} alt="Gallery image" fill className="object-cover hover:opacity-80 transition-opacity" sizes="(max-width: 768px) 50vw, 25vw" /></div>)}
             </div>
         </div>
     );
@@ -154,7 +155,7 @@ export default function TempleDetailClient({ temple, plans }: Props) {
 
                 {/* AI Summary */}
                 {temple.aiSummary && (
-                    <div className="bg-gradient-to-r from-blue-50 to-white border border-blue-100 p-6 rounded-xl mb-12 shadow-sm">
+                    <div className="bg-linear-to-r from-blue-50 to-white border border-blue-100 p-6 rounded-xl mb-12 shadow-sm">
                         <div className="flex items-center gap-2 mb-3 text-primary font-bold"><Sparkles className="w-5 h-5 text-warm-gold" /><span>AI要約</span></div>
                         <p className="text-gray-700 leading-relaxed whitespace-pre-wrap text-sm">{temple.aiSummary}</p>
                     </div>
@@ -213,7 +214,7 @@ export default function TempleDetailClient({ temple, plans }: Props) {
                                             {catPlans.map(plan => (
                                                 <div key={plan.id} className="bg-white rounded-xl shadow-sm border border-gray-100 hover:shadow-lg transition-all cursor-pointer overflow-hidden group" onClick={() => setSelectedPlan(plan)}>
                                                     <div className="relative h-48 bg-gray-100 overflow-hidden">
-                                                        {plan.images && plan.images[0] ? <img src={plan.images[0]} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" /> : <div className="w-full h-full flex items-center justify-center text-gray-400">No Image</div>}
+                                                        {plan.images && plan.images[0] ? <Image src={plan.images[0]} alt={plan.name} fill className="object-cover group-hover:scale-110 transition-transform duration-700" sizes="(max-width: 768px) 100vw, 33vw" /> : <div className="w-full h-full flex items-center justify-center text-gray-400">No Image</div>}
                                                         <div className="absolute top-2 right-2"><StatusBadge availability={plan.availability} /></div>
                                                     </div>
                                                     <div className="p-5">
@@ -310,7 +311,7 @@ export default function TempleDetailClient({ temple, plans }: Props) {
 
             <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 p-4 md:hidden z-40 flex gap-2 safe-area-pb">
                 <a href={`tel:${temple.phone}`} className="flex-1 bg-gray-100 text-gray-800 font-bold rounded-lg flex flex-col items-center justify-center text-xs py-2"><Phone className="w-4 h-4 mb-1" /> 電話</a>
-                <button onClick={() => { setSelectedDate(null); setIsInquiryModalOpen(true); }} className="flex-[2] bg-primary text-white font-bold rounded-lg py-2">資料請求・見学予約</button>
+                <button onClick={() => { setSelectedDate(null); setIsInquiryModalOpen(true); }} className="flex-2 bg-primary text-white font-bold rounded-lg py-2">資料請求・見学予約</button>
             </div>
 
             <InquiryModal isOpen={isInquiryModalOpen} onClose={() => setIsInquiryModalOpen(false)} temple={temple} defaultDate={selectedDate} />
@@ -325,8 +326,8 @@ export default function TempleDetailClient({ temple, plans }: Props) {
                         <div className="flex-1 overflow-y-auto p-6">
                             <div className="grid md:grid-cols-2 gap-8 mb-8">
                                 <div className="space-y-4">
-                                    <div className="bg-gray-100 rounded-xl overflow-hidden h-64 border border-gray-200">{selectedPlan.images && selectedPlan.images[0] ? <img src={selectedPlan.images[0]} className="w-full h-full object-cover" /> : <div className="flex items-center justify-center h-full text-gray-400">No Image</div>}</div>
-                                    {selectedPlan.images && selectedPlan.images.length > 1 && (<div className="grid grid-cols-4 gap-2">{selectedPlan.images.map((img, i) => <img key={i} src={img} className="h-16 w-full object-cover rounded border" />)}</div>)}
+                                    <div className="bg-gray-100 rounded-xl overflow-hidden h-64 border border-gray-200 relative">{selectedPlan.images && selectedPlan.images[0] ? <Image src={selectedPlan.images[0]} alt={selectedPlan.name} fill className="object-cover" sizes="(max-width: 768px) 100vw, 50vw" /> : <div className="flex items-center justify-center h-full text-gray-400">No Image</div>}</div>
+                                    {selectedPlan.images && selectedPlan.images.length > 1 && (<div className="grid grid-cols-4 gap-2">{selectedPlan.images.map((img, i) => <div key={i} className="relative h-16 w-full rounded border overflow-hidden"><Image src={img} alt="Plan image" fill className="object-cover" sizes="(max-width: 768px) 25vw, 15vw" /></div>)}</div>)}
                                 </div>
                                 <div className="space-y-6">
                                     <div className="bg-blue-50 p-6 rounded-xl border border-blue-100">

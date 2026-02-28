@@ -1,4 +1,5 @@
 import { Suspense } from "react";
+import Link from "next/link";
 import { Navbar } from "../components/layout/Navbar";
 import { Footer } from "../components/layout/Footer";
 import { SearchFilter } from "../components/features/search/SearchFilter";
@@ -124,9 +125,9 @@ export default async function SearchPage(props: { searchParams: Promise<{ [key: 
                                     <h3 className="text-primary-dark font-bold text-lg mb-1">条件が決まらない・迷っている方へ</h3>
                                     <p className="text-sm text-gray-600">専門スタッフがご希望に合わせて最適な墓地・霊園をご提案します。</p>
                                 </div>
-                                <a href="/consult/grave-search" className="shrink-0 px-6 py-2 bg-primary text-white rounded-md font-bold text-sm hover:bg-primary-dark transition-colors shadow-sm">
+                                <Link href="/consult/grave-search" className="shrink-0 px-6 py-2 bg-primary text-white rounded-md font-bold text-sm hover:bg-primary-dark transition-colors shadow-sm">
                                     無料で相談する
-                                </a>
+                                </Link>
                             </div>
 
                             <div className="flex justify-between items-center mb-6">
@@ -151,7 +152,7 @@ export default async function SearchPage(props: { searchParams: Promise<{ [key: 
                                         <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center text-gray-400 text-2xl">?</div>
                                         <div className="text-gray-500 font-bold">条件に一致する霊園・墓地は見つかりませんでした。</div>
                                         <p className="text-sm text-gray-400">条件を緩めて再検索するか、個別にご相談ください。</p>
-                                        <a href="/consult" className="text-primary underline text-sm hover:text-primary">無料相談はこちら</a>
+                                        <Link href="/consult" className="text-primary underline text-sm hover:text-primary">無料相談はこちら</Link>
                                     </div>
                                 )}
                             </div>
