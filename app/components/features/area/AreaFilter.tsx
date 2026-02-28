@@ -51,7 +51,7 @@ export function AreaFilter() {
         <>
             {/* Mobile Trigger */}
             <div className="md:hidden mb-4">
-                <Button onClick={toggleModal} variant="outline" className="w-full border-seiren-navy text-seiren-navy">
+                <Button onClick={toggleModal} variant="outline" className="w-full border-primary text-primary">
                     <SlidersHorizontal className="w-4 h-4 mr-2" /> 条件を絞り込む
                 </Button>
             </div>
@@ -64,7 +64,7 @@ export function AreaFilter() {
                 <div className={`
                     fixed inset-y-0 right-0 w-80 bg-white p-6 shadow-2xl transition-transform duration-300 transform 
                     ${isOpen ? 'translate-x-0' : 'translate-x-full'}
-                    md:static md:transform-none md:w-full md:shadow-none md:p-0 md:bg-transparent md:border md:border-gray-200 md:rounded-lg md:p-4
+                    md:static md:transform-none md:w-full md:shadow-none md:bg-transparent md:border md:border-gray-200 md:rounded-lg md:p-4
                 `}>
                     <div className="flex justify-between items-center mb-6 md:hidden">
                         <h3 className="font-bold text-lg">条件絞り込み</h3>
@@ -82,7 +82,7 @@ export function AreaFilter() {
                                             type="checkbox"
                                             checked={currentTypes.includes(type)}
                                             onChange={() => handleTypeChange(type)}
-                                            className="w-4 h-4 text-seiren-navy border-gray-300 rounded focus:ring-seiren-navy"
+                                            className="w-4 h-4 text-primary border-gray-300 rounded focus:ring-primary"
                                         />
                                         <span className="ml-2 text-sm text-gray-600">{type}</span>
                                     </label>
@@ -99,7 +99,7 @@ export function AreaFilter() {
                                         key={tag}
                                         onClick={() => handleTagChange(tag)}
                                         className={`px-3 py-1 text-xs rounded-full border transition-colors ${currentTags.includes(tag)
-                                                ? 'bg-seiren-navy text-white border-seiren-navy'
+                                                ? 'bg-primary text-white border-primary'
                                                 : 'bg-white text-gray-600 border-gray-200 hover:border-gray-300'
                                             }`}
                                     >
@@ -111,7 +111,7 @@ export function AreaFilter() {
 
                         {/* Close Button (Mobile) */}
                         <div className="md:hidden pt-4 mt-auto">
-                            <Button onClick={toggleModal} className="w-full bg-seiren-navy text-white">
+                            <Button onClick={toggleModal} className="w-full bg-primary text-white">
                                 この条件で検索
                             </Button>
                         </div>

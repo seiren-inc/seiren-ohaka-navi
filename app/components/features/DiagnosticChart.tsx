@@ -107,7 +107,7 @@ export function DiagnosticChart() {
 
     return (
         <div className="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden max-w-3xl mx-auto my-12">
-            <div className="bg-seiren-navy p-6 text-center text-white">
+            <div className="bg-primary p-6 text-center text-white">
                 <h3 className="font-serif text-xl font-bold flex items-center justify-center gap-2">
                     <CheckCircle className="w-6 h-6 text-secondary" />
                     あなたに合う供養方法は？ 10秒診断

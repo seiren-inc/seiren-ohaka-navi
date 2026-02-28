@@ -74,7 +74,7 @@ export default function JumokusouPage() {
                         <span className="text-secondary font-bold tracking-widest text-xs uppercase mb-4 block">
                             Tree Burial
                         </span>
-                        <h1 className="font-serif text-2xl md:text-3xl lg:text-4xl font-bold text-seiren-navy mb-6 leading-relaxed">
+                        <h1 className="font-serif text-2xl md:text-3xl lg:text-4xl font-bold text-primary mb-6 leading-relaxed">
                             樹木葬とは<br />
                             <span className="text-lg md:text-2xl mt-2 block opacity-80">自然志向の供養方法を中立に解説</span>
                         </h1>
@@ -96,7 +96,7 @@ export default function JumokusouPage() {
 
                     {/* H2: 樹木葬とは何か */}
                     <section className="mb-20">
-                        <h2 className="font-serif text-2xl font-bold text-seiren-navy border-b pb-4 mb-8 flex items-center">
+                        <h2 className="font-serif text-2xl font-bold text-primary border-b pb-4 mb-8 flex items-center">
                             <TreeDeciduous className="w-6 h-6 mr-3 text-secondary" />
                             樹木葬とは何か
                         </h2>
@@ -117,14 +117,14 @@ export default function JumokusouPage() {
 
                     {/* H2: 選ばれる理由 */}
                     <section className="mb-20">
-                        <h2 className="font-serif text-2xl font-bold text-seiren-navy border-b pb-4 mb-8 flex items-center">
+                        <h2 className="font-serif text-2xl font-bold text-primary border-b pb-4 mb-8 flex items-center">
                             <CheckCircle className="w-6 h-6 mr-3 text-secondary" />
                             樹木葬が選ばれる理由
                         </h2>
                         <div className="bg-gray-50 border border-gray-100 rounded-xl p-8">
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                                 <div>
-                                    <h4 className="font-bold text-seiren-navy mb-3">自然に還るイメージ</h4>
+                                    <h4 className="font-bold text-primary mb-3">自然に還るイメージ</h4>
                                     <p className="text-sm text-gray-600 leading-loose">
                                         「冷たい石の下より、花や木の下で眠りたい」<br />
                                         「最後は土に還りたい」という、<br />
@@ -132,7 +132,7 @@ export default function JumokusouPage() {
                                     </p>
                                 </div>
                                 <div>
-                                    <h4 className="font-bold text-seiren-navy mb-3">墓石を持たない形</h4>
+                                    <h4 className="font-bold text-primary mb-3">墓石を持たない形</h4>
                                     <p className="text-sm text-gray-600 leading-loose">
                                         高価な墓石を建てる必要がないため、<br />
                                         費用を抑えられるだけでなく、<br />
@@ -140,7 +140,7 @@ export default function JumokusouPage() {
                                     </p>
                                 </div>
                                 <div>
-                                    <h4 className="font-bold text-seiren-navy mb-3">後継ぎの負担軽減</h4>
+                                    <h4 className="font-bold text-primary mb-3">後継ぎの負担軽減</h4>
                                     <p className="text-sm text-gray-600 leading-loose">
                                         永代供養がついているため、<br />
                                         子供にお墓の管理や継承といった<br />
@@ -148,7 +148,7 @@ export default function JumokusouPage() {
                                     </p>
                                 </div>
                                 <div>
-                                    <h4 className="font-bold text-seiren-navy mb-3">管理の手間を抑制</h4>
+                                    <h4 className="font-bold text-primary mb-3">管理の手間を抑制</h4>
                                     <p className="text-sm text-gray-600 leading-loose">
                                         植栽の手入れは霊園側が行うことが多く、<br />
                                         家族が頻繁に草むしり等をする必要がありません。
@@ -160,7 +160,7 @@ export default function JumokusouPage() {
 
                     {/* H2: 樹木葬の主な種類 */}
                     <section className="mb-20">
-                        <h2 className="font-serif text-2xl font-bold text-seiren-navy border-b pb-4 mb-8 flex items-center">
+                        <h2 className="font-serif text-2xl font-bold text-primary border-b pb-4 mb-8 flex items-center">
                             <Info className="w-6 h-6 mr-3 text-secondary" />
                             樹木葬の主な種類
                         </h2>
@@ -199,7 +199,7 @@ export default function JumokusouPage() {
 
                     {/* H2: 費用の考え方 */}
                     <section className="mb-20">
-                        <h2 className="font-serif text-2xl font-bold text-seiren-navy border-b pb-4 mb-8 flex items-center">
+                        <h2 className="font-serif text-2xl font-bold text-primary border-b pb-4 mb-8 flex items-center">
                             <Calculator className="w-6 h-6 mr-3 text-secondary" />
                             費用の考え方
                         </h2>
@@ -221,7 +221,7 @@ export default function JumokusouPage() {
                             </div>
 
                             <div className="space-y-4">
-                                <h4 className="font-bold text-seiren-navy">費用のポイント</h4>
+                                <h4 className="font-bold text-primary">費用のポイント</h4>
                                 <ul className="list-disc list-inside text-sm text-gray-600 leading-loose">
                                     <li>価格差の主な要因は「立地（都心か郊外か）」と「個別区画の広さ」です。</li>
                                     <li>プレート（石の銘板）を設置する場合は、数万円の彫刻料が必要な場合があります。</li>
@@ -233,7 +233,7 @@ export default function JumokusouPage() {
 
                     {/* H2: 樹木葬のメリットと注意点 */}
                     <section className="mb-20">
-                        <h2 className="font-serif text-2xl font-bold text-seiren-navy border-b pb-4 mb-8 flex items-center">
+                        <h2 className="font-serif text-2xl font-bold text-primary border-b pb-4 mb-8 flex items-center">
                             <AlertCircle className="w-6 h-6 mr-3 text-secondary" />
                             メリットと注意点
                         </h2>
@@ -303,7 +303,7 @@ export default function JumokusouPage() {
 
                     {/* H2: 他の供養方法との違い */}
                     <section className="mb-20">
-                        <h2 className="font-serif text-2xl font-bold text-seiren-navy border-b pb-4 mb-8 flex items-center">
+                        <h2 className="font-serif text-2xl font-bold text-primary border-b pb-4 mb-8 flex items-center">
                             <Search className="w-6 h-6 mr-3 text-secondary" />
                             他の供養方法との違い
                         </h2>
@@ -314,7 +314,7 @@ export default function JumokusouPage() {
 
                         <div className="space-y-6">
                             <div className="bg-white border border-gray-100 p-6 rounded-lg shadow-sm">
-                                <h3 className="font-bold text-seiren-navy mb-2">永代供養墓との違い</h3>
+                                <h3 className="font-bold text-primary mb-2">永代供養墓との違い</h3>
                                 <p className="text-sm text-gray-600 leading-loose">
                                     <Link href="/choices/eitai-kuyou" className="text-primary font-bold hover:underline">永代供養墓</Link>の多くは石の塔やモニュメントを墓標とします。<br />
                                     「自然の草花」を好むか、「堅牢な石」に安心感を感じるか、<br />
@@ -322,7 +322,7 @@ export default function JumokusouPage() {
                                 </p>
                             </div>
                             <div className="bg-white border border-gray-100 p-6 rounded-lg shadow-sm">
-                                <h3 className="font-bold text-seiren-navy mb-2">納骨堂との違い</h3>
+                                <h3 className="font-bold text-primary mb-2">納骨堂との違い</h3>
                                 <p className="text-sm text-gray-600 leading-loose">
                                     <Link href="/choices/noukotsudou" className="text-primary font-bold hover:underline">納骨堂</Link>は屋内施設のため、天候や汚れを気にする必要がありません。<br />
                                     「自然の中で眠りたい」という気持ちと、<br />
@@ -330,7 +330,7 @@ export default function JumokusouPage() {
                                 </p>
                             </div>
                             <div className="bg-white border border-gray-100 p-6 rounded-lg shadow-sm">
-                                <h3 className="font-bold text-seiren-navy mb-2">海洋散骨との違い</h3>
+                                <h3 className="font-bold text-primary mb-2">海洋散骨との違い</h3>
                                 <p className="text-sm text-gray-600 leading-loose">
                                     <Link href="/choices/sankotsu" className="text-primary font-bold hover:underline">海洋散骨</Link>はお墓自体を残さないため、手を合わせる特定の場所がなくなります。<br />
                                     樹木葬は「手を合わせる場所（シンボル）」が残る点が大きな違いです。
@@ -341,7 +341,7 @@ export default function JumokusouPage() {
 
                     {/* H2: 診断で樹木葬が候補に出た方へ */}
                     <section className="mb-20">
-                        <h2 className="font-serif text-2xl font-bold text-seiren-navy border-b pb-4 mb-8 flex items-center">
+                        <h2 className="font-serif text-2xl font-bold text-primary border-b pb-4 mb-8 flex items-center">
                             <Calculator className="w-6 h-6 mr-3 text-secondary" />
                             診断で「樹木葬」が候補に出た方へ
                         </h2>
@@ -364,7 +364,7 @@ export default function JumokusouPage() {
 
                     {/* H2: 迷った場合の次の行動 (CTA) */}
                     <section className="text-center">
-                        <h2 className="font-serif text-2xl font-bold text-seiren-navy border-b pb-4 mb-10 inline-block px-12">
+                        <h2 className="font-serif text-2xl font-bold text-primary border-b pb-4 mb-10 inline-block px-12">
                             迷った場合の次の行動
                         </h2>
 
@@ -433,7 +433,7 @@ export default function JumokusouPage() {
 
                     {/* FAQ */}
                     <section className="my-20">
-                        <h2 className="font-serif text-2xl font-bold text-seiren-navy border-b pb-4 mb-8 flex items-center">
+                        <h2 className="font-serif text-2xl font-bold text-primary border-b pb-4 mb-8 flex items-center">
                             <HelpCircle className="w-6 h-6 mr-3 text-secondary" />
                             よくある質問（FAQ）
                         </h2>
@@ -446,7 +446,7 @@ export default function JumokusouPage() {
                                 { q: "雨の日でも参拝できる？", a: "樹木葬は基本的に屋外にあるため、天候の影響を受けます。\n足場が整備されている霊園であれば問題ありませんが、自然の山に近いタイプの場合は注意が必要です。" }
                             ].map((item, i) => (
                                 <div key={i} className="bg-gray-50 rounded-lg p-5">
-                                    <h4 className="font-bold text-seiren-navy mb-2 flex flex-row items-center">
+                                    <h4 className="font-bold text-primary mb-2 flex flex-row items-center">
                                         <span className="bg-secondary text-white text-xs font-bold px-2 py-1 rounded mr-3 flex-shrink-0">Q</span>
                                         {item.q}
                                     </h4>

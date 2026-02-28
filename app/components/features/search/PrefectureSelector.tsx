@@ -28,7 +28,7 @@ export function PrefectureSelector() {
             <div className="md:hidden text-center mb-8">
                 <Button
                     onClick={() => openModal("東京都")}
-                    className="w-full max-w-xs mx-auto bg-seiren-navy text-white shadow-lg h-14 text-lg font-bold"
+                    className="w-full max-w-xs mx-auto bg-primary text-white shadow-lg h-14 text-lg font-bold"
                 >
                     <MapPin className="w-5 h-5 mr-2" /> 地域を選択して探す
                 </Button>
@@ -64,7 +64,7 @@ export function PrefectureSelector() {
                 <div className="w-1/3 flex flex-col justify-center space-y-4">
                     {[PREFECTURES[6], PREFECTURES[4], PREFECTURES[5], PREFECTURES[3]].map((region) => (
                         <div key={region.region} className="bg-white/50 rounded-lg p-3 border border-gray-100/50 hover:border-primary/20 transition-colors">
-                            <h4 className="font-bold text-seiren-navy text-xs border-b border-primary/20 pb-1 mb-2">
+                            <h4 className="font-bold text-primary text-xs border-b border-primary/20 pb-1 mb-2">
                                 {region.region}
                             </h4>
                             <div className="grid grid-cols-4 gap-1.5">
@@ -96,7 +96,7 @@ export function PrefectureSelector() {
                 <div className="w-1/3 flex flex-col justify-center space-y-4">
                     {[PREFECTURES[0], PREFECTURES[1], PREFECTURES[2]].map((region) => (
                         <div key={region.region} className="bg-white/50 rounded-lg p-3 border border-gray-100/50 hover:border-primary/20 transition-colors">
-                            <h4 className="font-bold text-seiren-navy text-xs border-b border-primary/20 pb-1 mb-2">
+                            <h4 className="font-bold text-primary text-xs border-b border-primary/20 pb-1 mb-2">
                                 {region.region}
                             </h4>
                             <div className="grid grid-cols-4 gap-1.5">

@@ -10,7 +10,7 @@ export function FeatureChips({ features }: FeatureChipsProps) {
             {features.map((feature, idx) => (
                 <div key={idx} className="flex items-center bg-white border border-secondary/20 rounded-full px-4 py-2 shadow-sm">
                     <CheckCircle2 className="w-4 h-4 text-secondary mr-2" />
-                    <span className="text-sm font-bold text-seiren-navy">{feature}</span>
+                    <span className="text-sm font-bold text-primary">{feature}</span>
                 </div>
             ))}
         </div>

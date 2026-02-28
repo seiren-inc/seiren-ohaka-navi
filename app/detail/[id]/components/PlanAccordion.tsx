@@ -49,8 +49,8 @@ export function PlanAccordion({ plans }: PlanAccordionProps) {
                         onClick={() => toggle(typeName)}
                         className="w-full flex items-center justify-between p-4 bg-gray-50 hover:bg-gray-100 transition-colors"
                     >
-                        <h3 className="font-bold text-lg text-seiren-navy flex items-center">
-                            <span className="w-1 h-6 bg-seiren-navy mr-3 rounded-full" />
+                        <h3 className="font-bold text-lg text-primary flex items-center">
+                            <span className="w-1 h-6 bg-primary mr-3 rounded-full" />
                             {typeName}
                             <span className="ml-2 text-sm text-gray-500 font-normal">({groupPlans.length}件)</span>
                         </h3>
@@ -87,7 +87,7 @@ export function PlanAccordion({ plans }: PlanAccordionProps) {
                                                         {plan.capacity}
                                                     </span>
                                                 </div>
-                                                <h4 className="font-bold text-seiren-navy text-lg mb-1 group-hover:text-secondary transition-colors">{plan.name}</h4>
+                                                <h4 className="font-bold text-primary text-lg mb-1 group-hover:text-secondary transition-colors">{plan.name}</h4>
                                             </div>
                                             <div className="text-right">
                                                 <p className="text-2xl font-bold text-warm-gold">
@@ -115,7 +115,7 @@ export function PlanAccordion({ plans }: PlanAccordionProps) {
                                             <Button
                                                 size="sm"
                                                 variant="outline"
-                                                className="w-full sm:w-auto text-xs group-hover:bg-seiren-navy group-hover:text-white group-hover:border-seiren-navy transition-all"
+                                                className="w-full sm:w-auto text-xs group-hover:bg-primary group-hover:text-white group-hover:border-primary transition-all"
                                                 onClick={(e) => {
                                                     e.stopPropagation();
                                                     openModal(plan);

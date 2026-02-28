@@ -31,7 +31,7 @@ export default function TempleList() {
                         {temples.map(t => (
                             <tr key={t.id} className="hover:bg-gray-50">
                                 <td className="p-4 text-xs text-gray-400 font-mono">{t.id}</td>
-                                <td className="p-4 font-bold text-seiren-navy">{t.name}</td>
+                                <td className="p-4 font-bold text-primary">{t.name}</td>
                                 <td className="p-4 text-sm">{t.phone}</td>
                                 <td className="p-4 text-sm">
                                     {t.calendar?.availableWeekdays.length === 7 ? "なし" :

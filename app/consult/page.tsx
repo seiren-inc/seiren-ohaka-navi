@@ -14,15 +14,15 @@ export default function ConsultHubPage() {
                 </p>
 
                 {/* CTA: Diagnosis */}
-                <div className="bg-white border-2 border-seiren-navy/10 rounded-xl p-6 mb-12 flex flex-col md:flex-row items-center justify-between gap-6 shadow-sm">
+                <div className="bg-white border-2 border-primary/10 rounded-xl p-6 mb-12 flex flex-col md:flex-row items-center justify-between gap-6 shadow-sm">
                     <div>
-                        <h3 className="text-lg font-bold text-seiren-navy mb-2">まだ具体的な希望が決まっていない方へ</h3>
+                        <h3 className="text-lg font-bold text-primary mb-2">まだ具体的な希望が決まっていない方へ</h3>
                         <p className="text-sm text-gray-600">
                             「何から相談すればいいかわからない」という場合は、まず診断チャートでご自身の希望を整理してみることをおすすめします。
                         </p>
                     </div>
                     <Link href="/choices/diagnosis" className="flex-shrink-0">
-                        <span className="inline-block bg-seiren-navy text-white font-bold border border-seiren-navy px-6 py-3 rounded-full hover:bg-seiren-navy/90 hover:shadow-lg transition-all">
+                        <span className="inline-block bg-primary text-white font-bold border border-primary px-6 py-3 rounded-full hover:bg-primary/90 hover:shadow-lg transition-all">
                             供養の選択肢診断を試す →
                         </span>
                     </Link>

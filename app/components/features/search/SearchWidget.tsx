@@ -77,7 +77,7 @@ export function SearchWidget() {
                     {/* Area Selection */}
                     <div className="space-y-3">
                         <label className="flex items-center gap-2 text-sm font-bold text-gray-700">
-                            <MapPin className="w-4 h-4 text-secondary" />
+                            <MapPin className="w-4 h-4 text-primary-soft" />
                             エリアから探す
                         </label>
                         <div className="relative">
@@ -110,7 +110,7 @@ export function SearchWidget() {
                     {/* Condition Tags */}
                     <div className="space-y-3">
                         <label className="flex items-center gap-2 text-sm font-bold text-gray-700">
-                            <Tag className="w-4 h-4 text-secondary" />
+                            <Tag className="w-4 h-4 text-primary-soft" />
                             こだわり条件
                         </label>
                         <div className="flex flex-wrap gap-2">
@@ -135,7 +135,7 @@ export function SearchWidget() {
                 <div className="text-center">
                     <Button
                         size="lg"
-                        className="w-full sm:w-auto min-w-[300px] shadow-xl shadow-secondary/20 font-bold text-lg"
+                        className="w-full sm:w-auto min-w-[300px] shadow-card font-bold text-lg"
                         onClick={handleSearch}
                     >
                         <Search className="w-5 h-5 mr-2" />

@@ -24,14 +24,14 @@ export default function CompanyPage() {
                         <span className="text-secondary font-bold tracking-widest text-xs uppercase mb-4 block">
                             Company
                         </span>
-                        <h1 className="font-serif text-2xl md:text-3xl font-bold text-seiren-navy mb-6">
+                        <h1 className="font-serif text-2xl md:text-3xl font-bold text-primary mb-6">
                             運営会社
                         </h1>
                     </div>
 
                     {/* Company Profile */}
                     <section className="mb-20">
-                        <h2 className="font-serif text-xl font-bold text-seiren-navy border-b pb-4 mb-8 flex items-center">
+                        <h2 className="font-serif text-xl font-bold text-primary border-b pb-4 mb-8 flex items-center">
                             <Building2 className="w-5 h-5 mr-3 text-secondary" />
                             会社概要
                         </h2>
@@ -62,7 +62,7 @@ export default function CompanyPage() {
 
                     {/* Business Activities */}
                     <section className="mb-20">
-                        <h2 className="font-serif text-xl font-bold text-seiren-navy border-b pb-4 mb-8 flex items-center">
+                        <h2 className="font-serif text-xl font-bold text-primary border-b pb-4 mb-8 flex items-center">
                             <Briefcase className="w-5 h-5 mr-3 text-secondary" />
                             事業内容
                         </h2>
@@ -90,7 +90,7 @@ export default function CompanyPage() {
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mb-20">
                         {/* Banks */}
                         <section>
-                            <h2 className="font-serif text-xl font-bold text-seiren-navy border-b pb-4 mb-8 flex items-center">
+                            <h2 className="font-serif text-xl font-bold text-primary border-b pb-4 mb-8 flex items-center">
                                 <Landmark className="w-5 h-5 mr-3 text-secondary" />
                                 取引銀行
                             </h2>
@@ -111,7 +111,7 @@ export default function CompanyPage() {
 
                         {/* Partners */}
                         <section>
-                            <h2 className="font-serif text-xl font-bold text-seiren-navy border-b pb-4 mb-8 flex items-center">
+                            <h2 className="font-serif text-xl font-bold text-primary border-b pb-4 mb-8 flex items-center">
                                 <Users className="w-5 h-5 mr-3 text-secondary" />
                                 取引先・提携先
                             </h2>

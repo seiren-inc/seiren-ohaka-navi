@@ -99,7 +99,7 @@ export default function GuideGraveBasicsPage() {
                         <span className="text-secondary font-bold tracking-widest text-xs uppercase mb-4 block">
                             Grave Basics
                         </span>
-                        <h1 className="font-serif text-2xl md:text-3xl lg:text-4xl font-bold text-seiren-navy mb-6 leading-relaxed">
+                        <h1 className="font-serif text-2xl md:text-3xl lg:text-4xl font-bold text-primary mb-6 leading-relaxed">
                             お墓の基礎知識<br />
                             <span className="text-lg md:text-2xl mt-2 block opacity-80">（種類・費用・管理・選び方）</span>
                         </h1>
@@ -115,7 +115,7 @@ export default function GuideGraveBasicsPage() {
 
                     {/* H2: お墓とは何か */}
                     <section className="mb-20">
-                        <h2 className="font-serif text-2xl font-bold text-seiren-navy border-b pb-4 mb-8 flex items-center">
+                        <h2 className="font-serif text-2xl font-bold text-primary border-b pb-4 mb-8 flex items-center">
                             <BookOpen className="w-6 h-6 mr-3 text-secondary" />
                             お墓とは何か（定義と役割）
                         </h2>
@@ -134,7 +134,7 @@ export default function GuideGraveBasicsPage() {
 
                     {/* H2: 供養の主な選択肢 (6 Types) */}
                     <section className="mb-20">
-                        <h2 className="font-serif text-2xl font-bold text-seiren-navy border-b pb-4 mb-8 flex items-center">
+                        <h2 className="font-serif text-2xl font-bold text-primary border-b pb-4 mb-8 flex items-center">
                             <Info className="w-6 h-6 mr-3 text-secondary" />
                             供養の主な選択肢（6つのタイプ）
                         </h2>
@@ -145,7 +145,7 @@ export default function GuideGraveBasicsPage() {
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-10">
                             {/* 一般墓 */}
                             <div>
-                                <h3 className="font-bold text-xl text-seiren-navy mb-3 flex items-center">1. 一般墓（石のお墓）</h3>
+                                <h3 className="font-bold text-xl text-primary mb-3 flex items-center">1. 一般墓（石のお墓）</h3>
                                 <p className="text-sm text-gray-600 leading-relaxed mb-2">
                                     区画された墓地に石碑を建てる、最も伝統的なスタイルです。代々の遺骨を同じカロート（納骨室）に納め、家族で継承します。
                                     親族が集まる場所として馴染みがありますが、墓石代がかかるため初期費用は高めです。
@@ -155,7 +155,7 @@ export default function GuideGraveBasicsPage() {
 
                             {/* 永代供養墓 */}
                             <div>
-                                <h3 className="font-bold text-xl text-seiren-navy mb-3 flex items-center">2. 永代供養墓</h3>
+                                <h3 className="font-bold text-xl text-primary mb-3 flex items-center">2. 永代供養墓</h3>
                                 <p className="text-sm text-gray-600 leading-relaxed mb-2">
                                     寺院や霊園が家族に代わって管理・供養を行うお墓です。継承者がいなくても無縁仏になる心配がありません。
                                     最初から他の方と一緒に眠る「合祀（ごうし）」タイプと、一定期間個別に安置するタイプがあります。
@@ -166,7 +166,7 @@ export default function GuideGraveBasicsPage() {
 
                             {/* 納骨堂 */}
                             <div>
-                                <h3 className="font-bold text-xl text-seiren-navy mb-3 flex items-center">3. 納骨堂</h3>
+                                <h3 className="font-bold text-xl text-primary mb-3 flex items-center">3. 納骨堂</h3>
                                 <p className="text-sm text-gray-600 leading-relaxed mb-2">
                                     屋内の専用スペースに遺骨を収蔵する施設です。ロッカー式、仏壇式、自動搬送式などがあります。
                                     天候に左右されずお参りでき、駅近でアクセスが良い場所が多いのが特徴です。
@@ -177,7 +177,7 @@ export default function GuideGraveBasicsPage() {
 
                             {/* 樹木葬 */}
                             <div>
-                                <h3 className="font-bold text-xl text-seiren-navy mb-3 flex items-center">4. 樹木葬</h3>
+                                <h3 className="font-bold text-xl text-primary mb-3 flex items-center">4. 樹木葬</h3>
                                 <p className="text-sm text-gray-600 leading-relaxed mb-2">
                                     墓石の代わりに木や花をシンボルにするお墓です。自然の中に還るというコンセプトが人気で、都市部の霊園でも導入が進んでいます。
                                     永代供養がついているものが一般的で、継承の不安がありません。
@@ -188,7 +188,7 @@ export default function GuideGraveBasicsPage() {
 
                             {/* 海洋散骨 */}
                             <div>
-                                <h3 className="font-bold text-xl text-seiren-navy mb-3 flex items-center">5. 海洋散骨</h3>
+                                <h3 className="font-bold text-xl text-primary mb-3 flex items-center">5. 海洋散骨</h3>
                                 <p className="text-sm text-gray-600 leading-relaxed mb-2">
                                     粉末化した遺骨を海へ撒く供養方法です。お墓という「場所」を持たず、自然のサイクルに還ります。
                                     管理費がかからず、後継ぎの問題も発生しませんが、手元に何も残らないため、一部を分骨する方もいます。
@@ -198,7 +198,7 @@ export default function GuideGraveBasicsPage() {
 
                             {/* 自宅供養（手元供養） */}
                             <div>
-                                <h3 className="font-bold text-xl text-seiren-navy mb-3 flex items-center">6. 自宅供養（手元供養）</h3>
+                                <h3 className="font-bold text-xl text-primary mb-3 flex items-center">6. 自宅供養（手元供養）</h3>
                                 <p className="text-sm text-gray-600 leading-relaxed mb-2">
                                     遺骨を自宅で保管したり、アクセサリー加工して身につけたりする方法です。
                                     「骨箱」のまま安置するほか、インテリアに馴染む「ミニ骨壺」や、遺骨から作る「遺骨ダイヤモンド」などがあります。
@@ -210,53 +210,53 @@ export default function GuideGraveBasicsPage() {
 
                     {/* H2: 比較表 */}
                     <section className="mb-20">
-                        <h2 className="font-serif text-2xl font-bold text-seiren-navy border-b pb-4 mb-8 flex items-center">
+                        <h2 className="font-serif text-2xl font-bold text-primary border-b pb-4 mb-8 flex items-center">
                             <CheckCircle className="w-6 h-6 mr-3 text-secondary" />
                             迷いポイント別・比較一覧
                         </h2>
                         <div className="overflow-x-auto">
                             <table className="w-full text-sm text-left border-collapse min-w-[700px]">
-                                <thead className="bg-seiren-navy text-white">
+                                <thead className="bg-primary text-white">
                                     <tr>
-                                        <th className="p-4 border border-seiren-navy">種類</th>
-                                        <th className="p-4 border border-seiren-navy">参拝・場所</th>
-                                        <th className="p-4 border border-seiren-navy">管理・継承</th>
-                                        <th className="p-4 border border-seiren-navy">費用感（目安）</th>
+                                        <th className="p-4 border border-primary">種類</th>
+                                        <th className="p-4 border border-primary">参拝・場所</th>
+                                        <th className="p-4 border border-primary">管理・継承</th>
+                                        <th className="p-4 border border-primary">費用感（目安）</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr className="bg-white hover:bg-gray-50">
-                                        <th className="p-4 border border-gray-200 font-bold text-seiren-navy">一般墓</th>
+                                        <th className="p-4 border border-gray-200 font-bold text-primary">一般墓</th>
                                         <td className="p-4 border border-gray-200">屋外・墓石あり</td>
                                         <td className="p-4 border border-gray-200">家族で管理・継承が必要</td>
                                         <td className="p-4 border border-gray-200">100〜300万円</td>
                                     </tr>
                                     <tr className="bg-white hover:bg-gray-50">
-                                        <th className="p-4 border border-gray-200 font-bold text-seiren-navy">永代供養墓</th>
+                                        <th className="p-4 border border-gray-200 font-bold text-primary">永代供養墓</th>
                                         <td className="p-4 border border-gray-200">屋外・共有塔など</td>
                                         <td className="p-4 border border-gray-200 text-secondary font-bold">不要（霊園が管理）</td>
                                         <td className="p-4 border border-gray-200 font-bold">10〜150万円</td>
                                     </tr>
                                     <tr className="bg-white hover:bg-gray-50">
-                                        <th className="p-4 border border-gray-200 font-bold text-seiren-navy">納骨堂</th>
+                                        <th className="p-4 border border-gray-200 font-bold text-primary">納骨堂</th>
                                         <td className="p-4 border border-gray-200">屋内・天候不問</td>
                                         <td className="p-4 border border-gray-200">不要（期間の定めあり）</td>
                                         <td className="p-4 border border-gray-200">50〜200万円</td>
                                     </tr>
                                     <tr className="bg-white hover:bg-gray-50">
-                                        <th className="p-4 border border-gray-200 font-bold text-seiren-navy">樹木葬</th>
+                                        <th className="p-4 border border-gray-200 font-bold text-primary">樹木葬</th>
                                         <td className="p-4 border border-gray-200">自然・花や木</td>
                                         <td className="p-4 border border-gray-200 text-secondary font-bold">不要（霊園が管理）</td>
                                         <td className="p-4 border border-gray-200 font-bold">30〜150万円</td>
                                     </tr>
                                     <tr className="bg-white hover:bg-gray-50">
-                                        <th className="p-4 border border-gray-200 font-bold text-seiren-navy">海洋散骨</th>
+                                        <th className="p-4 border border-gray-200 font-bold text-primary">海洋散骨</th>
                                         <td className="p-4 border border-gray-200">海（場所なし）</td>
                                         <td className="p-4 border border-gray-200 text-secondary font-bold">一切不要</td>
                                         <td className="p-4 border border-gray-200 font-bold">5〜30万円</td>
                                     </tr>
                                     <tr className="bg-white hover:bg-gray-50">
-                                        <th className="p-4 border border-gray-200 font-bold text-seiren-navy">自宅供養</th>
+                                        <th className="p-4 border border-gray-200 font-bold text-primary">自宅供養</th>
                                         <td className="p-4 border border-gray-200">自宅</td>
                                         <td className="p-4 border border-gray-200">自己管理</td>
                                         <td className="p-4 border border-gray-200 font-bold">数千円〜（商品による）</td>
@@ -269,7 +269,7 @@ export default function GuideGraveBasicsPage() {
 
                     {/* H2: 選び方（判断基準） */}
                     <section className="mb-20">
-                        <h2 className="font-serif text-2xl font-bold text-seiren-navy border-b pb-4 mb-8 flex items-center">
+                        <h2 className="font-serif text-2xl font-bold text-primary border-b pb-4 mb-8 flex items-center">
                             <CheckCircle className="w-6 h-6 mr-3 text-secondary" />
                             あなたの状況に合わせた選び方
                         </h2>
@@ -307,7 +307,7 @@ export default function GuideGraveBasicsPage() {
 
                     {/* H2: よくある質問（FAQ） */}
                     <section className="mb-24">
-                        <h2 className="font-serif text-2xl font-bold text-seiren-navy border-b pb-4 mb-8 flex items-center">
+                        <h2 className="font-serif text-2xl font-bold text-primary border-b pb-4 mb-8 flex items-center">
                             <HelpCircle className="w-6 h-6 mr-3 text-secondary" />
                             よくある質問（FAQ）
                         </h2>
@@ -324,7 +324,7 @@ export default function GuideGraveBasicsPage() {
                                 { q: "複数の供養方法を併用できる？", a: "可能です。例えば遺骨の一部を散骨し、残りを手元供養にするといった「分骨」をされる方も多くいます。" }
                             ].map((item, i) => (
                                 <div key={i} className="bg-gray-50 rounded-lg p-5">
-                                    <h4 className="font-bold text-seiren-navy mb-2 flex flex-row items-center">
+                                    <h4 className="font-bold text-primary mb-2 flex flex-row items-center">
                                         <span className="bg-secondary text-white text-xs font-bold px-2 py-1 rounded mr-3 flex-shrink-0">Q</span>
                                         {item.q}
                                     </h4>
@@ -338,7 +338,7 @@ export default function GuideGraveBasicsPage() {
 
                     {/* CTAs */}
                     <section className="text-center">
-                        <h2 className="font-serif text-2xl font-bold text-seiren-navy border-b pb-4 mb-10 inline-block px-12">
+                        <h2 className="font-serif text-2xl font-bold text-primary border-b pb-4 mb-10 inline-block px-12">
                             迷ったら次にできること
                         </h2>
 

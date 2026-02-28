@@ -72,7 +72,7 @@ export const ImageUploader = ({ value, onChange, folder = "misc", label = "画�
 
                 {isUploading ? (
                     <div className="flex flex-col items-center justify-center h-48 gap-3 text-gray-500">
-                        <Loader2 className="w-8 h-8 animate-spin text-seiren-navy" />
+                        <Loader2 className="w-8 h-8 animate-spin text-primary" />
                         <span className="text-sm font-bold">アップロード中...</span>
                     </div>
                 ) : value ? (
@@ -104,7 +104,7 @@ export const ImageUploader = ({ value, onChange, folder = "misc", label = "画�
                     </div>
                 ) : (
                     <div
-                        className="flex flex-col items-center justify-center h-48 gap-3 text-gray-400 cursor-pointer hover:text-seiren-navy transition-colors"
+                        className="flex flex-col items-center justify-center h-48 gap-3 text-gray-400 cursor-pointer hover:text-primary transition-colors"
                         onClick={() => inputRef.current?.click()}
                     >
                         <div className="bg-white p-4 rounded-full shadow-sm border">

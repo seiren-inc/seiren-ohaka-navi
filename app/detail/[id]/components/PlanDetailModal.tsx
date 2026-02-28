@@ -60,14 +60,14 @@ export function PlanDetailModal({ plan, isOpen, onClose }: PlanDetailModalProps)
                 {/* Header Section */}
                 <div className="p-6 border-b border-gray-100 bg-gray-50/50">
                     <div className="flex gap-2 mb-2">
-                        <span className="bg-seiren-navy text-white text-xs px-2 py-0.5 rounded font-bold">
+                        <span className="bg-primary text-white text-xs px-2 py-0.5 rounded font-bold">
                             {plan.typeName}
                         </span>
                         <span className="bg-safe-green/10 text-safe-green text-xs px-2 py-0.5 rounded font-bold border border-safe-green/20">
                             空きあり
                         </span>
                     </div>
-                    <h2 className="font-serif text-2xl font-bold text-seiren-navy mb-2">
+                    <h2 className="font-serif text-2xl font-bold text-primary mb-2">
                         {plan.name}
                     </h2>
                     <div className="flex items-baseline gap-2">
@@ -111,7 +111,7 @@ export function PlanDetailModal({ plan, isOpen, onClose }: PlanDetailModalProps)
                         {/* Features */}
                         <div className="flex flex-wrap gap-2">
                             {plan.features.map((f, i) => (
-                                <span key={i} className="flex items-center text-xs text-seiren-navy bg-white border border-seiren-navy/20 px-3 py-1.5 rounded-full shadow-sm">
+                                <span key={i} className="flex items-center text-xs text-primary bg-white border border-primary/20 px-3 py-1.5 rounded-full shadow-sm">
                                     <CheckCircle2 className="w-3 h-3 mr-1.5 text-secondary" />
                                     {f}
                                 </span>
@@ -167,14 +167,14 @@ export function PlanDetailModal({ plan, isOpen, onClose }: PlanDetailModalProps)
                             </Button>
                         </Link>
                         <Link href="/consult/grave-search" className="w-full">
-                            <Button size="lg" variant="outline" className="w-full border-seiren-navy text-seiren-navy hover:bg-seiren-navy hover:text-white font-bold h-12">
+                            <Button size="lg" variant="outline" className="w-full border-primary text-primary hover:bg-primary hover:text-white font-bold h-12">
                                 <Mail className="w-5 h-5 mr-2" />
                                 資料請求（無料）
                             </Button>
                         </Link>
                         <div className="hidden lg:block w-full">
                             <a href="tel:0120-000-000" className="w-full">
-                                <Button size="lg" variant="ghost" className="w-full text-gray-600 hover:text-seiren-navy hover:bg-gray-50 font-bold h-12">
+                                <Button size="lg" variant="ghost" className="w-full text-gray-600 hover:text-primary hover:bg-gray-50 font-bold h-12">
                                     <Phone className="w-5 h-5 mr-2" />
                                     電話で相談
                                 </Button>

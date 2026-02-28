@@ -66,7 +66,7 @@ export function InquiryModal({ isOpen, onClose, temple, defaultDate }: InquiryMo
     return (
         <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/60 p-4 animate-in fade-in" onClick={onClose}>
             <div className="bg-white w-full max-w-lg max-h-[90vh] overflow-y-auto rounded-xl shadow-2xl relative flex flex-col animate-in zoom-in-95" onClick={e => e.stopPropagation()}>
-                <div className="bg-seiren-navy text-white p-4 flex justify-between items-center sticky top-0 z-10">
+                <div className="bg-primary text-white p-4 flex justify-between items-center sticky top-0 z-10">
                     <h2 className="font-bold text-lg">お問い合わせ・見学予約</h2>
                     <button onClick={onClose} className="p-2 hover:bg-white/20 rounded-full transition-colors"><X className="w-5 h-5" /></button>
                 </div>
@@ -93,9 +93,9 @@ export function InquiryModal({ isOpen, onClose, temple, defaultDate }: InquiryMo
                         <div>
                             <div className="flex items-center justify-center mb-8 gap-4 text-xs font-bold text-gray-400">
                                 <StepIndicator step={1} current={currentStep} label="日時" />
-                                <div className={`h-px w-8 ${currentStep >= 2 ? 'bg-seiren-navy' : 'bg-gray-200'}`} />
+                                <div className={`h-px w-8 ${currentStep >= 2 ? 'bg-primary' : 'bg-gray-200'}`} />
                                 <StepIndicator step={2} current={currentStep} label="情報" />
-                                <div className={`h-px w-8 ${currentStep >= 3 ? 'bg-seiren-navy' : 'bg-gray-200'}`} />
+                                <div className={`h-px w-8 ${currentStep >= 3 ? 'bg-primary' : 'bg-gray-200'}`} />
                                 <StepIndicator step={3} current={currentStep} label="確認" />
                             </div>
 
@@ -111,8 +111,8 @@ export function InquiryModal({ isOpen, onClose, temple, defaultDate }: InquiryMo
 }
 
 const StepIndicator = ({ step, current, label }: { step: number, current: number, label: string }) => (
-    <div className={`flex items-center gap-2 ${current >= step ? 'text-seiren-navy' : ''}`}>
-        <span className={`w-6 h-6 rounded-full flex items-center justify-center ${current >= step ? 'bg-seiren-navy text-white' : 'bg-gray-200 text-gray-500'}`}>{step}</span>
+    <div className={`flex items-center gap-2 ${current >= step ? 'text-primary' : ''}`}>
+        <span className={`w-6 h-6 rounded-full flex items-center justify-center ${current >= step ? 'bg-primary text-white' : 'bg-gray-200 text-gray-500'}`}>{step}</span>
         {label}
     </div>
 );
@@ -147,7 +147,7 @@ function Step1({ formData, setFormData, onNext, temple }: { formData: any, setFo
         <div className="space-y-6">
             <div className="bg-gray-50 p-4 rounded-lg border border-gray-100 mb-4">
                 <p className="text-xs font-bold text-gray-500 mb-1">見学対象</p>
-                <p className="font-bold text-seiren-navy">{temple.name}</p>
+                <p className="font-bold text-primary">{temple.name}</p>
             </div>
 
             <div className="space-y-4">
@@ -162,7 +162,7 @@ function Step1({ formData, setFormData, onNext, temple }: { formData: any, setFo
                                     <button
                                         key={time}
                                         onClick={() => setFormData({ ...formData, preferredTime: time })}
-                                        className={`py-2 px-1 text-sm rounded border transition-colors ${formData.preferredTime === time ? 'bg-seiren-navy text-white border-seiren-navy' : 'bg-white text-gray-600 hover:bg-gray-50'}`}
+                                        className={`py-2 px-1 text-sm rounded border transition-colors ${formData.preferredTime === time ? 'bg-primary text-white border-primary' : 'bg-white text-gray-600 hover:bg-gray-50'}`}
                                     >
                                         {time}
                                     </button>
@@ -174,7 +174,7 @@ function Step1({ formData, setFormData, onNext, temple }: { formData: any, setFo
                 </div>
             </div>
 
-            <Button onClick={onNext} className="w-full h-12 font-bold bg-seiren-navy text-white mt-4" disabled={!formData.preferredDate || !formData.preferredTime}>
+            <Button onClick={onNext} className="w-full h-12 font-bold bg-primary text-white mt-4" disabled={!formData.preferredDate || !formData.preferredTime}>
                 次へ進む <ArrowRight className="ml-2 w-4 h-4" />
             </Button>
         </div>
@@ -192,8 +192,8 @@ function Step2({ formData, setFormData, onNext, onBack }: any) {
             <div className="space-y-1"><label className="text-sm font-bold text-gray-700 block">電話番号 <span className="text-red-500">*</span></label><input type="tel" className="w-full border border-gray-300 rounded p-3" placeholder="例：090-0000-0000" value={formData.phone} onChange={e => setFormData({ ...formData, phone: e.target.value })} /></div>
             <div className="space-y-1"><label className="text-sm font-bold text-gray-700 block">メールアドレス</label><input type="email" className="w-full border border-gray-300 rounded p-3" placeholder="sample@example.com" value={formData.email} onChange={e => setFormData({ ...formData, email: e.target.value })} /></div>
             <div className="space-y-1"><label className="text-sm font-bold text-gray-700 block">ご相談内容</label><textarea className="w-full border border-gray-300 rounded p-3 h-20 resize-none" placeholder="駐車場について知りたいなど" value={formData.message} onChange={e => setFormData({ ...formData, message: e.target.value })} /></div>
-            <div className="space-y-2 pt-2"><label className="flex items-start gap-2 cursor-pointer p-2 hover:bg-gray-50 rounded"><input type="checkbox" className="mt-1" checked={formData.privacyCheck} onChange={e => setFormData({ ...formData, privacyCheck: e.target.checked })} /><span className="text-xs text-gray-600"><a href="/privacy" target="_blank" className="text-seiren-navy underline">プライバシーポリシー</a>に同意の上、送信します。</span></label></div>
-            <div className="flex gap-3 pt-4"><Button variant="outline" onClick={onBack} className="flex-1 h-12">戻る</Button><Button onClick={onNext} className="flex-[2] h-12 font-bold bg-seiren-navy text-white disabled:opacity-50" disabled={!formData.name || !formData.phone || !formData.privacyCheck}>確認画面へ <ArrowRight className="ml-2 w-4 h-4" /></Button></div>
+            <div className="space-y-2 pt-2"><label className="flex items-start gap-2 cursor-pointer p-2 hover:bg-gray-50 rounded"><input type="checkbox" className="mt-1" checked={formData.privacyCheck} onChange={e => setFormData({ ...formData, privacyCheck: e.target.checked })} /><span className="text-xs text-gray-600"><a href="/privacy" target="_blank" className="text-primary underline">プライバシーポリシー</a>に同意の上、送信します。</span></label></div>
+            <div className="flex gap-3 pt-4"><Button variant="outline" onClick={onBack} className="flex-1 h-12">戻る</Button><Button onClick={onNext} className="flex-[2] h-12 font-bold bg-primary text-white disabled:opacity-50" disabled={!formData.name || !formData.phone || !formData.privacyCheck}>確認画面へ <ArrowRight className="ml-2 w-4 h-4" /></Button></div>
         </div>
     );
 }
@@ -219,9 +219,9 @@ function SuccessView({ onClose, receiptNumber, message }: { onClose: () => void,
         <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/60 p-4 animate-in fade-in">
             <div className="bg-white w-full max-w-md rounded-xl p-8 text-center shadow-2xl animate-in zoom-in-95">
                 <div className="w-16 h-16 bg-safe-green/10 text-safe-green rounded-full flex items-center justify-center mx-auto mb-6"><CheckCircle2 className="w-10 h-10" /></div>
-                <h2 className="text-xl font-bold text-seiren-navy mb-4">受付番号: {receiptNumber}</h2>
+                <h2 className="text-xl font-bold text-primary mb-4">受付番号: {receiptNumber}</h2>
                 <div className="bg-gray-50 p-6 rounded-lg text-left mb-8 space-y-4"><p className="text-sm text-gray-600 leading-loose whitespace-pre-wrap">{message}</p></div>
-                <Button onClick={onClose} className="w-full bg-seiren-navy text-white font-bold h-12">詳細ページに戻る</Button>
+                <Button onClick={onClose} className="w-full bg-primary text-white font-bold h-12">詳細ページに戻る</Button>
             </div>
         </div>
     );

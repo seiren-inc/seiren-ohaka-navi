@@ -23,7 +23,7 @@ export function StickyCTA({ temple }: StickyCTAProps) {
             <div className="flex gap-3 max-w-lg mx-auto">
                 {/* Secondary: Visit */}
                 <Link href={requestUrl} className="flex-1">
-                    <Button variant="outline" className="w-full h-12 border-seiren-navy text-seiren-navy font-bold text-xs px-1">
+                    <Button variant="outline" className="w-full h-12 border-primary text-primary font-bold text-xs px-1">
                         <CalendarCheck className="w-4 h-4 mr-1" /> 見学・相談
                     </Button>
                 </Link>

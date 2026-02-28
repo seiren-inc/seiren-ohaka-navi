@@ -35,7 +35,7 @@ export function GuideContent() {
 
                     {/* H2: 供養の選択肢 */}
                     <section className="mb-20">
-                        <h2 className="font-serif text-2xl font-bold text-seiren-navy border-b pb-4 mb-8 flex items-center">
+                        <h2 className="font-serif text-2xl font-bold text-primary border-b pb-4 mb-8 flex items-center">
                             <BookOpen className="w-6 h-6 mr-3 text-secondary" />
                             供養方法にはどんな選択肢があるのか
                         </h2>
@@ -109,7 +109,7 @@ export function GuideContent() {
 
                     {/* CTA: Diagnosis */}
                     <section className="mb-16">
-                        <div className="bg-seiren-navy rounded-2xl p-8 text-center text-white relative overflow-hidden">
+                        <div className="bg-primary rounded-2xl p-8 text-center text-white relative overflow-hidden">
                             <div className="relative z-10 max-w-2xl mx-auto">
                                 <h2 className="text-2xl font-serif font-bold mb-4">
                                     「自分に合う供養」がまだ分からない方へ
@@ -118,7 +118,7 @@ export function GuideContent() {
                                     永代供養、樹木葬、納骨堂… 選択肢が多くて迷っていませんか？<br />
                                     5つの質問に答えるだけで、あなたの希望に近い供養方法を診断できます。
                                 </p>
-                                <Link href="/choices/diagnosis" className="inline-block bg-white text-seiren-navy font-bold px-8 py-4 rounded-full hover:bg-gray-100 transition-colors">
+                                <Link href="/choices/diagnosis" className="inline-block bg-white text-primary font-bold px-8 py-4 rounded-full hover:bg-gray-100 transition-colors">
                                     供養の選択肢診断を試す →
                                 </Link>
                             </div>
@@ -127,7 +127,7 @@ export function GuideContent() {
 
                     {/* H2: 多くの方が迷うポイント */}
                     <section className="mb-20">
-                        <h2 className="font-serif text-2xl font-bold text-seiren-navy border-b pb-4 mb-8 flex items-center">
+                        <h2 className="font-serif text-2xl font-bold text-primary border-b pb-4 mb-8 flex items-center">
                             <HelpCircle className="w-6 h-6 mr-3 text-secondary" />
                             多くの方が迷うポイント
                         </h2>
@@ -161,7 +161,7 @@ export function GuideContent() {
 
                     {/* H2: 専門家の立場からの考え方 */}
                     <section className="mb-20">
-                        <h2 className="font-serif text-2xl font-bold text-seiren-navy border-b pb-4 mb-8 flex items-center">
+                        <h2 className="font-serif text-2xl font-bold text-primary border-b pb-4 mb-8 flex items-center">
                             <AlertCircle className="w-6 h-6 mr-3 text-secondary" />
                             専門家の立場からの考え方
                         </h2>
@@ -182,7 +182,7 @@ export function GuideContent() {
 
                     {/* H2: 知識を踏まえて、次にできること (CTA) */}
                     <section className="mt-20">
-                        <h2 className="font-serif text-2xl font-bold text-seiren-navy border-b pb-4 mb-8 text-center">
+                        <h2 className="font-serif text-2xl font-bold text-primary border-b pb-4 mb-8 text-center">
                             知識を踏まえて、次にできること
                         </h2>
 

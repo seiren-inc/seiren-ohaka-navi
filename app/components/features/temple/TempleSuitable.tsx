@@ -18,7 +18,7 @@ export function TempleSuitable({ data }: TempleSuitableProps) {
     return (
         <div className="bg-gray-50 rounded-xl p-6 md:p-8">
             <h2 className="text-center font-bold text-gray-800 mb-6">
-                <span className="text-seiren-navy">この霊園</span> はあなたに合っている？
+                <span className="text-primary">この霊園</span> はあなたに合っている？
             </h2>
 
             <div className="grid md:grid-cols-2 gap-6 mb-8">

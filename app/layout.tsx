@@ -31,7 +31,7 @@ export default function RootLayout({
   return (
     <html lang="ja">
       <body
-        className={`${notoSansJP.variable} ${shipporiMincho.variable} antialiased font-sans bg-white-smoke text-dark-grey`}
+        className={`${notoSansJP.variable} ${shipporiMincho.variable} antialiased font-sans bg-bg text-text`}
       >
         {children}
       </body>

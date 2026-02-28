@@ -66,7 +66,7 @@ export function SearchFilter() {
     return (
         <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm sticky top-24 max-h-[calc(100vh-120px)] overflow-y-auto">
             <div className="flex justify-between items-center mb-6">
-                <h3 className="font-bold text-seiren-navy flex items-center gap-2">
+                <h3 className="font-bold text-primary flex items-center gap-2">
                     <Filter className="w-5 h-5" /> 条件で絞り込む
                 </h3>
                 <button onClick={resetFilters} className="text-xs text-gray-500 hover:text-red-500 flex items-center gap-1">
@@ -100,14 +100,14 @@ export function SearchFilter() {
                             <h5 className="text-xs font-bold text-gray-400 mb-2">{region.region}</h5>
                             <div className="grid grid-cols-2 gap-2">
                                 {region.items.map(pref => (
-                                    <label key={pref} className={`flex items-center space-x-2 cursor-pointer p-1.5 rounded transition-colors text-xs ${prefs.includes(pref) ? 'bg-seiren-navy/10 font-bold text-seiren-navy' : 'hover:bg-gray-50 text-gray-700'}`}>
+                                    <label key={pref} className={`flex items-center space-x-2 cursor-pointer p-1.5 rounded transition-colors text-xs ${prefs.includes(pref) ? 'bg-primary/10 font-bold text-primary' : 'hover:bg-gray-50 text-gray-700'}`}>
                                         <input
                                             type="checkbox"
                                             className="hidden"
                                             checked={prefs.includes(pref)}
                                             onChange={() => toggle(prefs, pref, setPrefs)}
                                         />
-                                        <div className={`w-3 h-3 rounded-full border ${prefs.includes(pref) ? 'bg-seiren-navy border-seiren-navy' : 'border-gray-300'}`} />
+                                        <div className={`w-3 h-3 rounded-full border ${prefs.includes(pref) ? 'bg-primary border-primary' : 'border-gray-300'}`} />
                                         <span>{pref}</span>
                                     </label>
                                 ))}
@@ -125,7 +125,7 @@ export function SearchFilter() {
                         <label key={type} className="flex items-center space-x-3 cursor-pointer hover:bg-gray-50 p-2 rounded transition-colors">
                             <input
                                 type="checkbox"
-                                className="form-checkbox h-4 w-4 text-seiren-navy rounded border-gray-300 focus:ring-seiren-navy"
+                                className="form-checkbox h-4 w-4 text-primary rounded border-gray-300 focus:ring-primary"
                                 checked={types.includes(type as FacilityType)}
                                 onChange={() => toggle(types, type as FacilityType, setTypes)}
                             />
@@ -147,7 +147,7 @@ export function SearchFilter() {
                                     <label key={sectKey} className="flex items-center space-x-3 cursor-pointer hover:bg-gray-50 p-1.5 rounded transition-colors">
                                         <input
                                             type="checkbox"
-                                            className="form-checkbox h-4 w-4 text-seiren-navy rounded border-gray-300 focus:ring-seiren-navy"
+                                            className="form-checkbox h-4 w-4 text-primary rounded border-gray-300 focus:ring-primary"
                                             checked={buddhistSects.includes(sectKey as BuddhistSect)}
                                             onChange={() => toggle(buddhistSects, sectKey as BuddhistSect, setBuddhistSects)}
                                         />
@@ -168,7 +168,7 @@ export function SearchFilter() {
                         <label key={m} className="flex items-center space-x-3 cursor-pointer hover:bg-gray-50 p-2 rounded transition-colors">
                             <input
                                 type="checkbox"
-                                className="form-checkbox h-4 w-4 text-seiren-navy rounded border-gray-300 focus:ring-seiren-navy"
+                                className="form-checkbox h-4 w-4 text-primary rounded border-gray-300 focus:ring-primary"
                                 checked={memorials.includes(m as MemorialType)}
                                 onChange={() => toggle(memorials, m as MemorialType, setMemorials)}
                             />
@@ -196,7 +196,7 @@ export function SearchFilter() {
                                 checked={features.includes(feat.id)}
                                 onChange={() => toggle(features, feat.id, setFeatures)}
                             />
-                            <span className="px-3 py-1.5 rounded-full border border-gray-200 text-xs text-gray-600 bg-white peer-checked:bg-seiren-navy peer-checked:text-white peer-checked:border-seiren-navy hover:border-seiren-navy hover:text-seiren-navy transition-all select-none block">
+                            <span className="px-3 py-1.5 rounded-full border border-gray-200 text-xs text-gray-600 bg-white peer-checked:bg-primary peer-checked:text-white peer-checked:border-primary hover:border-primary hover:text-primary transition-all select-none block">
                                 {feat.label}
                             </span>
                         </label>

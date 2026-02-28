@@ -1,37 +1,62 @@
 @import "tailwindcss";
 
 @theme {
-  /* New Color Tokens from Logo */
-  --color-primary: #519DB0;
-  --color-primary-dark: #3A7A8A;
-  /* Darker variant for text contrast */
-  --color-secondary: #D79CBA;
-  --color-accent: #B6C970;
-  --color-tint: #AAD0D6;
-  --color-bg: #F6F5F2;
-  --color-surface: #FCFCFC;
+  /* =========================================
+     Doc-31 Revised Color System
+     ========================================= */
+  --color-primary: #1F3A5F;
+  --color-primary-hover: #162B4A;
+  --color-soft-teal: #4FA7A0;
+  --color-lotus-pink: #E8CFCF;
+  
+  --color-bg: #FFFFFF;
+  --color-bg-muted: #F7F8FA;
+  
+  --color-text: #111111;
+  --color-text-muted: #6B6B6B;
+  --color-border: #ECECEC;
+  --color-danger: #B00020;
 
-  /* Legacy Variable Mapping */
+  /* Legacy Variable Mapping (Backward Compatibility) */
   --color-seiren-navy: var(--color-primary);
-  --color-lotus-pink: var(--color-secondary);
-  --color-warm-gold: var(--color-accent);
-  --color-safe-green: var(--color-accent);
-  --color-white-smoke: var(--color-bg);
-  --color-dark-grey: #333333;
+  --color-primary-dark: var(--color-primary-hover);
+  --color-secondary: var(--color-lotus-pink);
+  --color-accent: var(--color-soft-teal);
+  --color-accent-green: var(--color-soft-teal);
+  --color-accent-pink: var(--color-lotus-pink);
+  --color-warm-gold: var(--color-soft-teal);
+  --color-safe-green: var(--color-soft-teal);
+  --color-tint: var(--color-soft-teal);
+  --color-primary-soft: var(--color-soft-teal);
+  --color-white-smoke: var(--color-bg-muted);
+  --color-surface: var(--color-bg-muted);
+  --color-dark-grey: var(--color-text);
 
-  /* Fonts */
+  /* =========================================
+     Typography & Layout
+     ========================================= */
   --font-sans: var(--font-noto-sans-jp), sans-serif;
   --font-serif: var(--font-shippori-mincho), serif;
 
-  /* Animations */
-  --animate-fade-in: fade-in 0.5s ease-out forwards;
-  --animate-slide-up: slide-up 0.5s ease-out forwards;
+  /* Additional Layout Variables (Doc-27/31) */
+  --spacing-section-desktop: 96px;
+  --spacing-section-tablet: 72px;
+  --spacing-section-mobile: 56px;
+
+  /* Shadows (Doc-31) */
+  --shadow-card: 0 4px 16px rgba(0,0,0,0.06);
+  --shadow-card-hover: 0 8px 24px rgba(0,0,0,0.08);
+
+  /* =========================================
+     Animations & Motion (Doc-09)
+     ========================================= */
+  --animate-fade-in: fade-in 0.25s ease-out forwards;
+  --animate-slide-up: slide-up 0.25s ease-out forwards;
 
   @keyframes fade-in {
     from {
       opacity: 0;
     }
-
     to {
       opacity: 1;
     }
@@ -39,10 +64,9 @@
 
   @keyframes slide-up {
     from {
-      transform: translateY(20px);
+      transform: translateY(12px);
       opacity: 0;
     }
-
     to {
       transform: translateY(0);
       opacity: 1;
@@ -51,12 +75,13 @@
 }
 
 :root {
-  --background: #F5F5F5;
-  --foreground: #333333;
+  --background: #FFFFFF;
+  --foreground: #111111;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-sans);
+  line-height: 1.7;
 }

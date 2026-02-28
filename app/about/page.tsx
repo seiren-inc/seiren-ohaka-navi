@@ -22,7 +22,7 @@ export default function AboutPage() {
                         <span className="text-secondary font-bold tracking-widest text-xs uppercase mb-4 block">
                             Concept
                         </span>
-                        <h1 className="font-serif text-3xl md:text-4xl font-bold text-seiren-navy mb-8 leading-relaxed">
+                        <h1 className="font-serif text-3xl md:text-4xl font-bold text-primary mb-8 leading-relaxed">
                             「売る」ためではなく<br />
                             「納得する」ための<br />
                             お手伝い。
@@ -37,7 +37,7 @@ export default function AboutPage() {
                     {/* Mission */}
                     <section className="mb-20">
                         <div className="bg-gray-50 p-8 md:p-12 rounded-2xl">
-                            <h2 className="font-serif text-2xl font-bold text-seiren-navy mb-6 text-center">
+                            <h2 className="font-serif text-2xl font-bold text-primary mb-6 text-center">
                                 私たちのミッション
                             </h2>
                             <p className="text-gray-700 leading-loose mb-6">
@@ -99,7 +99,7 @@ export default function AboutPage() {
 
                     {/* CTA */}
                     <div className="text-center border-t border-gray-100 pt-12">
-                        <h2 className="font-serif text-xl font-bold text-seiren-navy mb-6">
+                        <h2 className="font-serif text-xl font-bold text-primary mb-6">
                             まずは、あなたの状況をお聞かせください
                         </h2>
                         <div className="flex flex-col sm:flex-row gap-4 justify-center">
