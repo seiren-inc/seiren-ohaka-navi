@@ -15,6 +15,7 @@ import { TempleGuide } from "../../components/features/temple/TempleGuide";
 import { TempleClosing } from "../../components/features/temple/TempleClosing";
 
 export default async function TempleDetailPage(props: { params: Promise<{ id: string }> }) {
+    // Next.js 15+ params are async
     const params = await props.params;
     const temple = Store.getTemple(params.id);
 
@@ -25,14 +26,14 @@ export default async function TempleDetailPage(props: { params: Promise<{ id: st
     const plans = Store.getPlans(params.id);
 
     return (
-        <div className="min-h-screen flex flex-col bg-bg pb-24 md:pb-0">
+        <div className="min-h-screen flex flex-col bg-white-smoke pb-24 md:pb-0">
             <Navbar />
 
             <main className="flex-grow pt-20">
                 {/* 1. Hero (First View) */}
                 <TempleHero data={temple} />
 
-                <div className="max-w-6xl mx-auto px-[--content-px] py-10 md:py-14 space-y-20">
+                <div className="max-w-6xl mx-auto px-4 md:px-8 py-8 md:py-12 space-y-16">
                     {/* 2. Suitable For */}
                     <TempleSuitable data={temple} />
 

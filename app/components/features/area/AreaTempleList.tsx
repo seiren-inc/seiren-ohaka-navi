@@ -41,8 +41,8 @@ export async function AreaTempleList({ prefecture, city, searchParams }: AreaTem
 
     if (temples.length === 0) {
         return (
-            <div className="bg-bg p-12 text-center rounded-lg">
-                <p className="text-text-secondary mb-4">条件に一致する霊園は見つかりませんでした。</p>
+            <div className="bg-gray-50 p-12 text-center rounded-lg">
+                <p className="text-gray-600 mb-4">条件に一致する霊園は見つかりませんでした。</p>
                 <Link href="/search">
                     <Button variant="outline">条件をリセットして検索</Button>
                 </Link>

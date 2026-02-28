@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Noto_Sans_JP, Shippori_Mincho } from "next/font/google";
+import { Noto_Sans_JP } from "next/font/google";
 import "./globals.css";
 
 const notoSansJP = Noto_Sans_JP({
@@ -7,9 +7,10 @@ const notoSansJP = Noto_Sans_JP({
   subsets: ["latin"],
 });
 
-const shipporiMincho = Shippori_Mincho({
+// Replaces Shippori Mincho with Noto Sans JP while maintaining variable compatibility
+// This ensures 'font-serif' classes render as Noto Sans JP
+const shipporiMincho = Noto_Sans_JP({
   variable: "--font-shippori-mincho",
-  weight: ["400", "500", "600", "700"],
   subsets: ["latin"],
 });
 
@@ -30,7 +31,7 @@ export default function RootLayout({
   return (
     <html lang="ja">
       <body
-        className={`${notoSansJP.variable} ${shipporiMincho.variable} antialiased font-sans`}
+        className={`${notoSansJP.variable} ${shipporiMincho.variable} antialiased font-sans bg-white-smoke text-dark-grey`}
       >
         {children}
       </body>

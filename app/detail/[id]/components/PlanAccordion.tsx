@@ -43,18 +43,18 @@ export function PlanAccordion({ plans }: PlanAccordionProps) {
     return (
         <div className="space-y-6">
             {Object.entries(grouped).map(([typeName, groupPlans]) => (
-                <div key={typeName} className="border border-border rounded-xl overflow-hidden bg-white shadow-sm">
+                <div key={typeName} className="border border-gray-200 rounded-xl overflow-hidden bg-white shadow-sm">
                     {/* Header */}
                     <button
                         onClick={() => toggle(typeName)}
-                        className="w-full flex items-center justify-between p-4 bg-bg hover:bg-bg transition-colors"
+                        className="w-full flex items-center justify-between p-4 bg-gray-50 hover:bg-gray-100 transition-colors"
                     >
-                        <h3 className="font-bold text-lg text-primary flex items-center">
-                            <span className="w-1 h-6 bg-primary mr-3 rounded-full" />
+                        <h3 className="font-bold text-lg text-seiren-navy flex items-center">
+                            <span className="w-1 h-6 bg-seiren-navy mr-3 rounded-full" />
                             {typeName}
-                            <span className="ml-2 text-sm text-text-muted font-normal">({groupPlans.length}件)</span>
+                            <span className="ml-2 text-sm text-gray-500 font-normal">({groupPlans.length}件)</span>
                         </h3>
-                        {openGroups[typeName] ? <ChevronUp className="w-5 h-5 text-text-muted" /> : <ChevronDown className="w-5 h-5 text-text-muted" />}
+                        {openGroups[typeName] ? <ChevronUp className="w-5 h-5 text-gray-400" /> : <ChevronDown className="w-5 h-5 text-gray-400" />}
                     </button>
 
                     {/* Content */}
@@ -63,11 +63,11 @@ export function PlanAccordion({ plans }: PlanAccordionProps) {
                             {groupPlans.map(plan => (
                                 <div
                                     key={plan.id}
-                                    className="p-4 sm:p-6 flex flex-col sm:flex-row gap-4 sm:gap-6 hover:bg-bg transition-colors cursor-pointer group"
+                                    className="p-4 sm:p-6 flex flex-col sm:flex-row gap-4 sm:gap-6 hover:bg-gray-50 transition-colors cursor-pointer group"
                                     onClick={() => openModal(plan)}
                                 >
                                     {/* Image Placeholder */}
-                                    <div className="w-full sm:w-32 h-32 bg-border rounded-lg flex-shrink-0 flex items-center justify-center text-xs text-text-muted relative overflow-hidden">
+                                    <div className="w-full sm:w-32 h-32 bg-gray-200 rounded-lg flex-shrink-0 flex items-center justify-center text-xs text-gray-400 relative overflow-hidden">
                                         {plan.imageUrl ? (
                                             <div className="w-full h-full bg-cover bg-center" style={{ backgroundImage: `url(${plan.imageUrl})` }} />
                                         ) : (
@@ -83,31 +83,31 @@ export function PlanAccordion({ plans }: PlanAccordionProps) {
                                                     {plan.maintenanceFee === 0 && (
                                                         <span className="bg-safe-green/10 text-safe-green text-[10px] px-2 py-0.5 rounded font-bold">年間管理費0円</span>
                                                     )}
-                                                    <span className="bg-bg text-text-secondary text-[10px] px-2 py-0.5 rounded">
+                                                    <span className="bg-gray-100 text-gray-600 text-[10px] px-2 py-0.5 rounded">
                                                         {plan.capacity}
                                                     </span>
                                                 </div>
-                                                <h4 className="font-bold text-primary text-lg mb-1 group-hover:text-secondary transition-colors">{plan.name}</h4>
+                                                <h4 className="font-bold text-seiren-navy text-lg mb-1 group-hover:text-secondary transition-colors">{plan.name}</h4>
                                             </div>
                                             <div className="text-right">
                                                 <p className="text-2xl font-bold text-warm-gold">
                                                     {plan.price >= 10000 ? `${plan.price / 10000}` : plan.price.toLocaleString()}
-                                                    <span className="text-sm font-normal text-text-secondary ml-1">{plan.price >= 10000 ? '万円' : '円'}</span>
+                                                    <span className="text-sm font-normal text-gray-600 ml-1">{plan.price >= 10000 ? '万円' : '円'}</span>
                                                 </p>
-                                                <p className="text-xs text-text-muted">
+                                                <p className="text-xs text-gray-400">
                                                     (総額目安)
                                                 </p>
                                             </div>
                                         </div>
 
-                                        <p className="text-sm text-text-secondary leading-relaxed mb-4">
+                                        <p className="text-sm text-gray-600 leading-relaxed mb-4">
                                             {plan.description}
                                         </p>
 
-                                        <div className="flex flex-col sm:flex-row items-center justify-between border-t border-dotted border-border pt-3 mt-auto">
+                                        <div className="flex flex-col sm:flex-row items-center justify-between border-t border-dotted border-gray-200 pt-3 mt-auto">
                                             <div className="flex flex-wrap gap-2 mb-3 sm:mb-0">
                                                 {plan.features.map(f => (
-                                                    <span key={f} className="text-[10px] text-text-muted border border-border px-2 py-1 rounded-full">
+                                                    <span key={f} className="text-[10px] text-gray-500 border border-gray-200 px-2 py-1 rounded-full">
                                                         {f}
                                                     </span>
                                                 ))}
@@ -115,7 +115,7 @@ export function PlanAccordion({ plans }: PlanAccordionProps) {
                                             <Button
                                                 size="sm"
                                                 variant="outline"
-                                                className="w-full sm:w-auto text-xs group-hover:bg-primary group-hover:text-white group-hover:border-primary transition-all"
+                                                className="w-full sm:w-auto text-xs group-hover:bg-seiren-navy group-hover:text-white group-hover:border-seiren-navy transition-all"
                                                 onClick={(e) => {
                                                     e.stopPropagation();
                                                     openModal(plan);

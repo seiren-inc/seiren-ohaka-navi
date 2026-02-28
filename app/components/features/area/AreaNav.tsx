@@ -20,18 +20,18 @@ export function AreaNav({ prefecture }: AreaNavProps) {
     ];
 
     return (
-        <section className="bg-white border-t border-border py-12">
+        <section className="bg-white border-t border-gray-100 py-12">
             <div className="max-w-7xl mx-auto px-4">
                 <div className="grid md:grid-cols-2 gap-8">
                     {/* Nearby Areas */}
                     <div>
-                        <h3 className="font-bold text-primary-dark border-b border-border pb-2 mb-4">
+                        <h3 className="font-bold text-gray-800 border-b border-gray-200 pb-2 mb-4">
                             近隣エリアから探す
                         </h3>
                         <div className="grid grid-cols-2 gap-2">
                             {nearby.map(area => (
-                                <Link key={area} href={`/search?q=${area}`} className="text-sm text-text-secondary hover:text-primary flex items-center">
-                                    <ChevronRight className="w-3 h-3 text-text-muted mr-1" /> {area}
+                                <Link key={area} href={`/search?q=${area}`} className="text-sm text-gray-600 hover:text-primary flex items-center">
+                                    <ChevronRight className="w-3 h-3 text-gray-400 mr-1" /> {area}
                                 </Link>
                             ))}
                         </div>
@@ -39,13 +39,13 @@ export function AreaNav({ prefecture }: AreaNavProps) {
 
                     {/* Features */}
                     <div>
-                        <h3 className="font-bold text-primary-dark border-b border-border pb-2 mb-4">
+                        <h3 className="font-bold text-gray-800 border-b border-gray-200 pb-2 mb-4">
                             {prefecture}の特集
                         </h3>
                         <div className="grid grid-cols-2 gap-2">
                             {features.map(feat => (
-                                <Link key={feat} href={`/search?tag=${feat}`} className="text-sm text-text-secondary hover:text-primary flex items-center">
-                                    <ChevronRight className="w-3 h-3 text-text-muted mr-1" /> {feat}
+                                <Link key={feat} href={`/search?tag=${feat}`} className="text-sm text-gray-600 hover:text-primary flex items-center">
+                                    <ChevronRight className="w-3 h-3 text-gray-400 mr-1" /> {feat}
                                 </Link>
                             ))}
                         </div>

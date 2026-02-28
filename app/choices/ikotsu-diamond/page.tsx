@@ -62,7 +62,7 @@ export default function IkotsuDiamondPage() {
     };
 
     return (
-        <div className="min-h-screen flex flex-col bg-white text-primary-dark">
+        <div className="min-h-screen flex flex-col bg-white text-gray-800">
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
             <Navbar />
 
@@ -74,13 +74,13 @@ export default function IkotsuDiamondPage() {
                         <span className="text-secondary font-bold tracking-widest text-xs uppercase mb-4 block">
                             Cremation Diamond
                         </span>
-                        <h1 className="font-serif text-2xl md:text-3xl lg:text-4xl font-bold text-primary mb-6 leading-relaxed">
+                        <h1 className="font-serif text-2xl md:text-3xl lg:text-4xl font-bold text-seiren-navy mb-6 leading-relaxed">
                             遺骨ダイヤモンドとは<br />
                             <span className="text-lg md:text-2xl mt-2 block opacity-80">仕組みと判断ポイントを中立に整理</span>
                         </h1>
 
                         <div className="bg-primary/5 border border-primary/20 rounded-xl p-6 md:p-8 text-left max-w-3xl mx-auto mt-8">
-                            <p className="text-text-primary leading-loose">
+                            <p className="text-gray-700 leading-loose">
                                 故人の遺骨から人工ダイヤモンドを作る「遺骨ダイヤモンド」。<br />
                                 手元供養の一つとして、近年認知度が高まってきました。<br />
                                 <br />
@@ -96,11 +96,11 @@ export default function IkotsuDiamondPage() {
 
                     {/* H2: 遺骨ダイヤモンドとは何か */}
                     <section className="mb-20">
-                        <h2 className="font-serif text-2xl font-bold text-primary border-b pb-4 mb-8 flex items-center">
+                        <h2 className="font-serif text-2xl font-bold text-seiren-navy border-b pb-4 mb-8 flex items-center">
                             <Gem className="w-6 h-6 mr-3 text-secondary" />
                             遺骨ダイヤモンドとは何か
                         </h2>
-                        <div className="prose max-w-none text-text-secondary leading-loose">
+                        <div className="prose max-w-none text-gray-600 leading-loose">
                             <p className="mb-6">
                                 遺骨ダイヤモンド（メモリアルダイヤモンド）とは、<br />
                                 遺骨に含まれる「炭素」成分を抽出し、人工的に高温高圧にかけることで生成した合成ダイヤモンドです。<br />
@@ -116,39 +116,39 @@ export default function IkotsuDiamondPage() {
 
                     {/* H2: 遺骨ダイヤモンドが向きやすいケース */}
                     <section className="mb-20">
-                        <h2 className="font-serif text-2xl font-bold text-primary border-b pb-4 mb-8 flex items-center">
+                        <h2 className="font-serif text-2xl font-bold text-seiren-navy border-b pb-4 mb-8 flex items-center">
                             <CheckCircle className="w-6 h-6 mr-3 text-secondary" />
                             遺骨ダイヤモンドが向きやすいケース
                         </h2>
-                        <div className="bg-white border border-border rounded-xl p-8 mb-8">
+                        <div className="bg-white border border-gray-200 rounded-xl p-8 mb-8">
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                                 <div>
-                                    <h3 className="font-bold text-primary mb-2">手元で故人を感じたい</h3>
-                                    <p className="text-sm text-text-secondary leading-loose">
+                                    <h3 className="font-bold text-seiren-navy mb-2">手元で故人を感じたい</h3>
+                                    <p className="text-sm text-gray-600 leading-loose">
                                         ただ骨壺を置くのではなく、美しく昇華された形で手元に残したい。<br />
                                         いつでも触れられるアクセサリーとして身につけたい。<br />
                                         そうした「つながり」を強く求める方に選ばれています。
                                     </p>
                                 </div>
                                 <div>
-                                    <h3 className="font-bold text-primary mb-2">形として残したい</h3>
-                                    <p className="text-sm text-text-secondary leading-loose">
+                                    <h3 className="font-bold text-seiren-navy mb-2">形として残したい</h3>
+                                    <p className="text-sm text-gray-600 leading-loose">
                                         散骨などで遺骨がなくなってしまうのは寂しいが、<br />
                                         骨壺のままでは抵抗があるという場合に、<br />
                                         「宝石」という永続的な形に変えて残すことができます。
                                     </p>
                                 </div>
                                 <div>
-                                    <h3 className="font-bold text-primary mb-2">お墓を持たない供養と相性が良い</h3>
-                                    <p className="text-sm text-text-secondary leading-loose">
+                                    <h3 className="font-bold text-seiren-navy mb-2">お墓を持たない供養と相性が良い</h3>
+                                    <p className="text-sm text-gray-600 leading-loose">
                                         お墓を継承する人がいない場合でも、<br />
                                         ダイヤモンドであれば場所を取らず、<br />
                                         子供や孫へ「形見」として負担なく引き継ぐことが可能です。
                                     </p>
                                 </div>
                                 <div>
-                                    <h3 className="font-bold text-primary mb-2">分骨して家族で持つ</h3>
-                                    <p className="text-sm text-text-secondary leading-loose">
+                                    <h3 className="font-bold text-seiren-navy mb-2">分骨して家族で持つ</h3>
+                                    <p className="text-sm text-gray-600 leading-loose">
                                         一つの遺骨から複数のダイヤモンド（またはジュエリー）を作ることで、<br />
                                         離れて暮らす家族それぞれが、故人を分かち合うことができます。
                                     </p>
@@ -159,35 +159,35 @@ export default function IkotsuDiamondPage() {
 
                     {/* H2: 費用と期間の考え方 */}
                     <section className="mb-20">
-                        <h2 className="font-serif text-2xl font-bold text-primary border-b pb-4 mb-8 flex items-center">
+                        <h2 className="font-serif text-2xl font-bold text-seiren-navy border-b pb-4 mb-8 flex items-center">
                             <Clock className="w-6 h-6 mr-3 text-secondary" />
                             費用と期間の考え方
                         </h2>
-                        <div className="bg-white border border-border rounded-xl p-8">
-                            <p className="text-text-secondary leading-loose mb-6">
+                        <div className="bg-white border border-gray-200 rounded-xl p-8">
+                            <p className="text-gray-600 leading-loose mb-6">
                                 高度な技術を用いるため、決して安い買い物ではありません。<br />
                                 メーカーや希望するスペックによって費用と期間は変動します。
                             </p>
 
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
-                                <div className="bg-bg p-6 rounded-lg">
+                                <div className="bg-gray-50 p-6 rounded-lg">
                                     <h3 className="font-bold text-primary-dark mb-4 flex items-center">
                                         <Calculator className="w-5 h-5 mr-2" />
                                         費用の目安：30万円 〜 200万円以上
                                     </h3>
-                                    <ul className="list-disc list-inside text-sm text-text-secondary leading-loose">
+                                    <ul className="list-disc list-inside text-sm text-gray-600 leading-loose">
                                         <li><span className="font-bold">カラット（大きさ）</span>: 大きくなるほど高額になります（0.2ct〜1.0ct超）。</li>
                                         <li><span className="font-bold">カラー</span>: 無色透明やブルー、イエローなど、色によって精製難易度・価格が変わります。</li>
                                         <li><span className="font-bold">カット</span>: ラウンドブリリアントカットなどが一般的ですが、特殊カットは追加費用がかかる場合があります。</li>
                                         <li><span className="font-bold">ジュエリー加工</span>: 裸石（ルース）のままか、リングやペンダントに加工するかで費用が変わります。</li>
                                     </ul>
                                 </div>
-                                <div className="bg-bg p-6 rounded-lg">
+                                <div className="bg-gray-50 p-6 rounded-lg">
                                     <h3 className="font-bold text-primary-dark mb-4 flex items-center">
                                         <Clock className="w-5 h-5 mr-2" />
                                         期間の目安：6ヶ月 〜 1年
                                     </h3>
-                                    <ul className="list-disc list-inside text-sm text-text-secondary leading-loose">
+                                    <ul className="list-disc list-inside text-sm text-gray-600 leading-loose">
                                         <li>遺骨の受け取り、炭素抽出、生成、研磨、鑑定という多くの工程を経ます。</li>
                                         <li>多くのメーカーは海外（スイスやアメリカ等）に製造拠点を持っているため、輸送の時間も含まれます。</li>
                                         <li>急ぎで手元に欲しい場合には不向きな選択肢と言えます。</li>
@@ -199,14 +199,14 @@ export default function IkotsuDiamondPage() {
 
                     {/* H2: 確認しておきたいポイント */}
                     <section className="mb-20">
-                        <h2 className="font-serif text-2xl font-bold text-primary border-b pb-4 mb-8 flex items-center">
+                        <h2 className="font-serif text-2xl font-bold text-seiren-navy border-b pb-4 mb-8 flex items-center">
                             <FileText className="w-6 h-6 mr-3 text-secondary" />
                             注文前に確認しておきたいポイント
                         </h2>
                         <div className="space-y-6">
                             <div className="bg-white border-l-4 border-secondary p-6 shadow-sm">
                                 <h3 className="font-bold text-lg text-primary-dark mb-2">1. 必要な遺骨の量と、残った遺骨の扱い</h3>
-                                <p className="text-text-secondary leading-loose text-sm">
+                                <p className="text-gray-600 leading-loose text-sm">
                                     製作には一定量（数100g程度）の遺骨が必要です。<br />
                                     「全骨を使うのか」「一部だけ使うのか」を確認しましょう。<br />
                                     また、使用しなかった（炭素抽出後の）残余遺骨をどのように返却してくれるのかも重要な確認事項です。
@@ -214,7 +214,7 @@ export default function IkotsuDiamondPage() {
                             </div>
                             <div className="bg-white border-l-4 border-secondary p-6 shadow-sm">
                                 <h3 className="font-bold text-lg text-primary-dark mb-2">2. 証明書とトレーサビリティ</h3>
-                                <p className="text-text-secondary leading-loose text-sm">
+                                <p className="text-gray-600 leading-loose text-sm">
                                     本当に故人の遺骨から作られたかを確認するために、<br />
                                     製造工程の管理体制（トレーサビリティ）が明確か、<br />
                                     GIAなどの権威ある機関の鑑定書が付くかを確認してください。
@@ -222,7 +222,7 @@ export default function IkotsuDiamondPage() {
                             </div>
                             <div className="bg-white border-l-4 border-secondary p-6 shadow-sm">
                                 <h3 className="font-bold text-lg text-primary-dark mb-2">3. 保管と輸送の安全性</h3>
-                                <p className="text-text-secondary leading-loose text-sm">
+                                <p className="text-gray-600 leading-loose text-sm">
                                     大切な遺骨を海外へ送るケースが多いため、<br />
                                     輸送中の事故や紛失に対する補償や、<br />
                                     追跡可能な配送方法がとられているかを確認する必要があります。
@@ -230,7 +230,7 @@ export default function IkotsuDiamondPage() {
                             </div>
                             <div className="bg-white border-l-4 border-secondary p-6 shadow-sm">
                                 <h3 className="font-bold text-lg text-primary-dark mb-2">4. キャンセルポリシー</h3>
-                                <p className="text-text-secondary leading-loose text-sm">
+                                <p className="text-gray-600 leading-loose text-sm">
                                     オーダーメイド品であるため、製作開始後のキャンセルは基本的にできません。<br />
                                     どの時点までならキャンセル可能か、返金規定はどうなっているか、<br />
                                     契約書や約款を事前によく読み込みましょう。
@@ -242,7 +242,7 @@ export default function IkotsuDiamondPage() {
 
                     {/* H2: メリットと注意点 */}
                     <section className="mb-20">
-                        <h2 className="font-serif text-2xl font-bold text-primary border-b pb-4 mb-8 flex items-center">
+                        <h2 className="font-serif text-2xl font-bold text-seiren-navy border-b pb-4 mb-8 flex items-center">
                             <AlertCircle className="w-6 h-6 mr-3 text-secondary" />
                             メリットと注意点
                         </h2>
@@ -252,7 +252,7 @@ export default function IkotsuDiamondPage() {
                                     <CheckCircle className="w-5 h-5 mr-2" />
                                     メリット
                                 </h3>
-                                <ul className="space-y-4 text-text-primary leading-loose text-sm">
+                                <ul className="space-y-4 text-gray-700 leading-loose text-sm">
                                     <li className="flex items-start">
                                         <span className="text-secondary mr-2">●</span>
                                         <span>
@@ -277,28 +277,28 @@ export default function IkotsuDiamondPage() {
                                 </ul>
                             </div>
 
-                            <div className="bg-bg p-6 rounded-xl">
-                                <h3 className="font-bold text-lg text-text-secondary mb-4 flex items-center">
+                            <div className="bg-gray-50 p-6 rounded-xl">
+                                <h3 className="font-bold text-lg text-gray-600 mb-4 flex items-center">
                                     <AlertCircle className="w-5 h-5 mr-2" />
                                     注意点
                                 </h3>
-                                <ul className="space-y-4 text-text-primary leading-loose text-sm">
+                                <ul className="space-y-4 text-gray-700 leading-loose text-sm">
                                     <li className="flex items-start">
-                                        <span className="text-text-muted mr-2">●</span>
+                                        <span className="text-gray-400 mr-2">●</span>
                                         <span>
                                             一般的なお墓や樹木葬と比較しても、<br />
                                             費用が高額になる傾向があります。
                                         </span>
                                     </li>
                                     <li className="flex items-start">
-                                        <span className="text-text-muted mr-2">●</span>
+                                        <span className="text-gray-400 mr-2">●</span>
                                         <span>
                                             完成までに長い時間がかかるため、<br />
                                             四十九日などの法要には間に合いません。
                                         </span>
                                     </li>
                                     <li className="flex items-start">
-                                        <span className="text-text-muted mr-2">●</span>
+                                        <span className="text-gray-400 mr-2">●</span>
                                         <span>
                                             「遺骨を加工する」ことに対して抵抗感を持つ親族もいるため、<br />
                                             事前の理解と合意形成が必要です。
@@ -311,17 +311,17 @@ export default function IkotsuDiamondPage() {
 
                     {/* H2: 診断で遺骨ダイヤモンドが候補に出た方へ */}
                     <section className="mb-20">
-                        <h2 className="font-serif text-2xl font-bold text-primary border-b pb-4 mb-8 flex items-center">
+                        <h2 className="font-serif text-2xl font-bold text-seiren-navy border-b pb-4 mb-8 flex items-center">
                             <Calculator className="w-6 h-6 mr-3 text-secondary" />
                             診断で「遺骨ダイヤモンド」が候補に出た方へ
                         </h2>
                         <div className="bg-primary/5 p-8 rounded-xl">
-                            <p className="text-text-primary leading-loose mb-4">
+                            <p className="text-gray-700 leading-loose mb-4">
                                 <Link href="/choices/diagnosis" className="text-primary font-bold hover:underline">供養の選択肢診断</Link>で遺骨ダイヤモンドがおすすめされた場合、<br />
                                 あなたは大切な方を亡くされた喪失感が強く、<br />
                                 「何らかの形で手元に残したい」「離れたくない」という想いが強い可能性があります。
                             </p>
-                            <p className="text-text-primary leading-loose mb-0">
+                            <p className="text-gray-700 leading-loose mb-0">
                                 ダイヤモンドにすることは、悲しみを美しい思い出に変えるグリーフケア（心のケア）の一つでもあります。<br />
                                 決して安い選択ではありませんが、<br />
                                 「心の拠り所」としての価値は、金額だけでは測れないものかもしれません。
@@ -331,20 +331,20 @@ export default function IkotsuDiamondPage() {
 
                     {/* H2: 迷った場合の次の行動 (CTA) */}
                     <section className="text-center">
-                        <h2 className="font-serif text-2xl font-bold text-primary border-b pb-4 mb-10 inline-block px-12">
+                        <h2 className="font-serif text-2xl font-bold text-seiren-navy border-b pb-4 mb-10 inline-block px-12">
                             迷った場合の次の行動
                         </h2>
 
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-left">
                             {/* Temoto Kuyou Hub */}
-                            <div className="flex flex-col bg-white border border-border rounded-xl p-6 hover:shadow-lg transition-shadow">
+                            <div className="flex flex-col bg-white border border-gray-200 rounded-xl p-6 hover:shadow-lg transition-shadow">
                                 <div className="mb-4 text-center">
-                                    <span className="inline-block p-3 bg-bg rounded-full mb-3">
-                                        <BookOpen className="w-8 h-8 text-text-muted" />
+                                    <span className="inline-block p-3 bg-gray-100 rounded-full mb-3">
+                                        <BookOpen className="w-8 h-8 text-gray-500" />
                                     </span>
                                     <h3 className="font-bold text-lg text-primary-dark">自宅供養全体を整理する</h3>
                                 </div>
-                                <p className="text-sm text-text-muted text-center mb-6 flex-grow">
+                                <p className="text-sm text-gray-500 text-center mb-6 flex-grow">
                                     ダイヤモンド以外にも、骨箱やペンダントなど、<br />
                                     手元に残す方法は他にもあります。
                                 </p>
@@ -356,14 +356,14 @@ export default function IkotsuDiamondPage() {
                             </div>
 
                             {/* Choices */}
-                            <div className="flex flex-col bg-white border border-border rounded-xl p-6 hover:shadow-lg transition-shadow">
+                            <div className="flex flex-col bg-white border border-gray-200 rounded-xl p-6 hover:shadow-lg transition-shadow">
                                 <div className="mb-4 text-center">
                                     <span className="inline-block p-3 bg-primary/10 rounded-full mb-3">
                                         <Search className="w-8 h-8 text-primary" />
                                     </span>
                                     <h3 className="font-bold text-lg text-primary-dark">他の供養方法も比較する</h3>
                                 </div>
-                                <p className="text-sm text-text-muted text-center mb-6 flex-grow">
+                                <p className="text-sm text-gray-500 text-center mb-6 flex-grow">
                                     手元に残すだけでなく、<br />
                                     最終的な納骨先もあわせて検討したい方へ。
                                 </p>
@@ -385,7 +385,7 @@ export default function IkotsuDiamondPage() {
                                     </span>
                                     <h3 className="font-bold text-lg text-secondary">状況を整理して相談する</h3>
                                 </div>
-                                <p className="text-sm text-text-muted text-center mb-6 flex-grow">
+                                <p className="text-sm text-gray-500 text-center mb-6 flex-grow">
                                     ダイヤモンドの信頼できる業者は？など<br />
                                     個別のご質問にお答えします。<br />
                                     もちろん、無理に依頼する必要はありません。
@@ -401,7 +401,7 @@ export default function IkotsuDiamondPage() {
 
                     {/* FAQ */}
                     <section className="my-20">
-                        <h2 className="font-serif text-2xl font-bold text-primary border-b pb-4 mb-8 flex items-center">
+                        <h2 className="font-serif text-2xl font-bold text-seiren-navy border-b pb-4 mb-8 flex items-center">
                             <HelpCircle className="w-6 h-6 mr-3 text-secondary" />
                             よくある質問（FAQ）
                         </h2>
@@ -413,12 +413,12 @@ export default function IkotsuDiamondPage() {
                                 { q: "途中キャンセルはできる？", a: "工程が進んでしまうと基本的にキャンセルはできません。\n特に炭素抽出の工程に入った後は不可となるケースが大半ですので、\n契約時の約款確認が非常に重要です。" },
                                 { q: "分骨して作れる？", a: "可能です。\n遺骨の一部を使ってダイヤモンドを作り、\n残りを散骨や納骨にするという組み合わせが多く選ばれています。" }
                             ].map((item, i) => (
-                                <div key={i} className="bg-bg rounded-lg p-5">
-                                    <h4 className="font-bold text-primary mb-2 flex flex-row items-center">
+                                <div key={i} className="bg-gray-50 rounded-lg p-5">
+                                    <h4 className="font-bold text-seiren-navy mb-2 flex flex-row items-center">
                                         <span className="bg-secondary text-white text-xs font-bold px-2 py-1 rounded mr-3 flex-shrink-0">Q</span>
                                         {item.q}
                                     </h4>
-                                    <p className="text-sm text-text-secondary ml-10 leading-relaxed whitespace-pre-line">
+                                    <p className="text-sm text-gray-600 ml-10 leading-relaxed whitespace-pre-line">
                                         {item.a}
                                     </p>
                                 </div>

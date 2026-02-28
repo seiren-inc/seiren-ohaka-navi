@@ -24,15 +24,15 @@ export function TempleGuide({ data }: TempleGuideProps) {
             <div className="grid md:grid-cols-3 gap-4 mb-8">
                 <div className="bg-white p-4 rounded-lg text-center shadow-sm">
                     <div className="text-xs font-bold text-blue-400 mb-2">費用を抑えたい</div>
-                    <p className="text-sm font-bold text-text-primary">永代供養・樹木葬が<br />候補になります</p>
+                    <p className="text-sm font-bold text-gray-700">永代供養・樹木葬が<br />候補になります</p>
                 </div>
                 <div className="bg-white p-4 rounded-lg text-center shadow-sm">
                     <div className="text-xs font-bold text-blue-400 mb-2">家族でお参りしたい</div>
-                    <p className="text-sm font-bold text-text-primary">個別型プランや<br />一般墓がおすすめです</p>
+                    <p className="text-sm font-bold text-gray-700">個別型プランや<br />一般墓がおすすめです</p>
                 </div>
                 <div className="bg-white p-4 rounded-lg text-center shadow-sm">
                     <div className="text-xs font-bold text-blue-400 mb-2">将来が不安</div>
-                    <p className="text-sm font-bold text-text-primary">「年間管理費不要」の<br />プランも確認できます</p>
+                    <p className="text-sm font-bold text-gray-700">「年間管理費不要」の<br />プランも確認できます</p>
                 </div>
             </div>
 

@@ -342,8 +342,8 @@ export function DiagnosisWizard() {
     if (showResult) {
         return (
             <div className="max-w-4xl mx-auto">
-                <div className="bg-white rounded-3xl shadow-xl overflow-hidden border border-border">
-                    <div className="bg-primary p-8 text-center text-white">
+                <div className="bg-white rounded-3xl shadow-xl overflow-hidden border border-gray-100">
+                    <div className="bg-seiren-navy p-8 text-center text-white">
                         <h2 className="text-2xl font-serif font-bold mb-4">あなたの考え方に近い供養の選択肢</h2>
                         <p className="text-sm opacity-90 leading-relaxed">
                             診断結果はあくまで目安です。状況や気持ちによって最適な選択は変わります。<br />
@@ -351,7 +351,7 @@ export function DiagnosisWizard() {
                         </p>
                     </div>
 
-                    <div className="p-8 bg-bg">
+                    <div className="p-8 bg-gray-50">
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
                             {sortedCandidates.map((candidate, index) => (
                                 <motion.div
@@ -366,7 +366,7 @@ export function DiagnosisWizard() {
                                     </div>
                                     <div className="mt-4 flex flex-col items-center text-center flex-grow">
                                         <candidate.icon className="w-12 h-12 text-primary-dark mb-4" />
-                                        <h3 className="text-xl font-bold text-primary-dark mb-2">{candidate.name}</h3>
+                                        <h3 className="text-xl font-bold text-gray-800 mb-2">{candidate.name}</h3>
 
                                         {/* Reason Display */}
                                         <div className="bg-primary/5 px-4 py-3 rounded-lg mb-4 text-xs text-primary-dark border border-primary/10 w-full text-left">
@@ -374,11 +374,11 @@ export function DiagnosisWizard() {
                                             <p className="whitespace-pre-wrap leading-relaxed">{candidate.generatedReason}</p>
                                         </div>
 
-                                        <p className="text-sm text-text-secondary leading-relaxed mb-4 flex-grow text-left whitespace-pre-wrap">
+                                        <p className="text-sm text-gray-600 leading-relaxed mb-4 flex-grow text-left whitespace-pre-wrap">
                                             {candidate.description}
                                         </p>
 
-                                        <div className="text-xs text-left w-full mb-4 bg-bg p-2 rounded">
+                                        <div className="text-xs text-left w-full mb-4 bg-gray-50 p-2 rounded">
                                             <span className="font-bold text-secondary block mb-1">向いている傾向:</span>
                                             {candidate.suitability}
                                         </div>
@@ -389,7 +389,7 @@ export function DiagnosisWizard() {
                                                 <div className="flex flex-wrap gap-1 sm:gap-2 text-[10px] sm:text-sm">
                                                     {candidate.subOptions.map(sub => (
                                                         <Link key={sub.label} href={sub.link} className="flex-1 min-w-[85px] sm:min-w-[100px]">
-                                                            <span className="block py-2 px-1 sm:py-3 sm:px-2 bg-white border border-border rounded sm:rounded-lg hover:bg-secondary/5 hover:border-secondary hover:text-secondary whitespace-nowrap text-center transition-colors font-bold shadow-sm">
+                                                            <span className="block py-2 px-1 sm:py-3 sm:px-2 bg-white border border-gray-200 rounded sm:rounded-lg hover:bg-secondary/5 hover:border-secondary hover:text-secondary whitespace-nowrap text-center transition-colors font-bold shadow-sm">
                                                                 {sub.label}
                                                             </span>
                                                         </Link>
@@ -419,26 +419,26 @@ export function DiagnosisWizard() {
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
                             {/* Search */}
                             <Link href="/search" className="block">
-                                <div className="bg-white border border-border p-4 rounded-xl hover:shadow-md transition-shadow flex items-center h-full">
+                                <div className="bg-white border border-gray-200 p-4 rounded-xl hover:shadow-md transition-shadow flex items-center h-full">
                                     <div className="bg-primary/10 p-2 rounded-full mr-3 flex-shrink-0">
                                         <Search className="w-5 h-5 text-primary" />
                                     </div>
                                     <div>
                                         <span className="text-xs font-bold text-primary block">こだわり条件から</span>
-                                        <span className="font-bold text-text-primary text-sm">具体的に探す</span>
+                                        <span className="font-bold text-gray-700 text-sm">具体的に探す</span>
                                     </div>
                                 </div>
                             </Link>
 
                             {/* Choices (All) */}
                             <Link href="/choices" className="block">
-                                <div className="bg-white border border-border p-4 rounded-xl hover:shadow-md transition-shadow flex items-center h-full">
-                                    <div className="bg-bg p-2 rounded-full mr-3 flex-shrink-0">
-                                        <BookOpen className="w-5 h-5 text-text-muted" />
+                                <div className="bg-white border border-gray-200 p-4 rounded-xl hover:shadow-md transition-shadow flex items-center h-full">
+                                    <div className="bg-gray-100 p-2 rounded-full mr-3 flex-shrink-0">
+                                        <BookOpen className="w-5 h-5 text-gray-500" />
                                     </div>
                                     <div>
-                                        <span className="text-xs font-bold text-text-muted block">すべてを比較</span>
-                                        <span className="font-bold text-text-primary text-sm">選択肢一覧へ</span>
+                                        <span className="text-xs font-bold text-gray-500 block">すべてを比較</span>
+                                        <span className="font-bold text-gray-700 text-sm">選択肢一覧へ</span>
                                     </div>
                                 </div>
                             </Link>
@@ -454,21 +454,21 @@ export function DiagnosisWizard() {
                                     </div>
                                     <div>
                                         <span className="text-xs font-bold text-secondary block">個別に相談したい</span>
-                                        <span className="font-bold text-text-primary text-sm">状況を整理する</span>
+                                        <span className="font-bold text-gray-700 text-sm">状況を整理する</span>
                                     </div>
                                 </div>
                             </Link>
                         </div>
 
                         <div className="text-center mb-10">
-                            <p className="text-[10px] text-text-muted">
+                            <p className="text-[10px] text-gray-500">
                                 診断結果と実際の選択は必ずしも一致する必要はありません。<br />
                                 迷いがある場合は、まず状況を整理するところから始めましょう。
                             </p>
                         </div>
 
                         <div className="flex justify-center">
-                            <Button variant="ghost" onClick={handleRestart} className="text-text-muted hover:text-text-secondary flex items-center text-sm">
+                            <Button variant="ghost" onClick={handleRestart} className="text-gray-400 hover:text-gray-600 flex items-center text-sm">
                                 <RefreshCw className="w-4 h-4 mr-2" />
                                 診断をやり直す
                             </Button>
@@ -482,12 +482,12 @@ export function DiagnosisWizard() {
     // Wizard Render
     return (
         <div className="max-w-2xl mx-auto">
-            <div className="mb-4 flex items-center justify-between text-xs font-bold text-text-muted uppercase tracking-widest">
+            <div className="mb-4 flex items-center justify-between text-xs font-bold text-gray-400 uppercase tracking-widest">
                 <span>Step {currentStepIndex + 1}</span>
                 <span>of {totalSteps}</span>
             </div>
 
-            <div className="h-2 bg-bg rounded-full mb-8 overflow-hidden">
+            <div className="h-2 bg-gray-100 rounded-full mb-8 overflow-hidden">
                 <motion.div
                     className="h-full bg-secondary"
                     initial={{ width: 0 }}
@@ -502,9 +502,9 @@ export function DiagnosisWizard() {
                     initial={{ opacity: 0, x: 20 }}
                     animate={{ opacity: 1, x: 0 }}
                     exit={{ opacity: 0, x: -20 }}
-                    className="bg-white rounded-2xl shadow-lg border border-border p-8 min-h-[400px] flex flex-col"
+                    className="bg-white rounded-2xl shadow-lg border border-gray-100 p-8 min-h-[400px] flex flex-col"
                 >
-                    <h3 className="text-xl md:text-2xl font-bold text-primary mb-8 text-center leading-relaxed">
+                    <h3 className="text-xl md:text-2xl font-bold text-seiren-navy mb-8 text-center leading-relaxed">
                         {currentQuestion.title}
                     </h3>
 
@@ -516,7 +516,7 @@ export function DiagnosisWizard() {
                                     flex items-center p-5 rounded-xl border-2 cursor-pointer transition-all
                                     ${answers[currentQuestion.id] === option.value
                                         ? 'border-secondary bg-secondary/5 shadow-md'
-                                        : 'border-border hover:border-border hover:bg-bg'
+                                        : 'border-gray-100 hover:border-gray-200 hover:bg-gray-50'
                                     }
                                 `}
                             >
@@ -532,26 +532,26 @@ export function DiagnosisWizard() {
                                     w-6 h-6 rounded-full border-2 mr-4 flex items-center justify-center flex-shrink-0
                                     ${answers[currentQuestion.id] === option.value
                                         ? 'border-secondary'
-                                        : 'border-border'
+                                        : 'border-gray-300'
                                     }
                                 `}>
                                     {answers[currentQuestion.id] === option.value && (
                                         <div className="w-3 h-3 rounded-full bg-secondary" />
                                     )}
                                 </div>
-                                <span className={`font-bold ${answers[currentQuestion.id] === option.value ? 'text-secondary' : 'text-text-secondary'}`}>
+                                <span className={`font-bold ${answers[currentQuestion.id] === option.value ? 'text-secondary' : 'text-gray-600'}`}>
                                     {option.label}
                                 </span>
                             </label>
                         ))}
                     </div>
 
-                    <div className="mt-8 flex items-center justify-between pt-6 border-t border-border">
+                    <div className="mt-8 flex items-center justify-between pt-6 border-t border-gray-100">
                         <Button
                             variant="ghost"
                             onClick={handleBack}
                             disabled={currentStepIndex === 0}
-                            className={`flex items-center ${currentStepIndex === 0 ? 'invisible' : 'text-text-muted hover:text-text-secondary'}`}
+                            className={`flex items-center ${currentStepIndex === 0 ? 'invisible' : 'text-gray-400 hover:text-gray-600'}`}
                         >
                             <ArrowLeft className="w-4 h-4 mr-2" />
                             戻る

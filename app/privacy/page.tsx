@@ -9,15 +9,15 @@ export const metadata: Metadata = {
 
 export default function PrivacyPage() {
     return (
-        <div className="min-h-screen flex flex-col bg-white text-primary-dark">
+        <div className="min-h-screen flex flex-col bg-white text-gray-800">
             <Navbar />
             <main className="flex-grow pt-24 px-4 pb-20">
                 <div className="max-w-4xl mx-auto">
-                    <h1 className="font-serif text-3xl font-bold text-primary mb-8 border-b pb-4">
+                    <h1 className="font-serif text-3xl font-bold text-seiren-navy mb-8 border-b pb-4">
                         プライバシーポリシー
                     </h1>
 
-                    <div className="prose max-w-none text-sm text-text-primary leading-loose space-y-8">
+                    <div className="prose max-w-none text-sm text-gray-700 leading-loose space-y-8">
                         <section>
                             <h2 className="text-xl font-bold text-primary-dark mb-4">1. 個人情報の取り扱いについて</h2>
                             <p>

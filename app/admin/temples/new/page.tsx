@@ -25,7 +25,7 @@ const TagInput = ({ tags, onChange, placeholder }: { tags: string[], onChange: (
         <div className="w-full">
             <div className="flex gap-2 mb-2 flex-wrap min-h-[32px]">
                 {tags.map((t, i) => (
-                    <span key={i} className="bg-bg border border-border px-3 py-1 rounded-full text-sm font-bold flex items-center gap-1 text-text-primary">
+                    <span key={i} className="bg-gray-100 border border-gray-200 px-3 py-1 rounded-full text-sm font-bold flex items-center gap-1 text-gray-700">
                         {t} <button type="button" onClick={() => onChange(tags.filter((_, idx) => idx !== i))} className="hover:text-red-500"><X className="w-3 h-3" /></button>
                     </span>
                 ))}
@@ -130,8 +130,8 @@ export default function NewTemplePage() {
             <h3 className="font-bold text-lg border-b pb-2 flex items-center gap-2"><Info className="w-5 h-5" /> 基本情報</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                    <label className="block text-sm font-bold text-text-primary mb-1">ステータス <span className="text-red-500">*</span></label>
-                    <select className="w-full border border-border p-2.5 rounded-lg font-bold" value={temple.status} onChange={e => setTemple({ ...temple, status: e.target.value as PublishStatus })}>
+                    <label className="block text-sm font-bold text-gray-700 mb-1">ステータス <span className="text-red-500">*</span></label>
+                    <select className="w-full border border-gray-300 p-2.5 rounded-lg font-bold" value={temple.status} onChange={e => setTemple({ ...temple, status: e.target.value as PublishStatus })}>
                         <option value="public">公開</option>
                         <option value="private">非公開</option>
                         <option value="draft">準備中</option>
@@ -139,17 +139,17 @@ export default function NewTemplePage() {
                 </div>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div><label className="block text-sm font-bold text-text-primary mb-1">施設名 <span className="text-red-500">*</span></label><input className="w-full border border-border p-2.5 rounded-lg" value={temple.name} onChange={e => setTemple({ ...temple, name: e.target.value })} /></div>
-                <div><label className="block text-sm font-bold text-text-primary mb-1">ふりがな <span className="text-red-500">*</span></label><input className="w-full border border-border p-2.5 rounded-lg" value={temple.kana} onChange={e => setTemple({ ...temple, kana: e.target.value })} /></div>
+                <div><label className="block text-sm font-bold text-gray-700 mb-1">施設名 <span className="text-red-500">*</span></label><input className="w-full border border-gray-300 p-2.5 rounded-lg" value={temple.name} onChange={e => setTemple({ ...temple, name: e.target.value })} /></div>
+                <div><label className="block text-sm font-bold text-gray-700 mb-1">ふりがな <span className="text-red-500">*</span></label><input className="w-full border border-gray-300 p-2.5 rounded-lg" value={temple.kana} onChange={e => setTemple({ ...temple, kana: e.target.value })} /></div>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div><label className="block text-sm font-bold text-text-primary mb-1">施設タイプ <span className="text-red-500">*</span></label><select className="w-full border border-border p-2.5 rounded-lg" value={temple.type} onChange={e => setTemple({ ...temple, type: e.target.value as FacilityType })}> {['寺院墓地', '民営霊園', '公営霊園', '納骨堂', '複合型', 'その他'].map(v => <option key={v} value={v}>{v}</option>)} </select></div>
-                <div><label className="block text-sm font-bold text-text-primary mb-1">運営主体</label><select className="w-full border border-border p-2.5 rounded-lg" value={temple.managementBody} onChange={e => setTemple({ ...temple, managementBody: e.target.value as ManagementBody })}> {['寺院', '宗教法人', '地方自治体', '民間企業', '公益法人'].map(v => <option key={v} value={v}>{v}</option>)} </select></div>
+                <div><label className="block text-sm font-bold text-gray-700 mb-1">施設タイプ <span className="text-red-500">*</span></label><select className="w-full border border-gray-300 p-2.5 rounded-lg" value={temple.type} onChange={e => setTemple({ ...temple, type: e.target.value as FacilityType })}> {['寺院墓地', '民営霊園', '公営霊園', '納骨堂', '複合型', 'その他'].map(v => <option key={v} value={v}>{v}</option>)} </select></div>
+                <div><label className="block text-sm font-bold text-gray-700 mb-1">運営主体</label><select className="w-full border border-gray-300 p-2.5 rounded-lg" value={temple.managementBody} onChange={e => setTemple({ ...temple, managementBody: e.target.value as ManagementBody })}> {['寺院', '宗教法人', '地方自治体', '民間企業', '公益法人'].map(v => <option key={v} value={v}>{v}</option>)} </select></div>
                 <div>
-                    <label className="block text-sm font-bold text-text-primary mb-1">宗教 <span className="text-red-500">*</span></label>
+                    <label className="block text-sm font-bold text-gray-700 mb-1">宗教 <span className="text-red-500">*</span></label>
                     <div className="flex gap-4">
                         <select
-                            className="w-full border border-border p-2.5 rounded-lg"
+                            className="w-full border border-gray-300 p-2.5 rounded-lg"
                             value={temple.religion}
                             onChange={e => {
                                 const newRel = e.target.value as ReligionCategory;
@@ -170,9 +170,9 @@ export default function NewTemplePage() {
             {/* Conditional Buddhist Sect Select */}
             {temple.religion === 'buddhism' && (
                 <div className="mt-6 animate-in fade-in slide-in-from-top-2">
-                    <label className="block text-sm font-bold text-text-primary mb-1">仏教宗派 <span className="text-red-500">*</span></label>
+                    <label className="block text-sm font-bold text-gray-700 mb-1">仏教宗派 <span className="text-red-500">*</span></label>
                     <select
-                        className="w-full border border-border p-2.5 rounded-lg bg-blue-50"
+                        className="w-full border border-gray-300 p-2.5 rounded-lg bg-blue-50"
                         value={temple.buddhistSect || ''}
                         onChange={e => setTemple({ ...temple, buddhistSect: e.target.value as BuddhistSect })}
                     >
@@ -185,22 +185,22 @@ export default function NewTemplePage() {
                             </optgroup>
                         ))}
                     </select>
-                    <p className="text-xs text-text-muted mt-1">※寺院の主な宗派を選択してください</p>
+                    <p className="text-xs text-gray-500 mt-1">※寺院の主な宗派を選択してください</p>
                 </div>
             )}
             <div>
-                <label className="block text-sm font-bold text-text-primary mb-2">問い合わせ先</label>
+                <label className="block text-sm font-bold text-gray-700 mb-2">問い合わせ先</label>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div><label className="text-xs text-text-muted">電話番号</label><input className="w-full border p-2.5 rounded-lg" value={temple.phone} onChange={e => setTemple({ ...temple, phone: e.target.value })} /></div>
-                    <div><label className="text-xs text-text-muted">受付時間</label><input className="w-full border p-2.5 rounded-lg" value={temple.officeHours} onChange={e => setTemple({ ...temple, officeHours: e.target.value })} /></div>
+                    <div><label className="text-xs text-gray-500">電話番号</label><input className="w-full border p-2.5 rounded-lg" value={temple.phone} onChange={e => setTemple({ ...temple, phone: e.target.value })} /></div>
+                    <div><label className="text-xs text-gray-500">受付時間</label><input className="w-full border p-2.5 rounded-lg" value={temple.officeHours} onChange={e => setTemple({ ...temple, officeHours: e.target.value })} /></div>
                 </div>
             </div>
             <div className="pt-6 border-t">
                 <label className="flex items-center gap-2 cursor-pointer">
-                    <input type="checkbox" checked={temple.listedInSearch} onChange={e => setTemple({ ...temple, listedInSearch: e.target.checked })} className="w-5 h-5 rounded border-border text-primary focus:ring-primary" />
-                    <span className="font-bold text-primary-dark">サイト内検索結果に表示する</span>
+                    <input type="checkbox" checked={temple.listedInSearch} onChange={e => setTemple({ ...temple, listedInSearch: e.target.checked })} className="w-5 h-5 rounded border-gray-300 text-seiren-navy focus:ring-seiren-navy" />
+                    <span className="font-bold text-gray-800">サイト内検索結果に表示する</span>
                 </label>
-                <p className="text-xs text-text-muted ml-7 mt-1">オフにすると、検索結果には表示されませんが、直接リンク（詳細ページ）は機能します。</p>
+                <p className="text-xs text-gray-500 ml-7 mt-1">オフにすると、検索結果には表示されませんが、直接リンク（詳細ページ）は機能します。</p>
             </div>
         </div>
     );
@@ -259,10 +259,10 @@ export default function NewTemplePage() {
             <h3 className="font-bold text-lg border-b pb-2 flex items-center gap-2"><CheckSquare className="w-5 h-5" /> 特徴・設備プロパティ</h3>
 
             <div className="space-y-4">
-                <label className="block text-sm font-bold text-text-primary">A. 対応宗派 (複数選択可)</label>
+                <label className="block text-sm font-bold text-gray-700">A. 対応宗派 (複数選択可)</label>
                 <div className="flex flex-wrap gap-3">
                     {SECTS.map(s => (
-                        <label key={s} className={`cursor-pointer px-4 py-2 rounded-full border transition-colors ${temple.sects.includes(s) ? 'bg-primary text-white border-primary' : 'bg-white text-text-secondary hover:bg-bg'}`}>
+                        <label key={s} className={`cursor-pointer px-4 py-2 rounded-full border transition-colors ${temple.sects.includes(s) ? 'bg-seiren-navy text-white border-seiren-navy' : 'bg-white text-gray-600 hover:bg-gray-50'}`}>
                             <input type="checkbox" className="hidden" checked={temple.sects.includes(s)} onChange={e => setTemple({ ...temple, sects: e.target.checked ? [...temple.sects, s] : temple.sects.filter(x => x !== s) })} />
                             {s}
                         </label>
@@ -271,10 +271,10 @@ export default function NewTemplePage() {
             </div>
 
             <div className="space-y-4">
-                <label className="block text-sm font-bold text-text-primary">B. 対応供養タイプ (複数選択可)</label>
+                <label className="block text-sm font-bold text-gray-700">B. 対応供養タイプ (複数選択可)</label>
                 <div className="flex flex-wrap gap-3">
                     {MEMORIAL_TYPES.map(m => (
-                        <label key={m} className={`cursor-pointer px-4 py-2 rounded-full border transition-colors ${temple.supportedMemorialTypes.includes(m) ? 'bg-primary text-white border-primary' : 'bg-white text-text-secondary hover:bg-bg'}`}>
+                        <label key={m} className={`cursor-pointer px-4 py-2 rounded-full border transition-colors ${temple.supportedMemorialTypes.includes(m) ? 'bg-seiren-navy text-white border-seiren-navy' : 'bg-white text-gray-600 hover:bg-gray-50'}`}>
                             <input type="checkbox" className="hidden" checked={temple.supportedMemorialTypes.includes(m)} onChange={e => setTemple({ ...temple, supportedMemorialTypes: e.target.checked ? [...temple.supportedMemorialTypes, m] : temple.supportedMemorialTypes.filter(x => x !== m) })} />
                             {m}
                         </label>
@@ -284,7 +284,7 @@ export default function NewTemplePage() {
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div>
-                    <label className="block text-sm font-bold text-text-primary mb-2">C. 屋内・屋外</label>
+                    <label className="block text-sm font-bold text-gray-700 mb-2">C. 屋内・屋外</label>
                     <select className="w-full border p-2.5 rounded-lg" value={temple.indoorOutdoor || 'both'} onChange={e => setTemple({ ...temple, indoorOutdoor: e.target.value as IndoorOutdoor })}>
                         <option value="indoor">屋内のみ</option>
                         <option value="outdoor">屋外のみ</option>
@@ -292,7 +292,7 @@ export default function NewTemplePage() {
                     </select>
                 </div>
                 <div>
-                    <label className="block text-sm font-bold text-text-primary mb-2">D. ペット対応</label>
+                    <label className="block text-sm font-bold text-gray-700 mb-2">D. ペット対応</label>
                     <select className="w-full border p-2.5 rounded-lg" value={temple.petAllowed || 'unknown'} onChange={e => setTemple({ ...temple, petAllowed: e.target.value as PetAllowed })}>
                         <option value="allowed">可 (全区画)</option>
                         <option value="conditional">条件付き (専用区画など)</option>
@@ -304,14 +304,14 @@ export default function NewTemplePage() {
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div>
-                    <label className="block text-sm font-bold text-text-primary mb-2">E. バリアフリー</label>
-                    <label className="flex items-center gap-2 border p-3 rounded-lg bg-bg cursor-pointer">
+                    <label className="block text-sm font-bold text-gray-700 mb-2">E. バリアフリー</label>
+                    <label className="flex items-center gap-2 border p-3 rounded-lg bg-gray-50 cursor-pointer">
                         <input type="checkbox" checked={temple.barrierFree} onChange={e => setTemple({ ...temple, barrierFree: e.target.checked })} className="w-5 h-5 accent-seiren-navy" />
                         <span className="font-bold">バリアフリー対応 (車椅子可)</span>
                     </label>
                 </div>
                 <div>
-                    <label className="block text-sm font-bold text-text-primary mb-2">F. 継承者要件</label>
+                    <label className="block text-sm font-bold text-gray-700 mb-2">F. 継承者要件</label>
                     <select className="w-full border p-2.5 rounded-lg" value={temple.successorRequirements} onChange={e => setTemple({ ...temple, successorRequirements: e.target.value as SuccessorReq })}>
                         {['継承者必要', '継承者不要', '一定期間後合祀'].map(v => <option key={v} value={v}>{v}</option>)}
                     </select>
@@ -324,10 +324,10 @@ export default function NewTemplePage() {
     const renderContentTab = () => (
         <div className="space-y-8 max-w-4xl animate-in fade-in">
             <h3 className="font-bold text-lg border-b pb-2 flex items-center gap-2"><FileText className="w-5 h-5" /> 詳細コンテンツ</h3>
-            <div className="space-y-2"><label className="block text-sm font-bold text-text-primary mb-1">キャッチコピー <span className="text-red-500">*</span></label><input className="w-full border p-3 rounded-lg font-bold" value={temple.catchphrase || ''} onChange={e => setTemple({ ...temple, catchphrase: e.target.value })} /></div>
-            <div className="space-y-4"><h4 className="font-bold text-text-primary">3つの特徴 <span className="text-red-500">*</span></h4><div className="grid grid-cols-3 gap-4">{[0, 1, 2].map(i => (<div key={i} className="border p-2 rounded bg-bg"><select className="w-full mb-2 border rounded" value={temple.keyFeatures?.[i]?.icon} onChange={e => { const next = [...(temple.keyFeatures || [])]; if (!next[i]) next[i] = { title: '', text: '', icon: '駅近' }; next[i].icon = e.target.value as any; setTemple({ ...temple, keyFeatures: next }); }}>{CONTENT_ICONS.map(c => <option key={c} value={c}>{c}</option>)}</select><input className="w-full mb-2 border rounded" placeholder="タイトル" value={temple.keyFeatures?.[i]?.title} onChange={e => { const next = [...(temple.keyFeatures || [])]; if (!next[i]) next[i] = { title: '', text: '', icon: '駅近' }; next[i].title = e.target.value; setTemple({ ...temple, keyFeatures: next }); }} /><textarea className="w-full h-16 border rounded text-xs" placeholder="説明" value={temple.keyFeatures?.[i]?.text} onChange={e => { const next = [...(temple.keyFeatures || [])]; if (!next[i]) next[i] = { title: '', text: '', icon: '駅近' }; next[i].text = e.target.value; setTemple({ ...temple, keyFeatures: next }); }} /></div>))}</div></div>
-            <div><label className="block text-sm font-bold text-text-primary mb-1">全体説明(Overview)</label><textarea className="w-full border h-40 rounded p-2" value={temple.overview} onChange={e => setTemple({ ...temple, overview: e.target.value })} /></div>
-            <div className="grid grid-cols-2 gap-4"><div><label className="block text-sm font-bold text-text-primary mb-1">おすすめな人 (改行区切り)</label><textarea className="w-full border h-32 rounded p-2" value={temple.suitableFor?.join('\n')} onChange={e => setTemple({ ...temple, suitableFor: e.target.value.split('\n') })} /></div><div><label className="block text-sm font-bold text-text-primary mb-1">注意点 (改行区切り)</label><textarea className="w-full border h-32 rounded p-2" value={temple.notesPoints?.join('\n')} onChange={e => setTemple({ ...temple, notesPoints: e.target.value.split('\n') })} /></div></div>
+            <div className="space-y-2"><label className="block text-sm font-bold text-gray-700 mb-1">キャッチコピー <span className="text-red-500">*</span></label><input className="w-full border p-3 rounded-lg font-bold" value={temple.catchphrase || ''} onChange={e => setTemple({ ...temple, catchphrase: e.target.value })} /></div>
+            <div className="space-y-4"><h4 className="font-bold text-gray-700">3つの特徴 <span className="text-red-500">*</span></h4><div className="grid grid-cols-3 gap-4">{[0, 1, 2].map(i => (<div key={i} className="border p-2 rounded bg-gray-50"><select className="w-full mb-2 border rounded" value={temple.keyFeatures?.[i]?.icon} onChange={e => { const next = [...(temple.keyFeatures || [])]; if (!next[i]) next[i] = { title: '', text: '', icon: '駅近' }; next[i].icon = e.target.value as any; setTemple({ ...temple, keyFeatures: next }); }}>{CONTENT_ICONS.map(c => <option key={c} value={c}>{c}</option>)}</select><input className="w-full mb-2 border rounded" placeholder="タイトル" value={temple.keyFeatures?.[i]?.title} onChange={e => { const next = [...(temple.keyFeatures || [])]; if (!next[i]) next[i] = { title: '', text: '', icon: '駅近' }; next[i].title = e.target.value; setTemple({ ...temple, keyFeatures: next }); }} /><textarea className="w-full h-16 border rounded text-xs" placeholder="説明" value={temple.keyFeatures?.[i]?.text} onChange={e => { const next = [...(temple.keyFeatures || [])]; if (!next[i]) next[i] = { title: '', text: '', icon: '駅近' }; next[i].text = e.target.value; setTemple({ ...temple, keyFeatures: next }); }} /></div>))}</div></div>
+            <div><label className="block text-sm font-bold text-gray-700 mb-1">全体説明(Overview)</label><textarea className="w-full border h-40 rounded p-2" value={temple.overview} onChange={e => setTemple({ ...temple, overview: e.target.value })} /></div>
+            <div className="grid grid-cols-2 gap-4"><div><label className="block text-sm font-bold text-gray-700 mb-1">おすすめな人 (改行区切り)</label><textarea className="w-full border h-32 rounded p-2" value={temple.suitableFor?.join('\n')} onChange={e => setTemple({ ...temple, suitableFor: e.target.value.split('\n') })} /></div><div><label className="block text-sm font-bold text-gray-700 mb-1">注意点 (改行区切り)</label><textarea className="w-full border h-32 rounded p-2" value={temple.notesPoints?.join('\n')} onChange={e => setTemple({ ...temple, notesPoints: e.target.value.split('\n') })} /></div></div>
             <div><h3 className="font-bold border-b pb-2 mb-2">アピールタグ</h3><div className="flex flex-wrap gap-2">{APPEAL_TAGS.map(t => (<button key={t} onClick={() => setTemple({ ...temple, tags: temple.tags?.includes(t) ? temple.tags.filter(x => x !== t) : [...(temple.tags || []), t] })} className={`px-2 py-1 rounded border text-xs ${temple.tags?.includes(t) ? 'bg-blue-900 text-white' : 'bg-white'}`}>{t}</button>))}</div></div>
         </div>
     );
@@ -337,13 +337,13 @@ export default function NewTemplePage() {
         <div className="space-y-8 max-w-4xl animate-in fade-in">
             <h3 className="font-bold text-lg border-b pb-2 flex items-center gap-2"><DollarSign className="w-5 h-5" /> 区画プラン管理</h3>
 
-            <div className="bg-bg border-2 border-dashed border-border rounded-xl p-12 text-center text-text-muted">
+            <div className="bg-gray-50 border-2 border-dashed border-gray-200 rounded-xl p-12 text-center text-gray-500">
                 <div className="flex justify-center mb-4">
                     <div className="bg-white p-3 rounded-full shadow-sm">
-                        <DollarSign className="w-8 h-8 text-text-muted" />
+                        <DollarSign className="w-8 h-8 text-gray-400" />
                     </div>
                 </div>
-                <p className="font-bold text-lg mb-2 text-text-primary">区画プランの登録</p>
+                <p className="font-bold text-lg mb-2 text-gray-700">区画プランの登録</p>
                 <p className="text-sm mb-6 max-w-md mx-auto">
                     区画プラン (墓地・永代供養墓など) を登録するには、まず寺院の基本情報を保存してください。<br />
                     保存後にプラン登録画面へ移動します。
@@ -363,11 +363,11 @@ export default function NewTemplePage() {
             <div className="space-y-12 max-w-4xl animate-in fade-in">
                 <h3 className="font-bold text-lg border-b pb-2 flex items-center gap-2"><CalIcon className="w-5 h-5" /> 予約カレンダー設定</h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <div className="bg-bg p-6 rounded-xl border border-border"><label className="block text-sm font-bold text-text-primary mb-2 flex items-center gap-2"> <Bell className="w-4 h-4" /> 予約受付ステータス</label><select className={`w-full border p-3 rounded-lg font-bold ${cal.bookingStatus === 'open' ? 'bg-green-50 text-green-700 border-green-200' : cal.bookingStatus === 'closed' ? 'bg-red-50 text-red-700 border-red-200' : 'bg-bg text-text-primary'}`} value={cal.bookingStatus} onChange={e => updateCal({ bookingStatus: e.target.value as BookingStatus })}><option value="open">受付中 (Open)</option><option value="paused">一時停止 (Paused)</option><option value="preparing">準備中 (Preparing)</option><option value="closed">受付終了 (Closed)</option></select></div>
-                    <div className="bg-bg p-6 rounded-xl border border-border h-full flex flex-col"><label className="block text-sm font-bold text-text-primary mb-2 flex items-center gap-2"> <Settings className="w-4 h-4" /> 予約受付チャネル</label><div className="flex-1 flex gap-4 w-full"><label className="flex-1 flex items-center justify-center gap-3 cursor-pointer bg-white px-4 py-2 border-2 rounded-lg hover:bg-bg transition-colors shadow-sm h-full"><input type="checkbox" checked={cal.bookingChannels.includes('form')} onChange={e => updateCal({ bookingChannels: e.target.checked ? [...cal.bookingChannels, 'form'] : cal.bookingChannels.filter(c => c !== 'form') })} className="w-5 h-5 text-primary rounded border-border accent-seiren-navy" /><span className="font-bold text-sm text-primary-dark whitespace-nowrap">Webフォーム</span></label><label className="flex-1 flex items-center justify-center gap-3 cursor-pointer bg-white px-4 py-2 border-2 rounded-lg hover:bg-bg transition-colors shadow-sm h-full"><input type="checkbox" checked={cal.bookingChannels.includes('phone')} onChange={e => updateCal({ bookingChannels: e.target.checked ? [...cal.bookingChannels, 'phone'] : cal.bookingChannels.filter(c => c !== 'phone') })} className="w-5 h-5 text-primary rounded border-border accent-seiren-navy" /><span className="font-bold text-sm text-primary-dark whitespace-nowrap">電話</span></label></div></div>
+                    <div className="bg-gray-50 p-6 rounded-xl border border-gray-200"><label className="block text-sm font-bold text-gray-700 mb-2 flex items-center gap-2"> <Bell className="w-4 h-4" /> 予約受付ステータス</label><select className={`w-full border p-3 rounded-lg font-bold ${cal.bookingStatus === 'open' ? 'bg-green-50 text-green-700 border-green-200' : cal.bookingStatus === 'closed' ? 'bg-red-50 text-red-700 border-red-200' : 'bg-gray-50 text-gray-700'}`} value={cal.bookingStatus} onChange={e => updateCal({ bookingStatus: e.target.value as BookingStatus })}><option value="open">受付中 (Open)</option><option value="paused">一時停止 (Paused)</option><option value="preparing">準備中 (Preparing)</option><option value="closed">受付終了 (Closed)</option></select></div>
+                    <div className="bg-gray-50 p-6 rounded-xl border border-gray-200 h-full flex flex-col"><label className="block text-sm font-bold text-gray-700 mb-2 flex items-center gap-2"> <Settings className="w-4 h-4" /> 予約受付チャネル</label><div className="flex-1 flex gap-4 w-full"><label className="flex-1 flex items-center justify-center gap-3 cursor-pointer bg-white px-4 py-2 border-2 rounded-lg hover:bg-gray-50 transition-colors shadow-sm h-full"><input type="checkbox" checked={cal.bookingChannels.includes('form')} onChange={e => updateCal({ bookingChannels: e.target.checked ? [...cal.bookingChannels, 'form'] : cal.bookingChannels.filter(c => c !== 'form') })} className="w-5 h-5 text-seiren-navy rounded border-gray-300 accent-seiren-navy" /><span className="font-bold text-sm text-gray-800 whitespace-nowrap">Webフォーム</span></label><label className="flex-1 flex items-center justify-center gap-3 cursor-pointer bg-white px-4 py-2 border-2 rounded-lg hover:bg-gray-50 transition-colors shadow-sm h-full"><input type="checkbox" checked={cal.bookingChannels.includes('phone')} onChange={e => updateCal({ bookingChannels: e.target.checked ? [...cal.bookingChannels, 'phone'] : cal.bookingChannels.filter(c => c !== 'phone') })} className="w-5 h-5 text-seiren-navy rounded border-gray-300 accent-seiren-navy" /><span className="font-bold text-sm text-gray-800 whitespace-nowrap">電話</span></label></div></div>
                 </div>
                 {/* ... (Weekdays, Time, etc - simplified for brevity but included) ... */}
-                <div className="space-y-6"> <h3 className="font-bold text-lg border-b pb-2 flex items-center gap-2"><Clock className="w-5 h-5" /> 受付日時設定</h3> <div><label className="block text-sm font-bold text-text-primary mb-2">受付可能な曜日</label><div className="flex gap-2 flex-wrap">{['日', '月', '火', '水', '木', '金', '土'].map((d, i) => (<button key={i} type="button" onClick={() => updateCal({ availableWeekdays: cal.availableWeekdays.includes(i) ? cal.availableWeekdays.filter(x => x !== i) : [...cal.availableWeekdays, i].sort() })} className={`w-12 h-12 rounded-full font-bold flex items-center justify-center transition-colors shadow-sm border ${cal.availableWeekdays.includes(i) ? 'bg-primary text-white border-primary hover:bg-primary-dark' : 'bg-white text-text-muted border-border hover:bg-bg'}`}>{d}</button>))}</div></div> <div><label className="block text-sm font-bold text-text-primary mb-2">基本受付時間</label><div className="flex items-center gap-4"><input type="time" className="border p-3 rounded-lg text-lg font-bold" value={cal.startTime} onChange={e => updateCal({ startTime: e.target.value })} /><span className="text-text-muted">〜</span><input type="time" className="border p-3 rounded-lg text-lg font-bold" value={cal.endTime} onChange={e => updateCal({ endTime: e.target.value })} /></div></div> </div>
+                <div className="space-y-6"> <h3 className="font-bold text-lg border-b pb-2 flex items-center gap-2"><Clock className="w-5 h-5" /> 受付日時設定</h3> <div><label className="block text-sm font-bold text-gray-700 mb-2">受付可能な曜日</label><div className="flex gap-2 flex-wrap">{['日', '月', '火', '水', '木', '金', '土'].map((d, i) => (<button key={i} type="button" onClick={() => updateCal({ availableWeekdays: cal.availableWeekdays.includes(i) ? cal.availableWeekdays.filter(x => x !== i) : [...cal.availableWeekdays, i].sort() })} className={`w-12 h-12 rounded-full font-bold flex items-center justify-center transition-colors shadow-sm border ${cal.availableWeekdays.includes(i) ? 'bg-seiren-navy text-white border-seiren-navy hover:bg-gray-800' : 'bg-white text-gray-400 border-gray-200 hover:bg-gray-50'}`}>{d}</button>))}</div></div> <div><label className="block text-sm font-bold text-gray-700 mb-2">基本受付時間</label><div className="flex items-center gap-4"><input type="time" className="border p-3 rounded-lg text-lg font-bold" value={cal.startTime} onChange={e => updateCal({ startTime: e.target.value })} /><span className="text-gray-400">〜</span><input type="time" className="border p-3 rounded-lg text-lg font-bold" value={cal.endTime} onChange={e => updateCal({ endTime: e.target.value })} /></div></div> </div>
                 <div className="space-y-4"><h3 className="font-bold text-lg border-b pb-2 flex items-center gap-2"><FileText className="w-5 h-5" /> 自動返信メッセージ</h3><textarea className="w-full border p-4 rounded-lg h-32" value={cal.requestMessage} onChange={e => updateCal({ requestMessage: e.target.value })} placeholder="予約リクエストを受け付けました..." /></div>
             </div>
         );
@@ -382,8 +382,8 @@ export default function NewTemplePage() {
                 <div className="space-y-6">
                     <h3 className="font-bold text-lg border-b pb-2 flex items-center gap-2"><Search className="w-5 h-5" /> 基本情報設定</h3>
                     <div className="space-y-4">
-                        <div><label className="block text-sm font-bold text-text-primary mb-1">A. ページタイトル (title)</label><input className="w-full border p-2.5 rounded-lg" placeholder="未入力時: 自動生成されます ({市区町村}で探す...)" value={seo.title || ''} onChange={e => updateSeo({ title: e.target.value })} /><p className="text-xs text-text-muted mt-1">※30文字程度推奨。未入力の場合は施設名やエリアから自動生成されます。</p></div>
-                        <div><label className="block text-sm font-bold text-text-primary mb-1">B. ディスクリプション (description)</label><textarea className="w-full border p-2.5 rounded-lg h-24" placeholder="未入力時: 施設概要から自動生成されます" value={seo.description || ''} onChange={e => updateSeo({ description: e.target.value })} /><p className="text-xs text-text-muted mt-1">※120文字程度推奨。検索結果のスニペットに表示されます。</p></div>
+                        <div><label className="block text-sm font-bold text-gray-700 mb-1">A. ページタイトル (title)</label><input className="w-full border p-2.5 rounded-lg" placeholder="未入力時: 自動生成されます ({市区町村}で探す...)" value={seo.title || ''} onChange={e => updateSeo({ title: e.target.value })} /><p className="text-xs text-gray-500 mt-1">※30文字程度推奨。未入力の場合は施設名やエリアから自動生成されます。</p></div>
+                        <div><label className="block text-sm font-bold text-gray-700 mb-1">B. ディスクリプション (description)</label><textarea className="w-full border p-2.5 rounded-lg h-24" placeholder="未入力時: 施設概要から自動生成されます" value={seo.description || ''} onChange={e => updateSeo({ description: e.target.value })} /><p className="text-xs text-gray-500 mt-1">※120文字程度推奨。検索結果のスニペットに表示されます。</p></div>
                     </div>
                 </div>
 
@@ -392,23 +392,23 @@ export default function NewTemplePage() {
                     <div className="bg-yellow-50 border border-yellow-200 p-4 rounded-lg mb-4">
                         <div className="flex items-start gap-2"><HelpCircle className="w-5 h-5 text-yellow-600 mt-0.5" /><div className="text-sm text-yellow-800"><p className="font-bold mb-1">AI要約（Summary）の書き方ガイド</p><p className="mb-2">AI Overviewや生成AI検索での引用率を高めるため、以下の構成を推奨します。</p><ol className="list-decimal list-inside space-y-1 ml-2"><li><span className="font-bold">結論</span>: この施設の最大の特徴は何か（例：都心にある永代供養墓）</li><li><span className="font-bold">理由</span>: なぜおすすめなのか（例：アクセスが良く、バリアフリーだから）</li><li><span className="font-bold">補足</span>: 具体的な設備やプラン（例：ペット可、樹木葬あり）</li></ol><p className="mt-2 text-xs opacity-80">※専門用語には簡単な説明を加えてください。</p></div></div>
                     </div>
-                    <div><label className="block text-sm font-bold text-text-primary mb-1">C. SEO要約 (seoSummary) <span className="text-red-500 font-normal text-xs ml-2">※重要</span></label><textarea className="w-full border p-4 rounded-lg h-40 font-medium leading-relaxed" placeholder="例：〇〇霊園は、△△市にある自然豊かな公園墓地です。..." value={seo.summary || ''} onChange={e => updateSeo({ summary: e.target.value })} /><div className="flex justify-between mt-1"><p className="text-xs text-text-muted">目安: 300〜400文字</p><p className={`text-xs font-bold ${(seo.summary || '').length > 400 ? 'text-red-500' : 'text-text-muted'}`}>{(seo.summary || '').length}文字</p></div></div>
+                    <div><label className="block text-sm font-bold text-gray-700 mb-1">C. SEO要約 (seoSummary) <span className="text-red-500 font-normal text-xs ml-2">※重要</span></label><textarea className="w-full border p-4 rounded-lg h-40 font-medium leading-relaxed" placeholder="例：〇〇霊園は、△△市にある自然豊かな公園墓地です。..." value={seo.summary || ''} onChange={e => updateSeo({ summary: e.target.value })} /><div className="flex justify-between mt-1"><p className="text-xs text-gray-500">目安: 300〜400文字</p><p className={`text-xs font-bold ${(seo.summary || '').length > 400 ? 'text-red-500' : 'text-gray-400'}`}>{(seo.summary || '').length}文字</p></div></div>
                 </div>
 
                 <div className="space-y-6">
                     <h3 className="font-bold text-lg border-b pb-2 flex items-center gap-2"><Tag className="w-5 h-5" /> キーワード設定</h3>
                     <div className="grid md:grid-cols-2 gap-8">
-                        <div><label className="block text-sm font-bold text-text-primary mb-2">D. 主SEOキーワード</label><TagInput tags={seo.primaryKeywords} onChange={tags => updateSeo({ primaryKeywords: tags })} placeholder="例: 東京 永代供養 (Enterで追加)" /><p className="text-xs text-text-muted mt-1">※最も重視する検索キーワードを3〜5個設定</p></div>
-                        <div><label className="block text-sm font-bold text-text-primary mb-2">E. 補助SEOキーワード</label><TagInput tags={seo.secondaryKeywords} onChange={tags => updateSeo({ secondaryKeywords: tags })} placeholder="例: ペット可 (Enterで追加)" /><p className="text-xs text-text-muted mt-1">※特徴や設備に関連するキーワードを設定</p></div>
+                        <div><label className="block text-sm font-bold text-gray-700 mb-2">D. 主SEOキーワード</label><TagInput tags={seo.primaryKeywords} onChange={tags => updateSeo({ primaryKeywords: tags })} placeholder="例: 東京 永代供養 (Enterで追加)" /><p className="text-xs text-gray-500 mt-1">※最も重視する検索キーワードを3〜5個設定</p></div>
+                        <div><label className="block text-sm font-bold text-gray-700 mb-2">E. 補助SEOキーワード</label><TagInput tags={seo.secondaryKeywords} onChange={tags => updateSeo({ secondaryKeywords: tags })} placeholder="例: ペット可 (Enterで追加)" /><p className="text-xs text-gray-500 mt-1">※特徴や設備に関連するキーワードを設定</p></div>
                     </div>
                 </div>
 
                 <div className="space-y-6">
                     <h3 className="font-bold text-lg border-b pb-2 flex items-center gap-2"><Code className="w-5 h-5" /> テクニカル設定</h3>
-                    <div className="grid md:grid-cols-2 gap-6 bg-bg p-6 rounded-xl border border-border">
-                        <div><label className="block text-sm font-bold text-text-primary mb-2">F. 構造化データ出力</label><div className="flex items-center gap-3"><button onClick={() => updateSeo({ structuredDataEnabled: !seo.structuredDataEnabled })} className={`relative w-12 h-6 rounded-full transition-colors ${seo.structuredDataEnabled ? 'bg-primary' : 'bg-border'}`}><span className={`absolute top-1 left-1 bg-white w-4 h-4 rounded-full transition-transform ${seo.structuredDataEnabled ? 'translate-x-6' : ''}`} /></button><span className="font-bold text-sm">{seo.structuredDataEnabled ? '有効 (出力する)' : '無効'}</span></div><p className="text-xs text-text-muted mt-2">JSON-LD形式で構造化データを出力します。</p></div>
-                        <div><label className="block text-sm font-bold text-text-primary mb-2">G. FAQ構造化ソース</label><select className="w-full border p-2 rounded bg-white" value={seo.faqSource} onChange={e => updateSeo({ faqSource: e.target.value as any })}><option value="facilityFaq">施設の特徴から生成</option><option value="globalFaq">共通FAQを使用</option><option value="none">出力しない</option></select></div>
-                        <div className="md:col-span-2 border-t pt-4"><label className="block text-sm font-bold text-text-primary mb-2">H. インデックス制御 (robots)</label><div className="flex gap-4"><label className="flex items-center gap-2 cursor-pointer"><input type="radio" name="indexControl" checked={seo.indexControl === 'index'} onChange={() => updateSeo({ indexControl: 'index' })} /><span className="font-bold">index (検索結果に表示)</span></label><label className="flex items-center gap-2 cursor-pointer"><input type="radio" name="indexControl" checked={seo.indexControl === 'noindex'} onChange={() => updateSeo({ indexControl: 'noindex' })} /><span className="font-bold text-red-600">noindex (表示しない)</span></label></div></div>
+                    <div className="grid md:grid-cols-2 gap-6 bg-gray-50 p-6 rounded-xl border border-gray-200">
+                        <div><label className="block text-sm font-bold text-gray-700 mb-2">F. 構造化データ出力</label><div className="flex items-center gap-3"><button onClick={() => updateSeo({ structuredDataEnabled: !seo.structuredDataEnabled })} className={`relative w-12 h-6 rounded-full transition-colors ${seo.structuredDataEnabled ? 'bg-seiren-navy' : 'bg-gray-300'}`}><span className={`absolute top-1 left-1 bg-white w-4 h-4 rounded-full transition-transform ${seo.structuredDataEnabled ? 'translate-x-6' : ''}`} /></button><span className="font-bold text-sm">{seo.structuredDataEnabled ? '有効 (出力する)' : '無効'}</span></div><p className="text-xs text-gray-500 mt-2">JSON-LD形式で構造化データを出力します。</p></div>
+                        <div><label className="block text-sm font-bold text-gray-700 mb-2">G. FAQ構造化ソース</label><select className="w-full border p-2 rounded bg-white" value={seo.faqSource} onChange={e => updateSeo({ faqSource: e.target.value as any })}><option value="facilityFaq">施設の特徴から生成</option><option value="globalFaq">共通FAQを使用</option><option value="none">出力しない</option></select></div>
+                        <div className="md:col-span-2 border-t pt-4"><label className="block text-sm font-bold text-gray-700 mb-2">H. インデックス制御 (robots)</label><div className="flex gap-4"><label className="flex items-center gap-2 cursor-pointer"><input type="radio" name="indexControl" checked={seo.indexControl === 'index'} onChange={() => updateSeo({ indexControl: 'index' })} /><span className="font-bold">index (検索結果に表示)</span></label><label className="flex items-center gap-2 cursor-pointer"><input type="radio" name="indexControl" checked={seo.indexControl === 'noindex'} onChange={() => updateSeo({ indexControl: 'noindex' })} /><span className="font-bold text-red-600">noindex (表示しない)</span></label></div></div>
                     </div>
                 </div>
             </div>
@@ -418,7 +418,7 @@ export default function NewTemplePage() {
     return (
         <div className="max-w-6xl mx-auto pb-12" >
             <div className="flex justify-between items-center mb-6">
-                <h2 className="text-2xl font-bold text-primary-dark">新規寺院登録</h2>
+                <h2 className="text-2xl font-bold text-gray-800">新規寺院登録</h2>
                 <div className="flex gap-2">
                     <Button variant="outline" onClick={() => router.push("/admin/temples")}>キャンセル</Button>
                     <Button onClick={handleSave} disabled={isLoading} className="font-bold min-w-[120px]">
@@ -427,8 +427,8 @@ export default function NewTemplePage() {
                 </div>
             </div>
 
-            <div className="bg-white rounded-xl shadow-sm border border-border overflow-hidden flex min-h-[600px]">
-                <div className="w-56 bg-bg border-r border-border flex-shrink-0 pt-4">
+            <div className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden flex min-h-[600px]">
+                <div className="w-56 bg-gray-50 border-r border-gray-100 flex-shrink-0 pt-4">
                     {[
                         { id: 'basic', label: '基本情報', icon: Info },
                         { id: 'access', label: 'アクセス', icon: MapPin },
@@ -439,7 +439,7 @@ export default function NewTemplePage() {
                         { id: 'calendar', label: 'カレンダー', icon: CalIcon },
                         { id: 'seo', label: 'SEO設定', icon: Code },
                     ].map(tab => (
-                        <button key={tab.id} onClick={() => setActiveTab(tab.id)} className={`w-full text-left px-4 py-4 font-bold text-sm flex items-center gap-3 transition-colors ${activeTab === tab.id ? 'bg-white text-primary border-l-4 border-primary' : 'text-text-muted hover:bg-bg border-l-4 border-transparent'}`}>
+                        <button key={tab.id} onClick={() => setActiveTab(tab.id)} className={`w-full text-left px-4 py-4 font-bold text-sm flex items-center gap-3 transition-colors ${activeTab === tab.id ? 'bg-white text-seiren-navy border-l-4 border-seiren-navy' : 'text-gray-500 hover:bg-gray-100 border-l-4 border-transparent'}`}>
                             <tab.icon className="w-4 h-4" /> {tab.label}
                         </button>
                     ))}
@@ -474,10 +474,10 @@ export default function NewTemplePage() {
                             </div>
 
                             <details className="pt-8 border-t">
-                                <summary className="text-xs text-text-muted cursor-pointer hover:text-text-primary font-bold">高度な設定 (URL直接入力)</summary>
-                                <div className="mt-4 space-y-4 p-4 bg-bg rounded border border-border">
-                                    <div><label className="block text-sm font-bold text-text-muted mb-1">メイン画像URL</label><input className="w-full border p-2 rounded text-sm text-text-secondary" value={temple.mainImage} onChange={e => setTemple({ ...temple, mainImage: e.target.value })} /></div>
-                                    <div><label className="block text-sm font-bold text-text-muted mb-1">ギャラリーURL (改行区切り)</label><textarea className="w-full border p-2 rounded h-24 text-sm text-text-secondary" value={temple.galleryImages.join('\n')} onChange={e => setTemple({ ...temple, galleryImages: e.target.value.split('\n').filter(s => s.trim()) })} /></div>
+                                <summary className="text-xs text-gray-500 cursor-pointer hover:text-gray-700 font-bold">高度な設定 (URL直接入力)</summary>
+                                <div className="mt-4 space-y-4 p-4 bg-gray-50 rounded border border-gray-100">
+                                    <div><label className="block text-sm font-bold text-gray-500 mb-1">メイン画像URL</label><input className="w-full border p-2 rounded text-sm text-gray-600" value={temple.mainImage} onChange={e => setTemple({ ...temple, mainImage: e.target.value })} /></div>
+                                    <div><label className="block text-sm font-bold text-gray-500 mb-1">ギャラリーURL (改行区切り)</label><textarea className="w-full border p-2 rounded h-24 text-sm text-gray-600" value={temple.galleryImages.join('\n')} onChange={e => setTemple({ ...temple, galleryImages: e.target.value.split('\n').filter(s => s.trim()) })} /></div>
                                 </div>
                             </details>
                         </div>

@@ -19,7 +19,7 @@ export default function GraveClosureFlowPage() {
                 <div className="max-w-4xl mx-auto">
                     {/* Breadcrumb */}
                     <div className="mb-8">
-                        <Link href="/grave-closure" className="text-text-muted hover:text-primary flex items-center text-sm">
+                        <Link href="/grave-closure" className="text-gray-500 hover:text-primary flex items-center text-sm">
                             <ArrowLeft className="w-4 h-4 mr-1" /> 墓じまいトップへ戻る
                         </Link>
                     </div>
@@ -31,14 +31,14 @@ export default function GraveClosureFlowPage() {
                         <h1 className="font-serif text-3xl md:text-4xl font-bold text-primary-dark mb-6">
                             ご依頼から完了までの流れ
                         </h1>
-                        <p className="text-text-secondary leading-loose">
+                        <p className="text-gray-600 leading-loose">
                             初めての方でも安心して進められるよう、<br />
                             専任スタッフが各ステップでサポートいたします。
                         </p>
                     </div>
 
                     {/* Timeline */}
-                    <div className="relative border-l-2 border-border ml-4 md:ml-12 space-y-12 pb-12">
+                    <div className="relative border-l-2 border-gray-200 ml-4 md:ml-12 space-y-12 pb-12">
                         {[
                             {
                                 step: "STEP 01",
@@ -79,8 +79,8 @@ export default function GraveClosureFlowPage() {
                             <div key={index} className="relative pl-8 md:pl-12">
                                 <div className="absolute -left-[9px] top-0 w-4 h-4 bg-secondary rounded-full border-4 border-white shadow-sm" />
                                 <span className="text-xs font-bold text-secondary tracking-widest block mb-2">{item.step}</span>
-                                <h3 className="text-xl font-bold text-primary-dark mb-3">{item.title}</h3>
-                                <p className="text-text-secondary text-sm leading-relaxed bg-bg p-6 rounded-xl border border-border">
+                                <h3 className="text-xl font-bold text-gray-800 mb-3">{item.title}</h3>
+                                <p className="text-gray-600 text-sm leading-relaxed bg-gray-50 p-6 rounded-xl border border-gray-100">
                                     {item.content}
                                 </p>
                             </div>

@@ -62,7 +62,7 @@ export default function TemotoKuyouPage() {
     };
 
     return (
-        <div className="min-h-screen flex flex-col bg-white text-primary-dark">
+        <div className="min-h-screen flex flex-col bg-white text-gray-800">
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
             <Navbar />
 
@@ -74,13 +74,13 @@ export default function TemotoKuyouPage() {
                         <span className="text-secondary font-bold tracking-widest text-xs uppercase mb-4 block">
                             Home Memorial
                         </span>
-                        <h1 className="font-serif text-2xl md:text-3xl lg:text-4xl font-bold text-primary mb-6 leading-relaxed">
+                        <h1 className="font-serif text-2xl md:text-3xl lg:text-4xl font-bold text-seiren-navy mb-6 leading-relaxed">
                             自宅供養とは<br />
                             <span className="text-lg md:text-2xl mt-2 block opacity-80">手元に遺骨を残す供養の考え方</span>
                         </h1>
 
                         <div className="bg-primary/5 border border-primary/20 rounded-xl p-6 md:p-8 text-left max-w-3xl mx-auto mt-8">
-                            <p className="text-text-primary leading-loose">
+                            <p className="text-gray-700 leading-loose">
                                 最愛の人を亡くした後、<br />
                                 「すぐに納骨して離れ離れになるのが辛い」<br />
                                 「まだお墓のことを考えられない」<br />
@@ -98,11 +98,11 @@ export default function TemotoKuyouPage() {
 
                     {/* H2: 自宅供養とは何か */}
                     <section className="mb-20">
-                        <h2 className="font-serif text-2xl font-bold text-primary border-b pb-4 mb-8 flex items-center">
+                        <h2 className="font-serif text-2xl font-bold text-seiren-navy border-b pb-4 mb-8 flex items-center">
                             <Home className="w-6 h-6 mr-3 text-secondary" />
                             自宅供養とは何か
                         </h2>
-                        <div className="prose max-w-none text-text-secondary leading-loose">
+                        <div className="prose max-w-none text-gray-600 leading-loose">
                             <p className="mb-6">
                                 自宅供養とは、遺骨をお墓や納骨堂ではなく、<br />
                                 自宅などの身近な場所で保管・供養することを指します。<br />
@@ -120,30 +120,30 @@ export default function TemotoKuyouPage() {
 
                     {/* H2: 自宅供養が向きやすいケース */}
                     <section className="mb-20">
-                        <h2 className="font-serif text-2xl font-bold text-primary border-b pb-4 mb-8 flex items-center">
+                        <h2 className="font-serif text-2xl font-bold text-seiren-navy border-b pb-4 mb-8 flex items-center">
                             <CheckCircle className="w-6 h-6 mr-3 text-secondary" />
                             自宅供養が向きやすいケース
                         </h2>
-                        <div className="bg-white border border-border rounded-xl p-8 mb-8">
+                        <div className="bg-white border border-gray-200 rounded-xl p-8 mb-8">
                             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                                 <div>
-                                    <h3 className="font-bold text-primary mb-3">すぐに納骨先を決められない</h3>
-                                    <p className="text-sm text-text-secondary leading-loose">
+                                    <h3 className="font-bold text-seiren-navy mb-3">すぐに納骨先を決められない</h3>
+                                    <p className="text-sm text-gray-600 leading-loose">
                                         四十九日などの期限に追われて無理に決める必要はありません。<br />
                                         納得いくまで自宅でゆっくりと供養先を検討したい場合に適しています。
                                     </p>
                                 </div>
                                 <div>
-                                    <h3 className="font-bold text-primary mb-3">気持ちの整理に時間が必要</h3>
-                                    <p className="text-sm text-text-secondary leading-loose">
+                                    <h3 className="font-bold text-seiren-navy mb-3">気持ちの整理に時間が必要</h3>
+                                    <p className="text-sm text-gray-600 leading-loose">
                                         突然の別れで心の準備ができていない場合、<br />
                                         そばに置いて語りかける時間を持つことで、<br />
                                         少しずつ悲しみを癒していくことができます。
                                     </p>
                                 </div>
                                 <div>
-                                    <h3 className="font-bold text-primary mb-3">将来別の供養を予定している</h3>
-                                    <p className="text-sm text-text-secondary leading-loose">
+                                    <h3 className="font-bold text-seiren-navy mb-3">将来別の供養を予定している</h3>
+                                    <p className="text-sm text-gray-600 leading-loose">
                                         いずれは散骨や永代供養を考えているが、<br />
                                         今はまだその時期ではないと判断した場合の<br />
                                         「現在の選択肢」として有効です。
@@ -155,64 +155,64 @@ export default function TemotoKuyouPage() {
 
                     {/* H2: 主な自宅供養の方法 */}
                     <section className="mb-20">
-                        <h2 className="font-serif text-2xl font-bold text-primary border-b pb-4 mb-8 flex items-center">
+                        <h2 className="font-serif text-2xl font-bold text-seiren-navy border-b pb-4 mb-8 flex items-center">
                             <Info className="w-6 h-6 mr-3 text-secondary" />
                             主な自宅供養の方法
                         </h2>
                         <div className="space-y-8">
                             {/* 骨箱・自宅安置 */}
-                            <div className="flex flex-col md:flex-row gap-6 bg-bg p-6 rounded-xl">
+                            <div className="flex flex-col md:flex-row gap-6 bg-gray-50 p-6 rounded-xl">
                                 <div className="flex-shrink-0 flex items-center justify-center w-16 h-16 bg-white rounded-full shadow-sm text-secondary">
                                     <Box className="w-8 h-8" />
                                 </div>
                                 <div>
                                     <h3 className="font-bold text-lg text-primary-dark mb-2">骨箱・自宅安置</h3>
-                                    <p className="text-text-secondary leading-loose text-sm mb-4">
+                                    <p className="text-gray-600 leading-loose text-sm mb-4">
                                         火葬場から持ち帰った骨箱のまま、あるいは<br />
                                         デザイン性の高い「ミニ骨壺」などに移し替えて安置する方法です。<br />
                                         仏壇の中や、リビングの棚など、日常の風景に馴染む形で置く方が増えています。
                                     </p>
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
                                         <div><span className="font-bold text-secondary">向いている人:</span> まだ納骨したくない、すべて手元に置きたい</div>
-                                        <div><span className="font-bold text-text-muted">注意点:</span> 湿気によるカビ対策が必要</div>
+                                        <div><span className="font-bold text-gray-500">注意点:</span> 湿気によるカビ対策が必要</div>
                                     </div>
                                 </div>
                             </div>
 
                             {/* 手元供養（分骨・アクセサリー等） */}
-                            <div className="flex flex-col md:flex-row gap-6 bg-bg p-6 rounded-xl">
+                            <div className="flex flex-col md:flex-row gap-6 bg-gray-50 p-6 rounded-xl">
                                 <div className="flex-shrink-0 flex items-center justify-center w-16 h-16 bg-white rounded-full shadow-sm text-secondary">
                                     <HeartIcon className="w-8 h-8" />
                                 </div>
                                 <div>
                                     <h3 className="font-bold text-lg text-primary-dark mb-2">手元供養（分骨・アクセサリー）</h3>
-                                    <p className="text-text-secondary leading-loose text-sm mb-4">
+                                    <p className="text-gray-600 leading-loose text-sm mb-4">
                                         遺骨のごく一部をペンダントやリングに納めたり、<br />
                                         小さなケースに入れて持ち歩いたりする方法です。<br />
                                         「いつも一緒にいたい」という想いを、最も身近な形で叶えられます。
                                     </p>
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
                                         <div><span className="font-bold text-secondary">向いている人:</span> 肌身離さず持っていたい、納骨後も一部残したい</div>
-                                        <div><span className="font-bold text-text-muted">注意点:</span> 小さいため紛失に注意</div>
+                                        <div><span className="font-bold text-gray-500">注意点:</span> 小さいため紛失に注意</div>
                                     </div>
                                 </div>
                             </div>
 
                             {/* 遺骨ダイヤモンド */}
-                            <div className="flex flex-col md:flex-row gap-6 bg-bg p-6 rounded-xl border border-border">
+                            <div className="flex flex-col md:flex-row gap-6 bg-gray-50 p-6 rounded-xl border border-gray-200">
                                 <div className="flex-shrink-0 flex items-center justify-center w-16 h-16 bg-white rounded-full shadow-sm text-secondary">
                                     <Gem className="w-8 h-8" />
                                 </div>
                                 <div>
                                     <h3 className="font-bold text-lg text-primary-dark mb-2">遺骨ダイヤモンド</h3>
-                                    <p className="text-text-secondary leading-loose text-sm mb-4">
+                                    <p className="text-gray-600 leading-loose text-sm mb-4">
                                         遺骨から炭素を抽出し、人工的に合成ダイヤモンドを生成する技術です。<br />
                                         美しい宝石として、世代を超えて受け継ぐことができます。<br />
                                         究極の形見（メモリアルダイヤモンド）として注目されています。
                                     </p>
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs mb-3">
                                         <div><span className="font-bold text-secondary">向いている人:</span> 美しい形で残したい、形見として継承したい</div>
-                                        <div><span className="font-bold text-text-muted">注意点:</span> 製作に時間と費用がかかる</div>
+                                        <div><span className="font-bold text-gray-500">注意点:</span> 製作に時間と費用がかかる</div>
                                     </div>
                                     <Link href="/choices/ikotsu-diamond" className="text-primary font-bold text-sm hover:underline flex items-center">
                                         遺骨ダイヤモンドの詳細を見る <ArrowRight className="w-4 h-4 ml-1" />
@@ -224,7 +224,7 @@ export default function TemotoKuyouPage() {
 
                     {/* H2: 自宅供養のメリットと注意点 */}
                     <section className="mb-20">
-                        <h2 className="font-serif text-2xl font-bold text-primary border-b pb-4 mb-8 flex items-center">
+                        <h2 className="font-serif text-2xl font-bold text-seiren-navy border-b pb-4 mb-8 flex items-center">
                             <AlertCircle className="w-6 h-6 mr-3 text-secondary" />
                             メリットと注意点
                         </h2>
@@ -234,7 +234,7 @@ export default function TemotoKuyouPage() {
                                     <CheckCircle className="w-5 h-5 mr-2" />
                                     メリット
                                 </h3>
-                                <ul className="space-y-4 text-text-primary leading-loose text-sm">
+                                <ul className="space-y-4 text-gray-700 leading-loose text-sm">
                                     <li className="flex items-start">
                                         <span className="text-secondary mr-2">●</span>
                                         <span>
@@ -259,14 +259,14 @@ export default function TemotoKuyouPage() {
                                 </ul>
                             </div>
 
-                            <div className="bg-bg p-6 rounded-xl">
-                                <h3 className="font-bold text-lg text-text-secondary mb-4 flex items-center">
+                            <div className="bg-gray-50 p-6 rounded-xl">
+                                <h3 className="font-bold text-lg text-gray-600 mb-4 flex items-center">
                                     <AlertCircle className="w-5 h-5 mr-2" />
                                     注意点
                                 </h3>
-                                <ul className="space-y-4 text-text-primary leading-loose text-sm">
+                                <ul className="space-y-4 text-gray-700 leading-loose text-sm">
                                     <li className="flex items-start">
-                                        <span className="text-text-muted mr-2">●</span>
+                                        <span className="text-gray-400 mr-2">●</span>
                                         <span>
                                             ご自身が亡くなった後、その遺骨をどうするかという<br />
                                             将来の行き先を考えておく必要があります。<br />
@@ -274,14 +274,14 @@ export default function TemotoKuyouPage() {
                                         </span>
                                     </li>
                                     <li className="flex items-start">
-                                        <span className="text-text-muted mr-2">●</span>
+                                        <span className="text-gray-400 mr-2">●</span>
                                         <span>
                                             自宅での長期保管は、湿気によるカビのリスクがあるため、<br />
                                             定期的な確認や調湿が必要です。
                                         </span>
                                     </li>
                                     <li className="flex items-start">
-                                        <span className="text-text-muted mr-2">●</span>
+                                        <span className="text-gray-400 mr-2">●</span>
                                         <span>
                                             「成仏できないのでは？」と心配する親族がいる場合、<br />
                                             丁寧に説明し、理解を得る必要があります。
@@ -294,28 +294,28 @@ export default function TemotoKuyouPage() {
 
                     {/* H2: 他の供養方法との関係 */}
                     <section className="mb-20">
-                        <h2 className="font-serif text-2xl font-bold text-primary border-b pb-4 mb-8 flex items-center">
+                        <h2 className="font-serif text-2xl font-bold text-seiren-navy border-b pb-4 mb-8 flex items-center">
                             <Search className="w-6 h-6 mr-3 text-secondary" />
                             他の供養方法との関係
                         </h2>
-                        <p className="text-text-secondary leading-loose mb-6">
+                        <p className="text-gray-600 leading-loose mb-6">
                             自宅供養は「単独で完結する」場合もあれば、<br />
                             「他の供養と組み合わせる」場合もあります。<br />
                             それぞれの関係性を整理します。
                         </p>
 
                         <div className="space-y-6">
-                            <div className="bg-white border border-border p-6 rounded-lg shadow-sm">
-                                <h3 className="font-bold text-primary mb-2">海洋散骨との組み合わせ</h3>
-                                <p className="text-sm text-text-secondary leading-loose">
+                            <div className="bg-white border border-gray-100 p-6 rounded-lg shadow-sm">
+                                <h3 className="font-bold text-seiren-navy mb-2">海洋散骨との組み合わせ</h3>
+                                <p className="text-sm text-gray-600 leading-loose">
                                     <Link href="/choices/sankotsu" className="text-primary font-bold hover:underline">海洋散骨</Link>を行う方の多くが、遺骨の一部を手元に残す選択をされます。<br />
                                     「大部分は海へ還し、少しだけ手元で供養する」ことで、<br />
                                     寂しさを感じずに自然葬を行うことができます。
                                 </p>
                             </div>
-                            <div className="bg-white border border-border p-6 rounded-lg shadow-sm">
-                                <h3 className="font-bold text-primary mb-2">永代供養・樹木葬・納骨堂へ移行する</h3>
-                                <p className="text-sm text-text-secondary leading-loose">
+                            <div className="bg-white border border-gray-100 p-6 rounded-lg shadow-sm">
+                                <h3 className="font-bold text-seiren-navy mb-2">永代供養・樹木葬・納骨堂へ移行する</h3>
+                                <p className="text-sm text-gray-600 leading-loose">
                                     ご自身の死後や、一定期間が経過した後に、<br />
                                     <Link href="/choices/eitai-kuyou" className="text-primary font-bold hover:underline">永代供養墓</Link>や<Link href="/choices/jumokusou" className="text-primary font-bold hover:underline">樹木葬</Link>、<Link href="/choices/noukotsudou" className="text-primary font-bold hover:underline">納骨堂</Link>へ納骨することも可能です。<br />
                                     自宅供養は「最終決定までの準備期間」としても機能します。
@@ -326,17 +326,17 @@ export default function TemotoKuyouPage() {
 
                     {/* H2: 診断で自宅供養が候補に出た方へ */}
                     <section className="mb-20">
-                        <h2 className="font-serif text-2xl font-bold text-primary border-b pb-4 mb-8 flex items-center">
+                        <h2 className="font-serif text-2xl font-bold text-seiren-navy border-b pb-4 mb-8 flex items-center">
                             <Calculator className="w-6 h-6 mr-3 text-secondary" />
                             診断で「自宅供養」が候補に出た方へ
                         </h2>
                         <div className="bg-primary/5 p-8 rounded-xl">
-                            <p className="text-text-primary leading-loose mb-4">
+                            <p className="text-gray-700 leading-loose mb-4">
                                 <Link href="/choices/diagnosis" className="text-primary font-bold hover:underline">供養の選択肢診断</Link>で自宅供養がおすすめされた場合、<br />
                                 あなたは現在「まだ心を決めかねている」あるいは<br />
                                 「形式よりも気持ちを最優先したい」という状態かもしれません。
                             </p>
-                            <p className="text-text-primary leading-loose mb-0">
+                            <p className="text-gray-700 leading-loose mb-0">
                                 診断はあくまで一つのきっかけです。<br />
                                 自宅供養には期限がありません。<br />
                                 焦って結論を出そうとせず、まずは手元に置いて<br />
@@ -347,20 +347,20 @@ export default function TemotoKuyouPage() {
 
                     {/* H2: 迷った場合の次の行動 (CTA) */}
                     <section className="text-center">
-                        <h2 className="font-serif text-2xl font-bold text-primary border-b pb-4 mb-10 inline-block px-12">
+                        <h2 className="font-serif text-2xl font-bold text-seiren-navy border-b pb-4 mb-10 inline-block px-12">
                             迷った場合の次の行動
                         </h2>
 
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-left">
                             {/* Search (Other choices) */}
-                            <div className="flex flex-col bg-white border border-border rounded-xl p-6 hover:shadow-lg transition-shadow">
+                            <div className="flex flex-col bg-white border border-gray-200 rounded-xl p-6 hover:shadow-lg transition-shadow">
                                 <div className="mb-4 text-center">
                                     <span className="inline-block p-3 bg-primary/10 rounded-full mb-3">
                                         <BookOpen className="w-8 h-8 text-primary" />
                                     </span>
                                     <h3 className="font-bold text-lg text-primary-dark">他の供養方法も比較する</h3>
                                 </div>
-                                <p className="text-sm text-text-muted text-center mb-6 flex-grow">
+                                <p className="text-sm text-gray-500 text-center mb-6 flex-grow">
                                     いずれは納骨も考えておきたい。<br />
                                     どのような選択肢があるのか改めて確認する方へ。
                                 </p>
@@ -372,14 +372,14 @@ export default function TemotoKuyouPage() {
                             </div>
 
                             {/* Search (Search) */}
-                            <div className="flex flex-col bg-white border border-border rounded-xl p-6 hover:shadow-lg transition-shadow">
+                            <div className="flex flex-col bg-white border border-gray-200 rounded-xl p-6 hover:shadow-lg transition-shadow">
                                 <div className="mb-4 text-center">
-                                    <span className="inline-block p-3 bg-bg rounded-full mb-3">
-                                        <Search className="w-8 h-8 text-text-muted" />
+                                    <span className="inline-block p-3 bg-gray-100 rounded-full mb-3">
+                                        <Search className="w-8 h-8 text-gray-500" />
                                     </span>
                                     <h3 className="font-bold text-lg text-primary-dark">納骨先（出口）を探しておく</h3>
                                 </div>
-                                <p className="text-sm text-text-muted text-center mb-6 flex-grow">
+                                <p className="text-sm text-gray-500 text-center mb-6 flex-grow">
                                     将来のために、どのような霊園やお墓があるのか、<br />
                                     近隣の情報を調べておきたい方へ。
                                 </p>
@@ -401,7 +401,7 @@ export default function TemotoKuyouPage() {
                                     </span>
                                     <h3 className="font-bold text-lg text-secondary">状況を整理して相談する</h3>
                                 </div>
-                                <p className="text-sm text-text-muted text-center mb-6 flex-grow">
+                                <p className="text-sm text-gray-500 text-center mb-6 flex-grow">
                                     「とりあえず自宅に置いているが、これでいいのか不安」<br />
                                     という方は、専門家にご相談ください。
                                 </p>
@@ -416,7 +416,7 @@ export default function TemotoKuyouPage() {
 
                     {/* FAQ */}
                     <section className="my-20">
-                        <h2 className="font-serif text-2xl font-bold text-primary border-b pb-4 mb-8 flex items-center">
+                        <h2 className="font-serif text-2xl font-bold text-seiren-navy border-b pb-4 mb-8 flex items-center">
                             <HelpCircle className="w-6 h-6 mr-3 text-secondary" />
                             よくある質問（FAQ）
                         </h2>
@@ -428,12 +428,12 @@ export default function TemotoKuyouPage() {
                                 { q: "分骨（ぶんこつ）は可能？", a: "可能です。\n火葬場であらかじめ分骨証明書をもらっておくか、\n後から一部を取り分けて手元に残すことができます。" },
                                 { q: "家族の同意は必要？", a: "同意を得ておくことが望ましいです。\n「遺骨は早くお墓に入れるべきだ」と考える親族がいる場合、\n説明不足が原因でトラブルになることがあります。" }
                             ].map((item, i) => (
-                                <div key={i} className="bg-bg rounded-lg p-5">
-                                    <h4 className="font-bold text-primary mb-2 flex flex-row items-center">
+                                <div key={i} className="bg-gray-50 rounded-lg p-5">
+                                    <h4 className="font-bold text-seiren-navy mb-2 flex flex-row items-center">
                                         <span className="bg-secondary text-white text-xs font-bold px-2 py-1 rounded mr-3 flex-shrink-0">Q</span>
                                         {item.q}
                                     </h4>
-                                    <p className="text-sm text-text-secondary ml-10 leading-relaxed whitespace-pre-line">
+                                    <p className="text-sm text-gray-600 ml-10 leading-relaxed whitespace-pre-line">
                                         {item.a}
                                     </p>
                                 </div>

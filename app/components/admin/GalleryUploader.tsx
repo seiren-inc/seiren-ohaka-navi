@@ -90,7 +90,7 @@ export const GalleryUploader = ({ images = [], onChange, folder = "gallery", lab
     return (
         <div className="space-y-4">
             <div className="flex justify-between items-center">
-                {label && <label className="block text-sm font-bold text-text-primary">{label} ({images.length}枚)</label>}
+                {label && <label className="block text-sm font-bold text-gray-700">{label} ({images.length}枚)</label>}
                 <Button size="sm" variant="outline" onClick={() => inputRef.current?.click()} disabled={isUploading}>
                     <Plus className="w-4 h-4 mr-2" /> 追加アップロード
                 </Button>
@@ -110,7 +110,7 @@ export const GalleryUploader = ({ images = [], onChange, folder = "gallery", lab
             {/* Grid */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                 {images.map((url, i) => (
-                    <div key={`${url}-${i}`} className="group relative aspect-video bg-bg rounded-lg overflow-hidden border border-border shadow-sm">
+                    <div key={`${url}-${i}`} className="group relative aspect-video bg-gray-100 rounded-lg overflow-hidden border border-gray-200 shadow-sm">
                         <img src={url} className="w-full h-full object-cover" />
 
                         {/* Overlay Controls */}
@@ -143,7 +143,7 @@ export const GalleryUploader = ({ images = [], onChange, folder = "gallery", lab
 
                 {/* Adding Placeholder (Always visible at end or if empty) */}
                 <div
-                    className="aspect-video bg-bg border-2 border-dashed border-border rounded-lg flex flex-col items-center justify-center cursor-pointer hover:bg-white hover:border-primary transition-all text-text-muted hover:text-primary"
+                    className="aspect-video bg-gray-50 border-2 border-dashed border-gray-300 rounded-lg flex flex-col items-center justify-center cursor-pointer hover:bg-white hover:border-seiren-navy transition-all text-gray-400 hover:text-seiren-navy"
                     onClick={() => inputRef.current?.click()}
                 >
                     {isUploading ? (
@@ -162,7 +162,7 @@ export const GalleryUploader = ({ images = [], onChange, folder = "gallery", lab
                 <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/50" onClick={(e) => { e.stopPropagation(); }}>
                     <div className="bg-white p-6 rounded-lg shadow-xl max-w-sm w-full m-4">
                         <h3 className="font-bold text-lg mb-4">画像を削除しますか？</h3>
-                        <p className="text-text-secondary mb-6 text-sm">この操作は取り消せません。</p>
+                        <p className="text-gray-600 mb-6 text-sm">この操作は取り消せません。</p>
                         <div className="flex justify-end gap-3">
                             <Button variant="outline" onClick={() => setDeleteIndex(null)}>キャンセル</Button>
                             <Button className="bg-red-500 hover:bg-red-600 border-red-500 text-white" onClick={executeRemove}>削除する</Button>

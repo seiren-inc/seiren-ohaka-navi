@@ -94,7 +94,7 @@ export function ReservationCalendar({ temple, onSelectDate }: ReservationCalenda
 
     if (cal?.bookingStatus !== 'open') {
         return (
-            <div className="bg-bg rounded-lg p-8 text-center text-text-muted">
+            <div className="bg-gray-100 rounded-lg p-8 text-center text-gray-500">
                 <p className="font-bold mb-2">現在Webからの予約受付を停止しています</p>
                 <p className="text-sm">お電話にてお問い合わせください。</p>
             </div>
@@ -103,10 +103,10 @@ export function ReservationCalendar({ temple, onSelectDate }: ReservationCalenda
 
     if (cal.bookingChannels.every((c: string) => c !== 'form') && cal.bookingChannels.includes('phone')) {
         return (
-            <div className="text-center bg-bg p-6 rounded-xl border border-border">
-                <p className="font-bold text-text-primary mb-4">この寺院は見学予約を「お電話のみ」で受け付けています</p>
-                <div className="text-2xl font-bold text-primary mb-2">{temple.phone}</div>
-                <p className="text-xs text-text-muted">受付時間: {temple.officeHours}</p>
+            <div className="text-center bg-gray-50 p-6 rounded-xl border border-gray-200">
+                <p className="font-bold text-gray-700 mb-4">この寺院は見学予約を「お電話のみ」で受け付けています</p>
+                <div className="text-2xl font-bold text-seiren-navy mb-2">{temple.phone}</div>
+                <p className="text-xs text-gray-400">受付時間: {temple.officeHours}</p>
             </div>
         );
     }
@@ -115,15 +115,15 @@ export function ReservationCalendar({ temple, onSelectDate }: ReservationCalenda
         <div className="space-y-4">
             {/* Navigation */}
             <div className="flex items-center justify-between mb-2">
-                <button onClick={handlePrev} disabled={isPrevDisabled} className="p-2 hover:bg-bg rounded-full disabled:opacity-30 disabled:hover:bg-transparent"><ChevronLeft className="w-5 h-5" /></button>
+                <button onClick={handlePrev} disabled={isPrevDisabled} className="p-2 hover:bg-gray-100 rounded-full disabled:opacity-30 disabled:hover:bg-transparent"><ChevronLeft className="w-5 h-5" /></button>
                 <span className="font-bold">{format(baseDate, 'yyyy年M月')} 〜</span>
-                <button onClick={handleNext} className="p-2 hover:bg-bg rounded-full"><ChevronRight className="w-5 h-5" /></button>
+                <button onClick={handleNext} className="p-2 hover:bg-gray-100 rounded-full"><ChevronRight className="w-5 h-5" /></button>
             </div>
 
             {/* Calendar Grid (Simple 1 week or 2 weeks horizontal scroll) */}
             <div className="overflow-x-auto border rounded-xl">
                 <table className="w-full text-center border-collapse text-sm">
-                    <thead className="bg-bg text-text-secondary">
+                    <thead className="bg-gray-50 text-gray-600">
                         <tr>
                             {slots.map((s, i) => (
                                 <th key={i} className={`p-2 border-r min-w-[50px] ${['日', '土'].includes(format(s.date, 'E', { locale: ja })) ? 'text-red-500' : ''}`}>
@@ -143,12 +143,12 @@ export function ReservationCalendar({ temple, onSelectDate }: ReservationCalenda
                                         {isClickable ? (
                                             <button
                                                 onClick={() => onSelectDate && onSelectDate(s.date)}
-                                                className="w-full h-16 flex items-center justify-center text-primary hover:bg-blue-50 transition-colors font-bold text-lg"
+                                                className="w-full h-16 flex items-center justify-center text-seiren-navy hover:bg-blue-50 transition-colors font-bold text-lg"
                                             >
                                                 {status}
                                             </button>
                                         ) : (
-                                            <div className="w-full h-16 flex items-center justify-center text-text-muted font-bold">
+                                            <div className="w-full h-16 flex items-center justify-center text-gray-300 font-bold">
                                                 {status}
                                             </div>
                                         )}
@@ -161,11 +161,11 @@ export function ReservationCalendar({ temple, onSelectDate }: ReservationCalenda
             </div>
 
             {/* Legend */}
-            <div className="flex justify-center gap-4 text-xs text-text-muted">
-                <span className="flex items-center gap-1"><span className="font-bold text-primary">◎</span> 余裕あり</span>
-                <span className="flex items-center gap-1"><span className="font-bold text-primary">▲</span> 残りわずか</span>
-                <span className="flex items-center gap-1"><span className="font-bold text-text-muted">×</span> 受付終了</span>
-                <span className="flex items-center gap-1"><span className="font-bold text-text-muted">－</span> 休園日</span>
+            <div className="flex justify-center gap-4 text-xs text-gray-500">
+                <span className="flex items-center gap-1"><span className="font-bold text-seiren-navy">◎</span> 余裕あり</span>
+                <span className="flex items-center gap-1"><span className="font-bold text-seiren-navy">▲</span> 残りわずか</span>
+                <span className="flex items-center gap-1"><span className="font-bold text-gray-300">×</span> 受付終了</span>
+                <span className="flex items-center gap-1"><span className="font-bold text-gray-300">－</span> 休園日</span>
             </div>
 
             {onSelectDate && (

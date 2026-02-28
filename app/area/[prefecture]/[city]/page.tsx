@@ -21,7 +21,7 @@ export default async function CityPage(props: { params: Promise<{ prefecture: st
     // We'll render empty list state.
 
     return (
-        <div className="min-h-screen flex flex-col bg-bg">
+        <div className="min-h-screen flex flex-col bg-white-smoke">
             <Navbar />
 
             <main className="flex-grow pt-20">

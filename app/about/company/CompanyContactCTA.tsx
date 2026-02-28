@@ -25,12 +25,12 @@ export function CompanyContactCTA() {
 
             <div className="max-w-md mx-auto relative z-10">
                 {/* Tabs */}
-                <div className="flex bg-border/50 p-1 rounded-full mb-8 relative">
+                <div className="flex bg-gray-200/50 p-1 rounded-full mb-8 relative">
                     <button
                         onClick={() => setActiveTab('phone')}
                         className={`flex-1 flex items-center justify-center gap-2 py-3 rounded-full text-sm font-bold transition-all duration-300 ${activeTab === 'phone'
                             ? 'bg-white text-[#2F4F4F] shadow-sm'
-                            : 'text-text-muted hover:text-text-primary hover:bg-border/50'
+                            : 'text-gray-500 hover:text-gray-700 hover:bg-gray-200/50'
                             }`}
                     >
                         <Phone className="w-4 h-4" />
@@ -40,7 +40,7 @@ export function CompanyContactCTA() {
                         onClick={() => setActiveTab('form')}
                         className={`flex-1 flex items-center justify-center gap-2 py-3 rounded-full text-sm font-bold transition-all duration-300 ${activeTab === 'form'
                             ? 'bg-white text-[#2F4F4F] shadow-sm'
-                            : 'text-text-muted hover:text-text-primary hover:bg-border/50'
+                            : 'text-gray-500 hover:text-gray-700 hover:bg-gray-200/50'
                             }`}
                     >
                         <Mail className="w-4 h-4" />
@@ -49,19 +49,19 @@ export function CompanyContactCTA() {
                 </div>
 
                 {/* Content */}
-                <div className="bg-white rounded-2xl p-8 border border-border shadow-sm transition-all duration-500 min-h-[220px] flex flex-col justify-center">
+                <div className="bg-white rounded-2xl p-8 border border-gray-100 shadow-sm transition-all duration-500 min-h-[220px] flex flex-col justify-center">
 
                     {/* Phone Tab Content */}
                     <div className={`transition-opacity duration-300 ${activeTab === 'phone' ? 'opacity-100 block' : 'opacity-0 hidden'}`}>
                         <div className="text-center">
-                            <p className="text-sm text-text-muted mb-2 font-medium">通話無料・携帯OK</p>
-                            <a href="tel:0120-000-000" className="block w-fit mx-auto group bg-bg px-6 py-2 rounded-xl mb-3 border border-border">
+                            <p className="text-sm text-gray-500 mb-2 font-medium">通話無料・携帯OK</p>
+                            <a href="tel:0120-000-000" className="block w-fit mx-auto group bg-gray-50 px-6 py-2 rounded-xl mb-3 border border-gray-100">
                                 <p className="text-3xl md:text-4xl font-bold font-serif text-[#2F4F4F] group-hover:opacity-80 transition-opacity flex items-center gap-2">
                                     <Phone className="w-6 h-6 md:w-8 md:h-8 text-secondary" />
                                     0120-000-000
                                 </p>
                             </a>
-                            <div className="flex items-center justify-center gap-2 text-xs text-text-muted mb-6">
+                            <div className="flex items-center justify-center gap-2 text-xs text-gray-500 mb-6">
                                 <Clock className="w-3 h-3" />
                                 <span>受付 9:00〜18:00 (年中無休)</span>
                             </div>
@@ -80,7 +80,7 @@ export function CompanyContactCTA() {
                     {/* Form Tab Content */}
                     <div className={`transition-opacity duration-300 ${activeTab === 'form' ? 'opacity-100 block' : 'opacity-0 hidden'}`}>
                         <div className="text-center">
-                            <p className="text-sm text-text-secondary mb-6 font-medium">
+                            <p className="text-sm text-gray-600 mb-6 font-medium">
                                 24時間365日受付中。<br />
                                 最短30分で返信いたします。
                             </p>
@@ -92,7 +92,7 @@ export function CompanyContactCTA() {
                                         <ArrowRight className="w-4 h-4 ml-2" />
                                     </Button>
                                 </Link>
-                                <div className="text-xs text-text-muted flex flex-col gap-1 items-center">
+                                <div className="text-xs text-gray-500 flex flex-col gap-1 items-center">
                                     <span className="flex items-center gap-1"><CheckCircle2 className="w-3 h-3 text-emerald-500" /> 匿名でのご相談も可能です</span>
                                     <span className="flex items-center gap-1"><CheckCircle2 className="w-3 h-3 text-emerald-500" /> しつこい営業は一切いたしません</span>
                                 </div>

@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 
 export default function AboutPage() {
     return (
-        <div className="min-h-screen flex flex-col bg-white text-primary-dark">
+        <div className="min-h-screen flex flex-col bg-white text-gray-800">
             <Navbar />
             <main className="flex-grow pt-24 px-4 pb-20">
                 <div className="max-w-4xl mx-auto">
@@ -22,12 +22,12 @@ export default function AboutPage() {
                         <span className="text-secondary font-bold tracking-widest text-xs uppercase mb-4 block">
                             Concept
                         </span>
-                        <h1 className="font-serif text-3xl md:text-4xl font-bold text-primary mb-8 leading-relaxed">
+                        <h1 className="font-serif text-3xl md:text-4xl font-bold text-seiren-navy mb-8 leading-relaxed">
                             「売る」ためではなく<br />
                             「納得する」ための<br />
                             お手伝い。
                         </h1>
-                        <p className="text-text-secondary leading-loose max-w-2xl mx-auto">
+                        <p className="text-gray-600 leading-loose max-w-2xl mx-auto">
                             お墓選びは、人生の締めくくりを考える大切な時間です。<br />
                             しかし、情報が多すぎたり、専門用語が難しかったりと、<br />
                             多くの方が「何が正解かわからない」という不安を抱えています。
@@ -36,15 +36,15 @@ export default function AboutPage() {
 
                     {/* Mission */}
                     <section className="mb-20">
-                        <div className="bg-bg p-8 md:p-12 rounded-2xl">
-                            <h2 className="font-serif text-2xl font-bold text-primary mb-6 text-center">
+                        <div className="bg-gray-50 p-8 md:p-12 rounded-2xl">
+                            <h2 className="font-serif text-2xl font-bold text-seiren-navy mb-6 text-center">
                                 私たちのミッション
                             </h2>
-                            <p className="text-text-primary leading-loose mb-6">
+                            <p className="text-gray-700 leading-loose mb-6">
                                 清蓮（SEIREN）は、特定の霊園や石材店に偏らない「中立」な立場で、
                                 供養に関するあらゆる選択肢を整理・提案する相談窓口です。
                             </p>
-                            <p className="text-text-primary leading-loose">
+                            <p className="text-gray-700 leading-loose">
                                 「お墓を建てること」がゴールではありません。<br />
                                 ご本人様とご家族様が、将来にわたって安心できる「心の拠り所」を見つけること。<br />
                                 それが、私たちの目指すゴールです。
@@ -55,11 +55,11 @@ export default function AboutPage() {
                     {/* Links */}
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-20">
                         <Link href="/about/strength" className="block group">
-                            <div className="border border-border rounded-xl p-8 h-full hover:shadow-lg transition-shadow bg-white text-center">
+                            <div className="border border-gray-200 rounded-xl p-8 h-full hover:shadow-lg transition-shadow bg-white text-center">
                                 <h3 className="font-bold text-lg text-primary-dark mb-4 group-hover:text-secondary transition-colors">
                                     清蓮の強み
                                 </h3>
-                                <p className="text-sm text-text-secondary mb-4">
+                                <p className="text-sm text-gray-600 mb-4">
                                     なぜ中立な立場を貫けるのか、<br />その理由をご説明します。
                                 </p>
                                 <span className="text-xs font-bold text-primary flex items-center justify-center">
@@ -69,11 +69,11 @@ export default function AboutPage() {
                         </Link>
 
                         <Link href="/about/company" className="block group">
-                            <div className="border border-border rounded-xl p-8 h-full hover:shadow-lg transition-shadow bg-white text-center">
+                            <div className="border border-gray-200 rounded-xl p-8 h-full hover:shadow-lg transition-shadow bg-white text-center">
                                 <h3 className="font-bold text-lg text-primary-dark mb-4 group-hover:text-secondary transition-colors">
                                     運営会社
                                 </h3>
-                                <p className="text-sm text-text-secondary mb-4">
+                                <p className="text-sm text-gray-600 mb-4">
                                     運営元の情報と<br />事業概要について。
                                 </p>
                                 <span className="text-xs font-bold text-primary flex items-center justify-center">
@@ -83,11 +83,11 @@ export default function AboutPage() {
                         </Link>
 
                         <Link href="/about/partner" className="block group">
-                            <div className="border border-border rounded-xl p-8 h-full hover:shadow-lg transition-shadow bg-white text-center">
+                            <div className="border border-gray-200 rounded-xl p-8 h-full hover:shadow-lg transition-shadow bg-white text-center">
                                 <h3 className="font-bold text-lg text-primary-dark mb-4 group-hover:text-secondary transition-colors">
                                     提携をご希望の方へ
                                 </h3>
-                                <p className="text-sm text-text-secondary mb-4">
+                                <p className="text-sm text-gray-600 mb-4">
                                     寺院様・霊園事業者様の<br />掲載について。
                                 </p>
                                 <span className="text-xs font-bold text-primary flex items-center justify-center">
@@ -98,8 +98,8 @@ export default function AboutPage() {
                     </div>
 
                     {/* CTA */}
-                    <div className="text-center border-t border-border pt-12">
-                        <h2 className="font-serif text-xl font-bold text-primary mb-6">
+                    <div className="text-center border-t border-gray-100 pt-12">
+                        <h2 className="font-serif text-xl font-bold text-seiren-navy mb-6">
                             まずは、あなたの状況をお聞かせください
                         </h2>
                         <div className="flex flex-col sm:flex-row gap-4 justify-center">

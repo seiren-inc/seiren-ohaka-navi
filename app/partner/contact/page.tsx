@@ -102,7 +102,7 @@ export default function PartnerContactPage() {
     };
 
     return (
-        <div className="min-h-screen flex flex-col bg-bg">
+        <div className="min-h-screen flex flex-col bg-gray-50">
             <Navbar />
 
             <main className="flex-grow pt-32 px-4 pb-20">
@@ -113,17 +113,17 @@ export default function PartnerContactPage() {
                         <span className="text-secondary font-bold tracking-widest text-xs uppercase mb-2 block">
                             For Partners
                         </span>
-                        <h1 className="font-serif text-2xl md:text-3xl font-bold text-primary-dark mb-4">
+                        <h1 className="font-serif text-2xl md:text-3xl font-bold text-gray-800 mb-4">
                             提携をご希望の寺院・事業者様へ
                         </h1>
-                        <p className="text-text-secondary text-sm md:text-base leading-relaxed">
+                        <p className="text-gray-600 text-sm md:text-base leading-relaxed">
                             清蓮への掲載依頼、提携のご相談はこちらのフォームより承っております。<br />
                             内容を確認の上、担当者より折り返しご連絡させていただきます。
                         </p>
                     </div>
 
                     {/* Form Card */}
-                    <div className="bg-white rounded-2xl shadow-sm border border-border p-6 md:p-10">
+                    <div className="bg-white rounded-2xl shadow-sm border border-gray-200 p-6 md:p-10">
                         <form onSubmit={handleSubmit(onSubmit)} className="space-y-8">
 
                             {/* Error Message */}
@@ -136,7 +136,7 @@ export default function PartnerContactPage() {
 
                             {/* Section 1: Basic Info */}
                             <div>
-                                <h3 className="text-lg font-bold text-text-primary border-b pb-2 mb-6 flex items-center">
+                                <h3 className="text-lg font-bold text-gray-700 border-b pb-2 mb-6 flex items-center">
                                     <Building className="w-5 h-5 mr-2 text-secondary" />
                                     貴社情報
                                 </h3>
@@ -144,12 +144,12 @@ export default function PartnerContactPage() {
                                 <div className="space-y-6">
                                     {/* Inquiry Type */}
                                     <div className="grid gap-2">
-                                        <label className="text-sm font-bold text-text-primary">
+                                        <label className="text-sm font-bold text-gray-700">
                                             お問い合わせ種別 <span className="text-red-500">*</span>
                                         </label>
                                         <select
                                             {...register("inquiryType")}
-                                            className="w-full p-3 border border-border rounded-lg focus:ring-2 focus:ring-secondary/20 focus:border-secondary outline-none transition-all"
+                                            className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-secondary/20 focus:border-secondary outline-none transition-all"
                                         >
                                             <option value="">選択してください</option>
                                             <option value="listing">掲載希望（霊園/寺院/納骨堂）</option>
@@ -164,7 +164,7 @@ export default function PartnerContactPage() {
 
                                     {/* Organization Name */}
                                     <div className="grid gap-2">
-                                        <label className="text-sm font-bold text-text-primary">
+                                        <label className="text-sm font-bold text-gray-700">
                                             会社名・寺院名 <span className="text-red-500">*</span>
                                         </label>
                                         <Input
@@ -177,8 +177,8 @@ export default function PartnerContactPage() {
 
                                     {/* Website */}
                                     <div className="grid gap-2">
-                                        <label className="text-sm font-bold text-text-primary flex items-center">
-                                            <Globe className="w-4 h-4 mr-1 text-text-muted" />
+                                        <label className="text-sm font-bold text-gray-700 flex items-center">
+                                            <Globe className="w-4 h-4 mr-1 text-gray-400" />
                                             ウェブサイトURL
                                         </label>
                                         <Input
@@ -189,8 +189,8 @@ export default function PartnerContactPage() {
 
                                     {/* Address */}
                                     <div className="grid gap-2">
-                                        <label className="text-sm font-bold text-text-primary flex items-center">
-                                            <MapPin className="w-4 h-4 mr-1 text-text-muted" />
+                                        <label className="text-sm font-bold text-gray-700 flex items-center">
+                                            <MapPin className="w-4 h-4 mr-1 text-gray-400" />
                                             所在地 <span className="text-red-500">*</span>
                                         </label>
                                         <Input
@@ -203,7 +203,7 @@ export default function PartnerContactPage() {
 
                                     {/* Areas */}
                                     <div className="grid gap-2">
-                                        <label className="text-sm font-bold text-text-primary">取扱エリア（任意）</label>
+                                        <label className="text-sm font-bold text-gray-700">取扱エリア（任意）</label>
                                         <Input
                                             {...register("areas")}
                                             placeholder="例: 東京都全域、神奈川県東部"
@@ -214,7 +214,7 @@ export default function PartnerContactPage() {
 
                             {/* Section 2: Contact Person */}
                             <div>
-                                <h3 className="text-lg font-bold text-text-primary border-b pb-2 mb-6 flex items-center">
+                                <h3 className="text-lg font-bold text-gray-700 border-b pb-2 mb-6 flex items-center">
                                     <User className="w-5 h-5 mr-2 text-secondary" />
                                     ご担当者様情報
                                 </h3>
@@ -222,7 +222,7 @@ export default function PartnerContactPage() {
                                 <div className="space-y-6">
                                     {/* Contact Name */}
                                     <div className="grid gap-2">
-                                        <label className="text-sm font-bold text-text-primary">
+                                        <label className="text-sm font-bold text-gray-700">
                                             ご担当者名 <span className="text-red-500">*</span>
                                         </label>
                                         <Input
@@ -236,8 +236,8 @@ export default function PartnerContactPage() {
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                         {/* Email */}
                                         <div className="grid gap-2">
-                                            <label className="text-sm font-bold text-text-primary flex items-center">
-                                                <Mail className="w-4 h-4 mr-1 text-text-muted" />
+                                            <label className="text-sm font-bold text-gray-700 flex items-center">
+                                                <Mail className="w-4 h-4 mr-1 text-gray-400" />
                                                 メールアドレス <span className="text-red-500">*</span>
                                             </label>
                                             <Input
@@ -251,8 +251,8 @@ export default function PartnerContactPage() {
 
                                         {/* Phone */}
                                         <div className="grid gap-2">
-                                            <label className="text-sm font-bold text-text-primary flex items-center">
-                                                <Phone className="w-4 h-4 mr-1 text-text-muted" />
+                                            <label className="text-sm font-bold text-gray-700 flex items-center">
+                                                <Phone className="w-4 h-4 mr-1 text-gray-400" />
                                                 電話番号 <span className="text-red-500">*</span>
                                             </label>
                                             <Input
@@ -268,22 +268,22 @@ export default function PartnerContactPage() {
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                         {/* Preferred Contact */}
                                         <div className="grid gap-2">
-                                            <label className="text-sm font-bold text-text-primary">希望連絡方法</label>
+                                            <label className="text-sm font-bold text-gray-700">希望連絡方法</label>
                                             <div className="flex gap-4 pt-2">
                                                 <label className="flex items-center cursor-pointer">
                                                     <input type="radio" value="email" {...register("preferredContact")} className="w-4 h-4 text-secondary focus:ring-secondary" />
-                                                    <span className="ml-2 text-sm text-text-secondary">メール</span>
+                                                    <span className="ml-2 text-sm text-gray-600">メール</span>
                                                 </label>
                                                 <label className="flex items-center cursor-pointer">
                                                     <input type="radio" value="phone" {...register("preferredContact")} className="w-4 h-4 text-secondary focus:ring-secondary" />
-                                                    <span className="ml-2 text-sm text-text-secondary">電話</span>
+                                                    <span className="ml-2 text-sm text-gray-600">電話</span>
                                                 </label>
                                             </div>
                                         </div>
 
                                         {/* Preferred Time */}
                                         <div className="grid gap-2">
-                                            <label className="text-sm font-bold text-text-primary">連絡可能な時間帯（任意）</label>
+                                            <label className="text-sm font-bold text-gray-700">連絡可能な時間帯（任意）</label>
                                             <Input
                                                 {...register("preferredTime")}
                                                 placeholder="例: 平日 10:00〜17:00"
@@ -295,12 +295,12 @@ export default function PartnerContactPage() {
 
                             {/* Section 3: Message */}
                             <div>
-                                <h3 className="text-lg font-bold text-text-primary border-b pb-2 mb-6">
+                                <h3 className="text-lg font-bold text-gray-700 border-b pb-2 mb-6">
                                     ご相談内容詳細（任意）
                                 </h3>
                                 <textarea
                                     {...register("message")}
-                                    className="w-full p-4 border border-border rounded-lg h-32 focus:ring-2 focus:ring-secondary/20 focus:border-secondary outline-none transition-all resize-none"
+                                    className="w-full p-4 border border-gray-300 rounded-lg h-32 focus:ring-2 focus:ring-secondary/20 focus:border-secondary outline-none transition-all resize-none"
                                     placeholder="具体的なご相談内容や、ご質問事項がございましたらご記入ください。"
                                 ></textarea>
                             </div>
@@ -325,7 +325,7 @@ export default function PartnerContactPage() {
                                         </>
                                     )}
                                 </Button>
-                                <p className="text-xs text-text-muted mt-4">
+                                <p className="text-xs text-gray-400 mt-4">
                                     ご入力いただいた情報は、お問い合わせ対応の目的のみに使用し、<br />
                                     法令に基づく場合を除き、第三者に提供することはありません。
                                 </p>

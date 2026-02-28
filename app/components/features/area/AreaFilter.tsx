@@ -51,7 +51,7 @@ export function AreaFilter() {
         <>
             {/* Mobile Trigger */}
             <div className="md:hidden mb-4">
-                <Button onClick={toggleModal} variant="outline" className="w-full border-primary text-primary">
+                <Button onClick={toggleModal} variant="outline" className="w-full border-seiren-navy text-seiren-navy">
                     <SlidersHorizontal className="w-4 h-4 mr-2" /> 条件を絞り込む
                 </Button>
             </div>
@@ -64,7 +64,7 @@ export function AreaFilter() {
                 <div className={`
                     fixed inset-y-0 right-0 w-80 bg-white p-6 shadow-2xl transition-transform duration-300 transform 
                     ${isOpen ? 'translate-x-0' : 'translate-x-full'}
-                    md:static md:transform-none md:w-full md:shadow-none md:p-0 md:bg-transparent md:border md:border-border md:rounded-lg md:p-4
+                    md:static md:transform-none md:w-full md:shadow-none md:p-0 md:bg-transparent md:border md:border-gray-200 md:rounded-lg md:p-4
                 `}>
                     <div className="flex justify-between items-center mb-6 md:hidden">
                         <h3 className="font-bold text-lg">条件絞り込み</h3>
@@ -74,7 +74,7 @@ export function AreaFilter() {
                     <div className="space-y-8">
                         {/* Grave Type */}
                         <div>
-                            <h4 className="font-bold text-sm text-text-primary mb-3">お墓の種類</h4>
+                            <h4 className="font-bold text-sm text-gray-700 mb-3">お墓の種類</h4>
                             <div className="space-y-2">
                                 {MEMORIAL_TYPES.map(type => (
                                     <label key={type} className="flex items-center cursor-pointer">
@@ -82,9 +82,9 @@ export function AreaFilter() {
                                             type="checkbox"
                                             checked={currentTypes.includes(type)}
                                             onChange={() => handleTypeChange(type)}
-                                            className="w-4 h-4 text-primary border-border rounded focus:ring-primary"
+                                            className="w-4 h-4 text-seiren-navy border-gray-300 rounded focus:ring-seiren-navy"
                                         />
-                                        <span className="ml-2 text-sm text-text-secondary">{type}</span>
+                                        <span className="ml-2 text-sm text-gray-600">{type}</span>
                                     </label>
                                 ))}
                             </div>
@@ -92,15 +92,15 @@ export function AreaFilter() {
 
                         {/* Tags */}
                         <div>
-                            <h4 className="font-bold text-sm text-text-primary mb-3">こだわり条件</h4>
+                            <h4 className="font-bold text-sm text-gray-700 mb-3">こだわり条件</h4>
                             <div className="flex flex-wrap gap-2">
                                 {TAGS.map(tag => (
                                     <button
                                         key={tag}
                                         onClick={() => handleTagChange(tag)}
                                         className={`px-3 py-1 text-xs rounded-full border transition-colors ${currentTags.includes(tag)
-                                                ? 'bg-primary text-white border-primary'
-                                                : 'bg-white text-text-secondary border-border hover:border-border'
+                                                ? 'bg-seiren-navy text-white border-seiren-navy'
+                                                : 'bg-white text-gray-600 border-gray-200 hover:border-gray-300'
                                             }`}
                                     >
                                         {tag}
@@ -111,7 +111,7 @@ export function AreaFilter() {
 
                         {/* Close Button (Mobile) */}
                         <div className="md:hidden pt-4 mt-auto">
-                            <Button onClick={toggleModal} className="w-full bg-primary text-white">
+                            <Button onClick={toggleModal} className="w-full bg-seiren-navy text-white">
                                 この条件で検索
                             </Button>
                         </div>

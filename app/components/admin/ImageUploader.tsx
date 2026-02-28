@@ -59,9 +59,9 @@ export const ImageUploader = ({ value, onChange, folder = "misc", label = "画�
 
     return (
         <div className="space-y-2">
-            {label && <label className="block text-sm font-bold text-text-primary">{label}</label>}
+            {label && <label className="block text-sm font-bold text-gray-700">{label}</label>}
 
-            <div className="border-2 border-dashed border-border rounded-xl p-4 bg-bg hover:bg-white transition-colors">
+            <div className="border-2 border-dashed border-gray-300 rounded-xl p-4 bg-gray-50 hover:bg-white transition-colors">
                 <input
                     type="file"
                     ref={inputRef}
@@ -71,12 +71,12 @@ export const ImageUploader = ({ value, onChange, folder = "misc", label = "画�
                 />
 
                 {isUploading ? (
-                    <div className="flex flex-col items-center justify-center h-48 gap-3 text-text-muted">
-                        <Loader2 className="w-8 h-8 animate-spin text-primary" />
+                    <div className="flex flex-col items-center justify-center h-48 gap-3 text-gray-500">
+                        <Loader2 className="w-8 h-8 animate-spin text-seiren-navy" />
                         <span className="text-sm font-bold">アップロード中...</span>
                     </div>
                 ) : value ? (
-                    <div className="relative group rounded-lg overflow-hidden border border-border bg-white">
+                    <div className="relative group rounded-lg overflow-hidden border border-gray-200 bg-white">
                         <img src={value} alt="Preview" className="w-full h-64 object-cover" />
 
                         {/* Overlay Actions */}
@@ -84,7 +84,7 @@ export const ImageUploader = ({ value, onChange, folder = "misc", label = "画�
                             <Button
                                 type="button"
                                 variant="outline"
-                                className="bg-white hover:bg-bg text-primary-dark border-none shadow-lg"
+                                className="bg-white hover:bg-gray-100 text-gray-800 border-none shadow-lg"
                                 onClick={() => inputRef.current?.click()}
                             >
                                 <Upload className="w-4 h-4 mr-2" /> 差し替え
@@ -104,7 +104,7 @@ export const ImageUploader = ({ value, onChange, folder = "misc", label = "画�
                     </div>
                 ) : (
                     <div
-                        className="flex flex-col items-center justify-center h-48 gap-3 text-text-muted cursor-pointer hover:text-primary transition-colors"
+                        className="flex flex-col items-center justify-center h-48 gap-3 text-gray-400 cursor-pointer hover:text-seiren-navy transition-colors"
                         onClick={() => inputRef.current?.click()}
                     >
                         <div className="bg-white p-4 rounded-full shadow-sm border">
@@ -124,7 +124,7 @@ export const ImageUploader = ({ value, onChange, folder = "misc", label = "画�
                 <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/50" onClick={(e) => { e.stopPropagation(); }}>
                     <div className="bg-white p-6 rounded-lg shadow-xl max-w-sm w-full m-4">
                         <h3 className="font-bold text-lg mb-4">画像を削除しますか？</h3>
-                        <p className="text-text-secondary mb-6 text-sm">この操作は取り消せません。</p>
+                        <p className="text-gray-600 mb-6 text-sm">この操作は取り消せません。</p>
                         <div className="flex justify-end gap-3">
                             <Button variant="outline" onClick={() => setShowDeleteConfirm(false)}>キャンセル</Button>
                             <Button className="bg-red-500 hover:bg-red-600 border-red-500 text-white" onClick={() => { onChange(null); setShowDeleteConfirm(false); }}>削除する</Button>
