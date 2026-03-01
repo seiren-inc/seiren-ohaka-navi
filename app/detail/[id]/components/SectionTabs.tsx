@@ -41,7 +41,7 @@ export function SectionTabs() {
                         className={`
                             px-4 py-3 text-sm font-bold border-b-2 transition-colors whitespace-nowrap
                             ${activeId === tab.id
-                                ? 'border-seiren-navy text-seiren-navy'
+                                ? 'border-primary text-primary'
                                 : 'border-transparent text-gray-500 hover:text-gray-800'
                             }
                         `}

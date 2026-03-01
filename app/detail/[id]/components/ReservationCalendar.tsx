@@ -105,7 +105,7 @@ export function ReservationCalendar({ temple, onSelectDate }: ReservationCalenda
         return (
             <div className="text-center bg-gray-50 p-6 rounded-xl border border-gray-200">
                 <p className="font-bold text-gray-700 mb-4">この寺院は見学予約を「お電話のみ」で受け付けています</p>
-                <div className="text-2xl font-bold text-seiren-navy mb-2">{temple.phone}</div>
+                <div className="text-2xl font-bold text-primary mb-2">{temple.phone}</div>
                 <p className="text-xs text-gray-400">受付時間: {temple.officeHours}</p>
             </div>
         );
@@ -143,7 +143,7 @@ export function ReservationCalendar({ temple, onSelectDate }: ReservationCalenda
                                         {isClickable ? (
                                             <button
                                                 onClick={() => onSelectDate && onSelectDate(s.date)}
-                                                className="w-full h-16 flex items-center justify-center text-seiren-navy hover:bg-blue-50 transition-colors font-bold text-lg"
+                                                className="w-full h-16 flex items-center justify-center text-primary hover:bg-blue-50 transition-colors font-bold text-lg"
                                             >
                                                 {status}
                                             </button>
@@ -162,8 +162,8 @@ export function ReservationCalendar({ temple, onSelectDate }: ReservationCalenda
 
             {/* Legend */}
             <div className="flex justify-center gap-4 text-xs text-gray-500">
-                <span className="flex items-center gap-1"><span className="font-bold text-seiren-navy">◎</span> 余裕あり</span>
-                <span className="flex items-center gap-1"><span className="font-bold text-seiren-navy">▲</span> 残りわずか</span>
+                <span className="flex items-center gap-1"><span className="font-bold text-primary">◎</span> 余裕あり</span>
+                <span className="flex items-center gap-1"><span className="font-bold text-primary">▲</span> 残りわずか</span>
                 <span className="flex items-center gap-1"><span className="font-bold text-gray-300">×</span> 受付終了</span>
                 <span className="flex items-center gap-1"><span className="font-bold text-gray-300">－</span> 休園日</span>
             </div>

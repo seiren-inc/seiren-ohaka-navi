@@ -74,7 +74,7 @@ export default function EitaiKuyouPage() {
                         <span className="text-secondary font-bold tracking-widest text-xs uppercase mb-4 block">
                             Permanent Memorial
                         </span>
-                        <h1 className="font-serif text-2xl md:text-3xl lg:text-4xl font-bold text-seiren-navy mb-6 leading-relaxed">
+                        <h1 className="font-serif text-2xl md:text-3xl lg:text-4xl font-bold text-primary mb-6 leading-relaxed">
                             永代供養とは<br />
                             <span className="text-lg md:text-2xl mt-2 block opacity-80">仕組みと特徴を中立に解説</span>
                         </h1>
@@ -97,7 +97,7 @@ export default function EitaiKuyouPage() {
 
                     {/* H2: 永代供養とは何か */}
                     <section className="mb-20">
-                        <h2 className="font-serif text-2xl font-bold text-seiren-navy border-b pb-4 mb-8 flex items-center">
+                        <h2 className="font-serif text-2xl font-bold text-primary border-b pb-4 mb-8 flex items-center">
                             <BookOpen className="w-6 h-6 mr-3 text-secondary" />
                             永代供養とは何か
                         </h2>
@@ -125,14 +125,14 @@ export default function EitaiKuyouPage() {
 
                     {/* H2: 永代供養を選ぶ人が多い理由 */}
                     <section className="mb-20">
-                        <h2 className="font-serif text-2xl font-bold text-seiren-navy border-b pb-4 mb-8 flex items-center">
+                        <h2 className="font-serif text-2xl font-bold text-primary border-b pb-4 mb-8 flex items-center">
                             <CheckCircle className="w-6 h-6 mr-3 text-secondary" />
                             永代供養を選ぶ人が多い理由
                         </h2>
                         <div className="bg-gray-50 border border-gray-100 rounded-xl p-8">
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                                 <div>
-                                    <h4 className="font-bold text-seiren-navy mb-3">後継ぎの不安がある</h4>
+                                    <h4 className="font-bold text-primary mb-3">後継ぎの不安がある</h4>
                                     <p className="text-sm text-gray-600 leading-loose">
                                         子供がいない、あるいは娘が嫁いでいるなど、<br />
                                         実家のお墓を継ぐ人がいない場合でも、<br />
@@ -140,7 +140,7 @@ export default function EitaiKuyouPage() {
                                     </p>
                                 </div>
                                 <div>
-                                    <h4 className="font-bold text-seiren-navy mb-3">家族に負担を残したくない</h4>
+                                    <h4 className="font-bold text-primary mb-3">家族に負担を残したくない</h4>
                                     <p className="text-sm text-gray-600 leading-loose">
                                         子供はいるけれど、遠方に住んでいるため、<br />
                                         お墓の管理やお参りの手間をかけさせたくない、<br />
@@ -148,7 +148,7 @@ export default function EitaiKuyouPage() {
                                     </p>
                                 </div>
                                 <div>
-                                    <h4 className="font-bold text-seiren-navy mb-3">管理の負担を減らしたい</h4>
+                                    <h4 className="font-bold text-primary mb-3">管理の負担を減らしたい</h4>
                                     <p className="text-sm text-gray-600 leading-loose">
                                         草むしりや掃除などの身体的な負担や、<br />
                                         お寺との付き合いなどの精神的な負担を<br />
@@ -156,7 +156,7 @@ export default function EitaiKuyouPage() {
                                     </p>
                                 </div>
                                 <div>
-                                    <h4 className="font-bold text-seiren-navy mb-3">将来を見据えて整理したい</h4>
+                                    <h4 className="font-bold text-primary mb-3">将来を見据えて整理したい</h4>
                                     <p className="text-sm text-gray-600 leading-loose">
                                         終活の一環として、<br />
                                         元気なうちに自分たちの入る場所を決め、<br />
@@ -169,7 +169,7 @@ export default function EitaiKuyouPage() {
 
                     {/* H2: 永代供養の主な形式 */}
                     <section className="mb-20">
-                        <h2 className="font-serif text-2xl font-bold text-seiren-navy border-b pb-4 mb-8 flex items-center">
+                        <h2 className="font-serif text-2xl font-bold text-primary border-b pb-4 mb-8 flex items-center">
                             <Info className="w-6 h-6 mr-3 text-secondary" />
                             永代供養の主な形式
                         </h2>
@@ -208,7 +208,7 @@ export default function EitaiKuyouPage() {
 
                     {/* H2: 費用の考え方 */}
                     <section className="mb-20">
-                        <h2 className="font-serif text-2xl font-bold text-seiren-navy border-b pb-4 mb-8 flex items-center">
+                        <h2 className="font-serif text-2xl font-bold text-primary border-b pb-4 mb-8 flex items-center">
                             <Calculator className="w-6 h-6 mr-3 text-secondary" />
                             費用の考え方
                         </h2>
@@ -234,7 +234,7 @@ export default function EitaiKuyouPage() {
                             </div>
 
                             <div className="space-y-4">
-                                <h4 className="font-bold text-seiren-navy">費用のポイント</h4>
+                                <h4 className="font-bold text-primary">費用のポイント</h4>
                                 <ul className="list-disc list-inside text-sm text-gray-600 leading-loose">
                                     <li>多くのプランで管理費が一括（または不要）となっています。</li>
                                     <li>墓石を建てる個別型の場合は、別途墓石代がかかることがあります。</li>
@@ -246,7 +246,7 @@ export default function EitaiKuyouPage() {
 
                     {/* H2: 永代供養のメリットと注意点 */}
                     <section className="mb-20">
-                        <h2 className="font-serif text-2xl font-bold text-seiren-navy border-b pb-4 mb-8 flex items-center">
+                        <h2 className="font-serif text-2xl font-bold text-primary border-b pb-4 mb-8 flex items-center">
                             <AlertCircle className="w-6 h-6 mr-3 text-secondary" />
                             メリットと注意点
                         </h2>
@@ -316,7 +316,7 @@ export default function EitaiKuyouPage() {
 
                     {/* H2: 他の供養方法との違い */}
                     <section className="mb-20">
-                        <h2 className="font-serif text-2xl font-bold text-seiren-navy border-b pb-4 mb-8 flex items-center">
+                        <h2 className="font-serif text-2xl font-bold text-primary border-b pb-4 mb-8 flex items-center">
                             <Search className="w-6 h-6 mr-3 text-secondary" />
                             他の供養方法との違い
                         </h2>
@@ -327,7 +327,7 @@ export default function EitaiKuyouPage() {
 
                         <div className="space-y-6">
                             <div className="bg-white border border-gray-100 p-6 rounded-lg shadow-sm">
-                                <h3 className="font-bold text-seiren-navy mb-2">樹木葬との関係</h3>
+                                <h3 className="font-bold text-primary mb-2">樹木葬との関係</h3>
                                 <p className="text-sm text-gray-600 leading-loose">
                                     <Link href="/choices/jumokusou" className="text-primary font-bold hover:underline">樹木葬</Link>の多くは、永代供養の契約が含まれています。<br />
                                     「自然に還る」というコンセプトを重視するなら樹木葬、<br />
@@ -336,7 +336,7 @@ export default function EitaiKuyouPage() {
                                 </p>
                             </div>
                             <div className="bg-white border border-gray-100 p-6 rounded-lg shadow-sm">
-                                <h3 className="font-bold text-seiren-navy mb-2">納骨堂との関係</h3>
+                                <h3 className="font-bold text-primary mb-2">納骨堂との関係</h3>
                                 <p className="text-sm text-gray-600 leading-loose">
                                     <Link href="/choices/noukotsudou" className="text-primary font-bold hover:underline">納骨堂</Link>も、多くの施設で永代供養に対応しています。<br />
                                     屋外のお墓にこだわるか、天候を気にせずお参りできる屋内が良いか、<br />
@@ -344,7 +344,7 @@ export default function EitaiKuyouPage() {
                                 </p>
                             </div>
                             <div className="bg-white border border-gray-100 p-6 rounded-lg shadow-sm">
-                                <h3 className="font-bold text-seiren-navy mb-2">海洋散骨・自宅供養との関係</h3>
+                                <h3 className="font-bold text-primary mb-2">海洋散骨・自宅供養との関係</h3>
                                 <p className="text-sm text-gray-600 leading-loose">
                                     <Link href="/choices/sankotsu" className="text-primary font-bold hover:underline">海洋散骨</Link>や<Link href="/choices/temoto-kuyou" className="text-primary font-bold hover:underline">自宅供養</Link>は、<br />
                                     「お墓という場所を持たない」選択肢です。<br />
@@ -356,7 +356,7 @@ export default function EitaiKuyouPage() {
 
                     {/* H2: 診断で永代供養が候補に出た方へ */}
                     <section className="mb-20">
-                        <h2 className="font-serif text-2xl font-bold text-seiren-navy border-b pb-4 mb-8 flex items-center">
+                        <h2 className="font-serif text-2xl font-bold text-primary border-b pb-4 mb-8 flex items-center">
                             <Calculator className="w-6 h-6 mr-3 text-secondary" />
                             診断で「永代供養」が候補に出た方へ
                         </h2>
@@ -380,7 +380,7 @@ export default function EitaiKuyouPage() {
 
                     {/* H2: 迷った場合の次の行動 (CTA) */}
                     <section className="text-center">
-                        <h2 className="font-serif text-2xl font-bold text-seiren-navy border-b pb-4 mb-10 inline-block px-12">
+                        <h2 className="font-serif text-2xl font-bold text-primary border-b pb-4 mb-10 inline-block px-12">
                             迷った場合の次の行動
                         </h2>
 
@@ -449,7 +449,7 @@ export default function EitaiKuyouPage() {
 
                     {/* FAQ */}
                     <section className="my-20">
-                        <h2 className="font-serif text-2xl font-bold text-seiren-navy border-b pb-4 mb-8 flex items-center">
+                        <h2 className="font-serif text-2xl font-bold text-primary border-b pb-4 mb-8 flex items-center">
                             <HelpCircle className="w-6 h-6 mr-3 text-secondary" />
                             よくある質問（FAQ）
                         </h2>
@@ -462,7 +462,7 @@ export default function EitaiKuyouPage() {
                                 { q: "改葬先として選べる？", a: "はい、改葬（お墓じまい）後の受け入れ先として非常に多く選ばれています。\n継承者がいなくても契約できるため、墓じまいの解決策として適しています。" }
                             ].map((item, i) => (
                                 <div key={i} className="bg-gray-50 rounded-lg p-5">
-                                    <h4 className="font-bold text-seiren-navy mb-2 flex flex-row items-center">
+                                    <h4 className="font-bold text-primary mb-2 flex flex-row items-center">
                                         <span className="bg-secondary text-white text-xs font-bold px-2 py-1 rounded mr-3 flex-shrink-0">Q</span>
                                         {item.q}
                                     </h4>

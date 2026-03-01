@@ -137,7 +137,7 @@ export default async function InquiryList(props: { searchParams: Promise<{ categ
                                                     {i.category === 'grave_closure' ? '次の供養先' : '希望プラン'}
                                                 </div>
                                                 {i.context?.planName || i.desiredPlanName || i.additionalFields?.hasNextPlace ? (
-                                                    <span className="text-sm text-seiren-navy bg-blue-50 px-2 py-1 rounded">
+                                                    <span className="text-sm text-primary bg-blue-50 px-2 py-1 rounded">
                                                         {i.context?.planName || i.desiredPlanName || i.additionalFields?.hasNextPlace}
                                                     </span>
                                                 ) : (

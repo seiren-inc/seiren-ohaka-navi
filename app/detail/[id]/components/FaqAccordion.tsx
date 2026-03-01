@@ -21,7 +21,7 @@ export function FaqAccordion({ faqs }: FaqAccordionProps) {
                             onClick={() => setOpenIndex(isOpen ? null : idx)}
                             className="w-full flex items-center justify-between p-4 text-left hover:bg-gray-50 transition-colors"
                         >
-                            <span className="flex items-start text-sm font-bold text-seiren-navy pr-4">
+                            <span className="flex items-start text-sm font-bold text-primary pr-4">
                                 <span className="text-secondary mr-3 text-lg">Q.</span>
                                 <span className="pt-0.5">{faq.q}</span>
                             </span>

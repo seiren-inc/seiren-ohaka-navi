@@ -13,7 +13,7 @@ export function InquiryActions() {
                     </Button>
                 </Link>
                 <Link href="/consult/grave-search" className="flex-1">
-                    <Button size="lg" variant="outline" className="w-full border-seiren-navy text-seiren-navy hover:bg-seiren-navy hover:text-white font-bold h-14 shadow-sm">
+                    <Button size="lg" variant="outline" className="w-full border-primary text-primary hover:bg-primary hover:text-white font-bold h-14 shadow-sm">
                         <Mail className="w-5 h-5 mr-2" />
                         資料請求（無料）
                     </Button>

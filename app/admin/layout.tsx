@@ -9,7 +9,7 @@ export default function AdminLayout({
     return (
         <div className="flex h-screen bg-gray-100 font-sans">
             {/* Sidebar */}
-            <aside className="w-64 bg-seiren-navy text-white flex-shrink-0">
+            <aside className="w-64 bg-primary text-white flex-shrink-0">
                 <div className="p-6 border-b border-navy-700">
                     <h1 className="text-xl font-bold tracking-wider">SEIREN<br /><span className="text-sm font-normal opacity-70">Admin System</span></h1>
                 </div>

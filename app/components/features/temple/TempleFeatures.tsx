@@ -12,7 +12,7 @@ export function TempleFeatures({ data }: TempleFeaturesProps) {
 
     return (
         <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6 md:p-8">
-            <h2 className="text-xl font-bold text-seiren-navy border-l-4 border-secondary pl-4 py-1 mb-6">
+            <h2 className="text-xl font-bold text-primary border-l-4 border-secondary pl-4 py-1 mb-6">
                 特徴・おすすめポイント
             </h2>
 

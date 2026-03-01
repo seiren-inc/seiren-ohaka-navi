@@ -9,8 +9,9 @@ export function middleware(req: NextRequest) {
             const authValue = basicAuth.split(' ')[1];
             const [user, pwd] = atob(authValue).split(':');
 
-            // TODO: Move credentials to env vars in production
-            if (user === 'admin' && pwd === 'admin') {
+            const adminUser = process.env.ADMIN_USER;
+            const adminPwd = process.env.ADMIN_PASSWORD;
+            if (adminUser && adminPwd && user === adminUser && pwd === adminPwd) {
                 return NextResponse.next();
             }
         }

@@ -5,6 +5,7 @@ import { useSearchParams } from "next/navigation";
 import { Navbar } from "../../components/layout/Navbar";
 import { Footer } from "../../components/layout/Footer";
 import { Button } from "../../components/ui/Button";
+import Link from "next/link";
 import { CheckCircle, Phone, Mail, MapPin, Calendar, FileText, ArrowDown, HelpCircle } from "lucide-react";
 
 function GraveSearchConsultForm() {
@@ -144,7 +145,7 @@ function GraveSearchConsultForm() {
                         お墓探しのご相談ありがとうございます。<br />
                         専門スタッフが条件に合う霊園をお探しし、ご連絡いたします。
                     </p>
-                    <a href="/" className="text-primary hover:underline">トップへ戻る</a>
+                    <Link href="/" className="text-primary hover:underline">トップへ戻る</Link>
                 </div>
             </div>
         );
@@ -167,7 +168,7 @@ function GraveSearchConsultForm() {
                 </p>
             </div>
 
-            <main className="flex-grow container mx-auto px-4 py-12 max-w-4xl">
+            <main className="grow container mx-auto px-4 py-12 max-w-4xl">
 
                 {/* 3 Reassurances */}
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">

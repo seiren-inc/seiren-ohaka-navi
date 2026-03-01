@@ -23,7 +23,7 @@ export function MapBlock({ address }: MapBlockProps) {
                     href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(address)}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="block w-full text-center py-2 text-xs font-bold text-seiren-navy border border-seiren-navy rounded hover:bg-seiren-navy hover:text-white transition-colors"
+                    className="block w-full text-center py-2 text-xs font-bold text-primary border border-primary rounded hover:bg-primary hover:text-white transition-colors"
                 >
                     Googleマップで開く
                 </a>
