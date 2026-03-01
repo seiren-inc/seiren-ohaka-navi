@@ -1,4 +1,5 @@
 
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { InquiryDB } from "../../../../lib/inquiry-db";
 import { CheckCircle2, ChevronLeft, MapPin, Phone, Mail, Calendar, User, FileText, Globe, Building } from "lucide-react";
 import Link from "next/link";

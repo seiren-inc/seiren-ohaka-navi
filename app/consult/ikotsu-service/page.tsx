@@ -5,6 +5,7 @@ import { Navbar } from "../../components/layout/Navbar";
 import { Footer } from "../../components/layout/Footer";
 import { Button } from "../../components/ui/Button";
 import { CheckCircle, Phone, Mail, ArrowDown, Heart } from "lucide-react";
+import Link from "next/link";
 
 function IkotsuServiceConsultForm() {
     const [formData, setFormData] = useState({
@@ -133,7 +134,7 @@ function IkotsuServiceConsultForm() {
                         お問い合わせありがとうございます。<br />
                         ご遺骨サポートの担当者より、折り返しご連絡させていただきます。
                     </p>
-                    <a href="/" className="text-primary hover:underline">トップへ戻る</a>
+                    <Link href="/" className="text-primary hover:underline">トップへ戻る</Link>
                 </div>
             </div>
         );

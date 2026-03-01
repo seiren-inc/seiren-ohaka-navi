@@ -35,7 +35,7 @@ export async function AreaTempleList({ prefecture, city, searchParams }: AreaTem
         // Let's use AND for tags to narrow down? Or OR?
         // UI says "Filter", implying narrowing. Let's use OR for user friendliness initially, but AND is stricter.
         // Let's use AND logic: Must have ALL selected tags.
-        temples = temples.filter(t => tags.every(tag => t.tags?.includes(tag as any)));
+        temples = temples.filter(t => tags.every(tag => t.tags?.includes(tag as import('@/lib/store').AppealTag)));
     }
 
 
@@ -66,7 +66,6 @@ export async function AreaTempleList({ prefecture, city, searchParams }: AreaTem
                        We verify this in code review:
                        `const requestUrl = /consult/request-material?templeId=${data.id}...` -> YES.
                     */}
-                    {/* @ts-ignore - Store mock data issue */}
                     <GraveyardCard data={temple} />
 
                     {/* Intervention */}

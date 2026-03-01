@@ -17,6 +17,7 @@ export function TempleHero({ data }: TempleHeroProps) {
     const [currentUrl, setCurrentUrl] = useState("");
 
     useEffect(() => {
+        // eslint-disable-next-line react-hooks/set-state-in-effect
         if (typeof window !== 'undefined') setCurrentUrl(window.location.href);
     }, []);
 

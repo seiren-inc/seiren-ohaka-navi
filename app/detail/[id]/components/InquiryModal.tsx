@@ -1,10 +1,10 @@
 "use client";
 
 import { useState, useEffect, useMemo } from "react";
-import { X, Phone, Mail, CheckCircle2, Loader2, ArrowLeft, ArrowRight, Clock } from "lucide-react";
-import { format, addMinutes, isBefore, isAfter, set, startOfDay, addDays } from "date-fns";
+import { X, Phone, Mail, CheckCircle2, Loader2, ArrowRight } from "lucide-react";
+import { format, addMinutes, isBefore, set } from "date-fns";
 import { Button } from "../../../components/ui/Button";
-import { Temple, CalendarSettings } from "../../../../lib/store";
+import { Temple } from "../../../../lib/store";
 
 interface InquiryModalProps {
     isOpen: boolean;
@@ -117,7 +117,20 @@ const StepIndicator = ({ step, current, label }: { step: number, current: number
     </div>
 );
 
-function Step1({ formData, setFormData, onNext, temple }: { formData: any, setFormData: any, onNext: () => void, temple: Temple }) {
+type FormData = {
+    preferredDate: string;
+    preferredTime: string;
+    preferredDate2: string;
+    preferredTime2: string;
+    name: string;
+    phone: string;
+    email: string;
+    message: string;
+    privacyCheck: boolean;
+    honeypot: string;
+};
+
+function Step1({ formData, setFormData, onNext, temple }: { formData: FormData, setFormData: React.Dispatch<React.SetStateAction<FormData>>, onNext: () => void, temple: Temple }) {
     const cal = temple.calendar;
 
     // Generate Time Slots based on selected date
@@ -185,7 +198,7 @@ function Step1({ formData, setFormData, onNext, temple }: { formData: any, setFo
 // For brevity, I will include abbreviated versions if acceptable, but I must return full file content in write_to_file usually.
 // I will just paste the previous Step2/3/TelTab/SuccessView as they were mostly fine, just ensuring types match.
 
-function Step2({ formData, setFormData, onNext, onBack }: any) {
+function Step2({ formData, setFormData, onNext, onBack }: { formData: FormData, setFormData: React.Dispatch<React.SetStateAction<FormData>>, onNext: () => void, onBack: () => void }) {
     return (
         <div className="space-y-4">
             <div className="space-y-1"><label className="text-sm font-bold text-gray-700 block">お名前 <span className="text-red-500">*</span></label><input className="w-full border border-gray-300 rounded p-3" placeholder="例：山田 太郎" value={formData.name} onChange={e => setFormData({ ...formData, name: e.target.value })} /></div>
@@ -198,7 +211,7 @@ function Step2({ formData, setFormData, onNext, onBack }: any) {
     );
 }
 
-function Step3({ formData, onBack, onSubmit, isSubmitting }: any) {
+function Step3({ formData, onBack, onSubmit, isSubmitting }: { formData: FormData, onBack: () => void, onSubmit: () => void, isSubmitting: boolean }) {
     return (
         <div className="space-y-6">
             <h3 className="font-bold text-center text-gray-800">入力内容をご確認ください</h3>

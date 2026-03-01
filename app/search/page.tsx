@@ -142,10 +142,7 @@ export default async function SearchPage(props: { searchParams: Promise<{ [key: 
                             <div className="grid gap-6">
                                 {filteredGraveyards.length > 0 ? (
                                     filteredGraveyards.map((temple) => (
-                                        // TODO: Refactor GraveyardCard to accept 'Temple' type instead of old mock type
-                                        // For now, filtering works, but Card might need updates.
-                                        // Passing 'temple' as 'any' to avoid type conflict until Card is refactored.
-                                        <GraveyardCard key={temple.id} data={temple as any} />
+                                        <GraveyardCard key={temple.id} data={temple} />
                                     ))
                                 ) : (
                                     <div className="p-12 text-center bg-white rounded-xl border border-gray-100 flex flex-col items-center justify-center gap-4">

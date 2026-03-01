@@ -23,6 +23,7 @@ export function AreaSearchModal({ isOpen, onClose, initialPrefecture }: AreaSear
     const [selectedPref, setSelectedPref] = useState(initialPrefecture || "東京都");
     const [counts, setCounts] = useState<Record<string, Record<string, number>>>({}); // { Tokyo: { Minato: 5 } }
 
+    /* eslint-disable react-hooks/set-state-in-effect */
     useEffect(() => {
         if (isOpen) {
             // Aggregate on open
@@ -43,6 +44,7 @@ export function AreaSearchModal({ isOpen, onClose, initialPrefecture }: AreaSear
             if (initialPrefecture) setSelectedPref(initialPrefecture);
         }
     }, [isOpen, initialPrefecture]);
+    /* eslint-enable react-hooks/set-state-in-effect */
 
     // Derived City List for Selected Pref
     const cityList = useMemo(() => {

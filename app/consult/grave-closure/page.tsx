@@ -267,7 +267,7 @@ function GraveClosureConsultForm() {
                         お問い合わせありがとうございます。<br />
                         担当者より折り返しご連絡させていただきます。
                     </p>
-                    <a href="/" className="text-primary hover:underline">トップへ戻る</a>
+                    <Link href="/" className="text-primary hover:underline">トップへ戻る</Link>
                 </div>
             </div>
         );
