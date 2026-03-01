@@ -11,7 +11,6 @@ export function OpeningAnimation() {
         // Logic to determine if animation should play
         const shouldPlayAnimation = () => {
             // 1. Get Navigation Type
-            // @ts-expect-error - performance.getEntriesByType is valid but TS might complain about types
             const navEntries = typeof performance !== 'undefined' ? performance.getEntriesByType("navigation") : [];
             // @ts-expect-error - navEntries type lacks 'type' property in TS defs
             const navType = navEntries.length > 0 ? navEntries[0].type : "navigate";
