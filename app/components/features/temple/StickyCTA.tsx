@@ -13,6 +13,7 @@ interface StickyCTAProps {
 
 export function StickyCTA({ temple }: StickyCTAProps) {
     const [currentUrl, setCurrentUrl] = useState("");
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     useEffect(() => { if (typeof window !== 'undefined') setCurrentUrl(window.location.href); }, []);
 
     // Default context is just the temple. Plan context is handled by PlanList specific buttons.

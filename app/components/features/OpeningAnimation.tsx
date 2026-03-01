@@ -11,9 +11,9 @@ export function OpeningAnimation() {
         // Logic to determine if animation should play
         const shouldPlayAnimation = () => {
             // 1. Get Navigation Type
-            // @ts-ignore - performance.getEntriesByType is valid but TS might complain about types
+            // @ts-expect-error - performance.getEntriesByType is valid but TS might complain about types
             const navEntries = typeof performance !== 'undefined' ? performance.getEntriesByType("navigation") : [];
-            // @ts-ignore
+            // @ts-expect-error - navEntries type lacks 'type' property in TS defs
             const navType = navEntries.length > 0 ? navEntries[0].type : "navigate";
 
             // 2. Check External Referrer
@@ -47,6 +47,7 @@ export function OpeningAnimation() {
         };
 
         if (!shouldPlayAnimation()) {
+            // eslint-disable-next-line react-hooks/set-state-in-effect
             setStage("hidden");
             return;
         }

@@ -1,4 +1,5 @@
 
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { InquiryStatus, Inquiry } from "../../../lib/store";
 import { InquiryDB } from "../../../lib/inquiry-db";
 import { CheckCircle2, Circle, Clock, ChevronRight, Filter } from "lucide-react";
@@ -138,7 +139,7 @@ export default async function InquiryList(props: { searchParams: Promise<{ categ
                                                 </div>
                                                 {i.context?.planName || i.desiredPlanName || i.additionalFields?.hasNextPlace ? (
                                                     <span className="text-sm text-primary bg-blue-50 px-2 py-1 rounded">
-                                                        {i.context?.planName || i.desiredPlanName || i.additionalFields?.hasNextPlace}
+                                                        {i.context?.planName || i.desiredPlanName || String(i.additionalFields?.hasNextPlace ?? '')}
                                                     </span>
                                                 ) : (
                                                     <span className="text-sm text-gray-400">未指定</span>
@@ -162,7 +163,7 @@ export default async function InquiryList(props: { searchParams: Promise<{ categ
                                         </div>
                                     ) : (
                                         <div className="mb-1 text-xs text-gray-400">
-                                            希望: {i.additionalFields?.visitHope || i.additionalFields?.timing || i.preferredDateTime || '-'}
+                                            希望: {String(i.additionalFields?.visitHope ?? i.additionalFields?.timing ?? i.preferredDateTime ?? '-')}
                                         </div>
                                     )}
                                     <div className="truncate text-gray-600 mt-1" title={i.message}>{i.message}</div>

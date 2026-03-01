@@ -17,7 +17,6 @@ export function NearbyTemples({ currentId }: { currentId: string }) {
             </h2>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {nearby.map(t => (
-                    // @ts-ignore - store implementation detail
                     <GraveyardCard key={t.id} data={t} />
                 ))}
             </div>

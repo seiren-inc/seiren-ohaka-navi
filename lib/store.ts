@@ -342,7 +342,7 @@ export interface Inquiry {
     type?: 'consult' | 'grave_closure' | string;
     category?: 'grave_search' | 'grave_closure' | 'ikotsu_service' | string;
     inquiryType?: string; // For business inquiry type selection
-    additionalFields?: Record<string, any>;
+    additionalFields?: Record<string, unknown>;
 
     // Grave Closure Specific
     graveTempleName?: string;
@@ -389,7 +389,7 @@ export interface Inquiry {
 }
 
 // Mock Data
-let MOCK_TEMPLES: Temple[] = [
+const MOCK_TEMPLES: Temple[] = [
     {
         id: "id1624858636",
         name: "清蓮メモリアルパーク東京",
@@ -534,7 +534,7 @@ let MOCK_PLANS: Plan[] = [
     }
 ];
 
-let MOCK_INQUIRIES: Inquiry[] = [];
+const MOCK_INQUIRIES: Inquiry[] = [];
 let RECEIPT_COUNTER = 1000;
 
 export const Store = {

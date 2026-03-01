@@ -21,6 +21,7 @@ export function SearchFilter() {
     const [priceMax, setPriceMax] = useState<string>("");
 
     // Initialize from URL
+    /* eslint-disable react-hooks/set-state-in-effect */
     useEffect(() => {
         setPrefs(searchParams.getAll("pref"));
         setTypes(searchParams.getAll("type") as FacilityType[]);
@@ -30,6 +31,7 @@ export function SearchFilter() {
         setFeatures(searchParams.getAll("feature"));
         setPriceMax(searchParams.get("priceMax") || "");
     }, [searchParams]);
+    /* eslint-enable react-hooks/set-state-in-effect */
 
     const applyFilters = useCallback(() => {
         const params = new URLSearchParams();
