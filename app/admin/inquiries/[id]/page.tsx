@@ -1,6 +1,6 @@
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { InquiryDB } from "../../../../lib/inquiry-db";
+import { prisma } from "../../../../lib/prisma";
 import { CheckCircle2, ChevronLeft, MapPin, Phone, Mail, Calendar, User, FileText, Globe, Building } from "lucide-react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -18,11 +18,15 @@ export default async function InquiryDetail(props: { params: Promise<{ id: strin
     console.log("[AdminDetail] Requested ID:", params.id);
 
     const decodedId = decodeURIComponent(params.id);
-    const inquiry = InquiryDB.getById(decodedId);
+    const inquiryData = await prisma.inquiry.findUnique({
+        where: { id: decodedId }
+    });
 
-    if (!inquiry) {
+    if (!inquiryData) {
         return notFound();
     }
+
+    const inquiry = inquiryData as any;
 
     const isBusiness = inquiry.kind === 'business';
 
@@ -256,7 +260,7 @@ export default async function InquiryDetail(props: { params: Promise<{ id: strin
                                             <dd>
                                                 {inquiry.graveTypes && inquiry.graveTypes.length > 0 ? (
                                                     <div className="flex flex-wrap gap-2">
-                                                        {inquiry.graveTypes.map(t => (
+                                                        {inquiry.graveTypes.map((t: string) => (
                                                             <span key={t} className="bg-gray-100 text-gray-700 px-2 py-1 rounded text-sm">{t}</span>
                                                         ))}
                                                     </div>
