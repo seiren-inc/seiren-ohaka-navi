@@ -20,6 +20,7 @@ export function ContactForm() {
 
     const [isLoadingAddress, setIsLoadingAddress] = useState(false);
     const [addressError, setAddressError] = useState("");
+    const [isSubmitting, setIsSubmitting] = useState(false);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
         const { name, value } = e.target;
@@ -56,9 +57,53 @@ export function ContactForm() {
         }
     };
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        alert("送信機能は現在デモモードです。\n\n" + JSON.stringify(formData, null, 2));
+        setIsSubmitting(true);
+        try {
+            const payload = {
+                type: 'contact',
+                category: 'other',
+                kind: 'user',
+                user: {
+                    lastName: formData.name.split(' ')[0] || formData.name,
+                    firstName: formData.name.split(' ').slice(1).join(' '),
+                    lastNameKana: formData.furigana.split(' ')[0] || formData.furigana,
+                    firstNameKana: formData.furigana.split(' ').slice(1).join(' '),
+                    phone: formData.phone,
+                    zipCode: formData.postalCode,
+                    prefecture: formData.prefecture,
+                    city: formData.city,
+                    addressLine: formData.address1,
+                    building: formData.address2,
+                },
+                message: formData.remarks,
+                context: {
+                    sourceLabel: "総合お問い合わせフォーム"
+                }
+            };
+
+            const res = await fetch('/api/inquiries', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload),
+            });
+
+            if (!res.ok) throw new Error('送信に失敗しました');
+            const data = await res.json();
+            
+            alert(`お問い合わせを受け付けました。\n受付番号: ${data.receiptNumber}`);
+            
+            // フォームのクリア
+            setFormData({
+                name: "", furigana: "", phone: "", postalCode: "", prefecture: "",
+                city: "", address1: "", address2: "", remarks: "",
+            });
+        } catch (error) {
+            alert(error instanceof Error ? error.message : 'エラーが発生しました');
+        } finally {
+            setIsSubmitting(false);
+        }
     };
 
     return (
@@ -229,8 +274,8 @@ export function ContactForm() {
 
             {/* Submit */}
             <div className="pt-6 text-center">
-                <Button type="submit" size="lg" className="w-full sm:w-2/3 shadow-xl shadow-primary/20 text-lg py-6">
-                    上記の内容で送信する
+                <Button type="submit" size="lg" disabled={isSubmitting} className="w-full sm:w-2/3 shadow-xl shadow-primary/20 text-lg py-6">
+                    {isSubmitting ? "送信中..." : "上記の内容で送信する"}
                 </Button>
             </div>
         </form>

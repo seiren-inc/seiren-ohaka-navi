@@ -1,27 +1,39 @@
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { InquiryStatus, Inquiry } from "../../../lib/store";
-import { InquiryDB } from "../../../lib/inquiry-db";
+import { prisma } from "../../../lib/prisma";
 import { CheckCircle2, Circle, Clock, ChevronRight, Filter } from "lucide-react";
 import Link from "next/link";
+
+export const dynamic = 'force-dynamic';
 
 export default async function InquiryList(props: { searchParams: Promise<{ category?: string }> }) {
     const searchParams = await props.searchParams;
     const categoryFilter = searchParams.category || 'all';
 
-    // Determine Environment: Server Component can read DB directly
-    let inquiries = InquiryDB.getAll();
-
-    // Filter by Category
+    // Prisma: Build where clause based on filter
+    const where: any = {};
     if (categoryFilter !== 'all') {
         if (categoryFilter === 'business') {
-            inquiries = inquiries.filter(i => i.kind === 'business');
+            where.kind = 'business';
         } else if (categoryFilter === 'other') {
-            inquiries = inquiries.filter(i => !['grave_search', 'grave_closure', 'ikotsu_service'].includes(i.category || '') && i.kind !== 'business');
+            where.category = { notIn: ['grave_search', 'grave_closure', 'ikotsu_service'] };
+            where.kind = { not: 'business' };
         } else {
-            inquiries = inquiries.filter(i => i.category === categoryFilter || i.type === categoryFilter);
+            where.OR = [
+                { category: categoryFilter },
+                { type: categoryFilter }
+            ];
         }
     }
+
+    const inquiriesData = await prisma.inquiry.findMany({
+        where,
+        orderBy: { createdAt: 'desc' },
+    });
+
+    const inquiries = inquiriesData as unknown as Inquiry[];
+
 
     const getStatusBadge = (status: InquiryStatus) => {
         switch (status) {
