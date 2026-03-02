@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Button } from "../../../components/ui/Button";
-import { Store, Temple, FacilityType, ManagementBody, ReligionCategory, Parking, PetSupport, SuccessorReq, PublishStatus, Prefecture, ContentIcon, AppealTag, BookingStatus, BookingChannel, SlotInterval, VisitDuration, BufferMinutes, CutoffRule, BookingWindow, Sect, MemorialType, IndoorOutdoor, PetAllowed, ManagementFeeType, RELIGION_CATEGORIES, BUDDHIST_SECTS, BUDDHIST_SECT_GROUPS, BuddhistSect } from "../../../../lib/store";
+import { Temple, FacilityType, ManagementBody, ReligionCategory, Parking, PetSupport, SuccessorReq, PublishStatus, Prefecture, ContentIcon, AppealTag, BookingStatus, BookingChannel, SlotInterval, VisitDuration, BufferMinutes, CutoffRule, BookingWindow, Sect, MemorialType, IndoorOutdoor, PetAllowed, ManagementFeeType, RELIGION_CATEGORIES, BUDDHIST_SECTS, BUDDHIST_SECT_GROUPS, BuddhistSect } from "../../../../lib/store";
 import { ImageUploader } from "../../../components/admin/ImageUploader";
 import { GalleryUploader } from "../../../components/admin/GalleryUploader";
 import { Loader2, Plus, Trash2, GripVertical, Image as ImageIcon, MapPin, Calendar as CalIcon, FileText, Tag, Search, Sparkles, X, ChevronDown, ChevronRight, Save, Clock, Settings, Bell, Ban, Globe, HelpCircle, Code, DollarSign, CheckSquare, Info } from "lucide-react";
@@ -79,14 +79,8 @@ export default function NewTemplePage() {
         }
     });
 
-    // Derived Cities for suggestion (Moved here to access 'temple' state)
-    const citySuggestions = useMemo(() => {
-        return Array.from(new Set(Store.getTemples()
-            .filter(t => t.prefecture === temple.prefecture)
-            .map(t => t.cityName)
-            .filter(Boolean)
-        )) as string[];
-    }, [temple.prefecture]);
+    // City suggestions can be extended later via API
+    const citySuggestions: string[] = [];
 
     const handleSave = async () => {
         const errors: string[] = [];
@@ -116,12 +110,23 @@ export default function NewTemplePage() {
         }
 
         setIsLoading(true);
-        const newTemple = Store.createTemple(templeToSave as unknown as Temple);
-        await new Promise(r => setTimeout(r, 500));
-        setIsLoading(false);
-        alert("保存しました。続いて区画プランの登録へ進みます。");
-        router.push(`/admin/temples/${newTemple.id}/edit`);
+        try {
+            const res = await fetch('/api/temples', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(templeToSave),
+            });
+            if (!res.ok) throw new Error('保存に失敗しました');
+            const newTemple = await res.json();
+            alert("保存しました。続いて区画プランの登録へ進みます。");
+            router.push(`/admin/temples/${newTemple.id}/edit`);
+        } catch (err) {
+            alert(err instanceof Error ? err.message : '保存中にエラーが発生しました');
+        } finally {
+            setIsLoading(false);
+        }
     };
+
 
     // --- Tab Renderers ---
 
