@@ -1,4 +1,4 @@
-import { Store } from "@/lib/store";
+import { prisma } from "@/lib/prisma";
 import { notFound } from "next/navigation";
 import { Navbar } from "../../../components/layout/Navbar";
 import { Footer } from "../../../components/layout/Footer";
@@ -14,7 +14,13 @@ export default async function CityPage(props: { params: Promise<{ prefecture: st
     const decodedCity = decodeURIComponent(params.city);
 
     // Get count for Hero
-    const temples = Store.getTemples().filter(t => t.prefecture === decodedPrefecture && t.cityName === decodedCity);
+    const count = await prisma.temple.count({
+        where: {
+            prefecture: decodedPrefecture,
+            cityName: decodedCity,
+            status: 'public'
+        }
+    });
 
     // If no temples in city, maybe 404? Or just show empty list? 
     // Request says "Modal only shows cities with temples", so theoretically user shouldn't land here if empty unless direct URL.
@@ -28,7 +34,7 @@ export default async function CityPage(props: { params: Promise<{ prefecture: st
                 <AreaHero
                     prefecture={decodedPrefecture}
                     city={decodedCity}
-                    count={temples.length}
+                    count={count}
                 />
 
                 <div className="max-w-7xl mx-auto px-4 py-8 md:py-12">

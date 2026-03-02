@@ -1,11 +1,14 @@
-"use client";
-
-import { Store } from "@/lib/store";
+import { prisma } from "@/lib/prisma";
+import { Temple } from "@/lib/store";
 import { GraveyardCard } from "../../features/search/GraveyardCard";
 
-export function NearbyTemples({ currentId }: { currentId: string }) {
-    const all = Store.getTemples();
-    const nearby = all.filter(t => t.id !== currentId).slice(0, 3);
+export async function NearbyTemples({ currentId }: { currentId: string }) {
+    const nearbyData = await prisma.temple.findMany({
+        where: { id: { not: currentId }, status: 'public', listedInSearch: true },
+        take: 3,
+        orderBy: { createdAt: 'desc' }
+    });
+    const nearby = nearbyData as unknown as Temple[];
 
     if (nearby.length === 0) return null;
 

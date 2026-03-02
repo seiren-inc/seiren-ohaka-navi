@@ -4,7 +4,7 @@
 import { useEffect, useState, useMemo } from "react";
 import { useRouter } from "next/navigation";
 import { Button } from "../../../../components/ui/Button";
-import { Store, Temple, Plan, FacilityType, ManagementBody, ReligionCategory, Parking, BarrierFree, PetSupport, SuccessorReq, PublishStatus, Prefecture, ContentIcon, AppealTag, RELIGION_CATEGORIES, BUDDHIST_SECTS, BUDDHIST_SECT_GROUPS, BuddhistSect, PLAN_CATEGORIES, PLAN_AVAILABILITY_LABELS, PlanCategoryType, PlanAvailability, ManagementFeeType, IndoorOutdoor, PetAllowed, BookingStatus, Sect, MemorialType } from "../../../../../lib/store";
+import { Temple, Plan, FacilityType, ManagementBody, ReligionCategory, Parking, BarrierFree, PetSupport, SuccessorReq, PublishStatus, Prefecture, ContentIcon, AppealTag, RELIGION_CATEGORIES, BUDDHIST_SECTS, BUDDHIST_SECT_GROUPS, BuddhistSect, PLAN_CATEGORIES, PLAN_AVAILABILITY_LABELS, PlanCategoryType, PlanAvailability, ManagementFeeType, IndoorOutdoor, PetAllowed, BookingStatus, Sect, MemorialType } from "../../../../../lib/store";
 import { ImageUploader } from "../../../../components/admin/ImageUploader";
 import { GalleryUploader } from "../../../../components/admin/GalleryUploader";
 import { Loader2, Plus, Trash2, GripVertical, Image as ImageIcon, MapPin, Calendar as CalIcon, FileText, Tag, Search, Sparkles, X, ChevronDown, ChevronRight, Save, Clock, Settings, Bell, Ban, Globe, HelpCircle, Code, DollarSign, CheckSquare, Info } from "lucide-react";
@@ -62,23 +62,26 @@ export default function EditTemplePage({ params }: { params: { id: string } }) {
     const [editingPlan, setEditingPlan] = useState<Partial<Plan>>({});
     const [planModalTab, setPlanModalTab] = useState<'basic' | 'specs' | 'extra'>('basic');
 
-    // Derived Cities for suggestion
+    // Derived Cities for suggestion (Simplified for now, as fetching all temples here is heavy)
     const citySuggestions = useMemo(() => {
-        if (!temple) return [];
-        return Array.from(new Set(Store.getTemples()
-            .filter(t => t.prefecture === temple.prefecture)
-            .map(t => t.cityName)
-            .filter(Boolean)
-        )) as string[];
+        // Ideally fetch from a dedicated API endpoint like `/api/cities?prefecture=${temple.prefecture}`
+        return []; 
     }, [temple?.prefecture]);
 
     useEffect(() => {
         Promise.resolve(params).then(p => {
-            const t = Store.getTemple(p.id);
-            if (t) {
-                // Initialize new fields with defaults if migrating
-                // Data Migration Logic
-                const rawRel = t.religion as unknown as string;
+            fetch(`/api/temples/${p.id}`)
+                .then(res => {
+                    if (!res.ok) throw new Error('Not found');
+                    return res.json();
+                })
+                .then(t => {
+                    // Update city suggestions dynamically by fetching all temples later if needed, 
+                    // or just use a generic list. For now, we fallback to an empty array to avoid fetching all temples.
+                    // If we really need suggestions, we should make a separate API call for cities.
+
+                    // Data Migration Logic (similar to before, kept for safety)
+                    const rawRel = t.religion as unknown as string;
                 let newRel: ReligionCategory = 'other';
                 if (rawRel === '仏教' || rawRel === 'buddhism') newRel = 'buddhism';
                 else if (rawRel === '神道' || rawRel === 'shinto') newRel = 'shinto';
@@ -123,11 +126,12 @@ export default function EditTemplePage({ params }: { params: { id: string } }) {
                         bookingStatus: 'paused', bookingChannels: ['form', 'phone'], availableWeekdays: [1, 2, 4, 5, 6, 0], startTime: "10:00", endTime: "16:00", slotIntervalMinutes: 60, visitDurationMinutes: 60, bufferMinutes: 0, cutoffRule: "hours48", bookingWindowDays: 60, dailyCapacity: 3, blackoutDates: [], requestMessage: ""
                     }
                 };
-                setTemple(migratedTemple);
-                setPlans(Store.getPlans(t.id));
-            } else {
-                router.push("/admin/temples");
-            }
+                    setTemple(migratedTemple);
+                    setPlans(t.plans || []);
+                })
+                .catch(() => {
+                    router.push("/admin/temples");
+                });
         });
     }, [params, router]);
 
@@ -162,10 +166,19 @@ export default function EditTemplePage({ params }: { params: { id: string } }) {
         }
 
         setIsLoading(true);
-        Store.saveTemple(finalTemple);
-        await new Promise(r => setTimeout(r, 500));
-        setIsLoading(false);
-        alert("保存しました");
+        try {
+            const res = await fetch(`/api/temples/${temple.id}`, {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(finalTemple),
+            });
+            if (!res.ok) throw new Error('保存に失敗しました');
+            alert("保存しました");
+        } catch (e: any) {
+            alert(e.message || "エラーが発生しました");
+        } finally {
+            setIsLoading(false);
+        }
     };
 
     const handleSavePlan = () => {
@@ -186,13 +199,29 @@ export default function EditTemplePage({ params }: { params: { id: string } }) {
             images: editingPlan.images || []
         } as Plan;
 
-        Store.savePlan(planToSave);
-        // Refresh Temple to get updated Agg Prices
-        const updatedTemple = Store.getTemple(temple.id);
-        if (updatedTemple) setTemple({ ...updatedTemple });
+        const method = planToSave.id ? 'PUT' : 'POST';
+        const url = planToSave.id ? `/api/plans/${planToSave.id}` : '/api/plans';
 
-        setPlans(Store.getPlans(temple.id));
-        setIsPlanModalOpen(false);
+        fetch(url, {
+            method: method,
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(planToSave)
+        })
+        .then(res => {
+            if (!res.ok) throw new Error("Failed to save plan");
+            return res.json();
+        })
+        .then(() => {
+            // Re-fetch plans
+            fetch(`/api/plans?templeId=${temple.id}`)
+                .then(res => res.json())
+                .then(data => setPlans(data));
+            setIsPlanModalOpen(false);
+        })
+        .catch(err => {
+            console.error(err);
+            alert("プランの保存に失敗しました");
+        });
     };
 
     // --- Tab Renderers ---
@@ -440,8 +469,7 @@ export default function EditTemplePage({ params }: { params: { id: string } }) {
                             {plans.map(plan => (
                                 <div key={plan.id} className="flex items-center gap-4 bg-white p-4 border rounded shadow-sm hover:shadow transition-shadow">
                                     <GripVertical className="text-gray-300 w-5 h-5 cursor-move" />
-                                    {/* Thumbnail Placeholder */}
-                                    <div className="w-16 h-16 bg-gray-100 rounded overflow-hidden flex-shrink-0 flex items-center justify-center">
+                                    <div className="w-16 h-16 bg-gray-100 rounded overflow-hidden shrink-0 flex items-center justify-center">
                                         <span className="text-xs text-gray-400 font-bold">Plan</span>
                                     </div>
 
@@ -465,7 +493,19 @@ export default function EditTemplePage({ params }: { params: { id: string } }) {
 
                                     <div className="flex gap-2">
                                         <Button size="sm" variant="outline" onClick={() => { setEditingPlan(plan); setIsPlanModalOpen(true); }}>編集</Button>
-                                        <Button size="sm" variant="outline" className="border-red-200 text-red-600 hover:bg-red-50" onClick={() => { if (confirm("削除しますか？")) { Store.deletePlan(plan.id); setPlans(Store.getPlans(temple.id)); } }}>削除</Button>
+                                        <Button size="sm" variant="outline" className="border-red-200 text-red-600 hover:bg-red-50" onClick={() => { 
+                                            if (confirm("削除しますか？")) { 
+                                                fetch(`/api/plans/${plan.id}`, { method: 'DELETE' })
+                                                    .then(res => {
+                                                        if (!res.ok) throw new Error("Failed to delete plan");
+                                                        // Re-fetch plans
+                                                        return fetch(`/api/plans?templeId=${temple.id}`);
+                                                    })
+                                                    .then(res => res.json())
+                                                    .then(data => setPlans(data))
+                                                    .catch(err => alert("削除に失敗しました"));
+                                            } 
+                                        }}>削除</Button>
                                     </div>
                                 </div>
                             ))}
@@ -548,7 +588,7 @@ export default function EditTemplePage({ params }: { params: { id: string } }) {
             </div>
 
             <div className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden flex min-h-[600px]">
-                <div className="w-56 bg-gray-50 border-r border-gray-100 flex-shrink-0 pt-4">
+                <div className="w-56 bg-gray-50 border-r border-gray-100 shrink-0 pt-4">
                     {[
                         { id: 'basic', label: '基本情報', icon: Info },
                         { id: 'access', label: 'アクセス', icon: MapPin },

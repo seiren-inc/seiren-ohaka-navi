@@ -1,4 +1,4 @@
-import { Store } from "@/lib/store";
+import { prisma } from "@/lib/prisma";
 import { notFound } from "next/navigation";
 import { Navbar } from "../../components/layout/Navbar";
 import { Footer } from "../../components/layout/Footer";
@@ -20,8 +20,13 @@ export default async function AreaPage(props: { params: Promise<{ prefecture: st
     // Ideally check against a list of valid prefectures. 
     // Assuming simple passthrough for MVP.
 
-    // Get count for Hero
-    const temples = Store.getTemples().filter(t => t.prefecture === decodedPrefecture);
+    // Get count for Hero (Only public)
+    const count = await prisma.temple.count({
+        where: {
+            prefecture: decodedPrefecture,
+            status: 'public'
+        }
+    });
 
     return (
         <div className="min-h-screen flex flex-col bg-white-smoke">
@@ -30,7 +35,7 @@ export default async function AreaPage(props: { params: Promise<{ prefecture: st
             <main className="flex-grow pt-20">
                 <AreaHero
                     prefecture={decodedPrefecture}
-                    count={temples.length}
+                    count={count}
                 />
 
                 <div className="max-w-7xl mx-auto px-4 py-8 md:py-12">

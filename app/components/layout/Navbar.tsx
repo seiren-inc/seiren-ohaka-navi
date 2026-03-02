@@ -1,9 +1,14 @@
+"use client";
+
+import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Button } from "../ui/Button";
-import { Phone } from "lucide-react";
+import { Phone, Menu, X } from "lucide-react";
 
 export function Navbar() {
+    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
     return (
         <header className="fixed top-0 w-full z-50 bg-white/95 backdrop-blur-md border-b border-gray-100 transition-all duration-300">
             <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
@@ -33,16 +38,22 @@ export function Navbar() {
                             墓地を探す
                         </Link>
                         <Link
-                            href="/guide"
+                            href="/grave-closure"
                             className="text-gray-600 hover:text-lotus-pink transition-colors font-medium text-sm tracking-wide relative after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-0 after:h-[2px] after:bg-lotus-pink hover:after:w-full after:transition-all after:duration-300"
                         >
-                            供養の知識
+                            お墓じまい
                         </Link>
                         <Link
-                            href="/about"
+                            href="/consult/ikotsu-service"
                             className="text-gray-600 hover:text-lotus-pink transition-colors font-medium text-sm tracking-wide relative after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-0 after:h-[2px] after:bg-lotus-pink hover:after:w-full after:transition-all after:duration-300"
                         >
-                            清蓮について
+                            関連サービス
+                        </Link>
+                        <Link
+                            href="/about/company"
+                            className="text-gray-600 hover:text-lotus-pink transition-colors font-medium text-sm tracking-wide relative after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-0 after:h-[2px] after:bg-lotus-pink hover:after:w-full after:transition-all after:duration-300"
+                        >
+                            会社概要
                         </Link>
                     </nav>
 
@@ -57,35 +68,77 @@ export function Navbar() {
                         </a>
 
                         <div className="relative group">
-                            <Link href="/consult/request-material">
+                            <Link href="/consult">
                                 <Button size="md" className="hidden sm:inline-flex shadow-lg shadow-primary/20 text-sm h-10 bg-primary hover:bg-primary-hover text-white border-transparent">
                                     無料相談予約
                                 </Button>
                             </Link>
-
-                            {/* Hover Dropdown */}
-                            <div className="absolute right-0 top-full pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform translate-y-2 group-hover:translate-y-0 w-64">
-                                <div className="bg-white rounded-[12px] shadow-xl border border-gray-100 overflow-hidden">
-                                    <div className="p-3 bg-gray-50 border-b border-gray-100 text-xs font-bold text-gray-500 text-center">
-                                        ご希望の内容をお選びください
-                                    </div>
-                                    <div className="flex flex-col">
-                                        <Link href="/consult/grave-search" className="px-4 py-3 text-sm text-gray-700 hover:bg-primary/5 hover:text-primary transition-colors border-b border-gray-50">
-                                            お墓探しの相談
-                                            <span className="block text-[10px] text-gray-400 mt-0.5">永代供養・樹木葬など</span>
-                                        </Link>
-                                        <Link href="/consult/grave-closure" className="px-4 py-3 text-sm text-gray-700 hover:bg-primary/5 hover:text-primary transition-colors border-b border-gray-50">
-                                            お墓じまいの相談
-                                            <span className="block text-[10px] text-gray-400 mt-0.5">改葬・撤去工事など</span>
-                                        </Link>
-                                        <Link href="/consult/ikotsu-service" className="px-4 py-3 text-sm text-gray-700 hover:bg-primary/5 hover:text-primary transition-colors">
-                                            遺骨サービスの相談
-                                            <span className="block text-[10px] text-gray-400 mt-0.5">粉骨・洗骨・手元供養</span>
-                                        </Link>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
+
+                        {/* Mobile Menu Button */}
+                        <button
+                            className="md:hidden p-2 text-gray-600 hover:text-primary transition-colors"
+                            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                            aria-label="Toggle menu"
+                        >
+                            {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            {/* Mobile Navigation Menu */}
+            <div
+                className={`md:hidden absolute top-[72px] left-0 w-full bg-white border-b border-gray-100 shadow-lg transition-all duration-300 ease-in-out overflow-hidden ${
+                    isMobileMenuOpen ? "max-h-[500px] opacity-100 pointer-events-auto" : "max-h-0 opacity-0 pointer-events-none"
+                }`}
+            >
+                <div className="flex flex-col px-4 py-4 space-y-4">
+                    <Link
+                        href="/search"
+                        className="text-gray-700 font-medium py-2 border-b border-gray-50 hover:text-primary transition-colors block"
+                        onClick={() => setIsMobileMenuOpen(false)}
+                    >
+                        墓地を探す
+                    </Link>
+                    <Link
+                        href="/grave-closure"
+                        className="text-gray-700 font-medium py-2 border-b border-gray-50 hover:text-primary transition-colors block"
+                        onClick={() => setIsMobileMenuOpen(false)}
+                    >
+                        お墓じまい
+                    </Link>
+                    <Link
+                        href="/consult/ikotsu-service"
+                        className="text-gray-700 font-medium py-2 border-b border-gray-50 hover:text-primary transition-colors block"
+                        onClick={() => setIsMobileMenuOpen(false)}
+                    >
+                        関連サービス
+                    </Link>
+                    <Link
+                        href="/about/company"
+                        className="text-gray-700 font-medium py-2 border-b border-gray-50 hover:text-primary transition-colors block"
+                        onClick={() => setIsMobileMenuOpen(false)}
+                    >
+                        会社概要
+                    </Link>
+                    <div className="pt-4 flex flex-col gap-3">
+                        <Link
+                            href="/consult"
+                            onClick={() => setIsMobileMenuOpen(false)}
+                            className="w-full"
+                        >
+                            <Button className="w-full bg-primary hover:bg-primary-hover text-white justify-center shadow-md">
+                                無料相談予約
+                            </Button>
+                        </Link>
+                        <a
+                            href="tel:0120-000-000"
+                            className="flex items-center justify-center gap-2 text-primary font-bold py-2 border border-primary/20 rounded-md bg-primary/5"
+                        >
+                            <Phone className="w-4 h-4" />
+                            <span>0120-000-000</span>
+                        </a>
                     </div>
                 </div>
             </div>

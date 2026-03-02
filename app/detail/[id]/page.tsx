@@ -1,4 +1,5 @@
-import { Store } from "@/lib/store";
+import { prisma } from "@/lib/prisma";
+import { Temple, Plan } from "@/lib/store"; // keep types
 import { notFound } from "next/navigation";
 import { Navbar } from "../../components/layout/Navbar";
 import { Footer } from "../../components/layout/Footer";
@@ -17,13 +18,21 @@ import { TempleClosing } from "../../components/features/temple/TempleClosing";
 export default async function TempleDetailPage(props: { params: Promise<{ id: string }> }) {
     // Next.js 15+ params are async
     const params = await props.params;
-    const temple = Store.getTemple(params.id);
+    const templeData = await prisma.temple.findUnique({
+        where: { id: params.id }
+    });
 
-    if (!temple) {
+    if (!templeData) {
         return notFound();
     }
 
-    const plans = Store.getPlans(params.id);
+    const plansData = await prisma.plan.findMany({
+        where: { templeId: params.id },
+        orderBy: { price: 'asc' } // or whatever order is appropriate
+    });
+
+    const temple = templeData as unknown as Temple;
+    const plans = plansData as unknown as Plan[];
 
     return (
         <div className="min-h-screen flex flex-col bg-white-smoke pb-24 md:pb-0">

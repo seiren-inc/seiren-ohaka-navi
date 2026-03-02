@@ -1,4 +1,5 @@
-import { Store, Temple } from "@/lib/store";
+import { Temple } from "@/lib/store";
+import { prisma } from "@/lib/prisma";
 import { GraveyardCard } from "../search/GraveyardCard";
 import { Button } from "../../ui/Button";
 import Link from "next/link";
@@ -11,7 +12,11 @@ interface AreaTempleListProps {
 }
 
 export async function AreaTempleList({ prefecture, city, searchParams }: AreaTempleListProps) {
-    let temples = Store.getTemples();
+    let templesData = await prisma.temple.findMany({
+        where: { status: 'public', listedInSearch: true },
+        orderBy: { createdAt: 'desc' }
+    });
+    let temples = templesData as unknown as Temple[];
 
     // 1. Area Filter
     temples = temples.filter(t => t.prefecture === prefecture);
