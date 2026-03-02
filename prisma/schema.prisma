@@ -1,0 +1,144 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Temple {
+  id                     String           @id @default(cuid())
+  name                   String
+  kana                   String?
+  type                   FacilityType
+  managementBody         String?
+  religion               ReligionCategory
+  buddhistSect           BuddhistSect?
+  prefecture             String
+  prefectureCode         Int?
+  cityName               String?
+  addressLine            String?
+  address                String
+  lat                    Float?
+  lng                    Float?
+  access                 String?
+  parkingAvailable       Boolean          @default(false)
+  parking                String?
+  indoorOutdoor          String?
+  barrierFree            Boolean          @default(false)
+  barrierFreeLabel       String?
+  petAllowed             String?
+  petSupport             String?
+  sects                  String[]
+  supportedMemorialTypes String[]
+  nearestStations        Json?
+  priceAggMin            Int?
+  priceAggMax            Int?
+  managementFeeAggType   String?
+  catchphrase            String?
+  overview               String?
+  suitableFor            String[]
+  notesPoints            String[]
+  tags                   String[]
+  aiSummary              String?
+  mainImage              String?
+  galleryImages          String[]
+  phone                  String?
+  officeHours            String?
+  status                 String           @default("public")
+  listedInSearch         Boolean          @default(true)
+  successorRequirements  String?
+  seo                    Json?
+  calendar               Json?
+  keyFeatures            Json?
+  createdAt              DateTime         @default(now())
+  updatedAt              DateTime         @updatedAt
+  plans                  Plan[]
+}
+
+model Plan {
+  id             String   @id @default(cuid())
+  templeId       String
+  category       String
+  name           String
+  subDescription String?
+  price          Int
+  priceNote      String?
+  managementFee  Int      @default(0)
+  availability   String   @default("available")
+  burialMethod   String?
+  periodType     String   @default("perpetual")
+  periodYears    Int?
+  capacity       String?
+  capacityNote   String?
+  petAllowed     String?
+  images         String[]
+  note           String?
+  order          Int      @default(0)
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+  temple         Temple   @relation(fields: [templeId], references: [id])
+}
+
+model Inquiry {
+  id                 String   @id @default(cuid())
+  receiptNumber      String   @unique
+  status             String   @default("new")
+  type               String?
+  category           String?
+  user               Json?
+  templeId           String?
+  templeNameSnapshot String?
+  planId             String?
+  planName           String?
+  context            Json?
+  message            String?
+  preferredDateTime  String?
+  adminNotes         String?
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
+  kind               String   @default("general")
+  organizationName   String?
+}
+
+enum BuddhistSect {
+  kegon
+  hosso
+  sanron
+  ritsu
+  kusha
+  jojitsu
+  tendai
+  shingon
+  jodo
+  jodoShin
+  jishu
+  nichiren
+  zen
+  soto
+  rinzai
+  obaku
+  nichirenShoshu
+  hokkeShu
+  kenponHokke
+  honmonButsuryu
+  other
+  unknown
+}
+
+enum FacilityType {
+  templeGrave     @map("寺院墓地")
+  privateGraveyard @map("民営霊園")
+  publicGraveyard  @map("公営霊園")
+  ossuary         @map("納骨堂")
+  complex         @map("複合型")
+  other           @map("その他")
+}
+
+enum ReligionCategory {
+  buddhism
+  shinto
+  christianity
+  other
+  unknown
+}
