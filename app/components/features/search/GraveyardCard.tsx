@@ -52,11 +52,25 @@ export function GraveyardCard({ data }: GraveyardCardProps) {
                     </div>
                 )}
 
+            {/* Badges: facility type + plan badges */}
                 <div className="absolute top-2 left-2 flex flex-wrap gap-1">
                     <span className="bg-primary/90 text-white text-[10px] px-2 py-1 rounded-sm uppercase tracking-wider font-bold shadow-sm backdrop-blur-sm">
                         {data.type}
                     </span>
                     {data.status === 'private' && <span className="bg-gray-500 text-white text-[10px] px-2 py-1 rounded-sm">非公開</span>}
+                </div>
+                {/* PR / おすすめバッジ（右上） */}
+                <div className="absolute top-2 right-2 flex flex-col gap-1 items-end">
+                    {data.isPrSlot && (
+                        <span className="bg-amber-500/90 text-white text-[10px] px-2 py-0.5 rounded-sm font-bold shadow-sm backdrop-blur-sm tracking-wide">
+                            PR
+                        </span>
+                    )}
+                    {data.planType === 'standard' && !data.isPrSlot && (
+                        <span className="bg-emerald-500/90 text-white text-[10px] px-2 py-0.5 rounded-sm font-bold shadow-sm backdrop-blur-sm tracking-wide">
+                            おすすめ
+                        </span>
+                    )}
                 </div>
             </div>
 

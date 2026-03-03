@@ -43,6 +43,10 @@ export async function AreaTempleList({ prefecture, city, searchParams }: AreaTem
         temples = temples.filter(t => tags.every(tag => t.tags?.includes(tag as import('@/lib/store').AppealTag)));
     }
 
+    // Sort by plan tier: PR slot → standard → free
+    const planOrder = (t: Temple) => (t.isPrSlot ? 0 : t.planType === 'sponsor' ? 0 : t.planType === 'standard' ? 1 : 2);
+    temples.sort((a, b) => planOrder(a) - planOrder(b));
+
 
     if (temples.length === 0) {
         return (

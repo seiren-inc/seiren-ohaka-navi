@@ -131,7 +131,7 @@ export const BUDDHIST_SECT_GROUPS = [
     { label: 'その他', options: ['zen', 'obaku', 'nichirenShoshu', 'hokkeShu', 'kenponHokke', 'honmonButsuryu', 'other', 'unknown'] }
 ];
 
-export type Sect = '無宗派' | '仏教全般' | '浄土宗' | '浄土真宗' | '日蓮宗' | '真言宗' | '天台宗' | '禅宗' | 'その他'; // Legacy or for granular filter support if needed
+export type Sect = '無宗派' | '仏教全般' | '浄土宗' | '浄土真宗' | '日蓮宗' | '真言宗' | '天台宗' | '曹洞宗' | '禅宗' | 'その他'; // Legacy or for granular filter support if needed
 export type MemorialType = '一般墓' | '永代供養墓' | '樹木葬' | '納骨堂' | '合祀' | '海洋散骨' | '手元供養' | '遺骨ダイヤモンド';
 export type IndoorOutdoor = 'indoor' | 'outdoor' | 'both';
 export type PetAllowed = 'allowed' | 'notAllowed' | 'conditional' | 'unknown';
@@ -187,6 +187,8 @@ export interface Temple {
     // D. Publish Control
     status: PublishStatus; // Renamed type alias but field name same
     listedInSearch: boolean; // Added
+    planType?: 'free' | 'standard' | 'sponsor'; // 収益プラン区分
+    isPrSlot?: boolean; // PR固定枠フラグ
 
     // Content
     catchphrase: string;

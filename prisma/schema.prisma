@@ -18,6 +18,7 @@ model Temple {
   prefectureCode         Int?
   cityName               String?
   addressLine            String?
+  zipCode                String?
   address                String
   lat                    Float?
   lng                    Float?
@@ -47,6 +48,8 @@ model Temple {
   officeHours            String?
   status                 String           @default("public")
   listedInSearch         Boolean          @default(true)
+  planType               String           @default("free")   // free / standard / sponsor
+  isPrSlot               Boolean          @default(false)    // PR固定枠フラグ
   successorRequirements  String?
   seo                    Json?
   calendar               Json?
@@ -54,6 +57,7 @@ model Temple {
   createdAt              DateTime         @default(now())
   updatedAt              DateTime         @updatedAt
   plans                  Plan[]
+  contracts              Contract[]
 }
 
 model Plan {
@@ -78,6 +82,25 @@ model Plan {
   createdAt      DateTime @default(now())
   updatedAt      DateTime @updatedAt
   temple         Temple   @relation(fields: [templeId], references: [id])
+}
+
+model Contract {
+  id                    String    @id @default(cuid())
+  templeId              String
+  temple                Temple    @relation(fields: [templeId], references: [id])
+  representativeName    String
+  representativeTitle   String
+  contactEmail          String
+  planType              String    // free / standard / sponsor
+  agreedAt              DateTime
+  agreedIp              String
+  contractVersion       String    @default("v1.0")
+  contractHash          String
+  pdfUrl                String?
+  status                String    @default("active") // active / terminated
+  terminatedAt          DateTime?
+  createdAt             DateTime  @default(now())
+  updatedAt             DateTime  @updatedAt
 }
 
 model Inquiry {

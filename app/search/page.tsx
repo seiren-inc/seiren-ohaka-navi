@@ -94,6 +94,10 @@ export default async function SearchPage(props: { searchParams: Promise<{ [key: 
         return true;
     });
 
+    // Sort by plan tier: PR slot → standard → free
+    const planOrder = (t: Temple) => (t.isPrSlot ? 0 : t.planType === 'sponsor' ? 0 : t.planType === 'standard' ? 1 : 2);
+    filteredGraveyards.sort((a, b) => planOrder(a) - planOrder(b));
+
     // Dynamic Title Generation
     let pageTitle = "検索結果";
     if (prefs.length === 1) pageTitle = `${prefs[0]}の霊園・墓地`;
