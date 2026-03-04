@@ -1,4 +1,5 @@
-import { Store, Temple } from "@/lib/store";
+import { Temple } from "@/lib/store";
+import { prisma } from "@/lib/prisma";
 import { GraveyardCard } from "../search/GraveyardCard";
 import { Button } from "../../ui/Button";
 import Link from "next/link";
@@ -11,7 +12,11 @@ interface AreaTempleListProps {
 }
 
 export async function AreaTempleList({ prefecture, city, searchParams }: AreaTempleListProps) {
-    let temples = Store.getTemples();
+    let templesData = await prisma.temple.findMany({
+        where: { status: 'public', listedInSearch: true },
+        orderBy: { createdAt: 'desc' }
+    });
+    let temples = templesData as unknown as Temple[];
 
     // 1. Area Filter
     temples = temples.filter(t => t.prefecture === prefecture);
@@ -37,6 +42,10 @@ export async function AreaTempleList({ prefecture, city, searchParams }: AreaTem
         // Let's use AND logic: Must have ALL selected tags.
         temples = temples.filter(t => tags.every(tag => t.tags?.includes(tag as import('@/lib/store').AppealTag)));
     }
+
+    // Sort by plan tier: PR slot → standard → free
+    const planOrder = (t: Temple) => (t.isPrSlot ? 0 : t.planType === 'sponsor' ? 0 : t.planType === 'standard' ? 1 : 2);
+    temples.sort((a, b) => planOrder(a) - planOrder(b));
 
 
     if (temples.length === 0) {

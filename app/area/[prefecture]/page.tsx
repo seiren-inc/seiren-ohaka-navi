@@ -1,11 +1,26 @@
-import { Store } from "@/lib/store";
+import { prisma } from "@/lib/prisma";
 import { notFound } from "next/navigation";
+import type { Metadata } from "next";
 import { Navbar } from "../../components/layout/Navbar";
 import { Footer } from "../../components/layout/Footer";
 import { AreaHero } from "../../components/features/area/AreaHero";
 import { AreaFilter } from "../../components/features/area/AreaFilter";
 import { AreaTempleList } from "../../components/features/area/AreaTempleList";
 import { AreaNav } from "../../components/features/area/AreaNav";
+
+const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://seiren-ohaka-navi.vercel.app";
+
+export async function generateMetadata(
+    props: { params: Promise<{ prefecture: string }> }
+): Promise<Metadata> {
+    const { prefecture } = await props.params;
+    const decoded = decodeURIComponent(prefecture);
+    return {
+        title: `${decoded}の墓地・鈴園・永代供養を探す | 清蓮`,
+        description: `${decoded}の墓地・永代供養・樹木葵・納骨堂一覧。地域に密着した専門スタッフが無料サポート。`,
+        alternates: { canonical: `${BASE_URL}/area/${prefecture}` },
+    };
+}
 
 // Generate static params for common prefectures if needed, but for now dynamic
 // export async function generateStaticParams() { ... }
@@ -20,8 +35,13 @@ export default async function AreaPage(props: { params: Promise<{ prefecture: st
     // Ideally check against a list of valid prefectures. 
     // Assuming simple passthrough for MVP.
 
-    // Get count for Hero
-    const temples = Store.getTemples().filter(t => t.prefecture === decodedPrefecture);
+    // Get count for Hero (Only public)
+    const count = await prisma.temple.count({
+        where: {
+            prefecture: decodedPrefecture,
+            status: 'public'
+        }
+    });
 
     return (
         <div className="min-h-screen flex flex-col bg-white-smoke">
@@ -30,7 +50,7 @@ export default async function AreaPage(props: { params: Promise<{ prefecture: st
             <main className="flex-grow pt-20">
                 <AreaHero
                     prefecture={decodedPrefecture}
-                    count={temples.length}
+                    count={count}
                 />
 
                 <div className="max-w-7xl mx-auto px-4 py-8 md:py-12">

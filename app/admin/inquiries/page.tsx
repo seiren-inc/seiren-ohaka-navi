@@ -2,14 +2,16 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { InquiryStatus, Inquiry } from "../../../lib/store";
 import { prisma } from "../../../lib/prisma";
-import { CheckCircle2, Circle, Clock, ChevronRight, Filter } from "lucide-react";
+import { CheckCircle2, Circle, Clock, ChevronRight, Filter, Download } from "lucide-react";
 import Link from "next/link";
 
 export const dynamic = 'force-dynamic';
 
-export default async function InquiryList(props: { searchParams: Promise<{ category?: string }> }) {
+
+export default async function InquiryList(props: { searchParams: Promise<{ category?: string; status?: string }> }) {
     const searchParams = await props.searchParams;
     const categoryFilter = searchParams.category || 'all';
+    const statusFilter = searchParams.status || 'all';
 
     // Prisma: Build where clause based on filter
     const where: any = {};
@@ -26,11 +28,15 @@ export default async function InquiryList(props: { searchParams: Promise<{ categ
             ];
         }
     }
+    if (statusFilter !== 'all') {
+        where.status = statusFilter;
+    }
 
-    const inquiriesData = await prisma.inquiry.findMany({
-        where,
-        orderBy: { createdAt: 'desc' },
-    });
+    const [inquiriesData, statusCounts] = await Promise.all([
+        prisma.inquiry.findMany({ where, orderBy: { createdAt: 'desc' } }),
+        prisma.inquiry.groupBy({ by: ['status'], _count: true }),
+    ]);
+    const countMap = Object.fromEntries(statusCounts.map(s => [s.status, s._count]));
 
     const inquiries = inquiriesData as unknown as Inquiry[];
 
@@ -58,36 +64,66 @@ export default async function InquiryList(props: { searchParams: Promise<{ categ
 
     return (
         <div>
-            <div className="flex justify-between items-end mb-6">
+            <div className="flex justify-between items-start mb-4">
                 <div>
                     <h2 className="text-2xl font-bold text-gray-800">問い合わせ一覧</h2>
                     <p className="text-sm text-gray-500 mt-1">全 {inquiries.length} 件</p>
                 </div>
+            </div>
 
-                {/* Filter UI */}
-                <div className="flex items-center gap-2">
-                    <Filter className="w-4 h-4 text-gray-400" />
-                    {/* Fallback to simple links for now */}
-                    <div className="flex bg-gray-100 rounded-lg p-1">
-                        {[
-                            { id: 'all', label: 'すべて' },
-                            { id: 'grave_search', label: 'お墓探' },
-                            { id: 'grave_closure', label: '墓じまい' },
-                            { id: 'ikotsu_service', label: '遺骨' },
-                            { id: 'business', label: '事業者' },
-                        ].map(f => (
-                            <Link
-                                key={f.id}
-                                href={f.id === 'all' ? '/admin/inquiries' : `/admin/inquiries?category=${f.id}`}
-                                className={`px-3 py-1.5 text-xs font-bold rounded-md transition-colors ${categoryFilter === f.id
-                                    ? 'bg-white text-gray-800 shadow-sm'
-                                    : 'text-gray-500 hover:text-gray-700'
-                                    }`}
-                            >
-                                {f.label}
-                            </Link>
-                        ))}
-                    </div>
+            {/* ステータスタブ */}
+            <div className="flex gap-1 mb-5 border-b border-gray-200">
+                {[
+                    { id: 'all', label: 'すべて', color: 'text-gray-700' },
+                    { id: 'new', label: '新着', color: 'text-red-600' },
+                    { id: 'inProgress', label: '対応中', color: 'text-yellow-600' },
+                    { id: 'done', label: '完了', color: 'text-green-600' },
+                ].map(s => {
+                    const count = s.id === 'all' ? undefined : countMap[s.id];
+                    const isActive = statusFilter === s.id;
+                    const href = s.id === 'all'
+                        ? (categoryFilter === 'all' ? '/admin/inquiries' : `/admin/inquiries?category=${categoryFilter}`)
+                        : (categoryFilter === 'all' ? `/admin/inquiries?status=${s.id}` : `/admin/inquiries?category=${categoryFilter}&status=${s.id}`);
+                    return (
+                        <Link key={s.id} href={href} className={`flex items-center gap-1.5 px-4 py-2.5 text-sm font-bold border-b-2 transition-colors whitespace-nowrap ${
+                            isActive ? `border-primary ${s.color}` : 'border-transparent text-gray-400 hover:text-gray-700'
+                        }`}>
+                            {s.label}
+                            {count !== undefined && count > 0 && (
+                                <span className={`text-xs px-1.5 py-0.5 rounded-full ${isActive ? 'bg-primary/10' : 'bg-gray-100'}`}>{count}</span>
+                            )}
+                        </Link>
+                    );
+                })}
+            </div>
+
+            {/* カテゴリーフィルター */}
+            <div className="flex items-center gap-3 mb-4">
+                <a href="/api/inquiries/export" download className="flex items-center gap-1.5 px-3 py-2 text-sm font-bold border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors">
+                    <Download className="w-4 h-4" /> CSVダウンロード
+                </a>
+                <Filter className="w-4 h-4 text-gray-400" />
+                <div className="flex bg-gray-100 rounded-lg p-1">
+
+                    {[
+                        { id: 'all', label: 'すべて' },
+                        { id: 'grave_search', label: 'お墓探し' },
+                        { id: 'grave_closure', label: '墓じまい' },
+                        { id: 'ikotsu_service', label: '遺骨' },
+                        { id: 'business', label: '事業者' },
+                    ].map(f => (
+                        <Link
+                            key={f.id}
+                            href={f.id === 'all'
+                                ? (statusFilter === 'all' ? '/admin/inquiries' : `/admin/inquiries?status=${statusFilter}`)
+                                : (statusFilter === 'all' ? `/admin/inquiries?category=${f.id}` : `/admin/inquiries?category=${f.id}&status=${statusFilter}`)}
+                            className={`px-3 py-1.5 text-xs font-bold rounded-md transition-colors ${
+                                categoryFilter === f.id ? 'bg-white text-gray-800 shadow-sm' : 'text-gray-500 hover:text-gray-700'
+                            }`}
+                        >
+                            {f.label}
+                        </Link>
+                    ))}
                 </div>
             </div>
 

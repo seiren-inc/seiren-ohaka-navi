@@ -40,6 +40,24 @@ export async function PUT(
   }
 }
 
+export async function PATCH(
+  request: NextRequest,
+  { params }: { params: Promise<{ id: string }> }
+) {
+  try {
+    const { id } = await params
+    const body = await request.json()
+    const temple = await prisma.temple.update({
+      where: { id },
+      data: body,
+    })
+    return NextResponse.json(temple)
+  } catch (error) {
+    console.error('[API/temples/[id] PATCH]', error)
+    return NextResponse.json({ error: 'Failed to patch temple' }, { status: 500 })
+  }
+}
+
 export async function DELETE(
   _request: NextRequest,
   { params }: { params: Promise<{ id: string }> }

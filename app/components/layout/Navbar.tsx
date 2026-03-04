@@ -1,19 +1,46 @@
+"use client";
+
+import { useState, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Button } from "../ui/Button";
-import { Phone } from "lucide-react";
+import { Phone, Menu, X, ChevronDown, ExternalLink } from "lucide-react";
+
+const RELATED_SERVICES = [
+    {
+        label: "散骨クルーズ",
+        description: "海への散骨・自然葬",
+        href: "https://www.sankotu-cruise.com/",
+        external: true,
+    },
+    {
+        label: "遺骨ラボ",
+        description: "粉骨・洗骨の専門機関",
+        href: "https://ikotsu-lab.com/",
+        external: true,
+    },
+    {
+        label: "お墓じまいナビ",
+        description: "墓じまいの専門サポート",
+        href: "https://www.ohakajimai-navi.jp/",
+        external: true,
+    },
+];
 
 export function Navbar() {
+    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+    const [serviceOpen, setServiceOpen] = useState(false);
+    const serviceRef = useRef<HTMLDivElement>(null);
+
+    const navLinkClass =
+        "text-gray-600 hover:text-lotus-pink transition-colors font-medium text-sm tracking-wide relative after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-0 after:h-[2px] after:bg-lotus-pink hover:after:w-full after:transition-all after:duration-300";
+
     return (
         <header className="fixed top-0 w-full z-50 bg-white/95 backdrop-blur-md border-b border-gray-100 transition-all duration-300">
             <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex justify-between items-center h-[72px]">
                     {/* Logo */}
                     <Link href="/" className="flex items-center gap-2">
-                        {/* 
-                          Using natural size for specific logo dimensions. 
-                          Adjust width/height as needed based on the actual aspect ratio.
-                        */}
                         <Image
                             src="/seiren-logo-v2.png"
                             alt="Seiren Logo"
@@ -26,24 +53,70 @@ export function Navbar() {
 
                     {/* Desktop Navigation */}
                     <nav className="hidden md:flex items-center gap-8">
-                        <Link
-                            href="/search"
-                            className="text-gray-600 hover:text-lotus-pink transition-colors font-medium text-sm tracking-wide relative after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-0 after:h-[2px] after:bg-lotus-pink hover:after:w-full after:transition-all after:duration-300"
-                        >
+                        {/* 墓地を探す */}
+                        <Link href="/search" className={navLinkClass}>
                             墓地を探す
                         </Link>
-                        <Link
-                            href="/guide"
-                            className="text-gray-600 hover:text-lotus-pink transition-colors font-medium text-sm tracking-wide relative after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-0 after:h-[2px] after:bg-lotus-pink hover:after:w-full after:transition-all after:duration-300"
-                        >
+
+                        {/* 供養の知識 */}
+                        <Link href="/guide" className={navLinkClass}>
                             供養の知識
                         </Link>
-                        <Link
-                            href="/about"
-                            className="text-gray-600 hover:text-lotus-pink transition-colors font-medium text-sm tracking-wide relative after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-0 after:h-[2px] after:bg-lotus-pink hover:after:w-full after:transition-all after:duration-300"
-                        >
-                            清蓮について
+
+                        {/* 会社概要 */}
+                        <Link href="/about/company" className={navLinkClass}>
+                            会社概要
                         </Link>
+
+                        {/* 関連サービス ドロップダウン */}
+                        <div
+                            ref={serviceRef}
+                            className="relative"
+                            onMouseEnter={() => setServiceOpen(true)}
+                            onMouseLeave={() => setServiceOpen(false)}
+                        >
+                            <button
+                                className={`${navLinkClass} flex items-center gap-1 pb-0`}
+                                onClick={() => setServiceOpen(v => !v)}
+                                aria-expanded={serviceOpen}
+                            >
+                                関連サービス
+                                <ChevronDown
+                                    className={`w-4 h-4 transition-transform duration-200 ${serviceOpen ? "rotate-180" : ""}`}
+                                />
+                            </button>
+
+                            {/* Dropdown */}
+                            <div
+                                className={`absolute top-full left-1/2 -translate-x-1/2 mt-3 w-56 bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden transition-all duration-200 origin-top ${
+                                    serviceOpen
+                                        ? "opacity-100 scale-y-100 pointer-events-auto"
+                                        : "opacity-0 scale-y-95 pointer-events-none"
+                                }`}
+                            >
+                                {/* 三角 */}
+                                <div className="absolute -top-1.5 left-1/2 -translate-x-1/2 w-3 h-3 bg-white border-l border-t border-gray-100 rotate-45" />
+                                <div className="py-2">
+                                    {RELATED_SERVICES.map((s) => (
+                                        <a
+                                            key={s.label}
+                                            href={s.href}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="flex items-start gap-3 px-4 py-3 hover:bg-gray-50 transition-colors group"
+                                        >
+                                            <div className="flex-1 min-w-0">
+                                                <span className="flex items-center gap-1 font-bold text-sm text-gray-800 group-hover:text-lotus-pink transition-colors">
+                                                    {s.label}
+                                                    <ExternalLink className="w-3 h-3 opacity-40" />
+                                                </span>
+                                                <span className="text-xs text-gray-400 mt-0.5 block">{s.description}</span>
+                                            </div>
+                                        </a>
+                                    ))}
+                                </div>
+                            </div>
+                        </div>
                     </nav>
 
                     {/* CTA Group */}
@@ -56,36 +129,77 @@ export function Navbar() {
                             <span>0120-000-000</span>
                         </a>
 
-                        <div className="relative group">
-                            <Link href="/consult/request-material">
-                                <Button size="md" className="hidden sm:inline-flex shadow-lg shadow-primary/20 text-sm h-10 bg-primary hover:bg-primary-hover text-white border-transparent">
-                                    無料相談予約
-                                </Button>
-                            </Link>
+                        <Link href="/consult">
+                            <Button size="md" className="hidden sm:inline-flex shadow-lg shadow-primary/20 text-sm h-10 bg-primary hover:bg-primary-hover text-white border-transparent">
+                                無料相談予約
+                            </Button>
+                        </Link>
 
-                            {/* Hover Dropdown */}
-                            <div className="absolute right-0 top-full pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform translate-y-2 group-hover:translate-y-0 w-64">
-                                <div className="bg-white rounded-[12px] shadow-xl border border-gray-100 overflow-hidden">
-                                    <div className="p-3 bg-gray-50 border-b border-gray-100 text-xs font-bold text-gray-500 text-center">
-                                        ご希望の内容をお選びください
-                                    </div>
-                                    <div className="flex flex-col">
-                                        <Link href="/consult/grave-search" className="px-4 py-3 text-sm text-gray-700 hover:bg-primary/5 hover:text-primary transition-colors border-b border-gray-50">
-                                            お墓探しの相談
-                                            <span className="block text-[10px] text-gray-400 mt-0.5">永代供養・樹木葬など</span>
-                                        </Link>
-                                        <Link href="/consult/grave-closure" className="px-4 py-3 text-sm text-gray-700 hover:bg-primary/5 hover:text-primary transition-colors border-b border-gray-50">
-                                            お墓じまいの相談
-                                            <span className="block text-[10px] text-gray-400 mt-0.5">改葬・撤去工事など</span>
-                                        </Link>
-                                        <Link href="/consult/ikotsu-service" className="px-4 py-3 text-sm text-gray-700 hover:bg-primary/5 hover:text-primary transition-colors">
-                                            遺骨サービスの相談
-                                            <span className="block text-[10px] text-gray-400 mt-0.5">粉骨・洗骨・手元供養</span>
-                                        </Link>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        {/* Mobile Menu Button */}
+                        <button
+                            className="md:hidden p-2 text-gray-600 hover:text-primary transition-colors"
+                            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                            aria-label="Toggle menu"
+                        >
+                            {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            {/* Mobile Navigation Menu */}
+            <div
+                className={`md:hidden absolute top-[72px] left-0 w-full bg-white border-b border-gray-100 shadow-lg transition-all duration-300 ease-in-out overflow-hidden ${
+                    isMobileMenuOpen ? "max-h-[600px] opacity-100 pointer-events-auto" : "max-h-0 opacity-0 pointer-events-none"
+                }`}
+            >
+                <div className="flex flex-col px-4 py-4 space-y-1">
+                    {[
+                        { href: "/search", label: "墓地を探す" },
+                        { href: "/guide", label: "供養の知識" },
+                        { href: "/about/company", label: "会社概要" },
+                    ].map((item) => (
+                        <Link
+                            key={item.href}
+                            href={item.href}
+                            className="text-gray-700 font-medium py-3 border-b border-gray-50 hover:text-primary transition-colors block"
+                            onClick={() => setIsMobileMenuOpen(false)}
+                        >
+                            {item.label}
+                        </Link>
+                    ))}
+
+                    {/* 関連サービス（モバイル） */}
+                    <div className="border-b border-gray-50">
+                        <p className="text-xs font-bold text-gray-400 uppercase tracking-widest pt-3 pb-2">関連サービス</p>
+                        {RELATED_SERVICES.map((s) => (
+                            <a
+                                key={s.label}
+                                href={s.href}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="flex items-center justify-between py-2.5 hover:text-primary transition-colors"
+                                onClick={() => setIsMobileMenuOpen(false)}
+                            >
+                                <span className="font-medium text-sm text-gray-700">{s.label}</span>
+                                <ExternalLink className="w-3.5 h-3.5 text-gray-400" />
+                            </a>
+                        ))}
+                    </div>
+
+                    <div className="pt-4 flex flex-col gap-3">
+                        <Link href="/consult" onClick={() => setIsMobileMenuOpen(false)} className="w-full">
+                            <Button className="w-full bg-primary hover:bg-primary-hover text-white justify-center shadow-md">
+                                無料相談予約
+                            </Button>
+                        </Link>
+                        <a
+                            href="tel:0120-000-000"
+                            className="flex items-center justify-center gap-2 text-primary font-bold py-2 border border-primary/20 rounded-md bg-primary/5"
+                        >
+                            <Phone className="w-4 h-4" />
+                            <span>0120-000-000</span>
+                        </a>
                     </div>
                 </div>
             </div>

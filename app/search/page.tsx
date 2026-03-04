@@ -4,7 +4,8 @@ import { Navbar } from "../components/layout/Navbar";
 import { Footer } from "../components/layout/Footer";
 import { SearchFilter } from "../components/features/search/SearchFilter";
 import { GraveyardCard } from "../components/features/search/GraveyardCard";
-import { Store, FacilityType, MemorialType, Sect, BuddhistSect } from "@/lib/store";
+import { FacilityType, MemorialType, Sect, BuddhistSect, Temple } from "@/lib/store";
+import { prisma } from "@/lib/prisma";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -24,14 +25,18 @@ export default async function SearchPage(props: { searchParams: Promise<{ [key: 
     const features = makeArray(searchParams.feature);
     const priceMax = searchParams.priceMax ? Number(searchParams.priceMax) : undefined;
 
-    // Get Data from Store (Single Source of Truth)
-    // In a real app, this would be a DB query. Here we filter in memory.
-    const allTemples = Store.getTemples();
+    // Get Data from Prisma
+    // In a real app with many records, we would build a dynamic 'where' clause for Prisma.
+    // For MVP, we fetch all public/listed temples and filter in memory as before.
+    const allTemplesData = await prisma.temple.findMany({
+        where: {
+            status: 'public',
+            listedInSearch: true
+        }
+    });
+    const allTemples = allTemplesData as unknown as Temple[];
 
-    // Filter Logic
     const filteredGraveyards = allTemples.filter(t => {
-        // 1. Status Check
-        if (t.status !== 'public' || !t.listedInSearch) return false;
 
         // 2. Prefecture Match
         if (prefs.length > 0 && !prefs.includes(t.prefecture)) return false;
@@ -88,6 +93,10 @@ export default async function SearchPage(props: { searchParams: Promise<{ [key: 
 
         return true;
     });
+
+    // Sort by plan tier: PR slot → standard → free
+    const planOrder = (t: Temple) => (t.isPrSlot ? 0 : t.planType === 'sponsor' ? 0 : t.planType === 'standard' ? 1 : 2);
+    filteredGraveyards.sort((a, b) => planOrder(a) - planOrder(b));
 
     // Dynamic Title Generation
     let pageTitle = "検索結果";

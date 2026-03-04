@@ -12,7 +12,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { inquirySchema, InquiryFormData } from "./schema";
 import { fetchAddressFromZip } from "../../lib/address";
-import { Store } from "../../../lib/store";
+// Store dependency removed
 
 // Helper Formatters
 const formatPhoneNumber = (val: string) => {
@@ -52,14 +52,29 @@ function RequestForm() {
     const paramRef = searchParams.get('ref') || "";
     const paramRefUrl = searchParams.get('refUrl') || "";
 
-    // Resolve Context
-    const storeTemple = paramTempleId ? Store.getTemple(paramTempleId) : null;
-    const storePlan = paramPlanId ? Store.getPlan(paramPlanId) : null;
+    // Data fetched from API based on ID
+    const [fetchedTemple, setFetchedTemple] = useState<any>(null);
+    const [fetchedPlan, setFetchedPlan] = useState<any>(null);
 
-    const displayTempleName = storeTemple?.name || paramTempleName;
-    const displayPlanName = storePlan?.name || paramPlanName;
-    const displayTemplePref = storeTemple?.prefecture || "";
-    const displayPlanPrice = storePlan ? `¥${storePlan.price.toLocaleString()}〜` : "";
+    /* eslint-disable react-hooks/exhaustive-deps */
+    useEffect(() => {
+        if (paramTempleId && !paramTempleName) {
+            // Fetch temple data if only ID is provided (though we usually pass name now)
+            fetch(`/api/temples?id=${paramTempleId}`)
+                .then(res => res.json())
+                .then(data => {
+                    const t = Array.isArray(data) ? data.find((x: any) => x.id === paramTempleId) : data;
+                    if (t) setFetchedTemple(t);
+                })
+                .catch(err => console.error("Failed to fetch temple:", err));
+        }
+    }, [paramTempleId, paramTempleName]);
+    /* eslint-enable react-hooks/exhaustive-deps */
+
+    const displayTempleName = fetchedTemple?.name || paramTempleName;
+    const displayPlanName = fetchedPlan?.name || paramPlanName;
+    const displayTemplePref = fetchedTemple?.prefecture || "";
+    const displayPlanPrice = fetchedPlan ? `¥${fetchedPlan.price.toLocaleString()}〜` : "";
 
     const { register, handleSubmit, setValue, getValues, trigger, watch, formState: { errors, isValid, isSubmitting } } = useForm<InquiryFormData>({
         resolver: zodResolver(inquirySchema),
@@ -183,25 +198,7 @@ function RequestForm() {
                 throw new Error("送信データの整合性エラーが発生しました");
             }
 
-            // Sync to Client Store (Legacy Mirror)
-            Store.addInquiry({
-                templeId: data.templeId,
-                desiredTempleId: data.templeId,
-                desiredTempleName: data.templeName,
-                desiredPlanId: data.planId,
-                desiredPlanName: data.planName,
-                ref: data.ref,
-                refUrl: data.refUrl,
-                context: payload.context,
-                preferredDateTime: "資料請求のみ", // Not applicable
-                user: payload.user,
-                message: data.message || "",
-                boneStatus: data.boneStatus,
-                graveTypes: data.graveTypes,
-                nearbyCemeteryOptIn: data.nearbyCemeteryOptIn,
-                visitDate: data.visitDate,
-                visitTime: data.visitTime,
-            } as any); // Cast to any because store definitions might lag behind slightly if we don't fix store type perfectly, but we did fix store type.
+            // Client Store Sync removed (relying on Server DB via API)
 
             setIsSubmitted(true);
             window.scrollTo({ top: 0, behavior: 'smooth' });

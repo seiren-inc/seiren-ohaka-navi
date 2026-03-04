@@ -2,7 +2,6 @@
 
 import { useState, useMemo, useEffect } from "react";
 import { X, ChevronRight, MapPin } from "lucide-react";
-import { Store } from "@/lib/store";
 import Link from "next/link";
 import { PREFECTURES } from "../../../lib/prefectures";
 
@@ -27,21 +26,25 @@ export function AreaSearchModal({ isOpen, onClose, initialPrefecture }: AreaSear
     useEffect(() => {
         if (isOpen) {
             // Aggregate on open
-            const temples = Store.getTemples();
-            const newCounts: Record<string, Record<string, number>> = {};
+            fetch('/api/temples?status=public')
+                .then(res => res.json())
+                .then((temples: any[]) => {
+                    const newCounts: Record<string, Record<string, number>> = {};
 
-            temples.forEach(t => {
-                const p = t.prefecture;
-                const c = t.cityName;
-                if (!p || !c) return;
+                    temples.forEach(t => {
+                        const p = t.prefecture;
+                        const c = t.cityName;
+                        if (!p || !c) return;
 
-                if (!newCounts[p]) newCounts[p] = {};
-                if (!newCounts[p][c]) newCounts[p][c] = 0;
-                newCounts[p][c]++;
-            });
-            setCounts(newCounts);
+                        if (!newCounts[p]) newCounts[p] = {};
+                        if (!newCounts[p][c]) newCounts[p][c] = 0;
+                        newCounts[p][c]++;
+                    });
+                    setCounts(newCounts);
 
-            if (initialPrefecture) setSelectedPref(initialPrefecture);
+                    if (initialPrefecture) setSelectedPref(initialPrefecture);
+                })
+                .catch(err => console.error("Failed to fetch temples for modal:", err));
         }
     }, [isOpen, initialPrefecture]);
     /* eslint-enable react-hooks/set-state-in-effect */

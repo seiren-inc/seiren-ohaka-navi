@@ -1,25 +1,56 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 
+// 保護対象パス
+// /admin/* : 管理画面UI（Basic認証）
+// /api/inquiries GET・PATCH・DELETE : 問い合わせ管理API
+// /api/temples PATCH : ステータス変更API
+// /api/inquiries/export : CSVエクスポート
+// /api/images DELETE : 画像削除
+
+const ADMIN_API_PATTERNS = [
+    /^\/api\/inquiries(\/|$)/,
+    /^\/api\/temples\/[^/]+$/,
+    /^\/api\/images$/,
+];
+
+function isAdminApi(pathname: string) {
+    return ADMIN_API_PATTERNS.some(p => p.test(pathname));
+}
+
 export function middleware(req: NextRequest) {
-    if (req.nextUrl.pathname.startsWith('/admin')) {
+    const { pathname } = req.nextUrl;
+
+    // 公開フォームからの問い合わせ POST は認証不要
+    if (pathname === '/api/inquiries' && req.method === 'POST') {
+        return NextResponse.next();
+    }
+
+    const isAdminPage = pathname.startsWith('/admin');
+    const isProtectedApi = isAdminApi(pathname);
+
+    if (isAdminPage || isProtectedApi) {
         const basicAuth = req.headers.get('authorization');
 
-        if (basicAuth) {
-            const authValue = basicAuth.split(' ')[1];
-            const [user, pwd] = atob(authValue).split(':');
+        const adminUser = process.env.ADMIN_USER;
+        const adminPwd = process.env.ADMIN_PASSWORD;
 
-            const adminUser = process.env.ADMIN_USER;
-            const adminPwd = process.env.ADMIN_PASSWORD;
-            if (adminUser && adminPwd && user === adminUser && pwd === adminPwd) {
-                return NextResponse.next();
+        if (basicAuth && adminUser && adminPwd) {
+            try {
+                const authValue = basicAuth.split(' ')[1];
+                const [user, pwd] = atob(authValue).split(':');
+                if (user === adminUser && pwd === adminPwd) {
+                    return NextResponse.next();
+                }
+            } catch {
+                // invalid base64
             }
         }
 
         return new NextResponse('Auth Required', {
             status: 401,
             headers: {
-                'WWW-Authenticate': 'Basic realm="Secure Area"',
+                'WWW-Authenticate': 'Basic realm="Seiren Admin"',
             },
         });
     }
@@ -28,5 +59,11 @@ export function middleware(req: NextRequest) {
 }
 
 export const config = {
-    matcher: ['/admin/:path*'],
+    matcher: [
+        '/admin/:path*',
+        '/api/inquiries/:path*',
+        '/api/inquiries',
+        '/api/temples/:path*',
+        '/api/images',
+    ],
 };

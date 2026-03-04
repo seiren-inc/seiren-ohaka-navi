@@ -131,7 +131,7 @@ export const BUDDHIST_SECT_GROUPS = [
     { label: 'その他', options: ['zen', 'obaku', 'nichirenShoshu', 'hokkeShu', 'kenponHokke', 'honmonButsuryu', 'other', 'unknown'] }
 ];
 
-export type Sect = '無宗派' | '仏教全般' | '浄土宗' | '浄土真宗' | '日蓮宗' | '真言宗' | '天台宗' | '禅宗' | 'その他'; // Legacy or for granular filter support if needed
+export type Sect = '無宗派' | '仏教全般' | '浄土宗' | '浄土真宗' | '日蓮宗' | '真言宗' | '天台宗' | '曹洞宗' | '禅宗' | 'その他'; // Legacy or for granular filter support if needed
 export type MemorialType = '一般墓' | '永代供養墓' | '樹木葬' | '納骨堂' | '合祀' | '海洋散骨' | '手元供養' | '遺骨ダイヤモンド';
 export type IndoorOutdoor = 'indoor' | 'outdoor' | 'both';
 export type PetAllowed = 'allowed' | 'notAllowed' | 'conditional' | 'unknown';
@@ -187,6 +187,8 @@ export interface Temple {
     // D. Publish Control
     status: PublishStatus; // Renamed type alias but field name same
     listedInSearch: boolean; // Added
+    planType?: 'free' | 'standard' | 'sponsor'; // 収益プラン区分
+    isPrSlot?: boolean; // PR固定枠フラグ
 
     // Content
     catchphrase: string;
@@ -388,195 +390,4 @@ export interface Inquiry {
     honeypot?: string;
 }
 
-// Mock Data
-const MOCK_TEMPLES: Temple[] = [
-    {
-        id: "id1624858636",
-        name: "清蓮メモリアルパーク東京",
-        kana: "せいれんめもりあるぱーくとうきょう",
-        type: '寺院墓地',
-        managementBody: '寺院',
-        religion: 'buddhism',
-        buddhistSect: 'jodoShin',
-        prefecture: '東京都',
-        address: "港区芝公園4-2-8",
-        prefectureCode: 13,
-        cityName: "港区",
-        addressLine: "芝公園4-2-8",
-        lat: 35.6554,
-        lng: 139.7486,
-        nearestStations: [{ name: "赤羽橋駅", line: "都営大江戸線", walkMinutes: 5 }],
-        access: "都営大江戸線「赤羽橋駅」より徒歩約5分",
-        parkingAvailable: true,
-        parking: 'あり（有料）',
-
-        sects: ['浄土真宗'],
-        supportedMemorialTypes: ['一般墓', '永代供養墓', '樹木葬'],
-        indoorOutdoor: 'outdoor',
-        barrierFree: true,
-        barrierFreeLabel: '対応',
-        petAllowed: 'conditional',
-        petSupport: '専用区画あり',
-
-        // priceMin: 300000,
-        // priceMax: 1500000,
-        // Using Agg instead
-        priceAggMin: 300000,
-        priceAggMax: 500000, // Updated based on MOCK_PLANS
-
-        // managementFeeType: 'required', // Removed
-        managementFeeAggType: 'required', // Init
-        // managementFeeMin: 5000, // Legacy
-        // managementFeeMax: 15000, // Legacy
-
-        status: 'public',
-        listedInSearch: true,
-        successorRequirements: '継承者不要',
-        phone: "0120-000-000",
-        officeHours: "9:00〜17:00",
-        createdAt: "2025-01-01T00:00:00Z",
-        updatedAt: "2025-01-20T10:00:00Z",
-
-        catchphrase: "東京タワーを望む、都心の安らぎの聖地",
-        keyFeatures: [
-            { title: "駅徒歩5分の好立地", text: "赤羽橋駅から徒歩5分。ご高齢の方でも無理なくお参りいただけます。", icon: "駅近" },
-            { title: "完全バリアフリー", text: "園内は段差のない設計。車椅子の方も安心してお参り可能です。", icon: "バリアフリー" },
-            { title: "ペットと眠れる", text: "大切な家族であるペットと一緒に入れる専用区画をご用意しています。", icon: "ペット可" }
-        ],
-        overview: "清蓮メモリアルパーク東京は、東京タワーを間近に望む芝公園エリアにある、四季折々の花々に囲まれた都心の霊園です。\n由緒ある寺院が管理しており、永代にわたり手厚くご供養いたします。\n近年需要の高まる樹木葬や永代供養墓も充実しており、ニーズに合わせたプランをお選びいただけます。",
-        suitableFor: [
-            "都心でお墓を探している方",
-            "後継ぎがいなく永代供養を希望される方",
-            "ペットと一緒に入れるお墓をお探しの方"
-        ],
-        notesPoints: [
-            "ペット区画は数に限りがあります",
-            "法要施設のご利用は事前予約が必要です",
-            "駐車場は近隣のコインパーキングもご利用いただけます"
-        ],
-        tags: ["駅近", "バリアフリー", "ペット供養可", "永代供養あり", "宗教不問"],
-        aiSummary: "東京タワーを望む好立地にある寺院霊園です。\n駅近でバリアフリー完備、ペット共葬も可能な充実した設備が魅力。\n都心でアクセス重視の方や永代供養をお探しの方に最適です。",
-
-        mainImage: "/images/hero_temple_01.jpg",
-        galleryImages: [
-            "/images/gallery_01.jpg",
-            "/images/gallery_02.jpg",
-            "/images/gallery_03.jpg"
-        ],
-
-        seo: {
-            title: "清蓮メモリアルパーク東京 | 都心の永代供養墓",
-            description: "港区芝公園にある清蓮メモリアルパーク東京。永代供養墓、樹木葬など。",
-            summary: "清蓮メモリアルパーク東京は、港区芝公園にある都心型の寺院霊園です。東京タワーを望む好立地で、駅からも徒歩5分とアクセス抜群。完全バリアフリー設計で、ペットと一緒に入れる区画も用意されています。永代供養墓や樹木葬など多様なプランがあり、後継者のいない方でも安心してご利用いただけます。",
-            primaryKeywords: ["東京 永代供養", "港区 霊園", "芝公園 墓地"],
-            secondaryKeywords: ["ペット可", "バリアフリー", "駅近"],
-            structuredDataEnabled: true,
-            faqSource: 'facilityFaq',
-            indexControl: 'index'
-        },
-
-        calendar: {
-            bookingStatus: 'open',
-            bookingChannels: ['form', 'phone'],
-            availableWeekdays: [1, 2, 4, 5, 6, 0],
-            startTime: "10:00",
-            endTime: "16:00",
-            slotIntervalMinutes: 60,
-            visitDurationMinutes: 60,
-            bufferMinutes: 0,
-            cutoffRule: "hours48",
-            bookingWindowDays: 60,
-            dailyCapacity: 3,
-            blackoutDates: [
-                { date: "2026-02-10", note: "臨時休園" }
-            ],
-            requestMessage: "予約リクエストを受け付けました。内容を確認のうえ担当者より確定のご連絡を差し上げます。"
-        }
-    }
-];
-
-// Helper to Recalculate
-const recalculateTemplePrice = (templeId: string) => {
-    const templeIndex = MOCK_TEMPLES.findIndex(t => t.id === templeId);
-    if (templeIndex === -1) return;
-
-    const templePlans = MOCK_PLANS.filter(p => p.templeId === templeId && p.price > 0 && p.availability !== 'none');
-
-    if (templePlans.length === 0) {
-        MOCK_TEMPLES[templeIndex].priceAggMin = undefined;
-        MOCK_TEMPLES[templeIndex].priceAggMax = undefined;
-    } else {
-        const prices = templePlans.map(p => p.price);
-        MOCK_TEMPLES[templeIndex].priceAggMin = Math.min(...prices);
-        MOCK_TEMPLES[templeIndex].priceAggMax = Math.max(...prices);
-    }
-    MOCK_TEMPLES[templeIndex].priceAggUpdatedAt = new Date().toISOString();
-};
-
-let MOCK_PLANS: Plan[] = [
-    {
-        id: "p1", templeId: "id1624858636", category: 'perpetualMemorial', name: "永代供養墓「安らぎ」", subDescription: "合祀タイプで費用を抑えたい方に最適です。",
-        price: 300000, priceNote: "総額目安", managementFee: 0,
-        availability: 'available',
-        periodType: 'perpetual',
-        burialMethod: 'joint',
-        images: ["/images/plan_01.jpg"], note: "春と秋に合同法要を行います。", order: 1
-    },
-    {
-        id: "p2", templeId: "id1624858636", category: 'treeBurial', name: "樹木葬「桜」", subDescription: "桜の木の下で眠る、自然に還るプラン。",
-        price: 500000, priceNote: "一霊あたり", managementFee: 5000,
-        availability: 'limited',
-        periodType: 'years', periodYears: 33,
-        burialMethod: 'individual',
-        petAllowed: 'allowed',
-        capacity: '2霊',
-        images: ["/images/plan_02.jpg"], order: 2
-    }
-];
-
-const MOCK_INQUIRIES: Inquiry[] = [];
-let RECEIPT_COUNTER = 1000;
-
-export const Store = {
-    getTemples: () => MOCK_TEMPLES,
-    getTemple: (id: string) => MOCK_TEMPLES.find(t => t.id === id),
-    saveTemple: (temple: Temple) => { const idx = MOCK_TEMPLES.findIndex(t => t.id === temple.id); if (idx >= 0) { MOCK_TEMPLES[idx] = temple; } else { MOCK_TEMPLES.push(temple); } return temple; },
-    createTemple: (data: Omit<Temple, "id">) => { const newTemple: Temple = { ...data, id: `t_${Date.now()}` }; MOCK_TEMPLES.push(newTemple); return newTemple; },
-    getPlans: (templeId: string) => MOCK_PLANS.filter(p => p.templeId === templeId).sort((a, b) => a.order - b.order),
-    getPlan: (id: string) => MOCK_PLANS.find(p => p.id === id),
-
-    savePlan: (plan: Plan) => {
-        const idx = MOCK_PLANS.findIndex(p => p.id === plan.id);
-        if (idx >= 0) { MOCK_PLANS[idx] = plan; }
-        else { MOCK_PLANS.push(plan); }
-
-        // Trigger Aggregation
-        recalculateTemplePrice(plan.templeId);
-
-        return plan;
-    },
-
-    createPlan: (data: Omit<Plan, 'id'>) => {
-        const newPlan: Plan = { ...data, id: `p_${Date.now()}` };
-        MOCK_PLANS.push(newPlan);
-
-        // Trigger Aggregation
-        recalculateTemplePrice(newPlan.templeId);
-
-        return newPlan;
-    },
-
-    deletePlan: (id: string) => {
-        const plan = MOCK_PLANS.find(p => p.id === id);
-        if (!plan) return;
-        const tId = plan.templeId;
-        MOCK_PLANS = MOCK_PLANS.filter(p => p.id !== id);
-
-        // Trigger Aggregation
-        recalculateTemplePrice(tId);
-    },
-
-    getInquiries: () => MOCK_INQUIRIES,
-    addInquiry: (inquiry: Omit<Inquiry, 'id' | 'createdAt' | 'status' | 'receiptNumber'>) => { RECEIPT_COUNTER++; const newInquiry: Inquiry = { ...inquiry, id: `inq_${Date.now()}`, receiptNumber: `R-${RECEIPT_COUNTER}`, status: 'new', createdAt: new Date().toISOString() }; MOCK_INQUIRIES.unshift(newInquiry); return newInquiry; },
-    updateInquiry: (id: string, updates: Partial<Inquiry>) => { const idx = MOCK_INQUIRIES.findIndex(i => i.id === id); if (idx >= 0) { MOCK_INQUIRIES[idx] = { ...MOCK_INQUIRIES[idx], ...updates }; return MOCK_INQUIRIES[idx]; } return null; }
-};
+// File ends here.

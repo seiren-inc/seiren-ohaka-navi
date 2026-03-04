@@ -4,7 +4,7 @@
 import { useEffect, useState, useMemo } from "react";
 import { useRouter } from "next/navigation";
 import { Button } from "../../../../components/ui/Button";
-import { Store, Temple, Plan, FacilityType, ManagementBody, ReligionCategory, Parking, BarrierFree, PetSupport, SuccessorReq, PublishStatus, Prefecture, ContentIcon, AppealTag, RELIGION_CATEGORIES, BUDDHIST_SECTS, BUDDHIST_SECT_GROUPS, BuddhistSect, PLAN_CATEGORIES, PLAN_AVAILABILITY_LABELS, PlanCategoryType, PlanAvailability, ManagementFeeType, IndoorOutdoor, PetAllowed, BookingStatus, Sect, MemorialType } from "../../../../../lib/store";
+import { Temple, Plan, FacilityType, ManagementBody, ReligionCategory, Parking, BarrierFree, PetSupport, SuccessorReq, PublishStatus, Prefecture, ContentIcon, AppealTag, RELIGION_CATEGORIES, BUDDHIST_SECTS, BUDDHIST_SECT_GROUPS, BuddhistSect, PLAN_CATEGORIES, PLAN_AVAILABILITY_LABELS, PlanCategoryType, PlanAvailability, ManagementFeeType, IndoorOutdoor, PetAllowed, BookingStatus, Sect, MemorialType } from "../../../../../lib/store";
 import { ImageUploader } from "../../../../components/admin/ImageUploader";
 import { GalleryUploader } from "../../../../components/admin/GalleryUploader";
 import { Loader2, Plus, Trash2, GripVertical, Image as ImageIcon, MapPin, Calendar as CalIcon, FileText, Tag, Search, Sparkles, X, ChevronDown, ChevronRight, Save, Clock, Settings, Bell, Ban, Globe, HelpCircle, Code, DollarSign, CheckSquare, Info } from "lucide-react";
@@ -19,7 +19,7 @@ const APPEAL_TAGS: AppealTag[] = ['宗教不問', '檀家義務なし', '管理�
 const SECT_OPTIONS: BuddhistSect[] = ['jodo', 'jodoShin', 'nichiren', 'shingon', 'tendai', 'zen', 'other', 'unknown']; // Simplified for UI or use Groups
 // Actually, specific SECTS array was used for "Supported Sects" (string[]). 
 // The Store defines `sects: Sect[]` where Sect is a string union.
-const SUPPORTED_SECT_OPTIONS: string[] = ['無宗派', '仏教全般', '浄土宗', '浄土真宗', '日蓮宗', '真言宗', '天台宗', '禅宗', 'その他'];
+const SUPPORTED_SECT_OPTIONS: string[] = ['無宗派', '仏教全般', '浄土宗', '浄土真宗', '日蓮宗', '真言宗', '天台宗', '曹洞宗', '禅宗', 'その他'];
 const MEMORIAL_TYPE_OPTIONS: string[] = ['一般墓', '永代供養墓', '樹木葬', '納骨堂', '合祀', '海洋散骨', '手元供養', '遺骨ダイヤモンド'];
 
 // Plan Options (Local UI helpers)
@@ -62,23 +62,51 @@ export default function EditTemplePage({ params }: { params: { id: string } }) {
     const [editingPlan, setEditingPlan] = useState<Partial<Plan>>({});
     const [planModalTab, setPlanModalTab] = useState<'basic' | 'specs' | 'extra'>('basic');
 
-    // Derived Cities for suggestion
+    // Derived Cities for suggestion (Simplified for now, as fetching all temples here is heavy)
     const citySuggestions = useMemo(() => {
-        if (!temple) return [];
-        return Array.from(new Set(Store.getTemples()
-            .filter(t => t.prefecture === temple.prefecture)
-            .map(t => t.cityName)
-            .filter(Boolean)
-        )) as string[];
+        // Ideally fetch from a dedicated API endpoint like `/api/cities?prefecture=${temple.prefecture}`
+        return []; 
     }, [temple?.prefecture]);
+
+    // zipcloud API による郵便番号自動入力
+    const handleZipCode = async (zip: string) => {
+        setTemple(prev => prev ? { ...prev, ...{ zipCode: zip } } as any : prev);
+
+        const digits = zip.replace(/-/g, '');
+        if (digits.length !== 7) return;
+
+        try {
+            const res = await fetch(`https://zipcloud.ibsnet.co.jp/api/search?zipcode=${digits}`);
+            const data = await res.json();
+            if (data.status === 200 && data.results?.[0]) {
+                const r = data.results[0];
+                setTemple(prev => prev ? ({
+                    ...prev,
+                    prefecture: r.address1 as any,
+                    cityName: r.address2 + (r.address3 || ''),
+                    ...{ zipCode: zip }
+                } as any) : prev);
+            }
+        } catch {
+            // API失敗時はサイレント
+        }
+    };
+
 
     useEffect(() => {
         Promise.resolve(params).then(p => {
-            const t = Store.getTemple(p.id);
-            if (t) {
-                // Initialize new fields with defaults if migrating
-                // Data Migration Logic
-                const rawRel = t.religion as unknown as string;
+            fetch(`/api/temples/${p.id}`)
+                .then(res => {
+                    if (!res.ok) throw new Error('Not found');
+                    return res.json();
+                })
+                .then(t => {
+                    // Update city suggestions dynamically by fetching all temples later if needed, 
+                    // or just use a generic list. For now, we fallback to an empty array to avoid fetching all temples.
+                    // If we really need suggestions, we should make a separate API call for cities.
+
+                    // Data Migration Logic (similar to before, kept for safety)
+                    const rawRel = t.religion as unknown as string;
                 let newRel: ReligionCategory = 'other';
                 if (rawRel === '仏教' || rawRel === 'buddhism') newRel = 'buddhism';
                 else if (rawRel === '神道' || rawRel === 'shinto') newRel = 'shinto';
@@ -123,11 +151,12 @@ export default function EditTemplePage({ params }: { params: { id: string } }) {
                         bookingStatus: 'paused', bookingChannels: ['form', 'phone'], availableWeekdays: [1, 2, 4, 5, 6, 0], startTime: "10:00", endTime: "16:00", slotIntervalMinutes: 60, visitDurationMinutes: 60, bufferMinutes: 0, cutoffRule: "hours48", bookingWindowDays: 60, dailyCapacity: 3, blackoutDates: [], requestMessage: ""
                     }
                 };
-                setTemple(migratedTemple);
-                setPlans(Store.getPlans(t.id));
-            } else {
-                router.push("/admin/temples");
-            }
+                    setTemple(migratedTemple);
+                    setPlans(t.plans || []);
+                })
+                .catch(() => {
+                    router.push("/admin/temples");
+                });
         });
     }, [params, router]);
 
@@ -162,10 +191,19 @@ export default function EditTemplePage({ params }: { params: { id: string } }) {
         }
 
         setIsLoading(true);
-        Store.saveTemple(finalTemple);
-        await new Promise(r => setTimeout(r, 500));
-        setIsLoading(false);
-        alert("保存しました");
+        try {
+            const res = await fetch(`/api/temples/${temple.id}`, {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(finalTemple),
+            });
+            if (!res.ok) throw new Error('保存に失敗しました');
+            alert("保存しました");
+        } catch (e: any) {
+            alert(e.message || "エラーが発生しました");
+        } finally {
+            setIsLoading(false);
+        }
     };
 
     const handleSavePlan = () => {
@@ -186,13 +224,29 @@ export default function EditTemplePage({ params }: { params: { id: string } }) {
             images: editingPlan.images || []
         } as Plan;
 
-        Store.savePlan(planToSave);
-        // Refresh Temple to get updated Agg Prices
-        const updatedTemple = Store.getTemple(temple.id);
-        if (updatedTemple) setTemple({ ...updatedTemple });
+        const method = planToSave.id ? 'PUT' : 'POST';
+        const url = planToSave.id ? `/api/plans/${planToSave.id}` : '/api/plans';
 
-        setPlans(Store.getPlans(temple.id));
-        setIsPlanModalOpen(false);
+        fetch(url, {
+            method: method,
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(planToSave)
+        })
+        .then(res => {
+            if (!res.ok) throw new Error("Failed to save plan");
+            return res.json();
+        })
+        .then(() => {
+            // Re-fetch plans
+            fetch(`/api/plans?templeId=${temple.id}`)
+                .then(res => res.json())
+                .then(data => setPlans(data));
+            setIsPlanModalOpen(false);
+        })
+        .catch(err => {
+            console.error(err);
+            alert("プランの保存に失敗しました");
+        });
     };
 
     // --- Tab Renderers ---
@@ -275,6 +329,41 @@ export default function EditTemplePage({ params }: { params: { id: string } }) {
                 </label>
                 <p className="text-xs text-gray-500 ml-7 mt-1">オフにすると、検索結果には表示されませんが、直接リンク（詳細ページ）は機能します。</p>
             </div>
+
+            {/* 掲載プラン管理 */}
+            <div className="pt-6 border-t bg-amber-50 rounded-lg p-4">
+                <h4 className="font-bold text-gray-800 mb-4 flex items-center gap-2">
+                    <span className="text-amber-500">★</span> 掲載プラン設定
+                </h4>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label className="block text-sm font-bold text-gray-700 mb-1">プラン区分</label>
+                        <select
+                            className="w-full border border-gray-300 p-2.5 rounded-lg bg-white"
+                            value={(temple as any).planType || 'free'}
+                            onChange={e => setTemple({ ...temple, planType: e.target.value as 'free' | 'standard' | 'sponsor' })}
+                        >
+                            <option value="free">無料（Free）</option>
+                            <option value="standard">標準（Standard） - おすすめ表示</option>
+                            <option value="sponsor">スポンサー（Sponsor）</option>
+                        </select>
+                        <p className="text-xs text-gray-400 mt-1">standard以上は検索一覧で上位表示されます</p>
+                    </div>
+                    <div>
+                        <label className="block text-sm font-bold text-gray-700 mb-1">PR固定枠</label>
+                        <label className="flex items-center gap-2 cursor-pointer border p-3 rounded-lg bg-white">
+                            <input
+                                type="checkbox"
+                                checked={(temple as any).isPrSlot || false}
+                                onChange={e => setTemple({ ...temple, isPrSlot: e.target.checked })}
+                                className="w-5 h-5 accent-amber-500"
+                            />
+                            <span className="font-bold text-sm">「PR」バッジを表示する</span>
+                        </label>
+                        <p className="text-xs text-gray-400 mt-1">エリアページ上部にPRカードとして固定表示されます</p>
+                    </div>
+                </div>
+            </div>
         </div>
     );
 
@@ -282,52 +371,223 @@ export default function EditTemplePage({ params }: { params: { id: string } }) {
     const renderAccessTab = () => (
         <div className="space-y-8 max-w-4xl animate-in fade-in">
             <h3 className="font-bold text-lg border-b pb-2 flex items-center gap-2"><MapPin className="w-5 h-5" /> 所在地・アクセス</h3>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div><label className="block text-sm font-bold mb-1">都道府県</label><select className="w-full border p-2.5 rounded-lg" value={temple.prefecture} onChange={e => setTemple({ ...temple, prefecture: e.target.value as Prefecture })}>{PREFECTURES.map(v => <option key={v} value={v}>{v}</option>)}</select></div>
-                <div>
-                    <label className="block text-sm font-bold mb-1">市区町村</label>
-                    <input
-                        className="w-full border p-2.5 rounded-lg"
-                        placeholder="例: 港区"
-                        value={temple.cityName || ''}
-                        onChange={e => setTemple({ ...temple, cityName: e.target.value })}
-                        list="city-options"
-                    />
-                    <datalist id="city-options">
-                        {citySuggestions.map(city => <option key={city} value={city} />)}
-                    </datalist>
+
+            {/* 所在地 */}
+            <div className="space-y-4">
+                <h4 className="font-bold text-sm text-gray-700">所在地</h4>
+                <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+                    <div>
+                        <label className="block text-sm font-bold mb-1">郵便番号</label>
+                        <input
+                            className="w-full border p-2.5 rounded-lg"
+                            placeholder="例: 123-4567"
+                            value={(temple as any).zipCode || ''}
+                            onChange={e => handleZipCode(e.target.value)}
+                        />
+                    </div>
+                    <div>
+                        <label className="block text-sm font-bold mb-1">都道府県</label>
+                        <select className="w-full border p-2.5 rounded-lg" value={temple.prefecture} onChange={e => setTemple({ ...temple, prefecture: e.target.value as Prefecture })}>
+                            {PREFECTURES.map(v => <option key={v} value={v}>{v}</option>)}
+                        </select>
+                    </div>
+                    <div>
+                        <label className="block text-sm font-bold mb-1">市区町村</label>
+                        <input
+                            className="w-full border p-2.5 rounded-lg"
+                            placeholder="例: 港区"
+                            value={temple.cityName || ''}
+                            onChange={e => setTemple({ ...temple, cityName: e.target.value })}
+                            list="city-options"
+                        />
+                        <datalist id="city-options">
+                            {citySuggestions.map(city => <option key={city} value={city} />)}
+                        </datalist>
+                    </div>
+                    <div>
+                        <label className="block text-sm font-bold mb-1">番地以下</label>
+                        <input className="w-full border p-2.5 rounded-lg" placeholder="例: 芝公園4-2-8" value={temple.addressLine || ''} onChange={e => setTemple({ ...temple, addressLine: e.target.value })} />
+                    </div>
                 </div>
-                <div><label className="block text-sm font-bold mb-1">番地以下</label><input className="w-full border p-2.5 rounded-lg" placeholder="例: 芝公園4-2-8" value={temple.addressLine || ''} onChange={e => setTemple({ ...temple, addressLine: e.target.value })} /></div>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div><label className="block text-sm font-bold mb-1">緯度 (Latitude)</label><input type="number" className="w-full border p-2.5 rounded-lg" value={temple.lat || ''} onChange={e => setTemple({ ...temple, lat: parseFloat(e.target.value) })} /></div>
-                <div><label className="block text-sm font-bold mb-1">経度 (Longitude)</label><input type="number" className="w-full border p-2.5 rounded-lg" value={temple.lng || ''} onChange={e => setTemple({ ...temple, lng: parseFloat(e.target.value) })} /></div>
-            </div>
-            <div>
-                <label className="block text-sm font-bold mb-2">最寄り駅登録</label>
+
+            {/* 最寄り駅 */}
+            <div className="space-y-3">
+                <h4 className="font-bold text-sm text-gray-700">最寄り駅</h4>
                 {temple.nearestStations?.map((st, i) => (
-                    <div key={i} className="flex gap-2 mb-2">
-                        <input className="border p-2 rounded w-1/3" placeholder="駅名" value={st.name} onChange={e => { const newSt = [...temple.nearestStations]; newSt[i].name = e.target.value; setTemple({ ...temple, nearestStations: newSt }) }} />
-                        <input className="border p-2 rounded w-1/3" placeholder="路線名" value={st.line} onChange={e => { const newSt = [...temple.nearestStations]; newSt[i].line = e.target.value; setTemple({ ...temple, nearestStations: newSt }) }} />
-                        <input className="border p-2 rounded w-20" type="number" placeholder="分" value={st.walkMinutes} onChange={e => { const newSt = [...temple.nearestStations]; newSt[i].walkMinutes = parseInt(e.target.value); setTemple({ ...temple, nearestStations: newSt }) }} />
+                    <div key={i} className="flex gap-2 items-center">
+                        <input className="border p-2 rounded flex-1" placeholder="駅名" value={st.name} onChange={e => { const newSt = [...temple.nearestStations]; newSt[i].name = e.target.value; setTemple({ ...temple, nearestStations: newSt }) }} />
+                        <input className="border p-2 rounded flex-1" placeholder="路線名" value={st.line} onChange={e => { const newSt = [...temple.nearestStations]; newSt[i].line = e.target.value; setTemple({ ...temple, nearestStations: newSt }) }} />
+                        <div className="flex items-center gap-1 shrink-0">
+                            <input className="border p-2 rounded w-16 text-center" type="number" placeholder="0" value={st.walkMinutes} onChange={e => { const newSt = [...temple.nearestStations]; newSt[i].walkMinutes = parseInt(e.target.value); setTemple({ ...temple, nearestStations: newSt }) }} />
+                            <span className="text-sm text-gray-500">分</span>
+                        </div>
                         <Button variant="outline" size="sm" onClick={() => setTemple({ ...temple, nearestStations: temple.nearestStations.filter((_, idx) => idx !== i) })}><Trash2 className="w-4 h-4" /></Button>
                     </div>
                 ))}
                 <Button variant="outline" size="sm" onClick={() => setTemple({ ...temple, nearestStations: [...(temple.nearestStations || []), { name: '', line: '', walkMinutes: 0 }] })}><Plus className="w-4 h-4 mr-2" /> 駅を追加</Button>
             </div>
+
+            {/* 交通アクセス説明 */}
             <div>
-                <label className="block text-sm font-bold mb-1">アクセス補足 (Legacy)</label>
-                <textarea className="w-full border p-2.5 rounded-lg h-24" value={temple.access} onChange={e => setTemple({ ...temple, access: e.target.value })} />
+                <label className="block text-sm font-bold mb-1">交通アクセス説明</label>
+                <textarea
+                    className="w-full border p-2.5 rounded-lg h-24"
+                    placeholder="例: 都営大江戸線「赤羽橋駅」より徒歩5分。東京駅よりバスで絀15分。"
+                    value={temple.access}
+                    onChange={e => setTemple({ ...temple, access: e.target.value })}
+                />
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div><label className="block text-sm font-bold mb-1">駐車場有無</label><div className="flex items-center gap-4"><label><input type="checkbox" checked={temple.parkingAvailable} onChange={e => setTemple({ ...temple, parkingAvailable: e.target.checked })} className="mr-2" />駐車場あり</label></div></div>
-                <div><label className="block text-sm font-bold mb-1">駐車場詳細 (Legacy)</label><select className="w-full border p-2.5 rounded-lg" value={temple.parking} onChange={e => setTemple({ ...temple, parking: e.target.value as Parking })}>{['あり（無料）', 'あり（有料）', 'なし', '近隣コインパーキングあり'].map(v => <option key={v} value={v}>{v}</option>)}</select></div>
+
+            {/* 駐車場 */}
+            <div>
+                <label className="block text-sm font-bold mb-2">駐車場</label>
+                <div className="flex flex-wrap gap-3">
+                    {(['あり（無料）', 'あり（有料）', 'なし', '近隣コインパーキングあり'] as const).map(v => (
+                        <label key={v} className={`cursor-pointer px-4 py-2 rounded-full border transition-colors text-sm font-bold ${temple.parking === v ? 'bg-primary text-white border-primary' : 'bg-white text-gray-600 border-gray-300 hover:bg-gray-50'}`}>
+                            <input
+                                type="radio"
+                                name="parking"
+                                className="hidden"
+                                value={v}
+                                checked={temple.parking === v}
+                                onChange={() => setTemple({ ...temple, parking: v as Parking, parkingAvailable: v !== 'なし' })}
+                            />
+                            {v}
+                        </label>
+                    ))}
+                </div>
             </div>
         </div>
     );
 
+
     // 3. ATTRIBUTES Tab
     const renderAttributesTab = () => (
+        <div className="space-y-8 max-w-4xl animate-in fade-in">
+            <h3 className="font-bold text-lg border-b pb-2 flex items-center gap-2"><CheckSquare className="w-5 h-5" /> 特徴・設備プロパティ</h3>
+
+            <div className="space-y-3">
+                <label className="block text-sm font-bold text-gray-700">対応宗派 <span className="text-xs font-normal text-gray-500 ml-1">複数選択可</span></label>
+                <div className="flex flex-wrap gap-2">
+                    {SUPPORTED_SECT_OPTIONS.map(s => (
+                        <label key={s} className={`cursor-pointer px-4 py-2 rounded-full border transition-all text-sm font-bold ${temple.sects.includes(s as any) ? 'bg-primary text-white border-primary shadow-sm' : 'bg-white text-gray-600 border-gray-300 hover:bg-gray-50'}`}>
+                            <input type="checkbox" className="hidden" checked={temple.sects.includes(s as any)} onChange={e => setTemple({ ...temple, sects: e.target.checked ? [...temple.sects, s] as any : temple.sects.filter(x => x !== s) })} />
+                            {s}
+                        </label>
+                    ))}
+                </div>
+            </div>
+
+            <div className="space-y-3">
+                <label className="block text-sm font-bold text-gray-700">対応供養タイプ <span className="text-xs font-normal text-gray-500 ml-1">複数選択可</span></label>
+                <div className="flex flex-wrap gap-2">
+                    {MEMORIAL_TYPE_OPTIONS.map(m => (
+                        <label key={m} className={`cursor-pointer px-4 py-2 rounded-full border transition-all text-sm font-bold ${temple.supportedMemorialTypes.includes(m as any) ? 'bg-primary text-white border-primary shadow-sm' : 'bg-white text-gray-600 border-gray-300 hover:bg-gray-50'}`}>
+                            <input type="checkbox" className="hidden" checked={temple.supportedMemorialTypes.includes(m as any)} onChange={e => setTemple({ ...temple, supportedMemorialTypes: e.target.checked ? [...temple.supportedMemorialTypes, m] as any : temple.supportedMemorialTypes.filter(x => x !== m) })} />
+                            {m}
+                        </label>
+                    ))}
+                </div>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div className="space-y-3">
+                    <label className="block text-sm font-bold text-gray-700">屋内・屋外</label>
+                    <div className="flex gap-2">
+                        {([{ v: 'indoor', l: '屋内のみ' }, { v: 'outdoor', l: '屋外のみ' }, { v: 'both', l: '両方あり' }] as const).map(({ v, l }) => (
+                            <label key={v} className={`flex-1 text-center cursor-pointer px-3 py-2 rounded-lg border transition-all text-sm font-bold ${temple.indoorOutdoor === v ? 'bg-primary text-white border-primary shadow-sm' : 'bg-white text-gray-600 border-gray-300 hover:bg-gray-50'}`}>
+                                <input type="radio" name="indoorOutdoor" className="hidden" value={v} checked={temple.indoorOutdoor === v} onChange={() => setTemple({ ...temple, indoorOutdoor: v as IndoorOutdoor })} />
+                                {l}
+                            </label>
+                        ))}
+                    </div>
+                </div>
+                <div className="space-y-3">
+                    <label className="block text-sm font-bold text-gray-700">ペット対応</label>
+                    <div className="flex gap-2 flex-wrap">
+                        {([{ v: 'allowed', l: '可（全区画）' }, { v: 'conditional', l: '条件付き' }, { v: 'notAllowed', l: '不可' }] as const).map(({ v, l }) => (
+                            <label key={v} className={`cursor-pointer px-4 py-2 rounded-lg border transition-all text-sm font-bold ${temple.petAllowed === v ? 'bg-primary text-white border-primary shadow-sm' : 'bg-white text-gray-600 border-gray-300 hover:bg-gray-50'}`}>
+                                <input type="radio" name="petAllowed" className="hidden" value={v} checked={temple.petAllowed === v} onChange={() => setTemple({ ...temple, petAllowed: v as PetAllowed })} />
+                                {l}
+                            </label>
+                        ))}
+                    </div>
+                </div>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div className="space-y-3">
+                    <label className="block text-sm font-bold text-gray-700">バリアフリー</label>
+                    <div className="flex gap-2">
+                        {([{ v: true, l: '対応あり', desc: '車椅子・段差なし' }, { v: false, l: '対応なし', desc: '未整備' }] as const).map(({ v, l, desc }) => (
+                            <label key={String(v)} className={`flex-1 cursor-pointer px-4 py-3 rounded-xl border transition-all ${temple.barrierFree === v ? 'bg-primary text-white border-primary shadow-sm' : 'bg-white text-gray-600 border-gray-300 hover:bg-gray-50'}`}>
+                                <input type="radio" name="barrierFree" className="hidden" checked={temple.barrierFree === v} onChange={() => setTemple({ ...temple, barrierFree: v })} />
+                                <div className="font-bold text-sm">{l}</div>
+                                <div className={`text-xs mt-0.5 ${temple.barrierFree === v ? 'text-white/80' : 'text-gray-400'}`}>{desc}</div>
+                            </label>
+                        ))}
+                    </div>
+                </div>
+                <div className="space-y-3">
+                    <label className="block text-sm font-bold text-gray-700">継承者要件</label>
+                    <div className="flex gap-2 flex-wrap">
+                        {(['継承者不要', '継承者必要', '一定期間後合祀'] as const).map(v => (
+                            <label key={v} className={`cursor-pointer px-4 py-2 rounded-lg border transition-all text-sm font-bold ${temple.successorRequirements === v ? 'bg-primary text-white border-primary shadow-sm' : 'bg-white text-gray-600 border-gray-300 hover:bg-gray-50'}`}>
+                                <input type="radio" name="successorReq" className="hidden" value={v} checked={temple.successorRequirements === v} onChange={() => setTemple({ ...temple, successorRequirements: v as SuccessorReq })} />
+                                {v}
+                            </label>
+                        ))}
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+
+    // AI生成ヘルパー
+    const [aiLoading, setAiLoading] = useState<Record<string, boolean>>({});
+    const [catchphraseCandidates, setCatchphraseCandidates] = useState<string[]>([]);
+
+    const generateAI = async (type: 'catchphrase' | 'overview' | 'features' | 'seo') => {
+        if (!temple.name) { alert('施設名を入力してからAI生成してください'); return; }
+        setAiLoading(prev => ({ ...prev, [type]: true }));
+        try {
+            const res = await fetch('/api/ai/generate', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    type,
+                    context: {
+                        name: temple.name, prefecture: temple.prefecture, cityName: temple.cityName,
+                        type: temple.type, sects: temple.sects as string[],
+                        supportedMemorialTypes: temple.supportedMemorialTypes as string[],
+                        tags: temple.tags as string[], access: temple.access,
+                    }
+                }),
+            });
+            const data = await res.json();
+            if (!res.ok) throw new Error(data.error);
+            if (type === 'catchphrase') {
+                const lines = (data.result as string).split('\n').filter((l: string) => /^\d\./.test(l.trim()));
+                const candidates = lines.map((l: string) => l.replace(/^\d\.\s*/, '').trim()).filter(Boolean);
+                setCatchphraseCandidates(candidates.length > 0 ? candidates : [data.result]);
+            } else if (type === 'overview') {
+                setTemple(prev => prev ? ({ ...prev, overview: data.result as string }) as typeof prev : prev);
+            } else if (type === 'features') {
+                const features = Array.isArray(data.result) ? data.result : [];
+                if (features.length > 0) setTemple(prev => prev ? ({ ...prev, keyFeatures: features }) as typeof prev : prev);
+            } else if (type === 'seo' && typeof data.result === 'object') {
+                setTemple(prev => prev ? ({ ...prev, seo: { ...prev.seo, ...data.result } }) as typeof prev : prev);
+            }
+        } catch (err) {
+            alert(`AI生成に失敗しました: ${err instanceof Error ? err.message : err}`);
+        } finally {
+            setAiLoading(prev => ({ ...prev, [type]: false }));
+        }
+    };
+
+    // 4. CONTENT Tab
+    const renderContentTab = () => (
         <div className="space-y-8 max-w-4xl animate-in fade-in">
             <h3 className="font-bold text-lg border-b pb-2 flex items-center gap-2"><CheckSquare className="w-5 h-5" /> 特徴・設備プロパティ</h3>
 
@@ -393,15 +653,92 @@ export default function EditTemplePage({ params }: { params: { id: string } }) {
         </div>
     );
 
-    // 4. CONTENT Tab (Existing reused)
-    const renderContentTab = () => (
+    // 4b. CONTENT DETAIL Tab
+    const renderContentDetailTab = () => (
         <div className="space-y-8 max-w-4xl animate-in fade-in">
             <h3 className="font-bold text-lg border-b pb-2 flex items-center gap-2"><FileText className="w-5 h-5" /> 詳細コンテンツ</h3>
-            <div className="space-y-2"><label className="block text-sm font-bold text-gray-700 mb-1">キャッチコピー <span className="text-red-500">*</span></label><input className="w-full border p-3 rounded-lg font-bold" value={temple.catchphrase || ''} onChange={e => setTemple({ ...temple, catchphrase: e.target.value })} /></div>
-            <div className="space-y-4"><h4 className="font-bold text-gray-700">3つの特徴 <span className="text-red-500">*</span></h4><div className="grid grid-cols-3 gap-4">{[0, 1, 2].map(i => (<div key={i} className="border p-2 rounded bg-gray-50"><select className="w-full mb-2 border rounded" value={temple.keyFeatures?.[i]?.icon} onChange={e => { const next = [...(temple.keyFeatures || [])]; if (!next[i]) next[i] = { title: '', text: '', icon: '駅近' }; next[i].icon = e.target.value as any; setTemple({ ...temple, keyFeatures: next }); }}>{CONTENT_ICONS.map(c => <option key={c} value={c}>{c}</option>)}</select><input className="w-full mb-2 border rounded" placeholder="タイトル" value={temple.keyFeatures?.[i]?.title} onChange={e => { const next = [...(temple.keyFeatures || [])]; if (!next[i]) next[i] = { title: '', text: '', icon: '駅近' }; next[i].title = e.target.value; setTemple({ ...temple, keyFeatures: next }); }} /><textarea className="w-full h-16 border rounded text-xs" placeholder="説明" value={temple.keyFeatures?.[i]?.text} onChange={e => { const next = [...(temple.keyFeatures || [])]; if (!next[i]) next[i] = { title: '', text: '', icon: '駅近' }; next[i].text = e.target.value; setTemple({ ...temple, keyFeatures: next }); }} /></div>))}</div></div>
-            <div><label className="block text-sm font-bold text-gray-700 mb-1">全体説明(Overview)</label><textarea className="w-full border h-40 rounded p-2" value={temple.overview} onChange={e => setTemple({ ...temple, overview: e.target.value })} /></div>
-            <div className="grid grid-cols-2 gap-4"><div><label className="block text-sm font-bold text-gray-700 mb-1">おすすめな人 (改行区切り)</label><textarea className="w-full border h-32 rounded p-2" value={temple.suitableFor?.join('\n')} onChange={e => setTemple({ ...temple, suitableFor: e.target.value.split('\n') })} /></div><div><label className="block text-sm font-bold text-gray-700 mb-1">注意点 (改行区切り)</label><textarea className="w-full border h-32 rounded p-2" value={temple.notesPoints?.join('\n')} onChange={e => setTemple({ ...temple, notesPoints: e.target.value.split('\n') })} /></div></div>
-            <div><h3 className="font-bold border-b pb-2 mb-2">アピールタグ</h3><div className="flex flex-wrap gap-2">{APPEAL_TAGS.map(t => (<button key={t} onClick={() => setTemple({ ...temple, tags: temple.tags?.includes(t) ? temple.tags.filter(x => x !== t) : [...(temple.tags || []), t] })} className={`px-2 py-1 rounded border text-xs ${temple.tags?.includes(t) ? 'bg-blue-900 text-white' : 'bg-white'}`}>{t}</button>))}</div></div>
+
+            <div className="space-y-2">
+                <div className="flex items-center justify-between">
+                    <label className="text-sm font-bold text-gray-700">キャッチコピー <span className="text-red-500">*</span></label>
+                    <button type="button" onClick={() => generateAI('catchphrase')} disabled={aiLoading['catchphrase']} className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-gradient-to-r from-violet-500 to-indigo-500 text-white text-xs font-bold shadow hover:shadow-md transition-all disabled:opacity-60">
+                        {aiLoading['catchphrase'] ? <Loader2 className="w-3 h-3 animate-spin" /> : <Sparkles className="w-3 h-3" />} AI生成
+                    </button>
+                </div>
+                <input className="w-full border p-3 rounded-lg font-bold text-lg" placeholder="例: 東京タワーを望む、都心の安らぎの聖地" value={temple.catchphrase || ''} onChange={e => setTemple({ ...temple, catchphrase: e.target.value })} />
+                <div className="flex justify-end"><span className={`text-xs font-bold ${(temple.catchphrase || '').length > 30 ? 'text-red-500' : 'text-gray-400'}`}>{(temple.catchphrase || '').length} / 30文字</span></div>
+                {catchphraseCandidates.length > 0 && (
+                    <div className="bg-gradient-to-br from-violet-50 to-indigo-50 border border-violet-200 rounded-xl p-4">
+                        <p className="text-xs font-bold text-violet-700 mb-2 flex items-center gap-1"><Sparkles className="w-3 h-3" /> AI生成候補（クリックで選択）</p>
+                        <div className="space-y-2">{catchphraseCandidates.map((c, i) => (<button key={i} type="button" onClick={() => { setTemple({ ...temple, catchphrase: c }); setCatchphraseCandidates([]); }} className="w-full text-left px-3 py-2 bg-white border border-violet-200 rounded-lg text-sm font-medium hover:bg-violet-50 hover:border-violet-400 transition-colors">{c}</button>))}</div>
+                        <button type="button" onClick={() => setCatchphraseCandidates([])} className="mt-2 text-xs text-gray-400 hover:text-gray-600">閉じる</button>
+                    </div>
+                )}
+            </div>
+
+            <div className="space-y-3">
+                <div className="flex items-center justify-between">
+                    <h4 className="font-bold text-gray-700">3つの特徴 <span className="text-red-500">*</span></h4>
+                    <button type="button" onClick={() => generateAI('features')} disabled={aiLoading['features']} className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-gradient-to-r from-violet-500 to-indigo-500 text-white text-xs font-bold shadow hover:shadow-md transition-all disabled:opacity-60">
+                        {aiLoading['features'] ? <Loader2 className="w-3 h-3 animate-spin" /> : <Sparkles className="w-3 h-3" />} AI一括生成
+                    </button>
+                </div>
+                {[0, 1, 2].map(i => (
+                    <div key={i} className="border rounded-xl p-4 bg-gray-50">
+                        <div className="text-xs font-bold text-gray-500 mb-3">特徴 {i + 1}</div>
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+                            <div><label className="text-xs text-gray-500 block mb-1">アイコン</label><select className="w-full border rounded-lg p-2 text-sm" value={temple.keyFeatures?.[i]?.icon} onChange={e => { const next = [...(temple.keyFeatures || [])]; if (!next[i]) next[i] = { title: '', text: '', icon: '駅近' }; next[i].icon = e.target.value as any; setTemple({ ...temple, keyFeatures: next }); }}>{CONTENT_ICONS.map(c => <option key={c} value={c}>{c}</option>)}</select></div>
+                            <div><label className="text-xs text-gray-500 block mb-1">タイトル（15文字以内）</label><input className="w-full border rounded-lg p-2 text-sm" value={temple.keyFeatures?.[i]?.title || ''} onChange={e => { const next = [...(temple.keyFeatures || [])]; if (!next[i]) next[i] = { title: '', text: '', icon: '駅近' }; next[i].title = e.target.value; setTemple({ ...temple, keyFeatures: next }); }} /></div>
+                            <div><label className="text-xs text-gray-500 block mb-1">説明（50文字以内）</label><textarea className="w-full border rounded-lg p-2 text-sm h-16 resize-none" value={temple.keyFeatures?.[i]?.text || ''} onChange={e => { const next = [...(temple.keyFeatures || [])]; if (!next[i]) next[i] = { title: '', text: '', icon: '駅近' }; next[i].text = e.target.value; setTemple({ ...temple, keyFeatures: next }); }} /></div>
+                        </div>
+                    </div>
+                ))}
+            </div>
+
+            <div>
+                <div className="flex items-center justify-between mb-1">
+                    <label className="text-sm font-bold text-gray-700">全体説明（Overview）</label>
+                    <button type="button" onClick={() => generateAI('overview')} disabled={aiLoading['overview']} className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-gradient-to-r from-violet-500 to-indigo-500 text-white text-xs font-bold shadow hover:shadow-md transition-all disabled:opacity-60">
+                        {aiLoading['overview'] ? <Loader2 className="w-3 h-3 animate-spin" /> : <Sparkles className="w-3 h-3" />} AI生成
+                    </button>
+                </div>
+                <textarea className="w-full border h-40 rounded-lg p-3 leading-relaxed" value={temple.overview} onChange={e => setTemple({ ...temple, overview: e.target.value })} />
+                <div className="flex justify-end mt-1"><span className={`text-xs font-bold ${(temple.overview || '').length > 300 ? 'text-amber-500' : 'text-gray-400'}`}>{(temple.overview || '').length}文字</span></div>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                    <label className="block text-sm font-bold text-gray-700 mb-2">おすすめな人</label>
+                    <div className="space-y-2">
+                        {(temple.suitableFor || ['', '', '']).map((v, i) => (
+                            <div key={i} className="flex gap-2 items-center">
+                                <span className="text-gray-400 text-sm shrink-0">・</span>
+                                <input className="flex-1 border rounded-lg p-2 text-sm" value={v} onChange={e => { const next = [...(temple.suitableFor || [])]; next[i] = e.target.value; setTemple({ ...temple, suitableFor: next }); }} />
+                                {i >= 3 && <button type="button" onClick={() => setTemple({ ...temple, suitableFor: (temple.suitableFor || []).filter((_, idx) => idx !== i) })} className="text-gray-400 hover:text-red-500"><X className="w-4 h-4" /></button>}
+                            </div>
+                        ))}
+                        <button type="button" onClick={() => setTemple({ ...temple, suitableFor: [...(temple.suitableFor || []), ''] })} className="text-xs text-primary font-bold flex items-center gap-1 mt-1 hover:underline"><Plus className="w-3 h-3" /> 追加</button>
+                    </div>
+                </div>
+                <div>
+                    <label className="block text-sm font-bold text-gray-700 mb-2">注意点</label>
+                    <div className="space-y-2">
+                        {(temple.notesPoints || ['', '', '']).map((v, i) => (
+                            <div key={i} className="flex gap-2 items-center">
+                                <span className="text-gray-400 text-sm shrink-0">・</span>
+                                <input className="flex-1 border rounded-lg p-2 text-sm" value={v} onChange={e => { const next = [...(temple.notesPoints || [])]; next[i] = e.target.value; setTemple({ ...temple, notesPoints: next }); }} />
+                                {i >= 3 && <button type="button" onClick={() => setTemple({ ...temple, notesPoints: (temple.notesPoints || []).filter((_, idx) => idx !== i) })} className="text-gray-400 hover:text-red-500"><X className="w-4 h-4" /></button>}
+                            </div>
+                        ))}
+                        <button type="button" onClick={() => setTemple({ ...temple, notesPoints: [...(temple.notesPoints || []), ''] })} className="text-xs text-primary font-bold flex items-center gap-1 mt-1 hover:underline"><Plus className="w-3 h-3" /> 追加</button>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <h4 className="font-bold border-b pb-2 mb-3">アピールタグ</h4>
+                <div className="flex flex-wrap gap-2">{APPEAL_TAGS.map(t => (<button key={t} type="button" onClick={() => setTemple({ ...temple, tags: temple.tags?.includes(t) ? temple.tags.filter(x => x !== t) : [...(temple.tags || []), t] })} className={`px-3 py-1.5 rounded-full border text-xs font-bold transition-colors ${temple.tags?.includes(t) ? 'bg-primary text-white border-primary' : 'bg-white text-gray-600 border-gray-300 hover:bg-gray-50'}`}>{t}</button>))}</div>
+            </div>
         </div>
     );
 
@@ -440,8 +777,7 @@ export default function EditTemplePage({ params }: { params: { id: string } }) {
                             {plans.map(plan => (
                                 <div key={plan.id} className="flex items-center gap-4 bg-white p-4 border rounded shadow-sm hover:shadow transition-shadow">
                                     <GripVertical className="text-gray-300 w-5 h-5 cursor-move" />
-                                    {/* Thumbnail Placeholder */}
-                                    <div className="w-16 h-16 bg-gray-100 rounded overflow-hidden flex-shrink-0 flex items-center justify-center">
+                                    <div className="w-16 h-16 bg-gray-100 rounded overflow-hidden shrink-0 flex items-center justify-center">
                                         <span className="text-xs text-gray-400 font-bold">Plan</span>
                                     </div>
 
@@ -465,7 +801,19 @@ export default function EditTemplePage({ params }: { params: { id: string } }) {
 
                                     <div className="flex gap-2">
                                         <Button size="sm" variant="outline" onClick={() => { setEditingPlan(plan); setIsPlanModalOpen(true); }}>編集</Button>
-                                        <Button size="sm" variant="outline" className="border-red-200 text-red-600 hover:bg-red-50" onClick={() => { if (confirm("削除しますか？")) { Store.deletePlan(plan.id); setPlans(Store.getPlans(temple.id)); } }}>削除</Button>
+                                        <Button size="sm" variant="outline" className="border-red-200 text-red-600 hover:bg-red-50" onClick={() => { 
+                                            if (confirm("削除しますか？")) { 
+                                                fetch(`/api/plans/${plan.id}`, { method: 'DELETE' })
+                                                    .then(res => {
+                                                        if (!res.ok) throw new Error("Failed to delete plan");
+                                                        // Re-fetch plans
+                                                        return fetch(`/api/plans?templeId=${temple.id}`);
+                                                    })
+                                                    .then(res => res.json())
+                                                    .then(data => setPlans(data))
+                                                    .catch(err => alert("削除に失敗しました"));
+                                            } 
+                                        }}>削除</Button>
                                     </div>
                                 </div>
                             ))}
@@ -496,39 +844,54 @@ export default function EditTemplePage({ params }: { params: { id: string } }) {
     const renderSEOTab = () => {
         const seo = temple.seo;
         const updateSeo = (updates: Partial<typeof seo>) => setTemple({ ...temple, seo: { ...seo, ...updates } });
-
         return (
-            <div className="space-y-12 max-w-4xl animate-in fade-in">
+            <div className="space-y-10 max-w-4xl animate-in fade-in">
+                <div className="bg-gradient-to-r from-violet-50 to-indigo-50 border border-violet-200 rounded-2xl p-5 flex items-center justify-between">
+                    <div>
+                        <p className="font-bold text-violet-800 flex items-center gap-2"><Sparkles className="w-4 h-4" /> SEO情報をAIで一括生成</p>
+                        <p className="text-xs text-violet-600 mt-0.5">施設名・宗派・特徴をもとに、タイトル・説明・キーワードを自動生成します</p>
+                    </div>
+                    <button type="button" onClick={() => generateAI('seo')} disabled={aiLoading['seo']} className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-violet-500 to-indigo-500 text-white font-bold shadow hover:shadow-md transition-all disabled:opacity-60 shrink-0 ml-4">
+                        {aiLoading['seo'] ? <Loader2 className="w-4 h-4 animate-spin" /> : <Sparkles className="w-4 h-4" />} AI一括生成
+                    </button>
+                </div>
                 <div className="space-y-6">
-                    <h3 className="font-bold text-lg border-b pb-2 flex items-center gap-2"><Search className="w-5 h-5" /> 基本情報設定</h3>
-                    <div className="space-y-4">
-                        <div><label className="block text-sm font-bold text-gray-700 mb-1">A. ページタイトル (title)</label><input className="w-full border p-2.5 rounded-lg" placeholder="未入力時: 自動生成されます ({市区町村}で探す...)" value={seo.title || ''} onChange={e => updateSeo({ title: e.target.value })} /><p className="text-xs text-gray-500 mt-1">※30文字程度推奨。未入力の場合は施設名やエリアから自動生成されます。</p></div>
-                        <div><label className="block text-sm font-bold text-gray-700 mb-1">B. ディスクリプション (description)</label><textarea className="w-full border p-2.5 rounded-lg h-24" placeholder="未入力時: 施設概要から自動生成されます" value={seo.description || ''} onChange={e => updateSeo({ description: e.target.value })} /><p className="text-xs text-gray-500 mt-1">※120文字程度推奨。検索結果のスニペットに表示されます。</p></div>
+                    <h3 className="font-bold text-lg border-b pb-2 flex items-center gap-2"><Search className="w-5 h-5" /> 基本SEO設定</h3>
+                    <div className="space-y-5">
+                        <div>
+                            <label className="block text-sm font-bold text-gray-700 mb-1">ページタイトル</label>
+                            <input className="w-full border p-2.5 rounded-lg" placeholder="未入力時: 施設名やエリアから自動生成" value={seo.title || ''} onChange={e => updateSeo({ title: e.target.value })} />
+                            <div className="flex justify-between mt-1"><p className="text-xs text-gray-500">32文字以内推奨</p><span className={`text-xs font-bold ${(seo.title || '').length > 32 ? 'text-red-500' : 'text-gray-400'}`}>{(seo.title || '').length}文字</span></div>
+                        </div>
+                        <div>
+                            <label className="block text-sm font-bold text-gray-700 mb-1">ディスクリプション</label>
+                            <textarea className="w-full border p-2.5 rounded-lg h-24" placeholder="未入力時: 施設概要から自動生成" value={seo.description || ''} onChange={e => updateSeo({ description: e.target.value })} />
+                            <div className="flex justify-between mt-1"><p className="text-xs text-gray-500">120文字以内推奨</p><span className={`text-xs font-bold ${(seo.description || '').length > 120 ? 'text-red-500' : (seo.description || '').length > 100 ? 'text-amber-500' : 'text-gray-400'}`}>{(seo.description || '').length}文字</span></div>
+                        </div>
                     </div>
                 </div>
-
                 <div className="space-y-6">
-                    <h3 className="font-bold text-lg border-b pb-2 flex items-center gap-2"><Sparkles className="w-5 h-5 text-warm-gold" /> AI検索対策 (SGE/AI Overview)</h3>
-                    <div className="bg-yellow-50 border border-yellow-200 p-4 rounded-lg mb-4">
-                        <div className="flex items-start gap-2"><HelpCircle className="w-5 h-5 text-yellow-600 mt-0.5" /><div className="text-sm text-yellow-800"><p className="font-bold mb-1">AI要約（Summary）の書き方ガイド</p><p className="mb-2">AI Overviewや生成AI検索での引用率を高めるため、以下の構成を推奨します。</p><ol className="list-decimal list-inside space-y-1 ml-2"><li><span className="font-bold">結論</span>: この施設の最大の特徴は何か（例：都心にある永代供養墓）</li><li><span className="font-bold">理由</span>: なぜおすすめなのか（例：アクセスが良く、バリアフリーだから）</li><li><span className="font-bold">補足</span>: 具体的な設備やプラン（例：ペット可、樹木葬あり）</li></ol><p className="mt-2 text-xs opacity-80">※専門用語には簡単な説明を加えてください。</p></div></div>
+                    <h3 className="font-bold text-lg border-b pb-2 flex items-center gap-2"><Sparkles className="w-5 h-5 text-warm-gold" /> AI検索対策（SGE / AI Overview）</h3>
+                    <div className="bg-yellow-50 border border-yellow-200 p-4 rounded-lg"><div className="flex items-start gap-2"><HelpCircle className="w-5 h-5 text-yellow-600 mt-0.5" /><div className="text-sm text-yellow-800"><p className="font-bold mb-1">AI要約（Summary）の書き方</p><ol className="list-decimal list-inside space-y-1 ml-2"><li><span className="font-bold">結論</span>: 施設の最大の特徴</li><li><span className="font-bold">理由</span>: なぜおすすめか</li><li><span className="font-bold">補足</span>: 具体的な設備・プラン</li></ol></div></div></div>
+                    <div>
+                        <label className="block text-sm font-bold text-gray-700 mb-1">SEO要約 <span className="text-red-500 font-normal text-xs ml-2">※AI検索での引用率に影響</span></label>
+                        <textarea className="w-full border p-4 rounded-lg h-40 font-medium leading-relaxed" placeholder="例：〇〇霊園は、△△市にある..." value={seo.summary || ''} onChange={e => updateSeo({ summary: e.target.value })} />
+                        <div className="flex justify-between mt-1"><p className="text-xs text-gray-500">目安: 300〜400文字</p><p className={`text-xs font-bold ${(seo.summary || '').length > 400 ? 'text-red-500' : 'text-gray-400'}`}>{(seo.summary || '').length}文字</p></div>
                     </div>
-                    <div><label className="block text-sm font-bold text-gray-700 mb-1">C. SEO要約 (seoSummary) <span className="text-red-500 font-normal text-xs ml-2">※重要</span></label><textarea className="w-full border p-4 rounded-lg h-40 font-medium leading-relaxed" placeholder="例：〇〇霊園は、△△市にある自然豊かな公園墓地です。..." value={seo.summary || ''} onChange={e => updateSeo({ summary: e.target.value })} /><div className="flex justify-between mt-1"><p className="text-xs text-gray-500">目安: 300〜400文字</p><p className={`text-xs font-bold ${(seo.summary || '').length > 400 ? 'text-red-500' : 'text-gray-400'}`}>{(seo.summary || '').length}文字</p></div></div>
                 </div>
-
                 <div className="space-y-6">
                     <h3 className="font-bold text-lg border-b pb-2 flex items-center gap-2"><Tag className="w-5 h-5" /> キーワード設定</h3>
                     <div className="grid md:grid-cols-2 gap-8">
-                        <div><label className="block text-sm font-bold text-gray-700 mb-2">D. 主SEOキーワード</label><TagInput tags={seo.primaryKeywords} onChange={tags => updateSeo({ primaryKeywords: tags })} placeholder="例: 東京 永代供養 (Enterで追加)" /><p className="text-xs text-gray-500 mt-1">※最も重視する検索キーワードを3〜5個設定</p></div>
-                        <div><label className="block text-sm font-bold text-gray-700 mb-2">E. 補助SEOキーワード</label><TagInput tags={seo.secondaryKeywords} onChange={tags => updateSeo({ secondaryKeywords: tags })} placeholder="例: ペット可 (Enterで追加)" /><p className="text-xs text-gray-500 mt-1">※特徴や設備に関連するキーワードを設定</p></div>
+                        <div><label className="block text-sm font-bold text-gray-700 mb-2">主SEOキーワード</label><TagInput tags={seo.primaryKeywords} onChange={tags => updateSeo({ primaryKeywords: tags })} placeholder="例: 東京 永代供養 (Enterで追加)" /><p className="text-xs text-gray-500 mt-1">最も重視するキーワードを3〜5個</p></div>
+                        <div><label className="block text-sm font-bold text-gray-700 mb-2">補助SEOキーワード</label><TagInput tags={seo.secondaryKeywords} onChange={tags => updateSeo({ secondaryKeywords: tags })} placeholder="例: ペット可 (Enterで追加)" /><p className="text-xs text-gray-500 mt-1">特徴・設備に関連するキーワード</p></div>
                     </div>
                 </div>
-
                 <div className="space-y-6">
                     <h3 className="font-bold text-lg border-b pb-2 flex items-center gap-2"><Code className="w-5 h-5" /> テクニカル設定</h3>
                     <div className="grid md:grid-cols-2 gap-6 bg-gray-50 p-6 rounded-xl border border-gray-200">
-                        <div><label className="block text-sm font-bold text-gray-700 mb-2">F. 構造化データ出力</label><div className="flex items-center gap-3"><button onClick={() => updateSeo({ structuredDataEnabled: !seo.structuredDataEnabled })} className={`relative w-12 h-6 rounded-full transition-colors ${seo.structuredDataEnabled ? 'bg-primary' : 'bg-gray-300'}`}><span className={`absolute top-1 left-1 bg-white w-4 h-4 rounded-full transition-transform ${seo.structuredDataEnabled ? 'translate-x-6' : ''}`} /></button><span className="font-bold text-sm">{seo.structuredDataEnabled ? '有効 (出力する)' : '無効'}</span></div><p className="text-xs text-gray-500 mt-2">JSON-LD形式で構造化データを出力します。</p></div>
-                        <div><label className="block text-sm font-bold text-gray-700 mb-2">G. FAQ構造化ソース</label><select className="w-full border p-2 rounded bg-white" value={seo.faqSource} onChange={e => updateSeo({ faqSource: e.target.value as any })}><option value="facilityFaq">施設の特徴から生成</option><option value="globalFaq">共通FAQを使用</option><option value="none">出力しない</option></select></div>
-                        <div className="md:col-span-2 border-t pt-4"><label className="block text-sm font-bold text-gray-700 mb-2">H. インデックス制御 (robots)</label><div className="flex gap-4"><label className="flex items-center gap-2 cursor-pointer"><input type="radio" name="indexControl" checked={seo.indexControl === 'index'} onChange={() => updateSeo({ indexControl: 'index' })} /><span className="font-bold">index (検索結果に表示)</span></label><label className="flex items-center gap-2 cursor-pointer"><input type="radio" name="indexControl" checked={seo.indexControl === 'noindex'} onChange={() => updateSeo({ indexControl: 'noindex' })} /><span className="font-bold text-red-600">noindex (表示しない)</span></label></div></div>
+                        <div><label className="block text-sm font-bold text-gray-700 mb-2">構造化データ出力</label><div className="flex items-center gap-3"><button type="button" onClick={() => updateSeo({ structuredDataEnabled: !seo.structuredDataEnabled })} className={`relative w-12 h-6 rounded-full transition-colors ${seo.structuredDataEnabled ? 'bg-primary' : 'bg-gray-300'}`}><span className={`absolute top-1 left-1 bg-white w-4 h-4 rounded-full transition-transform ${seo.structuredDataEnabled ? 'translate-x-6' : ''}`} /></button><span className="font-bold text-sm">{seo.structuredDataEnabled ? '有効' : '無効'}</span></div></div>
+                        <div><label className="block text-sm font-bold text-gray-700 mb-2">FAQソース</label><select className="w-full border p-2 rounded bg-white" value={seo.faqSource} onChange={e => updateSeo({ faqSource: e.target.value as any })}><option value="facilityFaq">施設の特徴から生成</option><option value="globalFaq">共通FAQを使用</option><option value="none">出力しない</option></select></div>
+                        <div className="md:col-span-2 border-t pt-4"><label className="block text-sm font-bold text-gray-700 mb-2">インデックス制御 (robots)</label><div className="flex gap-4"><label className="flex items-center gap-2 cursor-pointer"><input type="radio" name="indexControl" checked={seo.indexControl === 'index'} onChange={() => updateSeo({ indexControl: 'index' })} /><span className="font-bold">index（検索結果に表示）</span></label><label className="flex items-center gap-2 cursor-pointer"><input type="radio" name="indexControl" checked={seo.indexControl === 'noindex'} onChange={() => updateSeo({ indexControl: 'noindex' })} /><span className="font-bold text-red-600">noindex（表示しない）</span></label></div></div>
                     </div>
                 </div>
             </div>
@@ -548,7 +911,7 @@ export default function EditTemplePage({ params }: { params: { id: string } }) {
             </div>
 
             <div className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden flex min-h-[600px]">
-                <div className="w-56 bg-gray-50 border-r border-gray-100 flex-shrink-0 pt-4">
+                <div className="w-56 bg-gray-50 border-r border-gray-100 shrink-0 pt-4">
                     {[
                         { id: 'basic', label: '基本情報', icon: Info },
                         { id: 'access', label: 'アクセス', icon: MapPin },

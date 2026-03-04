@@ -4,6 +4,7 @@ import { prisma } from "../../../../lib/prisma";
 import { CheckCircle2, ChevronLeft, MapPin, Phone, Mail, Calendar, User, FileText, Globe, Building } from "lucide-react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { InquiryActions } from "./InquiryActions";
 
 const BONE_STATUS_LABELS: Record<string, string> = {
     exist: 'あり',
@@ -52,8 +53,13 @@ export default async function InquiryDetail(props: { params: Promise<{ id: strin
                                 <Building className="w-3 h-3" /> 事業者
                             </span>
                         )}
-                        <span className="bg-red-100 text-red-600 px-3 py-1 rounded-full text-sm font-bold flex items-center gap-1">
-                            {inquiry.status === 'new' ? '新着' : inquiry.status}
+                        <span className={`px-3 py-1 rounded-full text-sm font-bold ${
+                            inquiry.status === 'new' ? 'bg-red-100 text-red-600' :
+                            inquiry.status === 'inProgress' ? 'bg-yellow-100 text-yellow-700' :
+                            inquiry.status === 'done' ? 'bg-green-100 text-green-700' :
+                            'bg-gray-100 text-gray-600'
+                        }`}>
+                            {inquiry.status === 'new' ? '新着' : inquiry.status === 'inProgress' ? '対応中' : inquiry.status === 'done' ? '完了' : inquiry.status}
                         </span>
                     </div>
                 </div>
@@ -286,7 +292,17 @@ export default async function InquiryDetail(props: { params: Promise<{ id: strin
                         </div>
                     </div>
                 </div>
-            </div >
-        </div >
+            </div>
+
+            {/* ステータス変更・管理者メモ */}
+            <InquiryActions
+                inquiryId={inquiry.id}
+                initialStatus={inquiry.status}
+                initialAdminNotes={inquiry.adminNotes}
+                contactEmail={(inquiry.user as any)?.email || null}
+                contactName={(inquiry.user as any)?.name || inquiry.contactName || null}
+                templeNameSnapshot={inquiry.templeNameSnapshot || null}
+            />
+        </div>
     );
 }

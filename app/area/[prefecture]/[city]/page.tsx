@@ -1,11 +1,27 @@
-import { Store } from "@/lib/store";
+import { prisma } from "@/lib/prisma";
 import { notFound } from "next/navigation";
+import type { Metadata } from "next";
 import { Navbar } from "../../../components/layout/Navbar";
 import { Footer } from "../../../components/layout/Footer";
 import { AreaHero } from "../../../components/features/area/AreaHero";
 import { AreaFilter } from "../../../components/features/area/AreaFilter";
 import { AreaTempleList } from "../../../components/features/area/AreaTempleList";
 import { AreaNav } from "../../../components/features/area/AreaNav";
+
+const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://seiren-ohaka-navi.vercel.app";
+
+export async function generateMetadata(
+    props: { params: Promise<{ prefecture: string; city: string }> }
+): Promise<Metadata> {
+    const { prefecture, city } = await props.params;
+    const decodedCity = decodeURIComponent(city);
+    const decodedPref = decodeURIComponent(prefecture);
+    return {
+        title: `${decodedCity}（${decodedPref}）の墓地・永代供養を探す | 清蓮`,
+        description: `${decodedCity}（${decodedPref}）の墓地・永代供養・樹木葵・納骨堂一覧。地域密着の専門スタッフが無料サポート。`,
+        alternates: { canonical: `${BASE_URL}/area/${prefecture}/${city}` },
+    };
+}
 
 export default async function CityPage(props: { params: Promise<{ prefecture: string; city: string }>; searchParams: Promise<{ [key: string]: string | string[] | undefined }> }) {
     const params = await props.params;
@@ -14,7 +30,13 @@ export default async function CityPage(props: { params: Promise<{ prefecture: st
     const decodedCity = decodeURIComponent(params.city);
 
     // Get count for Hero
-    const temples = Store.getTemples().filter(t => t.prefecture === decodedPrefecture && t.cityName === decodedCity);
+    const count = await prisma.temple.count({
+        where: {
+            prefecture: decodedPrefecture,
+            cityName: decodedCity,
+            status: 'public'
+        }
+    });
 
     // If no temples in city, maybe 404? Or just show empty list? 
     // Request says "Modal only shows cities with temples", so theoretically user shouldn't land here if empty unless direct URL.
@@ -28,7 +50,7 @@ export default async function CityPage(props: { params: Promise<{ prefecture: st
                 <AreaHero
                     prefecture={decodedPrefecture}
                     city={decodedCity}
-                    count={temples.length}
+                    count={count}
                 />
 
                 <div className="max-w-7xl mx-auto px-4 py-8 md:py-12">
