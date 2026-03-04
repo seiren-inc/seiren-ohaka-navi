@@ -17,9 +17,9 @@ export default function IkotsuDiamondPage() {
             {
                 "@type": "BreadcrumbList",
                 "itemListElement": [
-                    { "@type": "ListItem", "position": 1, "name": "BEYOND GRAVE", "item": "https://beyond-grave.com/" },
-                    { "@type": "ListItem", "position": 2, "name": "Choices", "item": "https://beyond-grave.com/choices" },
-                    { "@type": "ListItem", "position": 3, "name": "遺骨ダイヤモンド", "item": "https://beyond-grave.com/choices/ikotsu-diamond" }
+                    { "@type": "ListItem", "position": 1, "name": "清蓮（Seiren）", "item": "https://seiren-ohaka-navi.vercel.app" },
+                    { "@type": "ListItem", "position": 2, "name": "Choices", "item": "https://seiren-ohaka-navi.vercel.app/choices" },
+                    { "@type": "ListItem", "position": 3, "name": "遺骨ダイヤモンド", "item": "https://seiren-ohaka-navi.vercel.app/choices/ikotsu-diamond" }
                 ]
             },
             {

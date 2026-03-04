@@ -7,6 +7,7 @@ import { AreaHero } from "../../components/features/area/AreaHero";
 import { AreaFilter } from "../../components/features/area/AreaFilter";
 import { AreaTempleList } from "../../components/features/area/AreaTempleList";
 import { AreaNav } from "../../components/features/area/AreaNav";
+import { JsonLd } from "../../components/seo/JsonLd";
 
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://seiren-ohaka-navi.vercel.app";
 
@@ -43,8 +44,18 @@ export default async function AreaPage(props: { params: Promise<{ prefecture: st
         }
     });
 
+    const breadcrumbLd = {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "ホーム", "item": BASE_URL },
+            { "@type": "ListItem", "position": 2, "name": `${decodedPrefecture}の墓地・霊園`, "item": `${BASE_URL}/area/${params.prefecture}` },
+        ],
+    };
+
     return (
         <div className="min-h-screen flex flex-col bg-white-smoke">
+            <JsonLd data={breadcrumbLd} />
             <Navbar />
 
             <main className="flex-grow pt-20">

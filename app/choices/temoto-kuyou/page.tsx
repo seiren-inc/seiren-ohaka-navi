@@ -18,9 +18,9 @@ export default function TemotoKuyouPage() {
             {
                 "@type": "BreadcrumbList",
                 "itemListElement": [
-                    { "@type": "ListItem", "position": 1, "name": "BEYOND GRAVE", "item": "https://beyond-grave.com/" },
-                    { "@type": "ListItem", "position": 2, "name": "Choices", "item": "https://beyond-grave.com/choices" },
-                    { "@type": "ListItem", "position": 3, "name": "自宅供養", "item": "https://beyond-grave.com/choices/temoto-kuyou" }
+                    { "@type": "ListItem", "position": 1, "name": "清蓮（Seiren）", "item": "https://seiren-ohaka-navi.vercel.app" },
+                    { "@type": "ListItem", "position": 2, "name": "Choices", "item": "https://seiren-ohaka-navi.vercel.app/choices" },
+                    { "@type": "ListItem", "position": 3, "name": "自宅供養", "item": "https://seiren-ohaka-navi.vercel.app/choices/temoto-kuyou" }
                 ]
             },
             {
