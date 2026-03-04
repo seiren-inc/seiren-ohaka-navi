@@ -19,18 +19,25 @@ export default function Home() {
 
       <main className="grow pt-[72px]">
         {/* 1. HERO SECTION & SEARCH */}
-        <section className="relative min-h-[85vh] flex items-center justify-center bg-bg-muted overflow-hidden py-12 md:py-20 lg:py-24">
-          <div className="absolute inset-0 bg-white/40 backdrop-blur-[2px] z-0" />
+        <section
+          className="relative min-h-[85vh] flex items-center justify-center overflow-hidden py-12 md:py-20 lg:py-24"
+          style={{
+            backgroundImage: "url('/images/hero-memorial-garden.png')",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+          }}
+        >
+          <div className="absolute inset-0 bg-black/40 z-0" />
 
           <div className="relative z-10 w-full max-w-[1280px] mx-auto px-4 flex flex-col items-center">
             {/* Catch Copy */}
             <div className="text-center mb-12 animate-fade-in">
               <h1 className="sr-only">清蓮｜お墓探し・永代供養・墓じまいの無料相談</h1>
-              <h2 className="font-serif text-3xl md:text-5xl font-bold text-gray-800 leading-tight mb-6">
+              <h2 className="font-serif text-3xl md:text-5xl font-bold text-white leading-tight mb-6 hero-text-shadow">
                 お墓探し・墓じまいで迷ったら<br />
-                <span className="text-primary">清蓮</span>のお墓探しナビ
+                <span className="text-amber-200">清蓮</span>のお墓探しナビ
               </h2>
-              <p className="text-gray-600 text-sm md:text-lg tracking-wide max-w-2xl mx-auto leading-relaxed">
+              <p className="text-white/90 text-sm md:text-lg tracking-wide max-w-2xl mx-auto leading-relaxed hero-text-shadow">
                 比較も相談も、供養の専門家が中立の立場でご案内します。<br className="hidden sm:block" />
                 あなたとご家族にとって、最適な選択を一緒に探しませんか？
               </p>
@@ -51,7 +58,7 @@ export default function Home() {
             
             {/* Consult Guidance */}
             <div className="mt-12 text-center animate-fade-in" style={{ animationDelay: "0.4s" }}>
-              <p className="text-gray-500 text-sm mb-3">＼ どの供養がいいか迷っている方へ ／</p>
+              <p className="text-white/80 text-sm mb-3 hero-text-shadow">＼ どの供養がいいか迷っている方へ ／</p>
               <div className="flex flex-wrap justify-center gap-3">
                 <Link href="/consult/grave-search" className="inline-flex items-center px-5 py-2.5 bg-primary/10 text-primary rounded-full text-sm font-bold hover:bg-primary/20 transition-colors">
                   まずは専門家に相談する
