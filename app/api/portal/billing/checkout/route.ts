@@ -7,12 +7,33 @@ export const dynamic = 'force-dynamic';
 
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://seiren-ohaka-navi.vercel.app';
 
-export async function POST(_req: NextRequest) {
+const PRICE_ID_MAP: Record<string, string | undefined> = {
+    standard: process.env.STRIPE_STANDARD_PRICE_ID,
+    sponsor: process.env.STRIPE_SPONSOR_PRICE_ID,
+};
+
+export async function POST(req: NextRequest) {
     try {
         const cookieStore = await cookies();
         const email = cookieStore.get('portal_session')?.value;
         if (!email) {
             return NextResponse.json({ error: '未ログインです。' }, { status: 401 });
+        }
+
+        // body から planType を取得（未指定は 'standard'）
+        let planType = 'standard';
+        try {
+            const body = await req.json();
+            if (body?.planType && PRICE_ID_MAP[body.planType]) {
+                planType = body.planType;
+            }
+        } catch {
+            // body なし or JSON でない場合は standard にフォールバック
+        }
+
+        const priceId = PRICE_ID_MAP[planType];
+        if (!priceId) {
+            return NextResponse.json({ error: '指定されたプランの Price ID が未設定です。' }, { status: 500 });
         }
 
         const templeUser = await prisma.templeUser.findUnique({
@@ -23,7 +44,7 @@ export async function POST(_req: NextRequest) {
             return NextResponse.json({ error: 'ユーザーが見つかりません。' }, { status: 404 });
         }
 
-        // すでに standard 以上のプランであればスキップ
+        // すでに同等以上のプランであればスキップ
         if (templeUser.temple.planType !== 'free') {
             return NextResponse.json({ error: 'すでに有料プランに加入済みです。' }, { status: 400 });
         }
@@ -50,15 +71,11 @@ export async function POST(_req: NextRequest) {
         const session = await stripe.checkout.sessions.create({
             customer: customerId,
             mode: 'subscription',
-            line_items: [
-                {
-                    price: process.env.STRIPE_STANDARD_PRICE_ID!,
-                    quantity: 1,
-                },
-            ],
+            line_items: [{ price: priceId, quantity: 1 }],
             success_url: `${BASE_URL}/portal/dashboard?payment=success`,
             cancel_url: `${BASE_URL}/portal/dashboard?payment=cancel`,
             metadata: {
+                planType,
                 templeUserId: templeUser.id,
                 templeId: templeUser.templeId,
             },

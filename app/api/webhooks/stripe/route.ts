@@ -35,12 +35,14 @@ export async function POST(req: NextRequest) {
             case 'checkout.session.completed': {
                 const session = event.data.object as Stripe.Checkout.Session;
                 const templeId = session.metadata?.templeId;
-                if (templeId) {
+                const planType = session.metadata?.planType || 'standard';
+                const validPlans = ['standard', 'sponsor'];
+                if (templeId && validPlans.includes(planType)) {
                     await prisma.temple.update({
                         where: { id: templeId },
-                        data: { planType: 'standard' },
+                        data: { planType },
                     });
-                    console.log(`[webhook] planType updated to standard: templeId=${templeId}`);
+                    console.log(`[webhook] planType updated to ${planType}: templeId=${templeId}`);
                 }
                 break;
             }
