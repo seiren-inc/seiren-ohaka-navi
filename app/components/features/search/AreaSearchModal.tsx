@@ -28,7 +28,7 @@ export function AreaSearchModal({ isOpen, onClose, initialPrefecture }: AreaSear
             // Aggregate on open
             fetch('/api/temples?status=public')
                 .then(res => res.json())
-                .then((temples: any[]) => {
+                .then((temples: { prefecture: string; cityName: string }[]) => {
                     const newCounts: Record<string, Record<string, number>> = {};
 
                     temples.forEach(t => {

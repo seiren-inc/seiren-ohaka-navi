@@ -61,6 +61,9 @@ export default function EditTemplePage({ params }: { params: { id: string } }) {
     console.log("Edit Page Rendered. ImageUploader should be visible.");
     const [editingPlan, setEditingPlan] = useState<Partial<Plan>>({});
     const [planModalTab, setPlanModalTab] = useState<'basic' | 'specs' | 'extra'>('basic');
+    // AI生成ヘルパー (Hooks は early return より前に宣言必須)
+    const [aiLoading, setAiLoading] = useState<Record<string, boolean>>({});
+    const [catchphraseCandidates, setCatchphraseCandidates] = useState<string[]>([]);
 
     // Derived Cities for suggestion (Simplified for now, as fetching all temples here is heavy)
     const citySuggestions = useMemo(() => {
@@ -544,9 +547,6 @@ export default function EditTemplePage({ params }: { params: { id: string } }) {
         </div>
     );
 
-    // AI生成ヘルパー
-    const [aiLoading, setAiLoading] = useState<Record<string, boolean>>({});
-    const [catchphraseCandidates, setCatchphraseCandidates] = useState<string[]>([]);
 
     const generateAI = async (type: 'catchphrase' | 'overview' | 'features' | 'seo') => {
         if (!temple.name) { alert('施設名を入力してからAI生成してください'); return; }
