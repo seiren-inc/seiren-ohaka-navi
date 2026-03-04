@@ -33,11 +33,11 @@ export default function Home() {
             {/* Catch Copy */}
             <div className="text-center mb-12 animate-fade-in">
               <h1 className="sr-only">清蓮｜お墓探し・永代供養・墓じまいの無料相談</h1>
-              <h2 className="font-serif text-3xl md:text-5xl font-bold text-white leading-tight mb-6 hero-text-shadow">
+              <h2 className="font-serif text-[25px] md:text-5xl font-bold text-white leading-tight mb-6 hero-text-shadow">
                 お墓探し・墓じまいで迷ったら<br />
                 <span className="text-amber-200">清蓮</span>のお墓探しナビ
               </h2>
-              <p className="text-white/90 text-sm md:text-lg tracking-wide max-w-2xl mx-auto leading-relaxed hero-text-shadow">
+              <p className="text-white/90 text-[18px] md:text-lg tracking-wide max-w-2xl mx-auto leading-relaxed hero-text-shadow">
                 比較も相談も、供養の専門家が中立の立場でご案内します。<br className="hidden sm:block" />
                 あなたとご家族にとって、最適な選択を一緒に探しませんか？
               </p>
