@@ -6,6 +6,14 @@ import Image from "next/image";
 import { Button } from "../ui/Button";
 import { Phone, Menu, X, ChevronDown, ExternalLink } from "lucide-react";
 
+const KUYOU_LINKS = [
+    { label: "永代供養墓", description: "継承不要・お寺が供養を続ける", href: "/choices/eitai-kuyou" },
+    { label: "樹木葬", description: "自然に還る、新しい供養のカタチ", href: "/choices/jumokusou" },
+    { label: "納骨堂", description: "屋内で管理しやすいお墓", href: "/choices/noukotsudou" },
+    { label: "一般墓（墓石）", description: "従来型のお墓を探す", href: "/choices/general" },
+    { label: "供養の知識コラム", description: "選び方・費用・手続きを学ぶ", href: "/guide" },
+];
+
 const RELATED_SERVICES = [
     {
         label: "散骨クルーズ",
@@ -29,7 +37,9 @@ const RELATED_SERVICES = [
 
 export function Navbar() {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+    const [kuyouOpen, setKuyouOpen] = useState(false);
     const [serviceOpen, setServiceOpen] = useState(false);
+    const kuyouRef = useRef<HTMLDivElement>(null);
     const serviceRef = useRef<HTMLDivElement>(null);
 
     const navLinkClass =
@@ -58,14 +68,68 @@ export function Navbar() {
                             墓地を探す
                         </Link>
 
-                        {/* 供養の知識 */}
-                        <Link href="/guide" className={navLinkClass}>
-                            供養の知識
-                        </Link>
+                        {/* 供養のカタチ ドロップダウン */}
+                        <div
+                            ref={kuyouRef}
+                            className="relative"
+                            onMouseEnter={() => setKuyouOpen(true)}
+                            onMouseLeave={() => setKuyouOpen(false)}
+                        >
+                            <button
+                                className={`${navLinkClass} flex items-center gap-1 pb-0`}
+                                onClick={() => setKuyouOpen(v => !v)}
+                                aria-expanded={kuyouOpen}
+                            >
+                                供養のカタチ
+                                <ChevronDown
+                                    className={`w-4 h-4 transition-transform duration-200 ${kuyouOpen ? "rotate-180" : ""}`}
+                                />
+                            </button>
 
-                        {/* 会社概要 */}
-                        <Link href="/about/company" className={navLinkClass}>
-                            会社概要
+                            {/* Dropdown */}
+                            <div
+                                className={`absolute top-full left-1/2 -translate-x-1/2 mt-3 w-64 bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden transition-all duration-200 origin-top ${
+                                    kuyouOpen
+                                        ? "opacity-100 scale-y-100 pointer-events-auto"
+                                        : "opacity-0 scale-y-95 pointer-events-none"
+                                }`}
+                            >
+                                {/* 三角 */}
+                                <div className="absolute -top-1.5 left-1/2 -translate-x-1/2 w-3 h-3 bg-white border-l border-t border-gray-100 rotate-45" />
+                                <div className="py-2">
+                                    {KUYOU_LINKS.map((item) => (
+                                        <Link
+                                            key={item.href}
+                                            href={item.href}
+                                            className="flex items-start gap-3 px-4 py-3 hover:bg-gray-50 transition-colors group"
+                                            onClick={() => setKuyouOpen(false)}
+                                        >
+                                            <div className="flex-1 min-w-0">
+                                                <span className="flex items-center gap-1 font-bold text-sm text-gray-800 group-hover:text-primary transition-colors">
+                                                    {item.label}
+                                                </span>
+                                                <span className="text-xs text-gray-400 mt-0.5 block">{item.description}</span>
+                                            </div>
+                                        </Link>
+                                    ))}
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* 墓じまい・改葬 */}
+                        <a
+                            href="https://www.ohakajimai-navi.jp/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className={`${navLinkClass} flex items-center gap-1`}
+                        >
+                            墓じまい・改葬
+                            <ExternalLink className="w-3 h-3 opacity-50" />
+                        </a>
+
+                        {/* よくある質問 */}
+                        <Link href="/faq" className={navLinkClass}>
+                            よくある質問
                         </Link>
 
                         {/* 関連サービス ドロップダウン */}
@@ -123,10 +187,13 @@ export function Navbar() {
                     <div className="flex items-center gap-4">
                         <a
                             href="tel:0120-000-000"
-                            className="hidden lg:flex items-center gap-2 text-primary font-bold text-lg hover:opacity-80 transition-opacity"
+                            className="hidden lg:flex items-center gap-2 text-primary font-bold text-base hover:opacity-80 transition-opacity"
                         >
-                            <Phone className="w-5 h-5 fill-current" />
-                            <span>0120-000-000</span>
+                            <Phone className="w-4 h-4 fill-current" />
+                            <span className="text-sm leading-tight">
+                                <span className="block text-[10px] font-normal text-gray-400 tracking-wider">無料電話相談</span>
+                                0120-000-000
+                            </span>
                         </a>
 
                         <Link href="/consult">
@@ -150,24 +217,54 @@ export function Navbar() {
             {/* Mobile Navigation Menu */}
             <div
                 className={`md:hidden absolute top-[72px] left-0 w-full bg-white border-b border-gray-100 shadow-lg transition-all duration-300 ease-in-out overflow-hidden ${
-                    isMobileMenuOpen ? "max-h-[600px] opacity-100 pointer-events-auto" : "max-h-0 opacity-0 pointer-events-none"
+                    isMobileMenuOpen ? "max-h-[700px] opacity-100 pointer-events-auto" : "max-h-0 opacity-0 pointer-events-none"
                 }`}
             >
                 <div className="flex flex-col px-4 py-4 space-y-1">
-                    {[
-                        { href: "/search", label: "墓地を探す" },
-                        { href: "/guide", label: "供養の知識" },
-                        { href: "/about/company", label: "会社概要" },
-                    ].map((item) => (
-                        <Link
-                            key={item.href}
-                            href={item.href}
-                            className="text-gray-700 font-medium py-3 border-b border-gray-50 hover:text-primary transition-colors block"
-                            onClick={() => setIsMobileMenuOpen(false)}
-                        >
-                            {item.label}
-                        </Link>
-                    ))}
+                    {/* 墓地を探す */}
+                    <Link
+                        href="/search"
+                        className="text-gray-700 font-medium py-3 border-b border-gray-50 hover:text-primary transition-colors block"
+                        onClick={() => setIsMobileMenuOpen(false)}
+                    >
+                        墓地を探す
+                    </Link>
+
+                    {/* 供養のカタチ（モバイル：展開リスト） */}
+                    <div className="border-b border-gray-50">
+                        <p className="text-xs font-bold text-gray-400 uppercase tracking-widest pt-3 pb-2">供養のカタチ</p>
+                        {KUYOU_LINKS.map((item) => (
+                            <Link
+                                key={item.href}
+                                href={item.href}
+                                className="flex items-center justify-between py-2.5 hover:text-primary transition-colors"
+                                onClick={() => setIsMobileMenuOpen(false)}
+                            >
+                                <span className="font-medium text-sm text-gray-700">{item.label}</span>
+                            </Link>
+                        ))}
+                    </div>
+
+                    {/* 墓じまい・改葬 */}
+                    <a
+                        href="https://www.ohakajimai-navi.jp/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center justify-between py-3 border-b border-gray-50 hover:text-primary transition-colors"
+                        onClick={() => setIsMobileMenuOpen(false)}
+                    >
+                        <span className="font-medium text-gray-700">墓じまい・改葬</span>
+                        <ExternalLink className="w-3.5 h-3.5 text-gray-400" />
+                    </a>
+
+                    {/* よくある質問 */}
+                    <Link
+                        href="/faq"
+                        className="text-gray-700 font-medium py-3 border-b border-gray-50 hover:text-primary transition-colors block"
+                        onClick={() => setIsMobileMenuOpen(false)}
+                    >
+                        よくある質問
+                    </Link>
 
                     {/* 関連サービス（モバイル） */}
                     <div className="border-b border-gray-50">
@@ -198,7 +295,10 @@ export function Navbar() {
                             className="flex items-center justify-center gap-2 text-primary font-bold py-2 border border-primary/20 rounded-md bg-primary/5"
                         >
                             <Phone className="w-4 h-4" />
-                            <span>0120-000-000</span>
+                            <div className="text-center">
+                                <span className="block text-[10px] font-normal text-gray-400">無料電話相談</span>
+                                <span>0120-000-000</span>
+                            </div>
                         </a>
                     </div>
                 </div>
