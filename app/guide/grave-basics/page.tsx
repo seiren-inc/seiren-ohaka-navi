@@ -17,9 +17,9 @@ export default function GuideGraveBasicsPage() {
             {
                 "@type": "BreadcrumbList",
                 "itemListElement": [
-                    { "@type": "ListItem", "position": 1, "name": "BEYOND GRAVE", "item": "https://beyond-grave.com/" },
-                    { "@type": "ListItem", "position": 2, "name": "Guide", "item": "https://beyond-grave.com/guide" },
-                    { "@type": "ListItem", "position": 3, "name": "お墓の基礎知識", "item": "https://beyond-grave.com/guide/grave-basics" }
+                    { "@type": "ListItem", "position": 1, "name": "清蓮（Seiren）", "item": "https://seiren-ohaka-navi.vercel.app" },
+                    { "@type": "ListItem", "position": 2, "name": "Guide", "item": "https://seiren-ohaka-navi.vercel.app/guide" },
+                    { "@type": "ListItem", "position": 3, "name": "お墓の基礎知識", "item": "https://seiren-ohaka-navi.vercel.app/guide/grave-basics" }
                 ]
             },
             {

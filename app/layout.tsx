@@ -35,6 +35,18 @@ export const metadata: Metadata = {
   },
 };
 
+const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://seiren-ohaka-navi.vercel.app";
+
+const organizationLd = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "清蓮（Seiren）",
+  "url": BASE_URL,
+  "logo": `${BASE_URL}/icon.png`,
+  "description": "墓地・永代供養・樹木葬・納骨堂の検索・比較サービス。専門家が中立な立場でご提案。改葬・墓じまいもサポート。",
+  "sameAs": [],
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -45,6 +57,10 @@ export default function RootLayout({
       <body
         className={`${notoSansJP.variable} ${shipporiMincho.variable} antialiased font-sans bg-bg text-text`}
       >
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationLd) }}
+        />
         {children}
       </body>
     </html>
