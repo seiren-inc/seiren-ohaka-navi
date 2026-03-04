@@ -17,6 +17,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         { url: `${BASE_URL}/choices/eitai-kuyou`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
         { url: `${BASE_URL}/choices/jumokusou`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
         { url: `${BASE_URL}/choices/noukotsudou`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
+        { url: `${BASE_URL}/choices/general`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
         { url: `${BASE_URL}/choices/temoto-kuyou`, lastModified: now, changeFrequency: "monthly", priority: 0.6 },
         { url: `${BASE_URL}/choices/ikotsu-diamond`, lastModified: now, changeFrequency: "monthly", priority: 0.6 },
         { url: `${BASE_URL}/choices/sankotsu`, lastModified: now, changeFrequency: "monthly", priority: 0.6 },
@@ -39,6 +40,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         { url: `${BASE_URL}/about`, lastModified: now, changeFrequency: "yearly", priority: 0.5 },
         { url: `${BASE_URL}/about/company`, lastModified: now, changeFrequency: "yearly", priority: 0.5 },
         { url: `${BASE_URL}/about/strength`, lastModified: now, changeFrequency: "yearly", priority: 0.5 },
+        { url: `${BASE_URL}/faq`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
         { url: `${BASE_URL}/privacy`, lastModified: now, changeFrequency: "yearly", priority: 0.3 },
     ];
 
