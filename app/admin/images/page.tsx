@@ -1,13 +1,12 @@
 import { createClient } from '@supabase/supabase-js';
-import { ImageIcon, Trash2, Copy } from 'lucide-react';
+import { ImageIcon } from 'lucide-react';
 import { ImageManagerClient } from './ImageManagerClient';
 
-const supabaseAdmin = createClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
-);
-
 async function listBucket(bucket: string, prefix: string) {
+    const supabaseAdmin = createClient(
+        process.env.NEXT_PUBLIC_SUPABASE_URL!,
+        process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+    );
     const { data } = await supabaseAdmin.storage.from(bucket).list(prefix, { limit: 100 });
     return (data || []).filter(f => f.name !== '.emptyFolderPlaceholder');
 }
