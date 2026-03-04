@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic';
+
 import { prisma } from "@/lib/prisma";
 import { ToastProvider } from "../components/admin/Toast";
 import { NavItem } from "../components/admin/NavItem";
