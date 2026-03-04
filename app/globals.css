@@ -85,3 +85,8 @@ body {
   font-family: var(--font-sans);
   line-height: 1.7;
 }
+
+/* Hero text shadow for readability on background images */
+.hero-text-shadow {
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4), 0 1px 3px rgba(0, 0, 0, 0.3);
+}
