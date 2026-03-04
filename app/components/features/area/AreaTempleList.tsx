@@ -12,7 +12,7 @@ interface AreaTempleListProps {
 }
 
 export async function AreaTempleList({ prefecture, city, searchParams }: AreaTempleListProps) {
-    let templesData = await prisma.temple.findMany({
+    const templesData = await prisma.temple.findMany({
         where: { status: 'public', listedInSearch: true },
         orderBy: { createdAt: 'desc' }
     });

@@ -1,13 +1,15 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createClient } from '@supabase/supabase-js';
 
-const supabase = createClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.SUPABASE_SERVICE_ROLE_KEY!
-);
+export const dynamic = 'force-dynamic';
 
 export async function DELETE(req: NextRequest) {
     try {
+        const supabase = createClient(
+            process.env.NEXT_PUBLIC_SUPABASE_URL!,
+            process.env.SUPABASE_SERVICE_ROLE_KEY!
+        );
+
         const { path, bucket } = await req.json() as { path: string; bucket: string };
         if (!path || !bucket) {
             return NextResponse.json({ error: 'path と bucket は必須です' }, { status: 400 });

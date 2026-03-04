@@ -58,6 +58,22 @@ model Temple {
   updatedAt              DateTime         @updatedAt
   plans                  Plan[]
   contracts              Contract[]
+  templeUser             TempleUser?
+}
+
+model TempleUser {
+  id                String    @id @default(cuid())
+  templeId          String    @unique
+  temple            Temple    @relation(fields: [templeId], references: [id])
+  email             String    @unique
+  supabaseUid       String?   @unique
+  name              String
+  title             String
+  status            String    @default("pending") // pending / active / suspended
+  stripeCustomerId  String?
+  lastLoginAt       DateTime?
+  createdAt         DateTime  @default(now())
+  updatedAt         DateTime  @updatedAt
 }
 
 model Plan {

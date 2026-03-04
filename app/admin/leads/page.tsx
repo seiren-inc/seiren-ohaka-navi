@@ -41,11 +41,17 @@ export default function LeadAnalyticsPage() {
     const [period, setPeriod] = useState<"all" | "30" | "90">("30");
 
     useEffect(() => {
-        setLoading(true);
-        fetch(`/api/admin/leads?period=${period}`)
-            .then(r => r.json())
-            .then(data => setStats(data))
-            .finally(() => setLoading(false));
+        const fetchData = async () => {
+            setLoading(true);
+            try {
+                const r = await fetch(`/api/admin/leads?period=${period}`);
+                const data = await r.json();
+                setStats(data);
+            } finally {
+                setLoading(false);
+            }
+        };
+        fetchData();
     }, [period]);
 
     const handleExportCSV = () => {

@@ -12,6 +12,9 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Development scripts (CommonJS, not linted)
+    "test-db.js",
+    "scripts/**",
   ]),
 ]);
 
