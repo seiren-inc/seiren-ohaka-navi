@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Navbar } from "../../components/layout/Navbar";
 import { Footer } from "../../components/layout/Footer";
 import { Button } from "../../components/ui/Button";
+import { Breadcrumb } from "../../components/ui/Breadcrumb";
 import { Metadata } from "next";
 import { CheckCircle, AlertCircle, HelpCircle, BookOpen, Info, Calculator, Search, Phone, ArrowRight } from "lucide-react";
 
@@ -68,6 +69,10 @@ export default function EitaiKuyouPage() {
 
             <main className="flex-grow pt-24 px-4 pb-20">
                 <div className="max-w-4xl mx-auto">
+                    {/* Breadcrumb */}
+                    <div className="mb-6">
+                        <Breadcrumb />
+                    </div>
 
                     {/* Header Section */}
                     <div className="text-center mb-16">

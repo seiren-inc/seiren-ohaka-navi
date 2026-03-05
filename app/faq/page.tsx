@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Navbar } from "../components/layout/Navbar";
 import { Footer } from "../components/layout/Footer";
 import { Button } from "../components/ui/Button";
+import { Breadcrumb } from "../components/ui/Breadcrumb";
 import { Metadata } from "next";
 import { HelpCircle, Search, Phone, ChevronDown } from "lucide-react";
 
@@ -138,6 +139,11 @@ export default function FaqPage() {
 
             <main className="flex-grow pt-24 px-4 pb-20">
                 <div className="max-w-4xl mx-auto">
+
+                    {/* Breadcrumb */}
+                    <div className="mb-6 text-left">
+                        <Breadcrumb />
+                    </div>
 
                     {/* ヘッダー */}
                     <div className="text-center mb-16">
