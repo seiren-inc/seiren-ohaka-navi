@@ -2,6 +2,7 @@ import { Suspense } from "react";
 import Link from "next/link";
 import { Navbar } from "../components/layout/Navbar";
 import { Footer } from "../components/layout/Footer";
+import { Breadcrumb } from "../components/ui/Breadcrumb";
 import { SearchFilter } from "../components/features/search/SearchFilter";
 import { GraveyardCard } from "../components/features/search/GraveyardCard";
 import { FacilityType, MemorialType, Sect, BuddhistSect, Temple } from "@/lib/store";
@@ -112,9 +113,8 @@ export default async function SearchPage(props: { searchParams: Promise<{ [key: 
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
                     {/* Breadcrumb */}
-                    <div className="text-xs text-gray-400 mb-6 flex gap-2">
-                        <span>TOP</span> <span>&gt;</span> <span>墓地をさがす</span>
-                        {prefs.length > 0 && <span>&gt; エリア指定あり</span>}
+                    <div className="mb-6">
+                        <Breadcrumb />
                     </div>
 
                     <div className="flex flex-col lg:flex-row gap-8">

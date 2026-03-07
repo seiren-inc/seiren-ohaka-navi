@@ -23,10 +23,7 @@ export const metadata: Metadata = {
     template: "%s | 清蓮",
   },
   description: "墓地、永代供養、樹木葵、納骨堂の検索・比較なら清蓮。専門家が中立な立場で「あなたに合った供養」をご提案。改葬や墓じまいもワンストップサポート。《相談無料》",
-  icons: {
-    icon: "/icon.png",
-    apple: "/icon.png",
-  },
+
   openGraph: {
     type: "website",
     locale: "ja_JP",
