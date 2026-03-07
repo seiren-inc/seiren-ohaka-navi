@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { prisma } from "@/lib/prisma";
-import { FileText, CheckCircle2, XCircle, Download, Clock } from "lucide-react";
+import { FileText, CheckCircle2, XCircle } from "lucide-react";
 import Link from "next/link";
 import { ContractStatusBadge } from "./ContractStatusBadge";
 

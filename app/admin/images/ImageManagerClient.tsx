@@ -1,6 +1,6 @@
 'use client';
 import { useState } from 'react';
-import { Copy, Trash2, CheckCircle2, ImageIcon, X, AlertTriangle } from 'lucide-react';
+import { Copy, Trash2, CheckCircle2, ImageIcon, AlertTriangle } from 'lucide-react';
 
 type ImageItem = { name: string; url: string; size: number; path: string; bucket: string };
 

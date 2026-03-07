@@ -1,9 +1,7 @@
 import { Navbar } from "../../components/layout/Navbar";
 import { Footer } from "../../components/layout/Footer";
 import { Metadata } from "next";
-import { Building2, Briefcase, Landmark, Users, ArrowRight } from "lucide-react";
-import Link from "next/link";
-import { Button } from "../../components/ui/Button";
+import { Building2, Briefcase, Landmark, Users } from "lucide-react";
 
 import { CompanyContactCTA } from "./CompanyContactCTA";
 
