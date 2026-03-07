@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { PrefectureSelector } from "./components/features/search/PrefectureSelector";
 import { Navbar } from "./components/layout/Navbar";
@@ -21,13 +22,18 @@ export default function Home() {
         {/* 1. HERO SECTION & SEARCH */}
         <section
           className="relative min-h-[85vh] flex items-center justify-center overflow-hidden py-12 md:py-20 lg:py-24"
-          style={{
-            backgroundImage: "url('/images/hero-memorial-garden.png')",
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-          }}
         >
-          <div className="absolute inset-0 bg-black/40 z-0" />
+          <div className="absolute inset-0 z-0">
+            <Image
+                src="/images/hero_memorial.png"
+                alt="清蓮 お墓探しナビ - 理想の供養を一緒に見つける"
+                fill
+                priority
+                className="object-cover"
+                sizes="100vw"
+            />
+            <div className="absolute inset-0 bg-black/40" />
+          </div>
 
           <div className="relative z-10 w-full max-w-[1280px] mx-auto px-4 flex flex-col items-center">
             {/* Catch Copy */}
@@ -87,15 +93,21 @@ export default function Home() {
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
               {[
-                { title: "永代供養墓", desc: "継承者がいなくても安心。お寺が管理・供養を続けてくれるお墓です。", link: "/choices/eitai-kuyou", color: "text-soft-teal" },
-                { title: "樹木葬", desc: "自然に還る、新しい供養のカタチ。墓石の代わりに木や花をシンボルにします。", link: "/choices/jumokusou", color: "text-soft-teal" },
-                { title: "納骨堂", desc: "天候に左右されない屋内のお墓。アクセスの良さと管理の手軽さが魅力です。", link: "/choices/noukotsudou", color: "text-primary-soft" },
+                { title: "永代供養墓", desc: "継承者がいなくても安心。お寺が管理・供養を続けてくれるお墓です。", link: "/choices/eitai-kuyou", color: "text-soft-teal", img: "/images/guide_eitai.png" },
+                { title: "樹木葬", desc: "自然に還る、新しい供養のカタチ。墓石の代わりに木や花をシンボルにします。", link: "/choices/jumokusou", color: "text-soft-teal", img: "/images/guide_jumokusou.png" },
+                { title: "納骨堂", desc: "天候に左右されない屋内のお墓。アクセスの良さと管理の手軽さが魅力です。", link: "/choices/noukotsudou", color: "text-primary-soft", img: "/images/guide_noukotsu.png" },
               ].map((item, i) => (
                 <Link key={i} href={item.link} className="block h-full outline-none focus-visible:ring-2 focus-visible:ring-primary/50 rounded-2xl">
                   <Card hoverEffect className="h-full flex flex-col p-0 overflow-hidden group cursor-pointer border-border">
                     <div className="h-48 bg-bg-muted relative overflow-hidden flex items-center justify-center">
-                       {/* Abstract placeholder for category image */}
-                       <div className={`text-4xl opacity-20 font-serif ${item.color} transform group-hover:scale-110 transition-transform duration-700`}>{item.title}</div>
+                       <Image 
+                           src={item.img} 
+                           alt={item.title} 
+                           fill 
+                           className="object-cover transform group-hover:scale-110 transition-transform duration-700" 
+                           sizes="(max-width: 768px) 100vw, 33vw"
+                       />
+                       <div className="absolute inset-0 bg-black/10 group-hover:bg-black/0 transition-colors duration-500" />
                     </div>
                     <div className="p-8 flex-grow flex flex-col">
                       <h3 className={`font-serif text-xl font-bold ${item.color} mb-4 group-hover:text-primary transition-colors`}>
@@ -144,9 +156,14 @@ export default function Home() {
             <div className="flex flex-col md:flex-row items-center gap-16">
               <div className="w-full md:w-1/2">
                 <div className="relative aspect-[4/3] bg-bg-muted rounded-2xl overflow-hidden shadow-lg border border-border group">
-                  <div className="absolute inset-0 flex items-center justify-center text-gray-400 font-serif transform group-hover:scale-105 transition-transform duration-700">
-                    Concept Image
-                  </div>
+                  <Image 
+                      src="/images/concept_support.png" 
+                      alt="お客様に寄り添う相談窓口" 
+                      fill 
+                      className="object-cover transform group-hover:scale-105 transition-transform duration-700"
+                      sizes="(max-width: 768px) 100vw, 50vw"
+                  />
+                  <div className="absolute inset-0 bg-primary/5 group-hover:bg-transparent transition-colors duration-500" />
                 </div>
               </div>
               <div className="w-full md:w-1/2">
