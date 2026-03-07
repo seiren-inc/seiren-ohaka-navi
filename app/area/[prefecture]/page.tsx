@@ -8,8 +8,9 @@ import { AreaFilter } from "../../components/features/area/AreaFilter";
 import { AreaTempleList } from "../../components/features/area/AreaTempleList";
 import { AreaNav } from "../../components/features/area/AreaNav";
 import { JsonLd } from "../../components/seo/JsonLd";
+import { PREFECTURES } from "../../lib/prefectures";
 
-const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://seiren-ohaka-navi.vercel.app";
+const BASE_URL = "https://www.ohakanavi.jp";
 
 export async function generateMetadata(
     props: { params: Promise<{ prefecture: string }> }
@@ -23,8 +24,10 @@ export async function generateMetadata(
     };
 }
 
-// Generate static params for common prefectures if needed, but for now dynamic
-// export async function generateStaticParams() { ... }
+export async function generateStaticParams() {
+    const allPrefectures = PREFECTURES.flatMap((r) => r.items);
+    return allPrefectures.map((pref) => ({ prefecture: encodeURIComponent(pref) }));
+}
 
 export default async function AreaPage(props: { params: Promise<{ prefecture: string }>; searchParams: Promise<{ [key: string]: string | string[] | undefined }> }) {
     const params = await props.params;

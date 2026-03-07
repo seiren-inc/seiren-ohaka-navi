@@ -8,6 +8,7 @@ import { Button } from "../components/ui/Button";
 export const metadata: Metadata = {
     title: "供養の選択肢比較｜永代供養・樹木葬・納骨堂・散骨を整理｜清蓮",
     description: "永代供養墓、樹木葬、納骨堂、海洋散骨、手元供養など、供養の選択肢を中立の立場で比較整理。迷っている方のための供養比較ガイド。",
+    alternates: { canonical: "https://www.ohakanavi.jp/choices" },
 };
 
 export default function ChoicesHub() {

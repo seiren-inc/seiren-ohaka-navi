@@ -17,12 +17,12 @@ const shipporiMincho = Noto_Sans_JP({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://seiren-ohaka-navi.vercel.app"),
+  metadataBase: new URL("https://www.ohakanavi.jp"),
   title: {
     default: "清蓮（Seiren）| お墓探しナビ",
     template: "%s | 清蓮",
   },
-  description: "墓地、永代供養、樹木葵、納骨堂の検索・比較なら清蓮。専門家が中立な立場で「あなたに合った供養」をご提案。改葬や墓じまいもワンストップサポート。《相談無料》",
+  description: "墓地、永代供養、樹木葬、納骨堂の検索・比較なら清蓮。専門家が中立な立場で「あなたに合った供養」をご提案。改葬や墓じまいもワンストップサポート。《相談無料》",
   icons: {
     icon: "/icon.png",
     apple: "/icon.png",
@@ -31,9 +31,18 @@ export const metadata: Metadata = {
     type: "website",
     locale: "ja_JP",
     siteName: "清蓮（Seiren）- お墓探しナビ",
+    images: [
+      {
+        url: "/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "お墓探しナビ | 清蓮（Seiren）",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
+    images: ["/og-image.jpg"],
   },
   verification: {
     google: "hFeAEOVFWvv-7Cp5dnkeWkMV8qmkOKzWr8vySu-inYQ",

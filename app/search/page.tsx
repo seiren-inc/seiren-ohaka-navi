@@ -12,6 +12,8 @@ import { Metadata } from "next";
 export const metadata: Metadata = {
     title: "墓地・霊園をさがす｜清蓮(Seiren)",
     description: "条件に合わせて最適な墓地・永代供養墓・樹木葬を検索できます。",
+    alternates: { canonical: "https://www.ohakanavi.jp/search" },
+    robots: { index: false },
 };
 
 export default async function SearchPage(props: { searchParams: Promise<{ [key: string]: string | string[] | undefined }> }) {

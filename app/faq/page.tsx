@@ -9,6 +9,7 @@ import { HelpCircle, Search, Phone, ChevronDown } from "lucide-react";
 export const metadata: Metadata = {
     title: "よくある質問（FAQ）｜お墓・供養・費用の疑問に答えます｜清蓮",
     description: "お墓探し・永代供養・墓じまいに関するよくある質問をまとめました。費用・手続き・宗教の疑問を供養の専門家が中立に答えます。",
+    alternates: { canonical: "https://www.ohakanavi.jp/faq" },
 };
 
 const FAQ_CATEGORIES = [

@@ -8,6 +8,7 @@ import { Metadata } from "next";
 export const metadata: Metadata = {
     title: "墓じまい・改葬の無料相談｜清蓮",
     description: "全国対応・見積り無料。お墓じまいや改葬（お墓の引越し）の手続きから施工までワンストップでサポートします。",
+    alternates: { canonical: "https://www.ohakanavi.jp/grave-closure" },
 };
 
 export default function GraveClosurePage() {
