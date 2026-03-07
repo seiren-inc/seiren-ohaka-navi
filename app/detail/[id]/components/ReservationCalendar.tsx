@@ -1,10 +1,10 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { format, addDays, startOfDay, getDay, isAfter, isBefore, addMinutes, parse, set } from "date-fns";
+import { format, addDays, startOfDay, getDay, isAfter, isBefore, addMinutes, set } from "date-fns";
 import { ja } from "date-fns/locale";
-import { ChevronLeft, ChevronRight, Clock, Info, Phone } from "lucide-react";
-import { Temple, CalendarSettings } from "@/lib/store";
+import { ChevronLeft, ChevronRight, Info } from "lucide-react";
+import { Temple } from "@/lib/store";
 
 interface ReservationCalendarProps {
     temple: Temple;
@@ -83,7 +83,7 @@ export function ReservationCalendar({ temple, onSelectDate }: ReservationCalenda
     const isPrevDisabled = isBefore(addDays(baseDate, -1), today);
 
     // Render Logic helpers
-    const getStatus = (daySlots: string[], date: Date) => {
+    const getStatus = (daySlots: string[], _date: Date) => {
         // If date is in past or blackout or closed day -> '－' or '×'
         if (daySlots.length === 0) return '－';
         const count = daySlots.length;

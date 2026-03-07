@@ -1,12 +1,12 @@
 "use client";
 
-import { useEffect, useState, useRef } from "react";
+import { useState, useRef } from "react";
 import { useRouter, usePathname } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
-import { ChevronRight, MapPin, Phone, Info, Car, Train, CheckCircle2, AlertTriangle, Sparkles, Building2, Trees, Accessibility, CreditCard, Users, Home, X, Tag, FileText, Dog, Sun, Umbrella } from "lucide-react";
+import { ChevronRight, MapPin, Phone, Info, Car, Train, CheckCircle2, AlertTriangle, Sparkles, Building2, Trees, Accessibility, CreditCard, Users, Home, X, Tag, FileText, Dog, Sun } from "lucide-react";
 import { Button } from "../../components/ui/Button";
-import { Temple, Plan, ContentIcon, PlanCategoryType, PlanAvailability, RELIGION_CATEGORIES, BUDDHIST_SECTS, PLAN_CATEGORIES, PLAN_PERIOD_LABELS, BURIAL_METHOD_LABELS, PET_ALLOWED_LABELS, PLAN_AVAILABILITY_LABELS } from "../../../lib/store";
+import { Temple, Plan, ContentIcon, PlanAvailability, RELIGION_CATEGORIES, BUDDHIST_SECTS, PLAN_CATEGORIES, PLAN_PERIOD_LABELS, BURIAL_METHOD_LABELS, PET_ALLOWED_LABELS, PLAN_AVAILABILITY_LABELS } from "../../../lib/store";
 import { ReservationCalendar } from "./components/ReservationCalendar";
 import { InquiryModal } from "./components/InquiryModal";
 
@@ -198,7 +198,6 @@ export default function TempleDetailClient({ temple, plans }: Props) {
                 </section>
 
                 {/* Plans Section */}
-                {/* eslint-disable-next-line react-hooks/rules-of-hooks */}
                 <section ref={sectionRefs.plans} className="mb-20 scroll-mt-24">
                     <SectionTitle en="PLANS" ja="区画・費用" />
                     {plans.length === 0 ? <p className="text-center text-gray-500">現在ご案内できるプランの詳細はお問い合わせください。</p> : (
@@ -241,7 +240,6 @@ export default function TempleDetailClient({ temple, plans }: Props) {
                 </section>
 
                 {/* Access Section */}
-                {/* eslint-disable-next-line react-hooks/rules-of-hooks */}
                 <section ref={sectionRefs.access} className="mb-20 scroll-mt-24">
                     <SectionTitle en="ACCESS" ja="交通アクセス" />
                     <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-8">
@@ -276,7 +274,6 @@ export default function TempleDetailClient({ temple, plans }: Props) {
                     </div>
                 </section>
 
-                {/* eslint-disable-next-line react-hooks/rules-of-hooks */}
                 <section ref={sectionRefs.consult} className="mb-20 scroll-mt-24">
                     <SectionTitle en="RESERVATION" ja="見学予約・お問い合わせ" />
                     <div className="bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden">

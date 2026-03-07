@@ -57,7 +57,7 @@ export function InquiryModal({ isOpen, onClose, temple, defaultDate }: InquiryMo
             await new Promise(r => setTimeout(r, 1000));
             // In real app: POST /api/inquiries
             setReceiptNumber(`R-${Math.floor(Math.random() * 10000)}`);
-        } catch (e) { alert("送信に失敗しました"); } finally { setIsSubmitting(false); }
+        } catch { alert("送信に失敗しました"); } finally { setIsSubmitting(false); }
     };
 
     if (!isOpen) return null;
