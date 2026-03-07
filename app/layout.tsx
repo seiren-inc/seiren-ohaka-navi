@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Noto_Sans_JP } from "next/font/google";
 import Script from "next/script";
-import { GoogleAnalytics } from '@next/third-parties/google';
 import { FixedCTA } from "./components/layout/FixedCTA";
 import "./globals.css";
 
@@ -70,7 +69,22 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationLd) }}
         />
         {/* Google Analytics 4 */}
-        {GA_ID && <GoogleAnalytics gaId={GA_ID} />}
+        {GA_ID && (
+          <>
+            <Script
+              src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
+              strategy="afterInteractive"
+            />
+            <Script id="ga4-init" strategy="afterInteractive">
+              {`
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', '${GA_ID}');
+              `}
+            </Script>
+          </>
+        )}
         {/* Microsoft Clarity */}
         {CLARITY_ID && (
           <Script id="clarity-init" strategy="afterInteractive">
