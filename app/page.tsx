@@ -85,27 +85,27 @@ export default function Home() {
               </h2>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
               {[
                 { title: "永代供養墓", desc: "継承者がいなくても安心。お寺が管理・供養を続けてくれるお墓です。", link: "/choices/eitai-kuyou", color: "text-soft-teal" },
                 { title: "樹木葬", desc: "自然に還る、新しい供養のカタチ。墓石の代わりに木や花をシンボルにします。", link: "/choices/jumokusou", color: "text-soft-teal" },
                 { title: "納骨堂", desc: "天候に左右されない屋内のお墓。アクセスの良さと管理の手軽さが魅力です。", link: "/choices/noukotsudou", color: "text-primary-soft" },
               ].map((item, i) => (
-                <Link key={i} href={item.link} className="block h-full">
+                <Link key={i} href={item.link} className="block h-full outline-none focus-visible:ring-2 focus-visible:ring-primary/50 rounded-2xl">
                   <Card hoverEffect className="h-full flex flex-col p-0 overflow-hidden group cursor-pointer border-border">
                     <div className="h-48 bg-bg-muted relative overflow-hidden flex items-center justify-center">
                        {/* Abstract placeholder for category image */}
-                       <div className={`text-4xl opacity-20 font-serif ${item.color}`}>{item.title}</div>
+                       <div className={`text-4xl opacity-20 font-serif ${item.color} transform group-hover:scale-110 transition-transform duration-700`}>{item.title}</div>
                     </div>
-                    <div className="p-8 flex-grow">
-                      <h3 className={`font-serif text-xl font-bold ${item.color} mb-4 group-hover:opacity-80 transition-opacity`}>
+                    <div className="p-8 flex-grow flex flex-col">
+                      <h3 className={`font-serif text-xl font-bold ${item.color} mb-4 group-hover:text-primary transition-colors`}>
                         {item.title}
                       </h3>
-                      <p className="text-gray-600 text-sm leading-relaxed mb-6">
+                      <p className="text-gray-600 text-sm leading-relaxed mb-6 flex-grow">
                         {item.desc}
                       </p>
-                      <span className="text-primary text-xs font-bold flex items-center group-hover:text-primary-hover transition-colors">
-                        詳しく見る <ArrowRight className="w-3 h-3 ml-1" />
+                      <span className="text-primary text-sm font-bold flex items-center group-hover:text-primary-hover transition-colors mt-auto">
+                        詳しく見る <ArrowRight className="w-4 h-4 ml-1.5 transform group-hover:translate-x-1 transition-transform" />
                       </span>
                     </div>
                   </Card>
@@ -143,8 +143,8 @@ export default function Home() {
           <div className="max-w-[1280px] mx-auto px-4">
             <div className="flex flex-col md:flex-row items-center gap-16">
               <div className="w-full md:w-1/2">
-                <div className="relative aspect-[4/3] bg-bg-muted rounded-[12px] overflow-hidden border border-border">
-                  <div className="absolute inset-0 flex items-center justify-center text-gray-400 font-serif">
+                <div className="relative aspect-[4/3] bg-bg-muted rounded-2xl overflow-hidden shadow-lg border border-border group">
+                  <div className="absolute inset-0 flex items-center justify-center text-gray-400 font-serif transform group-hover:scale-105 transition-transform duration-700">
                     Concept Image
                   </div>
                 </div>
@@ -196,7 +196,7 @@ export default function Home() {
                 
                 <div className="text-center mt-8">
                     <Link href="/kaisou">
-                        <Button variant="primary" className="bg-lotus-pink hover:bg-lotus-pink/90 text-white border-none shadow-md">
+                        <Button variant="primary" className="bg-lotus-pink hover:bg-lotus-pink/90 text-primary font-bold border-none shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all">
                             改葬についてさらに詳しく見る
                             <ArrowRight className="w-4 h-4 ml-2" />
                         </Button>

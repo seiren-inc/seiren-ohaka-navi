@@ -18,12 +18,12 @@ export function Tag({ className, children, variant = "primary", size = "md" }: T
 
     // Doc-31, Doc-32: Variants colors
     const variants = {
-        primary: "bg-primary text-white",
-        secondary: "bg-border text-text-muted",
-        accent: "bg-lotus-pink text-white",
-        ghost: "bg-gray-100 text-gray-700 border border-gray-200",
-        // Doc-31 供養タイプタグ指定: Soft Teal 20%透過背景 + 文字 Soft Teal
-        cemeteryType: "bg-soft-teal/20 text-soft-teal",
+        primary: "bg-primary text-white shadow-sm",
+        secondary: "bg-bg-muted text-text-muted border border-border",
+        accent: "bg-lotus-pink text-primary shadow-sm",
+        ghost: "bg-transparent text-text-muted hover:bg-bg-muted hover:text-text",
+        // Doc-31 供養タイプタグ指定: Soft Teal 10%透過背景 + 文字 Soft Teal
+        cemeteryType: "bg-soft-teal/10 text-soft-teal border border-soft-teal/20",
     };
 
     const sizes = {

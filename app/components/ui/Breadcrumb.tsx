@@ -95,22 +95,22 @@ export function Breadcrumb() {
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }}
             />
-            <nav aria-label="パンくずリスト" className="flex items-center gap-1 text-xs text-gray-400 flex-wrap">
-                <Link href="/" className="flex items-center hover:text-primary transition-colors">
-                    <Home className="w-3 h-3" />
+            <nav aria-label="パンくずリスト" className="flex items-center gap-1.5 text-[13px] text-text-muted flex-wrap">
+                <Link href="/" className="flex items-center hover:text-primary transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 rounded-sm">
+                    <Home className="w-3.5 h-3.5" />
                 </Link>
                 {crumbs.map((crumb) => (
-                    <span key={crumb.href} className="flex items-center gap-1">
-                        <ChevronRight className="w-3 h-3 text-gray-300 shrink-0" />
+                    <span key={crumb.href} className="flex items-center gap-1.5">
+                        <ChevronRight className="w-3.5 h-3.5 text-gray-300 shrink-0" />
                         {crumb.isLast ? (
-                            <span className="text-gray-600 font-medium">{crumb.label}</span>
+                            <span className="text-text font-medium" aria-current="page">{crumb.label}</span>
                         ) : (
-                            <Link href={crumb.href} className="hover:text-primary transition-colors">
+                            <Link href={crumb.href} className="hover:text-primary transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 rounded-sm">
                                 {crumb.label}
                             </Link>
                         )}
                     </span>
-                ))}
+                 ))}
             </nav>
         </>
     );
