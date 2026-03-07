@@ -10,7 +10,6 @@ import { TempleFeatures } from "../../components/features/temple/TempleFeatures"
 import { TempleGallery } from "../../components/features/temple/TempleGallery";
 import { TempleAccess } from "../../components/features/temple/TempleAccess";
 import { TempleFAQ } from "../../components/features/temple/TempleFAQ";
-import { NearbyTemples } from "../../components/features/temple/NearbyTemples";
 import { StickyCTA } from "../../components/features/temple/StickyCTA";
 import { TempleSuitable } from "../../components/features/temple/TempleSuitable";
 import { TempleGuide } from "../../components/features/temple/TempleGuide";
@@ -69,7 +68,6 @@ export default async function TempleDetailPage(props: { params: Promise<{ id: st
 
     // --- SEO: Build JSON-LD ---
     const seo = templeData.seo as Record<string, unknown> | null;
-    const location = [templeData.cityName, templeData.prefecture].filter(Boolean).join("（");
     const structuredDataEnabled = seo?.structuredDataEnabled !== false;
 
     const localBusinessLd = structuredDataEnabled ? {
