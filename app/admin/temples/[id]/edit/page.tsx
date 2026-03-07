@@ -49,7 +49,7 @@ const TagInput = ({ tags, onChange, placeholder }: { tags: string[], onChange: (
     )
 }
 
-export default function EditTemplePage({ params }: { params: { id: string } }) {
+export default function EditTemplePage({ params }: { params: Promise<{ id: string }> }) {
     const router = useRouter();
     const [isLoading, setIsLoading] = useState(false);
     const [activeTab, setActiveTab] = useState('basic');
