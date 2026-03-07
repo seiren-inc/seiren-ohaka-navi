@@ -4,7 +4,6 @@
   "private": true,
   "packageManager": "pnpm@9.15.4",
   "scripts": {
-    "preinstall": "npx pnpm install --no-frozen-lockfile || true",
     "dev": "next dev",
     "build": "prisma generate && next build",
     "build:webpack": "prisma generate && NEXT_TURBOPACK_BUILD=0 next build",
