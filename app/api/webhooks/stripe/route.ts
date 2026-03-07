@@ -5,11 +5,6 @@ import Stripe from 'stripe';
 
 export const dynamic = 'force-dynamic';
 
-// Stripe からの Raw body が必要なため bodyParser を無効化
-export const config = {
-    api: { bodyParser: false },
-};
-
 export async function POST(req: NextRequest) {
     const body = await req.text();
     const sig = req.headers.get('stripe-signature');
