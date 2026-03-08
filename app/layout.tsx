@@ -58,13 +58,39 @@ const CLARITY_ID = process.env.NEXT_PUBLIC_CLARITY_ID;
 
 const organizationLd = {
   "@context": "https://schema.org",
-  "@type": "Organization",
-  "name": "清蓮（Seiren）",
-  "url": BASE_URL,
-  "logo": `${BASE_URL}/icon.png`,
-  "description": "墓地・永代供養・樹木葬・納骨堂の検索・比較サービス。専門家が中立な立場でご提案。改葬・墓じまいもサポート。",
-  "sameAs": [],
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": `${BASE_URL}/#organization`,
+      "name": "清蓮（Seiren）",
+      "url": BASE_URL,
+      "logo": {
+        "@type": "ImageObject",
+        "url": `${BASE_URL}/icon.png`,
+      },
+      "description": "墓地・永代供養・樹木葬・納骨堂の検索・比較サービス。専門家が中立な立場でご提案。改葬・墓じまいもサポート。",
+      "sameAs": [],
+    },
+    {
+      "@type": "WebSite",
+      "@id": `${BASE_URL}/#website`,
+      "url": BASE_URL,
+      "name": "清蓮（Seiren）| お墓探しナビ",
+      "description": "墓地・永代供養・樹木葬・納骨堂の検索・比較なら清蓮。",
+      "publisher": { "@id": `${BASE_URL}/#organization` },
+      "inLanguage": "ja",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": {
+          "@type": "EntryPoint",
+          "urlTemplate": `${BASE_URL}/search?q={search_term_string}`,
+        },
+        "query-input": "required name=search_term_string",
+      },
+    },
+  ],
 };
+
 
 export default function RootLayout({
   children,
