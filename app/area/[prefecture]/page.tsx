@@ -7,6 +7,8 @@ import { AreaHero } from "../../components/features/area/AreaHero";
 import { AreaFilter } from "../../components/features/area/AreaFilter";
 import { AreaTempleList } from "../../components/features/area/AreaTempleList";
 import { AreaNav } from "../../components/features/area/AreaNav";
+import { AreaSEOContent } from "../../components/features/area/AreaSEOContent";
+import { AreaFAQ } from "../../components/features/area/AreaFAQ";
 import { JsonLd } from "../../components/seo/JsonLd";
 import { PREFECTURES } from "../../lib/prefectures";
 
@@ -86,6 +88,9 @@ export default async function AreaPage(props: { params: Promise<{ prefecture: st
                     </div>
                 </div>
 
+                <AreaSEOContent prefecture={decodedPrefecture} count={count} />
+                <AreaFAQ prefecture={decodedPrefecture} />
+                
                 <AreaNav prefecture={decodedPrefecture} />
             </main>
 

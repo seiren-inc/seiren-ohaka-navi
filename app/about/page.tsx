@@ -52,6 +52,26 @@ export default function AboutPage() {
                         </div>
                     </section>
 
+                    {/* E-E-A-T: Expert / Author */}
+                    <section className="mb-20">
+                        <div className="bg-white border border-gray-200 p-8 md:p-12 rounded-2xl flex flex-col md:flex-row gap-8 items-center shadow-sm">
+                            <div className="w-32 h-32 bg-primary/10 rounded-full flex items-center justify-center shrink-0 border-4 border-white shadow-md overflow-hidden">
+                                <span className="text-primary font-bold text-2xl font-serif">清蓮</span>
+                            </div>
+                            <div>
+                                <h2 className="font-serif text-2xl font-bold text-primary-dark mb-2">
+                                    専門家による情報提供と監修
+                                </h2>
+                                <p className="text-secondary font-bold text-sm mb-4">
+                                    株式会社清蓮 供養相談専門チーム
+                                </p>
+                                <p className="text-gray-600 leading-relaxed text-sm md:text-base">
+                                    清蓮（SEIREN）は、お墓じまい、改葬、永代供養に特化し、年間数多くのご相談にお応えしています。当サイト「お墓探しナビ」の提供する情報は、石材業界・寺院事情を熟知した専門スタッフが全て監修しています。常に最新の法規制や正確な地域相場に基づき、後悔のない供養選びをサポートいたします。
+                                </p>
+                            </div>
+                        </div>
+                    </section>
+
                     {/* Links */}
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-20">
                         <Link href="/about/strength" className="block group">

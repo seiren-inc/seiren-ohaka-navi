@@ -90,6 +90,8 @@ export default async function TempleDetailPage(props: { params: Promise<{ id: st
         } : {}),
         ...(templeData.phone ? { "telephone": templeData.phone } : {}),
         ...(templeData.mainImage ? { "image": templeData.mainImage } : {}),
+        "priceRange": templeData.priceAggMin ? `${(templeData.priceAggMin / 10000).toLocaleString()}万円〜` : "要お問い合わせ",
+        "openingHours": templeData.officeHours || "お問い合わせください",
     } : null;
 
     const breadcrumbLd = {
