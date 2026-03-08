@@ -7,9 +7,11 @@ import { AreaHero } from "../../../components/features/area/AreaHero";
 import { AreaFilter } from "../../../components/features/area/AreaFilter";
 import { AreaTempleList } from "../../../components/features/area/AreaTempleList";
 import { AreaNav } from "../../../components/features/area/AreaNav";
+import { AreaSEOContent } from "../../../components/features/area/AreaSEOContent";
+import { AreaFAQ } from "../../../components/features/area/AreaFAQ";
 import { JsonLd } from "../../../components/seo/JsonLd";
 
-const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://seiren-ohaka-navi.vercel.app";
+const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://www.ohakanavi.jp";
 
 export async function generateMetadata(
     props: { params: Promise<{ prefecture: string; city: string }> }
@@ -19,8 +21,13 @@ export async function generateMetadata(
     const decodedPref = decodeURIComponent(prefecture);
     return {
         title: `${decodedCity}（${decodedPref}）の墓地・永代供養を探す | 清蓮`,
-        description: `${decodedCity}（${decodedPref}）の墓地・永代供養・樹木葵・納骨堂一覧。地域密着の専門スタッフが無料サポート。`,
+        description: `${decodedCity}（${decodedPref}）の墓地・永代供養・樹木葬・納骨堂の一覧。地域密着の専門スタッフが無料サポート。宗旨宗派不問・生前購入対応施設も掲載。`,
         alternates: { canonical: `${BASE_URL}/area/${prefecture}/${city}` },
+        openGraph: {
+            title: `${decodedCity}（${decodedPref}）の墓地・永代供養 | 清蓮`,
+            description: `${decodedCity}（${decodedPref}）の墓地・永代供養・樹木葬・納骨堂の一覧。無料相談受付中。`,
+            url: `${BASE_URL}/area/${prefecture}/${city}`,
+        },
     };
 }
 
@@ -84,6 +91,9 @@ export default async function CityPage(props: { params: Promise<{ prefecture: st
                         </div>
                     </div>
                 </div>
+
+                <AreaSEOContent prefecture={decodedPrefecture} city={decodedCity} count={count} />
+                <AreaFAQ prefecture={decodedPrefecture} city={decodedCity} />
 
                 <AreaNav prefecture={decodedPrefecture} />
             </main>

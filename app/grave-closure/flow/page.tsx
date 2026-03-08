@@ -5,17 +5,89 @@ import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import { Metadata } from "next";
 
+const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://www.ohakanavi.jp";
+
 export const metadata: Metadata = {
-    title: "墓じまい・改葬の流れ｜完了までのステップ",
-    description: "ご相談から工事完了、納骨までの具体的な流れをご説明します。",
+    title: "墓じまい・改葬の流れ｜完了までの7ステップ | 清蓮",
+    description: "墓じまい・改葬のご相談から工事完了・納骨までの具体的な7ステップをご説明します。行政手続き・閉眼供養・石材撤去の流れを解説。",
+    alternates: { canonical: `${BASE_URL}/grave-closure/flow` },
 };
+
+const STEPS = [
+    {
+        step: "STEP 01",
+        title: "お問い合わせ・無料相談",
+        content: "まずはお電話またはフォームよりご連絡ください。現在のお墓の場所や、ご希望の供養方法（改葬か完全撤去かなど）をお伺いします。"
+    },
+    {
+        step: "STEP 02",
+        title: "現地調査・お見積り",
+        content: "スタッフが現地のお墓を確認し、正確な測量を行います。石の量や搬出経路を確認し、詳細なお見積りを作成・提出します。"
+    },
+    {
+        step: "STEP 03",
+        title: "新しい納骨先の決定",
+        content: "ご遺骨の引越し先（改葬先）を決定します。「受入証明書」の発行が必要になります。（散骨や手元供養の場合は不要な場合もあります）"
+    },
+    {
+        step: "STEP 04",
+        title: "行政手続き・寺院への連絡",
+        content: "現在のお墓がある自治体へ「改葬許可申請」を行います。また、お寺様へ閉眼供養の日程調整や離檀の申し入れを行います。"
+    },
+    {
+        step: "STEP 05",
+        title: "閉眼供養・遺骨の取り出し",
+        content: "お坊さんにお経をあげていただき（魂抜き）、お墓からご遺骨を取り出します。"
+    },
+    {
+        step: "STEP 06",
+        title: "解体・撤去工事",
+        content: "墓石を解体・撤去し、基礎部分も取り除いて更地に戻します。完了後、管理者（お寺や霊園）へ引き渡します。"
+    },
+    {
+        step: "STEP 07",
+        title: "新しい場所への納骨",
+        content: "新しい供養先へご遺骨を納めます。粉骨や洗骨が必要な場合も対応いたします。"
+    },
+];
+
+const howToLd = {
+    "@context": "https://schema.org",
+    "@graph": [
+        {
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+                { "@type": "ListItem", "position": 1, "name": "ホーム", "item": BASE_URL },
+                { "@type": "ListItem", "position": 2, "name": "墓じまい・改葬", "item": `${BASE_URL}/grave-closure` },
+                { "@type": "ListItem", "position": 3, "name": "墓じまいの流れ", "item": `${BASE_URL}/grave-closure/flow` },
+            ],
+        },
+        {
+            "@type": "HowTo",
+            "name": "墓じまい・改葬の流れ",
+            "description": "墓じまい・改葬のご相談から工事完了・新しい納骨先への納骨までの7ステップ",
+            "totalTime": "P3M",
+            "step": STEPS.map((s, i) => ({
+                "@type": "HowToStep",
+                "position": i + 1,
+                "name": s.title,
+                "text": s.content,
+            })),
+        },
+    ],
+};
+
 
 export default function GraveClosureFlowPage() {
     return (
         <div className="min-h-screen flex flex-col bg-white">
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(howToLd) }}
+            />
             <Navbar />
 
-            <main className="flex-grow pt-32 px-4 pb-20">
+            <main className="grow pt-32 px-4 pb-20">
                 <div className="max-w-4xl mx-auto">
                     {/* Breadcrumb */}
                     <div className="mb-8">

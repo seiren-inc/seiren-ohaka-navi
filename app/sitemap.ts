@@ -70,5 +70,25 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         console.error("[sitemap] Failed to fetch temples:", e);
     }
 
-    return [...staticRoutes, ...areaRoutes, ...templeRoutes];
+    // --- Dynamic: City Pages ---
+    let cityRoutes: MetadataRoute.Sitemap = [];
+    try {
+        const cityGroups = await prisma.temple.findMany({
+            where: { status: "public", listedInSearch: true },
+            select: { prefecture: true, cityName: true },
+            distinct: ["prefecture", "cityName"],
+        });
+        cityRoutes = cityGroups
+            .filter((g) => g.cityName)
+            .map((g) => ({
+                url: `${BASE_URL}/area/${encodeURIComponent(g.prefecture)}/${encodeURIComponent(g.cityName!)}`,
+                lastModified: now,
+                changeFrequency: "weekly" as const,
+                priority: 0.75,
+            }));
+    } catch (e) {
+        console.error("[sitemap] Failed to fetch cities:", e);
+    }
+
+    return [...staticRoutes, ...areaRoutes, ...cityRoutes, ...templeRoutes];
 }

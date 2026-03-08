@@ -1,19 +1,28 @@
 import { HelpCircle, ChevronDown } from "lucide-react";
 import { JsonLd } from "../../seo/JsonLd";
 
-export function AreaFAQ({ prefecture }: { prefecture: string }) {
+export function AreaFAQ({ prefecture, city }: { prefecture: string; city?: string }) {
+    const areaName = city ? `${city}（${prefecture}）` : prefecture;
     const faqData = [
         {
-            q: `${prefecture}でお墓・永代供養を探す際の費用相場はどのくらいですか？`,
-            a: `一般的に、${prefecture}での永代供養の相場は数万円〜100万円程度、樹木葬は30万円〜150万円程度が目安です。立地や区画の広さ、個別安置の期間によって費用は大きく変動します。最新の料金は各施設の詳細ページにてご確認ください。`
+            q: `${areaName}でお墓・永代供養を探す際の費用相場はどのくらいですか？`,
+            a: `一般的に、${areaName}での永代供養の相場は数万円〜100万円程度、樹木葬は30万円〜150万円程度が目安です。立地や区画の広さ、個別安置の期間によって費用は大きく変動します。最新の料金は各施設の詳細ページにてご確認ください。`
         },
         {
-            q: `${prefecture}で宗教・宗派不問の霊園はありますか？`,
-            a: `はい、${prefecture}内にも「宗教・宗派不問」の霊園や永代供養墓は多数ございます。清蓮の検索機能で「宗教不問」の条件を絞り込んでご確認いただけます。`
+            q: `${areaName}で宗教・宗派不問の霊園はありますか？`,
+            a: `はい、${areaName}内にも「宗教・宗派不問」の霊園や永代供養墓は多数ございます。清蓮の検索機能で「宗教不問」の条件を絞り込んでご確認いただけます。`
         },
         {
-            q: `${prefecture}で交通アクセスの良いお墓を探すことはできますか？`,
-            a: `可能です。${prefecture}の都市部においては駅から徒歩圏内の納骨堂や樹木葬も多く存在します。また、郊外の霊園でも送迎バスが運行されている場合があります。「駐車場あり」などの条件で絞り込み検索をご活用ください。`
+            q: `${areaName}で交通アクセスの良いお墓を探すことはできますか？`,
+            a: `可能です。${areaName}の都市部においては駅から徒歩圏内の納骨堂や樹木葬も多く存在します。また、郊外の霊園でも送迎バスが運行されている場合があります。「駐車場あり」などの条件で絞り込み検索をご活用ください。`
+        },
+        {
+            q: `${areaName}で生前にお墓を購入（生前購入）できますか？`,
+            a: `はい、${areaName}内の多くの施設で生前購入が可能です。永代供養墓・樹木葬・納骨堂のいずれも生前購入に対応した施設があります。ご自身が元気なうちに希望の場所を確保しておくことで、ご家族への負担を減らすことができます。`
+        },
+        {
+            q: `${areaName}でペットと一緒に入れるお墓はありますか？`,
+            a: `${areaName}内にも、ペットと一緒に納骨できる「ペット対応霊園」が増えています。ただし施設によって対応状況が異なりますので、各施設の詳細ページまたは無料相談にてご確認ください。`
         }
     ];
 
@@ -36,7 +45,7 @@ export function AreaFAQ({ prefecture }: { prefecture: string }) {
             <div className="max-w-4xl mx-auto">
                 <h2 className="font-serif text-2xl font-bold text-primary-dark mb-8 flex items-center justify-center text-center">
                     <HelpCircle className="w-6 h-6 mr-3 text-secondary" />
-                    {prefecture}のお墓・供養に関するよくある質問
+                    {prefecture}のお墓・供養に関するよくある質問（{areaName}）
                 </h2>
                 <div className="space-y-4">
                     {faqData.map((item, idx) => (
