@@ -90,3 +90,52 @@ body {
 .hero-text-shadow {
   text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4), 0 1px 3px rgba(0, 0, 0, 0.3);
 }
+
+/* ==============================================
+   Mobile-first Typography Scale
+   参考: スマホh1=18〜24px, h2=18〜22px, 本文=14〜16px
+   PC(md)以上では Tailwind の class サイズをそのまま使用する
+
+   Tailwind サイズ対応表:
+     text-sm  = 14px
+     text-base = 16px
+     text-lg  = 18px
+     text-xl  = 20px
+     text-2xl = 24px
+     text-3xl = 30px
+     text-4xl = 36px
+     text-5xl = 48px
+   ============================================== */
+
+/* sm未満（スマホ）のみフォントサイズをスケールダウン */
+@media (max-width: 767px) {
+  /* h1レベル: text-4xl(36px)→text-2xl(24px), text-3xl(30px)→text-xl(20px) */
+  .text-4xl { font-size: 1.5rem !important; }   /* 24px */
+  .text-5xl { font-size: 1.75rem !important; }  /* 28px */
+  .text-6xl { font-size: 2rem !important; }     /* 32px */
+
+  /* h2レベル: text-3xl(30px)→text-xl(20px) */
+  .text-3xl { font-size: 1.25rem !important; }  /* 20px */
+
+  /* h2/h3レベル: text-2xl(24px)→text-lg(18px) */
+  .text-2xl { font-size: 1.125rem !important; } /* 18px */
+
+  /* heading line-height: 大きい文字ほど詰める */
+  h1, h2, h3 {
+    line-height: 1.4;
+  }
+
+  /* prose 内の見出しも制御 */
+  .prose h1 { font-size: 1.375rem; }  /* 22px */
+  .prose h2 { font-size: 1.125rem; }  /* 18px */
+  .prose h3 { font-size: 1rem; }      /* 16px */
+}
+
+/* md以上ではTailwindのクラス値をそのまま使用（リセット） */
+@media (min-width: 768px) {
+  .text-2xl { font-size: 1.5rem; }
+  .text-3xl { font-size: 1.875rem; }
+  .text-4xl { font-size: 2.25rem; }
+  .text-5xl { font-size: 3rem; }
+  .text-6xl { font-size: 3.75rem; }
+}
