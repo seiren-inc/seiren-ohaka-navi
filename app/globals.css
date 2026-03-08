@@ -139,3 +139,17 @@ body {
   .text-5xl { font-size: 3rem; }
   .text-6xl { font-size: 3.75rem; }
 }
+
+/* ==============================================
+   改行ユーティリティ（PCとスマホで使い分け）
+   使い方:
+     <br className="br-sp" />  → スマホのみ改行（PCでは非表示）
+     <br className="br-pc" />  → PCのみ改行（スマホでは非表示）
+   ============================================== */
+.br-sp { display: none; }
+.br-pc { display: inline; }
+
+@media (max-width: 767px) {
+  .br-sp { display: inline; }
+  .br-pc { display: none; }
+}
