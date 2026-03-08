@@ -77,6 +77,8 @@ export default async function TempleDetailPage(props: { params: Promise<{ id: st
         "description": templeData.catchphrase || templeData.overview || "",
         "address": {
             "@type": "PostalAddress",
+            "postalCode": templeData.zipCode || "",
+            "streetAddress": templeData.addressLine || "",
             "addressLocality": templeData.cityName || "",
             "addressRegion": templeData.prefecture,
             "addressCountry": "JP",
