@@ -56,7 +56,17 @@ export async function POST(request: Request) {
   if (secret) {
     const authHeader = request.headers.get("Authorization");
     if (authHeader !== `Bearer ${secret}`) {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+      return NextResponse.json(
+        {
+          error: "Unauthorized",
+          debug: {
+            expectedLength: `Bearer ${secret}`.length,
+            receivedLength: (authHeader ?? "").length,
+            receivedPrefix: (authHeader ?? "").substring(0, 20),
+          },
+        },
+        { status: 401 }
+      );
     }
   }
 
