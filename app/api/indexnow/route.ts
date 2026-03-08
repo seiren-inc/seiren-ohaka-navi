@@ -52,21 +52,12 @@ const STATIC_URLS = [
  */
 export async function POST(request: Request) {
   // 簡易認証（環境変数 INDEXNOW_SECRET を設定すること）
+  // 簡易認証（環境変数 INDEXNOW_SECRET を設定すること）
   const secret = process.env.INDEXNOW_SECRET;
   if (secret) {
     const authHeader = request.headers.get("Authorization");
     if (authHeader !== `Bearer ${secret}`) {
-      return NextResponse.json(
-        {
-          error: "Unauthorized",
-          debug: {
-            expectedLength: `Bearer ${secret}`.length,
-            receivedLength: (authHeader ?? "").length,
-            receivedPrefix: (authHeader ?? "").substring(0, 20),
-          },
-        },
-        { status: 401 }
-      );
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
   }
 
@@ -105,8 +96,9 @@ export async function POST(request: Request) {
   const status = res.status;
   const text = await res.text().catch(() => "");
 
-  if (status === 200) {
-    return NextResponse.json({ success: true, submitted: urlList.length });
+  // 200: OK / 202: Accepted（非同期処理中）どちらも成功
+  if (status === 200 || status === 202) {
+    return NextResponse.json({ success: true, submitted: urlList.length, status });
   }
 
   return NextResponse.json(
