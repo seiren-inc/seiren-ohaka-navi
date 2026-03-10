@@ -86,12 +86,12 @@ export default function StrengthPage() {
                         </p>
                         <div className="flex flex-col sm:flex-row gap-4 justify-center">
                             <Link href="/consult">
-                                <Button size="lg" className="w-full sm:w-auto shadow-xl">
+                                <Button size="lg" className="w-full sm:min-w-[180px] h-14 px-8 shadow-xl">
                                     無料相談予約
                                 </Button>
                             </Link>
                             <Link href="/search">
-                                <Button size="lg" variant="outline" className="w-full sm:w-auto bg-white">
+                                <Button size="lg" variant="outline" className="w-full sm:min-w-[180px] h-14 px-8 bg-white">
                                     墓地を探す
                                 </Button>
                             </Link>
@@ -266,12 +266,12 @@ export default function StrengthPage() {
                         </p>
                         <div className="flex flex-col sm:flex-row gap-4 justify-center">
                             <Link href="/consult">
-                                <Button size="lg" className="bg-white text-primary hover:bg-gray-100 border-transparent w-full sm:w-auto px-10">
+                                <Button size="lg" className="bg-white text-primary hover:bg-gray-100 border-transparent w-full sm:min-w-[180px] h-14 px-8">
                                     無料相談予約
                                 </Button>
                             </Link>
                             <Link href="/search">
-                                <Button size="lg" variant="outline" className="text-white border-white hover:bg-white hover:text-primary w-full sm:w-auto px-10">
+                                <Button size="lg" variant="outline" className="text-white border-white hover:bg-white hover:text-primary w-full sm:min-w-[180px] h-14 px-8">
                                     墓地を探す
                                 </Button>
                             </Link>
