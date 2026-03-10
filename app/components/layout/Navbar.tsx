@@ -39,8 +39,10 @@ export function Navbar() {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const [kuyouOpen, setKuyouOpen] = useState(false);
     const [serviceOpen, setServiceOpen] = useState(false);
+    const [ctaOpen, setCtaOpen] = useState(false);
     const kuyouRef = useRef<HTMLDivElement>(null);
     const serviceRef = useRef<HTMLDivElement>(null);
+    const ctaRef = useRef<HTMLDivElement>(null);
 
     const navLinkClass =
         "text-gray-600 hover:text-lotus-pink transition-colors font-medium text-sm tracking-wide relative after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-0 after:h-[2px] after:bg-lotus-pink hover:after:w-full after:transition-all after:duration-300";
@@ -48,9 +50,9 @@ export function Navbar() {
     return (
         <header className="fixed top-0 w-full z-50 bg-white/95 backdrop-blur-md border-b border-gray-100 transition-all duration-300">
             <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="flex justify-between items-center h-[72px]">
+                <div className="flex items-center h-[72px] w-full">
                     {/* Logo */}
-                    <Link href="/" className="flex items-center gap-2">
+                    <Link href="/" className="flex items-center gap-2 shrink-0">
                         <Image
                             src="/seiren-logo-v2.png"
                             alt="Seiren Logo"
@@ -59,10 +61,11 @@ export function Navbar() {
                             className="h-10 w-auto object-contain"
                             priority
                         />
+                        <span className="font-bold text-primary-dark text-sm md:text-base tracking-wide">お墓探しナビ</span>
                     </Link>
 
                     {/* Desktop Navigation */}
-                    <nav className="hidden md:flex items-center gap-8">
+                    <nav className="hidden md:flex ml-auto items-center gap-5 lg:gap-8 pr-4 lg:pr-6">
                         {/* 墓地を探す */}
                         <Link href="/search" className={navLinkClass}>
                             墓地を探す
@@ -184,23 +187,57 @@ export function Navbar() {
                     </nav>
 
                     {/* CTA Group */}
-                    <div className="flex items-center gap-4">
-                        <a
-                            href="tel:0120-000-000"
-                            className="hidden lg:flex items-center gap-2 text-primary font-bold text-base hover:opacity-80 transition-opacity"
+                    <div className="flex items-center gap-4 shrink-0 md:ml-0 ml-auto">
+                        {/* Desktop Dropdown CTA */}
+                        <div
+                            ref={ctaRef}
+                            className="hidden sm:block relative"
+                            onMouseEnter={() => setCtaOpen(true)}
+                            onMouseLeave={() => setCtaOpen(false)}
                         >
-                            <Phone className="w-4 h-4 fill-current" />
-                            <span className="text-sm leading-tight">
-                                <span className="block text-[10px] font-normal text-gray-400 tracking-wider">無料電話相談</span>
-                                0120-000-000
-                            </span>
-                        </a>
-
-                        <Link href="/consult">
-                            <Button size="md" className="hidden sm:inline-flex shadow-lg shadow-primary/20 text-sm h-10 bg-primary hover:bg-primary-hover text-white border-transparent">
+                            <Button 
+                                size="md" 
+                                className="shadow-lg shadow-primary/20 text-sm h-10 bg-primary hover:bg-primary-hover text-white border-transparent flex items-center gap-1 px-4"
+                                onClick={() => setCtaOpen(v => !v)}
+                            >
                                 無料相談予約
+                                <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${ctaOpen ? "rotate-180" : ""}`} />
                             </Button>
-                        </Link>
+
+                            <div
+                                className={`absolute top-full right-0 mt-3 w-72 bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden transition-all duration-200 origin-top-right ${
+                                    ctaOpen
+                                        ? "opacity-100 scale-y-100 pointer-events-auto"
+                                        : "opacity-0 scale-y-95 pointer-events-none"
+                                }`}
+                            >
+                                <div className="absolute -top-1.5 right-6 w-3 h-3 bg-white border-l border-t border-gray-100 rotate-45" />
+                                <div className="p-5 flex flex-col gap-3">
+                                    <div className="text-center mb-1">
+                                        <p className="text-sm font-bold text-gray-800">お墓・供養の無料相談</p>
+                                        <p className="text-xs text-gray-500 mt-1">専門スタッフが丁寧にお答えします</p>
+                                    </div>
+                                    <a
+                                        href="tel:0120-000-000"
+                                        className="flex items-center justify-center gap-3 text-primary font-bold py-3 px-2 border border-primary/20 rounded-xl bg-primary/5 hover:bg-primary/10 transition-colors"
+                                    >
+                                        <Phone className="w-5 h-5 flex-shrink-0" />
+                                        <div className="text-left">
+                                            <span className="block text-[10px] font-normal text-gray-500 leading-tight">お電話でのご相談（無料）</span>
+                                            <span className="text-xl tracking-wider">0120-000-000</span>
+                                        </div>
+                                    </a>
+                                    <Link 
+                                        href="/consult" 
+                                        className="flex flex-col items-center justify-center gap-0.5 w-full bg-primary hover:bg-primary-hover text-white py-3 rounded-xl transition-colors shadow-md shadow-primary/20"
+                                        onClick={() => setCtaOpen(false)}
+                                    >
+                                        <span className="font-bold text-sm">Webから無料相談予約</span>
+                                        <span className="text-[10px] opacity-80">24時間受付中</span>
+                                    </Link>
+                                </div>
+                            </div>
+                        </div>
 
                         {/* Mobile Menu Button */}
                         <button
