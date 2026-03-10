@@ -258,10 +258,10 @@ export default function GraveClosurePage() {
                                 無料相談フォーム
                             </Button>
                         </Link>
-                        <a href="tel:0120-000-000" className="inline-flex w-full sm:w-auto">
+                        <a href="tel:0800-888-8788" className="inline-flex w-full sm:w-auto">
                             <Button variant="outline" size="lg" className="w-full px-12 py-6 text-xl border-2 hover:bg-white">
                                 <Phone className="mr-2 h-6 w-6" />
-                                0120-000-000
+                                0800-888-8788
                             </Button>
                         </a>
                     </div>

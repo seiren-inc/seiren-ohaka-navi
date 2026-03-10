@@ -17,7 +17,7 @@ export function FixedCTA() {
             <div className="flex gap-2 px-3 py-2.5 max-w-lg mx-auto">
                 {/* 電話相談 */}
                 <a
-                    href="tel:0120-000-000"
+                    href="tel:0800-888-8788"
                     className="flex-1 flex items-center justify-center gap-1.5 h-12 rounded-lg border border-primary text-primary font-bold text-sm hover:bg-primary/5 transition-colors"
                 >
                     <Phone className="w-4 h-4" />

@@ -218,13 +218,13 @@ export function Navbar() {
                                         <p className="text-xs text-gray-500 mt-1">専門スタッフが丁寧にお答えします</p>
                                     </div>
                                     <a
-                                        href="tel:0120-000-000"
+                                        href="tel:0800-888-8788"
                                         className="flex items-center justify-center gap-3 text-primary font-bold py-3 px-2 border border-primary/20 rounded-xl bg-primary/5 hover:bg-primary/10 transition-colors"
                                     >
                                         <Phone className="w-5 h-5 flex-shrink-0" />
                                         <div className="text-left">
                                             <span className="block text-[10px] font-normal text-gray-500 leading-tight">お電話でのご相談（無料）</span>
-                                            <span className="text-xl tracking-wider">0120-000-000</span>
+                                            <span className="text-xl tracking-wider">0800-888-8788</span>
                                         </div>
                                     </a>
                                     <Link 
@@ -328,13 +328,13 @@ export function Navbar() {
                             </Button>
                         </Link>
                         <a
-                            href="tel:0120-000-000"
+                            href="tel:0800-888-8788"
                             className="flex items-center justify-center gap-2 text-primary font-bold py-2 border border-primary/20 rounded-md bg-primary/5"
                         >
                             <Phone className="w-4 h-4" />
                             <div className="text-center">
                                 <span className="block text-[10px] font-normal text-gray-400">無料電話相談</span>
-                                <span>0120-000-000</span>
+                                <span>0800-888-8788</span>
                             </div>
                         </a>
                     </div>

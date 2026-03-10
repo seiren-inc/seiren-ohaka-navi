@@ -74,8 +74,8 @@ export function Footer() {
                         </ul>
                         <div className="bg-white p-4 rounded-[12px] border border-gray-100 text-center">
                             <p className="text-xs text-gray-500 mb-1 font-bold">お電話での無料相談</p>
-                            <a href="tel:0120-000-000" className="block text-xl font-bold font-serif text-primary hover:text-primary-hover transition-colors">
-                                0120-000-000
+                            <a href="tel:0800-888-8788" className="block text-xl font-bold font-serif text-primary hover:text-primary-hover transition-colors">
+                                0800-888-8788
                             </a>
                             <p className="text-[10px] text-gray-400 mt-1">受付：9:00 - 18:00 (年中無休)</p>
                         </div>

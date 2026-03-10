@@ -55,17 +55,17 @@ export function CompanyContactCTA() {
                     <div className={`transition-opacity duration-300 ${activeTab === 'phone' ? 'opacity-100 block' : 'opacity-0 hidden'}`}>
                         <div className="text-center">
                             <p className="text-sm text-gray-500 mb-2 font-medium">通話無料・携帯OK</p>
-                            <a href="tel:0120-000-000" className="block w-fit mx-auto group bg-gray-50 px-6 py-2 rounded-xl mb-3 border border-gray-100">
+                            <a href="tel:0800-888-8788" className="block w-fit mx-auto group bg-gray-50 px-6 py-2 rounded-xl mb-3 border border-gray-100">
                                 <p className="text-3xl md:text-4xl font-bold font-serif text-[#2F4F4F] group-hover:opacity-80 transition-opacity flex items-center gap-2">
                                     <Phone className="w-6 h-6 md:w-8 md:h-8 text-secondary" />
-                                    0120-000-000
+                                    0800-888-8788
                                 </p>
                             </a>
                             <div className="flex items-center justify-center gap-2 text-xs text-gray-500 mb-6">
                                 <Clock className="w-3 h-3" />
                                 <span>受付 9:00〜18:00 (年中無休)</span>
                             </div>
-                            <a href="tel:0120-000-000" className="block sm:hidden">
+                            <a href="tel:0800-888-8788" className="block sm:hidden">
                                 <Button className="w-full bg-secondary hover:bg-secondary/90 text-white border-0 font-bold shadow-lg shadow-secondary/20 h-14 text-lg">
                                     <Phone className="w-5 h-5 mr-2" />
                                     今すぐ電話をかける

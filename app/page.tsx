@@ -253,7 +253,7 @@ export default function Home() {
               どんな小さなお悩みでも、専門スタッフが中立的な立場で丁寧にお答えします。
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a href="tel:0120-000-000" className="w-full sm:w-auto">
+              <a href="tel:0800-888-8788" className="w-full sm:w-auto">
                   <Button size="lg" className="bg-white text-primary hover:bg-bg-muted w-full font-bold shadow-lg h-14">
                     <Phone className="w-5 h-5 mr-2" />
                     電話で無料相談
