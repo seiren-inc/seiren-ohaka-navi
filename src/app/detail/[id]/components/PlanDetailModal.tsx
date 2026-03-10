@@ -173,7 +173,7 @@ export function PlanDetailModal({ plan, isOpen, onClose }: PlanDetailModalProps)
                             </Button>
                         </Link>
                         <div className="hidden lg:block w-full">
-                            <a href="tel:0120-000-000" className="w-full">
+                            <a href="tel:0800-888-8788" className="w-full">
                                 <Button size="lg" variant="ghost" className="w-full text-gray-600 hover:text-primary hover:bg-gray-50 font-bold h-12">
                                     <Phone className="w-5 h-5 mr-2" />
                                     電話で相談

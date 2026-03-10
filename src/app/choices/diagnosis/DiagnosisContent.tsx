@@ -248,14 +248,14 @@ export function DiagnosisContent() {
                             </p>
 
                             <div className="space-y-4">
-                                <a href="tel:0120-000-000" className="block w-full group">
+                                <a href="tel:0800-888-8788" className="block w-full group">
                                     <div className="flex items-center p-4 border border-secondary/20 rounded-xl bg-secondary/5 group-hover:bg-secondary/10 transition-colors">
                                         <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center text-secondary shadow-sm mr-4">
                                             <Phone className="w-6 h-6" />
                                         </div>
                                         <div className="text-left">
                                             <span className="block text-xs font-bold text-secondary">お電話で相談</span>
-                                            <span className="block text-xl font-bold text-gray-800 font-mono">0120-000-000</span>
+                                            <span className="block text-xl font-bold text-gray-800 font-mono">0800-888-8788</span>
                                         </div>
                                         <div className="ml-auto text-secondary/50">
                                             <ArrowRight className="w-5 h-5" />

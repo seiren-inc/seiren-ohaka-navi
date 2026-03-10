@@ -13,7 +13,7 @@ export function StickyCtaBar() {
                     </Button>
                 </Link>
                 <div className="hidden sm:block flex-1">
-                    <a href="tel:0120-000-000" className="w-full h-full">
+                    <a href="tel:0800-888-8788" className="w-full h-full">
                         <Button variant="outline" className="w-full text-xs sm:text-sm font-bold border-primary text-primary h-12">
                             <Phone className="w-4 h-4 mr-2" />
                             電話相談

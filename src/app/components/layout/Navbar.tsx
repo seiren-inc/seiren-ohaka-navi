@@ -186,13 +186,13 @@ export function Navbar() {
                     {/* CTA Group */}
                     <div className="flex items-center gap-4">
                         <a
-                            href="tel:0120-000-000"
+                            href="tel:0800-888-8788"
                             className="hidden lg:flex items-center gap-2 text-primary font-bold text-base hover:opacity-80 transition-opacity"
                         >
                             <Phone className="w-4 h-4 fill-current" />
                             <span className="text-sm leading-tight">
                                 <span className="block text-[10px] font-normal text-gray-400 tracking-wider">無料電話相談</span>
-                                0120-000-000
+                                0800-888-8788
                             </span>
                         </a>
 
@@ -291,13 +291,13 @@ export function Navbar() {
                             </Button>
                         </Link>
                         <a
-                            href="tel:0120-000-000"
+                            href="tel:0800-888-8788"
                             className="flex items-center justify-center gap-2 text-primary font-bold py-2 border border-primary/20 rounded-md bg-primary/5"
                         >
                             <Phone className="w-4 h-4" />
                             <div className="text-center">
                                 <span className="block text-[10px] font-normal text-gray-400">無料電話相談</span>
-                                <span>0120-000-000</span>
+                                <span>0800-888-8788</span>
                             </div>
                         </a>
                     </div>
