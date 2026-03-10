@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
+import { updateSession } from './lib/supabase/middleware';
 
 // 保護対象パス
 // /admin/* : 管理画面UI（Basic認証）
@@ -18,8 +19,13 @@ function isAdminApi(pathname: string) {
     return ADMIN_API_PATTERNS.some(p => p.test(pathname));
 }
 
-export function middleware(req: NextRequest) {
+export async function middleware(req: NextRequest) {
     const { pathname } = req.nextUrl;
+
+    // Supabase Auth - /portal 配下の保護
+    if (pathname.startsWith('/portal')) {
+        return await updateSession(req);
+    }
 
     // 公開フォームからの問い合わせ POST は認証不要
     if (pathname === '/api/inquiries' && req.method === 'POST') {
@@ -60,6 +66,7 @@ export function middleware(req: NextRequest) {
 
 export const config = {
     matcher: [
+        '/portal/:path*',
         '/admin/:path*',
         '/api/inquiries/:path*',
         '/api/inquiries',
