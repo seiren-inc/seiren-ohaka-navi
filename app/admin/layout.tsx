@@ -16,6 +16,7 @@ export default async function AdminLayout({ children }: { children: React.ReactN
         { href: '/admin/inquiries', iconName: 'MessageSquare', label: '問い合わせ管理', badge: newInquiriesCount },
         { href: '/admin/leads', iconName: 'BarChart2', label: 'リード集計' },
         { href: '/admin/contracts', iconName: 'FileText', label: '契約管理' },
+        { href: '/admin/temple-users', iconName: 'Users', label: '寺院アカウント' },
         { href: '/admin/images', iconName: 'ImageIcon', label: '画像管理' },
     ];
 
