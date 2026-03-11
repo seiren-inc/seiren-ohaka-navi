@@ -79,7 +79,73 @@ export default function Home() {
           </div>
         </section>
 
+        {/* FEATURE BANNERS - テーマ別特集（JTB風） */}
+        <section className="bg-bg py-12 border-b border-border">
+          <div className="max-w-[1280px] mx-auto px-4">
+            <div className="flex items-center justify-between mb-6">
+              <h2 className="font-serif text-xl font-bold text-gray-800">今週のおすすめ特集</h2>
+              <Link href="/search" className="text-sm text-primary font-bold hover:underline flex items-center gap-1">
+                すべて見る <ChevronRight className="w-4 h-4" />
+              </Link>
+            </div>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
+              {[
+                {
+                  label: "春の見学特集",
+                  sub: "お彼岸前に探しておきたい",
+                  href: "/search?type=jumokusou",
+                  bg: "bg-emerald-50",
+                  border: "border-emerald-100",
+                  labelColor: "text-emerald-700",
+                  emoji: "🌸",
+                },
+                {
+                  label: "駅徒歩10分以内",
+                  sub: "アクセス抜群の都市型納骨堂",
+                  href: "/search?type=noukotsudou",
+                  bg: "bg-blue-50",
+                  border: "border-blue-100",
+                  labelColor: "text-blue-700",
+                  emoji: "🚉",
+                },
+                {
+                  label: "継承者不要",
+                  sub: "永代供養で安心な選択肢",
+                  href: "/choices/eitai-kuyou",
+                  bg: "bg-amber-50",
+                  border: "border-amber-100",
+                  labelColor: "text-amber-700",
+                  emoji: "🙏",
+                },
+                {
+                  label: "墓じまい相談",
+                  sub: "遠方のお墓を整理したい",
+                  href: "/kaisou",
+                  bg: "bg-rose-50",
+                  border: "border-rose-100",
+                  labelColor: "text-rose-700",
+                  emoji: "🏡",
+                },
+              ].map((item) => (
+                <Link
+                  key={item.label}
+                  href={item.href}
+                  className={`block ${item.bg} border ${item.border} rounded-xl p-4 md:p-5 hover:shadow-md transition-all group`}
+                >
+                  <div className="text-2xl md:text-3xl mb-2">{item.emoji}</div>
+                  <div className={`font-bold text-sm md:text-base ${item.labelColor} mb-1`}>{item.label}</div>
+                  <div className="text-xs text-gray-500 leading-snug">{item.sub}</div>
+                  <div className="mt-3 flex items-center text-xs font-bold text-gray-400 group-hover:text-gray-600 transition-colors">
+                    詳しく見る <ChevronRight className="w-3 h-3 ml-0.5" />
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+
         {/* 2. 供養のカタチを知る (Moved up to be prominent) */}
+
         <section className="py-[120px] bg-white">
           <div className="max-w-[1280px] mx-auto px-4">
             <div className="text-center mb-16">

@@ -49,8 +49,19 @@ export function Navbar() {
 
     return (
         <header className="fixed top-0 w-full z-50 bg-white/95 backdrop-blur-md border-b border-gray-100 transition-all duration-300">
+            {/* Utility Bar (上段) - JTB風 */}
+            <div className="bg-bg-muted border-b border-border hidden md:block">
+                <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 flex justify-end items-center h-8 gap-6 text-xs text-gray-500">
+                    <Link href="/faq" className="hover:text-primary transition-colors">よくある質問</Link>
+                    <Link href="/consult/request-material" className="hover:text-primary transition-colors">資料請求</Link>
+                    <Link href="/about/company" className="hover:text-primary transition-colors">会社情報</Link>
+                    <a href="tel:0800-888-8788" className="hover:text-primary transition-colors font-bold flex items-center gap-1">
+                        <Phone className="w-3 h-3" /> 0800-888-8788
+                    </a>
+                </div>
+            </div>
             <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="flex items-center h-[72px] w-full">
+                <div className="flex items-center h-[60px] w-full">
                     {/* Logo */}
                     <Link href="/" className="flex items-center gap-2 shrink-0">
                         <Image

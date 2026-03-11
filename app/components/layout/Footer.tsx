@@ -82,6 +82,38 @@ export function Footer() {
                     </div>
                 </div>
 
+                {/* SEO Link Cloud - エリア×タイプ掛け合わせリンク */}
+                <div className="mb-10 pt-10 border-t border-border">
+                    <h4 className="text-sm font-bold text-gray-500 mb-4">エリアから霊園・墓地を探す</h4>
+                    <div className="flex flex-wrap gap-x-4 gap-y-2">
+                        {[
+                            { label: "東京都の樹木葬", href: "/area/東京都?type=jumokusou" },
+                            { label: "東京都の納骨堂", href: "/area/東京都?type=noukotsudou" },
+                            { label: "神奈川県の永代供養墓", href: "/area/神奈川県?type=eitai" },
+                            { label: "神奈川県の樹木葬", href: "/area/神奈川県?type=jumokusou" },
+                            { label: "埼玉県の一般墓", href: "/area/埼玉県?type=general" },
+                            { label: "千葉県の永代供養墓", href: "/area/千葉県?type=eitai" },
+                            { label: "大阪府の納骨堂", href: "/area/大阪府?type=noukotsudou" },
+                            { label: "大阪府の樹木葬", href: "/area/大阪府?type=jumokusou" },
+                            { label: "兵庫県の霊園", href: "/area/兵庫県" },
+                            { label: "愛知県の永代供養墓", href: "/area/愛知県?type=eitai" },
+                            { label: "福岡県の霊園", href: "/area/福岡県" },
+                            { label: "北海道の霊園", href: "/area/北海道" },
+                            { label: "京都府の樹木葬", href: "/area/京都府?type=jumokusou" },
+                            { label: "宮城県の一般墓", href: "/area/宮城県?type=general" },
+                            { label: "広島県の永代供養墓", href: "/area/広島県?type=eitai" },
+                        ].map((link) => (
+                            <Link
+                                key={link.href}
+                                href={link.href}
+                                className="text-xs text-gray-500 hover:text-primary hover:underline transition-colors"
+                            >
+                                {link.label}
+                            </Link>
+                        ))}
+                    </div>
+                </div>
+
                 <div className="border-t border-border pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-gray-400">
                     <p>&copy; {new Date().getFullYear()} Seiren Co., Ltd. All Rights Reserved.</p>
                 </div>
