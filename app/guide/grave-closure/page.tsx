@@ -4,15 +4,51 @@ import { Footer } from "../../components/layout/Footer";
 import { Button } from "../../components/ui/Button";
 import { Metadata } from "next";
 import { ArrowRight, AlertCircle, HelpCircle, CheckCircle, Info } from "lucide-react";
+import { JsonLd } from "../../components/seo/JsonLd";
+
+const FAQS = [
+    {
+        q: "墓じまいと改葬の違いは何ですか？",
+        a: "墓じまいはまず墓石を撤去して境内を更地に戻す作業を指します。改葬は遺骨を現在の埋葬場所から別の場所へ移す法律用語です。墓じまいをする場合は改葬もせざるを得ないので、両者はセットで行うことが一般的です。",
+    },
+    {
+        q: "墓じまいに必要な手続きを教えてください。",
+        a: "主な手続きはＺ①改葬先の普所の許可（受入証明書）を取得②現在の墓地がある市区町村で改葬許可申請③改葬許可証取得④閉眼供養（魂抜き）と遺骨の取り御⑤墓石撤去・更地⑥新しい納骨先への納骨。手続きが複雑な場合は専門家への相談をお勧めします。",
+    },
+    {
+        q: "墓じまいにかかる費用の目安を教えてください。",
+        a: "墓石撤去費（10万～30万円）と閃眼供養のお布施（3万～10万円）が主な出費です。改葬先の新たな納骨先の費用は別途かかります（合祀墙なら数万円、個別墓なら数百万円前後）。",
+    },
+    {
+        q: "墓じまいは親族の同意が必要ですか？",
+        a: "法律上の必須条件ではありませんが、所有者全員の同意があれば造額な失れがありません。特に神道祁祭・下の名等、西日本の過奚地匄ある地域では親族間トラブルになりやすいため、必ず事前に全員に説明し同意を得ることをお勧めします。",
+    },
+    {
+        q: "まだ离攀隣料の請求をされた場合はどうすればよいですか？",
+        a: "离攀隣料に法的な上限はありません。談別料として数万円程度の支払いは一般的ですが、数百万円の請求はする必要がないと法律家の見解もあります。捊めにならず誠意をもって相談することが大切です。それでも解決しない場合は専門家か第三者に相談することをお勧めします。",
+    },
+];
+
+const faqLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: FAQS.map((f) => ({
+        "@type": "Question",
+        name: f.q,
+        acceptedAnswer: { "@type": "Answer", text: f.a },
+    })),
+};
 
 export const metadata: Metadata = {
     title: "墓じまいとは｜手続き・費用・流れを専門家が中立解説｜清蓮",
     description: "墓じまいとは何か、必要な手続きや費用、一般的な流れを供養の専門家が中立の立場で解説。改葬を検討中の方のための墓じまいガイド。",
+    alternates: { canonical: "https://www.ohakanavi.jp/guide/grave-closure" },
 };
 
 export default function GuideGraveClosurePage() {
     return (
         <div className="min-h-screen flex flex-col bg-white text-gray-800">
+            <JsonLd data={faqLd} />
             <Navbar />
 
             <main className="flex-grow pt-24 px-4 pb-20">
@@ -326,6 +362,21 @@ export default function GuideGraveClosurePage() {
                                     </Button>
                                 </Link>
                             </div>
+                        </div>
+                    </section>
+
+                    {/* FAQセクション */}
+                    <section className="mt-16 mb-20">
+                        <h2 className="font-serif text-2xl font-bold text-primary mb-8 border-b pb-4">
+                            墓じまいに関するよくある質問
+                        </h2>
+                        <div className="space-y-4">
+                            {FAQS.map((faq, i) => (
+                                <div key={i} className="bg-white border border-gray-200 rounded-xl p-5 shadow-sm">
+                                    <p className="font-bold text-gray-800 mb-2">Q. {faq.q}</p>
+                                    <p className="text-sm text-gray-600 leading-relaxed">A. {faq.a}</p>
+                                </div>
+                            ))}
                         </div>
                     </section>
 
