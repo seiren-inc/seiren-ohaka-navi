@@ -80,6 +80,58 @@
   --foreground: #111111;
 }
 
+/* =========================================
+   Dark Mode — OS設定に自動追従
+   ========================================= */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #1A1A2E;
+    --foreground: #E8E6E1;
+    --color-bg: #1A1A2E;
+    --color-bg-muted: #16213E;
+    --color-text: #E8E6E1;
+    --color-text-muted: #A0A0A0;
+    --color-border: #2A2A4A;
+    --color-primary: #7BA3BC;
+    --color-primary-hover: #9BBCD2;
+    --color-primary-dark: #9BBCD2;
+    --color-soft-teal: #5BBFB1;
+    --color-secondary: #5BBFB1;
+    --color-lotus-pink: #F0A3A1;
+    --color-surface: #16213E;
+    --color-white-smoke: #16213E;
+    --shadow-card: 0 4px 16px rgba(0,0,0,0.3);
+    --shadow-card-hover: 0 8px 24px rgba(0,0,0,0.4);
+  }
+
+  /* 主要な背景色オーバーライド */
+  .bg-white { background-color: #1E1E36 !important; }
+  .bg-gray-50, .bg-gray-100 { background-color: #16213E !important; }
+  .bg-white\/95 { background-color: rgba(30, 30, 54, 0.95) !important; }
+
+  /* テキスト色オーバーライド */
+  .text-gray-800, .text-gray-700 { color: #E0DDD5 !important; }
+  .text-gray-600, .text-gray-500 { color: #A8A5A0 !important; }
+  .text-gray-400 { color: #888580 !important; }
+
+  /* ボーダーオーバーライド */
+  .border-gray-100, .border-gray-200 { border-color: #2A2A4A !important; }
+
+  /* カード・セクション背景 */
+  .bg-bg-muted { background-color: #16213E !important; }
+
+  /* テーブル */
+  table th { background-color: #16213E !important; }
+  table td { background-color: #1E1E36 !important; }
+
+  /* 入力フィールド */
+  input, textarea, select {
+    background-color: #16213E !important;
+    color: #E8E6E1 !important;
+    border-color: #2A2A4A !important;
+  }
+}
+
 body {
   background: var(--background);
   color: var(--foreground);
