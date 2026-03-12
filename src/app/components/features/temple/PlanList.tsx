@@ -15,11 +15,9 @@ interface PlanListProps {
 export function PlanList({ plans, temple }: PlanListProps) {
     const [currentUrl, setCurrentUrl] = useState("");
 
-    /* eslint-disable react-hooks/set-state-in-effect */
     useEffect(() => {
         if (typeof window !== 'undefined') setCurrentUrl(window.location.href);
     }, []);
-    /* eslint-enable react-hooks/set-state-in-effect */
 
     if (plans.length === 0) {
         return (
@@ -61,7 +59,7 @@ export function PlanList({ plans, temple }: PlanListProps) {
                                 </div>
                             </div>
 
-                            <div className="p-5 flex-grow">
+                            <div className="p-5 grow">
                                 {/* Price Block */}
                                 <div className="flex flex-col sm:flex-row sm:items-end justify-between bg-gray-50 p-4 rounded-lg mb-6">
                                     <div>

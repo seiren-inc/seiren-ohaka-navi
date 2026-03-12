@@ -114,7 +114,7 @@ export default async function PortalLeads() {
                                             )}
                                             {lead.message ? (
                                                 <p className="text-sm text-gray-600 line-clamp-3 bg-white p-2 rounded border border-gray-100 italic">
-                                                    "{lead.message}"
+                                                    &quot;{lead.message}&quot;
                                                 </p>
                                             ) : (
                                                 <p className="text-xs text-gray-400">備考なし</p>

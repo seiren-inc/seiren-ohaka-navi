@@ -65,7 +65,7 @@ export default function GuideGraveClosurePage() {
             <JsonLd data={articleLd} />
             <JsonLd data={faqLd} />
             <Navbar />
-            <main className="flex-grow pt-24 pb-20">
+            <main className="grow pt-24 pb-20">
                 <article className="max-w-3xl mx-auto px-4">
                     <div className="mb-12">
                         <div className="flex items-center gap-2 text-sm text-gray-500 mb-4">

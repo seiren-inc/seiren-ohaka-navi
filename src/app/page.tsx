@@ -97,7 +97,7 @@ export default function Home() {
                        {/* Abstract placeholder for category image */}
                        <div className={`text-4xl opacity-20 font-serif ${item.color}`}>{item.title}</div>
                     </div>
-                    <div className="p-8 flex-grow">
+                    <div className="p-8 grow">
                       <h3 className={`font-serif text-xl font-bold ${item.color} mb-4 group-hover:opacity-80 transition-opacity`}>
                         {item.title}
                       </h3>

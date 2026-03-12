@@ -46,7 +46,6 @@ export function AreaSearchModal({
   ); // { Tokyo: { Minato: 5 } }
   const [viewState, setViewState] = useState<"region" | "city">("region");
 
-  /* eslint-disable react-hooks/set-state-in-effect */
   useEffect(() => {
     if (isOpen) {
       // Find region for initial pref
@@ -79,7 +78,6 @@ export function AreaSearchModal({
         );
     }
   }, [isOpen, initialPrefecture]);
-  /* eslint-enable react-hooks/set-state-in-effect */
 
   // Derived City List for Selected Pref
   const cityList = useMemo(() => {

@@ -800,7 +800,7 @@ export default function NewTemplePage() {
             </div>
 
             <div className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden flex min-h-[600px]">
-                <div className="w-56 bg-gray-50 border-r border-gray-100 flex-shrink-0 pt-4">
+                <div className="w-56 bg-gray-50 border-r border-gray-100 shrink-0 pt-4">
                     {[
                         { id: 'basic', label: '基本情報', icon: Info },
                         { id: 'access', label: 'アクセス', icon: MapPin },

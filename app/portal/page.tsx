@@ -60,7 +60,7 @@ export default async function PortalDashboard() {
             {/* KPI Cards */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm flex items-start gap-4">
-                    <div className="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center flex-shrink-0">
+                    <div className="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center shrink-0">
                         <Activity className="w-6 h-6 text-blue-600" />
                     </div>
                     <div>
@@ -69,7 +69,7 @@ export default async function PortalDashboard() {
                     </div>
                 </div>
                 <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm flex items-start gap-4">
-                    <div className="w-12 h-12 rounded-full bg-emerald-100 flex items-center justify-center flex-shrink-0">
+                    <div className="w-12 h-12 rounded-full bg-emerald-100 flex items-center justify-center shrink-0">
                         <Mail className="w-6 h-6 text-emerald-600" />
                     </div>
                     <div>
@@ -80,7 +80,7 @@ export default async function PortalDashboard() {
                 <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm flex items-start gap-4 relative overflow-hidden">
                     <div className="absolute -right-4 -top-4 w-24 h-24 bg-amber-50 rounded-full z-0" />
                     <div className="relative z-10 flex gap-4">
-                        <div className="w-12 h-12 rounded-full bg-amber-100 flex items-center justify-center flex-shrink-0">
+                        <div className="w-12 h-12 rounded-full bg-amber-100 flex items-center justify-center shrink-0">
                             <FileText className="w-6 h-6 text-amber-600" />
                         </div>
                         <div>

@@ -14,7 +14,7 @@ export default function ContactPage() {
         <div className="min-h-screen flex flex-col bg-slate-50">
             <Navbar />
 
-            <main className="flex-grow pt-32 px-4 pb-20">
+            <main className="grow pt-32 px-4 pb-20">
                 <div className="max-w-3xl mx-auto">
                     <div className="text-center mb-10">
                         <span className="text-secondary font-bold tracking-widest text-xs uppercase mb-4 block">

@@ -6,7 +6,7 @@ export default function ConsultHubPage() {
     return (
         <div className="min-h-screen flex flex-col bg-slate-50">
             <Navbar />
-            <main className="flex-grow pt-32 px-4 max-w-7xl mx-auto w-full">
+            <main className="grow pt-32 px-4 max-w-7xl mx-auto w-full">
                 <h1 className="text-3xl font-bold text-primary-dark mb-4">無料相談・お問い合わせ</h1>
                 <p className="text-gray-600 mb-12">
                     ご相談内容に合わせて、専門の担当者がご案内いたします。<br />
@@ -21,7 +21,7 @@ export default function ConsultHubPage() {
                             「何から相談すればいいかわからない」という場合は、まず診断チャートでご自身の希望を整理してみることをおすすめします。
                         </p>
                     </div>
-                    <Link href="/choices/diagnosis" className="flex-shrink-0">
+                    <Link href="/choices/diagnosis" className="shrink-0">
                         <span className="inline-block bg-primary text-white font-bold border border-primary px-6 py-3 rounded-full hover:bg-primary/90 hover:shadow-lg transition-all">
                             供養の選択肢診断を試す →
                         </span>

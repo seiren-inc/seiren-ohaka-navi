@@ -21,7 +21,6 @@ export function TempleHero({ data }: TempleHeroProps) {
     const isFav = isInitialized ? isFavorite(data.id) : false;
 
     useEffect(() => {
-        // eslint-disable-next-line react-hooks/set-state-in-effect
         if (typeof window !== 'undefined') setCurrentUrl(window.location.href);
     }, []);
 
@@ -98,8 +97,6 @@ export function TempleHero({ data }: TempleHeroProps) {
                             <span className="font-bold hidden sm:inline">{isFav ? "お気に入り保存済み" : "お気に入りに追加"}</span>
                         </button>
                     </div>
-                    </div>
-
                     {/* Tags */}
                     <div className="flex flex-wrap gap-2 mb-6">
                         {displayTags.map((tag) => (

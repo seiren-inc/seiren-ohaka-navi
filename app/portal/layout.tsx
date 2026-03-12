@@ -51,7 +51,7 @@ export default async function PortalLayout({
     return (
         <div className="flex h-screen bg-gray-50 font-sans">
             {/* Sidebar Desktop */}
-            <aside className="hidden md:flex w-64 bg-[#007B55] flex-shrink-0 flex-col text-white shadow-xl shadow-[#007B55]/10 z-10">
+            <aside className="hidden md:flex w-64 bg-[#007B55] shrink-0 flex-col text-white shadow-xl shadow-[#007B55]/10 z-10">
                 <div className="p-6 border-b border-white/10 flex flex-col items-center">
                     <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center mb-3">
                         <span className="text-white font-bold text-xl">S</span>

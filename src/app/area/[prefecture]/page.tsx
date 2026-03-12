@@ -58,7 +58,7 @@ export default async function AreaPage(props: { params: Promise<{ prefecture: st
             <JsonLd data={breadcrumbLd} />
             <Navbar />
 
-            <main className="flex-grow pt-20">
+            <main className="grow pt-20">
                 <AreaHero
                     prefecture={decodedPrefecture}
                     count={count}

@@ -290,7 +290,7 @@ function GraveClosureConsultForm() {
                 </p>
             </div>
 
-            <main className="flex-grow container mx-auto px-4 py-12 max-w-4xl">
+            <main className="grow container mx-auto px-4 py-12 max-w-4xl">
 
                 {/* 3 Reassurances */}
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">

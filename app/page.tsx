@@ -175,11 +175,11 @@ export default function Home() {
                        />
                        <div className="absolute inset-0 bg-black/10 group-hover:bg-black/0 transition-colors duration-500" />
                     </div>
-                    <div className="p-8 flex-grow flex flex-col">
+                    <div className="p-8 grow flex flex-col">
                       <h3 className={`font-serif text-xl font-bold ${item.color} mb-4 group-hover:text-primary transition-colors`}>
                         {item.title}
                       </h3>
-                      <p className="text-gray-600 text-sm leading-relaxed mb-6 flex-grow">
+                      <p className="text-gray-600 text-sm leading-relaxed mb-6 grow">
                         {item.desc}
                       </p>
                       <span className="text-primary text-sm font-bold flex items-center group-hover:text-primary-hover transition-colors mt-auto">

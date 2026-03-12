@@ -7,7 +7,7 @@ export default function GuideNoukotsudouPage() {
     return (
         <div className="min-h-screen flex flex-col">
             <Navbar />
-            <main className="flex-grow pt-32 px-4 max-w-7xl mx-auto w-full">
+            <main className="grow pt-32 px-4 max-w-7xl mx-auto w-full">
                 <h1 className="text-3xl font-bold text-primary-dark mb-4">納骨堂について</h1>
                 <p className="text-gray-600 mb-8 leading-relaxed">
                     天候に左右されず、アクセスの良い場所が多い「納骨堂」。<br />

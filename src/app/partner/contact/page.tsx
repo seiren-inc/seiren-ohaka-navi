@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
+ 
 "use client";
 
 import { useForm } from "react-hook-form";
@@ -106,7 +106,7 @@ export default function PartnerContactPage() {
         <div className="min-h-screen flex flex-col bg-gray-50">
             <Navbar />
 
-            <main className="flex-grow pt-32 px-4 pb-20">
+            <main className="grow pt-32 px-4 pb-20">
                 <div className="max-w-3xl mx-auto">
 
                     {/* Header */}

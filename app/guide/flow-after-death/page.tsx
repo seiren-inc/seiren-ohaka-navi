@@ -7,7 +7,7 @@ export default function GuideFlowAfterDeathPage() {
     return (
         <div className="min-h-screen flex flex-col">
             <Navbar />
-            <main className="flex-grow pt-32 px-4 max-w-7xl mx-auto w-full">
+            <main className="grow pt-32 px-4 max-w-7xl mx-auto w-full">
                 <h1 className="text-3xl font-bold text-primary-dark mb-4">没後の手続きフロー</h1>
                 <p className="text-gray-600 mb-8 leading-relaxed">
                     大切な方が亡くなられた後、ご遺族には多くの手続きが待っています。<br />

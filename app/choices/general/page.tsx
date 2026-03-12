@@ -56,7 +56,7 @@ export default function GeneralGravePage() {
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
             <Navbar />
 
-            <main className="flex-grow pt-24 px-4 pb-20">
+            <main className="grow pt-24 px-4 pb-20">
                 <div className="max-w-4xl mx-auto">
 
                     {/* ヘッダー */}
@@ -251,7 +251,7 @@ export default function GeneralGravePage() {
                             ].map((item, i) => (
                                 <div key={i} className="bg-gray-50 rounded-lg p-5">
                                     <h4 className="font-bold text-primary mb-2 flex flex-row items-center">
-                                        <span className="bg-primary text-white text-xs font-bold px-2 py-1 rounded mr-3 flex-shrink-0">Q</span>
+                                        <span className="bg-primary text-white text-xs font-bold px-2 py-1 rounded mr-3 shrink-0">Q</span>
                                         {item.q}
                                     </h4>
                                     <p className="text-sm text-gray-600 ml-10 leading-relaxed">{item.a}</p>
@@ -273,7 +273,7 @@ export default function GeneralGravePage() {
                                     </span>
                                     <h3 className="font-bold text-lg text-primary">一般墓を探してみる</h3>
                                 </div>
-                                <p className="text-sm text-gray-500 text-center mb-6 flex-grow">
+                                <p className="text-sm text-gray-500 text-center mb-6 grow">
                                     エリアや条件から、実際の霊園・墓地を検索できます。
                                 </p>
                                 <Link href="/search?type=general" className="w-full">
@@ -290,7 +290,7 @@ export default function GeneralGravePage() {
                                     </span>
                                     <h3 className="font-bold text-lg text-primary">他の供養方法も比較する</h3>
                                 </div>
-                                <p className="text-sm text-gray-500 text-center mb-6 flex-grow">
+                                <p className="text-sm text-gray-500 text-center mb-6 grow">
                                     永代供養墓・樹木葬など、他の選択肢と比較する。
                                 </p>
                                 <Link href="/choices" className="w-full">
@@ -311,7 +311,7 @@ export default function GeneralGravePage() {
                                     </span>
                                     <h3 className="font-bold text-lg text-soft-teal">状況を整理して相談する</h3>
                                 </div>
-                                <p className="text-sm text-gray-500 text-center mb-6 flex-grow">
+                                <p className="text-sm text-gray-500 text-center mb-6 grow">
                                     まだ決まっていなくて大丈夫。専門家が一緒に整理します。
                                 </p>
                                 <Link href="/consult" className="w-full">

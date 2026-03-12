@@ -17,7 +17,7 @@ export async function GET() {
     const user = await getTempleUserFromSession();
     if (!user) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+     
     const temple: any = user.temple;
     return NextResponse.json({
         id: temple.id,
@@ -41,7 +41,7 @@ export async function PATCH(req: NextRequest) {
     const body = await req.json();
     const { name, pref, city, addressLine, phone, description, transportation, parkingInfo, officeHours } = body;
 
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+     
     const updated = await (prisma as any).temple.update({
         where: { id: (user as any).templeId },
         data: {

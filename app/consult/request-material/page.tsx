@@ -56,7 +56,7 @@ function RequestForm() {
     const [fetchedTemple, setFetchedTemple] = useState<any>(null);
     const [fetchedPlan, setFetchedPlan] = useState<any>(null);
 
-    /* eslint-disable react-hooks/exhaustive-deps */
+     
     useEffect(() => {
         if (paramTempleId && !paramTempleName) {
             // Fetch temple data if only ID is provided (though we usually pass name now)
@@ -69,7 +69,7 @@ function RequestForm() {
                 .catch(err => console.error("Failed to fetch temple:", err));
         }
     }, [paramTempleId, paramTempleName]);
-    /* eslint-enable react-hooks/exhaustive-deps */
+     
 
     const displayTempleName = fetchedTemple?.name || paramTempleName;
     const displayPlanName = fetchedPlan?.name || paramPlanName;
@@ -468,7 +468,7 @@ export default function RequestMaterialPage() {
     return (
         <div className="min-h-screen flex flex-col bg-white-smoke">
             <Navbar />
-            <main className="flex-grow pt-32 px-4 pb-20">
+            <main className="grow pt-32 px-4 pb-20">
                 <Suspense fallback={<div className="text-center py-20">Loading form...</div>}>
                     <RequestForm />
                 </Suspense>

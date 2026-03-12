@@ -169,28 +169,28 @@ export function DiagnosticChart() {
                                     onClick={() => handlePriority("tradition")}
                                     className="flex items-center p-5 rounded-xl border-2 border-gray-200 hover:border-secondary hover:bg-secondary/5 transition-all text-left group"
                                 >
-                                    <Landmark className="w-6 h-6 text-gray-400 group-hover:text-secondary mr-4 flex-shrink-0" />
+                                    <Landmark className="w-6 h-6 text-gray-400 group-hover:text-secondary mr-4 shrink-0" />
                                     <span className="font-bold text-gray-700">伝統や格式を大切にしたい</span>
                                 </button>
                                 <button
                                     onClick={() => handlePriority("cost")}
                                     className="flex items-center p-5 rounded-xl border-2 border-gray-200 hover:border-secondary hover:bg-secondary/5 transition-all text-left group"
                                 >
-                                    <Wallet className="w-6 h-6 text-gray-400 group-hover:text-secondary mr-4 flex-shrink-0" />
+                                    <Wallet className="w-6 h-6 text-gray-400 group-hover:text-secondary mr-4 shrink-0" />
                                     <span className="font-bold text-gray-700">費用をなるべく抑えたい</span>
                                 </button>
                                 <button
                                     onClick={() => handlePriority("nature")}
                                     className="flex items-center p-5 rounded-xl border-2 border-gray-200 hover:border-secondary hover:bg-secondary/5 transition-all text-left group"
                                 >
-                                    <Sprout className="w-6 h-6 text-gray-400 group-hover:text-secondary mr-4 flex-shrink-0" />
+                                    <Sprout className="w-6 h-6 text-gray-400 group-hover:text-secondary mr-4 shrink-0" />
                                     <span className="font-bold text-gray-700">自然な雰囲気・明るさ</span>
                                 </button>
                                 <button
                                     onClick={() => handlePriority("convenience")}
                                     className="flex items-center p-5 rounded-xl border-2 border-gray-200 hover:border-secondary hover:bg-secondary/5 transition-all text-left group"
                                 >
-                                    <Building className="w-6 h-6 text-gray-400 group-hover:text-secondary mr-4 flex-shrink-0" />
+                                    <Building className="w-6 h-6 text-gray-400 group-hover:text-secondary mr-4 shrink-0" />
                                     <span className="font-bold text-gray-700">お参りのしやすさ・手軽さ</span>
                                 </button>
                             </div>

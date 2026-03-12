@@ -25,7 +25,7 @@ export function FaqAccordion({ faqs }: FaqAccordionProps) {
                                 <span className="text-secondary mr-3 text-lg">Q.</span>
                                 <span className="pt-0.5">{faq.q}</span>
                             </span>
-                            {isOpen ? <Minus className="w-4 h-4 text-gray-400 flex-shrink-0" /> : <Plus className="w-4 h-4 text-gray-400 flex-shrink-0" />}
+                            {isOpen ? <Minus className="w-4 h-4 text-gray-400 shrink-0" /> : <Plus className="w-4 h-4 text-gray-400 shrink-0" />}
                         </button>
                         {isOpen && (
                             <div className="px-4 pb-4 pl-10">

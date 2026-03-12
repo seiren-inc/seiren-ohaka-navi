@@ -15,7 +15,7 @@ export default function GuideGraveClosurePage() {
         <div className="min-h-screen flex flex-col bg-white text-gray-800">
             <Navbar />
 
-            <main className="flex-grow pt-24 px-4 pb-20">
+            <main className="grow pt-24 px-4 pb-20">
                 <div className="max-w-4xl mx-auto">
 
                     {/* Header Section */}
@@ -97,7 +97,7 @@ export default function GuideGraveClosurePage() {
                                 { title: "5. 新しい場所への納骨", desc: "改葬許可証を新しい納骨先に提出し、遺骨を納めます。" }
                             ].map((step, i) => (
                                 <div key={i} className="flex gap-4">
-                                    <div className="flex-shrink-0 w-10 h-10 rounded-full bg-secondary text-white flex items-center justify-center font-bold text-lg shadow-sm">
+                                    <div className="shrink-0 w-10 h-10 rounded-full bg-secondary text-white flex items-center justify-center font-bold text-lg shadow-sm">
                                         {i + 1}
                                     </div>
                                     <div className="pt-1">
@@ -218,7 +218,7 @@ export default function GuideGraveClosurePage() {
                             <div className="bg-gray-50 p-6 rounded-lg mb-6">
                                 <ul className="space-y-4">
                                     <li className="flex items-start">
-                                        <div className="flex-shrink-0 w-6 h-6 rounded-full bg-primary/20 text-primary flex items-center justify-center mt-0.5 mr-3">
+                                        <div className="shrink-0 w-6 h-6 rounded-full bg-primary/20 text-primary flex items-center justify-center mt-0.5 mr-3">
                                             <CheckCircle className="w-4 h-4" />
                                         </div>
                                         <div className="text-sm text-gray-700 leading-relaxed">
@@ -227,7 +227,7 @@ export default function GuideGraveClosurePage() {
                                         </div>
                                     </li>
                                     <li className="flex items-start">
-                                        <div className="flex-shrink-0 w-6 h-6 rounded-full bg-primary/20 text-primary flex items-center justify-center mt-0.5 mr-3">
+                                        <div className="shrink-0 w-6 h-6 rounded-full bg-primary/20 text-primary flex items-center justify-center mt-0.5 mr-3">
                                             <CheckCircle className="w-4 h-4" />
                                         </div>
                                         <div className="text-sm text-gray-700 leading-relaxed">
@@ -236,7 +236,7 @@ export default function GuideGraveClosurePage() {
                                         </div>
                                     </li>
                                     <li className="flex items-start">
-                                        <div className="flex-shrink-0 w-6 h-6 rounded-full bg-primary/20 text-primary flex items-center justify-center mt-0.5 mr-3">
+                                        <div className="shrink-0 w-6 h-6 rounded-full bg-primary/20 text-primary flex items-center justify-center mt-0.5 mr-3">
                                             <CheckCircle className="w-4 h-4" />
                                         </div>
                                         <div className="text-sm text-gray-700 leading-relaxed">
@@ -245,7 +245,7 @@ export default function GuideGraveClosurePage() {
                                         </div>
                                     </li>
                                     <li className="flex items-start">
-                                        <div className="flex-shrink-0 w-6 h-6 rounded-full bg-primary/20 text-primary flex items-center justify-center mt-0.5 mr-3">
+                                        <div className="shrink-0 w-6 h-6 rounded-full bg-primary/20 text-primary flex items-center justify-center mt-0.5 mr-3">
                                             <CheckCircle className="w-4 h-4" />
                                         </div>
                                         <div className="text-sm text-gray-700 leading-relaxed">
@@ -281,7 +281,7 @@ export default function GuideGraveClosurePage() {
                                     </span>
                                     <h3 className="font-bold text-lg text-secondary">まずは話を整理する</h3>
                                 </div>
-                                <p className="text-sm text-gray-500 text-center mb-6 flex-grow">
+                                <p className="text-sm text-gray-500 text-center mb-6 grow">
                                     まだ決断していなくても大丈夫です。現状の不安をお聞かせください。
                                 </p>
                                 <Link href="/consult/grave-closure" className="w-full">
@@ -299,7 +299,7 @@ export default function GuideGraveClosurePage() {
                                     </span>
                                     <h3 className="font-bold text-lg text-primary-dark">次の供養先を探す</h3>
                                 </div>
-                                <p className="text-sm text-gray-500 text-center mb-6 flex-grow">
+                                <p className="text-sm text-gray-500 text-center mb-6 grow">
                                     永代供養墓や樹木葬など、引っ越し先の選択肢を見てみましょう。
                                 </p>
                                 <Link href="/choices" className="w-full">
@@ -317,7 +317,7 @@ export default function GuideGraveClosurePage() {
                                     </span>
                                     <h3 className="font-bold text-lg text-primary-dark">ガイドトップへ戻る</h3>
                                 </div>
-                                <p className="text-sm text-gray-500 text-center mb-6 flex-grow">
+                                <p className="text-sm text-gray-500 text-center mb-6 grow">
                                     他の知識記事も読んでみたい方はこちらから。
                                 </p>
                                 <Link href="/guide" className="w-full">

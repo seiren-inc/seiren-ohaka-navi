@@ -36,7 +36,7 @@ export default async function PortalSettings() {
                 </div>
                 <div className="p-6 space-y-6">
                     <div className="flex items-start gap-4 pb-6 border-b border-gray-100">
-                        <div className="w-10 h-10 rounded-full bg-gray-100 flex flex-col items-center justify-center flex-shrink-0 mt-1">
+                        <div className="w-10 h-10 rounded-full bg-gray-100 flex flex-col items-center justify-center shrink-0 mt-1">
                             <Building2 className="w-5 h-5 text-gray-500" />
                         </div>
                         <div>
@@ -47,7 +47,7 @@ export default async function PortalSettings() {
                     </div>
 
                     <div className="flex items-start gap-4 pb-6 border-b border-gray-100">
-                        <div className="w-10 h-10 rounded-full bg-blue-50 flex flex-col items-center justify-center flex-shrink-0 mt-1">
+                        <div className="w-10 h-10 rounded-full bg-blue-50 flex flex-col items-center justify-center shrink-0 mt-1">
                             <User className="w-5 h-5 text-blue-500" />
                         </div>
                         <div>
@@ -60,7 +60,7 @@ export default async function PortalSettings() {
                     </div>
 
                     <div className="flex items-start gap-4">
-                        <div className="w-10 h-10 rounded-full bg-emerald-50 flex flex-col items-center justify-center flex-shrink-0 mt-1">
+                        <div className="w-10 h-10 rounded-full bg-emerald-50 flex flex-col items-center justify-center shrink-0 mt-1">
                             <Mail className="w-5 h-5 text-emerald-500" />
                         </div>
                         <div>

@@ -67,7 +67,7 @@ export function PlanAccordion({ plans }: PlanAccordionProps) {
                                     onClick={() => openModal(plan)}
                                 >
                                     {/* Image Placeholder */}
-                                    <div className="w-full sm:w-32 h-32 bg-gray-200 rounded-lg flex-shrink-0 flex items-center justify-center text-xs text-gray-400 relative overflow-hidden">
+                                    <div className="w-full sm:w-32 h-32 bg-gray-200 rounded-lg shrink-0 flex items-center justify-center text-xs text-gray-400 relative overflow-hidden">
                                         {plan.imageUrl ? (
                                             <div className="w-full h-full bg-cover bg-center" style={{ backgroundImage: `url(${plan.imageUrl})` }} />
                                         ) : (
@@ -76,7 +76,7 @@ export function PlanAccordion({ plans }: PlanAccordionProps) {
                                         <div className="absolute inset-0 bg-black/5 opacity-0 group-hover:opacity-10 transition-opacity" />
                                     </div>
 
-                                    <div className="flex-grow">
+                                    <div className="grow">
                                         <div className="flex flex-col sm:flex-row justify-between mb-2">
                                             <div>
                                                 <div className="flex gap-2 mb-2">
