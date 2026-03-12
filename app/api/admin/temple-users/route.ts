@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import crypto from 'crypto';
+import { supabaseAdmin } from "@/lib/supabase/admin";
 
 export const dynamic = "force-dynamic";
 
@@ -31,8 +32,18 @@ export async function POST(req: NextRequest) {
 
         // 初期パスワード生成 (ランダム8文字)
         const initialPassword = crypto.randomBytes(4).toString('hex');
-        // TODO: Supabase Auth にユーザーを作成するロジックを後で追加
-        // const { data, error } = await supabaseAdmin.auth.admin.createUser({ email, password: initialPassword })
+
+        // Supabase Auth にユーザーを作成
+        const { data: authData, error: authError } = await supabaseAdmin.auth.admin.createUser({ 
+            email, 
+            password: initialPassword,
+            email_confirm: true // 自動的にメール確認済みにする
+        });
+
+        if (authError || !authData.user) {
+            console.error("[supabase auth error]", authError);
+            return NextResponse.json({ error: "認証アカウントの作成に失敗しました: " + (authError?.message || "不明なエラー") }, { status: 500 });
+        }
         
         const user = await prisma.templeUser.create({
             data: {
@@ -40,6 +51,7 @@ export async function POST(req: NextRequest) {
                 email,
                 name,
                 title,
+                supabaseUid: authData.user.id,
                 status: "active",
             }
         });
@@ -51,3 +63,4 @@ export async function POST(req: NextRequest) {
         return NextResponse.json({ error: "サーバーエラーが発生しました" }, { status: 500 });
     }
 }
+

@@ -3,7 +3,9 @@ import { Navbar } from "../../components/layout/Navbar";
 import { Footer } from "../../components/layout/Footer";
 import { Button } from "../../components/ui/Button";
 import { JsonLd } from "../../components/seo/JsonLd";
-import { ChevronRight, HelpCircle, ChevronDown, CheckCircle2 } from "lucide-react";
+import { ExpertProfile } from "../../components/seo/ExpertProfile";
+import { PrimaryDataStats } from "../../components/seo/PrimaryDataStats";
+import { ChevronRight, ChevronDown, CheckCircle2 } from "lucide-react";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -152,8 +154,21 @@ export default function GuideEitaiKuyouPage() {
                         </div>
                     </div>
 
+
                     {/* CTA */}
-                    <div className="mt-16 bg-white border border-gray-200 rounded-2xl p-8 text-center shadow-lg">
+                    <PrimaryDataStats
+                        title="清蓮の相談データでみる永代供養の実際"
+                        source="清蓮（Seiren）相談実績（参考値）"
+                        items={[
+                            { label: "永代供養の平均費用（合祀以外）", value: "約48万円", note: "清蓮相談実績の中央値" },
+                            { label: "相談者のうち後継者なしの割合", value: "約67%", note: "永代供養を選ぶ最大の動機" },
+                            { label: "最多の選択先", value: "集合安置型", note: "個人感を残しつつ費用を抑えられる" }
+                        ]}
+                    />
+
+                    <ExpertProfile reviewedDate="2026年3月" />
+
+                    <div className="mt-4 bg-white border border-gray-200 rounded-2xl p-8 text-center shadow-lg">
                         <h3 className="text-xl font-bold text-gray-800 mb-4">
                             あなたに合った永代供養墓を探しませんか？
                         </h3>
