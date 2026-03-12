@@ -5,7 +5,6 @@ import { Metadata } from "next";
 export const metadata: Metadata = {
     title: "利用規約｜清蓮",
     description: "清蓮（SEIREN）のウェブサイト利用規約です。",
-    robots: { index: false, follow: true },
 };
 
 export default function TermsPage() {
