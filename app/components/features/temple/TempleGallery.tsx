@@ -89,7 +89,7 @@ export function TempleGallery({ gallery }: TempleGalleryProps) {
             {/* Lightbox */}
             {lightboxIndex !== null && gallery[lightboxIndex] && (
                 <div
-                    className="fixed inset-0 z-[100] bg-black/90 backdrop-blur-sm flex items-center justify-center animate-in fade-in duration-200"
+                    className="fixed inset-0 z-100 bg-black/95 flex items-center justify-center backdrop-blur-sm" role="dialog" aria-modal="true"
                     onClick={closeLightbox}
                 >
                     {/* Close button */}

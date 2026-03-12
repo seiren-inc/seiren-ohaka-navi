@@ -14,6 +14,7 @@ import {
 import { Temple } from "@/lib/store";
 import { Card } from "../../ui/Card";
 import { Tag } from "../../ui/Tag";
+import { useFavorites } from "@/lib/hooks/useFavorites";
 
 interface GraveyardCardProps {
   data: Temple;
@@ -23,6 +24,9 @@ export function GraveyardCard({ data }: GraveyardCardProps) {
   const pathname = usePathname();
   const currentUrl =
     typeof window !== "undefined" ? window.location.href : pathname;
+
+  const { isFavorite, toggleFavorite, isInitialized } = useFavorites();
+  const isFav = isInitialized ? isFavorite(data.id) : false;
 
   // Generate tags from supported memorial types and features
   const displayTags = [
@@ -71,8 +75,8 @@ export function GraveyardCard({ data }: GraveyardCardProps) {
           </div>
         )}
 
-        {/* Badges: facility type + plan badges */}
-        <div className="absolute top-2 left-2 flex flex-wrap gap-1">
+        {/* バッジ: facility type + plan badges */}
+        <div className="absolute top-2 left-2 flex flex-wrap gap-1 z-10">
           <span className="bg-secondary/95 text-white text-[10px] px-2 py-1 rounded-sm uppercase tracking-wider font-bold shadow-sm backdrop-blur-sm">
             {data.type}
           </span>
@@ -87,18 +91,48 @@ export function GraveyardCard({ data }: GraveyardCardProps) {
             </span>
           )}
         </div>
-        {/* PR / おすすめバッジ（右上） */}
-        <div className="absolute top-2 right-2 flex flex-col gap-1 items-end">
-          {data.isPrSlot && (
-            <span className="bg-amber-500/90 text-white text-[10px] px-2 py-0.5 rounded-sm font-bold shadow-sm backdrop-blur-sm tracking-wide">
-              PR
-            </span>
-          )}
-          {data.planType === "standard" && !data.isPrSlot && (
-            <span className="bg-emerald-500/90 text-white text-[10px] px-2 py-0.5 rounded-sm font-bold shadow-sm backdrop-blur-sm tracking-wide">
-              おすすめ
-            </span>
-          )}
+
+        {/* PR / おすすめバッジ + お気に入りボタン（右上） */}
+        <div className="absolute top-2 right-2 flex flex-col gap-2 items-end z-10">
+          <div className="flex flex-col gap-1 items-end">
+            {data.isPrSlot && (
+              <span className="bg-amber-500/90 text-white text-[10px] px-2 py-0.5 rounded-sm font-bold shadow-sm backdrop-blur-sm tracking-wide">
+                PR
+              </span>
+            )}
+            {data.planType === "standard" && !data.isPrSlot && (
+              <span className="bg-emerald-500/90 text-white text-[10px] px-2 py-0.5 rounded-sm font-bold shadow-sm backdrop-blur-sm tracking-wide">
+                おすすめ
+              </span>
+            )}
+          </div>
+          
+          <button
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              toggleFavorite(data);
+            }}
+            className={`p-2 rounded-full backdrop-blur-md shadow-sm transition-all duration-300 ${
+              isFav 
+                ? "bg-rose-50 text-rose-500 border border-rose-200" 
+                : "bg-black/30 text-white border border-white/20 hover:bg-black/50"
+            }`}
+            aria-label={isFav ? "お気に入りから削除" : "お気に入りに追加"}
+          >
+            <svg 
+              xmlns="http://www.w3.org/2000/svg" 
+              viewBox="0 0 24 24" 
+              fill={isFav ? "currentColor" : "none"} 
+              stroke="currentColor" 
+              strokeWidth="2" 
+              strokeLinecap="round" 
+              strokeLinejoin="round" 
+              className={`w-4 h-4 ${isFav ? "scale-110" : ""}`}
+            >
+              <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" />
+            </svg>
+          </button>
         </div>
       </div>
 
