@@ -55,7 +55,7 @@ export default function GuideNoukotsudouPage() {
             <JsonLd data={articleLd} />
             <JsonLd data={faqLd} />
             <Navbar />
-            <main className="flex-grow pt-24 pb-20">
+            <main className="grow pt-24 pb-20">
                 <article className="max-w-3xl mx-auto px-4">
                     <div className="mb-12">
                         <div className="flex items-center gap-2 text-sm text-gray-500 mb-4">
@@ -86,22 +86,101 @@ export default function GuideNoukotsudouPage() {
                         </ul>
                     </div>
 
-                    <div className="prose max-w-none text-gray-700 leading-loose space-y-8">
-                        <h2>納骨堂の4つの種類と費用の目安</h2>
-                        <div className="grid sm:grid-cols-2 gap-6 my-8 not-prose">
-                            {[
-                                { type: "ロッカー型", desc: "コインロッカーのような個別の収納スペースに骨壺を安置。最もシンプルで費用が抑えられる。", price: "10万〜30万円" },
-                                { type: "仏壇型", desc: "個人専用の仏壇スペースが設けられたタイプ。故人の遺影や位牌を飾れるものが多い。", price: "30万〜80万円" },
-                                { type: "自動搬送式（機械式）", desc: "ICカードをかざすと骨壺が自動で参拝ブースに搬送される最新型。都市部の大型施設に多い。", price: "50万〜150万円" },
-                                { type: "位牌型", desc: "位牌のみを納め、遺骨は合祀スペースに埋葬するタイプ。最も費用が抑えられる。", price: "数万〜30万円" }
-                            ].map((item, idx) => (
-                                <div key={idx} className="bg-white p-6 rounded-xl border border-gray-200">
-                                    <h3 className="text-base font-bold text-primary-dark mb-2">{item.type}</h3>
-                                    <p className="text-sm text-gray-600 mb-3">{item.desc}</p>
-                                    <p className="font-bold text-secondary text-sm">初期費用：{item.price}</p>
+                    <div className="prose max-w-none text-gray-700 leading-loose space-y-12">
+                        <section>
+                            <h2 className="text-2xl font-bold font-serif text-primary-dark mb-6 border-b-2 border-primary/20 pb-2">納骨堂とは？選ばれている背景と基本知識</h2>
+                            <p>
+                                納骨堂（のうこつどう）とは、<strong>屋内の施設に遺骨を安置する新しいスタイルのお墓</strong>です。元々は、お墓を建てるまでの一時的な遺骨の預かり所として利用されていましたが、現在では恒久的なお墓の代わりとして、特に都市部を中心に爆発的な人気を集めています。
+                            </p>
+                            <p>
+                                「雨や雪の日でも濡れずにお参りができる」「駅から近くて通いやすい」「墓石を建てるより安価」「最後は永代供養（えいたいくよう）に移行できる」といったメリットから、高齢の方や跡継ぎがいない方だけでなく、お墓への価値観が変化した若い世代からも支持されています。
+                            </p>
+                        </section>
+
+                        <section>
+                            <h2 className="text-2xl font-bold font-serif text-primary-dark mb-6 border-b-2 border-primary/20 pb-2">納骨堂の4つの種類とそれぞれの特徴</h2>
+                            <p>納骨堂は建物の構造や遺骨の安置方法によって、大きく以下の4種類に分けられます。見栄えや価格に大きな差があるため、違いをしっかり把握しておきましょう。</p>
+                            
+                            <div className="grid sm:grid-cols-2 gap-6 my-8 not-prose">
+                                {[
+                                    { type: "ロッカー型・棚型", desc: "コインロッカーや本棚のように区切られた個別のスペースに骨壺を安置するタイプ。最もシンプルでコンパクトなため、費用が大幅に抑えられます。扉をあけてお参りする形式と、共有の参拝ブースが設けられている形式があります。", price: "10万〜30万円" },
+                                    { type: "仏壇型（霊廟型）", desc: "上段が仏壇スペース、下段がカロート（納骨スペース）になっているタイプ。個別の仏壇に遺影やお花、思い出の品を飾れるため、従来のお墓や自宅の仏壇に近い感覚で手を合わせることができます。複数世代での利用に向いています。", price: "30万〜80万円" },
+                                    { type: "自動搬送式（機械式・マンション型）", desc: "受付で専用のICカードをかざすと、バックヤードで保管されている遺骨が自動的にお参りブースまで運ばれてくる最新鋭のシステムです。都市部の駅近に多く、設備の充実度や高級感が魅力ですが、その分システム維持費がかさみます。", price: "50万〜150万円" },
+                                    { type: "位牌型（いはいがた）", desc: "個別の位牌だけを専用の棚などに並べて安置し、遺骨は最初からまたは早い段階で合祀（ごうし：他の方と一緒に埋葬）するタイプです。個別のスペースを持たないため、全ての納骨堂スタイルの中で最も費用が安く済みます。", price: "数万〜30万円" }
+                                ].map((item, idx) => (
+                                    <div key={idx} className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm flex flex-col">
+                                        <h3 className="text-base font-bold text-primary-dark mb-3">【{idx+1}】 {item.type}</h3>
+                                        <p className="text-sm text-gray-600 mb-6 grow">{item.desc}</p>
+                                        <div className="bg-gray-50 p-3 rounded-lg text-center mt-auto">
+                                            <span className="text-xs text-text-muted font-bold block mb-1">費用相場</span>
+                                            <span className="font-bold text-secondary text-base">{item.price}</span>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        </section>
+
+                        <section>
+                            <h2 className="text-2xl font-bold font-serif text-primary-dark mb-6 border-b-2 border-primary/20 pb-2">納骨堂のメリットとデメリット</h2>
+                            
+                            <div className="grid md:grid-cols-2 gap-8 my-6 not-prose">
+                                <div className="bg-blue-50/50 p-6 rounded-xl border border-blue-100">
+                                    <h3 className="text-lg font-bold text-blue-800 mb-4 flex items-center gap-2">
+                                        <span className="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm">+</span>
+                                        納骨堂のメリット
+                                    </h3>
+                                    <ul className="space-y-3">
+                                        <li className="flex items-start gap-2 text-gray-700 text-sm"><CheckCircle2 className="w-4 h-4 text-blue-600 shrink-0 mt-0.5" /> <strong>天候に左右されない：</strong> 完全屋内のため、雨雪の日や真夏の暑さ、真冬の寒さを気にせず快適にお参りできます。</li>
+                                        <li className="flex items-start gap-2 text-gray-700 text-sm"><CheckCircle2 className="w-4 h-4 text-blue-600 shrink-0 mt-0.5" /> <strong>アクセスが抜群：</strong> 都市部の主要駅近くなど、公共交通機関で通いやすい一等地に建てられていることが多いです。</li>
+                                        <li className="flex items-start gap-2 text-gray-700 text-sm"><CheckCircle2 className="w-4 h-4 text-blue-600 shrink-0 mt-0.5" /> <strong>準備不要で手ぶら参拝：</strong> 施設内にお花やお香が常備されているため、手ぶらでフラッと立ち寄ることができます。</li>
+                                        <li className="flex items-start gap-2 text-gray-700 text-sm"><CheckCircle2 className="w-4 h-4 text-blue-600 shrink-0 mt-0.5" /> <strong>掃除・草むしり不要：</strong> 施設の管理者が定期的に清掃を行うため、お墓掃除の肉体的負担がありません。</li>
+                                        <li className="flex items-start gap-2 text-gray-700 text-sm"><CheckCircle2 className="w-4 h-4 text-blue-600 shrink-0 mt-0.5" /> <strong>永代供養への移行がスムーズ：</strong> 跡継ぎがいなくなっても、施設内の合祀墓などに移されて永代供養してもらえます。</li>
+                                    </ul>
                                 </div>
-                            ))}
-                        </div>
+                                <div className="bg-red-50/50 p-6 rounded-xl border border-red-100">
+                                    <h3 className="text-lg font-bold text-red-800 mb-4 flex items-center gap-2">
+                                        <span className="bg-red-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm">-</span>
+                                        納骨堂のデメリット・注意点
+                                    </h3>
+                                    <ul className="space-y-3">
+                                        <li className="flex items-start gap-2 text-gray-700 text-sm"><div className="w-1.5 h-1.5 rounded-full bg-red-500 shrink-0 mt-1.5" /> <strong>年間管理費が続く：</strong> 自動搬送式などは設備の維持にかかる「管理費（年間1万〜2万円程度）」が継続して発生します。</li>
+                                        <li className="flex items-start gap-2 text-gray-700 text-sm"><div className="w-1.5 h-1.5 rounded-full bg-red-500 shrink-0 mt-1.5" /> <strong>建物の老朽化・倒産リスク：</strong> 数十年後に建物の建て替え問題が発生したり、最悪の場合、運営法人が破綻するリスクがゼロではありません。</li>
+                                        <li className="flex items-start gap-2 text-gray-700 text-sm"><div className="w-1.5 h-1.5 rounded-full bg-red-500 shrink-0 mt-1.5" /> <strong>混雑時の待ち時間：</strong> お盆やお彼岸など繁忙期には、お参りブースが空くまで順番待ちを強いられることがあります。</li>
+                                        <li className="flex items-start gap-2 text-gray-700 text-sm"><div className="w-1.5 h-1.5 rounded-full bg-red-500 shrink-0 mt-1.5" /> <strong>お供え物に制限がある：</strong> 衛生面や防災の観点から「生花」や「火を使う線香」「飲食物」の持ち込みを禁止している施設が少なくありません。</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </section>
+
+                        <section>
+                            <h2 className="text-2xl font-bold font-serif text-primary-dark mb-6 border-b-2 border-primary/20 pb-2">納骨堂選びで「失敗しない」ための3つのチェックポイント</h2>
+                            <p>
+                                納骨堂は便利で人気が高い反面、特有のリスクも存在します。契約前に以下のポイントを念入りに確認してください。
+                            </p>
+                            <div className="bg-white p-6 rounded-lg border border-gray-100 shadow-sm space-y-6 not-prose mt-6">
+                                <div>
+                                    <h3 className="font-bold text-lg text-primary-dark flex items-center gap-2 mb-2">
+                                        <span className="bg-primary text-white w-6 h-6 rounded-full flex items-center justify-center text-sm">1</span> 
+                                        運営法人の信頼性と経営状況を確認する
+                                    </h3>
+                                    <p className="text-gray-600 text-sm">納骨堂で最も恐ろしいのは運営元の経営破綻です。「事業主体は誰か（宗教法人なのか、開発業者が裏にいるのか）」「過去の実績はどうか」を調べ、過度に安いプランや強引な営業手法をとる施設は避けるのが無難です。</p>
+                                </div>
+                                <div className="border-t border-gray-100 pt-6">
+                                    <h3 className="font-bold text-lg text-primary-dark flex items-center gap-2 mb-2">
+                                        <span className="bg-primary text-white w-6 h-6 rounded-full flex items-center justify-center text-sm">2</span> 
+                                        「合祀されるまでの期間」と「年間管理費の未納対応」
+                                    </h3>
+                                    <p className="text-gray-600 text-sm">個別区画を使用できる期間（例：13回忌まで、33回忌まで）と、購入者（または継承者）が年間管理費を支払えなくなった場合に、いつどのような条件で遺骨が合祀スペースに移されるのかというルールの確認が必須です。</p>
+                                </div>
+                                <div className="border-t border-gray-100 pt-6">
+                                    <h3 className="font-bold text-lg text-primary-dark flex items-center gap-2 mb-2">
+                                        <span className="bg-primary text-white w-6 h-6 rounded-full flex items-center justify-center text-sm">3</span> 
+                                        必ず「体験見学会」に参加して実写を確認する
+                                    </h3>
+                                    <p className="text-gray-600 text-sm">特に自動搬送式の場合、「機械の作動音は気にならないか」「お参りブースの広さは十分か」「お盆など混雑時の対応策はどうなっているか」など、実際に自分の目で見て初めてわかることが多々あります。</p>
+                                </div>
+                            </div>
+                        </section>
                     </div>
 
                     <PrimaryDataStats
