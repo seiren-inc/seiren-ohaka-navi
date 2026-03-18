@@ -7,6 +7,7 @@ import { MapPin, FileText, CalendarCheck } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import { useState, useEffect } from "react";
+import { useFavorites } from "@/lib/hooks/useFavorites";
 
 interface TempleHeroProps {
     data: Temple;
@@ -15,9 +16,11 @@ interface TempleHeroProps {
 export function TempleHero({ data }: TempleHeroProps) {
     const minPrice = data.priceAggMin ? data.priceAggMin.toLocaleString() : "要確認";
     const [currentUrl, setCurrentUrl] = useState("");
+    
+    const { isFavorite, toggleFavorite, isInitialized } = useFavorites();
+    const isFav = isInitialized ? isFavorite(data.id) : false;
 
     useEffect(() => {
-        // eslint-disable-next-line react-hooks/set-state-in-effect
         if (typeof window !== 'undefined') setCurrentUrl(window.location.href);
     }, []);
 
@@ -65,7 +68,35 @@ export function TempleHero({ data }: TempleHeroProps) {
                             </span>
                         </div>
                     </div>
-
+                    
+                    {/* お気に入りボタン（絶対配置/右上） */}
+                    <div className="absolute top-4 right-4 md:top-0 md:right-0">
+                        <button
+                            onClick={(e) => {
+                                e.preventDefault();
+                                toggleFavorite(data);
+                            }}
+                            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full border text-sm transition-all duration-300 ${
+                                isFav 
+                                    ? "bg-rose-50 text-rose-500 border-rose-200" 
+                                    : "bg-white text-gray-500 border-gray-200 hover:bg-gray-50"
+                            }`}
+                        >
+                            <svg 
+                                xmlns="http://www.w3.org/2000/svg" 
+                                viewBox="0 0 24 24" 
+                                fill={isFav ? "currentColor" : "none"} 
+                                stroke="currentColor" 
+                                strokeWidth="2" 
+                                strokeLinecap="round" 
+                                strokeLinejoin="round" 
+                                className={`w-4 h-4 ${isFav ? "scale-110" : ""}`}
+                            >
+                                <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" />
+                            </svg>
+                            <span className="font-bold hidden sm:inline">{isFav ? "お気に入り保存済み" : "お気に入りに追加"}</span>
+                        </button>
+                    </div>
                     {/* Tags */}
                     <div className="flex flex-wrap gap-2 mb-6">
                         {displayTags.map((tag) => (

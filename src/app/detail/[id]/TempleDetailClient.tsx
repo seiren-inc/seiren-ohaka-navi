@@ -198,7 +198,7 @@ export default function TempleDetailClient({ temple, plans }: Props) {
                 </section>
 
                 {/* Plans Section */}
-                {/* eslint-disable-next-line react-hooks/rules-of-hooks */}
+                { }
                 <section ref={sectionRefs.plans} className="mb-20 scroll-mt-24">
                     <SectionTitle en="PLANS" ja="区画・費用" />
                     {plans.length === 0 ? <p className="text-center text-gray-500">現在ご案内できるプランの詳細はお問い合わせください。</p> : (
@@ -241,7 +241,7 @@ export default function TempleDetailClient({ temple, plans }: Props) {
                 </section>
 
                 {/* Access Section */}
-                {/* eslint-disable-next-line react-hooks/rules-of-hooks */}
+                { }
                 <section ref={sectionRefs.access} className="mb-20 scroll-mt-24">
                     <SectionTitle en="ACCESS" ja="交通アクセス" />
                     <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-8">
@@ -276,7 +276,7 @@ export default function TempleDetailClient({ temple, plans }: Props) {
                     </div>
                 </section>
 
-                {/* eslint-disable-next-line react-hooks/rules-of-hooks */}
+                { }
                 <section ref={sectionRefs.consult} className="mb-20 scroll-mt-24">
                     <SectionTitle en="RESERVATION" ja="見学予約・お問い合わせ" />
                     <div className="bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden">

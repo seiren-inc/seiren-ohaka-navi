@@ -15,7 +15,7 @@ export default function ChoicesHub() {
         <div className="min-h-screen flex flex-col bg-white text-gray-800">
             <Navbar />
 
-            <main className="flex-grow pt-24 px-4 pb-20">
+            <main className="grow pt-24 px-4 pb-20">
                 <div className="max-w-6xl mx-auto">
 
                     {/* Header Section */}
@@ -287,7 +287,7 @@ export default function ChoicesHub() {
                                     </span>
                                     <h3 className="font-bold text-lg text-primary-dark">供養の基礎から知る</h3>
                                 </div>
-                                <p className="text-sm text-gray-500 text-center mb-6 flex-grow">
+                                <p className="text-sm text-gray-500 text-center mb-6 grow">
                                     用語や仕組みがよく分からない場合は、基礎知識から確認してみましょう。
                                 </p>
                                 <Link href="/guide" className="w-full">
@@ -305,7 +305,7 @@ export default function ChoicesHub() {
                                     </span>
                                     <h3 className="font-bold text-lg text-primary-dark">条件から探してみる</h3>
                                 </div>
-                                <p className="text-sm text-gray-500 text-center mb-6 flex-grow">
+                                <p className="text-sm text-gray-500 text-center mb-6 grow">
                                     エリア、予算、こだわり条件などから、実際の候補地を検索できます。
                                 </p>
                                 <Link href="/search" className="w-full">
@@ -326,7 +326,7 @@ export default function ChoicesHub() {
                                     </span>
                                     <h3 className="font-bold text-lg text-secondary">一度整理してみる</h3>
                                 </div>
-                                <p className="text-sm text-gray-500 text-center mb-6 flex-grow">
+                                <p className="text-sm text-gray-500 text-center mb-6 grow">
                                     考えがまとまっていなくても大丈夫です。第三者に話すことで、頭の中が整理されます。
                                 </p>
                                 <Link href="/consult" className="w-full">

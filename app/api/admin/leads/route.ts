@@ -19,14 +19,6 @@ export async function GET(req: NextRequest) {
     const [allInquiries, thisMonthCount, lastMonthCount] = await Promise.all([
         prisma.inquiry.findMany({
             where: dateFrom ? { createdAt: { gte: dateFrom } } : {},
-            select: {
-                templeId: true,
-                templeNameSnapshot: true,
-                category: true,
-                type: true,
-                kind: true,
-                createdAt: true,
-            },
             orderBy: { createdAt: "desc" },
         }),
         prisma.inquiry.count({
@@ -39,12 +31,16 @@ export async function GET(req: NextRequest) {
         }),
     ]);
 
-    // カテゴリ判定ヘルパー
-    const getCategory = (inq: { category: string | null; type: string | null; kind: string }) => {
-        if (inq.kind === "business") return "business";
-        if (inq.category === "grave_closure" || inq.type === "grave_closure") return "grave_closure";
-        if (inq.category === "ikotsu_service") return "ikotsu_service";
-        if (inq.category === "grave_search" || inq.category === "consult") return "grave_search";
+    // カテゴリ判定ヘルパー（Inquiry の既存フィールドで判定）
+    const getCategory = (inq: (typeof allInquiries)[number]) => {
+        const kind = inq.kind;
+        const category = inq.category;
+        const type = inq.type;
+
+        if (kind === "business") return "business";
+        if (category === "grave_closure" || type === "grave_closure") return "grave_closure";
+        if (category === "ikotsu_service") return "ikotsu_service";
+        if (category === "grave_search" || category === "consult") return "grave_search";
         return "general";
     };
 

@@ -12,7 +12,6 @@ interface TempleGuideProps {
 
 export function TempleGuide({ data }: TempleGuideProps) {
     const [currentUrl, setCurrentUrl] = useState("");
-    // eslint-disable-next-line react-hooks/set-state-in-effect
     useEffect(() => { if (typeof window !== 'undefined') setCurrentUrl(window.location.href); }, []);
     const requestUrl = `/consult/request-material?templeId=${data.id}&templeName=${encodeURIComponent(data.name)}&ref=guide&refUrl=${encodeURIComponent(currentUrl)}`;
 

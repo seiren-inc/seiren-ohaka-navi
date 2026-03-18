@@ -21,7 +21,7 @@ export default async function InquiryDetail(props: { params: Promise<{ id: strin
 
     const decodedId = decodeURIComponent(params.id);
     const inquiryData = await prisma.inquiry.findUnique({
-        where: { id: decodedId }
+        where: { id: decodedId },
     });
 
     if (!inquiryData) {
@@ -29,8 +29,9 @@ export default async function InquiryDetail(props: { params: Promise<{ id: strin
     }
 
     const inquiry = inquiryData as any;
+    const raw = inquiry.rawPayload as any;
 
-    const isBusiness = inquiry.kind === 'business';
+    const isBusiness = inquiry.inquiryDetail?.inquiryKind === 'business';
 
     return (
         <div className="max-w-4xl mx-auto">
@@ -76,29 +77,29 @@ export default async function InquiryDetail(props: { params: Promise<{ id: strin
                                 <div>
                                     <div className="text-xs text-gray-500 mb-1">希望墓地</div>
                                     <div className="text-lg font-bold text-gray-800">
-                                        {inquiry.context?.templeName || inquiry.desiredTempleName || '未指定'}
+                                        {inquiry.inquiryDetail?.templeNameSnapshot || raw?.context?.templeName || raw?.desiredTempleName || '未指定'}
                                     </div>
-                                    <div className="text-xs text-gray-400 mt-1">ID: {inquiry.context?.templeId || '-'}</div>
+                                    <div className="text-xs text-gray-400 mt-1">ID: {inquiry.inquiryDetail?.templeId || raw?.context?.templeId || '-'}</div>
                                 </div>
                                 <div>
                                     <div className="text-xs text-gray-500 mb-1">希望プラン</div>
                                     <div className="flex items-center gap-2">
-                                        {inquiry.context?.planName || inquiry.desiredPlanName ? (
+                                        {inquiry.inquiryDetail?.planName || raw?.context?.planName || raw?.desiredPlanName ? (
                                             <div className="text-lg font-bold text-primary bg-white px-3 py-1 rounded border border-blue-100 inline-block">
-                                                {inquiry.context?.planName || inquiry.desiredPlanName}
+                                                {inquiry.inquiryDetail?.planName || raw?.context?.planName || raw?.desiredPlanName}
                                             </div>
                                         ) : (
                                             <div className="text-gray-400">未指定</div>
                                         )}
                                     </div>
-                                    <div className="text-xs text-gray-400 mt-1">ID: {inquiry.context?.planId || '-'}</div>
+                                    <div className="text-xs text-gray-400 mt-1">ID: {inquiry.inquiryDetail?.planId || raw?.context?.planId || '-'}</div>
                                 </div>
                                 <div className="col-span-2 pt-2 border-t border-blue-100/50 mt-2">
                                     <div className="text-xs text-gray-500 mb-1">流入元参照 (Ref)</div>
-                                    <div className="text-sm text-gray-600">{inquiry.context?.sourceLabel || inquiry.ref || '-'}</div>
-                                    {inquiry.context?.refUrl && (
-                                        <a href={inquiry.context.refUrl} target="_blank" className="text-xs text-blue-500 underline mt-1 block">
-                                            {inquiry.context.refUrl}
+                                    <div className="text-sm text-gray-600">{raw?.context?.sourceLabel || raw?.ref || '-'}</div>
+                                    {raw?.context?.refUrl && (
+                                        <a href={raw.context.refUrl} target="_blank" className="text-xs text-blue-500 underline mt-1 block">
+                                            {raw.context.refUrl}
                                         </a>
                                     )}
                                 </div>
@@ -150,21 +151,21 @@ export default async function InquiryDetail(props: { params: Promise<{ id: strin
                                 <div>
                                     <dt className="text-xs font-bold text-gray-400 mb-1">お名前</dt>
                                     <dd className="font-bold text-lg">
-                                        {inquiry.user?.lastName ? `${inquiry.user.lastName} ${inquiry.user.firstName}` : (inquiry.user?.name || inquiry.contactName || (inquiry as any).name || '（不明）')}
+                                        {inquiry.lastName ? `${inquiry.lastName} ${inquiry.firstName || ''}` : (raw?.user?.lastName ? `${raw.user.lastName} ${raw.user.firstName}` : (raw?.user?.name || raw?.contactName || raw?.name || '（不明）'))}
                                     </dd>
                                     <dd className="text-sm text-gray-500">
-                                        {inquiry.user?.lastNameKana ? `${inquiry.user.lastNameKana} ${inquiry.user.firstNameKana}` : (inquiry.user?.kana || (inquiry as any).furigana || '-')}
+                                        {raw?.user?.lastNameKana ? `${raw.user.lastNameKana} ${raw.user.firstNameKana}` : (raw?.user?.kana || raw?.furigana || '-')}
                                     </dd>
                                 </div>
                                 <div>
                                     <dt className="text-xs font-bold text-gray-400 mb-1">連絡先</dt>
                                     <dd className="flex items-center gap-2 mb-1">
                                         <Phone className="w-4 h-4 text-gray-400" />
-                                        <span className="font-bold font-mono">{inquiry.user?.phone || (inquiry as any).phone || inquiry.phone || '-'}</span>
+                                        <span className="font-bold font-mono">{inquiry.phone || raw?.user?.phone || raw?.phone || '-'}</span>
                                     </dd>
                                     <dd className="flex items-center gap-2">
                                         <Mail className="w-4 h-4 text-gray-400" />
-                                        <span className="font-mono">{inquiry.user?.email || (inquiry as any).email || inquiry.email || '-'}</span>
+                                        <span className="font-mono">{inquiry.email || raw?.user?.email || raw?.email || '-'}</span>
                                     </dd>
                                 </div>
                                 <div>
@@ -172,13 +173,13 @@ export default async function InquiryDetail(props: { params: Promise<{ id: strin
                                     <dd className="flex items-start gap-2">
                                         <MapPin className="w-4 h-4 text-gray-400 mt-1" />
                                         <div>
-                                            <div className="font-mono text-sm mb-1">〒{inquiry.user?.zipCode || (inquiry as any).zipCode || '-'}</div>
-                                            {inquiry.user?.prefecture ? (
+                                            <div className="font-mono text-sm mb-1">〒{raw?.user?.zipCode || raw?.zipCode || '-'}</div>
+                                            {inquiry.prefecture ? (
                                                 <div>
-                                                    {inquiry.user.prefecture} {inquiry.user.city} {inquiry.user.addressLine} {inquiry.user.building}
+                                                    {inquiry.prefecture} {inquiry.city} {inquiry.addressDetail}
                                                 </div>
                                             ) : (
-                                                <div>{inquiry.user?.address || (inquiry as any).address || inquiry.address || '-'}</div>
+                                                <div>{raw?.user?.address || raw?.address || '-'}</div>
                                             )}
                                         </div>
                                     </dd>
@@ -211,7 +212,7 @@ export default async function InquiryDetail(props: { params: Promise<{ id: strin
                                         </div>
 
                                         {/* Grave Closure Info */}
-                                        {inquiry.category === 'grave_closure' && (
+                                        {inquiry.inquiryDetail?.category === 'grave_closure' && (
                                             <div className="bg-amber-50 border border-amber-100 rounded p-4 mb-4">
                                                 <h4 className="font-bold text-amber-800 border-b border-amber-200 pb-2 mb-3 flex items-center">
                                                     <Building className="w-4 h-4 mr-2" />
@@ -221,17 +222,17 @@ export default async function InquiryDetail(props: { params: Promise<{ id: strin
                                                     <div>
                                                         <dt className="text-xs font-bold text-amber-600/70 mb-1">寺院・霊園名</dt>
                                                         <dd className="font-bold text-gray-800 text-lg">
-                                                            {inquiry.graveTempleName || '未指定'}
+                                                            {raw?.graveTempleName || '未指定'}
                                                         </dd>
-                                                        {inquiry.graveTempleId && (
-                                                            <div className="text-xs text-amber-500 font-mono mt-0.5">ID: {inquiry.graveTempleId}</div>
+                                                        {raw?.graveTempleId && (
+                                                            <div className="text-xs text-amber-500 font-mono mt-0.5">ID: {raw.graveTempleId}</div>
                                                         )}
                                                     </div>
-                                                    {(inquiry.graveTempleAddress || inquiry.graveTemplePref) && (
+                                                    {(raw?.graveTempleAddress || raw?.graveTemplePref) && (
                                                         <div>
                                                             <dt className="text-xs font-bold text-amber-600/70 mb-1">所在地</dt>
                                                             <dd className="text-sm text-gray-700">
-                                                                {inquiry.graveTempleAddress || `${inquiry.graveTemplePref || ''} ${inquiry.graveTempleCity || ''}`}
+                                                                {raw?.graveTempleAddress || `${raw?.graveTemplePref || ''} ${raw?.graveTempleCity || ''}`}
                                                             </dd>
                                                         </div>
                                                     )}
@@ -242,13 +243,13 @@ export default async function InquiryDetail(props: { params: Promise<{ id: strin
                                 )}
 
                                 {/* Generic Additional Fields */}
-                                {inquiry.additionalFields && Object.keys(inquiry.additionalFields).length > 0 && (
+                                {raw?.additionalFields && Object.keys(raw.additionalFields).length > 0 && (
                                     <div className="pt-2">
                                         <h4 className="text-sm font-bold text-gray-800 border-b pb-1 mb-4 flex items-center gap-2">
                                             <span className="bg-primary/10 text-primary px-2 py-0.5 rounded text-xs">詳細情報</span>
                                         </h4>
                                         <dl className="grid grid-cols-1 gap-y-4">
-                                            {Object.entries(inquiry.additionalFields).map(([key, value]) => (
+                                            {Object.entries(raw.additionalFields).map(([key, value]) => (
                                                 <div key={key}>
                                                     <dt className="text-xs font-bold text-gray-400 mb-1 capitalize">{key}</dt>
                                                     <dd className="font-medium bg-gray-50 px-3 py-2 rounded text-sm break-all">
@@ -265,9 +266,9 @@ export default async function InquiryDetail(props: { params: Promise<{ id: strin
                                         <div>
                                             <dt className="text-xs font-bold text-gray-400 mb-1">検討中のお墓の種類</dt>
                                             <dd>
-                                                {inquiry.graveTypes && inquiry.graveTypes.length > 0 ? (
+                                                {raw?.graveTypes && raw.graveTypes.length > 0 ? (
                                                     <div className="flex flex-wrap gap-2">
-                                                        {inquiry.graveTypes.map((t: string) => (
+                                                        {raw.graveTypes.map((t: string) => (
                                                             <span key={t} className="bg-gray-100 text-gray-700 px-2 py-1 rounded text-sm">{t}</span>
                                                         ))}
                                                     </div>
@@ -277,7 +278,7 @@ export default async function InquiryDetail(props: { params: Promise<{ id: strin
                                         <div>
                                             <dt className="text-xs font-bold text-gray-400 mb-1">周辺のおすすめ霊園資料</dt>
                                             <dd className="font-bold">
-                                                {inquiry.nearbyCemeteryOptIn ? <span className="text-green-600">希望する</span> : '希望しない'}
+                                                {raw?.nearbyCemeteryOptIn ? <span className="text-green-600">希望する</span> : '希望しない'}
                                             </dd>
                                         </div>
                                     </>
@@ -286,7 +287,7 @@ export default async function InquiryDetail(props: { params: Promise<{ id: strin
                                 <div>
                                     <dt className="text-xs font-bold text-gray-400 mb-1">{isBusiness ? '詳細メッセージ' : '備考'}</dt>
                                     <dd className="bg-gray-50 p-4 rounded-lg text-sm leading-relaxed whitespace-pre-wrap text-gray-700 min-h-[100px]">
-                                        {inquiry.message || '（なし）'}
+                                        {inquiry.inquiryDetail?.message || inquiry.memo || '（なし）'}
                                     </dd>
                                 </div>
                             </dl>
@@ -300,9 +301,9 @@ export default async function InquiryDetail(props: { params: Promise<{ id: strin
                 inquiryId={inquiry.id}
                 initialStatus={inquiry.status}
                 initialAdminNotes={inquiry.adminNotes}
-                contactEmail={(inquiry.user as any)?.email || null}
-                contactName={(inquiry.user as any)?.name || inquiry.contactName || null}
-                templeNameSnapshot={inquiry.templeNameSnapshot || null}
+                contactEmail={inquiry.email || null}
+                contactName={inquiry.lastName ? `${inquiry.lastName} ${inquiry.firstName || ''}`.trim() : null}
+                templeNameSnapshot={inquiry.inquiryDetail?.templeNameSnapshot || null}
             />
         </div>
     );

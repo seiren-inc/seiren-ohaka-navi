@@ -67,7 +67,7 @@ export default function StrengthPage() {
         <div className="min-h-screen flex flex-col bg-white text-gray-800">
             <Navbar />
 
-            <main className="flex-grow">
+            <main className="grow">
                 {/* Hero */}
                 <section className="bg-slate-50 pt-32 pb-20 px-4 text-center">
                     <div className="max-w-4xl mx-auto">
@@ -149,16 +149,16 @@ export default function StrengthPage() {
                         <div className="space-y-6">
                             {/* Service 1 */}
                             <div className="bg-gray-50 rounded-2xl p-8 md:p-10 flex flex-col md:flex-row items-center gap-8">
-                                <div className="bg-white p-6 rounded-full shadow-sm flex-shrink-0">
+                                <div className="bg-white p-6 rounded-full shadow-sm shrink-0">
                                     <MapPin className="w-8 h-8 text-emerald-600" />
                                 </div>
-                                <div className="flex-grow text-center md:text-left">
+                                <div className="grow text-center md:text-left">
                                     <h3 className="text-xl font-bold text-gray-800 mb-2">お墓探し</h3>
                                     <p className="text-sm text-gray-600 mb-4">
                                         永代供養墓、樹木葬、納骨堂、一般墓など、ご希望の条件に合わせて全国の霊園から最適な場所をご提案します。
                                     </p>
                                 </div>
-                                <Link href="/consult/grave-search" className="flex-shrink-0">
+                                <Link href="/consult/grave-search" className="shrink-0">
                                     <Button className="bg-emerald-600 hover:bg-emerald-700 border-emerald-600 text-white min-w-[200px]">
                                         お墓を探す相談
                                         <ArrowRight className="w-4 h-4 ml-2" />
@@ -168,16 +168,16 @@ export default function StrengthPage() {
 
                             {/* Service 2 */}
                             <div className="bg-gray-50 rounded-2xl p-8 md:p-10 flex flex-col md:flex-row items-center gap-8">
-                                <div className="bg-white p-6 rounded-full shadow-sm flex-shrink-0">
+                                <div className="bg-white p-6 rounded-full shadow-sm shrink-0">
                                     <Home className="w-8 h-8 text-amber-600" />
                                 </div>
-                                <div className="flex-grow text-center md:text-left">
+                                <div className="grow text-center md:text-left">
                                     <h3 className="text-xl font-bold text-gray-800 mb-2">墓じまい・改葬</h3>
                                     <p className="text-sm text-gray-600 mb-4">
                                         田舎のお墓の撤去（墓じまい）や、近くへの引越し（改葬）。書類手続きから石材店の手配までワンストップで支援。
                                     </p>
                                 </div>
-                                <Link href="/consult/grave-closure" className="flex-shrink-0">
+                                <Link href="/consult/grave-closure" className="shrink-0">
                                     <Button className="bg-amber-600 hover:bg-amber-700 border-amber-600 text-white min-w-[200px]">
                                         墓じまいの相談
                                         <ArrowRight className="w-4 h-4 ml-2" />
@@ -187,16 +187,16 @@ export default function StrengthPage() {
 
                             {/* Service 3 */}
                             <div className="bg-gray-50 rounded-2xl p-8 md:p-10 flex flex-col md:flex-row items-center gap-8">
-                                <div className="bg-white p-6 rounded-full shadow-sm flex-shrink-0">
+                                <div className="bg-white p-6 rounded-full shadow-sm shrink-0">
                                     <Bone className="w-8 h-8 text-purple-600" />
                                 </div>
-                                <div className="flex-grow text-center md:text-left">
+                                <div className="grow text-center md:text-left">
                                     <h3 className="text-xl font-bold text-gray-800 mb-2">遺骨サービス</h3>
                                     <p className="text-sm text-gray-600 mb-4">
                                         ご遺骨のパウダー化（粉骨）、洗浄（洗骨）、手元供養品のご案内や、海洋散骨の手配など、供養の形を広げます。
                                     </p>
                                 </div>
-                                <Link href="/consult/ikotsu-service" className="flex-shrink-0">
+                                <Link href="/consult/ikotsu-service" className="shrink-0">
                                     <Button className="bg-purple-600 hover:bg-purple-700 border-purple-600 text-white min-w-[200px]">
                                         遺骨サービスの相談
                                         <ArrowRight className="w-4 h-4 ml-2" />

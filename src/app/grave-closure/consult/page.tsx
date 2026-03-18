@@ -89,7 +89,7 @@ function GraveClosureForm() {
         return (
             <div className="min-h-screen flex flex-col bg-white">
                 <Navbar />
-                <main className="flex-grow pt-32 px-4 pb-20">
+                <main className="grow pt-32 px-4 pb-20">
                     <div className="max-w-2xl mx-auto text-center py-20">
                         <h1 className="text-3xl font-bold text-primary mb-6">送信完了</h1>
                         <p className="text-gray-600 mb-10 leading-loose">
@@ -110,7 +110,7 @@ function GraveClosureForm() {
         <div className="min-h-screen flex flex-col bg-slate-50">
             <Navbar />
 
-            <main className="flex-grow pt-32 px-4 pb-20">
+            <main className="grow pt-32 px-4 pb-20">
                 <div className="max-w-3xl mx-auto">
                     {/* Breadcrumb */}
                     <div className="mb-8">

@@ -15,7 +15,7 @@ export function DiagnosisContent() {
         <div className="min-h-screen flex flex-col bg-slate-50 text-gray-800">
             <Navbar />
 
-            <main className="flex-grow pt-24 px-4 pb-20">
+            <main className="grow pt-24 px-4 pb-20">
                 <div className="max-w-6xl mx-auto">
 
                     {/* Header Section */}
@@ -167,7 +167,7 @@ export function DiagnosisContent() {
                                     </span>
                                     <h3 className="font-bold text-lg text-primary-dark">供養の基礎から知る</h3>
                                 </div>
-                                <p className="text-sm text-gray-500 text-center mb-6 flex-grow">
+                                <p className="text-sm text-gray-500 text-center mb-6 grow">
                                     「そもそも用語がわからない」「基礎知識を確認したい」という方はガイドページへ。
                                 </p>
                                 <Link href="/guide/grave-basics" className="w-full">
@@ -185,7 +185,7 @@ export function DiagnosisContent() {
                                     </span>
                                     <h3 className="font-bold text-lg text-primary-dark">条件から探してみる</h3>
                                 </div>
-                                <p className="text-sm text-gray-500 text-center mb-6 flex-grow">
+                                <p className="text-sm text-gray-500 text-center mb-6 grow">
                                     エリアや予算、「ペットと入れる」などの条件から、具体的な候補地を検索できます。
                                 </p>
                                 <Link href="/search" className="w-full">
@@ -206,7 +206,7 @@ export function DiagnosisContent() {
                                     </span>
                                     <h3 className="font-bold text-lg text-secondary">迷ったら相談する</h3>
                                 </div>
-                                <p className="text-sm text-gray-500 text-center mb-6 flex-grow">
+                                <p className="text-sm text-gray-500 text-center mb-6 grow">
                                     診断結果を見ても迷う場合や、個別の事情がある場合は、専門家に直接相談できます。
                                 </p>
                                 <div className="w-full">

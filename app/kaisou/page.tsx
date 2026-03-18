@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 
 export default function KaisouPage() {
     return (
-        <div className="min-h-screen flex flex-col pt-[72px]">
+        <div className="min-h-screen flex flex-col pt-[60px] md:pt-[92px]">
             <Navbar />
 
             <main className="grow">

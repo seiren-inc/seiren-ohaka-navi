@@ -49,7 +49,7 @@ export function Gallery({ images }: GalleryProps) {
                     <button
                         key={idx}
                         onClick={() => setCurrentIndex(idx)}
-                        className={`flex-shrink-0 w-20 h-16 rounded overflow-hidden border-2 transition-colors ${idx === currentIndex ? 'border-secondary' : 'border-transparent'}`}
+                        className={`shrink-0 w-20 h-16 rounded overflow-hidden border-2 transition-colors ${idx === currentIndex ? 'border-secondary' : 'border-transparent'}`}
                     >
                         <div className={`w-full h-full ${img.url} bg-cover bg-center`} />
                     </button>

@@ -122,7 +122,7 @@ export default async function TempleDetailPage(props: { params: Promise<{ id: st
 
             <Navbar />
 
-            <main className="flex-grow pt-20">
+            <main className="grow pt-20">
                 {/* 1. Hero (First View) */}
                 <TempleHero data={temple} />
 

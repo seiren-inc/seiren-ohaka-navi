@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
+ 
 import Link from "next/link";
 import { Navbar } from "../../components/layout/Navbar";
 import { Footer } from "../../components/layout/Footer";
@@ -67,7 +67,7 @@ export default function SankotsuPage() {
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
             <Navbar />
 
-            <main className="flex-grow pt-24 px-4 pb-20">
+            <main className="grow pt-24 px-4 pb-20">
                 <div className="max-w-4xl mx-auto">
 
                     {/* Header Section */}
@@ -160,7 +160,7 @@ export default function SankotsuPage() {
                         <div className="bg-gray-50 rounded-xl p-8">
                             <ul className="space-y-6">
                                 <li className="flex items-start">
-                                    <span className="text-gray-400 mr-3 flex-shrink-0 mt-1">●</span>
+                                    <span className="text-gray-400 mr-3 shrink-0 mt-1">●</span>
                                     <div>
                                         <h3 className="font-bold text-gray-700 mb-1">手を合わせる「場所」が必要な場合</h3>
                                         <p className="text-sm text-gray-600 leading-loose">
@@ -171,7 +171,7 @@ export default function SankotsuPage() {
                                     </div>
                                 </li>
                                 <li className="flex items-start">
-                                    <span className="text-gray-400 mr-3 flex-shrink-0 mt-1">●</span>
+                                    <span className="text-gray-400 mr-3 shrink-0 mt-1">●</span>
                                     <div>
                                         <h3 className="font-bold text-gray-700 mb-1">親族間の合意形成が難しい場合</h3>
                                         <p className="text-sm text-gray-600 leading-loose">
@@ -182,7 +182,7 @@ export default function SankotsuPage() {
                                     </div>
                                 </li>
                                 <li className="flex items-start">
-                                    <span className="text-gray-400 mr-3 flex-shrink-0 mt-1">●</span>
+                                    <span className="text-gray-400 mr-3 shrink-0 mt-1">●</span>
                                     <div>
                                         <h3 className="font-bold text-gray-700 mb-1">後から遺骨を取り出したくなる可能性がある場合</h3>
                                         <p className="text-sm text-gray-600 leading-loose">
@@ -390,7 +390,7 @@ export default function SankotsuPage() {
                                     </span>
                                     <h3 className="font-bold text-lg text-primary-dark">散骨業者を探してみる</h3>
                                 </div>
-                                <p className="text-sm text-gray-500 text-center mb-6 flex-grow">
+                                <p className="text-sm text-gray-500 text-center mb-6 grow">
                                     信頼できる海洋散骨の専門業者や、<br />
                                     実施プランを検索できます。
                                 </p>
@@ -409,7 +409,7 @@ export default function SankotsuPage() {
                                     </span>
                                     <h3 className="font-bold text-lg text-primary-dark">他の供養方法も比較する</h3>
                                 </div>
-                                <p className="text-sm text-gray-500 text-center mb-6 flex-grow">
+                                <p className="text-sm text-gray-500 text-center mb-6 grow">
                                     やっぱりお墓があったほうがいいかも？など<br />
                                     他の選択肢とも比較してみたい方へ。
                                 </p>
@@ -431,7 +431,7 @@ export default function SankotsuPage() {
                                     </span>
                                     <h3 className="font-bold text-lg text-secondary">状況を整理して相談する</h3>
                                 </div>
-                                <p className="text-sm text-gray-500 text-center mb-6 flex-grow">
+                                <p className="text-sm text-gray-500 text-center mb-6 grow">
                                     家族の説得に迷っている、粉骨だけ頼める？など<br />
                                     個別の事情に合わせて専門家がアドバイスします。
                                 </p>
@@ -460,7 +460,7 @@ export default function SankotsuPage() {
                             ].map((item, i) => (
                                 <div key={i} className="bg-gray-50 rounded-lg p-5">
                                     <h4 className="font-bold text-primary mb-2 flex flex-row items-center">
-                                        <span className="bg-secondary text-white text-xs font-bold px-2 py-1 rounded mr-3 flex-shrink-0">Q</span>
+                                        <span className="bg-secondary text-white text-xs font-bold px-2 py-1 rounded mr-3 shrink-0">Q</span>
                                         {item.q}
                                     </h4>
                                     <p className="text-sm text-gray-600 ml-10 leading-relaxed whitespace-pre-line">

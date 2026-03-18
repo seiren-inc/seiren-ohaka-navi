@@ -2,25 +2,26 @@
 
 @theme {
   /* =========================================
-     Doc-31 Revised Color System
+     Doc-31 Revised Color System v2 (2026-03)
+     New Palette: #F4F0E4 / #44A194 / #537D96 / #EC8F8D
      ========================================= */
-  --color-primary: #1F3A5F;
-  --color-primary-hover: #162B4A;
-  --color-soft-teal: #4FA7A0;
-  --color-lotus-pink: #E8CFCF;
-  
-  --color-bg: #FFFFFF;
-  --color-bg-muted: #F7F8FA;
-  
+  --color-primary: #537D96;
+  --color-primary-hover: #3D5E72;
+  --color-soft-teal: #44A194;
+  --color-lotus-pink: #EC8F8D;
+
+  --color-bg: #F4F0E4;
+  --color-bg-muted: #EAE6DA;
+
   --color-text: #111111;
   --color-text-muted: #6B6B6B;
-  --color-border: #ECECEC;
+  --color-border: #D8D4CA;
   --color-danger: #B00020;
 
   /* Legacy Variable Mapping (Backward Compatibility) */
   --color-seiren-navy: var(--color-primary);
   --color-primary-dark: var(--color-primary-hover);
-  --color-secondary: var(--color-lotus-pink);
+  --color-secondary: var(--color-soft-teal);
   --color-accent: var(--color-soft-teal);
   --color-accent-green: var(--color-soft-teal);
   --color-accent-pink: var(--color-lotus-pink);
@@ -75,8 +76,60 @@
 }
 
 :root {
-  --background: #FFFFFF;
+  --background: #F4F0E4;
   --foreground: #111111;
+}
+
+/* =========================================
+   Dark Mode — OS設定に自動追従
+   ========================================= */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #1A1A2E;
+    --foreground: #E8E6E1;
+    --color-bg: #1A1A2E;
+    --color-bg-muted: #16213E;
+    --color-text: #E8E6E1;
+    --color-text-muted: #A0A0A0;
+    --color-border: #2A2A4A;
+    --color-primary: #7BA3BC;
+    --color-primary-hover: #9BBCD2;
+    --color-primary-dark: #9BBCD2;
+    --color-soft-teal: #5BBFB1;
+    --color-secondary: #5BBFB1;
+    --color-lotus-pink: #F0A3A1;
+    --color-surface: #16213E;
+    --color-white-smoke: #16213E;
+    --shadow-card: 0 4px 16px rgba(0,0,0,0.3);
+    --shadow-card-hover: 0 8px 24px rgba(0,0,0,0.4);
+  }
+
+  /* 主要な背景色オーバーライド */
+  .bg-white { background-color: #1E1E36 !important; }
+  .bg-gray-50, .bg-gray-100 { background-color: #16213E !important; }
+  .bg-white\/95 { background-color: rgba(30, 30, 54, 0.95) !important; }
+
+  /* テキスト色オーバーライド */
+  .text-gray-800, .text-gray-700 { color: #E0DDD5 !important; }
+  .text-gray-600, .text-gray-500 { color: #A8A5A0 !important; }
+  .text-gray-400 { color: #888580 !important; }
+
+  /* ボーダーオーバーライド */
+  .border-gray-100, .border-gray-200 { border-color: #2A2A4A !important; }
+
+  /* カード・セクション背景 */
+  .bg-bg-muted { background-color: #16213E !important; }
+
+  /* テーブル */
+  table th { background-color: #16213E !important; }
+  table td { background-color: #1E1E36 !important; }
+
+  /* 入力フィールド */
+  input, textarea, select {
+    background-color: #16213E !important;
+    color: #E8E6E1 !important;
+    border-color: #2A2A4A !important;
+  }
 }
 
 body {

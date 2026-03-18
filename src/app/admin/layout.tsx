@@ -24,7 +24,7 @@ export default async function AdminLayout({ children }: { children: React.ReactN
         <ToastProvider>
             <div className="flex h-screen bg-gray-50 font-sans">
                 {/* Sidebar – Desktop */}
-                <aside className="hidden md:flex w-64 bg-primary flex-shrink-0 flex-col">
+                <aside className="hidden md:flex w-64 bg-primary shrink-0 flex-col">
                     {/* Logo */}
                     <div className="px-6 py-6 border-b border-white/10">
                         <div className="flex items-center gap-3">

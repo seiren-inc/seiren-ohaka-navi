@@ -13,18 +13,19 @@ export default async function InquiryList(props: { searchParams: Promise<{ categ
     const categoryFilter = searchParams.category || 'all';
     const statusFilter = searchParams.status || 'all';
 
-    // Prisma: Build where clause based on filter
     const where: any = {};
     if (categoryFilter !== 'all') {
         if (categoryFilter === 'business') {
-            where.kind = 'business';
+            where.inquiryDetail = { inquiryKind: 'business' };
         } else if (categoryFilter === 'other') {
-            where.category = { notIn: ['grave_search', 'grave_closure', 'ikotsu_service'] };
-            where.kind = { not: 'business' };
+            where.inquiryDetail = {
+                category: { notIn: ['grave_search', 'grave_closure', 'ikotsu_service'] },
+                inquiryKind: { not: 'business' }
+            };
         } else {
             where.OR = [
-                { category: categoryFilter },
-                { type: categoryFilter }
+                { inquiryDetail: { category: categoryFilter } },
+                { inquiryType: categoryFilter }
             ];
         }
     }
@@ -38,7 +39,7 @@ export default async function InquiryList(props: { searchParams: Promise<{ categ
     ]);
     const countMap = Object.fromEntries(statusCounts.map(s => [s.status, s._count]));
 
-    const inquiries = inquiriesData as unknown as Inquiry[];
+    const inquiries = inquiriesData as any[];
 
 
     const getStatusBadge = (status: InquiryStatus) => {
@@ -49,11 +50,13 @@ export default async function InquiryList(props: { searchParams: Promise<{ categ
         }
     };
 
-    const getCategoryBadge = (inquiry: Inquiry) => {
-        if (inquiry.kind === 'business') {
+    const getCategoryBadge = (inquiry: (typeof inquiries)[number]) => {
+        const kind = inquiry.kind;
+        const cat = inquiry.category || inquiry.type;
+
+        if (kind === 'business') {
             return <span className="bg-slate-100 text-slate-700 border border-slate-200 px-2 py-1 rounded text-xs font-bold">事業者</span>;
         }
-        const cat = inquiry.category || inquiry.type;
         switch (cat) {
             case 'grave_search': return <span className="bg-emerald-100 text-emerald-700 px-2 py-1 rounded text-xs font-bold">お墓探し</span>;
             case 'grave_closure': return <span className="bg-amber-100 text-amber-700 px-2 py-1 rounded text-xs font-bold">墓じまい</span>;
@@ -157,37 +160,37 @@ export default async function InquiryList(props: { searchParams: Promise<{ categ
                                 </td>
                                 <td className="p-4">{getStatusBadge(i.status)}</td>
                                 <td className="p-4">
-                                    {i.kind === 'business' ? (
+                                    {i.inquiryDetail?.inquiryKind === 'business' ? (
                                         <div className="font-bold text-gray-700">
                                             <div className="text-xs text-gray-400 mb-0.5">会社/寺院名</div>
                                             {i.organizationName || '未指定'}
                                         </div>
                                     ) : (
                                         <>
-                                            {i.category === 'grave_closure' ? (
+                                            {i.inquiryDetail?.category === 'grave_closure' ? (
                                                 <div className="mb-2">
                                                     <div className="text-xs text-amber-600 font-bold mb-0.5">現在のお墓</div>
                                                     <div className="font-bold text-gray-800">
-                                                        {i.graveTempleName || '未指定'}
+                                                        {(i.rawPayload as any)?.graveTempleName || '未指定'}
                                                     </div>
-                                                    {i.graveTemplePref && (
-                                                        <span className="text-xs text-gray-500">({i.graveTemplePref})</span>
+                                                    {(i.rawPayload as any)?.graveTemplePref && (
+                                                        <span className="text-xs text-gray-500">({(i.rawPayload as any).graveTemplePref})</span>
                                                     )}
                                                 </div>
                                             ) : (
                                                 <div className="font-bold text-gray-700">
                                                     <div className="text-xs text-gray-400 mb-0.5">希望墓地</div>
-                                                    {i.context?.templeName || i.desiredTempleName || i.templeNameSnapshot || '未指定'}
+                                                    {i.inquiryDetail?.templeNameSnapshot || '未指定'}
                                                 </div>
                                             )}
 
                                             <div className="mt-2">
                                                 <div className="text-xs text-gray-400 mb-0.5">
-                                                    {i.category === 'grave_closure' ? '次の供養先' : '希望プラン'}
+                                                    {i.inquiryDetail?.category === 'grave_closure' ? '次の供養先' : '希望プラン'}
                                                 </div>
-                                                {i.context?.planName || i.desiredPlanName || i.additionalFields?.hasNextPlace ? (
+                                                {i.inquiryDetail?.planName || (i.rawPayload as any)?.additionalFields?.hasNextPlace ? (
                                                     <span className="text-sm text-primary bg-blue-50 px-2 py-1 rounded">
-                                                        {i.context?.planName || i.desiredPlanName || String(i.additionalFields?.hasNextPlace ?? '')}
+                                                        {i.inquiryDetail?.planName || String((i.rawPayload as any)?.additionalFields?.hasNextPlace ?? '')}
                                                     </span>
                                                 ) : (
                                                     <span className="text-sm text-gray-400">未指定</span>
@@ -197,24 +200,24 @@ export default async function InquiryList(props: { searchParams: Promise<{ categ
                                     )}
                                 </td>
                                 <td className="p-4 text-xs max-w-[150px]">
-                                    <div className="font-bold text-gray-600">{i.context?.sourceLabel || i.context?.source || '-'}</div>
-                                    <div className="text-gray-400 truncate">{i.context?.sourcePath || i.ref || '-'}</div>
+                                    <div className="font-bold text-gray-600">{(i.rawPayload as any)?.context?.sourceLabel || (i.rawPayload as any)?.context?.source || '-'}</div>
+                                    <div className="text-gray-400 truncate">{(i.rawPayload as any)?.context?.sourcePath || (i.rawPayload as any)?.ref || '-'}</div>
                                 </td>
                                 <td className="p-4 text-gray-700">
-                                    <div className="font-bold">{i.user?.name || i.contactName || (i as any).name || '不明'}</div>
-                                    <div className="text-gray-500 text-xs">{i.user?.phone || (i as any).phone || '-'}</div>
+                                    <div className="font-bold">{i.lastName ? `${i.lastName} ${i.firstName || ''}` : ((i.rawPayload as any)?.user?.name || (i.rawPayload as any)?.contactName || '不明')}</div>
+                                    <div className="text-gray-500 text-xs">{i.phone || (i.rawPayload as any)?.user?.phone || '-'}</div>
                                 </td>
                                 <td className="p-4 max-w-[200px]">
-                                    {i.kind === 'business' ? (
+                                    {i.inquiryDetail?.inquiryKind === 'business' ? (
                                         <div className="text-xs">
                                             <span className="font-bold text-gray-500">種別:</span> {i.inquiryType}
                                         </div>
                                     ) : (
                                         <div className="mb-1 text-xs text-gray-400">
-                                            希望: {String(i.additionalFields?.visitHope ?? i.additionalFields?.timing ?? i.preferredDateTime ?? '-')}
+                                            希望: {String((i.rawPayload as any)?.additionalFields?.visitHope ?? (i.rawPayload as any)?.additionalFields?.timing ?? i.preferredDatetime ?? '-')}
                                         </div>
                                     )}
-                                    <div className="truncate text-gray-600 mt-1" title={i.message}>{i.message}</div>
+                                    <div className="truncate text-gray-600 mt-1" title={i.inquiryDetail?.message || i.memo}>{i.inquiryDetail?.message || i.memo}</div>
                                 </td>
                                 <td className="p-4 text-right">
                                     <Link href={`/admin/inquiries/${i.id}`} className="inline-flex items-center text-blue-600 hover:text-blue-800 font-bold text-xs bg-blue-50 px-3 py-2 rounded-full transition-colors">

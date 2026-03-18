@@ -15,11 +15,9 @@ interface PlanListProps {
 export function PlanList({ plans, temple }: PlanListProps) {
     const [currentUrl, setCurrentUrl] = useState("");
 
-    /* eslint-disable react-hooks/set-state-in-effect */
     useEffect(() => {
         if (typeof window !== 'undefined') setCurrentUrl(window.location.href);
     }, []);
-    /* eslint-enable react-hooks/set-state-in-effect */
 
     if (plans.length === 0) {
         return (
@@ -35,6 +33,90 @@ export function PlanList({ plans, temple }: PlanListProps) {
             <h2 className="text-xl font-bold text-primary border-l-4 border-secondary pl-4 py-1">
                 プラン・費用一覧
             </h2>
+
+            {/* Plan Comparison Table - 2件以上ある場合のみ表示 */}
+            {plans.length >= 2 && (
+                <div className="bg-white rounded-xl border border-gray-200 shadow-sm overflow-x-auto">
+                    <div className="px-5 py-3 bg-gray-50 border-b border-gray-200">
+                        <h3 className="text-sm font-bold text-gray-700">📊 プラン比較</h3>
+                    </div>
+                    <table className="w-full text-sm min-w-[500px]">
+                        <thead>
+                            <tr className="border-b border-gray-100">
+                                <th className="text-left px-4 py-3 text-xs text-gray-400 font-bold w-28">項目</th>
+                                {plans.map((p) => (
+                                    <th key={p.id} className="text-center px-4 py-3 text-xs font-bold text-primary">
+                                        {p.name}
+                                    </th>
+                                ))}
+                            </tr>
+                        </thead>
+                        <tbody className="divide-y divide-gray-50">
+                            <tr>
+                                <td className="px-4 py-3 text-xs text-gray-500 font-bold">販売価格</td>
+                                {plans.map((p) => (
+                                    <td key={p.id} className="text-center px-4 py-3 font-bold text-primary text-base">
+                                        {p.price.toLocaleString()}<span className="text-xs text-gray-500 ml-0.5">円</span>
+                                    </td>
+                                ))}
+                            </tr>
+                            <tr>
+                                <td className="px-4 py-3 text-xs text-gray-500 font-bold">年間管理費</td>
+                                {plans.map((p) => (
+                                    <td key={p.id} className="text-center px-4 py-3 text-sm text-gray-700">
+                                        {p.managementFee > 0 ? `${p.managementFee.toLocaleString()}円` : <span className="text-green-600 font-bold">不要</span>}
+                                    </td>
+                                ))}
+                            </tr>
+                            <tr>
+                                <td className="px-4 py-3 text-xs text-gray-500 font-bold">埋葬方法</td>
+                                {plans.map((p) => (
+                                    <td key={p.id} className="text-center px-4 py-3 text-sm text-gray-700">
+                                        {BURIAL_METHOD_LABELS[p.burialMethod || 'other']}
+                                    </td>
+                                ))}
+                            </tr>
+                            <tr>
+                                <td className="px-4 py-3 text-xs text-gray-500 font-bold">ペット</td>
+                                {plans.map((p) => (
+                                    <td key={p.id} className="text-center px-4 py-3 text-sm text-gray-700">
+                                        {PET_ALLOWED_LABELS[p.petAllowed || 'unknown']}
+                                    </td>
+                                ))}
+                            </tr>
+                            <tr>
+                                <td className="px-4 py-3 text-xs text-gray-500 font-bold">期間</td>
+                                {plans.map((p) => (
+                                    <td key={p.id} className="text-center px-4 py-3 text-sm text-gray-700">
+                                        {p.periodType === 'perpetual' ? '永代' : `${p.periodYears}年`}
+                                    </td>
+                                ))}
+                            </tr>
+                            <tr>
+                                <td className="px-4 py-3 text-xs text-gray-500 font-bold">人数</td>
+                                {plans.map((p) => (
+                                    <td key={p.id} className="text-center px-4 py-3 text-sm text-gray-700">
+                                        {p.capacity || '-'}
+                                    </td>
+                                ))}
+                            </tr>
+                            <tr>
+                                <td className="px-4 py-3 text-xs text-gray-500 font-bold">空き状況</td>
+                                {plans.map((p) => (
+                                    <td key={p.id} className="text-center px-4 py-3">
+                                        <span className={`inline-block px-2 py-0.5 text-xs font-bold rounded ${p.availability === 'available' ? 'bg-blue-100 text-blue-800' :
+                                                p.availability === 'limited' ? 'bg-red-100 text-red-800' :
+                                                    'bg-gray-100 text-gray-500'
+                                            }`}>
+                                            {PLAN_AVAILABILITY_LABELS[p.availability]}
+                                        </span>
+                                    </td>
+                                ))}
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            )}
 
             <div className="grid lg:grid-cols-2 gap-6">
                 {plans.map((plan) => {
@@ -61,7 +143,7 @@ export function PlanList({ plans, temple }: PlanListProps) {
                                 </div>
                             </div>
 
-                            <div className="p-5 flex-grow">
+                            <div className="p-5 grow">
                                 {/* Price Block */}
                                 <div className="flex flex-col sm:flex-row sm:items-end justify-between bg-gray-50 p-4 rounded-lg mb-6">
                                     <div>

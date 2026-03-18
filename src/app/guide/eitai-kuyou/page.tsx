@@ -7,7 +7,7 @@ export default function GuideEitaiKuyouPage() {
     return (
         <div className="min-h-screen flex flex-col">
             <Navbar />
-            <main className="flex-grow pt-32 px-4 max-w-7xl mx-auto w-full">
+            <main className="grow pt-32 px-4 max-w-7xl mx-auto w-full">
                 <h1 className="text-3xl font-bold text-primary-dark mb-4">永代供養について</h1>
                 <p className="text-gray-600 mb-8 leading-relaxed">
                     少子化や核家族化が進む現代で注目される「永代供養」。<br />

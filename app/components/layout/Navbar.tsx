@@ -6,6 +6,8 @@ import Image from "next/image";
 import { Button } from "../ui/Button";
 import { Phone, Menu, X, ChevronDown, ExternalLink } from "lucide-react";
 
+import { useFavorites } from "@/lib/hooks/useFavorites";
+
 const KUYOU_LINKS = [
     { label: "永代供養墓", description: "継承不要・お寺が供養を続ける", href: "/choices/eitai-kuyou" },
     { label: "樹木葬", description: "自然に還る、新しい供養のカタチ", href: "/choices/jumokusou" },
@@ -35,6 +37,27 @@ const RELATED_SERVICES = [
     },
 ];
 
+// カウント表示用クライアントコンポーネント（Hydrationエラー防止）
+function DesktopFavoriteCount() {
+    const { count, isInitialized } = useFavorites();
+    if (!isInitialized || count === 0) return null;
+    return (
+        <span className="bg-rose-500 text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full min-w-[18px] text-center ml-1">
+            {count}
+        </span>
+    );
+}
+
+function MobileFavoriteCount() {
+    const { count, isInitialized } = useFavorites();
+    if (!isInitialized || count === 0) return null;
+    return (
+        <span className="bg-rose-500 text-white text-xs font-bold px-2 py-0.5 rounded-full">
+            {count}
+        </span>
+    );
+}
+
 export function Navbar() {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const [kuyouOpen, setKuyouOpen] = useState(false);
@@ -49,8 +72,19 @@ export function Navbar() {
 
     return (
         <header className="fixed top-0 w-full z-50 bg-white/95 backdrop-blur-md border-b border-gray-100 transition-all duration-300">
+            {/* Utility Bar (上段) - JTB風 */}
+            <div className="bg-bg-muted border-b border-border hidden md:block">
+                <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 flex justify-end items-center h-8 gap-6 text-xs text-gray-500">
+                    <Link href="/faq" className="hover:text-primary transition-colors">よくある質問</Link>
+                    <Link href="/consult/request-material" className="hover:text-primary transition-colors">資料請求</Link>
+                    <Link href="/about/company" className="hover:text-primary transition-colors">会社情報</Link>
+                    <a href="tel:0800-888-8788" className="hover:text-primary transition-colors font-bold flex items-center gap-1">
+                        <Phone className="w-3 h-3" /> 0800-888-8788
+                    </a>
+                </div>
+            </div>
             <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="flex items-center h-[72px] w-full">
+                <div className="flex items-center h-[60px] w-full">
                     {/* Logo */}
                     <Link href="/" className="flex items-center gap-2 shrink-0">
                         <Image
@@ -184,6 +218,23 @@ export function Navbar() {
                                 </div>
                             </div>
                         </div>
+                        {/* デスクトップ用 お気に入りリンク */}
+                        <Link href="/favorites" className={`${navLinkClass} flex items-center gap-1`}>
+                            <svg 
+                                xmlns="http://www.w3.org/2000/svg" 
+                                viewBox="0 0 24 24" 
+                                fill="none" 
+                                stroke="currentColor" 
+                                strokeWidth="2" 
+                                strokeLinecap="round" 
+                                strokeLinejoin="round" 
+                                className="w-4 h-4"
+                            >
+                                <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" />
+                            </svg>
+                            お気に入り
+                            <DesktopFavoriteCount />
+                        </Link>
                     </nav>
 
                     {/* CTA Group */}
@@ -221,7 +272,7 @@ export function Navbar() {
                                         href="tel:0800-888-8788"
                                         className="flex items-center justify-center gap-3 text-primary font-bold py-3 px-2 border border-primary/20 rounded-xl bg-primary/5 hover:bg-primary/10 transition-colors"
                                     >
-                                        <Phone className="w-5 h-5 flex-shrink-0" />
+                                        <Phone className="w-5 h-5 shrink-0" />
                                         <div className="text-left">
                                             <span className="block text-[10px] font-normal text-gray-500 leading-tight">お電話でのご相談（無料）</span>
                                             <span className="text-xl tracking-wider">0800-888-8788</span>
@@ -253,7 +304,7 @@ export function Navbar() {
 
             {/* Mobile Navigation Menu */}
             <div
-                className={`md:hidden absolute top-[72px] left-0 w-full bg-white border-b border-gray-100 shadow-lg transition-all duration-300 ease-in-out overflow-hidden ${
+                className={`md:hidden absolute top-section-tablet left-0 w-full bg-white border-b border-gray-100 shadow-lg transition-all duration-300 ease-in-out overflow-hidden ${
                     isMobileMenuOpen ? "max-h-[700px] opacity-100 pointer-events-auto" : "max-h-0 opacity-0 pointer-events-none"
                 }`}
             >
@@ -301,6 +352,30 @@ export function Navbar() {
                         onClick={() => setIsMobileMenuOpen(false)}
                     >
                         よくある質問
+                    </Link>
+
+                    {/* お気に入りリスト（モバイル） */}
+                    <Link
+                        href="/favorites"
+                        className="flex items-center justify-between text-gray-700 font-medium py-3 border-b border-gray-50 hover:text-primary transition-colors"
+                        onClick={() => setIsMobileMenuOpen(false)}
+                    >
+                        <div className="flex items-center gap-2">
+                            <svg 
+                                xmlns="http://www.w3.org/2000/svg" 
+                                viewBox="0 0 24 24" 
+                                fill="none" 
+                                stroke="currentColor" 
+                                strokeWidth="2" 
+                                strokeLinecap="round" 
+                                strokeLinejoin="round" 
+                                className="w-4 h-4"
+                            >
+                                <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" />
+                            </svg>
+                            お気に入りリスト
+                        </div>
+                        <MobileFavoriteCount />
                     </Link>
 
                     {/* 関連サービス（モバイル） */}

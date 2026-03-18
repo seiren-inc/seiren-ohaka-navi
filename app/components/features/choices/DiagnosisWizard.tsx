@@ -364,7 +364,7 @@ export function DiagnosisWizard() {
                                     <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-secondary text-white text-xs font-bold px-3 py-1 rounded-full shadow-sm">
                                         候補 {index + 1}
                                     </div>
-                                    <div className="mt-4 flex flex-col items-center text-center flex-grow">
+                                    <div className="mt-4 flex flex-col items-center text-center grow">
                                         <candidate.icon className="w-12 h-12 text-primary-dark mb-4" />
                                         <h3 className="text-xl font-bold text-gray-800 mb-2">{candidate.name}</h3>
 
@@ -374,7 +374,7 @@ export function DiagnosisWizard() {
                                             <p className="whitespace-pre-wrap leading-relaxed">{candidate.generatedReason}</p>
                                         </div>
 
-                                        <p className="text-sm text-gray-600 leading-relaxed mb-4 flex-grow text-left whitespace-pre-wrap">
+                                        <p className="text-sm text-gray-600 leading-relaxed mb-4 grow text-left whitespace-pre-wrap">
                                             {candidate.description}
                                         </p>
 
@@ -400,7 +400,7 @@ export function DiagnosisWizard() {
 
                                         {candidate.caution && (
                                             <div className="bg-yellow-50 p-3 rounded text-[10px] text-yellow-800 text-left w-full mb-4 flex gap-2">
-                                                <AlertCircle className="w-3 h-3 flex-shrink-0 mt-0.5" />
+                                                <AlertCircle className="w-3 h-3 shrink-0 mt-0.5" />
                                                 <span className="leading-tight">{candidate.caution}</span>
                                             </div>
                                         )}
@@ -420,7 +420,7 @@ export function DiagnosisWizard() {
                             {/* Search */}
                             <Link href="/search" className="block">
                                 <div className="bg-white border border-gray-200 p-4 rounded-xl hover:shadow-md transition-shadow flex items-center h-full">
-                                    <div className="bg-primary/10 p-2 rounded-full mr-3 flex-shrink-0">
+                                    <div className="bg-primary/10 p-2 rounded-full mr-3 shrink-0">
                                         <Search className="w-5 h-5 text-primary" />
                                     </div>
                                     <div>
@@ -433,7 +433,7 @@ export function DiagnosisWizard() {
                             {/* Choices (All) */}
                             <Link href="/choices" className="block">
                                 <div className="bg-white border border-gray-200 p-4 rounded-xl hover:shadow-md transition-shadow flex items-center h-full">
-                                    <div className="bg-gray-100 p-2 rounded-full mr-3 flex-shrink-0">
+                                    <div className="bg-gray-100 p-2 rounded-full mr-3 shrink-0">
                                         <BookOpen className="w-5 h-5 text-gray-500" />
                                     </div>
                                     <div>
@@ -449,7 +449,7 @@ export function DiagnosisWizard() {
                                     <div className="absolute top-0 right-0 bg-secondary text-white text-[9px] font-bold px-2 py-0.5 rounded-bl">
                                         無料
                                     </div>
-                                    <div className="bg-secondary/10 p-2 rounded-full mr-3 flex-shrink-0">
+                                    <div className="bg-secondary/10 p-2 rounded-full mr-3 shrink-0">
                                         <HeartHandshake className="w-5 h-5 text-secondary" />
                                     </div>
                                     <div>
@@ -508,7 +508,7 @@ export function DiagnosisWizard() {
                         {currentQuestion.title}
                     </h3>
 
-                    <div className="space-y-4 flex-grow">
+                    <div className="space-y-4 grow">
                         {currentQuestion.options.map((option) => (
                             <label
                                 key={option.value}
@@ -529,7 +529,7 @@ export function DiagnosisWizard() {
                                     className="hidden"
                                 />
                                 <div className={`
-                                    w-6 h-6 rounded-full border-2 mr-4 flex items-center justify-center flex-shrink-0
+                                    w-6 h-6 rounded-full border-2 mr-4 flex items-center justify-center shrink-0
                                     ${answers[currentQuestion.id] === option.value
                                         ? 'border-secondary'
                                         : 'border-gray-300'

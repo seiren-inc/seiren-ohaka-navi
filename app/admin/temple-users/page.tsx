@@ -23,7 +23,7 @@ export default function TempleUsersPage() {
     const [loading, setLoading] = useState(true);
     const [search, setSearch] = useState("");
     const [showModal, setShowModal] = useState(false);
-    const { addToast } = useToast();
+    const { toast } = useToast();
 
     const fetchUsers = () => {
         setLoading(true);
@@ -34,7 +34,7 @@ export default function TempleUsersPage() {
                 setLoading(false);
             })
             .catch(() => {
-                addToast("アカウントの取得に失敗しました", "error");
+                toast("アカウントの取得に失敗しました", "error");
                 setLoading(false);
             });
     };

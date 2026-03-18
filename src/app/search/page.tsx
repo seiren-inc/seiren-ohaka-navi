@@ -95,21 +95,45 @@ export default async function SearchPage(props: { searchParams: Promise<{ [key: 
         return true;
     });
 
+    // Display Label Mapping for URL params
+    const typeLabels: Record<string, string> = {
+        'general': '一般墓',
+        'eitai': '永代供養墓',
+        'tree': '樹木葬',
+        'jumokusou': '樹木葬',
+        'nokotsu': '納骨堂',
+        'noukotsudou': '納骨堂',
+        // Fallbacks for direct Japanese inputs
+        '一般墓': '一般墓',
+        '永代供養墓': '永代供養墓',
+        '樹木葬': '樹木葬',
+        '納骨堂': '納骨堂'
+    };
+
     // Sort by plan tier: PR slot → standard → free
     const planOrder = (t: Temple) => (t.isPrSlot ? 0 : t.planType === 'sponsor' ? 0 : t.planType === 'standard' ? 1 : 2);
     filteredGraveyards.sort((a, b) => planOrder(a) - planOrder(b));
 
     // Dynamic Title Generation
     let pageTitle = "検索結果";
-    if (prefs.length === 1) pageTitle = `${prefs[0]}の霊園・墓地`;
-    else if (prefs.length > 1) pageTitle = "指定エリアの霊園・墓地";
-    else if (types.length > 0) pageTitle = `${types[0]}などの霊園`;
+    if (prefs.length === 1) {
+        pageTitle = `${prefs[0]}の霊園・墓地`;
+        if (types.length > 0) {
+            const label = typeLabels[types[0]] || types[0];
+            pageTitle = `${prefs[0]}の${label}`;
+        }
+    } else if (prefs.length > 1) {
+        pageTitle = "指定エリアの霊園・墓地";
+    } else if (types.length > 0) {
+        const label = typeLabels[types[0]] || types[0];
+        pageTitle = `${label}一覧`;
+    }
 
     return (
         <div className="min-h-screen flex flex-col bg-white-smoke">
             <Navbar />
 
-            <main className="flex-grow pt-24 pb-20">
+            <main className="grow pt-24 pb-20">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
                     {/* Breadcrumb */}

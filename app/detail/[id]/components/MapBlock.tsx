@@ -15,7 +15,7 @@ export function MapBlock({ address }: MapBlockProps) {
                 */}
             </div>
             <div className="p-4 flex items-start">
-                <MapPin className="w-5 h-5 text-warm-gold mr-3 mt-0.5 flex-shrink-0" />
+                <MapPin className="w-5 h-5 text-warm-gold mr-3 mt-0.5 shrink-0" />
                 <p className="text-sm text-gray-700 font-bold">{address}</p>
             </div>
             <div className="px-4 pb-4">

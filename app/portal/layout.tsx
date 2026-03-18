@@ -1,57 +1,82 @@
-import type { Metadata } from "next";
-import Link from "next/link";
-import { LayoutDashboard, Building2, FileText, BarChart2, Settings, LogOut } from "lucide-react";
+export const dynamic = 'force-dynamic'
 
-export const metadata: Metadata = {
-    title: "施設ポータル | 清蓮 お墓探しナビ",
-    robots: { index: false },
-};
+import { redirect } from 'next/navigation'
+import { LayoutDashboard, MessageSquare, Settings, LogOut, Loader2 } from 'lucide-react'
+import Link from 'next/link'
+import { revalidatePath } from 'next/cache'
+import { getPortalUser, clearPortalSession } from '@/lib/portal-auth'
 
-const navItems = [
-    { href: "/portal/dashboard", icon: LayoutDashboard, label: "ダッシュボード" },
-    { href: "/portal/profile", icon: Building2, label: "施設情報の管理" },
-    { href: "/portal/contract", icon: FileText, label: "契約・プラン" },
-    { href: "/portal/leads", icon: BarChart2, label: "リード管理" },
-    { href: "/portal/settings", icon: Settings, label: "アカウント設定" },
-];
+export default async function PortalLayout({
+    children,
+}: {
+    children: React.ReactNode
+}) {
+    const templeUser = await getPortalUser()
 
-export default function PortalLayout({ children }: { children: React.ReactNode }) {
+    if (!templeUser) {
+        redirect('/portal/login')
+    }
+
+    async function signOut() {
+        'use server'
+        await clearPortalSession()
+        revalidatePath('/portal/login')
+        redirect('/portal/login')
+    }
+
+    const navItems = [
+        { href: '/portal', icon: LayoutDashboard, label: 'ダッシュボード' },
+        { href: '/portal/leads', icon: MessageSquare, label: '問い合わせ・資料請求' },
+        { href: '/portal/settings', icon: Settings, label: 'アカウント設定' },
+    ]
+
     return (
-        <div className="min-h-screen bg-gray-50 flex">
-            {/* Sidebar */}
-            <aside className="w-60 bg-white border-r border-gray-200 fixed inset-y-0 left-0 flex flex-col z-10">
-                <div className="px-6 py-5 border-b border-gray-100">
-                    <p className="font-black text-primary text-sm">SEIREN</p>
-                    <p className="text-gray-400 text-xs mt-0.5">施設管理ポータル</p>
+        <div className="flex h-screen bg-gray-50 font-sans">
+            {/* Sidebar Desktop */}
+            <aside className="hidden md:flex w-64 bg-[#007B55] shrink-0 flex-col text-white shadow-xl shadow-[#007B55]/10 z-10">
+                <div className="p-6 border-b border-white/10 flex flex-col items-center">
+                    <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center mb-3">
+                        <span className="text-white font-bold text-xl">S</span>
+                    </div>
+                    <p className="text-white/60 text-xs font-bold tracking-widest mb-1 text-center">施設向けポータル</p>
+                    <p className="text-white font-bold text-sm text-center leading-snug w-full px-2" style={{ wordBreak: 'auto-phrase' }}>
+                        {templeUser.temple?.name || '施設名未設定'}
+                    </p>
                 </div>
-                <nav className="flex-1 px-3 py-4 space-y-1">
+                
+                <nav className="flex-1 px-4 py-6 space-y-1">
                     {navItems.map(item => (
-                        <Link key={item.href} href={item.href}
-                            className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-gray-600 hover:bg-primary/5 hover:text-primary transition-colors">
+                        <Link 
+                            key={item.href} 
+                            href={item.href}
+                            className="flex items-center gap-3 px-3 py-3 rounded-lg text-white/80 hover:bg-white/10 hover:text-white transition-colors text-sm font-bold"
+                        >
                             <item.icon className="w-4 h-4" />
                             {item.label}
                         </Link>
                     ))}
                 </nav>
-                <div className="px-3 py-4 border-t border-gray-100">
-                    <Link href="/portal/logout"
-                        className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-gray-400 hover:text-red-500 hover:bg-red-50 transition-colors">
-                        <LogOut className="w-4 h-4" />
-                        ログアウト
-                    </Link>
+
+                <div className="px-5 py-4 border-t border-white/10">
+                    <form action={signOut}>
+                        <button type="submit" className="flex items-center justify-center gap-2 text-white/60 hover:text-white text-sm font-bold w-full bg-white/5 hover:bg-white/10 rounded-lg py-2.5 transition-colors">
+                            <LogOut className="w-4 h-4" /> ログアウト
+                        </button>
+                    </form>
                 </div>
             </aside>
 
-            {/* Main */}
-            <div className="pl-60 flex-1 flex flex-col">
-                <header className="bg-white border-b border-gray-200 px-8 py-4 flex items-center justify-between">
-                    <div className="text-sm text-gray-400">施設管理ポータル</div>
-                    <div className="text-xs text-gray-400">掲載審査中は一部機能が制限されます</div>
+            {/* Main Content */}
+            <main className="flex-1 flex flex-col min-w-0 h-screen overflow-hidden">
+                <header className="bg-white border-b border-gray-200 px-6 py-4 flex items-center justify-between md:hidden shadow-sm z-10">
+                    <p className="font-bold text-[#007B55] truncate text-sm">
+                        {templeUser.temple?.name}
+                    </p>
                 </header>
-                <main className="flex-1 p-8">
+                <div className="flex-1 overflow-y-auto p-6 md:p-10">
                     {children}
-                </main>
-            </div>
+                </div>
+            </main>
         </div>
-    );
+    )
 }

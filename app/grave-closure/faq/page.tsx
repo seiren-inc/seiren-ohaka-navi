@@ -24,7 +24,7 @@ export default function GraveClosureFaqPage() {
         <div className="min-h-screen flex flex-col bg-white">
             <Navbar />
 
-            <main className="flex-grow pt-32 px-4 pb-20">
+            <main className="grow pt-32 px-4 pb-20">
                 <div className="max-w-4xl mx-auto">
                     {/* Breadcrumb */}
                     <div className="mb-8">

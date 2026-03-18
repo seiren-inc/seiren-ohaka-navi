@@ -67,7 +67,7 @@ export default function EitaiKuyouPage() {
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
             <Navbar />
 
-            <main className="flex-grow pt-24 px-4 pb-20">
+            <main className="grow pt-24 px-4 pb-20">
                 <div className="max-w-4xl mx-auto">
                     {/* Breadcrumb */}
                     <div className="mb-6">
@@ -398,7 +398,7 @@ export default function EitaiKuyouPage() {
                                     </span>
                                     <h3 className="font-bold text-lg text-primary-dark">永代供養墓を探してみる</h3>
                                 </div>
-                                <p className="text-sm text-gray-500 text-center mb-6 flex-grow">
+                                <p className="text-sm text-gray-500 text-center mb-6 grow">
                                     ご希望のエリアや予算条件から、<br />
                                     実際の永代供養墓を検索できます。
                                 </p>
@@ -417,7 +417,7 @@ export default function EitaiKuyouPage() {
                                     </span>
                                     <h3 className="font-bold text-lg text-primary-dark">他の供養方法も比較する</h3>
                                 </div>
-                                <p className="text-sm text-gray-500 text-center mb-6 flex-grow">
+                                <p className="text-sm text-gray-500 text-center mb-6 grow">
                                     樹木葬や納骨堂など、<br />
                                     他の選択肢とも改めて比較してみたい方へ。
                                 </p>
@@ -439,7 +439,7 @@ export default function EitaiKuyouPage() {
                                     </span>
                                     <h3 className="font-bold text-lg text-secondary">状況を整理して相談する</h3>
                                 </div>
-                                <p className="text-sm text-gray-500 text-center mb-6 flex-grow">
+                                <p className="text-sm text-gray-500 text-center mb-6 grow">
                                     無理に決める必要はありません。<br />
                                     迷われている点は、専門家が一緒に整理します。
                                 </p>
@@ -468,7 +468,7 @@ export default function EitaiKuyouPage() {
                             ].map((item, i) => (
                                 <div key={i} className="bg-gray-50 rounded-lg p-5">
                                     <h4 className="font-bold text-primary mb-2 flex flex-row items-center">
-                                        <span className="bg-secondary text-white text-xs font-bold px-2 py-1 rounded mr-3 flex-shrink-0">Q</span>
+                                        <span className="bg-secondary text-white text-xs font-bold px-2 py-1 rounded mr-3 shrink-0">Q</span>
                                         {item.q}
                                     </h4>
                                     <p className="text-sm text-gray-600 ml-10 leading-relaxed whitespace-pre-line">

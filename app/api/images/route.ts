@@ -1,10 +1,16 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { createClient } from '@supabase/supabase-js';
 
 export const dynamic = 'force-dynamic';
 
+/**
+ * 画像削除 API
+ * seiren-platform の Supabase Storage を使用します。
+ * NEXT_PUBLIC_SUPABASE_URL / SUPABASE_SERVICE_ROLE_KEY 環境変数は
+ * seiren-platform を指す値に設定してください。
+ */
 export async function DELETE(req: NextRequest) {
     try {
+        const { createClient } = await import('@supabase/supabase-js');
         const supabase = createClient(
             process.env.NEXT_PUBLIC_SUPABASE_URL!,
             process.env.SUPABASE_SERVICE_ROLE_KEY!

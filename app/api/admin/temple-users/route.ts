@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import crypto from 'crypto';
+import bcrypt from 'bcryptjs';
 
 export const dynamic = "force-dynamic";
 
@@ -31,20 +32,22 @@ export async function POST(req: NextRequest) {
 
         // 初期パスワード生成 (ランダム8文字)
         const initialPassword = crypto.randomBytes(4).toString('hex');
-        // TODO: Supabase Auth にユーザーを作成するロジックを後で追加
-        // const { data, error } = await supabaseAdmin.auth.admin.createUser({ email, password: initialPassword })
-        
+
+        // bcrypt でハッシュ化して保存
+        const passwordHash = await bcrypt.hash(initialPassword, 12);
+
         const user = await prisma.templeUser.create({
             data: {
                 templeId,
                 email,
                 name,
                 title,
+                passwordHash,
                 status: "active",
             }
         });
 
-        // パスワードはDBには保存せず、ここでだけ返して画面に表示（またはメール送信）する
+        // パスワードはDBには平文で保存せず、ここでだけ返して画面に表示
         return NextResponse.json({ ...user, initialPassword });
     } catch (err) {
         console.error("[temple-users/post]", err);

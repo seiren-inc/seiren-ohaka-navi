@@ -137,7 +137,7 @@ export default function FaqPage() {
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
             <Navbar />
 
-            <main className="flex-grow pt-24 px-4 pb-20">
+            <main className="grow pt-24 px-4 pb-20">
                 <div className="max-w-4xl mx-auto">
 
                     {/* Breadcrumb */}
@@ -170,14 +170,14 @@ export default function FaqPage() {
                                         <details key={qi} className="group bg-gray-50 rounded-xl overflow-hidden border border-gray-100">
                                             <summary className="flex items-start justify-between gap-4 px-6 py-5 cursor-pointer list-none select-none">
                                                 <span className="flex items-start gap-3">
-                                                    <span className="bg-primary text-white text-xs font-bold px-2 py-1 rounded flex-shrink-0 mt-0.5">Q</span>
+                                                    <span className="bg-primary text-white text-xs font-bold px-2 py-1 rounded shrink-0 mt-0.5">Q</span>
                                                     <span className="font-medium text-gray-800 text-sm md:text-base leading-relaxed">{item.q}</span>
                                                 </span>
-                                                <ChevronDown className="w-5 h-5 text-gray-400 flex-shrink-0 mt-0.5 transition-transform duration-200 group-open:rotate-180" />
+                                                <ChevronDown className="w-5 h-5 text-gray-400 shrink-0 mt-0.5 transition-transform duration-200 group-open:rotate-180" />
                                             </summary>
                                             <div className="px-6 pb-6 pt-2 border-t border-gray-100">
                                                 <div className="flex items-start gap-3">
-                                                    <span className="bg-soft-teal text-white text-xs font-bold px-2 py-1 rounded flex-shrink-0">A</span>
+                                                    <span className="bg-soft-teal text-white text-xs font-bold px-2 py-1 rounded shrink-0">A</span>
                                                     <p className="text-sm text-gray-600 leading-relaxed">{item.a}</p>
                                                 </div>
                                             </div>
