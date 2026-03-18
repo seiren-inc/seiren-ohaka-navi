@@ -1,6 +1,5 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
-import { updateSession } from './lib/supabase/middleware';
 
 // 保護対象パス
 // /admin/* : 管理画面UI（Basic認証）
@@ -22,9 +21,14 @@ function isAdminApi(pathname: string) {
 export async function middleware(req: NextRequest) {
     const { pathname } = req.nextUrl;
 
-    // Supabase Auth - /portal 配下の保護
-    if (pathname.startsWith('/portal')) {
-        return await updateSession(req);
+    // /portal 配下 - Cookie セッションチェック（インライン）
+    if (pathname.startsWith('/portal') && !pathname.startsWith('/portal/login')) {
+        const session = req.cookies.get('portal_session');
+        if (!session?.value) {
+            const loginUrl = new URL('/portal/login', req.url);
+            return NextResponse.redirect(loginUrl);
+        }
+        return NextResponse.next();
     }
 
     // 公開フォームからの問い合わせ POST は認証不要
