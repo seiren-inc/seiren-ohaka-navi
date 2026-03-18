@@ -1,22 +1,13 @@
-import { createClient } from '@/lib/supabase/server'
-import { prisma } from '@/lib/prisma'
+import { getPortalUser } from '@/lib/portal-auth'
 import { redirect } from 'next/navigation'
 import { Settings, User, Building2, Mail } from 'lucide-react'
 
 export const dynamic = 'force-dynamic'
 
 export default async function PortalSettings() {
-    const supabase = await createClient()
-    const { data: { user } } = await supabase.auth.getUser()
+    const templeUser = await getPortalUser()
 
-    if (!user) redirect('/portal/login')
-
-    const templeUser = await prisma.templeUser.findUnique({
-        where: { supabaseUid: user.id },
-        include: { temple: true }
-    })
-
-    if (!templeUser) return <div>Auth Error</div>
+    if (!templeUser) redirect('/portal/login')
 
     return (
         <div className="max-w-3xl mx-auto space-y-8">

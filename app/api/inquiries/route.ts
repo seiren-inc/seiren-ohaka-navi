@@ -28,35 +28,56 @@ export async function GET(request: NextRequest) {
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json()
-    const { id: _id, ...rest } = body
+    const { id: _id, user, context, ...rest } = body
 
-    const receiptNumber = `R-${Date.now().toString().slice(-6)}`
+    const receiptNumber = body.receiptNumber ?? `R-${Date.now().toString().slice(-6)}`
 
+    // Extract common fields for crm.inquiries
+    const lastName = user?.lastName || user?.name?.split(' ')[0] || body.name?.split(' ')[0] || null;
+    const firstName = user?.firstName || user?.name?.split(' ')[1] || body.name?.split(' ')[1] || null;
+    const lastNameKana = user?.lastNameKana || user?.kana?.split(' ')[0] || null;
+    const firstNameKana = user?.firstNameKana || user?.kana?.split(' ')[1] || null;
+
+    // Create inquiry - Inquiry single table structure
     const inquiry = await prisma.inquiry.create({
       data: {
-        ...rest,
-        receiptNumber: body.receiptNumber ?? receiptNumber,
-        status: body.status ?? 'new',
-      },
+        receiptNumber,
+        status: rest.status ?? 'new',
+        type: rest.type || null,
+        category: rest.category || null,
+        user: user || null,
+        templeId: context?.templeId || rest.templeId || null,
+        templeNameSnapshot: context?.templeName || rest.templeNameSnapshot || null,
+        planId: context?.planId || rest.planId || null,
+        planName: context?.planName || rest.planName || null,
+        context: context || null,
+        message: rest.message || null,
+        preferredDateTime: rest.preferredDateTime || rest.preferredTime || null,
+        kind: rest.kind || 'general',
+        organizationName: rest.organizationName || null,
+      }
     })
 
-    console.log('[API/inquiries] 保存成功:', inquiry.id, inquiry.receiptNumber)
+    console.log('[API/inquiries] 保存成功:', inquiry.id, receiptNumber)
 
     // Send emails if Resend API Key is available
     if (process.env.RESEND_API_KEY) {
       try {
         const resend = new Resend(process.env.RESEND_API_KEY);
-        const userEmail = body.user?.email || body.email;
-        const userName = body.user?.name || body.name || "お客様";
-        const targetFacility = body.context?.templeName || "お墓探しナビ サポートセンター";
+        const userEmail = (user?.email || rest.email) as string | undefined
+        const userName = lastName ? `${lastName} ${firstName || ''}`.trim() : "お客様";
+        const targetFacility = inquiry.templeNameSnapshot || "お墓探しナビ サポートセンター";
         
+        // Use the old body format directly for email templates to maintain compatibility
+        const emailContextBody = { ...body, receiptNumber };
+
         // 1. ユーザーへの控えメール
         if (userEmail) {
            await resend.emails.send({
               from: FROM_EMAIL,
               to: [userEmail],
               subject: `【お墓探しナビ】お問い合わせを受け付けました（${targetFacility}）`,
-              html: buildUserEmailHtml(body, receiptNumber),
+              html: buildUserEmailHtml(emailContextBody, receiptNumber),
            });
         }
 
@@ -65,7 +86,7 @@ export async function POST(request: NextRequest) {
             from: FROM_EMAIL,
             to: [ADMIN_EMAIL],
             subject: `【新規お問い合わせ】${userName}様より資料請求・相談予約`,
-            html: buildAdminEmailHtml(body, receiptNumber),
+            html: buildAdminEmailHtml(emailContextBody, receiptNumber),
         });
         
         console.log('[API/inquiries] メール送信完了');
@@ -78,7 +99,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({
       success: true,
       message: 'お問い合わせを受け付けました',
-      receiptNumber: inquiry.receiptNumber,
+      receiptNumber: receiptNumber,
       id: inquiry.id,
     }, { status: 201 })
   } catch (error) {

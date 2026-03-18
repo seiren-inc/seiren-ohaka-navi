@@ -28,7 +28,6 @@ export default async function AdminDashboard() {
         prisma.inquiry.findMany({
             take: 5,
             orderBy: { createdAt: 'desc' },
-            select: { id: true, receiptNumber: true, status: true, createdAt: true, templeNameSnapshot: true, type: true },
         }),
         prisma.inquiry.findMany({
             where: { createdAt: { gte: sevenDaysAgo } },
@@ -112,7 +111,7 @@ export default async function AdminDashboard() {
                             <Link key={inq.id} href={`/admin/inquiries/${inq.id}`} className="flex items-center justify-between px-6 py-3 hover:bg-gray-50 transition-colors">
                                 <div>
                                     <p className="text-sm font-bold text-gray-800">{inq.templeNameSnapshot || '(寺院未指定)'}</p>
-                                    <p className="text-xs text-gray-400">{inq.receiptNumber} · {new Date(inq.createdAt).toLocaleDateString('ja-JP')}</p>
+                                    <p className="text-xs text-gray-400">{inq.receiptNumber || `R-${inq.id.slice(0, 6)}`} · {new Date(inq.createdAt).toLocaleDateString('ja-JP')}</p>
                                 </div>
                                 <span className={`text-xs font-bold px-2 py-1 rounded-full ${statusColor[inq.status] || 'bg-gray-100 text-gray-600'}`}>
                                     {statusLabel[inq.status] || inq.status}

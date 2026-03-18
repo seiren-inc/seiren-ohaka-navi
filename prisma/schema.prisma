@@ -4,6 +4,80 @@ generator client {
 
 datasource db {
   provider = "postgresql"
+  schemas  = ["public"]
+}
+
+model Contract {
+  id                  String    @id @default(cuid())
+  templeId            String    @map("temple_id")
+  representativeName  String    @map("representative_name")
+  representativeTitle String    @map("representative_title")
+  contactEmail        String    @map("contact_email")
+  planType            String    @map("plan_type")
+  agreedAt            DateTime  @map("agreed_at")
+  agreedIp            String    @map("agreed_ip")
+  contractVersion     String    @default("v1.0") @map("contract_version")
+  contractHash        String    @map("contract_hash")
+  pdfUrl              String?   @map("pdf_url")
+  status              String    @default("active")
+  terminatedAt        DateTime? @map("terminated_at")
+  createdAt           DateTime  @default(now()) @map("created_at")
+  updatedAt           DateTime  @updatedAt @map("updated_at")
+  temple              Temple    @relation(fields: [templeId], references: [id])
+
+  @@map("contracts")
+  @@schema("public")
+}
+
+model Inquiry {
+  id                 String   @id @default(cuid())
+  receiptNumber      String   @unique @map("receipt_number")
+  status             String   @default("new")
+  type               String?
+  category           String?
+  user               Json?
+  templeId           String?  @map("temple_id")
+  templeNameSnapshot String?  @map("temple_name_snapshot")
+  planId             String?  @map("plan_id")
+  planName           String?  @map("plan_name")
+  context            Json?
+  message            String?
+  preferredDateTime  String?  @map("preferred_date_time")
+  adminNotes         String?  @map("admin_notes")
+  createdAt          DateTime @default(now()) @map("created_at")
+  updatedAt          DateTime @updatedAt @map("updated_at")
+  kind               String   @default("general")
+  organizationName   String?  @map("organization_name")
+
+  @@map("inquiries")
+  @@schema("public")
+}
+
+model Plan {
+  id             String   @id @default(cuid())
+  templeId       String   @map("temple_id")
+  category       String
+  name           String
+  subDescription String?  @map("sub_description")
+  price          Int
+  priceNote      String?  @map("price_note")
+  managementFee  Int      @default(0) @map("management_fee")
+  availability   String   @default("available")
+  burialMethod   String?  @map("burial_method")
+  periodType     String   @default("perpetual") @map("period_type")
+  periodYears    Int?     @map("period_years")
+  capacity       String?
+  capacityNote   String?  @map("capacity_note")
+  petAllowed     String?  @map("pet_allowed")
+  images         String[]
+  note           String?
+  order          Int      @default(0)
+  createdAt      DateTime @default(now()) @map("created_at")
+  updatedAt      DateTime @updatedAt @map("updated_at")
+  temple         Temple   @relation(fields: [templeId], references: [id])
+
+  @@map("plans")
+  @@schema("public")
 }
 
 model Temple {
@@ -11,133 +85,76 @@ model Temple {
   name                   String
   kana                   String?
   type                   FacilityType
-  managementBody         String?
+  managementBody         String?          @map("management_body")
   religion               ReligionCategory
-  buddhistSect           BuddhistSect?
+  buddhistSect           BuddhistSect?    @map("buddhist_sect")
   prefecture             String
-  prefectureCode         Int?
-  cityName               String?
-  addressLine            String?
-  zipCode                String?
+  prefectureCode         Int?             @map("prefecture_code")
+  cityName               String?          @map("city_name")
+  addressLine            String?          @map("address_line")
   address                String
   lat                    Float?
   lng                    Float?
   access                 String?
-  parkingAvailable       Boolean          @default(false)
+  parkingAvailable       Boolean          @default(false) @map("parking_available")
   parking                String?
-  indoorOutdoor          String?
-  barrierFree            Boolean          @default(false)
-  barrierFreeLabel       String?
-  petAllowed             String?
-  petSupport             String?
+  indoorOutdoor          String?          @map("indoor_outdoor")
+  barrierFree            Boolean          @default(false) @map("barrier_free")
+  barrierFreeLabel       String?          @map("barrier_free_label")
+  petAllowed             String?          @map("pet_allowed")
+  petSupport             String?          @map("pet_support")
   sects                  String[]
-  supportedMemorialTypes String[]
-  nearestStations        Json?
-  priceAggMin            Int?
-  priceAggMax            Int?
-  managementFeeAggType   String?
+  supportedMemorialTypes String[]         @map("supported_memorial_types")
+  nearestStations        Json?            @map("nearest_stations")
+  priceAggMin            Int?             @map("price_agg_min")
+  priceAggMax            Int?             @map("price_agg_max")
+  managementFeeAggType   String?          @map("management_fee_agg_type")
   catchphrase            String?
   overview               String?
-  suitableFor            String[]
-  notesPoints            String[]
+  suitableFor            String[]         @map("suitable_for")
+  notesPoints            String[]         @map("notes_points")
   tags                   String[]
-  aiSummary              String?
-  mainImage              String?
-  galleryImages          String[]
+  aiSummary              String?          @map("ai_summary")
+  mainImage              String?          @map("main_image")
+  galleryImages          String[]         @map("gallery_images")
   phone                  String?
-  officeHours            String?
+  officeHours            String?          @map("office_hours")
   status                 String           @default("public")
-  listedInSearch         Boolean          @default(true)
-  planType               String           @default("free")   // free / standard / sponsor
-  isPrSlot               Boolean          @default(false)    // PR固定枠フラグ
-  successorRequirements  String?
+  listedInSearch         Boolean          @default(true) @map("listed_in_search")
+  successorRequirements  String?          @map("successor_requirements")
   seo                    Json?
   calendar               Json?
-  keyFeatures            Json?
-  createdAt              DateTime         @default(now())
-  updatedAt              DateTime         @updatedAt
-  plans                  Plan[]
+  keyFeatures            Json?            @map("key_features")
+  createdAt              DateTime         @default(now()) @map("created_at")
+  updatedAt              DateTime         @updatedAt @map("updated_at")
+  zipCode                String?          @map("zip_code")
+  isPrSlot               Boolean          @default(false) @map("is_pr_slot")
+  planType               String           @default("free") @map("plan_type")
   contracts              Contract[]
+  plans                  Plan[]
   templeUser             TempleUser?
+
+  @@map("temples")
+  @@schema("public")
 }
 
 model TempleUser {
-  id                String    @id @default(cuid())
-  templeId          String    @unique
-  temple            Temple    @relation(fields: [templeId], references: [id])
-  email             String    @unique
-  supabaseUid       String?   @unique
-  name              String
-  title             String
-  status            String    @default("pending") // pending / active / suspended
-  stripeCustomerId  String?
-  lastLoginAt       DateTime?
-  createdAt         DateTime  @default(now())
-  updatedAt         DateTime  @updatedAt
-}
+  id               String    @id @default(cuid())
+  templeId         String    @unique @map("temple_id")
+  email            String    @unique
+  supabaseUid      String?   @unique @map("supabase_uid")
+  passwordHash     String?   @map("password_hash")
+  name             String
+  title            String
+  status           String    @default("pending")
+  stripeCustomerId String?   @map("stripe_customer_id")
+  lastLoginAt      DateTime? @map("last_login_at")
+  createdAt        DateTime  @default(now()) @map("created_at")
+  updatedAt        DateTime  @updatedAt @map("updated_at")
+  temple           Temple    @relation(fields: [templeId], references: [id])
 
-model Plan {
-  id             String   @id @default(cuid())
-  templeId       String
-  category       String
-  name           String
-  subDescription String?
-  price          Int
-  priceNote      String?
-  managementFee  Int      @default(0)
-  availability   String   @default("available")
-  burialMethod   String?
-  periodType     String   @default("perpetual")
-  periodYears    Int?
-  capacity       String?
-  capacityNote   String?
-  petAllowed     String?
-  images         String[]
-  note           String?
-  order          Int      @default(0)
-  createdAt      DateTime @default(now())
-  updatedAt      DateTime @updatedAt
-  temple         Temple   @relation(fields: [templeId], references: [id])
-}
-
-model Contract {
-  id                    String    @id @default(cuid())
-  templeId              String
-  temple                Temple    @relation(fields: [templeId], references: [id])
-  representativeName    String
-  representativeTitle   String
-  contactEmail          String
-  planType              String    // free / standard / sponsor
-  agreedAt              DateTime
-  agreedIp              String
-  contractVersion       String    @default("v1.0")
-  contractHash          String
-  pdfUrl                String?
-  status                String    @default("active") // active / terminated
-  terminatedAt          DateTime?
-  createdAt             DateTime  @default(now())
-  updatedAt             DateTime  @updatedAt
-}
-
-model Inquiry {
-  id                 String   @id @default(cuid())
-  receiptNumber      String   @unique
-  status             String   @default("new")
-  type               String?
-  category           String?
-  user               Json?
-  templeId           String?
-  templeNameSnapshot String?
-  planId             String?
-  planName           String?
-  context            Json?
-  message            String?
-  preferredDateTime  String?
-  adminNotes         String?
-  createdAt          DateTime @default(now())
-  updatedAt          DateTime @updatedAt
-  kind               String   @default("general")
-  organizationName   String?
+  @@map("temple_users")
+  @@schema("public")
 }
 
 enum BuddhistSect {
@@ -163,15 +180,19 @@ enum BuddhistSect {
   honmonButsuryu
   other
   unknown
+
+  @@schema("public")
 }
 
 enum FacilityType {
-  templeGrave     @map("寺院墓地")
+  templeGrave      @map("寺院墓地")
   privateGraveyard @map("民営霊園")
   publicGraveyard  @map("公営霊園")
-  ossuary         @map("納骨堂")
-  complex         @map("複合型")
-  other           @map("その他")
+  ossuary          @map("納骨堂")
+  complex          @map("複合型")
+  other            @map("その他")
+
+  @@schema("public")
 }
 
 enum ReligionCategory {
@@ -180,4 +201,6 @@ enum ReligionCategory {
   christianity
   other
   unknown
+
+  @@schema("public")
 }

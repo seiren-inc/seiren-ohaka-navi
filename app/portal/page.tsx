@@ -1,4 +1,4 @@
-import { createClient } from '@/lib/supabase/server'
+import { getPortalUser } from '@/lib/portal-auth'
 import { prisma } from '@/lib/prisma'
 import { redirect } from 'next/navigation'
 import { Activity, Mail, FileText, ArrowRight } from 'lucide-react'
@@ -7,17 +7,9 @@ import Link from 'next/link'
 export const dynamic = 'force-dynamic'
 
 export default async function PortalDashboard() {
-    const supabase = await createClient()
-    const { data: { user } } = await supabase.auth.getUser()
+    const templeUser = await getPortalUser()
 
-    if (!user) redirect('/portal/login')
-
-    const templeUser = await prisma.templeUser.findUnique({
-        where: { supabaseUid: user.id },
-        include: { temple: true }
-    })
-
-    if (!templeUser) return <div>Auth Error</div>
+    if (!templeUser) redirect('/portal/login')
 
     // 今月の最初の日
     const now = new Date()
@@ -51,7 +43,7 @@ export default async function PortalDashboard() {
         sponsor: 'スポンサープラン'
     }
 
-    const currentPlan = planNameMap[templeUser.temple.planType] || '無料プラン'
+    const currentPlan = planNameMap[(templeUser.temple as any).planType] || '無料プラン'
 
     return (
         <div className="max-w-5xl mx-auto space-y-8">
@@ -119,7 +111,10 @@ export default async function PortalDashboard() {
                         </thead>
                         <tbody className="divide-y divide-gray-100">
                             {recentLeads.map(lead => {
-                                const parsedUser = lead.user as { name?: string, phone?: string } | null;
+                                const leadType = lead.type || lead.kind || '';
+                                const u = (lead.user && typeof lead.user === 'object' && !Array.isArray(lead.user)) ? lead.user as Record<string, unknown> : {};
+                                const name = u.lastName ? `${u.lastName} ${u.firstName || ''}`.toString().trim() : '名称未設定';
+
                                 return (
                                     <tr key={lead.id} className="hover:bg-gray-50">
                                         <td className="px-6 py-4 whitespace-nowrap text-gray-600">
@@ -127,15 +122,15 @@ export default async function PortalDashboard() {
                                         </td>
                                         <td className="px-6 py-4">
                                             <span className={`inline-flex items-center px-2 py-1 rounded text-xs font-bold ${
-                                                lead.type === 'document' ? 'bg-blue-50 text-blue-700' : 
-                                                lead.type === 'tour' ? 'bg-emerald-50 text-emerald-700' : 
+                                                leadType === 'document' ? 'bg-blue-50 text-blue-700' : 
+                                                leadType === 'tour' ? 'bg-emerald-50 text-emerald-700' : 
                                                 'bg-gray-100 text-gray-700'
                                             }`}>
-                                                {lead.type === 'document' ? '資料請求' : lead.type === 'tour' ? '見学予約' : 'お問い合わせ'}
+                                                {leadType === 'document' ? '資料請求' : leadType === 'tour' ? '見学予約' : 'お問い合わせ'}
                                             </span>
                                         </td>
                                         <td className="px-6 py-4 font-bold text-gray-800">
-                                            {parsedUser?.name || '名称未設定'} 様
+                                            {name} 様
                                         </td>
                                     </tr>
                                 )

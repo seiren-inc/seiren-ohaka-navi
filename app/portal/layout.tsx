@@ -1,43 +1,25 @@
 export const dynamic = 'force-dynamic'
 
-import { createClient } from '@/lib/supabase/server'
 import { redirect } from 'next/navigation'
 import { LayoutDashboard, MessageSquare, Settings, LogOut, Loader2 } from 'lucide-react'
 import Link from 'next/link'
-import { prisma } from '@/lib/prisma'
 import { revalidatePath } from 'next/cache'
+import { getPortalUser, clearPortalSession } from '@/lib/portal-auth'
 
 export default async function PortalLayout({
     children,
 }: {
     children: React.ReactNode
 }) {
-    const supabase = await createClient()
-    const { data: { user } } = await supabase.auth.getUser()
-
-    if (!user) {
-        redirect('/portal/login')
-    }
-
-    // TempleUserから寺院情報を取得
-    const templeUser = await prisma.templeUser.findUnique({
-        where: { supabaseUid: user.id },
-        include: { temple: { select: { name: true } } }
-    })
+    const templeUser = await getPortalUser()
 
     if (!templeUser) {
-        // UIDが紐付いていない異常状態
-        return (
-            <div className="flex h-screen items-center justify-center p-6 text-center text-sm text-gray-500">
-                アカウントの紐付けが完了していません。管理者にお問い合わせください。
-            </div>
-        )
+        redirect('/portal/login')
     }
 
     async function signOut() {
         'use server'
-        const sb = await createClient()
-        await sb.auth.signOut()
+        await clearPortalSession()
         revalidatePath('/portal/login')
         redirect('/portal/login')
     }

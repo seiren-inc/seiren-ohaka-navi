@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import crypto from 'crypto';
-import { supabaseAdmin } from "@/lib/supabase/admin";
+import bcrypt from 'bcryptjs';
 
 export const dynamic = "force-dynamic";
 
@@ -33,34 +33,24 @@ export async function POST(req: NextRequest) {
         // 初期パスワード生成 (ランダム8文字)
         const initialPassword = crypto.randomBytes(4).toString('hex');
 
-        // Supabase Auth にユーザーを作成
-        const { data: authData, error: authError } = await supabaseAdmin.auth.admin.createUser({ 
-            email, 
-            password: initialPassword,
-            email_confirm: true // 自動的にメール確認済みにする
-        });
+        // bcrypt でハッシュ化して保存
+        const passwordHash = await bcrypt.hash(initialPassword, 12);
 
-        if (authError || !authData.user) {
-            console.error("[supabase auth error]", authError);
-            return NextResponse.json({ error: "認証アカウントの作成に失敗しました: " + (authError?.message || "不明なエラー") }, { status: 500 });
-        }
-        
         const user = await prisma.templeUser.create({
             data: {
                 templeId,
                 email,
                 name,
                 title,
-                supabaseUid: authData.user.id,
+                passwordHash,
                 status: "active",
             }
         });
 
-        // パスワードはDBには保存せず、ここでだけ返して画面に表示（またはメール送信）する
+        // パスワードはDBには平文で保存せず、ここでだけ返して画面に表示
         return NextResponse.json({ ...user, initialPassword });
     } catch (err) {
         console.error("[temple-users/post]", err);
         return NextResponse.json({ error: "サーバーエラーが発生しました" }, { status: 500 });
     }
 }
-

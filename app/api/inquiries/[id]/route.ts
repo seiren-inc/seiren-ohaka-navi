@@ -18,10 +18,25 @@ export async function PATCH(
     try {
         const { id } = await params;
         const body = await request.json();
+
+        // Inquiry 単一テーブルの既存フィールドのみ更新対象とする
+        const allowedKeys = [
+            'status', 'adminNotes', 'type', 'category', 'kind',
+            'templeId', 'planId', 'planName', 'templeNameSnapshot',
+            'message', 'preferredDateTime', 'organizationName',
+            'user', 'context',
+        ];
+
+        const dataPayload: Record<string, unknown> = {};
+        for (const k of allowedKeys) {
+            if (body[k] !== undefined) dataPayload[k] = body[k];
+        }
+
         const inquiry = await prisma.inquiry.update({
             where: { id },
-            data: body,
+            data: dataPayload,
         });
+
         return NextResponse.json(inquiry);
     } catch (error) {
         console.error('[API/inquiries/[id] PATCH]', error);

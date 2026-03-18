@@ -1,21 +1,23 @@
-import { createClient } from '@/lib/supabase/server'
+import { getPortalUser } from '@/lib/portal-auth'
 import { prisma } from '@/lib/prisma'
 import { redirect } from 'next/navigation'
 import { MessageSquare, Phone, MapPin } from 'lucide-react'
 
 export const dynamic = 'force-dynamic'
 
+// user JSON フィールドから特定キーを安全に取り出す
+function fromUser(user: unknown, key: string): string {
+    if (user && typeof user === 'object' && !Array.isArray(user)) {
+        const val = (user as Record<string, unknown>)[key]
+        return typeof val === 'string' ? val : ''
+    }
+    return ''
+}
+
 export default async function PortalLeads() {
-    const supabase = await createClient()
-    const { data: { user } } = await supabase.auth.getUser()
+    const templeUser = await getPortalUser()
 
-    if (!user) redirect('/portal/login')
-
-    const templeUser = await prisma.templeUser.findUnique({
-        where: { supabaseUid: user.id }
-    })
-
-    if (!templeUser) return <div>Auth Error</div>
+    if (!templeUser) redirect('/portal/login')
 
     const leads = await prisma.inquiry.findMany({
         where: { templeId: templeUser.templeId },
@@ -56,12 +58,15 @@ export default async function PortalLeads() {
                         </thead>
                         <tbody className="divide-y divide-gray-100">
                             {leads.map(lead => {
-                                const parsedUser = lead.user as { 
-                                    name?: string, 
-                                    phone?: string, 
-                                    email?: string, 
-                                    address?: string 
-                                } | null;
+                                const leadType = lead.type || lead.kind || ''
+                                const lastName = fromUser(lead.user, 'lastName')
+                                const firstName = fromUser(lead.user, 'firstName')
+                                const phone = fromUser(lead.user, 'phone')
+                                const email = fromUser(lead.user, 'email')
+                                const prefecture = fromUser(lead.user, 'prefecture')
+                                const city = fromUser(lead.user, 'city')
+                                const addressDetail = fromUser(lead.user, 'addressDetail')
+                                const fullName = lastName ? `${lastName} ${firstName}`.trim() : '名称未設定'
 
                                 return (
                                     <tr key={lead.id} className="hover:bg-gray-50">
@@ -72,32 +77,32 @@ export default async function PortalLeads() {
                                         </td>
                                         <td className="p-4 align-top">
                                             <span className={`inline-flex items-center px-2 py-1 rounded text-xs font-bold ${
-                                                lead.type === 'document' ? 'bg-blue-50 border border-blue-200 text-blue-700' : 
-                                                lead.type === 'tour' ? 'bg-emerald-50 border border-emerald-200 text-emerald-700' : 
+                                                leadType === 'document' ? 'bg-blue-50 border border-blue-200 text-blue-700' : 
+                                                leadType === 'tour' ? 'bg-emerald-50 border border-emerald-200 text-emerald-700' : 
                                                 'bg-gray-50 border border-gray-200 text-gray-700'
                                             }`}>
-                                                {lead.type === 'document' ? '資料請求' : lead.type === 'tour' ? '見学予約' : 'お問い合わせ'}
+                                                {leadType === 'document' ? '資料請求' : leadType === 'tour' ? '見学予約' : 'お問い合わせ'}
                                             </span>
                                         </td>
                                         <td className="p-4 align-top">
                                             <p className="font-bold text-gray-800 text-base mb-1">
-                                                {parsedUser?.name || '名称未設定'} 様
+                                                {fullName} 様
                                             </p>
                                             <div className="space-y-1 text-xs text-gray-600">
-                                                {parsedUser?.phone && (
+                                                {phone && (
                                                     <p className="flex items-center gap-1">
                                                         <Phone className="w-3 h-3 text-gray-400" />
-                                                        {parsedUser.phone}
+                                                        {phone}
                                                     </p>
                                                 )}
-                                                {parsedUser?.address && (
+                                                {addressDetail && (
                                                     <p className="flex items-start gap-1">
                                                         <MapPin className="w-3 h-3 text-gray-400 mt-0.5 shrink-0" />
-                                                        <span className="line-clamp-2">{parsedUser.address}</span>
+                                                        <span className="line-clamp-2">{prefecture + city + addressDetail}</span>
                                                     </p>
                                                 )}
-                                                {parsedUser?.email && (
-                                                    <p className="text-gray-500">{parsedUser.email}</p>
+                                                {email && (
+                                                    <p className="text-gray-500">{email}</p>
                                                 )}
                                             </div>
                                         </td>
