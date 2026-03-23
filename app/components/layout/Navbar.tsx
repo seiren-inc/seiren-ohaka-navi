@@ -42,7 +42,7 @@ function DesktopFavoriteCount() {
     const { count, isInitialized } = useFavorites();
     if (!isInitialized || count === 0) return null;
     return (
-        <span className="bg-rose-500 text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full min-w-[18px] text-center ml-1">
+        <span className="bg-rose-500 text-white text-xs font-bold px-1.5 py-0.5 rounded-full min-w-[18px] text-center ml-1">
             {count}
         </span>
     );
@@ -164,10 +164,6 @@ export function Navbar() {
                             <ExternalLink className="w-3 h-3 opacity-50" />
                         </a>
 
-                        {/* よくある質問 */}
-                        <Link href="/faq" className={navLinkClass}>
-                            よくある質問
-                        </Link>
 
                         {/* 関連サービス ドロップダウン */}
                         <div
@@ -274,7 +270,7 @@ export function Navbar() {
                                     >
                                         <Phone className="w-5 h-5 shrink-0" />
                                         <div className="text-left">
-                                            <span className="block text-[10px] font-normal text-gray-500 leading-tight">お電話でのご相談（無料）</span>
+                                            <span className="block text-xs font-normal text-gray-500 leading-tight">お電話でのご相談（無料）</span>
                                             <span className="text-xl tracking-wider">0800-888-8788</span>
                                         </div>
                                     </a>
@@ -284,7 +280,7 @@ export function Navbar() {
                                         onClick={() => setCtaOpen(false)}
                                     >
                                         <span className="font-bold text-sm">Webから無料相談予約</span>
-                                        <span className="text-[10px] opacity-80">24時間受付中</span>
+                                        <span className="text-xs opacity-80">24時間受付中</span>
                                     </Link>
                                 </div>
                             </div>
@@ -345,14 +341,6 @@ export function Navbar() {
                         <ExternalLink className="w-3.5 h-3.5 text-gray-400" />
                     </a>
 
-                    {/* よくある質問 */}
-                    <Link
-                        href="/faq"
-                        className="text-gray-700 font-medium py-3 border-b border-gray-50 hover:text-primary transition-colors block"
-                        onClick={() => setIsMobileMenuOpen(false)}
-                    >
-                        よくある質問
-                    </Link>
 
                     {/* お気に入りリスト（モバイル） */}
                     <Link
@@ -408,7 +396,7 @@ export function Navbar() {
                         >
                             <Phone className="w-4 h-4" />
                             <div className="text-center">
-                                <span className="block text-[10px] font-normal text-gray-400">無料電話相談</span>
+                                <span className="block text-xs font-normal text-gray-400">無料電話相談</span>
                                 <span>0800-888-8788</span>
                             </div>
                         </a>
