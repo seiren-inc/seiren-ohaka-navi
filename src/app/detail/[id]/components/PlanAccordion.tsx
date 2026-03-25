@@ -81,9 +81,9 @@ export function PlanAccordion({ plans }: PlanAccordionProps) {
                                             <div>
                                                 <div className="flex gap-2 mb-2">
                                                     {plan.maintenanceFee === 0 && (
-                                                        <span className="bg-safe-green/10 text-safe-green text-[10px] px-2 py-0.5 rounded font-bold">年間管理費0円</span>
+                                                        <span className="bg-safe-green/10 text-safe-green text-xs px-2 py-0.5 rounded font-bold">年間管理費0円</span>
                                                     )}
-                                                    <span className="bg-gray-100 text-gray-600 text-[10px] px-2 py-0.5 rounded">
+                                                    <span className="bg-gray-100 text-gray-600 text-xs px-2 py-0.5 rounded">
                                                         {plan.capacity}
                                                     </span>
                                                 </div>
@@ -107,7 +107,7 @@ export function PlanAccordion({ plans }: PlanAccordionProps) {
                                         <div className="flex flex-col sm:flex-row items-center justify-between border-t border-dotted border-gray-200 pt-3 mt-auto">
                                             <div className="flex flex-wrap gap-2 mb-3 sm:mb-0">
                                                 {plan.features.map(f => (
-                                                    <span key={f} className="text-[10px] text-gray-500 border border-gray-200 px-2 py-1 rounded-full">
+                                                    <span key={f} className="text-xs text-gray-500 border border-gray-200 px-2 py-1 rounded-full">
                                                         {f}
                                                     </span>
                                                 ))}

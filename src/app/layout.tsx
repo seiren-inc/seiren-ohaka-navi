@@ -1,8 +1,11 @@
 import type { Metadata } from "next";
-import { Noto_Sans_JP } from "next/font/google";
+import { Noto_Sans_JP, Geist } from "next/font/google";
 import Script from "next/script";
 import { FixedCTA } from "./components/layout/FixedCTA";
 import "./globals.css";
+import { cn } from "@/lib/utils";
+
+const geist = Geist({subsets:['latin'],variable:'--font-sans'});
 
 const notoSansJP = Noto_Sans_JP({
   variable: "--font-noto-sans-jp",
@@ -57,7 +60,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ja">
+    <html lang="ja" className={cn("font-sans", geist.variable)}>
       <body
         className={`${notoSansJP.variable} ${shipporiMincho.variable} antialiased font-sans bg-bg text-text`}
       >
@@ -94,7 +97,7 @@ export default function RootLayout({
             `}
           </Script>
         )}
-        {children}
+        <div className="main-safe-bottom">{children}</div>
         <FixedCTA />
       </body>
     </html>

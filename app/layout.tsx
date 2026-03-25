@@ -135,7 +135,7 @@ export default function RootLayout({
             `}
           </Script>
         )}
-        {children}
+        <div className="main-safe-bottom">{children}</div>
         <FixedCTA />
       </body>
     </html>

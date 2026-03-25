@@ -97,7 +97,7 @@ export function PlanDetailModal({ plan, isOpen, onClose }: PlanDetailModalProps)
                                     No Image
                                 </span>
                             )}
-                            <div className="absolute bottom-2 right-2 bg-black/60 text-white text-[10px] px-2 py-1 rounded">
+                            <div className="absolute bottom-2 right-2 bg-black/60 text-white text-xs px-2 py-1 rounded">
                                 イメージ
                             </div>
                         </div>

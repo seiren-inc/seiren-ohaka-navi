@@ -191,7 +191,7 @@ export function Navbar() {
                         >
                             <Phone className="w-4 h-4 fill-current" />
                             <span className="text-sm leading-tight">
-                                <span className="block text-[10px] font-normal text-gray-400 tracking-wider">無料電話相談</span>
+                                <span className="block text-xs font-normal text-gray-400 tracking-wider">無料電話相談</span>
                                 0800-888-8788
                             </span>
                         </a>
@@ -296,7 +296,7 @@ export function Navbar() {
                         >
                             <Phone className="w-4 h-4" />
                             <div className="text-center">
-                                <span className="block text-[10px] font-normal text-gray-400">無料電話相談</span>
+                                <span className="block text-xs font-normal text-gray-400">無料電話相談</span>
                                 <span>0800-888-8788</span>
                             </div>
                         </a>

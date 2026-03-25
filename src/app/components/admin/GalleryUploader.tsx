@@ -159,7 +159,7 @@ export const GalleryUploader = ({ images = [], onChange, folder = "gallery", lab
 
             {/* Custom Confirm Modal */}
             {deleteIndex !== null && (
-                <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/50" onClick={(e) => { e.stopPropagation(); }}>
+                <div className="fixed inset-0 z-[200] flex items-center justify-center bg-black/50" onClick={(e) => { e.stopPropagation(); }}>
                     <div className="bg-white p-6 rounded-lg shadow-xl max-w-sm w-full m-4">
                         <h3 className="font-bold text-lg mb-4">画像を削除しますか？</h3>
                         <p className="text-gray-600 mb-6 text-sm">この操作は取り消せません。</p>

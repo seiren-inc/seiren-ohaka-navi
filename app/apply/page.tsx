@@ -188,7 +188,7 @@ export default function ApplyPage() {
                                         <div className="flex items-center gap-2 mb-1">
                                             <span className="font-bold text-gray-800">{plan.label}</span>
                                             {plan.recommended && (
-                                                <span className="text-[10px] bg-emerald-500 text-white px-1.5 py-0.5 rounded font-bold flex items-center gap-0.5">
+                                                <span className="text-xs bg-emerald-500 text-white px-1.5 py-0.5 rounded font-bold flex items-center gap-0.5">
                                                     <Star className="w-2.5 h-2.5" /> おすすめ
                                                 </span>
                                             )}

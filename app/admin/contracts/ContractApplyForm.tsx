@@ -231,7 +231,7 @@ export function ContractApplyForm({ templeId, templeName }: Props) {
                                     <div className="flex-1">
                                         <div className="flex items-center gap-2">
                                             <span className="font-bold text-sm">{plan.label}</span>
-                                            {plan.recommended && <span className="text-[10px] bg-emerald-500 text-white px-1.5 py-0.5 rounded font-bold">おすすめ</span>}
+                                            {plan.recommended && <span className="text-xs bg-emerald-500 text-white px-1.5 py-0.5 rounded font-bold">おすすめ</span>}
                                         </div>
                                         <p className="text-primary font-bold text-sm mt-0.5">{plan.monthly}</p>
                                         <p className="text-xs text-gray-500 mt-1">{plan.description}</p>

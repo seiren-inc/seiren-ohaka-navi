@@ -34,7 +34,7 @@ export function TempleGallery({ gallery }: TempleGalleryProps) {
                             ) : (
                                 <div className="w-full h-full flex flex-col items-center justify-center text-gray-300">
                                     <ImageIcon className="w-8 h-8 opacity-50 mb-1" />
-                                    <span className="text-[10px]">No Image</span>
+                                    <span className="text-xs">No Image</span>
                                 </div>
                             )}
                         </div>

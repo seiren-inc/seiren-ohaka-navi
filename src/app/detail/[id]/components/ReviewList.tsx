@@ -39,7 +39,7 @@ export function ReviewList({ reviews }: ReviewListProps) {
                     {review.tags && (
                         <div className="flex gap-2">
                             {review.tags.map(tag => (
-                                <span key={tag} className="text-[10px] text-gray-500 bg-gray-50 px-2 py-1 rounded">
+                                <span key={tag} className="text-xs text-gray-500 bg-gray-50 px-2 py-1 rounded">
                                     #{tag}
                                 </span>
                             ))}

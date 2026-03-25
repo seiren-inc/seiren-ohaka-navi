@@ -218,7 +218,7 @@ export function AreaSearchModal({
                         <span className="text-sm font-bold text-gray-700 group-hover:text-primary transition-colors">
                           {city}
                         </span>
-                        <span className="text-[10px] md:text-xs font-bold text-gray-500 bg-gray-100 px-2 py-0.5 rounded-full group-hover:bg-white group-hover:text-primary transition-colors">
+                        <span className="text-xs md:text-xs font-bold text-gray-500 bg-gray-100 px-2 py-0.5 rounded-full group-hover:bg-white group-hover:text-primary transition-colors">
                           {count}件
                         </span>
                       </div>

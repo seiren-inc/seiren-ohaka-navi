@@ -317,7 +317,7 @@ export default function ChoicesHub() {
 
                             {/* Consult */}
                             <div className="flex flex-col bg-secondary/5 border border-secondary/20 rounded-xl p-6 hover:shadow-lg transition-shadow relative overflow-hidden group">
-                                <div className="absolute top-0 right-0 bg-secondary text-white text-[10px] font-bold px-2 py-1 rounded-bl">
+                                <div className="absolute top-0 right-0 bg-secondary text-white text-xs font-bold px-2 py-1 rounded-bl">
                                     相談無料
                                 </div>
                                 <div className="mb-4 text-center">

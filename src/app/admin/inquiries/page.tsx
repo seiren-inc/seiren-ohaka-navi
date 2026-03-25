@@ -152,7 +152,7 @@ export default async function InquiryList(props: { searchParams: Promise<{ categ
                                     <Link href={`/admin/inquiries/${i.id}`} className="block hover:text-blue-600">
                                         <div className="font-bold text-gray-700 mb-1">{getCategoryBadge(i)}</div>
                                         <div className="text-xs">{new Date(i.createdAt).toLocaleString('ja-JP')}</div>
-                                        <div className="text-[10px] text-gray-300 font-mono mt-0.5">ID: {i.id.slice(-4)}</div>
+                                        <div className="text-xs text-gray-300 font-mono mt-0.5">ID: {i.id.slice(-4)}</div>
                                     </Link>
                                 </td>
                                 <td className="p-4">{getStatusBadge(i.status)}</td>

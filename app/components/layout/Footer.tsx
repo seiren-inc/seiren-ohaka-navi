@@ -58,7 +58,7 @@ export function Footer() {
                             </li>
                             <li>
                                 <span className="flex items-center text-gray-400 cursor-not-allowed">
-                                    終活コンシェルジュ <span className="ml-2 text-[10px] bg-gray-200 px-1 py-0.5 rounded">準備中</span>
+                                    終活コンシェルジュ <span className="ml-2 text-xs bg-gray-200 px-1 py-0.5 rounded">準備中</span>
                                 </span>
                             </li>
                         </ul>
@@ -77,7 +77,7 @@ export function Footer() {
                             <a href="tel:0800-888-8788" className="block text-xl font-bold font-serif text-primary hover:text-primary-hover transition-colors">
                                 0800-888-8788
                             </a>
-                            <p className="text-[10px] text-gray-400 mt-1">受付：9:00 - 18:00 (年中無休)</p>
+                            <p className="text-xs text-gray-400 mt-1">受付：9:00 - 18:00 (年中無休)</p>
                         </div>
                     </div>
                 </div>

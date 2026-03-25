@@ -108,7 +108,7 @@ export function PlanList({ plans, temple }: PlanListProps) {
 function SpecItem({ label, value }: { label: string, value: string }) {
     return (
         <div className="flex flex-col">
-            <span className="text-[10px] text-gray-400 font-bold mb-0.5">{label}</span>
+            <span className="text-xs text-gray-400 font-bold mb-0.5">{label}</span>
             <span className="text-sm font-bold text-gray-700">{value}</span>
         </div>
     );

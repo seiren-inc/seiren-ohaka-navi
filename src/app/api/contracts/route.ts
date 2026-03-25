@@ -134,7 +134,7 @@ function buildEmailHtml({ templeName, representativeName, planType, contractId, 
     </p>
     <p style="margin-top: 32px; font-size: 13px; color: #666;">ご不明点は <a href="mailto:${ADMIN_EMAIL}" style="color: #007B55;">${ADMIN_EMAIL}</a> までお問い合わせください。</p>
     <hr style="border: none; border-top: 1px solid #eee; margin: 24px 0;" />
-    <p style="font-size: 11px; color: #999;">株式会社清蓮 ／ 清蓮 お墓探しナビ<br>本メールは自動送信です。このメールに直接返信はできません。</p>
+    <p style="font-size: 12px; color: #999;">株式会社清蓮 ／ 清蓮 お墓探しナビ<br>本メールは自動送信です。このメールに直接返信はできません。</p>
   </div>
 </div>`;
 }

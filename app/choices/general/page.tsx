@@ -302,7 +302,7 @@ export default function GeneralGravePage() {
                             </div>
 
                             <div className="flex flex-col bg-soft-teal/5 border border-soft-teal/20 rounded-xl p-6 hover:shadow-lg transition-shadow relative overflow-hidden group">
-                                <div className="absolute top-0 right-0 bg-soft-teal text-white text-[10px] font-bold px-2 py-1 rounded-bl">
+                                <div className="absolute top-0 right-0 bg-soft-teal text-white text-xs font-bold px-2 py-1 rounded-bl">
                                     相談無料
                                 </div>
                                 <div className="mb-4 text-center">

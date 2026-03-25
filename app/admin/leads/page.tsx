@@ -181,7 +181,7 @@ export default function LeadAnalyticsPage() {
                                         <tr key={t.templeId} className="hover:bg-gray-50 transition-colors">
                                             <td className="px-5 py-3.5 font-bold text-gray-800 flex items-center gap-2">
                                                 {i < 3 && (
-                                                    <span className={`text-[10px] font-bold px-1.5 py-0.5 rounded ${i === 0 ? "bg-amber-100 text-amber-600" : i === 1 ? "bg-gray-100 text-gray-500" : "bg-orange-50 text-orange-500"}`}>
+                                                    <span className={`text-xs font-bold px-1.5 py-0.5 rounded ${i === 0 ? "bg-amber-100 text-amber-600" : i === 1 ? "bg-gray-100 text-gray-500" : "bg-orange-50 text-orange-500"}`}>
                                                         {i + 1}位
                                                     </span>
                                                 )}

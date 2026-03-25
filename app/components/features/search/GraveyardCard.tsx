@@ -77,16 +77,16 @@ export function GraveyardCard({ data }: GraveyardCardProps) {
 
         {/* バッジ: facility type + plan badges */}
         <div className="absolute top-2 left-2 flex flex-wrap gap-1 z-10">
-          <span className="bg-secondary/95 text-white text-[10px] px-2 py-1 rounded-sm uppercase tracking-wider font-bold shadow-sm backdrop-blur-sm">
+          <span className="bg-secondary/95 text-white text-xs px-2 py-1 rounded-sm uppercase tracking-wider font-bold shadow-sm backdrop-blur-sm">
             {data.type}
           </span>
           {hasJumokuso && (
-            <span className="bg-emerald-600/95 text-white text-[10px] px-2 py-1 rounded-sm font-bold shadow-sm backdrop-blur-sm tracking-wide">
+            <span className="bg-emerald-600/95 text-white text-xs px-2 py-1 rounded-sm font-bold shadow-sm backdrop-blur-sm tracking-wide">
               樹木葬あり
             </span>
           )}
           {data.status === "private" && (
-            <span className="bg-gray-500/90 text-white text-[10px] px-2 py-1 rounded-sm tracking-wide">
+            <span className="bg-gray-500/90 text-white text-xs px-2 py-1 rounded-sm tracking-wide">
               非公開
             </span>
           )}
@@ -96,12 +96,12 @@ export function GraveyardCard({ data }: GraveyardCardProps) {
         <div className="absolute top-2 right-2 flex flex-col gap-2 items-end z-10">
           <div className="flex flex-col gap-1 items-end">
             {data.isPrSlot && (
-              <span className="bg-amber-500/90 text-white text-[10px] px-2 py-0.5 rounded-sm font-bold shadow-sm backdrop-blur-sm tracking-wide">
+              <span className="bg-amber-500/90 text-white text-xs px-2 py-0.5 rounded-sm font-bold shadow-sm backdrop-blur-sm tracking-wide">
                 PR
               </span>
             )}
             {data.planType === "standard" && !data.isPrSlot && (
-              <span className="bg-emerald-500/90 text-white text-[10px] px-2 py-0.5 rounded-sm font-bold shadow-sm backdrop-blur-sm tracking-wide">
+              <span className="bg-emerald-500/90 text-white text-xs px-2 py-0.5 rounded-sm font-bold shadow-sm backdrop-blur-sm tracking-wide">
                 おすすめ
               </span>
             )}
@@ -171,7 +171,7 @@ export function GraveyardCard({ data }: GraveyardCardProps) {
                 {rating}
               </span>
             </div>
-            <span className="text-[10px] md:text-xs text-gray-500 border-l pl-2 border-gray-300">
+            <span className="text-xs md:text-xs text-gray-500 border-l pl-2 border-gray-300">
               相談実績{" "}
               <span className="font-bold text-accent text-xs md:text-sm">
                 {consultCount}

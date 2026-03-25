@@ -124,7 +124,7 @@ export function TempleHero({ data }: TempleHeroProps) {
                                         </div>
                                     </Button>
                                 </Link>
-                                <p className="text-[10px] text-text-muted text-center mt-2">
+                                <p className="text-xs text-text-muted text-center mt-2">
                                     資料請求は無料です。<br className="md:hidden" />しつこい営業は行いません。
                                 </p>
                             </div>

@@ -166,7 +166,7 @@ export default async function AdminDashboard() {
                                         style={{ height: `${Math.max(d.count > 0 ? heightPct : 2, 2)}%` }}
                                     />
                                 </div>
-                                <span className={`text-[10px] whitespace-nowrap ${isToday ? 'font-bold text-primary' : 'text-gray-400'}`}>{d.label}</span>
+                                <span className={`text-xs whitespace-nowrap ${isToday ? 'font-bold text-primary' : 'text-gray-400'}`}>{d.label}</span>
                             </div>
                         );
                     })}

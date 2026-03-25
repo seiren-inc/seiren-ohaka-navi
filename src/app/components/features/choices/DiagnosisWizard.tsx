@@ -386,7 +386,7 @@ export function DiagnosisWizard() {
                                         {/* Sub Options for Home */}
                                         {candidate.key === 'home' && candidate.subOptions && (
                                             <div className="w-full mb-4 space-y-2">
-                                                <div className="flex flex-wrap gap-1 sm:gap-2 text-[10px] sm:text-sm">
+                                                <div className="flex flex-wrap gap-1 sm:gap-2 text-xs sm:text-sm">
                                                     {candidate.subOptions.map(sub => (
                                                         <Link key={sub.label} href={sub.link} className="flex-1 min-w-[85px] sm:min-w-[100px]">
                                                             <span className="block py-2 px-1 sm:py-3 sm:px-2 bg-white border border-gray-200 rounded sm:rounded-lg hover:bg-secondary/5 hover:border-secondary hover:text-secondary whitespace-nowrap text-center transition-colors font-bold shadow-sm">
@@ -399,7 +399,7 @@ export function DiagnosisWizard() {
                                         )}
 
                                         {candidate.caution && (
-                                            <div className="bg-yellow-50 p-3 rounded text-[10px] text-yellow-800 text-left w-full mb-4 flex gap-2">
+                                            <div className="bg-yellow-50 p-3 rounded text-xs text-yellow-800 text-left w-full mb-4 flex gap-2">
                                                 <AlertCircle className="w-3 h-3 shrink-0 mt-0.5" />
                                                 <span className="leading-tight">{candidate.caution}</span>
                                             </div>
@@ -446,7 +446,7 @@ export function DiagnosisWizard() {
                             {/* Consult */}
                             <Link href="/consult" className="block">
                                 <div className="bg-white border border-secondary/20 p-4 rounded-xl hover:shadow-md transition-shadow flex items-center h-full relative overflow-hidden">
-                                    <div className="absolute top-0 right-0 bg-secondary text-white text-[9px] font-bold px-2 py-0.5 rounded-bl">
+                                    <div className="absolute top-0 right-0 bg-secondary text-white text-xs font-bold px-2 py-0.5 rounded-bl">
                                         無料
                                     </div>
                                     <div className="bg-secondary/10 p-2 rounded-full mr-3 shrink-0">
@@ -461,7 +461,7 @@ export function DiagnosisWizard() {
                         </div>
 
                         <div className="text-center mb-10">
-                            <p className="text-[10px] text-gray-500">
+                            <p className="text-xs text-gray-500">
                                 診断結果と実際の選択は必ずしも一致する必要はありません。<br />
                                 迷いがある場合は、まず状況を整理するところから始めましょう。
                             </p>

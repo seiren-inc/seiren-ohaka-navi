@@ -30,7 +30,7 @@ export function ContractStatusBadge({ status, contractId }: { status: string; co
                 <span className="flex items-center gap-1 bg-emerald-100 text-emerald-700 px-2 py-0.5 rounded text-xs font-bold">
                     <CheckCircle2 className="w-3 h-3" /> 有効
                 </span>
-                <button onClick={terminate} className="text-[10px] text-gray-400 hover:text-red-500 underline">解約</button>
+                <button onClick={terminate} className="text-xs text-gray-400 hover:text-red-500 underline">解約</button>
             </div>
         );
     }

@@ -57,7 +57,7 @@ export function RelatedServices() {
                                 {service.title}
                             </h3>
                             {isComingSoon && (
-                                <span className="text-[10px] bg-lotus-pink/10 text-lotus-pink px-2 py-0.5 rounded font-bold border border-lotus-pink/20">準備中</span>
+                                <span className="text-xs bg-lotus-pink/10 text-lotus-pink px-2 py-0.5 rounded font-bold border border-lotus-pink/20">準備中</span>
                             )}
                             {!isComingSoon && (
                                 <ExternalLink className="w-3.5 h-3.5 text-gray-400 group-hover:text-primary" />

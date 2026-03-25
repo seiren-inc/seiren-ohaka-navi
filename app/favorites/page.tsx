@@ -71,7 +71,7 @@ export default function FavoritesPage() {
                                         ) : (
                                             <div className="w-full h-full flex items-center justify-center text-gray-300 text-sm">No Image</div>
                                         )}
-                                        <div className="absolute top-2 left-2 bg-secondary/95 text-white text-[10px] px-2 py-0.5 rounded shadow-sm font-bold">
+                                        <div className="absolute top-2 left-2 bg-secondary/95 text-white text-xs px-2 py-0.5 rounded shadow-sm font-bold">
                                             {fav.type}
                                         </div>
                                     </div>

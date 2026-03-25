@@ -145,7 +145,7 @@ function buildEmailHtml({ templeName, representativeName, planType, contractId, 
       添付の契約書PDFは大切に保管してください。担当者より3営業日以内にご連絡いたします。
     </p>
     <hr style="border: none; border-top: 1px solid #eee; margin: 24px 0;" />
-    <p style="font-size: 11px; color: #999;">株式会社清蓮 ／ 清蓮 お墓探しナビ<br>本メールは自動送信です。</p>
+    <p style="font-size: 12px; color: #999;">株式会社清蓮 ／ 清蓮 お墓探しナビ<br>本メールは自動送信です。</p>
   </div>
 </div>`;
 }
