@@ -58,9 +58,9 @@ const templesCache = loadTemples();
 
 export async function GET(request: Request) {
     const { searchParams } = new URL(request.url);
-    const query = searchParams.get('q') || '';
-    const pref = searchParams.get('pref') || '';
-    const city = searchParams.get('city') || '';
+    const query = (searchParams.get('q') || '').trim();
+    const pref = (searchParams.get('pref') || '').trim();
+    const city = (searchParams.get('city') || '').trim();
     const debug = searchParams.get('debug') === '1';
 
     // Reload for dev if needed, or use cache. 
@@ -72,19 +72,21 @@ export async function GET(request: Request) {
     // Normalize Query
     const normalizedQ = normalizeText(query);
 
-    if (debug) {
-        return NextResponse.json({
-            success: true,
-            q: query,
-            qNormalized: normalizedQ,
-            total: templesCache.length,
-            sample: templesCache[0],
-            daishojiCheck: templesCache.find(t => t.name.includes("大昭寺"))
-        });
-    }
-
     if (!query && !pref && !city) {
-        return NextResponse.json({ results: [] });
+        return NextResponse.json(
+            debug
+                ? {
+                    results: [],
+                    debug: {
+                        q: query,
+                        qNormalized: normalizedQ,
+                        total: templesCache.length,
+                        sample: templesCache[0],
+                        daishojiCheck: templesCache.find(t => t.name.includes("大昭寺"))
+                    }
+                }
+                : { results: [] }
+        );
     }
 
     let results = templesCache;
@@ -110,11 +112,26 @@ export async function GET(request: Request) {
         results = results.filter(t => t.city.includes(city));
     }
 
-    // Logging search result count for debug
-    console.log(`[TEMPLE_SEARCH] q="${query}" norm="${normalizedQ}" results=${results.length}`);
+    if (debug) {
+        console.log(`[TEMPLE_SEARCH] q="${query}" norm="${normalizedQ}" results=${results.length}`);
+    }
 
     // Return top 20
-    return NextResponse.json({ results: results.slice(0, 20) });
+    const response = { results: results.slice(0, 20) };
+    if (!debug) {
+        return NextResponse.json(response);
+    }
+
+    return NextResponse.json({
+        ...response,
+        debug: {
+            q: query,
+            qNormalized: normalizedQ,
+            total: templesCache.length,
+            sample: templesCache[0],
+            daishojiCheck: templesCache.find(t => t.name.includes("大昭寺"))
+        }
+    });
 }
 
 // Force dynamic to ensure no weird caching of the route handler itself
