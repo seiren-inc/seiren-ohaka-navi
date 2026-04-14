@@ -72,6 +72,36 @@ const organizationLd = {
       "sameAs": [],
     },
     {
+      "@type": "LocalBusiness",
+      "@id": `${BASE_URL}/#local-business`,
+      "name": "清蓮 お墓探しナビ（株式会社清蓮）",
+      "image": `${BASE_URL}/og-image.jpg`,
+      "url": BASE_URL,
+      "telephone": "045-881-9952",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "戸塚町4170 高橋ビル1F",
+        "addressLocality": "横浜市戸塚区",
+        "addressRegion": "神奈川県",
+        "postalCode": "244-0003",
+        "addressCountry": "JP",
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 35.3961,
+        "longitude": 139.5300
+      },
+      "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": [
+          "Monday", "Tuesday", "Wednesday", "Thursday",
+          "Friday", "Saturday", "Sunday"
+        ],
+        "opens": "09:00",
+        "closes": "17:00"
+      }
+    },
+    {
       "@type": "WebSite",
       "@id": `${BASE_URL}/#website`,
       "url": BASE_URL,
