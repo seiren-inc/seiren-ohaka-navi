@@ -200,7 +200,16 @@ export default function EditTemplePage({ params }: { params: { id: string } }) {
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(finalTemple),
             });
-            if (!res.ok) throw new Error('保存に失敗しました');
+            
+            if (!res.ok) {
+                if (res.status === 409) {
+                    throw new Error('他のユーザーによってデータが更新されています。\nページを再読み込みして最新の情報を取得してください。');
+                }
+                throw new Error('保存に失敗しました');
+            }
+            
+            const updatedTemple = await res.json();
+            setTemple(prev => prev ? { ...prev, version: updatedTemple.version } : prev);
             alert("保存しました");
         } catch (e: any) {
             alert(e.message || "エラーが発生しました");
@@ -235,8 +244,13 @@ export default function EditTemplePage({ params }: { params: { id: string } }) {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(planToSave)
         })
-        .then(res => {
-            if (!res.ok) throw new Error("Failed to save plan");
+        .then(async res => {
+            if (!res.ok) {
+                if (res.status === 409) {
+                    throw new Error('他のユーザーによってデータが更新されています。\nページを再読み込みして最新の情報を取得してください。');
+                }
+                throw new Error("Failed to save plan");
+            }
             return res.json();
         })
         .then(() => {
@@ -248,7 +262,7 @@ export default function EditTemplePage({ params }: { params: { id: string } }) {
         })
         .catch(err => {
             console.error(err);
-            alert("プランの保存に失敗しました");
+            alert(err.message || "プランの保存に失敗しました");
         });
     };
 

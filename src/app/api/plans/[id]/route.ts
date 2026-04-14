@@ -23,14 +23,21 @@ export async function PUT(
   try {
     const { id } = await params
     const body = await request.json()
-    const { id: _id, templeId: _t, createdAt: _c, updatedAt: _u, ...planData } = body
+    const { id: _id, templeId: _t, createdAt: _c, updatedAt: _u, version, ...planData } = body
+
+    if (version === undefined) {
+      return NextResponse.json({ error: 'Version is required' }, { status: 400 })
+    }
 
     const plan = await prisma.plan.update({
-      where: { id },
-      data: planData,
+      where: { id, version },
+      data: { ...planData, version: { increment: 1 } },
     })
     return NextResponse.json(plan)
-  } catch (error) {
+  } catch (error: any) {
+    if (error.code === 'P2025') {
+      return NextResponse.json({ error: 'Conflict' }, { status: 409 })
+    }
     console.error('[API/plans/[id] PUT]', error)
     return NextResponse.json({ error: 'Failed to update plan' }, { status: 500 })
   }

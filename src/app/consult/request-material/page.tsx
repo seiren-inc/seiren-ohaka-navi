@@ -12,6 +12,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { inquirySchema, InquiryFormData } from "./schema";
 import { fetchAddressFromZip } from "../../lib/address";
+import { getStoredUtm } from "../../../lib/utm";
 // Store dependency removed
 
 // Helper Formatters
@@ -155,7 +156,8 @@ function RequestForm() {
                     planId: data.planId || "",
                     planName: data.planName || "",
                     ref: data.ref || "",
-                    refUrl: data.refUrl || ""
+                    refUrl: data.refUrl || "",
+                    utm: getStoredUtm()
                 },
 
                 user: {

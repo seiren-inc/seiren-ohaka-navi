@@ -4,6 +4,7 @@
 import { useState } from "react";
 import { Button } from "../components/ui/Button";
 import { Search } from "lucide-react";
+import { getStoredUtm } from "../../lib/utm";
 
 export function ContactForm() {
     const [formData, setFormData] = useState({
@@ -61,6 +62,8 @@ export function ContactForm() {
         e.preventDefault();
         setIsSubmitting(true);
         try {
+            const utm = getStoredUtm();
+
             const payload = {
                 type: 'contact',
                 category: 'other',
@@ -79,7 +82,8 @@ export function ContactForm() {
                 },
                 message: formData.remarks,
                 context: {
-                    sourceLabel: "総合お問い合わせフォーム"
+                    sourceLabel: "総合お問い合わせフォーム",
+                    utm
                 }
             };
 

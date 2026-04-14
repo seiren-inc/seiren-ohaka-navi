@@ -26,15 +26,22 @@ export async function PUT(
   try {
     const { id } = await params
     const body = await request.json()
-    const { plans, id: _id, createdAt: _c, updatedAt: _u, ...templeData } = body
+    const { plans, id: _id, createdAt: _c, updatedAt: _u, version, ...templeData } = body
+
+    if (version === undefined) {
+      return NextResponse.json({ error: 'Version is required' }, { status: 400 })
+    }
 
     const temple = await prisma.temple.update({
-      where: { id },
-      data: templeData,
+      where: { id, version },
+      data: { ...templeData, version: { increment: 1 } },
       include: { plans: true },
     })
     return NextResponse.json(temple)
-  } catch (error) {
+  } catch (error: any) {
+    if (error.code === 'P2025') {
+      return NextResponse.json({ error: 'Conflict' }, { status: 409 })
+    }
     console.error('[API/temples/[id] PUT]', error)
     return NextResponse.json({ error: 'Failed to update temple' }, { status: 500 })
   }
@@ -47,12 +54,21 @@ export async function PATCH(
   try {
     const { id } = await params
     const body = await request.json()
+    const { version, ...templeData } = body
+
+    if (version === undefined) {
+      return NextResponse.json({ error: 'Version is required' }, { status: 400 })
+    }
+
     const temple = await prisma.temple.update({
-      where: { id },
-      data: body,
+      where: { id, version },
+      data: { ...templeData, version: { increment: 1 } },
     })
     return NextResponse.json(temple)
-  } catch (error) {
+  } catch (error: any) {
+    if (error.code === 'P2025') {
+      return NextResponse.json({ error: 'Conflict' }, { status: 409 })
+    }
     console.error('[API/temples/[id] PATCH]', error)
     return NextResponse.json({ error: 'Failed to patch temple' }, { status: 500 })
   }

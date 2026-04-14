@@ -49,3 +49,32 @@ public/uploads/*
 
 # ローカル開発用データ（本番では使用しない）
 data/inquiries.json
+
+# caches & build tools
+.turbo/
+.cache/
+.parcel-cache/
+.eslintcache
+.stylelintcache
+.swc
+
+# OS junk
+Thumbs.db
+
+# editor
+.idea/
+.vscode/workspace-settings.json
+
+# temp / swap
+*.tmp
+*.swp
+*.swo
+*~
+*.iml
+
+# python (monorepo safety)
+venv/
+env/
+.venv/
+__pycache__/
+*.pyc

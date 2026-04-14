@@ -25,6 +25,7 @@ model Contract {
   updatedAt           DateTime  @updatedAt @map("updated_at")
   temple              Temple    @relation(fields: [templeId], references: [id])
 
+  @@index([templeId])
   @@map("contracts")
   @@schema("public")
 }
@@ -49,6 +50,7 @@ model Inquiry {
   kind               String   @default("general")
   organizationName   String?  @map("organization_name")
 
+  @@index([status, kind, createdAt])
   @@map("inquiries")
   @@schema("public")
 }
@@ -72,10 +74,12 @@ model Plan {
   images         String[]
   note           String?
   order          Int      @default(0)
+  version        Int      @default(1)
   createdAt      DateTime @default(now()) @map("created_at")
   updatedAt      DateTime @updatedAt @map("updated_at")
   temple         Temple   @relation(fields: [templeId], references: [id])
 
+  @@index([templeId])
   @@map("plans")
   @@schema("public")
 }
@@ -130,10 +134,13 @@ model Temple {
   zipCode                String?          @map("zip_code")
   isPrSlot               Boolean          @default(false) @map("is_pr_slot")
   planType               String           @default("free") @map("plan_type")
+  version                Int              @default(1)
   contracts              Contract[]
   plans                  Plan[]
   templeUser             TempleUser?
 
+  @@index([status, listedInSearch])
+  @@index([prefecture])
   @@map("temples")
   @@schema("public")
 }

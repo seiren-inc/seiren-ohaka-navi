@@ -6,6 +6,7 @@ import { Footer } from "../../components/layout/Footer";
 import { Button } from "../../components/ui/Button";
 import { CheckCircle, Phone, Mail, ArrowDown, Heart } from "lucide-react";
 import Link from "next/link";
+import { getStoredUtm } from "../../../lib/utm";
 
 function IkotsuServiceConsultForm() {
     const [formData, setFormData] = useState({
@@ -101,6 +102,7 @@ function IkotsuServiceConsultForm() {
                 sourceLabel: "HeaderConsultDropdown",
                 sourcePath: "/consult/ikotsu-service",
                 refUrl: window.location.href,
+                utm: getStoredUtm()
             }
         };
 

@@ -66,9 +66,9 @@ export default function Home() {
             <div className="mt-12 text-center animate-fade-in" style={{ animationDelay: "0.4s" }}>
               <p className="text-white/80 text-sm mb-3 hero-text-shadow">＼ どの供養がいいか迷っている方へ ／</p>
               <div className="flex flex-wrap justify-center gap-3">
-                <Link href="/consult/grave-search" className="inline-flex items-center px-5 py-2.5 bg-primary/10 text-primary rounded-full text-sm font-bold hover:bg-primary/20 transition-colors">
+                <Link href="/consult/grave-search" className="inline-flex items-center px-6 py-3 bg-primary text-white rounded-full text-[15px] font-bold hover:bg-primary-hover shadow-lg shadow-primary/20 transition-all hover:-translate-y-0.5">
                   まずは専門家に相談する
-                  <ChevronRight className="w-4 h-4 ml-1" />
+                  <ChevronRight className="w-5 h-5 ml-1" />
                 </Link>
                 <Link href="/kaisou" className="inline-flex items-center px-5 py-2.5 bg-lotus-pink/10 text-lotus-pink rounded-full text-sm font-bold hover:bg-lotus-pink/20 transition-colors">
                   墓じまい・改葬について知る

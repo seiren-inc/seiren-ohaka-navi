@@ -11,6 +11,7 @@ import { Input } from "../../components/ui/Input";
 import { Loader2, Send, CheckCircle2, Building, User, Mail, Phone, MapPin, Globe } from "lucide-react";
 import { Navbar } from "../../components/layout/Navbar";
 import { Footer } from "../../components/layout/Footer";
+import { getStoredUtm } from "../../../lib/utm";
 
 // --- Schema Definition ---
 const partnerSchema = z.object({
@@ -79,6 +80,7 @@ export default function PartnerContactPage() {
                     source: "partner_contact",
                     pagePath: typeof window !== 'undefined' ? window.location.pathname : '/partner/contact',
                     referrer: typeof document !== 'undefined' ? document.referrer : '',
+                    utm: getStoredUtm()
                 },
                 createdAt: new Date().toISOString(),
             };

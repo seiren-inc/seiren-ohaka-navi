@@ -5,6 +5,7 @@ import { X, Phone, Mail, CheckCircle2, Loader2, ArrowRight } from "lucide-react"
 import { format, addMinutes, isBefore, set } from "date-fns";
 import { Button } from "../../../components/ui/Button";
 import { Temple } from "../../../../lib/store";
+import { getStoredUtm } from "../../../../lib/utm";
 
 interface InquiryModalProps {
     isOpen: boolean;

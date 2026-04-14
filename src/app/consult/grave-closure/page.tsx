@@ -7,6 +7,7 @@ import { Button } from "../../components/ui/Button";
 import { CheckCircle, Phone, Mail, ArrowDown, Calculator, Search, MapPin, Building, X } from "lucide-react";
 import Link from "next/link";
 import { cn } from "../../../lib/utils";
+import { getStoredUtm } from "../../../lib/utm";
 
 const PREFECTURES = [
     "北海道", "青森県", "岩手県", "宮城県", "秋田県", "山形県", "福島県",
@@ -234,6 +235,7 @@ function GraveClosureConsultForm() {
                 sourceLabel: "GraveClosureForm",
                 sourcePath: "/consult/grave-closure",
                 refUrl: window.location.href,
+                utm: getStoredUtm()
             }
         };
 

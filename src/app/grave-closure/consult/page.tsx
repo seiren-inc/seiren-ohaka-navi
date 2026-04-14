@@ -7,6 +7,7 @@ import { Footer } from "../../components/layout/Footer";
 import { Button } from "../../components/ui/Button";
 import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
+import { getStoredUtm } from "../../../lib/utm";
 
 function GraveClosureForm() {
     const searchParams = useSearchParams();
@@ -62,6 +63,7 @@ function GraveClosureForm() {
                     source: "grave-closure",
                     sourcePath: "/grave-closure/consult",
                     refUrl: window.location.href,
+                    utm: getStoredUtm()
                 }
             };
 

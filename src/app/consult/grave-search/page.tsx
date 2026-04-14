@@ -7,6 +7,7 @@ import { Footer } from "../../components/layout/Footer";
 import { Button } from "../../components/ui/Button";
 import Link from "next/link";
 import { CheckCircle, Phone, Mail, MapPin, Calendar, FileText, ArrowDown, HelpCircle } from "lucide-react";
+import { getStoredUtm } from "../../../lib/utm";
 
 function GraveSearchConsultForm() {
     const searchParams = useSearchParams();
@@ -112,6 +113,7 @@ function GraveSearchConsultForm() {
                 sourcePath: "/consult/grave-search",
                 refUrl: window.location.href,
                 temple: templeId ? { id: templeId, name: templeName } : undefined,
+                utm: getStoredUtm(),
             }
         };
 
