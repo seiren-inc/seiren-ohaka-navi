@@ -9,10 +9,19 @@ import { FacilityType, MemorialType, Sect, BuddhistSect, Temple } from "@/lib/st
 import { prisma } from "@/lib/prisma";
 import { Metadata } from "next";
 
+function isPrismaConnectivityError(error: unknown): boolean {
+    return (
+        typeof error === "object" &&
+        error !== null &&
+        "code" in error &&
+        (error as { code?: string }).code === "P1001"
+    );
+}
+
 export const metadata: Metadata = {
     title: "墓地・霊園をさがす｜清蓮(Seiren)",
     description: "条件に合わせて最適な墓地・永代供養墓・樹木葬を検索できます。",
-    alternates: { canonical: "https://www.ohakanavi.jp/search" },
+    alternates: { canonical: "https://ohakanavi.jp/search" },
 };
 
 export default async function SearchPage(props: { searchParams: Promise<{ [key: string]: string | string[] | undefined }> }) {
@@ -30,12 +39,28 @@ export default async function SearchPage(props: { searchParams: Promise<{ [key: 
     // Get Data from Prisma
     // In a real app with many records, we would build a dynamic 'where' clause for Prisma.
     // For MVP, we fetch all public/listed temples and filter in memory as before.
-    const allTemplesData = await prisma.temple.findMany({
-        where: {
-            status: 'public',
-            listedInSearch: true
+    // #region agent log
+    fetch('http://127.0.0.1:7735/ingest/1edceb2c-fc8c-4fc3-98ee-97ab22c9bda4',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'c506d5'},body:JSON.stringify({sessionId:'c506d5',runId:'initial',hypothesisId:'H3',location:'app/search/page.tsx:SearchPage',message:'Executing search temples query',data:{prefCount:prefs.length,typeCount:types.length},timestamp:Date.now()})}).catch(()=>{});
+    // #endregion
+    let allTemplesData: unknown[] = [];
+    try {
+        allTemplesData = await prisma.temple.findMany({
+            where: {
+                status: 'public',
+                listedInSearch: true
+            }
+        });
+    } catch (error) {
+        // #region agent log
+        fetch('http://127.0.0.1:7735/ingest/1edceb2c-fc8c-4fc3-98ee-97ab22c9bda4',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'c506d5'},body:JSON.stringify({sessionId:'c506d5',runId:'initial',hypothesisId:'H3',location:'app/search/page.tsx:SearchPage',message:'Search temples query failed',data:{errorMessage:error instanceof Error ? error.message : 'unknown'},timestamp:Date.now()})}).catch(()=>{});
+        // #endregion
+        if (isPrismaConnectivityError(error)) {
+            console.error("[SearchPage] Prisma connectivity error; falling back to empty search results", error);
+            allTemplesData = [];
+        } else {
+            throw error;
         }
-    });
+    }
     const allTemples = allTemplesData as unknown as Temple[];
 
     const filteredGraveyards = allTemples.filter(t => {
