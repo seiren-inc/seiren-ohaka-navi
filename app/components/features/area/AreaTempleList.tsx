@@ -11,11 +11,30 @@ interface AreaTempleListProps {
     searchParams: { [key: string]: string | string[] | undefined };
 }
 
+function isPrismaConnectivityError(error: unknown): boolean {
+    return (
+        typeof error === "object" &&
+        error !== null &&
+        "code" in error &&
+        (error as { code?: string }).code === "P1001"
+    );
+}
+
 export async function AreaTempleList({ prefecture, city, searchParams }: AreaTempleListProps) {
-    const templesData = await prisma.temple.findMany({
-        where: { status: 'public', listedInSearch: true },
-        orderBy: { createdAt: 'desc' }
-    });
+    let templesData: unknown[] = [];
+    try {
+        templesData = await prisma.temple.findMany({
+            where: { status: 'public', listedInSearch: true },
+            orderBy: { createdAt: 'desc' }
+        });
+    } catch (error) {
+        if (isPrismaConnectivityError(error)) {
+            console.error("[AreaTempleList] Prisma connectivity error; falling back to empty list", error);
+            templesData = [];
+        } else {
+            throw error;
+        }
+    }
     let temples = templesData as unknown as Temple[];
 
     // 1. Area Filter

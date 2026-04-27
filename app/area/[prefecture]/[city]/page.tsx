@@ -11,7 +11,16 @@ import { AreaSEOContent } from "../../../components/features/area/AreaSEOContent
 import { AreaFAQ } from "../../../components/features/area/AreaFAQ";
 import { JsonLd } from "../../../components/seo/JsonLd";
 
-const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://www.ohakanavi.jp";
+const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://ohakanavi.jp";
+
+function isPrismaConnectivityError(error: unknown): boolean {
+    return (
+        typeof error === "object" &&
+        error !== null &&
+        "code" in error &&
+        (error as { code?: string }).code === "P1001"
+    );
+}
 
 export async function generateMetadata(
     props: { params: Promise<{ prefecture: string; city: string }> }
@@ -38,13 +47,29 @@ export default async function CityPage(props: { params: Promise<{ prefecture: st
     const decodedCity = decodeURIComponent(params.city);
 
     // Get count for Hero
-    const count = await prisma.temple.count({
-        where: {
-            prefecture: decodedPrefecture,
-            cityName: decodedCity,
-            status: 'public'
+    // #region agent log
+    fetch('http://127.0.0.1:7735/ingest/1edceb2c-fc8c-4fc3-98ee-97ab22c9bda4',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'c506d5'},body:JSON.stringify({sessionId:'c506d5',runId:'initial',hypothesisId:'H4',location:'app/area/[prefecture]/[city]/page.tsx:CityPage',message:'Executing area city count query',data:{prefecture:decodedPrefecture,city:decodedCity},timestamp:Date.now()})}).catch(()=>{});
+    // #endregion
+    let count = 0;
+    try {
+        count = await prisma.temple.count({
+            where: {
+                prefecture: decodedPrefecture,
+                cityName: decodedCity,
+                status: 'public'
+            }
+        });
+    } catch (error) {
+        // #region agent log
+        fetch('http://127.0.0.1:7735/ingest/1edceb2c-fc8c-4fc3-98ee-97ab22c9bda4',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'c506d5'},body:JSON.stringify({sessionId:'c506d5',runId:'initial',hypothesisId:'H4',location:'app/area/[prefecture]/[city]/page.tsx:CityPage',message:'Area city count query failed',data:{prefecture:decodedPrefecture,city:decodedCity,errorMessage:error instanceof Error ? error.message : 'unknown'},timestamp:Date.now()})}).catch(()=>{});
+        // #endregion
+        if (isPrismaConnectivityError(error)) {
+            console.error("[CityPage] Prisma connectivity error; falling back to count=0", error);
+            count = 0;
+        } else {
+            throw error;
         }
-    });
+    }
 
     // If no temples in city, maybe 404? Or just show empty list? 
     // Request says "Modal only shows cities with temples", so theoretically user shouldn't land here if empty unless direct URL.
