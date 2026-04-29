@@ -1,16 +1,34 @@
 import Image from "next/image";
+import dynamic from "next/dynamic";
 import Link from "next/link";
 import { PrefectureSelector } from "./components/features/search/PrefectureSelector";
 import { Navbar } from "./components/layout/Navbar";
 import { Footer } from "./components/layout/Footer";
 import { SearchWidget } from "./components/features/search/SearchWidget";
 import { OpeningAnimation } from "./components/features/OpeningAnimation";
+
 import { Button } from "./components/ui/Button";
 import { Card } from "./components/ui/Card";
 import { ArrowRight, ChevronRight, Phone } from "lucide-react";
-import { TrustMetrics } from "./components/features/TrustMetrics";
 import { KaisouFlow } from "./components/features/KaisouFlow";
 import { RelatedServices } from "./components/features/RelatedServices";
+
+const TrustMetrics = dynamic(
+  () => import("./components/features/TrustMetrics").then((mod) => mod.TrustMetrics),
+  {
+    loading: () => (
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 py-8">
+        {["提携・掲載霊園数", "対応エリア", "累計お墓相談件数"].map((label) => (
+          <div
+            key={label}
+            className="h-[212px] rounded-[12px] border border-gray-100 bg-white shadow-sm"
+            aria-hidden="true"
+          />
+        ))}
+      </div>
+    ),
+  },
+);
 
 export default function Home() {
   return (
@@ -25,12 +43,13 @@ export default function Home() {
         >
           <div className="absolute inset-0 z-0">
             <Image
-                src="/images/hero_memorial.png"
+                src="/images/hero_memorial.webp"
                 alt="清蓮 お墓探しナビ - 理想の供養を一緒に見つける"
                 fill
                 priority
                 className="object-cover"
                 sizes="100vw"
+                quality={72}
             />
             <div className="absolute inset-0 bg-black/40" />
           </div>
@@ -159,9 +178,9 @@ export default function Home() {
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
               {[
-                { title: "永代供養墓", desc: "継承者がいなくても安心。お寺が管理・供養を続けてくれるお墓です。", link: "/choices/eitai-kuyou", color: "text-soft-teal", img: "/images/guide_eitai.png" },
-                { title: "樹木葬", desc: "自然に還る、新しい供養のカタチ。墓石の代わりに木や花をシンボルにします。", link: "/choices/jumokusou", color: "text-soft-teal", img: "/images/guide_jumokusou.png" },
-                { title: "納骨堂", desc: "天候に左右されない屋内のお墓。アクセスの良さと管理の手軽さが魅力です。", link: "/choices/noukotsudou", color: "text-primary-soft", img: "/images/guide_noukotsu.png" },
+                { title: "永代供養墓", desc: "継承者がいなくても安心。お寺が管理・供養を続けてくれるお墓です。", link: "/choices/eitai-kuyou", color: "text-soft-teal", img: "/images/guide_eitai.webp" },
+                { title: "樹木葬", desc: "自然に還る、新しい供養のカタチ。墓石の代わりに木や花をシンボルにします。", link: "/choices/jumokusou", color: "text-soft-teal", img: "/images/guide_jumokusou.webp" },
+                { title: "納骨堂", desc: "天候に左右されない屋内のお墓。アクセスの良さと管理の手軽さが魅力です。", link: "/choices/noukotsudou", color: "text-primary-soft", img: "/images/guide_noukotsu.webp" },
               ].map((item, i) => (
                 <Link key={i} href={item.link} className="block h-full outline-none focus-visible:ring-2 focus-visible:ring-primary/50 rounded-2xl">
                   <Card hoverEffect className="h-full flex flex-col p-0 overflow-hidden group cursor-pointer border-border">
@@ -172,6 +191,7 @@ export default function Home() {
                            fill 
                            className="object-cover transform group-hover:scale-110 transition-transform duration-700" 
                            sizes="(max-width: 768px) 100vw, 33vw"
+                           quality={60}
                        />
                        <div className="absolute inset-0 bg-black/10 group-hover:bg-black/0 transition-colors duration-500" />
                     </div>
@@ -223,11 +243,12 @@ export default function Home() {
               <div className="w-full md:w-1/2">
                 <div className="relative aspect-[4/3] bg-bg-muted rounded-2xl overflow-hidden shadow-lg border border-border group">
                   <Image 
-                      src="/images/concept_support.png" 
+                      src="/images/concept_support.webp" 
                       alt="お客様に寄り添う相談窓口" 
                       fill 
                       className="object-cover transform group-hover:scale-105 transition-transform duration-700"
                       sizes="(max-width: 768px) 100vw, 50vw"
+                      quality={60}
                   />
                   <div className="absolute inset-0 bg-primary/5 group-hover:bg-transparent transition-colors duration-500" />
                 </div>

@@ -85,9 +85,9 @@
    ========================================= */
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #1A1A2E;
+    --background: #FFFFFF;
     --foreground: #E8E6E1;
-    --color-bg: #1A1A2E;
+    --color-bg: #FFFFFF;
     --color-bg-muted: #16213E;
     --color-text: #E8E6E1;
     --color-text-muted: #A0A0A0;
@@ -111,7 +111,7 @@
 
   /* テキスト色オーバーライド */
   .text-gray-800, .text-gray-700 { color: #E0DDD5 !important; }
-  .text-gray-600, .text-gray-500 { color: #A8A5A0 !important; }
+  .text-gray-600, .text-gray-500 { color: #000000 !important; }
   .text-gray-400 { color: #888580 !important; }
 
   /* ボーダーオーバーライド */

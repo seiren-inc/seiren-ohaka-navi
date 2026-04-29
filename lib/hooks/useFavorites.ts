@@ -19,8 +19,9 @@ export function useFavorites() {
 
   // 初回ロード時にlocalStorageから読み込む
   useEffect(() => {
+    if (typeof window === "undefined") return;
     try {
-      const stored = localStorage.getItem("seiren_favorites");
+      const stored = window.localStorage.getItem("seiren_favorites");
       if (stored) {
         setFavorites(JSON.parse(stored));
       }
@@ -32,8 +33,9 @@ export function useFavorites() {
 
   // favoritesが更新されたらlocalStorageに保存する（初期化後のみ）
   useEffect(() => {
+    if (typeof window === "undefined") return;
     if (isInitialized) {
-      localStorage.setItem("seiren_favorites", JSON.stringify(favorites));
+      window.localStorage.setItem("seiren_favorites", JSON.stringify(favorites));
       // 同一オリジンの他のタブ・ウィンドウと同期するためのイベント発火はStorageEventで自動的に行われる
     }
   }, [favorites, isInitialized]);

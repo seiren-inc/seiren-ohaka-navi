@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import path from 'path';
 import fs from 'fs';
+import { invalidParamResponse, validateQueryParam } from '@/lib/api/validation';
 
 // Types
 type TempleMaster = {
@@ -35,17 +36,10 @@ const loadTemples = (): TempleMaster[] => {
         const fileContent = fs.readFileSync(filePath, 'utf-8');
         const data: TempleMaster[] = JSON.parse(fileContent);
 
-        // Daishoji Check
-        const daishoji = data.filter(t => t.name.includes("大昭寺"));
-        console.log(`[TEMPLES_MASTER_CHECK] count=${data.length} hasDaishoji=${daishoji.length > 0} daishojiRecords=${daishoji.length}`);
-        if (daishoji.length > 0) {
-            console.log("[TEMPLES_MASTER_DAISHOJI]", JSON.stringify(daishoji[0]));
-        }
-
         return data.map(t => ({
             ...t,
             // Ensure normalization key covers robust matching
-            nameNormalized: normalizeText(t.nameNormalized || t.name + (t.name !== t.nameNormalized ? t.nameNormalized : ""))
+            nameNormalized: normalizeText([t.name, t.nameNormalized].filter(Boolean).join(""))
         }));
     } catch (e) {
         console.error("[TEMPLES_MASTER_ERROR] Load failed", e);
@@ -58,16 +52,18 @@ const templesCache = loadTemples();
 
 export async function GET(request: Request) {
     const { searchParams } = new URL(request.url);
-    const query = (searchParams.get('q') || '').trim();
-    const pref = (searchParams.get('pref') || '').trim();
-    const city = (searchParams.get('city') || '').trim();
-    const debug = searchParams.get('debug') === '1';
 
-    // Reload for dev if needed, or use cache. 
-    // For this debugging task, we'll reload fast to ensure file updates are seen if we were editing it live without restart.
-    // But usually imports are cached. We'll use the function to allow fresh read if we wanted, but `templesCache` is static.
-    // Given the user instruction "Verification Step 5", we trust file system changes need server restart OR dynamic read if implemented. 
-    // Let's rely on cached for perf but log the check.
+    const parsedQuery = validateQueryParam(searchParams, 'q');
+    const parsedPref = validateQueryParam(searchParams, 'pref');
+    const parsedCity = validateQueryParam(searchParams, 'city');
+    if (!parsedQuery.ok || !parsedPref.ok || !parsedCity.ok) {
+        return invalidParamResponse(parsedQuery.ok ? (parsedPref.ok ? parsedCity.field : parsedPref.field) : parsedQuery.field);
+    }
+
+    const query = parsedQuery.value || '';
+    const pref = parsedPref.value || '';
+    const city = parsedCity.value || '';
+    const debug = searchParams.get('debug') === '1';
 
     // Normalize Query
     const normalizedQ = normalizeText(query);
