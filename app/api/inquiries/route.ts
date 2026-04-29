@@ -154,7 +154,7 @@ function buildUserEmailHtml(body: any, receiptNumber: string) {
       ※本メールは送信専用アドレスから自動送信されております。<br/>
       ご不明な点がございましたら、お墓探しナビ サポートセンターまでご連絡ください。<br/><br/>
       株式会社清蓮 / お墓探しナビ<br/>
-      Web: https://www.ohakanavi.jp
+      Web: https://ohakanavi.jp
     </p>
   </div>
 </div>`;
@@ -174,7 +174,7 @@ function buildAdminEmailHtml(body: any, receiptNumber: string) {
     ${generateDetailsTable(body, receiptNumber)}
 
     <div style="margin-top: 32px; text-align: center;">
-      <a href="https://www.ohakanavi.jp/admin/inquiries" style="display: inline-block; background: #2B5E73; color: white; text-decoration: none; padding: 12px 24px; border-radius: 6px; font-weight: bold;">管理画面で詳細を確認する</a>
+      <a href="https://ohakanavi.jp/admin/inquiries" style="display: inline-block; background: #2B5E73; color: white; text-decoration: none; padding: 12px 24px; border-radius: 6px; font-weight: bold;">管理画面で詳細を確認する</a>
     </div>
   </div>
 </div>`;

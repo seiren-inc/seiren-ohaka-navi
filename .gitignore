@@ -49,3 +49,5 @@ public/uploads/*
 
 # ローカル開発用データ（本番では使用しない）
 data/inquiries.json
+
+.cursor/*.log

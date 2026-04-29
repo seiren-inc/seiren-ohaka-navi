@@ -3,7 +3,7 @@ import { prisma } from "@/lib/prisma";
 import { PREFECTURES } from "@/app/lib/prefectures";
 
 const BASE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL || "https://www.ohakanavi.jp";
+  process.env.NEXT_PUBLIC_SITE_URL || "https://ohakanavi.jp";
 
 const INDEX_NOW_KEY = "41257e53d7b74ba8b78cc7e08d40f182";
 const KEY_LOCATION = `${BASE_URL}/${INDEX_NOW_KEY}.txt`;
@@ -47,7 +47,7 @@ const STATIC_URLS = [
  * IndexNow に全 URL を一括送信する管理用エンドポイント。
  * Authorization ヘッダーに INDEXNOW_SECRET 環境変数の値が必要。
  *
- * 例: curl -X POST https://www.ohakanavi.jp/api/indexnow \
+ * 例: curl -X POST https://ohakanavi.jp/api/indexnow \
  *          -H "Authorization: Bearer <INDEXNOW_SECRET>"
  */
 export async function POST(request: Request) {
