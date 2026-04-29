@@ -4,6 +4,7 @@ import { NavbarDesktop } from "./NavbarDesktop";
 import { NavbarMobileMenu } from "./NavbarMobileMenu";
 
 export function Navbar() {
+
     return (
         <header className="fixed top-0 w-full z-50 bg-white backdrop-blur-md border-b border-border transition-all duration-300">
             <div className="bg-[#fdf5e6] border-b border-border hidden md:block">

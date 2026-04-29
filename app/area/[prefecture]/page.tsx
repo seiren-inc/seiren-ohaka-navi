@@ -51,9 +51,6 @@ export default async function AreaPage(props: { params: Promise<{ prefecture: st
     // Assuming simple passthrough for MVP.
 
     // Get count for Hero (Only public)
-    // #region agent log
-    fetch('http://127.0.0.1:7735/ingest/1edceb2c-fc8c-4fc3-98ee-97ab22c9bda4',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'c506d5'},body:JSON.stringify({sessionId:'c506d5',runId:'initial',hypothesisId:'H2',location:'app/area/[prefecture]/page.tsx:AreaPage',message:'Executing area prefecture count query',data:{prefecture:decodedPrefecture},timestamp:Date.now()})}).catch(()=>{});
-    // #endregion
     let count = 0;
     try {
         count = await prisma.temple.count({
@@ -63,9 +60,7 @@ export default async function AreaPage(props: { params: Promise<{ prefecture: st
             }
         });
     } catch (error) {
-        // #region agent log
-        fetch('http://127.0.0.1:7735/ingest/1edceb2c-fc8c-4fc3-98ee-97ab22c9bda4',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'c506d5'},body:JSON.stringify({sessionId:'c506d5',runId:'initial',hypothesisId:'H2',location:'app/area/[prefecture]/page.tsx:AreaPage',message:'Area prefecture count query failed',data:{prefecture:decodedPrefecture,errorMessage:error instanceof Error ? error.message : 'unknown'},timestamp:Date.now()})}).catch(()=>{});
-        // #endregion
+
         if (isPrismaConnectivityError(error)) {
             console.error("[AreaPage] Prisma connectivity error; falling back to count=0", error);
             count = 0;
