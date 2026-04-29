@@ -17,29 +17,32 @@ const PREFECTURES = [
     "東京都", "神奈川県", "埼玉県", "千葉県", "茨城県", "栃木県", "群馬県"
 ];
 
-const TAGS = [
-    "宗教不問", "檀家義務なし", "管理料不要", "駅近", "バリアフリー", "ペット可"
+const FEATURES = [
+    { id: "religiousFree", label: "宗教不問" },
+    { id: "station", label: "駅近" },
+    { id: "barrierFree", label: "バリアフリー" },
+    { id: "petAllowed", label: "ペット可" },
 ];
 
 export function SearchWidget() {
     const router = useRouter();
     const [activeTab, setActiveTab] = useState("eitai");
     const [selectedPrefecture, setSelectedPrefecture] = useState("");
-    const [selectedTags, setSelectedTags] = useState<string[]>([]);
+    const [selectedFeatures, setSelectedFeatures] = useState<string[]>([]);
 
-    const handleTagToggle = (tag: string) => {
-        setSelectedTags(prev =>
-            prev.includes(tag)
-                ? prev.filter(t => t !== tag)
-                : [...prev, tag]
+    const handleFeatureToggle = (feature: string) => {
+        setSelectedFeatures(prev =>
+            prev.includes(feature)
+                ? prev.filter(f => f !== feature)
+                : [...prev, feature]
         );
     };
 
     const handleSearch = () => {
         const params = new URLSearchParams();
         params.set("type", activeTab);
-        if (selectedPrefecture) params.set("prefecture", selectedPrefecture);
-        if (selectedTags.length > 0) params.set("tags", selectedTags.join(","));
+        if (selectedPrefecture) params.set("pref", selectedPrefecture);
+        if (selectedFeatures.length > 0) params.set("feature", selectedFeatures.join(","));
         router.push(`/search?${params.toString()}`);
     };
 
@@ -114,16 +117,16 @@ export function SearchWidget() {
                             こだわり条件
                         </label>
                         <div className="flex flex-wrap gap-2">
-                            {TAGS.map(tag => (
-                                <label key={tag} className="inline-flex items-center cursor-pointer">
+                            {FEATURES.map(feature => (
+                                <label key={feature.id} className="inline-flex items-center cursor-pointer">
                                     <input
                                         type="checkbox"
                                         className="peer sr-only"
-                                        checked={selectedTags.includes(tag)}
-                                        onChange={() => handleTagToggle(tag)}
+                                        checked={selectedFeatures.includes(feature.id)}
+                                        onChange={() => handleFeatureToggle(feature.id)}
                                     />
                                     <span className="px-3 py-2 rounded-full border border-gray-200 text-xs sm:text-sm text-gray-600 bg-white peer-checked:bg-primary peer-checked:text-white peer-checked:border-primary hover:border-primary hover:text-primary transition-all select-none">
-                                        {tag}
+                                        {feature.label}
                                     </span>
                                 </label>
                             ))}

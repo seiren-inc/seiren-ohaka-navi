@@ -71,7 +71,7 @@ export function OpeningAnimation() {
     return (
         <div
             ref={containerRef}
-            className="fixed inset-0 z-[100] pointer-events-none"
+            className="fixed inset-0 z-100 pointer-events-none"
             aria-hidden="true"
         >
             {/* White curtain background */}

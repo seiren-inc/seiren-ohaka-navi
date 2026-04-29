@@ -241,7 +241,7 @@ export default function Home() {
           <div className="max-w-[1280px] mx-auto px-4">
             <div className="flex flex-col md:flex-row items-center gap-16">
               <div className="w-full md:w-1/2">
-                <div className="relative aspect-[4/3] bg-bg-muted rounded-2xl overflow-hidden shadow-lg border border-border group">
+                <div className="relative aspect-4/3 bg-bg-muted rounded-2xl overflow-hidden shadow-lg border border-border group">
                   <Image 
                       src="/images/concept_support.webp" 
                       alt="お客様に寄り添う相談窓口" 
