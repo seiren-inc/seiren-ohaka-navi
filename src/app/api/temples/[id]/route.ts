@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/lib/prisma'
+import { invalidParamResponse, validateJsonObjectBody, validateOptionalString } from '@/lib/api/validation'
 
 export async function GET(
   _request: NextRequest,
@@ -7,6 +8,8 @@ export async function GET(
 ) {
   try {
     const { id } = await params
+    const parsedId = validateOptionalString(id, 'id')
+    if (!parsedId.ok || !parsedId.value) return invalidParamResponse('id')
     const temple = await prisma.temple.findUnique({
       where: { id },
       include: { plans: { orderBy: { order: 'asc' } } },
@@ -25,8 +28,12 @@ export async function PUT(
 ) {
   try {
     const { id } = await params
-    const body = await request.json()
-    const { plans, id: _id, createdAt: _c, updatedAt: _u, ...templeData } = body
+    const parsedId = validateOptionalString(id, 'id')
+    if (!parsedId.ok || !parsedId.value) return invalidParamResponse('id')
+    const rawBody = await request.json()
+    const parsedBody = validateJsonObjectBody(rawBody)
+    if (!parsedBody.ok) return invalidParamResponse(parsedBody.field)
+    const { plans, id: _id, createdAt: _c, updatedAt: _u, ...templeData } = parsedBody.value
 
     const temple = await prisma.temple.update({
       where: { id },
@@ -46,10 +53,14 @@ export async function PATCH(
 ) {
   try {
     const { id } = await params
-    const body = await request.json()
+    const parsedId = validateOptionalString(id, 'id')
+    if (!parsedId.ok || !parsedId.value) return invalidParamResponse('id')
+    const rawBody = await request.json()
+    const parsedBody = validateJsonObjectBody(rawBody)
+    if (!parsedBody.ok) return invalidParamResponse(parsedBody.field)
     const temple = await prisma.temple.update({
       where: { id },
-      data: body,
+      data: parsedBody.value,
     })
     return NextResponse.json(temple)
   } catch (error) {
@@ -64,6 +75,8 @@ export async function DELETE(
 ) {
   try {
     const { id } = await params
+    const parsedId = validateOptionalString(id, 'id')
+    if (!parsedId.ok || !parsedId.value) return invalidParamResponse('id')
     await prisma.temple.delete({ where: { id } })
     return NextResponse.json({ success: true })
   } catch (error) {

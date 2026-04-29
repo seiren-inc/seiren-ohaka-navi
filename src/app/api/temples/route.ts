@@ -1,11 +1,17 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/lib/prisma'
+import { invalidParamResponse, validateJsonObjectBody, validateQueryParam } from '@/lib/api/validation'
 
 export async function GET(request: NextRequest) {
   try {
     const { searchParams } = new URL(request.url)
-    const prefecture = searchParams.get('prefecture')
-    const status = searchParams.get('status')
+    const parsedPrefecture = validateQueryParam(searchParams, 'prefecture')
+    const parsedStatus = validateQueryParam(searchParams, 'status')
+    if (!parsedPrefecture.ok || !parsedStatus.ok) {
+      return invalidParamResponse(parsedPrefecture.ok ? parsedStatus.field : parsedPrefecture.field)
+    }
+    const prefecture = parsedPrefecture.value
+    const status = parsedStatus.value
 
     const temples = await prisma.temple.findMany({
       where: {
@@ -24,8 +30,12 @@ export async function GET(request: NextRequest) {
 
 export async function POST(request: NextRequest) {
   try {
-    const body = await request.json()
-    const { plans, ...templeData } = body
+    const rawBody = await request.json()
+    const parsedBody = validateJsonObjectBody(rawBody)
+    if (!parsedBody.ok) {
+      return invalidParamResponse(parsedBody.field)
+    }
+    const { plans, ...templeData } = parsedBody.value
 
     const temple = await prisma.temple.create({
       data: {

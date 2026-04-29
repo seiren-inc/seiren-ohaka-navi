@@ -1,11 +1,17 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/lib/prisma'
+import { invalidParamResponse, validateJsonObjectBody, validateQueryParam } from '@/lib/api/validation'
 
 export async function GET(request: NextRequest) {
   try {
     const { searchParams } = new URL(request.url)
-    const status = searchParams.get('status')
-    const kind = searchParams.get('kind')
+    const parsedStatus = validateQueryParam(searchParams, 'status')
+    const parsedKind = validateQueryParam(searchParams, 'kind')
+    if (!parsedStatus.ok || !parsedKind.ok) {
+      return invalidParamResponse(parsedStatus.ok ? parsedKind.field : parsedStatus.field)
+    }
+    const status = parsedStatus.value
+    const kind = parsedKind.value
 
     const inquiries = await prisma.inquiry.findMany({
       where: {
@@ -23,20 +29,22 @@ export async function GET(request: NextRequest) {
 
 export async function POST(request: NextRequest) {
   try {
-    const body = await request.json()
-    const { id: _id, ...rest } = body
+    const rawBody = await request.json()
+    const parsedBody = validateJsonObjectBody(rawBody)
+    if (!parsedBody.ok) {
+      return invalidParamResponse(parsedBody.field)
+    }
+    const { id: _id, ...rest } = parsedBody.value
 
     const receiptNumber = `R-${Date.now().toString().slice(-6)}`
 
     const inquiry = await prisma.inquiry.create({
       data: {
         ...rest,
-        receiptNumber: body.receiptNumber ?? receiptNumber,
-        status: body.status ?? 'new',
+        receiptNumber: parsedBody.value.receiptNumber ?? receiptNumber,
+        status: parsedBody.value.status ?? 'new',
       },
     })
-
-    console.log('[API/inquiries] 保存成功:', inquiry.id, inquiry.receiptNumber)
 
     return NextResponse.json({
       success: true,
