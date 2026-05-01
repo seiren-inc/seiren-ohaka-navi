@@ -7,6 +7,7 @@ import { Button } from "../../components/ui/Button";
 export const metadata: Metadata = {
     title: "提携をご希望の寺院・事業者様へ｜清蓮",
     description: "清蓮への掲載・提携をご希望の寺院様、霊園管理者様、関連事業者様へのお知らせ。",
+    alternates: { canonical: "https://ohakanavi.jp/about/partner" },
 };
 
 export default function PartnerPage() {

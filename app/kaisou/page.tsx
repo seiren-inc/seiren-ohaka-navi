@@ -10,7 +10,7 @@ import { Metadata } from "next";
 export const metadata: Metadata = {
     title: "お墓じまい・改葬について｜清蓮（せいれん）",
     description: "お墓じまいや改葬（お墓の引っ越し）の基本的な流れや費用、注意点について解説します。",
-    alternates: { canonical: "https://www.ohakanavi.jp/kaisou" },
+    alternates: { canonical: "https://ohakanavi.jp/kaisou" },
 };
 
 export default function KaisouPage() {

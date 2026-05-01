@@ -11,7 +11,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
     title: "納骨堂とは？種類・費用相場・メリット・選び方を解説｜清蓮",
     description: "納骨堂の種類（ロッカー型・仏壇型・自動搬送式など）、費用相場、メリット・デメリット、失敗しない選び方を専門家が解説します。",
-    alternates: { canonical: "https://www.ohakanavi.jp/guide/noukotsudou" }
+    alternates: { canonical: "https://ohakanavi.jp/guide/noukotsudou" }
 };
 
 export default function GuideNoukotsudouPage() {
@@ -20,10 +20,10 @@ export default function GuideNoukotsudouPage() {
         "@type": "Article",
         "headline": "納骨堂とは？種類・費用相場・メリット・選び方を解説",
         "description": "納骨堂の種類、費用相場、メリット・デメリット、失敗しない選び方を解説。",
-        "author": { "@type": "Organization", "name": "清蓮（Seiren）", "url": "https://www.ohakanavi.jp/about" },
+        "author": { "@type": "Organization", "name": "清蓮（Seiren）", "url": "https://ohakanavi.jp/about" },
         "publisher": {
             "@type": "Organization", "name": "清蓮（Seiren）",
-            "logo": { "@type": "ImageObject", "url": "https://www.ohakanavi.jp/og-image.jpg" }
+            "logo": { "@type": "ImageObject", "url": "https://ohakanavi.jp/og-image.jpg" }
         },
         "datePublished": "2025-01-01",
         "dateModified": new Date().toISOString().split("T")[0]

@@ -2,6 +2,13 @@ import Link from "next/link";
 import { Navbar } from "../../components/layout/Navbar";
 import { Footer } from "../../components/layout/Footer";
 import { Button } from "../../components/ui/Button";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+    title: "没後の手続きフロー｜清蓮",
+    description: "死亡届の提出から相続、納骨まで、没後に必要な主な手続きを時系列で整理したガイドです。",
+    alternates: { canonical: "https://ohakanavi.jp/guide/flow-after-death" },
+};
 
 export default function GuideFlowAfterDeathPage() {
     return (

@@ -24,23 +24,31 @@ export default async function SearchPage(props: { searchParams: Promise<{ [key: 
     const sects = makeArray(searchParams.sect) as Sect[]; // Accepted Sects
     const buddhistSects = makeArray(searchParams.buddhistSect) as BuddhistSect[]; // Main Temple Sects
     const features = makeArray(searchParams.feature);
+    const cities = makeArray(searchParams.city);
     const priceMax = searchParams.priceMax ? Number(searchParams.priceMax) : undefined;
 
     // Get Data from Prisma
     // In a real app with many records, we would build a dynamic 'where' clause for Prisma.
     // For MVP, we fetch all public/listed temples and filter in memory as before.
-    const allTemplesData = await prisma.temple.findMany({
-        where: {
-            status: 'public',
-            listedInSearch: true
-        }
-    });
+    let allTemplesData: unknown[] = [];
+    try {
+        allTemplesData = await prisma.temple.findMany({
+            where: {
+                status: 'public',
+                listedInSearch: true
+            }
+        });
+    } catch (error) {
+        console.error("[SearchPage] Temple query failed; falling back to empty search results", error);
+        allTemplesData = [];
+    }
     const allTemples = allTemplesData as unknown as Temple[];
 
     const filteredGraveyards = allTemples.filter(t => {
 
         // 2. Prefecture Match
         if (prefs.length > 0 && !prefs.includes(t.prefecture)) return false;
+        if (cities.length > 0 && !cities.some(city => t.cityName.includes(city))) return false;
 
         // 3. Facility Type Match
         if (types.length > 0 && !types.includes(t.type)) return false;
@@ -206,6 +214,9 @@ export default async function SearchPage(props: { searchParams: Promise<{ [key: 
 // Helper to normalized search params to array
 function makeArray(val: string | string[] | undefined): string[] {
     if (!val) return [];
-    if (Array.isArray(val)) return val;
-    return [val];
+    const normalized = Array.isArray(val) ? val : [val];
+    return normalized
+        .flatMap((v) => v.split(','))
+        .map((v) => v.trim())
+        .filter(Boolean);
 }

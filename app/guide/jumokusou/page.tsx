@@ -11,7 +11,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
     title: "樹木葬とは？費用相場・後悔しない選び方を徹底解説｜清蓮",
     description: "樹木葬にかかる費用・種類・メリット・後悔しやすいポイントを専門家が解説。里山型・庭園型・公園型の違いや、全国の樹木葬施設の探し方もご紹介します。",
-    alternates: { canonical: "https://www.ohakanavi.jp/guide/jumokusou" }
+    alternates: { canonical: "https://ohakanavi.jp/guide/jumokusou" }
 };
 
 export default function GuideJumokusouPage() {
@@ -20,10 +20,10 @@ export default function GuideJumokusouPage() {
         "@type": "Article",
         "headline": "樹木葬とは？費用相場・後悔しない選び方を徹底解説",
         "description": "樹木葬の費用相場、種類、後悔しやすいポイントを解説。",
-        "author": { "@type": "Organization", "name": "清蓮（Seiren）", "url": "https://www.ohakanavi.jp/about" },
+        "author": { "@type": "Organization", "name": "清蓮（Seiren）", "url": "https://ohakanavi.jp/about" },
         "publisher": {
             "@type": "Organization", "name": "清蓮（Seiren）",
-            "logo": { "@type": "ImageObject", "url": "https://www.ohakanavi.jp/og-image.jpg" }
+            "logo": { "@type": "ImageObject", "url": "https://ohakanavi.jp/og-image.jpg" }
         },
         "datePublished": "2025-01-01",
         "dateModified": new Date().toISOString().split("T")[0]

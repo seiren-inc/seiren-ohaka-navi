@@ -39,9 +39,6 @@ export default async function SearchPage(props: { searchParams: Promise<{ [key: 
     // Get Data from Prisma
     // In a real app with many records, we would build a dynamic 'where' clause for Prisma.
     // For MVP, we fetch all public/listed temples and filter in memory as before.
-    // #region agent log
-    fetch('http://127.0.0.1:7735/ingest/1edceb2c-fc8c-4fc3-98ee-97ab22c9bda4',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'c506d5'},body:JSON.stringify({sessionId:'c506d5',runId:'initial',hypothesisId:'H3',location:'app/search/page.tsx:SearchPage',message:'Executing search temples query',data:{prefCount:prefs.length,typeCount:types.length},timestamp:Date.now()})}).catch(()=>{});
-    // #endregion
     let allTemplesData: unknown[] = [];
     try {
         allTemplesData = await prisma.temple.findMany({
@@ -51,15 +48,12 @@ export default async function SearchPage(props: { searchParams: Promise<{ [key: 
             }
         });
     } catch (error) {
-        // #region agent log
-        fetch('http://127.0.0.1:7735/ingest/1edceb2c-fc8c-4fc3-98ee-97ab22c9bda4',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'c506d5'},body:JSON.stringify({sessionId:'c506d5',runId:'initial',hypothesisId:'H3',location:'app/search/page.tsx:SearchPage',message:'Search temples query failed',data:{errorMessage:error instanceof Error ? error.message : 'unknown'},timestamp:Date.now()})}).catch(()=>{});
-        // #endregion
-        if (isPrismaConnectivityError(error)) {
-            console.error("[SearchPage] Prisma connectivity error; falling back to empty search results", error);
-            allTemplesData = [];
+        if (!isPrismaConnectivityError(error)) {
+            console.error("[SearchPage] Temple query failed; falling back to empty search results", error);
         } else {
-            throw error;
+            console.error("[SearchPage] Prisma connectivity error; falling back to empty search results", error);
         }
+        allTemplesData = [];
     }
     const allTemples = allTemplesData as unknown as Temple[];
 
