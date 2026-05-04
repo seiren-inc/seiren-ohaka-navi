@@ -22,13 +22,18 @@ export async function middleware(req: NextRequest) {
     const { pathname } = req.nextUrl;
 
     // /portal 配下 - Cookie セッションチェック（インライン）
-    if (pathname.startsWith('/portal') && !pathname.startsWith('/portal/login')) {
-        const session = req.cookies.get('portal_session');
-        if (!session?.value) {
-            const loginUrl = new URL('/portal/login', req.url);
-            return NextResponse.redirect(loginUrl);
+    if (pathname.startsWith('/portal')) {
+        const requestHeaders = new Headers(req.headers)
+        requestHeaders.set('x-pathname', pathname)
+
+        if (!pathname.startsWith('/portal/login')) {
+            const session = req.cookies.get('portal_session');
+            if (!session?.value) {
+                const loginUrl = new URL('/portal/login', req.url);
+                return NextResponse.redirect(loginUrl);
+            }
         }
-        return NextResponse.next();
+        return NextResponse.next({ request: { headers: requestHeaders } });
     }
 
     // 公開フォームからの問い合わせ POST は認証不要
