@@ -10,21 +10,21 @@ const nextConfig: NextConfig = {
       },
     ],
   },
-  // 本番ドメイン: https://ohakanavi.jp
+  // 本番ドメイン: https://www.ohakanavi.jp
   async redirects() {
     return [
-      // www → non-www 正規化（SEO対策: ドメイン統一）
+      // non-www → www 正規化（SEO対策: ドメイン統一）
       {
         source: "/:path*",
-        has: [{ type: "host", value: "www.ohakanavi.jp" }],
-        destination: "https://ohakanavi.jp/:path*",
+        has: [{ type: "host", value: "ohakanavi.jp" }],
+        destination: "https://www.ohakanavi.jp/:path*",
         permanent: true,
       },
       // Vercel自動ドメインから本番ドメインへ301リダイレクト
       {
         source: "/:path*",
         has: [{ type: "host", value: "seiren-ohaka-navi.vercel.app" }],
-        destination: "https://ohakanavi.jp/:path*",
+        destination: "https://www.ohakanavi.jp/:path*",
         permanent: true,
       },
     ];

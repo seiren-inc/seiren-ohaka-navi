@@ -6,7 +6,7 @@ import { JsonLd } from "../../components/seo/JsonLd";
 import { ChevronRight, ChevronDown, CheckCircle2 } from "lucide-react";
 import type { Metadata } from "next";
 
-const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://ohakanavi.jp";
+const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://www.ohakanavi.jp";
 
 export const metadata: Metadata = {
     title: "樹木葬の費用相場【2024年版】安い理由・選び方・注意点｜清蓮",

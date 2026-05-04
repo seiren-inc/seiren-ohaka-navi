@@ -11,7 +11,7 @@ import { AreaSEOContent } from "../../../components/features/area/AreaSEOContent
 import { AreaFAQ } from "../../../components/features/area/AreaFAQ";
 import { JsonLd } from "../../../components/seo/JsonLd";
 
-const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://ohakanavi.jp";
+const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://www.ohakanavi.jp";
 
 function isPrismaConnectivityError(error: unknown): boolean {
     return (

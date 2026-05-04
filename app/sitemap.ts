@@ -3,7 +3,7 @@ import { PREFECTURES } from "./lib/prefectures";
 
 const BASE_URL =
     process.env.NEXT_PUBLIC_SITE_URL ||
-    "https://ohakanavi.jp";
+    "https://www.ohakanavi.jp";
 
 const SHOULD_FETCH_DYNAMIC_SITEMAP =
     process.env.SITEMAP_SKIP_DYNAMIC !== "1" &&

@@ -3,7 +3,7 @@ import { prisma } from "@/lib/prisma";
 import { PREFECTURES } from "@/app/lib/prefectures";
 
 const BASE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL || "https://ohakanavi.jp";
+  process.env.NEXT_PUBLIC_SITE_URL || "https://www.ohakanavi.jp";
 
 const INDEX_NOW_KEY = "41257e53d7b74ba8b78cc7e08d40f182";
 const KEY_LOCATION = `${BASE_URL}/${INDEX_NOW_KEY}.txt`;
