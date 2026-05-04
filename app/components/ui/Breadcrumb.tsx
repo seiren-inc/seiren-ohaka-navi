@@ -96,8 +96,12 @@ export function Breadcrumb() {
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }}
             />
             <nav aria-label="パンくずリスト" className="flex items-center gap-1.5 text-[13px] text-text-muted flex-wrap">
-                <Link href="/" className="flex items-center hover:text-primary transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 rounded-sm">
-                    <Home className="w-3.5 h-3.5" />
+                <Link
+                    href="/"
+                    aria-label="トップページへ"
+                    className="flex items-center hover:text-primary transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 rounded-sm"
+                >
+                    <Home className="w-3.5 h-3.5" aria-hidden />
                 </Link>
                 {crumbs.map((crumb) => (
                     <span key={crumb.href} className="flex items-center gap-1.5">

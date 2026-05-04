@@ -87,7 +87,7 @@ export default function GraveClosureFlowPage() {
             />
             <Navbar />
 
-            <main className="grow pt-32 px-4 pb-20">
+            <main id="main-content" className="grow pt-32 px-4 pb-20">
                 <div className="max-w-4xl mx-auto">
                     {/* Breadcrumb */}
                     <div className="mb-8">

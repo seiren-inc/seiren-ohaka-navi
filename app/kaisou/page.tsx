@@ -18,7 +18,7 @@ export default function KaisouPage() {
         <div className="min-h-screen flex flex-col pt-[60px] md:pt-[92px]">
             <Navbar />
 
-            <main className="grow">
+            <main id="main-content" className="grow">
                 {/* HERO */}
                 <section className="bg-bg-muted py-16 md:py-24 border-b border-border">
                     <div className="max-w-[1280px] mx-auto px-4 text-center">

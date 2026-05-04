@@ -68,7 +68,7 @@ export default function GuideEitaiKuyouPage() {
             <JsonLd data={faqLd} />
             <Navbar />
             
-            <main className="grow pt-24 pb-20">
+            <main id="main-content" className="grow pt-24 pb-20">
                 <article className="max-w-3xl mx-auto px-4">
                     {/* Header */}
                     <div className="mb-12">

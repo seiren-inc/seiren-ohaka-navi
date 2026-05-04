@@ -67,7 +67,7 @@ export default function EitaiKuyouPage() {
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
             <Navbar />
 
-            <main className="grow pt-24 px-4 pb-20">
+            <main id="main-content" className="grow pt-24 px-4 pb-20">
                 <div className="max-w-4xl mx-auto">
                     {/* Breadcrumb */}
                     <div className="mb-6">

@@ -55,7 +55,7 @@ export default function GuideNoukotsudouPage() {
             <JsonLd data={articleLd} />
             <JsonLd data={faqLd} />
             <Navbar />
-            <main className="grow pt-24 pb-20">
+            <main id="main-content" className="grow pt-24 pb-20">
                 <article className="max-w-3xl mx-auto px-4">
                     <div className="mb-12">
                         <div className="flex items-center gap-2 text-sm text-gray-500 mb-4">

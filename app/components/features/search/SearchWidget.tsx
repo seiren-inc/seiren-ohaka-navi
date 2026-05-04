@@ -50,10 +50,13 @@ export function SearchWidget() {
     return (
         <div className="bg-white rounded-xl shadow-2xl shadow-primary/10 overflow-hidden w-full max-w-4xl mx-auto border border-gray-100">
             {/* Tabs */}
-            <div className="flex border-b border-gray-100 bg-gray-50/50">
+            <div className="flex border-b border-gray-100 bg-gray-50/50" role="tablist" aria-label="供養の種類">
                 {TABS.map((tab) => (
                     <button
                         key={tab.id}
+                        type="button"
+                        role="tab"
+                        aria-selected={activeTab === tab.id}
                         onClick={() => setActiveTab(tab.id)}
                         className={clsx(
                             "flex-1 py-5 text-sm sm:text-base font-medium transition-all relative",
@@ -76,12 +79,13 @@ export function SearchWidget() {
 
                     {/* Area Selection */}
                     <div className="space-y-3">
-                        <label className="flex items-center gap-2 text-sm font-bold text-gray-700">
-                            <MapPin className="w-4 h-4 text-primary-soft" />
+                        <label htmlFor="search-widget-prefecture" className="flex items-center gap-2 text-sm font-bold text-gray-700">
+                            <MapPin className="w-4 h-4 text-primary-soft" aria-hidden />
                             エリアから探す
                         </label>
                         <div className="relative">
                             <select
+                                id="search-widget-prefecture"
                                 value={selectedPrefecture}
                                 onChange={(e) => setSelectedPrefecture(e.target.value)}
                                 className="w-full h-12 pl-4 pr-10 border border-gray-200 rounded-lg appearance-none bg-white focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all text-gray-600"
@@ -109,11 +113,11 @@ export function SearchWidget() {
 
                     {/* Condition Tags */}
                     <div className="space-y-3">
-                        <label className="flex items-center gap-2 text-sm font-bold text-gray-700">
-                            <Tag className="w-4 h-4 text-primary-soft" />
+                        <span id="search-widget-tags-legend" className="flex items-center gap-2 text-sm font-bold text-gray-700">
+                            <Tag className="w-4 h-4 text-primary-soft" aria-hidden />
                             こだわり条件
-                        </label>
-                        <div className="flex flex-wrap gap-2">
+                        </span>
+                        <div className="flex flex-wrap gap-2" role="group" aria-labelledby="search-widget-tags-legend">
                             {TAGS.map(tag => (
                                 <label key={tag} className="inline-flex items-center cursor-pointer">
                                     <input

@@ -36,7 +36,7 @@ export default function Home() {
       <OpeningAnimation />
       <Navbar />
 
-      <main className="grow pt-section-tablet">
+      <main id="main-content" className="grow pt-section-tablet">
         {/* 1. HERO SECTION & SEARCH */}
         <section
           className="relative min-h-[85vh] flex items-center justify-center overflow-hidden py-12 md:py-20 lg:py-24"

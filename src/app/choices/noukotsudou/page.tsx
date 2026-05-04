@@ -338,7 +338,7 @@ export default function NoukotsudouPage() {
                             <div className="bg-white border border-gray-100 p-6 rounded-lg shadow-sm">
                                 <h3 className="font-bold text-primary mb-2">海洋散骨・自宅供養との違い</h3>
                                 <p className="text-sm text-gray-600 leading-loose">
-                                    <Link href="/choices/ctas" className="text-primary font-bold hover:underline">海洋散骨</Link>や<Link href="/choices/temoto-kuyou" className="text-primary font-bold hover:underline">自宅供養</Link>は、遺骨を「施設に預けない」方法です。<br />
+                                    <Link href="/choices/sankotsu" className="text-primary font-bold hover:underline">海洋散骨</Link>や<Link href="/choices/temoto-kuyou" className="text-primary font-bold hover:underline">自宅供養</Link>は、遺骨を「施設に預けない」方法です。<br />
                                     「どこかに出向いてお参りする場所」が必要かどうか、<br />
                                     という点が根本的な違いとなります。
                                 </p>

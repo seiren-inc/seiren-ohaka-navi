@@ -14,7 +14,7 @@ export default function PartnerPage() {
     return (
         <div className="min-h-screen flex flex-col bg-white text-gray-800">
             <Navbar />
-            <main className="grow pt-24 px-4 pb-20">
+            <main id="main-content" className="grow pt-24 px-4 pb-20">
                 <div className="max-w-3xl mx-auto">
 
                     <div className="text-center mb-12">

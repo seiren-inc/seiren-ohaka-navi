@@ -16,7 +16,7 @@ export default function PartnerContactThanksPage() {
     return (
         <div className="min-h-screen flex flex-col bg-gray-50">
             <Navbar />
-            <main className="grow pt-32 px-4 pb-20">
+            <main id="main-content" className="grow pt-32 px-4 pb-20">
                 <div className="max-w-2xl mx-auto text-center">
                     <div className="bg-white rounded-2xl p-12 shadow-sm border border-gray-100">
                         <div className="w-20 h-20 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto mb-8 animate-in zoom-in duration-500">

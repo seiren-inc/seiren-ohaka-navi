@@ -290,7 +290,7 @@ function GraveClosureConsultForm() {
                 </p>
             </div>
 
-            <main className="grow container mx-auto px-4 py-12 max-w-4xl">
+            <main id="main-content" className="grow container mx-auto px-4 py-12 max-w-4xl">
 
                 {/* 3 Reassurances */}
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
@@ -346,11 +346,12 @@ function GraveClosureConsultForm() {
 
                             {/* Temple Name with Suggestions */}
                             <div className="relative space-y-2">
-                                <label className="block text-sm font-bold text-gray-700">
+                                <label htmlFor="grave-closure-temple-name" className="block text-sm font-bold text-gray-700">
                                     お寺・霊園の名前 <span className="text-red-500">*</span>
                                 </label>
                                 <div className="relative">
                                     <input
+                                        id="grave-closure-temple-name"
                                         ref={inputRef}
                                         type="text"
                                         name="graveTempleName"
@@ -423,10 +424,11 @@ function GraveClosureConsultForm() {
                             {/* Temple Address Logic: Split Pref / City / Line */}
                             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                 <div className="space-y-2">
-                                    <label className="block text-sm font-bold text-gray-700">
+                                    <label htmlFor="grave-closure-temple-pref" className="block text-sm font-bold text-gray-700">
                                         都道府県 <span className="text-red-500">*</span>
                                     </label>
                                     <select
+                                        id="grave-closure-temple-pref"
                                         name="graveTemplePref"
                                         required
                                         className={cn(
@@ -443,10 +445,11 @@ function GraveClosureConsultForm() {
                                     </select>
                                 </div>
                                 <div className="space-y-2">
-                                    <label className="block text-sm font-bold text-gray-700">
+                                    <label htmlFor="grave-closure-temple-city" className="block text-sm font-bold text-gray-700">
                                         市区町村 <span className="text-red-500">*</span>
                                     </label>
                                     <input
+                                        id="grave-closure-temple-city"
                                         type="text"
                                         name="graveTempleCity"
                                         required
@@ -461,10 +464,11 @@ function GraveClosureConsultForm() {
                                 </div>
                             </div>
                             <div className="space-y-2">
-                                <label className="block text-sm font-bold text-gray-700">
+                                <label htmlFor="grave-closure-temple-address-line" className="block text-sm font-bold text-gray-700">
                                     以降の住所（町名・番地等）
                                 </label>
                                 <input
+                                    id="grave-closure-temple-address-line"
                                     type="text"
                                     name="graveTempleAddressLine"
                                     className={cn(
@@ -480,8 +484,8 @@ function GraveClosureConsultForm() {
 
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                             <div className="space-y-2">
-                                <label className="block text-sm font-bold text-gray-700">実施希望時期</label>
-                                <select name="desiredTiming" className="w-full h-12 px-4 border rounded-lg bg-white" value={formData.desiredTiming} onChange={handleChange}>
+                                <label htmlFor="grave-closure-desired-timing" className="block text-sm font-bold text-gray-700">実施希望時期</label>
+                                <select id="grave-closure-desired-timing" name="desiredTiming" className="w-full h-12 px-4 border rounded-lg bg-white" value={formData.desiredTiming} onChange={handleChange}>
                                     <option value="未定">未定</option>
                                     <option value="急ぎ">急ぎ</option>
                                     <option value="3ヶ月以内">3ヶ月以内</option>
@@ -489,8 +493,8 @@ function GraveClosureConsultForm() {
                                 </select>
                             </div>
                             <div className="space-y-2">
-                                <label className="block text-sm font-bold text-gray-700">次の供養先</label>
-                                <select name="hasNextPlace" className="w-full h-12 px-4 border rounded-lg bg-white" value={formData.hasNextPlace} onChange={handleChange}>
+                                <label htmlFor="grave-closure-has-next-place" className="block text-sm font-bold text-gray-700">次の供養先</label>
+                                <select id="grave-closure-has-next-place" name="hasNextPlace" className="w-full h-12 px-4 border rounded-lg bg-white" value={formData.hasNextPlace} onChange={handleChange}>
                                     <option value="未定">決まっていない（提案希望）</option>
                                     <option value="決まっている">すでに決まっている</option>
                                 </select>

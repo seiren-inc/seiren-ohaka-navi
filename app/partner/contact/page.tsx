@@ -105,7 +105,7 @@ export default function PartnerContactPage() {
         <div className="min-h-screen flex flex-col bg-gray-50">
             <Navbar />
 
-            <main className="grow pt-32 px-4 pb-20">
+            <main id="main-content" className="grow pt-32 px-4 pb-20">
                 <div className="max-w-3xl mx-auto">
 
                     {/* Header */}
@@ -144,11 +144,12 @@ export default function PartnerContactPage() {
                                 <div className="space-y-6">
                                     {/* Inquiry Type */}
                                     <div className="grid gap-2">
-                                        <label className="text-sm font-bold text-gray-700">
+                                        <label htmlFor="partner-inquiry-type" className="text-sm font-bold text-gray-700">
                                             お問い合わせ種別 <span className="text-red-500">*</span>
                                         </label>
                                         <select
                                             {...register("inquiryType")}
+                                            id="partner-inquiry-type"
                                             className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-secondary/20 focus:border-secondary outline-none transition-all"
                                         >
                                             <option value="">選択してください</option>

@@ -60,7 +60,7 @@ export default function JumokusouCostPage() {
             <JsonLd data={faqLd} />
             <JsonLd data={breadcrumbLd} />
             <Navbar />
-            <main className="grow pt-24 pb-20">
+            <main id="main-content" className="grow pt-24 pb-20">
                 <article className="max-w-3xl mx-auto px-4">
                     <div className="flex items-center gap-2 text-sm text-gray-500 mb-6">
                         <Link href="/guide" className="hover:text-primary transition-colors">ガイド一覧</Link>

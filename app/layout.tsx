@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Noto_Sans_JP } from "next/font/google";
 import { DeferredAnalytics } from "./components/analytics/DeferredAnalytics";
 import { FixedCTA } from "./components/layout/FixedCTA";
+import { SkipToMainLink } from "./components/accessibility/SkipToMainLink";
 import "./globals.css";
 
 const notoSansJP = Noto_Sans_JP({
@@ -122,6 +123,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationLd) }}
         />
         <DeferredAnalytics gaId={GA_ID} clarityId={CLARITY_ID} />
+        <SkipToMainLink />
         {children}
         <FixedCTA />
       </body>

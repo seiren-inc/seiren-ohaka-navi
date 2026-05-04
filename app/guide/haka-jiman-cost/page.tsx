@@ -81,7 +81,7 @@ export default function HakaJimanCostPage() {
             <JsonLd data={breadcrumbLd} />
             <Navbar />
 
-            <main className="grow pt-24 pb-20">
+            <main id="main-content" className="grow pt-24 pb-20">
                 <article className="max-w-3xl mx-auto px-4">
                     {/* Breadcrumb */}
                     <div className="flex items-center gap-2 text-sm text-gray-500 mb-6">

@@ -89,7 +89,7 @@ function GraveClosureForm() {
         return (
             <div className="min-h-screen flex flex-col bg-white">
                 <Navbar />
-                <main className="grow pt-32 px-4 pb-20">
+                <main id="main-content" className="grow pt-32 px-4 pb-20">
                     <div className="max-w-2xl mx-auto text-center py-20">
                         <h1 className="text-3xl font-bold text-primary mb-6">送信完了</h1>
                         <p className="text-gray-600 mb-10 leading-loose">
@@ -110,7 +110,7 @@ function GraveClosureForm() {
         <div className="min-h-screen flex flex-col bg-slate-50">
             <Navbar />
 
-            <main className="grow pt-32 px-4 pb-20">
+            <main id="main-content" className="grow pt-32 px-4 pb-20">
                 <div className="max-w-3xl mx-auto">
                     {/* Breadcrumb */}
                     <div className="mb-8">
@@ -204,8 +204,8 @@ function GraveClosureForm() {
                             )}
 
                             <div className="space-y-2">
-                                <label className="block text-sm font-bold text-gray-700">実施希望時期</label>
-                                <select name="desiredDate" className="w-full h-12 px-4 border rounded-lg bg-gray-50" value={formData.desiredDate} onChange={handleChange}>
+                                <label htmlFor="grave-closure-consult-desired-date" className="block text-sm font-bold text-gray-700">実施希望時期</label>
+                                <select id="grave-closure-consult-desired-date" name="desiredDate" className="w-full h-12 px-4 border rounded-lg bg-gray-50" value={formData.desiredDate} onChange={handleChange}>
                                     <option value="">未定</option>
                                     <option value="asap">なるべく早く</option>
                                     <option value="within_3m">3ヶ月以内</option>
