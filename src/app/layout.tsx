@@ -17,7 +17,7 @@ const shipporiMincho = Noto_Sans_JP({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://www.ohakanavi.jp"),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://ohakanavi.jp"),
   title: {
     default: "清蓮（Seiren）| お墓探しナビ",
     template: "%s | 清蓮",
@@ -37,18 +37,38 @@ export const metadata: Metadata = {
   },
 };
 
-const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://www.ohakanavi.jp";
+const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://ohakanavi.jp";
 const GA_ID = process.env.NEXT_PUBLIC_GA_ID;
 const CLARITY_ID = process.env.NEXT_PUBLIC_CLARITY_ID;
 
 const organizationLd = {
   "@context": "https://schema.org",
   "@type": "Organization",
+  "@id": `${BASE_URL}/#organization`,
   "name": "清蓮（Seiren）",
   "url": BASE_URL,
-  "logo": `${BASE_URL}/icon.png`,
+  "logo": {
+    "@type": "ImageObject",
+    "url": `${BASE_URL}/icon.png`
+  },
   "description": "墓地・永代供養・樹木葬・納骨堂の検索・比較サービス。専門家が中立な立場でご提案。改葬・墓じまいもサポート。",
-  "sameAs": [],
+  "sameAs": []
+};
+
+const localBusinessLd = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "@id": `${BASE_URL}/#localbusiness`,
+  "name": "清蓮（Seiren）お墓探しナビ",
+  "url": BASE_URL,
+  "image": `${BASE_URL}/icon.png`,
+  "description": "墓地・永代供養・樹木葬・納骨堂の検索・比較サービス。相談無料。",
+  "areaServed": [{ "@type": "Country", "name": "Japan" }],
+  "serviceType": [
+    "墓地探し", "永代供養", "樹木葬", "納骨堂", "改葬", "墓じまい"
+  ],
+  "priceRange": "無料相談",
+  "parentOrganization": { "@type": "Organization", "@id": `${BASE_URL}/#organization` }
 };
 
 export default function RootLayout({
@@ -64,6 +84,10 @@ export default function RootLayout({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationLd) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessLd) }}
         />
         {/* Google Analytics 4 */}
         {GA_ID && (

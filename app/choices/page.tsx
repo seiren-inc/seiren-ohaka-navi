@@ -8,7 +8,7 @@ import { Button } from "../components/ui/Button";
 export const metadata: Metadata = {
     title: "供養の選択肢比較｜永代供養・樹木葬・納骨堂・散骨を整理｜清蓮",
     description: "永代供養墓、樹木葬、納骨堂、海洋散骨、手元供養など、供養の選択肢を中立の立場で比較整理。迷っている方のための供養比較ガイド。",
-    alternates: { canonical: "https://www.ohakanavi.jp/choices" },
+    alternates: { canonical: "https://ohakanavi.jp/choices" },
 };
 
 export default function ChoicesHub() {
@@ -16,7 +16,7 @@ export default function ChoicesHub() {
         <div className="min-h-screen flex flex-col bg-white text-gray-800">
             <Navbar />
 
-            <main className="grow pt-24 px-4 pb-20">
+            <main id="main-content" className="grow pt-24 px-4 pb-20">
                 <div className="max-w-6xl mx-auto">
 
                     {/* Header Section */}

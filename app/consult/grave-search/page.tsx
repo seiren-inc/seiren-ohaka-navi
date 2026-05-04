@@ -139,14 +139,14 @@ function GraveSearchConsultForm() {
     if (isSuccess) {
         return (
             <div className="min-h-screen pt-32 pb-20 px-4 text-center">
-                <div className="max-w-2xl mx-auto">
+                <main id="main-content" className="max-w-2xl mx-auto">
                     <h1 className="text-3xl font-bold text-primary mb-6">送信完了</h1>
                     <p className="text-gray-600 mb-10">
                         お墓探しのご相談ありがとうございます。<br />
                         専門スタッフが条件に合う霊園をお探しし、ご連絡いたします。
                     </p>
                     <Link href="/" className="text-primary hover:underline">トップへ戻る</Link>
-                </div>
+                </main>
             </div>
         );
     }
@@ -168,7 +168,7 @@ function GraveSearchConsultForm() {
                 </p>
             </div>
 
-            <main className="grow container mx-auto px-4 py-12 max-w-4xl">
+            <main id="main-content" className="grow container mx-auto px-4 py-12 max-w-4xl">
 
                 {/* 3 Reassurances */}
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">

@@ -1,6 +1,7 @@
 export const dynamic = 'force-dynamic'
 
 import { redirect } from 'next/navigation'
+import { headers } from 'next/headers'
 import { LayoutDashboard, MessageSquare, Settings, LogOut, Loader2 } from 'lucide-react'
 import Link from 'next/link'
 import { revalidatePath } from 'next/cache'
@@ -11,6 +12,12 @@ export default async function PortalLayout({
 }: {
     children: React.ReactNode
 }) {
+    const headersList = await headers()
+    const pathname = headersList.get('x-invoke-path') || headersList.get('x-pathname') || ''
+    if (pathname === '/portal/login' || pathname.startsWith('/portal/login')) {
+        return <>{children}</>
+    }
+
     const templeUser = await getPortalUser()
 
     if (!templeUser) {
@@ -67,7 +74,7 @@ export default async function PortalLayout({
             </aside>
 
             {/* Main Content */}
-            <main className="flex-1 flex flex-col min-w-0 h-screen overflow-hidden">
+            <main id="main-content" className="flex-1 flex flex-col min-w-0 h-screen overflow-hidden">
                 <header className="bg-white border-b border-gray-200 px-6 py-4 flex items-center justify-between md:hidden shadow-sm z-10">
                     <p className="font-bold text-[#007B55] truncate text-sm">
                         {templeUser.temple?.name}

@@ -5,7 +5,7 @@ import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import { Metadata } from "next";
 
-const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://www.ohakanavi.jp";
+const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://ohakanavi.jp";
 
 export const metadata: Metadata = {
     title: "墓じまい・改葬の流れ｜完了までの7ステップ | 清蓮",
@@ -87,7 +87,7 @@ export default function GraveClosureFlowPage() {
             />
             <Navbar />
 
-            <main className="grow pt-32 px-4 pb-20">
+            <main id="main-content" className="grow pt-32 px-4 pb-20">
                 <div className="max-w-4xl mx-auto">
                     {/* Breadcrumb */}
                     <div className="mb-8">

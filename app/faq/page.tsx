@@ -9,7 +9,7 @@ import { HelpCircle, Search, Phone, ChevronDown } from "lucide-react";
 export const metadata: Metadata = {
     title: "よくある質問（FAQ）｜お墓・供養・費用の疑問に答えます｜清蓮",
     description: "お墓探し・永代供養・墓じまいに関するよくある質問をまとめました。費用・手続き・宗教の疑問を供養の専門家が中立に答えます。",
-    alternates: { canonical: "https://www.ohakanavi.jp/faq" },
+    alternates: { canonical: "https://ohakanavi.jp/faq" },
 };
 
 const FAQ_CATEGORIES = [
@@ -116,8 +116,8 @@ export default function FaqPage() {
             {
                 "@type": "BreadcrumbList",
                 "itemListElement": [
-                    { "@type": "ListItem", "position": 1, "name": "清蓮 お墓探しナビ", "item": "https://www.ohakanavi.jp/" },
-                    { "@type": "ListItem", "position": 2, "name": "よくある質問", "item": "https://www.ohakanavi.jp/faq" },
+                    { "@type": "ListItem", "position": 1, "name": "清蓮 お墓探しナビ", "item": "https://ohakanavi.jp/" },
+                    { "@type": "ListItem", "position": 2, "name": "よくある質問", "item": "https://ohakanavi.jp/faq" },
                 ],
             },
             {
@@ -138,7 +138,7 @@ export default function FaqPage() {
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
             <Navbar />
 
-            <main className="grow pt-24 px-4 pb-20">
+            <main id="main-content" className="grow pt-24 px-4 pb-20">
                 <div className="max-w-4xl mx-auto">
 
                     {/* Breadcrumb */}

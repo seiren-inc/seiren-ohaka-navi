@@ -10,7 +10,7 @@ import { Metadata } from "next";
 export const metadata: Metadata = {
     title: "お墓じまい・改葬について｜清蓮（せいれん）",
     description: "お墓じまいや改葬（お墓の引っ越し）の基本的な流れや費用、注意点について解説します。",
-    alternates: { canonical: "https://www.ohakanavi.jp/kaisou" },
+    alternates: { canonical: "https://ohakanavi.jp/kaisou" },
 };
 
 export default function KaisouPage() {
@@ -18,7 +18,7 @@ export default function KaisouPage() {
         <div className="min-h-screen flex flex-col pt-[60px] md:pt-[92px]">
             <Navbar />
 
-            <main className="grow">
+            <main id="main-content" className="grow">
                 {/* HERO */}
                 <section className="bg-bg-muted py-16 md:py-24 border-b border-border">
                     <div className="max-w-[1280px] mx-auto px-4 text-center">

@@ -157,7 +157,7 @@ function IkotsuServiceConsultForm() {
                 </p>
             </div>
 
-            <main className="grow container mx-auto px-4 py-12 max-w-4xl">
+            <main id="main-content" className="grow container mx-auto px-4 py-12 max-w-4xl">
 
                 {/* 3 Reassurances */}
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
@@ -202,8 +202,8 @@ function IkotsuServiceConsultForm() {
 
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                             <div className="space-y-2">
-                                <label className="block text-sm font-bold text-gray-700">現在のご遺骨の状態</label>
-                                <select name="boneStatus" className="w-full h-12 px-4 border rounded-lg bg-white" value={formData.boneStatus} onChange={handleChange}>
+                                <label htmlFor="ikotsu-bone-status" className="block text-sm font-bold text-gray-700">現在のご遺骨の状態</label>
+                                <select id="ikotsu-bone-status" name="boneStatus" className="w-full h-12 px-4 border rounded-lg bg-white" value={formData.boneStatus} onChange={handleChange}>
                                     <option value="不明">不明・相談したい</option>
                                     <option value="骨壷のまま">骨壷に入っている</option>
                                     <option value="お墓の中">お墓の中にある</option>
@@ -211,8 +211,8 @@ function IkotsuServiceConsultForm() {
                                 </select>
                             </div>
                             <div className="space-y-2">
-                                <label className="block text-sm font-bold text-gray-700">お引き渡し方法</label>
-                                <select name="deliveryMethod" className="w-full h-12 px-4 border rounded-lg bg-white" value={formData.deliveryMethod} onChange={handleChange}>
+                                <label htmlFor="ikotsu-delivery-method" className="block text-sm font-bold text-gray-700">お引き渡し方法</label>
+                                <select id="ikotsu-delivery-method" name="deliveryMethod" className="w-full h-12 px-4 border rounded-lg bg-white" value={formData.deliveryMethod} onChange={handleChange}>
                                     <option value="未定">未定（相談）</option>
                                     <option value="郵送">郵送希望</option>
                                     <option value="持込">持ち込み希望</option>
@@ -222,8 +222,8 @@ function IkotsuServiceConsultForm() {
                         </div>
 
                         <div className="space-y-2">
-                            <label className="block text-sm font-bold text-gray-700">実施希望時期</label>
-                            <select name="desiredTiming" className="w-full h-12 px-4 border rounded-lg bg-white" value={formData.desiredTiming} onChange={handleChange}>
+                            <label htmlFor="ikotsu-desired-timing" className="block text-sm font-bold text-gray-700">実施希望時期</label>
+                            <select id="ikotsu-desired-timing" name="desiredTiming" className="w-full h-12 px-4 border rounded-lg bg-white" value={formData.desiredTiming} onChange={handleChange}>
                                 <option value="未定">未定</option>
                                 <option value="急ぎ">急ぎ</option>
                                 <option value="1ヶ月以内">1ヶ月以内</option>

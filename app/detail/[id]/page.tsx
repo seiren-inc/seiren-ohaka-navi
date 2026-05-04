@@ -122,7 +122,7 @@ export default async function TempleDetailPage(props: { params: Promise<{ id: st
 
             <Navbar />
 
-            <main className="grow pt-20">
+            <main id="main-content" className="grow pt-20">
                 {/* 1. Hero (First View) */}
                 <TempleHero data={temple} />
 
@@ -142,7 +142,7 @@ export default async function TempleDetailPage(props: { params: Promise<{ id: st
                     <TempleFeatures data={temple} />
 
                     {/* 6. Gallery */}
-                    <TempleGallery gallery={temple.galleryImages} />
+                    <TempleGallery gallery={temple.galleryImages ?? []} />
 
                     {/* 7. Access */}
                     <TempleAccess data={temple} />

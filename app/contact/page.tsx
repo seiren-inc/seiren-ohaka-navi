@@ -6,6 +6,7 @@ import { Metadata } from "next";
 export const metadata: Metadata = {
     title: "お問い合わせ・無料相談｜清蓮",
     description: "お墓探し、永代供養、墓じまいに関するご相談・お問い合わせはこちら。専門スタッフが親身に対応いたします。",
+    alternates: { canonical: "https://ohakanavi.jp/contact" },
 };
 
 export default function ContactPage() {
@@ -13,7 +14,7 @@ export default function ContactPage() {
         <div className="min-h-screen flex flex-col bg-slate-50">
             <Navbar />
 
-            <main className="grow pt-32 px-4 pb-20">
+            <main id="main-content" className="grow pt-32 px-4 pb-20">
                 <div className="max-w-3xl mx-auto">
                     <div className="text-center mb-10">
                         <span className="text-secondary font-bold tracking-widest text-xs uppercase mb-4 block">

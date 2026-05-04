@@ -121,7 +121,7 @@ export default function TempleDetailClient({ temple, plans }: Props) {
     ];
 
     return (
-        <main className="min-h-screen bg-gray-50 pb-32">
+        <main id="main-content" className="min-h-screen bg-gray-50 pb-32">
             {/* Breadcrumb */}
             <div className="max-w-7xl mx-auto px-4 py-4 text-xs text-gray-400 flex items-center gap-2">
                 <Link href="/" className="hover:underline">TOP</Link>

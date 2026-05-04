@@ -6,7 +6,7 @@ import { JsonLd } from "../../components/seo/JsonLd";
 import { ChevronRight, ChevronDown, CheckCircle2 } from "lucide-react";
 import type { Metadata } from "next";
 
-const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://www.ohakanavi.jp";
+const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://ohakanavi.jp";
 
 export const metadata: Metadata = {
     title: "納骨堂の費用相場【2024年版】種類別の価格・選び方・注意点｜清蓮",
@@ -67,7 +67,7 @@ export default function NoukotsudoCostPage() {
             <JsonLd data={faqLd} />
             <JsonLd data={breadcrumbLd} />
             <Navbar />
-            <main className="grow pt-24 pb-20">
+            <main id="main-content" className="grow pt-24 pb-20">
                 <article className="max-w-3xl mx-auto px-4">
                     <div className="flex items-center gap-2 text-sm text-gray-500 mb-6">
                         <Link href="/guide" className="hover:text-primary transition-colors">ガイド一覧</Link>

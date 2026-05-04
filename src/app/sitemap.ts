@@ -1,10 +1,9 @@
 import { MetadataRoute } from "next";
-import { prisma } from "@/lib/prisma";
 import { PREFECTURES } from "./lib/prefectures";
 
 const BASE_URL =
     process.env.NEXT_PUBLIC_SITE_URL ||
-    "https://www.ohakanavi.jp";
+    "https://ohakanavi.jp";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     const now = new Date();
@@ -56,6 +55,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     // --- Dynamic: Temple Detail Pages ---
     let templeRoutes: MetadataRoute.Sitemap = [];
     try {
+        const { prisma } = await import("@/lib/prisma");
         const temples = await prisma.temple.findMany({
             where: { status: "public", listedInSearch: true },
             select: { id: true, updatedAt: true },

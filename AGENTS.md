@@ -39,3 +39,11 @@ Execution requires explicit approval.
 - SEO impact uncertainty
 - DB or data integrity risk
 - Cross-page or routing side effects
+
+
+<claude-mem-context>
+# Memory Context — seiren-ohaka-navi
+
+- Prefer **SSH** when authenticating GitHub CLI (`gh auth login -h github.com`) for this repository.
+- Public production hostname is **ohakanavi.jp** (apex); external audits or crawls may use **www.ohakanavi.jp**—treat **www vs apex** as a first-class check when comparing live-site or audit output to in-repo metadata (changing metadata, canonicals, or JSON-LD still requires explicit approval per project rules).
+</claude-mem-context>

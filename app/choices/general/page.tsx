@@ -17,9 +17,9 @@ export default function GeneralGravePage() {
             {
                 "@type": "BreadcrumbList",
                 "itemListElement": [
-                    { "@type": "ListItem", "position": 1, "name": "清蓮 お墓探しナビ", "item": "https://www.ohakanavi.jp/" },
-                    { "@type": "ListItem", "position": 2, "name": "供養のカタチ", "item": "https://www.ohakanavi.jp/choices" },
-                    { "@type": "ListItem", "position": 3, "name": "一般墓（墓石）", "item": "https://www.ohakanavi.jp/choices/general" },
+                    { "@type": "ListItem", "position": 1, "name": "清蓮 お墓探しナビ", "item": "https://ohakanavi.jp/" },
+                    { "@type": "ListItem", "position": 2, "name": "供養のカタチ", "item": "https://ohakanavi.jp/choices" },
+                    { "@type": "ListItem", "position": 3, "name": "一般墓（墓石）", "item": "https://ohakanavi.jp/choices/general" },
                 ],
             },
             {
@@ -56,7 +56,7 @@ export default function GeneralGravePage() {
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
             <Navbar />
 
-            <main className="grow pt-24 px-4 pb-20">
+            <main id="main-content" className="grow pt-24 px-4 pb-20">
                 <div className="max-w-4xl mx-auto">
 
                     {/* ヘッダー */}

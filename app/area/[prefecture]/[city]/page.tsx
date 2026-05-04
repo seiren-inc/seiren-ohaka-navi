@@ -85,7 +85,7 @@ export default async function CityPage(props: { params: Promise<{ prefecture: st
             <JsonLd data={breadcrumbLd} />
             <Navbar />
 
-            <main className="grow pt-20">
+            <main id="main-content" className="grow pt-20">
                 <AreaHero
                     prefecture={decodedPrefecture}
                     city={decodedCity}

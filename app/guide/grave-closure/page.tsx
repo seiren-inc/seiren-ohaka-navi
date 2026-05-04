@@ -11,7 +11,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
     title: "墓じまいガイド｜手順・費用・注意点をわかりやすく解説｜清蓮",
     description: "墓じまいの手順（行政手続き・閉眼供養・遺骨の取り出し・改葬の流れ）と費用相場、よくある失敗を専門家が解説します。離檀料や業者の選び方も紹介。",
-    alternates: { canonical: "https://www.ohakanavi.jp/guide/grave-closure" }
+    alternates: { canonical: "https://ohakanavi.jp/guide/grave-closure" }
 };
 
 export default function GuideGraveClosurePage() {
@@ -20,10 +20,10 @@ export default function GuideGraveClosurePage() {
         "@type": "Article",
         "headline": "墓じまいガイド｜手順・費用・注意点をわかりやすく解説",
         "description": "墓じまいの手順、費用相場、よくある失敗と注意点を解説。",
-        "author": { "@type": "Organization", "name": "清蓮（Seiren）", "url": "https://www.ohakanavi.jp/about" },
+        "author": { "@type": "Organization", "name": "清蓮（Seiren）", "url": "https://ohakanavi.jp/about" },
         "publisher": {
             "@type": "Organization", "name": "清蓮（Seiren）",
-            "logo": { "@type": "ImageObject", "url": "https://www.ohakanavi.jp/og-image.jpg" }
+            "logo": { "@type": "ImageObject", "url": "https://ohakanavi.jp/og-image.jpg" }
         },
         "datePublished": "2025-01-01",
         "dateModified": new Date().toISOString().split("T")[0]
@@ -65,7 +65,7 @@ export default function GuideGraveClosurePage() {
             <JsonLd data={articleLd} />
             <JsonLd data={faqLd} />
             <Navbar />
-            <main className="grow pt-24 pb-20">
+            <main id="main-content" className="grow pt-24 pb-20">
                 <article className="max-w-3xl mx-auto px-4">
                     <div className="mb-12">
                         <div className="flex items-center gap-2 text-sm text-gray-500 mb-4">

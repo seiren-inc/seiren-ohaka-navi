@@ -6,7 +6,7 @@ import { JsonLd } from "../../components/seo/JsonLd";
 import { ChevronRight, ChevronDown, CheckCircle2, AlertCircle } from "lucide-react";
 import type { Metadata } from "next";
 
-const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://www.ohakanavi.jp";
+const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://ohakanavi.jp";
 
 export const metadata: Metadata = {
     title: "墓じまいの費用相場【2024年版】内訳・安くする方法を専門家が解説｜清蓮",
@@ -81,7 +81,7 @@ export default function HakaJimanCostPage() {
             <JsonLd data={breadcrumbLd} />
             <Navbar />
 
-            <main className="grow pt-24 pb-20">
+            <main id="main-content" className="grow pt-24 pb-20">
                 <article className="max-w-3xl mx-auto px-4">
                     {/* Breadcrumb */}
                     <div className="flex items-center gap-2 text-sm text-gray-500 mb-6">

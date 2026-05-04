@@ -30,7 +30,7 @@ export function TempleAccess({ data }: TempleAccessProps) {
                                 <Train className="w-4 h-4 mr-2 text-primary" /> 最寄り駅
                             </dt>
                             <dd className="pl-6 space-y-3">
-                                {data.nearestStations.map((st, i) => (
+                                {(data.nearestStations ?? []).map((st, i) => (
                                     <div key={i} className="text-gray-800">
                                         <span className="font-bold border-b-2 border-primary/20">{st.line} 「{st.name}」</span>
                                         <span className="text-sm text-gray-600 ml-2 font-bold">徒歩 {st.walkMinutes}分</span>

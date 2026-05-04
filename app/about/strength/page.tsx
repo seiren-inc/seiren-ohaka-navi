@@ -67,7 +67,7 @@ export default function StrengthPage() {
         <div className="min-h-screen flex flex-col bg-white text-gray-800">
             <Navbar />
 
-            <main className="grow">
+            <main id="main-content" className="grow">
                 {/* Hero */}
                 <section className="bg-slate-50 pt-32 pb-20 px-4 text-center">
                     <div className="max-w-4xl mx-auto">

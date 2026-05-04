@@ -1,26 +1,34 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  eslint: {
-    ignoreDuringBuilds: true,
-  },
-  typescript: {
-    ignoreBuildErrors: true,
+  images: {
+    formats: ["image/avif", "image/webp"],
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "images.unsplash.com",
+      },
+    ],
   },
   // 本番ドメイン: https://ohakanavi.jp
-  // DNS反映後に以下のコメントアウトを解除する
-  // async redirects() {
-  //   return [
-  //     // Vercel自動ドメインから本番ドメインへ301リダイレクト
-  //     {
-  //       source: "/:path*",
-  //       has: [{ type: "host", value: "seiren-ohaka-navi.vercel.app" }],
-  //       destination: "https://ohakanavi.jp/:path*",
-  //       permanent: true,
-  //     },
-  //   ];
-  // },
+  async redirects() {
+    return [
+      // www → non-www 正規化（SEO対策: ドメイン統一）
+      {
+        source: "/:path*",
+        has: [{ type: "host", value: "www.ohakanavi.jp" }],
+        destination: "https://ohakanavi.jp/:path*",
+        permanent: true,
+      },
+      // Vercel自動ドメインから本番ドメインへ301リダイレクト
+      {
+        source: "/:path*",
+        has: [{ type: "host", value: "seiren-ohaka-navi.vercel.app" }],
+        destination: "https://ohakanavi.jp/:path*",
+        permanent: true,
+      },
+    ];
+  },
 };
 
 export default nextConfig;
-

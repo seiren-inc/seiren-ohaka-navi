@@ -15,7 +15,7 @@ export function DiagnosisContent() {
         <div className="min-h-screen flex flex-col bg-slate-50 text-gray-800">
             <Navbar />
 
-            <main className="grow pt-24 px-4 pb-20">
+            <main id="main-content" className="grow pt-24 px-4 pb-20">
                 <div className="max-w-6xl mx-auto">
 
                     {/* Header Section */}

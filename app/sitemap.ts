@@ -1,10 +1,14 @@
 import { MetadataRoute } from "next";
-import { prisma } from "@/lib/prisma";
 import { PREFECTURES } from "./lib/prefectures";
 
 const BASE_URL =
     process.env.NEXT_PUBLIC_SITE_URL ||
-    "https://www.ohakanavi.jp";
+    "https://ohakanavi.jp";
+
+const SHOULD_FETCH_DYNAMIC_SITEMAP =
+    process.env.SITEMAP_SKIP_DYNAMIC !== "1" &&
+    !!process.env.DATABASE_URL &&
+    (process.env.VERCEL === "1" || process.env.CI === "true");
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     const now = new Date();
@@ -43,9 +47,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         { url: `${BASE_URL}/consult/ikotsu-service`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
         { url: `${BASE_URL}/about`, lastModified: now, changeFrequency: "yearly", priority: 0.5 },
         { url: `${BASE_URL}/about/company`, lastModified: now, changeFrequency: "yearly", priority: 0.5 },
+        { url: `${BASE_URL}/about/partner`, lastModified: now, changeFrequency: "yearly", priority: 0.5 },
         { url: `${BASE_URL}/about/strength`, lastModified: now, changeFrequency: "yearly", priority: 0.5 },
+        { url: `${BASE_URL}/contact`, lastModified: now, changeFrequency: "monthly", priority: 0.6 },
         { url: `${BASE_URL}/faq`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
+        { url: `${BASE_URL}/guide/flow-after-death`, lastModified: now, changeFrequency: "monthly", priority: 0.6 },
         { url: `${BASE_URL}/privacy`, lastModified: now, changeFrequency: "yearly", priority: 0.3 },
+        { url: `${BASE_URL}/terms`, lastModified: now, changeFrequency: "yearly", priority: 0.3 },
     ];
 
     // --- Dynamic: Area (Prefecture) Pages ---
@@ -57,9 +65,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         priority: 0.7,
     }));
 
+    if (!SHOULD_FETCH_DYNAMIC_SITEMAP) {
+        return [...staticRoutes, ...areaRoutes];
+    }
+
     // --- Dynamic: Temple Detail Pages ---
     let templeRoutes: MetadataRoute.Sitemap = [];
     try {
+        const { prisma } = await import("@/lib/prisma");
         const temples = await prisma.temple.findMany({
             where: { status: "public", listedInSearch: true },
             select: { id: true, updatedAt: true },
@@ -77,6 +90,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     // --- Dynamic: City Pages ---
     let cityRoutes: MetadataRoute.Sitemap = [];
     try {
+        const { prisma } = await import("@/lib/prisma");
         const cityGroups = await prisma.temple.findMany({
             where: { status: "public", listedInSearch: true },
             select: { prefecture: true, cityName: true },

@@ -29,7 +29,7 @@ export function TempleSuitable({ data }: TempleSuitableProps) {
                         この霊園が向いている方
                     </div>
                     <ul className="space-y-3">
-                        {data.suitableFor.slice(0, 3).map((text, i) => (
+                        {(data.suitableFor ?? []).slice(0, 3).map((text, i) => (
                             <li key={i} className="flex items-start gap-2 text-sm text-gray-700">
                                 <span className="text-blue-200 mt-1">●</span>
                                 {text}

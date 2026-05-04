@@ -7,13 +7,14 @@ import { Button } from "../../components/ui/Button";
 export const metadata: Metadata = {
     title: "提携をご希望の寺院・事業者様へ｜清蓮",
     description: "清蓮への掲載・提携をご希望の寺院様、霊園管理者様、関連事業者様へのお知らせ。",
+    alternates: { canonical: "https://ohakanavi.jp/about/partner" },
 };
 
 export default function PartnerPage() {
     return (
         <div className="min-h-screen flex flex-col bg-white text-gray-800">
             <Navbar />
-            <main className="grow pt-24 px-4 pb-20">
+            <main id="main-content" className="grow pt-24 px-4 pb-20">
                 <div className="max-w-3xl mx-auto">
 
                     <div className="text-center mb-12">

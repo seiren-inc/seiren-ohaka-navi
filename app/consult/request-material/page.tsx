@@ -468,7 +468,7 @@ export default function RequestMaterialPage() {
     return (
         <div className="min-h-screen flex flex-col bg-white-smoke">
             <Navbar />
-            <main className="grow pt-32 px-4 pb-20">
+            <main id="main-content" className="grow pt-32 px-4 pb-20">
                 <Suspense fallback={<div className="text-center py-20">Loading form...</div>}>
                     <RequestForm />
                 </Suspense>

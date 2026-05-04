@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { Noto_Sans_JP } from "next/font/google";
-import Script from "next/script";
+import { DeferredAnalytics } from "./components/analytics/DeferredAnalytics";
 import { FixedCTA } from "./components/layout/FixedCTA";
+import { SkipToMainLink } from "./components/accessibility/SkipToMainLink";
 import "./globals.css";
 
 const notoSansJP = Noto_Sans_JP({
@@ -17,7 +18,7 @@ const shipporiMincho = Noto_Sans_JP({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://www.ohakanavi.jp"),
+  metadataBase: new URL("https://ohakanavi.jp"),
   title: {
     default: "清蓮（Seiren）| お墓探しナビ",
     template: "%s | 清蓮",
@@ -52,7 +53,7 @@ export const metadata: Metadata = {
   },
 };
 
-const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://www.ohakanavi.jp";
+const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://ohakanavi.jp";
 const GA_ID = process.env.NEXT_PUBLIC_GA_ID;
 const CLARITY_ID = process.env.NEXT_PUBLIC_CLARITY_ID;
 
@@ -63,12 +64,27 @@ const organizationLd = {
       "@type": "Organization",
       "@id": `${BASE_URL}/#organization`,
       "name": "清蓮（Seiren）",
+      "alternateName": "お墓探しナビ",
       "url": BASE_URL,
       "logo": {
         "@type": "ImageObject",
         "url": `${BASE_URL}/icon.png`,
       },
       "description": "墓地・永代供養・樹木葬・納骨堂の検索・比較サービス。専門家が中立な立場でご提案。改葬・墓じまいもサポート。",
+      "telephone": "0800-888-8788",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "0800-888-8788",
+        "contactType": "customer service",
+        "availableLanguage": "Japanese",
+        "areaServed": "JP",
+        "hoursAvailable": {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+          "opens": "09:00",
+          "closes": "18:00",
+        },
+      },
       "sameAs": [],
     },
     {
@@ -106,35 +122,8 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationLd) }}
         />
-        {/* Google Analytics 4 */}
-        {GA_ID && (
-          <>
-            <Script
-              src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
-              strategy="afterInteractive"
-            />
-            <Script id="ga4-init" strategy="afterInteractive">
-              {`
-                window.dataLayer = window.dataLayer || [];
-                function gtag(){dataLayer.push(arguments);}
-                gtag('js', new Date());
-                gtag('config', '${GA_ID}');
-              `}
-            </Script>
-          </>
-        )}
-        {/* Microsoft Clarity */}
-        {CLARITY_ID && (
-          <Script id="clarity-init" strategy="afterInteractive">
-            {`
-              (function(c,l,a,r,i,t,y){
-                c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-                t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-                y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-              })(window, document, "clarity", "script", "${CLARITY_ID}");
-            `}
-          </Script>
-        )}
+        <DeferredAnalytics gaId={GA_ID} clarityId={CLARITY_ID} />
+        <SkipToMainLink />
         {children}
         <FixedCTA />
       </body>

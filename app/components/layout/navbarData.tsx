@@ -1,4 +1,5 @@
 export const KUYOU_LINKS = [
+    { label: "供養の選択肢一覧", description: "比較トップ・診断で整理", href: "/choices" },
     { label: "永代供養墓", description: "継承不要・お寺が供養を続ける", href: "/choices/eitai-kuyou" },
     { label: "樹木葬", description: "自然に還る、新しい供養のカタチ", href: "/choices/jumokusou" },
     { label: "納骨堂", description: "屋内で管理しやすいお墓", href: "/choices/noukotsudou" },

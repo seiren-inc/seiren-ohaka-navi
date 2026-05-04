@@ -5,13 +5,14 @@ import { Metadata } from "next";
 export const metadata: Metadata = {
     title: "利用規約｜清蓮",
     description: "清蓮（SEIREN）のウェブサイト利用規約です。",
+    alternates: { canonical: "https://ohakanavi.jp/terms" },
 };
 
 export default function TermsPage() {
     return (
         <div className="min-h-screen flex flex-col bg-white text-gray-800">
             <Navbar />
-            <main className="grow pt-24 px-4 pb-20">
+            <main id="main-content" className="grow pt-24 px-4 pb-20">
                 <div className="max-w-4xl mx-auto">
                     <h1 className="font-serif text-3xl font-bold text-primary mb-8 border-b pb-4">
                         利用規約

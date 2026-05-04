@@ -11,7 +11,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
     title: "永代供養とは？費用相場やメリット・デメリットを徹底解説｜清蓮",
     description: "永代供養（えいたいくよう）にかかる費用相場、一般的なお墓との違い、後悔しない選び方のポイントを供養の専門家が分かりやすく解説します。",
-    alternates: { canonical: "https://www.ohakanavi.jp/guide/eitai-kuyou" }
+    alternates: { canonical: "https://ohakanavi.jp/guide/eitai-kuyou" }
 };
 
 export default function GuideEitaiKuyouPage() {
@@ -23,14 +23,14 @@ export default function GuideEitaiKuyouPage() {
         "author": {
             "@type": "Organization",
             "name": "清蓮（Seiren）",
-            "url": "https://www.ohakanavi.jp/about"
+            "url": "https://ohakanavi.jp/about"
         },
         "publisher": {
             "@type": "Organization",
             "name": "清蓮（Seiren）",
             "logo": {
                 "@type": "ImageObject",
-                "url": "https://www.ohakanavi.jp/og-image.jpg"
+                "url": "https://ohakanavi.jp/og-image.jpg"
             }
         },
         "datePublished": "2025-01-01",
@@ -68,7 +68,7 @@ export default function GuideEitaiKuyouPage() {
             <JsonLd data={faqLd} />
             <Navbar />
             
-            <main className="grow pt-24 pb-20">
+            <main id="main-content" className="grow pt-24 pb-20">
                 <article className="max-w-3xl mx-auto px-4">
                     {/* Header */}
                     <div className="mb-12">
