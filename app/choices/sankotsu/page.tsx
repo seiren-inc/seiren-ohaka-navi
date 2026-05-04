@@ -9,6 +9,7 @@ import { CheckCircle, AlertCircle, HelpCircle, BookOpen, Info, Calculator, Searc
 export const metadata: Metadata = {
     title: "海洋散骨とは｜方法・費用・注意点を中立に解説｜清蓮",
     description: "海洋散骨とは何か。実施方法の違い（チャーター・合同・代行）、費用の考え方、注意点（法律・粉骨・マナー）を中立の立場で解説します。",
+    alternates: { canonical: "https://www.ohakanavi.jp/choices/sankotsu" },
 };
 
 export default function SankotsuPage() {
@@ -18,9 +19,9 @@ export default function SankotsuPage() {
             {
                 "@type": "BreadcrumbList",
                 "itemListElement": [
-                    { "@type": "ListItem", "position": 1, "name": "清蓮（Seiren）", "item": "https://seiren-ohaka-navi.vercel.app" },
-                    { "@type": "ListItem", "position": 2, "name": "Choices", "item": "https://seiren-ohaka-navi.vercel.app/choices" },
-                    { "@type": "ListItem", "position": 3, "name": "海洋散骨", "item": "https://seiren-ohaka-navi.vercel.app/choices/sankotsu" }
+                    { "@type": "ListItem", "position": 1, "name": "清蓮（Seiren）", "item": "https://www.ohakanavi.jp" },
+                    { "@type": "ListItem", "position": 2, "name": "Choices", "item": "https://www.ohakanavi.jp/choices" },
+                    { "@type": "ListItem", "position": 3, "name": "海洋散骨", "item": "https://www.ohakanavi.jp/choices/sankotsu" }
                 ]
             },
             {

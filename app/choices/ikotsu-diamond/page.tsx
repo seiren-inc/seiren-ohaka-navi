@@ -8,6 +8,7 @@ import { CheckCircle, AlertCircle, HelpCircle, BookOpen, Info, Calculator, Searc
 export const metadata: Metadata = {
     title: "遺骨ダイヤモンドとは｜費用・期間・注意点を中立に解説｜清蓮",
     description: "遺骨ダイヤモンドとは何か。遺骨から作る人工ダイヤモンドの仕組み、費用と製作期間の目安、注文前に確認すべき注意点を中立の立場で解説します。",
+    alternates: { canonical: "https://www.ohakanavi.jp/choices/ikotsu-diamond" },
 };
 
 export default function IkotsuDiamondPage() {
@@ -17,9 +18,9 @@ export default function IkotsuDiamondPage() {
             {
                 "@type": "BreadcrumbList",
                 "itemListElement": [
-                    { "@type": "ListItem", "position": 1, "name": "清蓮（Seiren）", "item": "https://seiren-ohaka-navi.vercel.app" },
-                    { "@type": "ListItem", "position": 2, "name": "Choices", "item": "https://seiren-ohaka-navi.vercel.app/choices" },
-                    { "@type": "ListItem", "position": 3, "name": "遺骨ダイヤモンド", "item": "https://seiren-ohaka-navi.vercel.app/choices/ikotsu-diamond" }
+                    { "@type": "ListItem", "position": 1, "name": "清蓮（Seiren）", "item": "https://www.ohakanavi.jp" },
+                    { "@type": "ListItem", "position": 2, "name": "Choices", "item": "https://www.ohakanavi.jp/choices" },
+                    { "@type": "ListItem", "position": 3, "name": "遺骨ダイヤモンド", "item": "https://www.ohakanavi.jp/choices/ikotsu-diamond" }
                 ]
             },
             {

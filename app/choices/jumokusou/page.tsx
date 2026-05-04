@@ -8,6 +8,7 @@ import { CheckCircle, AlertCircle, HelpCircle, BookOpen, Info, Calculator, Searc
 export const metadata: Metadata = {
     title: "樹木葬とは｜特徴・費用・メリットを中立に解説｜清蓮",
     description: "樹木葬とは何か。自然志向の供養方法について、仕組みや費用の考え方、メリットと注意点を中立の立場で解説します。",
+    alternates: { canonical: "https://www.ohakanavi.jp/choices/jumokusou" },
 };
 
 export default function JumokusouPage() {
@@ -17,9 +18,9 @@ export default function JumokusouPage() {
             {
                 "@type": "BreadcrumbList",
                 "itemListElement": [
-                    { "@type": "ListItem", "position": 1, "name": "清蓮（Seiren）", "item": "https://seiren-ohaka-navi.vercel.app" },
-                    { "@type": "ListItem", "position": 2, "name": "Choices", "item": "https://seiren-ohaka-navi.vercel.app/choices" },
-                    { "@type": "ListItem", "position": 3, "name": "樹木葬", "item": "https://seiren-ohaka-navi.vercel.app/choices/jumokusou" }
+                    { "@type": "ListItem", "position": 1, "name": "清蓮（Seiren）", "item": "https://www.ohakanavi.jp" },
+                    { "@type": "ListItem", "position": 2, "name": "Choices", "item": "https://www.ohakanavi.jp/choices" },
+                    { "@type": "ListItem", "position": 3, "name": "樹木葬", "item": "https://www.ohakanavi.jp/choices/jumokusou" }
                 ]
             },
             {

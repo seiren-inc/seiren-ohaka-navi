@@ -8,6 +8,7 @@ import { CheckCircle, AlertCircle, HelpCircle, BookOpen, Calculator, Search, Pho
 export const metadata: Metadata = {
     title: "一般墓（墓石）とは｜費用・選び方・継承について解説｜清蓮",
     description: "一般墓（墓石）の仕組み・費用の目安・メリットと注意点を、供養の専門家が中立の立場で解説します。永代供養・樹木葬との違いも整理。",
+    alternates: { canonical: "https://www.ohakanavi.jp/choices/general" },
 };
 
 export default function GeneralGravePage() {

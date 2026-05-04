@@ -204,7 +204,7 @@ function CreateUserModal({ onClose, onSuccess }: { onClose: () => void, onSucces
                     <div className="bg-gray-50 border border-gray-200 rounded-lg p-4 space-y-3 font-mono text-sm mb-6">
                         <div>
                             <span className="text-gray-400 text-xs">ログインURL</span>
-                            <div className="font-bold text-primary">https://seiren-ohaka-navi.vercel.app/portal/login</div>
+                            <div className="font-bold text-primary">https://www.ohakanavi.jp/portal/login</div>
                         </div>
                         <div>
                             <span className="text-gray-400 text-xs">Email (ID)</span>
