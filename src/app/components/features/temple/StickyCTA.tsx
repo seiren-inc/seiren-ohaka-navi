@@ -4,7 +4,6 @@ import { Button } from "../../ui/Button";
 import { FileText, CalendarCheck } from "lucide-react";
 import Link from "next/link";
 import { Temple } from "@/lib/store";
-import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
 interface StickyCTAProps {
