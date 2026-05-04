@@ -8,7 +8,7 @@ interface TempleFeaturesProps {
 }
 
 export function TempleFeatures({ data }: TempleFeaturesProps) {
-    if (data.keyFeatures.length === 0) return null;
+    if (!data.keyFeatures?.length) return null;
 
     return (
         <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6 md:p-8">
@@ -17,7 +17,7 @@ export function TempleFeatures({ data }: TempleFeaturesProps) {
             </h2>
 
             <div className="grid md:grid-cols-2 gap-6">
-                {data.keyFeatures.map((feature, i) => (
+                {(data.keyFeatures ?? []).map((feature, i) => (
                     <div key={i} className="flex gap-4 p-4 border-b border-gray-100 last:border-0 md:border-0">
                         <div className="shrink-0 text-secondary bg-blue-50 w-12 h-12 rounded-full flex items-center justify-center">
                             <CheckCircle2 className="w-6 h-6" />
