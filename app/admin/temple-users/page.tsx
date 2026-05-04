@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { Users, Plus, CheckCircle2, ShieldAlert, Loader2, Key, Search } from "lucide-react";
 import Link from "next/link";
 import { useToast } from "@/app/components/admin/Toast";
@@ -25,7 +25,7 @@ export default function TempleUsersPage() {
     const [showModal, setShowModal] = useState(false);
     const { toast } = useToast();
 
-    const fetchUsers = () => {
+    const fetchUsers = useCallback(() => {
         setLoading(true);
         fetch("/api/admin/temple-users")
             .then(res => res.json())
@@ -37,11 +37,11 @@ export default function TempleUsersPage() {
                 toast("アカウントの取得に失敗しました", "error");
                 setLoading(false);
             });
-    };
+    }, [toast]);
 
     useEffect(() => {
         fetchUsers();
-    }, []);
+    }, [fetchUsers]);
 
     const filteredUsers = users.filter(u =>
         u.name.includes(search) || u.email.includes(search) || u.temple.name.includes(search)
@@ -184,8 +184,8 @@ function CreateUserModal({ onClose, onSuccess }: { onClose: () => void, onSucces
             
             // パスワードを画面に表示するため保持
             setResult({ email: form.email, password: data.initialPassword });
-        } catch (err: any) {
-            alert(err.message);
+        } catch (err) {
+            alert(err instanceof Error ? err.message : 'エラーが発生しました');
         } finally {
             setLoading(false);
         }

@@ -7,7 +7,7 @@ import { Metadata } from "next";
 export const metadata: Metadata = {
     title: "没後の手続きフロー｜清蓮",
     description: "死亡届の提出から相続、納骨まで、没後に必要な主な手続きを時系列で整理したガイドです。",
-    alternates: { canonical: "https://ohakanavi.jp/guide/flow-after-death" },
+    alternates: { canonical: "https://www.ohakanavi.jp/guide/flow-after-death" },
 };
 
 export default function GuideFlowAfterDeathPage() {

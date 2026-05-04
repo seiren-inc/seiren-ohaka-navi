@@ -29,13 +29,13 @@ export function AuthorJsonLd({
     author: {
       "@type": "Organization",
       name: "清蓮（Seiren）",
-      url: "https://ohakanavi.jp",
+      url: "https://www.ohakanavi.jp",
     },
     publisher: {
       "@type": "Organization",
       name: "清蓮（Seiren）",
-      url: "https://ohakanavi.jp",
-      logo: "https://ohakanavi.jp/icon.png",
+      url: "https://www.ohakanavi.jp",
+      logo: "https://www.ohakanavi.jp/icon.png",
     },
     reviewedBy: {
       "@type": "Person",
@@ -50,7 +50,7 @@ export function AuthorJsonLd({
     isPartOf: {
       "@type": "WebSite",
       name: "清蓮 お墓探しナビ",
-      url: "https://ohakanavi.jp",
+      url: "https://www.ohakanavi.jp",
     },
   }
 

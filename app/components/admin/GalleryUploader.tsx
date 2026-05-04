@@ -111,7 +111,7 @@ export const GalleryUploader = ({ images = [], onChange, folder = "gallery", lab
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                 {images.map((url, i) => (
                     <div key={`${url}-${i}`} className="group relative aspect-video bg-gray-100 rounded-lg overflow-hidden border border-gray-200 shadow-sm">
-                        <img src={url} className="w-full h-full object-cover" />
+                        <img src={url} alt={`ギャラリー画像 ${i + 1}`} className="w-full h-full object-cover" />
 
                         {/* Overlay Controls */}
                         <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-between p-2">
