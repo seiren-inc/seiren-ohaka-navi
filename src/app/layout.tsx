@@ -17,7 +17,7 @@ const shipporiMincho = Noto_Sans_JP({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://ohakanavi.jp"),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://www.ohakanavi.jp"),
   title: {
     default: "清蓮（Seiren）| お墓探しナビ",
     template: "%s | 清蓮",
@@ -37,7 +37,7 @@ export const metadata: Metadata = {
   },
 };
 
-const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://ohakanavi.jp";
+const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://www.ohakanavi.jp";
 const GA_ID = process.env.NEXT_PUBLIC_GA_ID;
 const CLARITY_ID = process.env.NEXT_PUBLIC_CLARITY_ID;
 

@@ -6,7 +6,7 @@ import { JsonLd } from "../../components/seo/JsonLd";
 import { ChevronRight, ChevronDown, CheckCircle2 } from "lucide-react";
 import type { Metadata } from "next";
 
-const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://ohakanavi.jp";
+const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://www.ohakanavi.jp";
 
 export const metadata: Metadata = {
     title: "永代供養は独身・一人っ子でも大丈夫？選び方と注意点を解説｜清蓮",

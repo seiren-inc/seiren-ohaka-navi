@@ -3,7 +3,7 @@ import { PREFECTURES } from "./lib/prefectures";
 
 const BASE_URL =
     process.env.NEXT_PUBLIC_SITE_URL ||
-    "https://ohakanavi.jp";
+    "https://www.ohakanavi.jp";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     const now = new Date();

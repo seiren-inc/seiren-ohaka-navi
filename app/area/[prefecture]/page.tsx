@@ -12,7 +12,7 @@ import { AreaFAQ } from "../../components/features/area/AreaFAQ";
 import { JsonLd } from "../../components/seo/JsonLd";
 import { PREFECTURES } from "../../lib/prefectures";
 
-const BASE_URL = "https://ohakanavi.jp";
+const BASE_URL = "https://www.ohakanavi.jp";
 
 function isPrismaConnectivityError(error: unknown): boolean {
     return (
