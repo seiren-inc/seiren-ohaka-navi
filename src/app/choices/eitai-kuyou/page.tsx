@@ -4,7 +4,7 @@ import { Footer } from "../../components/layout/Footer";
 import { Button } from "../../components/ui/Button";
 import { Breadcrumb } from "../../components/ui/Breadcrumb";
 import { Metadata } from "next";
-import { CheckCircle, AlertCircle, HelpCircle, BookOpen, Info, Calculator, Search, Phone, ArrowRight } from "lucide-react";
+import { CheckCircle, AlertCircle, HelpCircle, BookOpen, Info, Calculator, Search, Phone } from "lucide-react";
 
 export const metadata: Metadata = {
     title: "永代供養とは｜仕組み・費用・メリットを中立に解説｜清蓮",
