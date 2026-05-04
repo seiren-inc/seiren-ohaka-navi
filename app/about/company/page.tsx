@@ -8,6 +8,7 @@ import { CompanyContactCTA } from "./CompanyContactCTA";
 export const metadata: Metadata = {
     title: "運営会社｜清蓮（SEIREN）",
     description: "株式会社清蓮の会社概要、事業内容、取引先銀行、提携先企業について。",
+    alternates: { canonical: "https://www.ohakanavi.jp/about/company" },
 };
 
 export default function CompanyPage() {
