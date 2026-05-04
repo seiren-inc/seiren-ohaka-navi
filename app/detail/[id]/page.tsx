@@ -27,7 +27,7 @@ export async function generateMetadata(
     const seo = temple.seo as Record<string, unknown> | null;
     const location = [temple.cityName, temple.prefecture].filter(Boolean).join("・");
     const defaultTitle = `${temple.name}（${location}）| 墓地・永代供養なら清蓮`;
-    const defaultDesc = `${temple.name}（${location}）の墓地情報。永代供養・樹木葵・納骨堂の区画一覧、料金・アクセス情報を掲載。無料相談可。`;
+    const defaultDesc = `${temple.name}（${location}）の墓地情報。永代供養・樹木葬・納骨堂の区画一覧、料金・アクセス情報を掲載。無料相談可。`;
 
     const title = (seo?.title as string) || defaultTitle;
     const description = (seo?.description as string) || defaultDesc;
