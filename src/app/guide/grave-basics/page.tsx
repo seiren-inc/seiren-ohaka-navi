@@ -10,6 +10,8 @@ export const metadata: Metadata = {
     description: "一般墓、永代供養墓、納骨堂、樹木葬、海洋散骨、自宅供養の違いを中立に解説。費用感、管理、継承、宗教、改葬の有無など迷いポイント別に判断基準を整理。診断チャートや無料相談への導線あり。",
 };
 
+const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://www.ohakanavi.jp";
+
 export default function GuideGraveBasicsPage() {
     const jsonLd = {
         "@context": "https://schema.org",
@@ -17,9 +19,9 @@ export default function GuideGraveBasicsPage() {
             {
                 "@type": "BreadcrumbList",
                 "itemListElement": [
-                    { "@type": "ListItem", "position": 1, "name": "清蓮（Seiren）", "item": "https://seiren-ohaka-navi.vercel.app" },
-                    { "@type": "ListItem", "position": 2, "name": "Guide", "item": "https://seiren-ohaka-navi.vercel.app/guide" },
-                    { "@type": "ListItem", "position": 3, "name": "お墓の基礎知識", "item": "https://seiren-ohaka-navi.vercel.app/guide/grave-basics" }
+                    { "@type": "ListItem", "position": 1, "name": "清蓮（Seiren）", "item": BASE_URL },
+                    { "@type": "ListItem", "position": 2, "name": "Guide", "item": `${BASE_URL}/guide` },
+                    { "@type": "ListItem", "position": 3, "name": "お墓の基礎知識", "item": `${BASE_URL}/guide/grave-basics` }
                 ]
             },
             {

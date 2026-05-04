@@ -11,6 +11,8 @@ export const metadata: Metadata = {
     description: "海洋散骨とは何か。実施方法の違い（チャーター・合同・代行）、費用の考え方、注意点（法律・粉骨・マナー）を中立の立場で解説します。",
 };
 
+const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://www.ohakanavi.jp";
+
 export default function SankotsuPage() {
     const jsonLd = {
         "@context": "https://schema.org",
@@ -18,9 +20,9 @@ export default function SankotsuPage() {
             {
                 "@type": "BreadcrumbList",
                 "itemListElement": [
-                    { "@type": "ListItem", "position": 1, "name": "清蓮（Seiren）", "item": "https://seiren-ohaka-navi.vercel.app" },
-                    { "@type": "ListItem", "position": 2, "name": "Choices", "item": "https://seiren-ohaka-navi.vercel.app/choices" },
-                    { "@type": "ListItem", "position": 3, "name": "海洋散骨", "item": "https://seiren-ohaka-navi.vercel.app/choices/sankotsu" }
+                    { "@type": "ListItem", "position": 1, "name": "清蓮（Seiren）", "item": BASE_URL },
+                    { "@type": "ListItem", "position": 2, "name": "Choices", "item": `${BASE_URL}/choices` },
+                    { "@type": "ListItem", "position": 3, "name": "海洋散骨", "item": `${BASE_URL}/choices/sankotsu` }
                 ]
             },
             {

@@ -17,7 +17,7 @@ const shipporiMincho = Noto_Sans_JP({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://seiren-ohaka-navi.vercel.app"),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://www.ohakanavi.jp"),
   title: {
     default: "清蓮（Seiren）| お墓探しナビ",
     template: "%s | 清蓮",
