@@ -16,7 +16,7 @@ import { TempleSuitable } from "../../components/features/temple/TempleSuitable"
 import { TempleGuide } from "../../components/features/temple/TempleGuide";
 import { TempleClosing } from "../../components/features/temple/TempleClosing";
 
-const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://seiren-ohaka-navi.vercel.app";
+const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://www.ohakanavi.jp";
 
 export async function generateMetadata(
     props: { params: Promise<{ id: string }> }

@@ -11,6 +11,8 @@ export const metadata: Metadata = {
     description: "自宅供養とは何か。骨箱での自宅安置、遺骨ペンダントなどの手元供養、遺骨ダイヤモンドなど、手元に遺骨を残す供養方法を中立に解説します。",
 };
 
+const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://www.ohakanavi.jp";
+
 export default function TemotoKuyouPage() {
     const jsonLd = {
         "@context": "https://schema.org",
@@ -18,9 +20,9 @@ export default function TemotoKuyouPage() {
             {
                 "@type": "BreadcrumbList",
                 "itemListElement": [
-                    { "@type": "ListItem", "position": 1, "name": "清蓮（Seiren）", "item": "https://seiren-ohaka-navi.vercel.app" },
-                    { "@type": "ListItem", "position": 2, "name": "Choices", "item": "https://seiren-ohaka-navi.vercel.app/choices" },
-                    { "@type": "ListItem", "position": 3, "name": "自宅供養", "item": "https://seiren-ohaka-navi.vercel.app/choices/temoto-kuyou" }
+                    { "@type": "ListItem", "position": 1, "name": "清蓮（Seiren）", "item": BASE_URL },
+                    { "@type": "ListItem", "position": 2, "name": "Choices", "item": `${BASE_URL}/choices` },
+                    { "@type": "ListItem", "position": 3, "name": "自宅供養", "item": `${BASE_URL}/choices/temoto-kuyou` }
                 ]
             },
             {

@@ -9,7 +9,7 @@ import { AreaTempleList } from "../../../components/features/area/AreaTempleList
 import { AreaNav } from "../../../components/features/area/AreaNav";
 import { JsonLd } from "../../../components/seo/JsonLd";
 
-const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://seiren-ohaka-navi.vercel.app";
+const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://www.ohakanavi.jp";
 
 export async function generateMetadata(
     props: { params: Promise<{ prefecture: string; city: string }> }
@@ -31,13 +31,14 @@ export default async function CityPage(props: { params: Promise<{ prefecture: st
     const decodedCity = decodeURIComponent(params.city);
 
     // Get count for Hero
-    const count = await prisma.temple.count({
-        where: {
-            prefecture: decodedPrefecture,
-            cityName: decodedCity,
-            status: 'public'
-        }
-    });
+    let count = 0;
+    try {
+        count = await prisma.temple.count({
+            where: { prefecture: decodedPrefecture, cityName: decodedCity, status: 'public' }
+        });
+    } catch (err) {
+        console.error('[area/[prefecture]/[city]] DB count error:', err);
+    }
 
     // If no temples in city, maybe 404? Or just show empty list? 
     // Request says "Modal only shows cities with temples", so theoretically user shouldn't land here if empty unless direct URL.

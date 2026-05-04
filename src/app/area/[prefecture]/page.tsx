@@ -9,7 +9,7 @@ import { AreaTempleList } from "../../components/features/area/AreaTempleList";
 import { AreaNav } from "../../components/features/area/AreaNav";
 import { JsonLd } from "../../components/seo/JsonLd";
 
-const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://seiren-ohaka-navi.vercel.app";
+const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://www.ohakanavi.jp";
 
 export async function generateMetadata(
     props: { params: Promise<{ prefecture: string }> }
@@ -37,12 +37,14 @@ export default async function AreaPage(props: { params: Promise<{ prefecture: st
     // Assuming simple passthrough for MVP.
 
     // Get count for Hero (Only public)
-    const count = await prisma.temple.count({
-        where: {
-            prefecture: decodedPrefecture,
-            status: 'public'
-        }
-    });
+    let count = 0;
+    try {
+        count = await prisma.temple.count({
+            where: { prefecture: decodedPrefecture, status: 'public' }
+        });
+    } catch (err) {
+        console.error('[area/[prefecture]] DB count error:', err);
+    }
 
     const breadcrumbLd = {
         "@context": "https://schema.org",
