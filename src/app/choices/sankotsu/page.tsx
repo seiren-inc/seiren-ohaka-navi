@@ -4,7 +4,7 @@ import { Navbar } from "../../components/layout/Navbar";
 import { Footer } from "../../components/layout/Footer";
 import { Button } from "../../components/ui/Button";
 import { Metadata } from "next";
-import { CheckCircle, AlertCircle, HelpCircle, BookOpen, Info, Calculator, Search, Phone, Anchor, Ship, Waves } from "lucide-react";
+import { CheckCircle, AlertCircle, HelpCircle, BookOpen, Calculator, Search, Phone, Ship, Waves } from "lucide-react";
 
 export const metadata: Metadata = {
     title: "海洋散骨とは｜方法・費用・注意点を中立に解説｜清蓮",

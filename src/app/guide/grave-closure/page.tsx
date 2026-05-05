@@ -3,7 +3,7 @@ import { Navbar } from "../../components/layout/Navbar";
 import { Footer } from "../../components/layout/Footer";
 import { Button } from "../../components/ui/Button";
 import { Metadata } from "next";
-import { ArrowRight, ChevronRight, AlertCircle, HelpCircle, CheckCircle, Info } from "lucide-react";
+import { ArrowRight, AlertCircle, HelpCircle, CheckCircle, Info } from "lucide-react";
 
 export const metadata: Metadata = {
     title: "墓じまいとは｜手続き・費用・流れを専門家が中立解説｜清蓮",

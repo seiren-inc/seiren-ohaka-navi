@@ -5,7 +5,7 @@ import { getStripe } from '@/lib/stripe';
 
 export const dynamic = 'force-dynamic';
 
-const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://seiren-ohaka-navi.vercel.app';
+const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.ohakanavi.jp';
 
 export async function POST(_req: NextRequest) {
     try {

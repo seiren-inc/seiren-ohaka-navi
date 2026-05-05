@@ -8,6 +8,7 @@ import { Metadata } from "next";
 export const metadata: Metadata = {
     title: "墓じまいのよくある質問｜清蓮",
     description: "墓じまいや改葬に関する疑問・質問にお答えします。",
+    alternates: { canonical: "https://www.ohakanavi.jp/grave-closure/faq" },
 };
 
 export default function GraveClosureFaqPage() {

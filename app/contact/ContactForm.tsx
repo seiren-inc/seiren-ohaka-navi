@@ -2,10 +2,12 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import { Button } from "../components/ui/Button";
 import { Search } from "lucide-react";
 
 export function ContactForm() {
+    const router = useRouter();
     const [formData, setFormData] = useState({
         name: "",
         furigana: "",
@@ -90,15 +92,7 @@ export function ContactForm() {
             });
 
             if (!res.ok) throw new Error('送信に失敗しました');
-            const data = await res.json();
-            
-            alert(`お問い合わせを受け付けました。\n受付番号: ${data.receiptNumber}`);
-            
-            // フォームのクリア
-            setFormData({
-                name: "", furigana: "", phone: "", postalCode: "", prefecture: "",
-                city: "", address1: "", address2: "", remarks: "",
-            });
+            router.push('/contact/thanks');
         } catch (error) {
             alert(error instanceof Error ? error.message : 'エラーが発生しました');
         } finally {

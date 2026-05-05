@@ -8,6 +8,7 @@ import { CheckCircle, AlertCircle, HelpCircle, BookOpen, Info, Calculator, Searc
 export const metadata: Metadata = {
     title: "納骨堂とは｜仕組み・費用・メリットを中立に解説｜清蓮",
     description: "納骨堂とは何か。屋内型の供養方法について、仕組みや費用の考え方、メリットと注意点を中立の立場で解説します。",
+    alternates: { canonical: "https://www.ohakanavi.jp/choices/noukotsudou" },
 };
 
 export default function NoukotsudouPage() {
@@ -17,9 +18,9 @@ export default function NoukotsudouPage() {
             {
                 "@type": "BreadcrumbList",
                 "itemListElement": [
-                    { "@type": "ListItem", "position": 1, "name": "清蓮（Seiren）", "item": "https://seiren-ohaka-navi.vercel.app" },
-                    { "@type": "ListItem", "position": 2, "name": "Choices", "item": "https://seiren-ohaka-navi.vercel.app/choices" },
-                    { "@type": "ListItem", "position": 3, "name": "納骨堂", "item": "https://seiren-ohaka-navi.vercel.app/choices/noukotsudou" }
+                    { "@type": "ListItem", "position": 1, "name": "清蓮（Seiren）", "item": "https://www.ohakanavi.jp" },
+                    { "@type": "ListItem", "position": 2, "name": "Choices", "item": "https://www.ohakanavi.jp/choices" },
+                    { "@type": "ListItem", "position": 3, "name": "納骨堂", "item": "https://www.ohakanavi.jp/choices/noukotsudou" }
                 ]
             },
             {

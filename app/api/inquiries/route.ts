@@ -110,6 +110,7 @@ export async function POST(request: NextRequest) {
 
 // --- HTML Email Templates ---
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 function generateDetailsTable(body: any, receiptNumber: string) {
     const u = body.user || body;
     const c = body.context || {};
@@ -130,6 +131,7 @@ function generateDetailsTable(body: any, receiptNumber: string) {
     `;
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 function buildUserEmailHtml(body: any, receiptNumber: string) {
     const userName = body.user?.name || body.name || body.user?.lastName + ' ' + body.user?.firstName;
     return `
@@ -154,12 +156,13 @@ function buildUserEmailHtml(body: any, receiptNumber: string) {
       ※本メールは送信専用アドレスから自動送信されております。<br/>
       ご不明な点がございましたら、お墓探しナビ サポートセンターまでご連絡ください。<br/><br/>
       株式会社清蓮 / お墓探しナビ<br/>
-      Web: https://ohakanavi.jp
+      Web: https://www.ohakanavi.jp
     </p>
   </div>
 </div>`;
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 function buildAdminEmailHtml(body: any, receiptNumber: string) {
     const userName = body.user?.name || body.name || body.user?.lastName + ' ' + body.user?.firstName;
     return `
@@ -174,7 +177,7 @@ function buildAdminEmailHtml(body: any, receiptNumber: string) {
     ${generateDetailsTable(body, receiptNumber)}
 
     <div style="margin-top: 32px; text-align: center;">
-      <a href="https://ohakanavi.jp/admin/inquiries" style="display: inline-block; background: #2B5E73; color: white; text-decoration: none; padding: 12px 24px; border-radius: 6px; font-weight: bold;">管理画面で詳細を確認する</a>
+      <a href="https://www.ohakanavi.jp/admin/inquiries" style="display: inline-block; background: #2B5E73; color: white; text-decoration: none; padding: 12px 24px; border-radius: 6px; font-weight: bold;">管理画面で詳細を確認する</a>
     </div>
   </div>
 </div>`;

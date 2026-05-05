@@ -3,7 +3,7 @@ import { Navbar } from "../../components/layout/Navbar";
 import { Footer } from "../../components/layout/Footer";
 import { Button } from "../../components/ui/Button";
 import { Metadata } from "next";
-import { ArrowRight, CheckCircle, AlertCircle, HelpCircle, BookOpen, Info, Calculator, Search, Phone } from "lucide-react";
+import { CheckCircle, HelpCircle, BookOpen, Info, Calculator, Search, Phone } from "lucide-react";
 
 export const metadata: Metadata = {
     title: "お墓の基礎知識｜種類・費用・管理・選び方を中立に整理",

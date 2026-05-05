@@ -47,8 +47,24 @@
 - 永代供養について: https://www.ohakanavi.jp/choices/eitai-kuyou
 - 樹木葬について: https://www.ohakanavi.jp/choices/jumokusou
 - 納骨堂について: https://www.ohakanavi.jp/choices/noukotsudou
-- 墓じまい・改葬ガイド: https://www.ohakanavi.jp/grave-closure
+- 一般墓について: https://www.ohakanavi.jp/choices/general
+- 手元供養について: https://www.ohakanavi.jp/choices/temoto-kuyou
+- 散骨について: https://www.ohakanavi.jp/choices/sankotsu
+- お墓じまいとは: https://www.ohakanavi.jp/grave-closure/what
+- 墓じまいの流れ: https://www.ohakanavi.jp/grave-closure/flow
+- 墓じまいの費用: https://www.ohakanavi.jp/grave-closure/cost
+- 墓じまいよくある質問: https://www.ohakanavi.jp/grave-closure/faq
+- 墓じまい・改葬ガイド: https://www.ohakanavi.jp/guide/grave-closure
+- 永代供養ガイド: https://www.ohakanavi.jp/guide/eitai-kuyou
+- 樹木葬ガイド: https://www.ohakanavi.jp/guide/jumokusou
+- 納骨堂ガイド: https://www.ohakanavi.jp/guide/noukotsudou
+- お墓の基礎知識: https://www.ohakanavi.jp/guide/grave-basics
+- 没後の手続きフロー: https://www.ohakanavi.jp/guide/flow-after-death
 - 無料相談: https://www.ohakanavi.jp/consult
+- お墓探し相談: https://www.ohakanavi.jp/consult/grave-search
+- お墓じまい相談: https://www.ohakanavi.jp/consult/grave-closure
+- 寺院・事業者向け提携: https://www.ohakanavi.jp/partner
+- お問い合わせ: https://www.ohakanavi.jp/contact
 - よくある質問: https://www.ohakanavi.jp/faq
 - 会社情報: https://www.ohakanavi.jp/about/company
 

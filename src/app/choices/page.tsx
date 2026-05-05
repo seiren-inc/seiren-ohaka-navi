@@ -1,7 +1,7 @@
 import { Navbar } from "../components/layout/Navbar";
 import { Footer } from "../components/layout/Footer";
 import { Metadata } from "next";
-import { ArrowRight, CheckCircle, HelpCircle, Info, Landmark, Sprout, Building, Wallet, Waves, HeartHandshake, Gem, Calculator } from "lucide-react";
+import { ArrowRight, HelpCircle, Info, Landmark, Sprout, Building, Waves, HeartHandshake, Gem, Calculator } from "lucide-react";
 import Link from "next/link";
 import { Button } from "../components/ui/Button";
 

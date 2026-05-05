@@ -1,7 +1,7 @@
 "use client";
 
 import { Button } from "../../ui/Button";
-import { MessageCircle, FileText, ChevronRight } from "lucide-react";
+import { MessageCircle, FileText } from "lucide-react";
 import Link from "next/link";
 import { Temple } from "@/lib/store";
 import { useState, useEffect } from "react";

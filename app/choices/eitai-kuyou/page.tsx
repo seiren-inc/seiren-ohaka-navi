@@ -9,6 +9,7 @@ import { CheckCircle, AlertCircle, HelpCircle, BookOpen, Info, Calculator, Searc
 export const metadata: Metadata = {
     title: "永代供養とは｜仕組み・費用・メリットを中立に解説｜清蓮",
     description: "永代供養とは何か、仕組みや費用の考え方、メリットと注意点を供養の専門家が中立の立場で解説します。",
+    alternates: { canonical: "https://www.ohakanavi.jp/choices/eitai-kuyou" },
 };
 
 export default function EitaiKuyouPage() {
@@ -18,9 +19,9 @@ export default function EitaiKuyouPage() {
             {
                 "@type": "BreadcrumbList",
                 "itemListElement": [
-                    { "@type": "ListItem", "position": 1, "name": "清蓮（Seiren）", "item": "https://seiren-ohaka-navi.vercel.app" },
-                    { "@type": "ListItem", "position": 2, "name": "Choices", "item": "https://seiren-ohaka-navi.vercel.app/choices" },
-                    { "@type": "ListItem", "position": 3, "name": "永代供養", "item": "https://seiren-ohaka-navi.vercel.app/choices/eitai-kuyou" }
+                    { "@type": "ListItem", "position": 1, "name": "清蓮（Seiren）", "item": "https://www.ohakanavi.jp" },
+                    { "@type": "ListItem", "position": 2, "name": "Choices", "item": "https://www.ohakanavi.jp/choices" },
+                    { "@type": "ListItem", "position": 3, "name": "永代供養", "item": "https://www.ohakanavi.jp/choices/eitai-kuyou" }
                 ]
             },
             {

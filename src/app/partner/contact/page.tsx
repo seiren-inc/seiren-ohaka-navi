@@ -8,7 +8,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Button } from "../../components/ui/Button";
 import { Input } from "../../components/ui/Input";
-import { Loader2, Send, CheckCircle2, Building, User, Mail, Phone, MapPin, Globe } from "lucide-react";
+import { Loader2, Send, Building, User, Mail, Phone, MapPin, Globe } from "lucide-react";
 import { Navbar } from "../../components/layout/Navbar";
 import { Footer } from "../../components/layout/Footer";
 

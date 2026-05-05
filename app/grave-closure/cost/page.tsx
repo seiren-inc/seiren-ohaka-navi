@@ -8,6 +8,7 @@ import { Metadata } from "next";
 export const metadata: Metadata = {
     title: "墓じまい費用の詳細｜目安と内訳",
     description: "墓じまいにかかる費用の総額や内訳（撤去費、行政手続き、離檀料など）を詳しく解説します。",
+    alternates: { canonical: "https://www.ohakanavi.jp/grave-closure/cost" },
 };
 
 export default function GraveClosureCostPage() {

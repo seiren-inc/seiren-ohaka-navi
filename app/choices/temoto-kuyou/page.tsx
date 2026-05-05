@@ -9,6 +9,7 @@ import { CheckCircle, AlertCircle, HelpCircle, BookOpen, Info, Calculator, Searc
 export const metadata: Metadata = {
     title: "自宅供養とは｜骨箱・手元供養・遺骨ダイヤモンドを中立に解説｜清蓮",
     description: "自宅供養とは何か。骨箱での自宅安置、遺骨ペンダントなどの手元供養、遺骨ダイヤモンドなど、手元に遺骨を残す供養方法を中立に解説します。",
+    alternates: { canonical: "https://www.ohakanavi.jp/choices/temoto-kuyou" },
 };
 
 export default function TemotoKuyouPage() {
@@ -18,9 +19,9 @@ export default function TemotoKuyouPage() {
             {
                 "@type": "BreadcrumbList",
                 "itemListElement": [
-                    { "@type": "ListItem", "position": 1, "name": "清蓮（Seiren）", "item": "https://seiren-ohaka-navi.vercel.app" },
-                    { "@type": "ListItem", "position": 2, "name": "Choices", "item": "https://seiren-ohaka-navi.vercel.app/choices" },
-                    { "@type": "ListItem", "position": 3, "name": "自宅供養", "item": "https://seiren-ohaka-navi.vercel.app/choices/temoto-kuyou" }
+                    { "@type": "ListItem", "position": 1, "name": "清蓮（Seiren）", "item": "https://www.ohakanavi.jp" },
+                    { "@type": "ListItem", "position": 2, "name": "Choices", "item": "https://www.ohakanavi.jp/choices" },
+                    { "@type": "ListItem", "position": 3, "name": "自宅供養", "item": "https://www.ohakanavi.jp/choices/temoto-kuyou" }
                 ]
             },
             {

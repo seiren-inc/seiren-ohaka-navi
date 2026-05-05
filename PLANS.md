@@ -148,3 +148,34 @@ validation:
 
 next step:
 - ...
+
+### 2026-05-04
+
+status:
+- COLOR_MIGRATION_INSTRUCTIONS.md の配色切替を実装。
+
+files changed:
+- app/globals.css
+- PLANS.md
+
+folders created:
+- none
+
+folders moved:
+- none
+
+files moved:
+- none
+
+files deleted:
+- none
+
+why:
+- DESIGN.md の FEATHER / MARINE / FOREST / SLEEK GREY パレットへ CSS 変数を切り替えるため。
+
+validation:
+- pnpm run build: success
+- old color code scan: 0 hits
+
+next step:
+- 必要に応じてブラウザで主要ページの配色を目視確認する。

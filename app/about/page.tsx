@@ -8,6 +8,7 @@ import { Button } from "../components/ui/Button";
 export const metadata: Metadata = {
     title: "清蓮について｜私たちは中立的な供養の相談窓口です",
     description: "清蓮（SEIREN）のコンセプトと想いについて。「売る」ためではなく、「納得する」ためのお手伝いをします。",
+    alternates: { canonical: "https://www.ohakanavi.jp/about" },
 };
 
 export default function AboutPage() {

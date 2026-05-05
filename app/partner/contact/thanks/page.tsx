@@ -9,7 +9,7 @@ export const metadata: Metadata = {
     title: "お問い合わせ完了｜清蓮",
     description: "提携・掲載に関するお問い合わせの送信完了ページです。",
     robots: { index: false, follow: true },
-    alternates: { canonical: "https://ohakanavi.jp/partner/contact/thanks" },
+    alternates: { canonical: "https://www.ohakanavi.jp/partner/contact/thanks" },
 };
 
 export default function PartnerContactThanksPage() {

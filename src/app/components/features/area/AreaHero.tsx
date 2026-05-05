@@ -1,6 +1,6 @@
 "use client";
 
-import { MapPin, Home } from "lucide-react";
+import { Home } from "lucide-react";
 import Link from "next/link";
 
 interface AreaHeroProps {

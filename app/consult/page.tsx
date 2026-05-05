@@ -1,6 +1,13 @@
 import Link from "next/link";
 import { Navbar } from "../components/layout/Navbar";
 import { Footer } from "../components/layout/Footer";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+    title: "無料相談・お問い合わせ｜清蓮 お墓探しナビ",
+    description: "お墓探し・お墓じまい・遺骨サービスについて、専門スタッフが無料でご相談をお受けします。",
+    alternates: { canonical: "https://www.ohakanavi.jp/consult" },
+};
 
 export default function ConsultHubPage() {
     return (

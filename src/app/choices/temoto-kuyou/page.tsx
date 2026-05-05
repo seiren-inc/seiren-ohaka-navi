@@ -4,7 +4,7 @@ import { Navbar } from "../../components/layout/Navbar";
 import { Footer } from "../../components/layout/Footer";
 import { Button } from "../../components/ui/Button";
 import { Metadata } from "next";
-import { CheckCircle, AlertCircle, HelpCircle, BookOpen, Info, Calculator, Search, Phone, Home, Gem, Box, HandHeart, Wallet, ArrowLeft, ArrowRight } from "lucide-react";
+import { CheckCircle, AlertCircle, HelpCircle, BookOpen, Info, Calculator, Search, Phone, Home, Gem, Box, ArrowRight } from "lucide-react";
 
 export const metadata: Metadata = {
     title: "自宅供養とは｜骨箱・手元供養・遺骨ダイヤモンドを中立に解説｜清蓮",
