@@ -1,5 +1,15 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { PrefectureSelector } from "./components/features/search/PrefectureSelector";
+
+export const metadata: Metadata = {
+  title: "清蓮（Seiren）| お墓探し・永代供養・墓じまいの無料相談",
+  description: "お墓探し・永代供養・樹木葬・納骨堂の比較・検索なら清蓮。中立な専門スタッフが「あなたに合った供養」を無料でご提案。改葬・墓じまいもワンストップサポート。《相談無料》",
+  openGraph: {
+    title: "清蓮（Seiren）| お墓探し・永代供養・墓じまいの無料相談",
+    description: "お墓探し・永代供養・樹木葬・納骨堂の比較・検索なら清蓮。中立な専門スタッフが「あなたに合った供養」を無料でご提案。改葬・墓じまいもワンストップサポート。",
+  },
+};
 import { Navbar } from "./components/layout/Navbar";
 import { Footer } from "./components/layout/Footer";
 import { SearchWidget } from "./components/features/search/SearchWidget";

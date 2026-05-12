@@ -1,7 +1,13 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { Navbar } from "../../components/layout/Navbar";
 import { Footer } from "../../components/layout/Footer";
 import { Button } from "../../components/ui/Button";
+
+export const metadata: Metadata = {
+  title: "樹木葬について｜種類・費用・選び方を解説",
+  description: "自然に還る「樹木葬」。墓石の代わりに樹木や花をシンボルにする供養方法の種類（里山型・庭園型など）・費用・メリットと注意点をわかりやすく解説します。",
+};
 
 export default function GuideJumokusouPage() {
     return (

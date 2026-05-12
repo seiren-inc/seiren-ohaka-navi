@@ -1,7 +1,13 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { Navbar } from "../../components/layout/Navbar";
 import { Footer } from "../../components/layout/Footer";
 import { Button } from "../../components/ui/Button";
+
+export const metadata: Metadata = {
+  title: "納骨堂について｜種類・費用・選び方を解説",
+  description: "天候に左右されないアクセスの良い「納骨堂」。ロッカー式・自動搬送式など多様化するタイプの特徴・費用・メリットと注意点をわかりやすく解説します。",
+};
 
 export default function GuideNoukotsudouPage() {
     return (

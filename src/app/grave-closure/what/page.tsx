@@ -1,5 +1,11 @@
+import type { Metadata } from "next";
 import { Navbar } from "../../components/layout/Navbar";
 import { Footer } from "../../components/layout/Footer";
+
+export const metadata: Metadata = {
+  title: "お墓じまいとは？意味・背景・流れをわかりやすく解説",
+  description: "「お墓じまい」とは何か、その意味や背景、一般的な流れについてわかりやすく解説します。費用の目安・必要な手続き・改葬との違いも整理。",
+};
 
 export default function GraveClosureWhatPage() {
     return (
