@@ -1,7 +1,13 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { Navbar } from "../../components/layout/Navbar";
 import { Footer } from "../../components/layout/Footer";
 import { Button } from "../../components/ui/Button";
+
+export const metadata: Metadata = {
+  title: "没後の手続きフロー｜死亡後にやること・時系列で整理",
+  description: "大切な方が亡くなられた後、死亡届の提出から相続・納骨まで、遺族が行うべき手続きを時系列でわかりやすく整理。必要書類・期限・相談先も解説します。",
+};
 
 export default function GuideFlowAfterDeathPage() {
     return (

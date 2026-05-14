@@ -1,6 +1,12 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { Navbar } from "../components/layout/Navbar";
 import { Footer } from "../components/layout/Footer";
+
+export const metadata: Metadata = {
+  title: "無料相談・お問い合わせ｜お墓探し・墓じまい・遺骨サービス",
+  description: "お墓探し、お墓じまい・改葬、遺骨サービスなど、供養のご相談はこちら。ご相談内容に合わせた専門スタッフが対応します。完全無料・中立な立場でサポート。",
+};
 
 export default function ConsultHubPage() {
     return (
