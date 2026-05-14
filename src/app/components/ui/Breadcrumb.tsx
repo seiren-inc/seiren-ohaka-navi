@@ -79,7 +79,7 @@ export function Breadcrumb() {
         "@context": "https://schema.org",
         "@type": "BreadcrumbList",
         itemListElement: [
-            { "@type": "ListItem", position: 1, name: "ホーム", item: "https://ohakanavi.jp/" },
+            { "@type": "ListItem", position: 1, name: "ホーム", item: "https://www.ohakanavi.jp/" },
             ...crumbs.map((c, i) => ({
                 "@type": "ListItem",
                 position: i + 2,

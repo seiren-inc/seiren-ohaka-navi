@@ -1,6 +1,5 @@
 "use client";
 
-import { Temple } from "@/lib/store";
 import { Image as ImageIcon } from "lucide-react";
 import Image from "next/image";
 

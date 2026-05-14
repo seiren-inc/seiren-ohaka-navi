@@ -6,7 +6,7 @@ import { Metadata } from "next";
 export const metadata: Metadata = {
     title: "お問い合わせ・無料相談｜清蓮",
     description: "お墓探し、永代供養、墓じまいに関するご相談・お問い合わせはこちら。専門スタッフが親身に対応いたします。",
-    alternates: { canonical: "https://ohakanavi.jp/contact" },
+    alternates: { canonical: "https://www.ohakanavi.jp/contact" },
 };
 
 export default function ContactPage() {

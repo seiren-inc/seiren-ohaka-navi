@@ -3,11 +3,12 @@ import { Navbar } from "../../components/layout/Navbar";
 import { Footer } from "../../components/layout/Footer";
 import { Button } from "../../components/ui/Button";
 import { Metadata } from "next";
-import { CheckCircle, AlertCircle, HelpCircle, BookOpen, Calculator, Search, Phone, ArrowRight } from "lucide-react";
+import { CheckCircle, AlertCircle, HelpCircle, BookOpen, Info, Calculator, Search, Phone, ArrowRight } from "lucide-react";
 
 export const metadata: Metadata = {
     title: "一般墓（墓石）とは｜費用・選び方・継承について解説｜清蓮",
     description: "一般墓（墓石）の仕組み・費用の目安・メリットと注意点を、供養の専門家が中立の立場で解説します。永代供養・樹木葬との違いも整理。",
+    alternates: { canonical: "https://www.ohakanavi.jp/choices/general" },
 };
 
 export default function GeneralGravePage() {
@@ -17,16 +18,19 @@ export default function GeneralGravePage() {
             {
                 "@type": "BreadcrumbList",
                 "itemListElement": [
-                    { "@type": "ListItem", "position": 1, "name": "清蓮 お墓探しナビ", "item": "https://ohakanavi.jp/" },
-                    { "@type": "ListItem", "position": 2, "name": "供養のカタチ", "item": "https://ohakanavi.jp/choices" },
-                    { "@type": "ListItem", "position": 3, "name": "一般墓（墓石）", "item": "https://ohakanavi.jp/choices/general" },
+                    { "@type": "ListItem", "position": 1, "name": "清蓮 お墓探しナビ", "item": "https://www.ohakanavi.jp" },
+                    { "@type": "ListItem", "position": 2, "name": "供養のカタチ", "item": "https://www.ohakanavi.jp/choices" },
+                    { "@type": "ListItem", "position": 3, "name": "一般墓（墓石）", "item": "https://www.ohakanavi.jp/choices/general" },
                 ],
             },
             {
                 "@type": "Article",
                 "headline": "一般墓（墓石）とは｜費用・選び方・継承について解説",
                 "description": "一般墓の仕組み・費用・メリットと注意点を中立的な視点で解説します。",
-                "author": { "@type": "Organization", "name": "清蓮" },
+                "author": { "@type": "Organization", "name": "清蓮（Seiren）", "url": "https://www.ohakanavi.jp" },
+                "publisher": { "@type": "Organization", "name": "清蓮（Seiren）", "logo": { "@type": "ImageObject", "url": "https://www.ohakanavi.jp/icon.png" } },
+                "datePublished": "2025-01-01",
+                "dateModified": "2026-03-19",
             },
             {
                 "@type": "FAQPage",
@@ -78,6 +82,32 @@ export default function GeneralGravePage() {
                                 他の供養方法と比較しながら整理しています。
                             </p>
                         </div>
+                    </div>
+
+                    {/* 30秒でわかる一般墓 */}
+                    <div className="bg-forest text-white rounded-2xl p-6 md:p-8 mb-16">
+                        <h2 className="font-serif text-lg font-bold mb-4 flex items-center gap-2">
+                            <Info className="w-5 h-5 opacity-80" />
+                            30秒でわかる一般墓（墓石）
+                        </h2>
+                        <dl className="space-y-3 text-sm leading-relaxed">
+                            <div className="flex gap-3">
+                                <dt className="font-bold text-white/70 shrink-0 w-28">一般墓とは</dt>
+                                <dd>墓石を建て、家族が代々引き継ぐ日本の伝統的なお墓。霊園・寺院から永代使用権を取得して建立します。</dd>
+                            </div>
+                            <div className="flex gap-3">
+                                <dt className="font-bold text-white/70 shrink-0 w-28">費用の目安</dt>
+                                <dd>100万〜300万円程度（永代使用料＋墓石代＋管理費の合計）。地域・立地・石材によって大きく変わります。</dd>
+                            </div>
+                            <div className="flex gap-3">
+                                <dt className="font-bold text-white/70 shrink-0 w-28">最大のメリット</dt>
+                                <dd>家族がいつでも訪れてお参りできる「場所」が残り、先祖とのつながりを世代を超えて継承できます。</dd>
+                            </div>
+                            <div className="flex gap-3">
+                                <dt className="font-bold text-white/70 shrink-0 w-28">最大の注意点</dt>
+                                <dd>継承者（お墓を引き継ぐ人）が不可欠です。後継ぎがいない場合、将来的に無縁墓となり撤去・合祀されるリスクがあります。</dd>
+                            </div>
+                        </dl>
                     </div>
 
                     {/* 一般墓とは */}

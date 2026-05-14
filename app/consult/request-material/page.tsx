@@ -2,12 +2,12 @@
 "use client";
 
 import { useState, useEffect, Suspense } from "react";
-import { useSearchParams, useRouter } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import { Navbar } from "../../components/layout/Navbar";
 import { Footer } from "../../components/layout/Footer";
 import { Button } from "../../components/ui/Button";
 import Link from "next/link";
-import { CheckCircle2, ChevronRight, AlertCircle, Building2, MapPin } from "lucide-react";
+import { CheckCircle2, ChevronRight, Building2 } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { inquirySchema, InquiryFormData } from "./schema";
@@ -40,7 +40,6 @@ const PREFECTURES = [
 
 function RequestForm() {
     const searchParams = useSearchParams();
-    const router = useRouter(); // Need for redirect? No, link is fine.
     const [isSubmitted, setIsSubmitted] = useState(false);
     const [step, setStep] = useState<1 | 2>(1);
 
@@ -54,7 +53,7 @@ function RequestForm() {
 
     // Data fetched from API based on ID
     const [fetchedTemple, setFetchedTemple] = useState<any>(null);
-    const [fetchedPlan, setFetchedPlan] = useState<any>(null);
+    const [fetchedPlan] = useState<any>(null);
 
      
     useEffect(() => {
@@ -76,7 +75,7 @@ function RequestForm() {
     const displayTemplePref = fetchedTemple?.prefecture || "";
     const displayPlanPrice = fetchedPlan ? `¥${fetchedPlan.price.toLocaleString()}〜` : "";
 
-    const { register, handleSubmit, setValue, getValues, trigger, watch, formState: { errors, isValid, isSubmitting } } = useForm<InquiryFormData>({
+    const { register, handleSubmit, setValue, trigger, formState: { errors, isSubmitting } } = useForm<InquiryFormData>({
         resolver: zodResolver(inquirySchema),
         mode: "onBlur",
         defaultValues: {
@@ -467,6 +466,7 @@ function RequestForm() {
 export default function RequestMaterialPage() {
     return (
         <div className="min-h-screen flex flex-col bg-white-smoke">
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({ "@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{ "@type": "ListItem", "position": 1, "name": "トップ", "item": "https://www.ohakanavi.jp" }, { "@type": "ListItem", "position": 2, "name": "無料相談", "item": "https://www.ohakanavi.jp/consult" }, { "@type": "ListItem", "position": 3, "name": "資料請求", "item": "https://www.ohakanavi.jp/consult/request-material" }] }) }} />
             <Navbar />
             <main id="main-content" className="grow pt-32 px-4 pb-20">
                 <Suspense fallback={<div className="text-center py-20">Loading form...</div>}>

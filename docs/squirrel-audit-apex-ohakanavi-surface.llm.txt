@@ -1,0 +1,359 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<audit version="0.0.38">
+<site url="https://www.ohakanavi.jp" crawled="43" date="2026-05-03T21:48:45.103Z"/>
+<score overall="59" grade="F">
+ <cat name="Structured Data" score="0"/>
+ <cat name="Accessibility" score="89"/>
+ <cat name="Core SEO" score="80"/>
+ <cat name="Performance" score="86"/>
+ <cat name="Links" score="74"/>
+ <cat name="Crawlability" score="83"/>
+ <cat name="Content" score="74"/>
+ <cat name="Images" score="92"/>
+ <cat name="Security" score="81"/>
+ <cat name="E-E-A-T" score="76"/>
+ <cat name="Analytics" score="100"/>
+ <cat name="Internationalization" score="100"/>
+ <cat name="Legal Compliance" score="100"/>
+ <cat name="Local SEO" score="100"/>
+ <cat name="Mobile" score="100"/>
+ <cat name="Social Media" score="100"/>
+ <cat name="URL Structure" score="100"/>
+</score>
+<summary passed="3618" warnings="496" failed="67"/>
+<issues>
+ <category name="Crawlability" errors="1" warnings="3">
+  <rule id="crawl/schema-noindex-conflict" severity="error" status="fail" docs="https://docs.squirrelscan.com/rules/crawl/schema-noindex-conflict">
+   2 page(s) have rich schema but are blocked from indexing
+  </rule>
+  <rule id="crawl/sitemap-coverage" severity="warning" status="warn" docs="https://docs.squirrelscan.com/rules/crawl/sitemap-coverage">
+   8 indexable page(s) not in sitemap (19%); 48 sitemap URL(s) were not crawled
+   Items (5/56):
+    - /favorites
+    - /consult/request-material
+    - /choices/diagnosis
+    - /grave-closure/consult?mode=general
+    - /grave-closure/consult?mode=estimate
+  </rule>
+  <rule id="crawl/indexability-conflicts" severity="warning" status="warn" docs="https://docs.squirrelscan.com/rules/crawl/indexability-conflicts">
+   2 page(s) allowed in robots.txt but have noindex
+  </rule>
+ </category>
+ <category name="Core SEO" errors="6" warnings="96">
+  <rule id="core/meta-title" severity="error" status="warn" docs="https://docs.squirrelscan.com/rules/core/meta-title">
+   Title too short
+   Pages (5/21): /, /about, /consult, /favorites, /grave-closure
+   Items (5/21):
+    - / (清蓮（Seiren）| お墓探しナビ (18 chars))
+    - /grave-closure (墓じまい・改葬の無料相談｜清蓮 | 清蓮 (20 chars))
+    - /consult (清蓮（Seiren）| お墓探しナビ (18 chars))
+    - /kaisou (お墓じまい・改葬について｜清蓮（せいれん） | 清蓮 (26 chars))
+    - /grave-closure/what (清蓮（Seiren）| お墓探しナビ (18 chars))
+  </rule>
+  <rule id="core/h1" severity="error" status="fail" docs="https://docs.squirrelscan.com/rules/core/h1">
+   No H1 tag found
+   Pages (5/6): /favorites, /consult/grave-search, /consult/request-material, /grave-closure/consult, /grave-closure/consult?mode=estimate
+   Items (5/6):
+    - /consult/grave-search (No H1 tag found)
+    - /favorites (No H1 tag found)
+    - /consult/request-material (No H1 tag found)
+    - /grave-closure/consult?mode=general (No H1 tag found)
+    - /grave-closure/consult?mode=estimate (No H1 tag found)
+  </rule>
+  <rule id="core/meta-description" severity="error" status="warn" docs="https://docs.squirrelscan.com/rules/core/meta-description">
+   Description too short
+   Pages (5/42): /, /about, /choices, /consult, /faq
+   Items (5/42):
+    - / (墓地、永代供養、樹木葬、納骨堂の検索・比較なら清蓮。専門家が中立な立場で「あなたに合った供養」をご提 (77 chars))
+    - /faq (お墓探し・永代供養・墓じまいに関するよくある質問をまとめました。費用・手続き・宗教の疑問を供養の専門 (60 chars))
+    - /choices (永代供養墓、樹木葬、納骨堂、海洋散骨、手元供養など、供養の選択肢を中立の立場で比較整理。迷っている方 (62 chars))
+    - /grave-closure (全国対応・見積り無料。お墓じまいや改葬（お墓の引越し）の手続きから施工までワンストップでサポートしま (52 chars))
+    - /consult (墓地、永代供養、樹木葬、納骨堂の検索・比較なら清蓮。専門家が中立な立場で「あなたに合った供養」をご提 (77 chars))
+  </rule>
+  <rule id="core/canonical" severity="warning" status="warn" docs="https://docs.squirrelscan.com/rules/core/canonical">
+   Missing canonical URL
+   Pages (5/25): /, /about, /consult, /privacy, /about/company
+  </rule>
+  <rule id="core/og-tags" severity="warning" status="warn" docs="https://docs.squirrelscan.com/rules/core/og-tags">
+   Missing og:image - social shares will lack imagery
+   Pages (5): /about/strength, /guide/eitai-kuyou-dokushin, /guide/haka-jiman-cost, /guide/jumokusou-cost, /guide/noukotsudo-cost
+  </rule>
+  <rule id="core/robots-meta" severity="warning" status="warn" docs="https://docs.squirrelscan.com/rules/core/robots-meta">
+   Page is set to noindex
+   Pages (2): /favorites, /consult/request-material
+  </rule>
+  <rule id="core/title-unique" severity="warning" status="warn" docs="https://docs.squirrelscan.com/rules/core/title-unique">
+   1 duplicate title(s) affecting 10 pages
+   Items (1):
+    - 清蓮（seiren）| お墓探しナビ (&quot;清蓮（seiren）| お墓探しナビ...&quot; (10 pages)) [pageCount: 10] (from: /, /consult, /grave-closure/what, /consult/grave-search, /consult/grave-closure; +5 more)
+  </rule>
+ </category>
+ <category name="Security" errors="0" warnings="6">
+  <rule id="security/csp" severity="warning" status="warn" docs="https://docs.squirrelscan.com/rules/security/csp">
+   No Content-Security-Policy header
+  </rule>
+  <rule id="security/x-frame-options" severity="warning" status="warn" docs="https://docs.squirrelscan.com/rules/security/x-frame-options">
+   No clickjacking protection
+  </rule>
+  <rule id="security/form-captcha" severity="warning" status="warn" docs="https://docs.squirrelscan.com/rules/security/form-captcha">
+   1 public form(s) without CAPTCHA
+   Pages (3): /consult/grave-closure, /consult/ikotsu-service, /partner/contact
+   Items (1):
+    - form[0]
+  </rule>
+  <rule id="security/http-to-https" severity="warning" status="warn" docs="https://docs.squirrelscan.com/rules/security/http-to-https">
+   20 HTTP URL(s) redirect to HTTPS
+   Items (5/20):
+    - http://www.ohakanavi.jp/ (http://www.ohakanavi.jp/ → https://www.ohakanavi.jp/ (308)) [statusCode: 308, chain: {&quot;sourceUrl&quot;:&quot;http://www.ohakanavi.jp/&quot;,&quot;finalUrl&quot;:&quot;https://www.ohakanavi.jp/&quot;,&quot;hops&quot;:[{&quot;url&quot;:&quot;http://www.ohakanavi.jp/&quot;,&quot;statusCode&quot;:308,&quot;type&quot;:&quot;http&quot;},{&quot;url&quot;:&quot;https://www.ohakanavi.jp/&quot;,&quot;statusCode…]
+    - http://www.ohakanavi.jp/faq (http://www.ohakanavi.jp/faq → https://www.ohakanavi.jp/faq (308)) [statusCode: 308, chain: {&quot;sourceUrl&quot;:&quot;http://www.ohakanavi.jp/faq&quot;,&quot;finalUrl&quot;:&quot;https://www.ohakanavi.jp/faq&quot;,&quot;hops&quot;:[{&quot;url&quot;:&quot;http://www.ohakanavi.jp/faq&quot;,&quot;statusCode&quot;:308,&quot;type&quot;:&quot;http&quot;},{&quot;url&quot;:&quot;https://www.ohakanavi.jp/faq&quot;…]
+    - http://www.ohakanavi.jp/choices (http://www.ohakanavi.jp/choices → https://www.ohakanavi.jp/choices (308)) [statusCode: 308, chain: {&quot;sourceUrl&quot;:&quot;http://www.ohakanavi.jp/choices&quot;,&quot;finalUrl&quot;:&quot;https://www.ohakanavi.jp/choices&quot;,&quot;hops&quot;:[{&quot;url&quot;:&quot;http://www.ohakanavi.jp/choices&quot;,&quot;statusCode&quot;:308,&quot;type&quot;:&quot;http&quot;},{&quot;url&quot;:&quot;https://www.ohaka…]
+    - http://www.ohakanavi.jp/grave-closure (http://www.ohakanavi.jp/grave-closure → https://www.ohakanavi.jp/grave-closure (308)) [statusCode: 308, chain: {&quot;sourceUrl&quot;:&quot;http://www.ohakanavi.jp/grave-closure&quot;,&quot;finalUrl&quot;:&quot;https://www.ohakanavi.jp/grave-closure&quot;,&quot;hops&quot;:[{&quot;url&quot;:&quot;http://www.ohakanavi.jp/grave-closure&quot;,&quot;statusCode&quot;:308,&quot;type&quot;:&quot;http&quot;},{&quot;url&quot;:…]
+    - http://www.ohakanavi.jp/consult (http://www.ohakanavi.jp/consult → https://www.ohakanavi.jp/consult (308)) [statusCode: 308, chain: {&quot;sourceUrl&quot;:&quot;http://www.ohakanavi.jp/consult&quot;,&quot;finalUrl&quot;:&quot;https://www.ohakanavi.jp/consult&quot;,&quot;hops&quot;:[{&quot;url&quot;:&quot;http://www.ohakanavi.jp/consult&quot;,&quot;statusCode&quot;:308,&quot;type&quot;:&quot;http&quot;},{&quot;url&quot;:&quot;https://www.ohaka…]
+  </rule>
+ </category>
+ <category name="Links" errors="1" warnings="6">
+  <rule id="links/broken-links" severity="error" status="fail" docs="https://docs.squirrelscan.com/rules/links/broken-links">
+   1 broken internal link(s) (4xx/5xx)
+   Items (1):
+    - /choices/ctas (https://www.ohakanavi.jp/choices/ctas (404)) [statusCode: 404, linkedFrom: 1] (from: /choices/noukotsudou)
+  </rule>
+  <rule id="links/orphan-pages" severity="warning" status="warn" docs="https://docs.squirrelscan.com/rules/links/orphan-pages">
+   15 orphan page(s) with &lt;2 incoming links
+   Items (5/15):
+    - /guide/haka-jiman-cost
+    - /guide/eitai-kuyou-dokushin
+    - /guide/jumokusou-cost
+    - /guide/noukotsudo-cost
+    - /grave-closure/what
+  </rule>
+  <rule id="links/anchor-text" severity="warning" status="warn" docs="https://docs.squirrelscan.com/rules/links/anchor-text">
+   1 link(s) have empty anchor text
+   Pages (2): /faq, /choices/eitai-kuyou
+   Items (1):
+    - / | &lt;a class=&quot;flex items-center hover:text-primary transition-colors focus-visible:outline-none focus-visible:ring-2 focus-v...
+  </rule>
+  <rule id="links/internal-links" severity="warning" status="warn" docs="https://docs.squirrelscan.com/rules/links/internal-links">
+   Too few internal links (0, min 1)
+   Pages (1): /consult/grave-search
+   Items (1):
+    - /consult/grave-search (Too few internal links (0, min 1))
+  </rule>
+  <rule id="links/dead-end-pages" severity="warning" status="warn" docs="https://docs.squirrelscan.com/rules/links/dead-end-pages">
+   Page has no outgoing internal links (dead-end)
+   Pages (1): /consult/grave-search
+  </rule>
+  <rule id="links/weak-internal-links" severity="warning" status="warn" docs="https://docs.squirrelscan.com/rules/links/weak-internal-links">
+   5 page(s) have only 1 internal link
+   Items (5):
+    - /grave-closure/flow
+    - /grave-closure/faq
+    - /about/partner
+    - /partner/contact
+    - /choices/ctas
+  </rule>
+ </category>
+ <category name="Content" errors="0" warnings="53">
+  <rule id="content/duplicate-title" severity="warning" status="warn" docs="https://docs.squirrelscan.com/rules/content/duplicate-title">
+   1 duplicate title(s) found across 10 pages
+   Items (1):
+    - 清蓮（seiren）| お墓探しナビ (&quot;清蓮（seiren）| お墓探しナビ...&quot; (10 pages)) [pageCount: 10] (from: /, /consult, /grave-closure/what, /consult/grave-search, /consult/grave-closure; +5 more)
+  </rule>
+  <rule id="content/duplicate-description" severity="warning" status="warn" docs="https://docs.squirrelscan.com/rules/content/duplicate-description">
+   1 duplicate description(s) found across 10 pages
+   Items (1):
+    - 墓地、永代供養、樹木葬、納骨堂の検索・比較なら清蓮。専門家が中立な立場で「あなたに合った供養」をご提案。改葬や墓じまいも (&quot;墓地、永代供養、樹木葬、納骨堂の検索・比較なら清蓮。専門家が中立な立場で「あなた...&quot; (10 pages)) [pageCount: 10] (from: /, /consult, /grave-closure/what, /consult/grave-search, /consult/grave-closure; +5 more)
+  </rule>
+  <rule id="content/heading-hierarchy" severity="warning" status="warn" docs="https://docs.squirrelscan.com/rules/content/heading-hierarchy">
+   Skipped heading levels detected
+   Pages (5/9): /faq, /privacy, /about/company, /about/partner, /grave-closure/cost
+   Items (3):
+    - H2 -&gt; H4
+    - H1 -&gt; H4
+    - H1 -&gt; H3
+  </rule>
+  <rule id="content/word-count" severity="warning" status="warn" docs="https://docs.squirrelscan.com/rules/content/word-count">
+   Thin content: N words (min N)
+   Pages (5/42): /, /about, /choices, /consult, /faq
+   Items (5/42):
+    - / (Thin content: 46 words (min 300))
+    - /faq (Thin content: 23 words (min 300))
+    - /choices (Thin content: 24 words (min 300))
+    - /grave-closure (Thin content: 27 words (min 300))
+    - /consult (Thin content: 16 words (min 300))
+  </rule>
+ </category>
+ <category name="Structured Data" errors="42" warnings="0">
+  <rule id="schema/json-ld-valid" severity="warning" status="fail" docs="https://docs.squirrelscan.com/rules/schema/json-ld-valid">
+   Invalid JSON-LD syntax
+   Pages (5/42): /, /about, /choices, /consult, /faq
+   Items (5/8):
+    - parse-0 (Validation: Organization.logo must be a string or array of strings)
+    - Organization:logo (Organization missing logo) [message: Validation: Organization.logo must be a string or array of strings, severity: invalid, path: [&quot;logo&quot;]]
+    - parse-1 (Validation: Article.image is required)
+    - Article:image (Article missing image) [message: Validation: Article.image is required, severity: missing, path: [&quot;image&quot;]]
+    - parse-2 (Validation: Article.datePublished is required)
+  </rule>
+ </category>
+ <category name="Images" errors="0" warnings="39">
+  <rule id="images/responsive-size" severity="warning" status="warn" docs="https://docs.squirrelscan.com/rules/images/responsive-size">
+   2 small image(s) may be serving oversized files
+   Pages (5/38): /, /about, /choices, /consult, /faq
+   Items (2):
+    - image (80x80, no srcset)
+    - image (80x80, no srcset)
+  </rule>
+  <rule id="images/dimensions" severity="warning" status="warn" docs="https://docs.squirrelscan.com/rules/images/dimensions">
+   5 image(s) missing width/height (causes CLS)
+   Pages (1): /
+   Items (5):
+    - /_next/image?url=%2Fimages%2Fhero_memorial.webp&amp;w=3840&amp;q=72 | &lt;img src=&quot;https://www.ohakanavi.jp/_next/image?url=%2Fimages%2Fhero_memorial.webp&amp;w=3840&amp;q=72&quot; alt=&quot;清蓮 お墓探しナビ - 理想の供養を一緒に見つける&quot;&gt;
+    - /_next/image?url=%2Fimages%2Fguide_eitai.webp&amp;w=3840&amp;q=60 | &lt;img src=&quot;https://www.ohakanavi.jp/_next/image?url=%2Fimages%2Fguide_eitai.webp&amp;w=3840&amp;q=60&quot; alt=&quot;永代供養墓&quot;&gt;
+    - /_next/image?url=%2Fimages%2Fguide_jumokusou.webp&amp;w=3840&amp;q=60 | &lt;img src=&quot;https://www.ohakanavi.jp/_next/image?url=%2Fimages%2Fguide_jumokusou.webp&amp;w=3840&amp;q=60&quot; alt=&quot;樹木葬&quot;&gt;
+    - /_next/image?url=%2Fimages%2Fguide_noukotsu.webp&amp;w=3840&amp;q=60 | &lt;img src=&quot;https://www.ohakanavi.jp/_next/image?url=%2Fimages%2Fguide_noukotsu.webp&amp;w=3840&amp;q=60&quot; alt=&quot;納骨堂&quot;&gt;
+    - /_next/image?url=%2Fimages%2Fconcept_support.webp&amp;w=3840&amp;q=60 | &lt;img src=&quot;https://www.ohakanavi.jp/_next/image?url=%2Fimages%2Fconcept_support.webp&amp;w=3840&amp;q=60&quot; alt=&quot;お客様に寄り添う相談窓口&quot;&gt;
+  </rule>
+ </category>
+ <category name="Performance" errors="1" warnings="169">
+  <rule id="perf/lcp-hints" severity="warning" status="warn" docs="https://docs.squirrelscan.com/rules/perf/lcp-hints">
+   N potential LCP image(s) without preload
+   Pages (5/38): /, /about, /choices, /consult, /faq
+   Items (3):
+    - /_next/image?url=%2Fseiren-logo-v2.png&amp;w=384&amp;q=75
+    - /_next/image?url=%2Fseiren-logo-v2.png&amp;w=256&amp;q=75
+    - /_next/image?url=%2Fimages%2Fhero_memorial.webp&amp;w=3840&amp;q=72
+  </rule>
+  <rule id="perf/ttfb" severity="warning" status="fail" docs="https://docs.squirrelscan.com/rules/perf/ttfb">
+   Slow server response (Nms); Very slow server response (1002ms)
+   Pages (5/11): /about, /choices, /faq, /guide, /choices/eitai-kuyou
+   Items (5/11):
+    - /faq (Slow server response (740ms))
+    - /choices (Slow server response (622ms))
+    - /guide (Slow server response (613ms))
+    - /guide/eitai-kuyou-dokushin (Slow server response (619ms))
+    - /guide/jumokusou-cost (Slow server response (639ms))
+  </rule>
+  <rule id="perf/render-blocking" severity="warning" status="warn" docs="https://docs.squirrelscan.com/rules/perf/render-blocking">
+   4 render-blocking resources
+   Pages (5/42): /, /about, /choices, /consult, /faq
+   Items (4):
+    - /_next/static/css/78572ce3dc1fbe6e.css?dpl=dpl_B4NfEqbT62U4nuA7Jd3ugFHRAzJe
+    - /_next/static/css/e61dc3d3a59c7756.css?dpl=dpl_B4NfEqbT62U4nuA7Jd3ugFHRAzJe
+    - /_next/static/css/0e1f04bceb4d5d26.css?dpl=dpl_B4NfEqbT62U4nuA7Jd3ugFHRAzJe
+    - /_next/static/chunks/polyfills-42372ed130431b0a.js?dpl=dpl_B4NfEqbT62U4nuA7Jd3ugFHRAzJe
+  </rule>
+  <rule id="perf/critical-request-chains" severity="warning" status="warn" docs="https://docs.squirrelscan.com/rules/perf/critical-request-chains">
+   4 critical request chain(s) found
+   Pages (5/42): /, /about, /choices, /consult, /faq
+   Items (4):
+    - CSS: /_next/static/css/78572ce3dc1fbe6e.css?dpl=dpl_B4NfEqbT62U4nuA7Jd3ugFHRAzJe
+    - CSS: /_next/static/css/e61dc3d3a59c7756.css?dpl=dpl_B4NfEqbT62U4nuA7Jd3ugFHRAzJe
+    - CSS: /_next/static/css/0e1f04bceb4d5d26.css?dpl=dpl_B4NfEqbT62U4nuA7Jd3ugFHRAzJe
+    - JS: /_next/static/chunks/polyfills-42372ed130431b0a.js?dpl=dpl_B4NfEqbT62U4nuA7Jd3ugFHRAzJe
+  </rule>
+  <rule id="perf/lazy-above-fold" severity="warning" status="warn" docs="https://docs.squirrelscan.com/rules/perf/lazy-above-fold">
+   1 above-fold image(s) with lazy loading
+   Pages (5/37): /about, /choices, /consult, /faq, /favorites
+   Items (1):
+    - /_next/image?url=%2Fseiren-logo-v2.png&amp;w=256&amp;q=75
+  </rule>
+ </category>
+ <category name="Accessibility" errors="16" warnings="122">
+  <rule id="a11y/select-name" severity="error" status="fail" docs="https://docs.squirrelscan.com/rules/a11y/select-name">
+   N select element(s) without accessible names
+   Pages (4): /, /consult/grave-closure, /consult/ikotsu-service, /partner/contact
+   Items (5/7):
+    - select
+    - select[name=&quot;graveTemplePref&quot;]
+    - select[name=&quot;desiredTiming&quot;]
+    - select[name=&quot;hasNextPlace&quot;]
+    - select[name=&quot;boneStatus&quot;]
+  </rule>
+  <rule id="a11y/aria-command-name" severity="error" status="fail" docs="https://docs.squirrelscan.com/rules/a11y/aria-command-name">
+   1 command element(s) without accessible names
+   Pages (2): /faq, /choices/eitai-kuyou
+   Items (1):
+    - a[href=&quot;/&quot;]
+  </rule>
+  <rule id="a11y/aria-input-field-name" severity="error" status="fail" docs="https://docs.squirrelscan.com/rules/a11y/aria-input-field-name">
+   N input field(s) without accessible names
+   Pages (4): /, /consult/grave-closure, /consult/ikotsu-service, /partner/contact
+   Items (5/7):
+    - select
+    - select[name=&quot;graveTemplePref&quot;]
+    - select[name=&quot;desiredTiming&quot;]
+    - select[name=&quot;hasNextPlace&quot;]
+    - select[name=&quot;boneStatus&quot;]
+  </rule>
+  <rule id="a11y/form-labels" severity="error" status="fail" docs="https://docs.squirrelscan.com/rules/a11y/form-labels">
+   N form input(s) without labels
+   Pages (4): /, /consult/grave-closure, /consult/ikotsu-service, /partner/contact
+   Items (5/26):
+    - select
+    - graveTempleName
+    - graveTemplePref
+    - graveTempleCity
+    - graveTempleAddressLine
+  </rule>
+  <rule id="a11y/color-contrast" severity="warning" status="warn" docs="https://docs.squirrelscan.com/rules/a11y/color-contrast">
+   N potential color contrast issue(s)
+   Pages (5/42): /, /about, /choices, /consult, /faq
+   Items (5/84):
+    - span with class &quot;text-xs text-gray-400 mt-0.5 b...&quot; may have low contrast
+    - p with class &quot;text-xs font-bold text-gray-40...&quot; may have low contrast
+    - svg with class &quot;lucide lucide-external-link w-...&quot; may have low contrast
+    - span with class &quot;block text-xs font-normal text...&quot; may have low contrast
+    - div with class &quot;absolute right-4 top-1/2 -tran...&quot; may have low contrast
+  </rule>
+  <rule id="a11y/landmark-one-main" severity="warning" status="warn" docs="https://docs.squirrelscan.com/rules/a11y/landmark-one-main">
+   Page has no main landmark
+   Pages (5): /grave-closure, /consult/grave-search, /grave-closure/consult, /grave-closure/consult?mode=estimate, /grave-closure/consult?mode=general
+  </rule>
+  <rule id="a11y/heading-order" severity="warning" status="warn" docs="https://docs.squirrelscan.com/rules/a11y/heading-order">
+   N heading level skip(s) detected
+   Pages (5/26): /, /about, /consult, /faq, /grave-closure
+   Items (3):
+    - H4 after H2
+    - H3 after H1
+    - H4 after H1
+  </rule>
+  <rule id="a11y/identical-links-same-purpose" severity="warning" status="warn" docs="https://docs.squirrelscan.com/rules/a11y/identical-links-same-purpose">
+   N link text(s) lead to different destinations
+   Pages (5/38): /, /about, /choices, /consult, /faq
+   Items (5/6):
+    - &quot;永代供養墓&quot; → 2 different URLs
+    - &quot;樹木葬&quot; → 2 different URLs
+    - &quot;納骨堂&quot; → 2 different URLs
+    - &quot;お墓じまいナビ&quot; → 2 different URLs
+    - &quot;詳しく見る&quot; → 6 different URLs
+  </rule>
+  <rule id="a11y/link-text" severity="warning" status="fail" docs="https://docs.squirrelscan.com/rules/a11y/link-text">
+   1 link(s) with no accessible text
+   Pages (2): /faq, /choices/eitai-kuyou
+   Items (1):
+    - / (svg-no-name)
+  </rule>
+  <rule id="a11y/skip-link" severity="warning" status="warn" docs="https://docs.squirrelscan.com/rules/a11y/skip-link">
+   No bypass mechanism for repetitive content
+   Pages (5): /grave-closure, /consult/grave-search, /grave-closure/consult, /grave-closure/consult?mode=estimate, /grave-closure/consult?mode=general
+  </rule>
+  <rule id="a11y/th-has-data-cells" severity="warning" status="warn" docs="https://docs.squirrelscan.com/rules/a11y/th-has-data-cells">
+   1 &lt;th&gt; element(s) without associated data cells
+   Pages (1): /choices
+   Items (1):
+    - 比較項目
+  </rule>
+  <rule id="a11y/landmark-regions" severity="info" status="warn" docs="https://docs.squirrelscan.com/rules/a11y/landmark-regions">
+   No &lt;main&gt; landmark found
+   Pages (5): /grave-closure, /consult/grave-search, /grave-closure/consult, /grave-closure/consult?mode=estimate, /grave-closure/consult?mode=general
+  </rule>
+ </category>
+ <category name="E-E-A-T" errors="0" warnings="2">
+  <rule id="eeat/author-byline" severity="warning" status="warn" docs="https://docs.squirrelscan.com/rules/eeat/author-byline">
+   No content pages have author attribution
+  </rule>
+  <rule id="eeat/content-dates" severity="warning" status="warn" docs="https://docs.squirrelscan.com/rules/eeat/content-dates">
+   No content pages have datePublished
+  </rule>
+ </category>
+</issues>
+</audit>

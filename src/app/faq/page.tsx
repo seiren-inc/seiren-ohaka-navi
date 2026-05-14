@@ -115,8 +115,8 @@ export default function FaqPage() {
             {
                 "@type": "BreadcrumbList",
                 "itemListElement": [
-                    { "@type": "ListItem", "position": 1, "name": "清蓮 お墓探しナビ", "item": "https://ohakanavi.jp/" },
-                    { "@type": "ListItem", "position": 2, "name": "よくある質問", "item": "https://ohakanavi.jp/faq" },
+                    { "@type": "ListItem", "position": 1, "name": "清蓮 お墓探しナビ", "item": "https://www.ohakanavi.jp/" },
+                    { "@type": "ListItem", "position": 2, "name": "よくある質問", "item": "https://www.ohakanavi.jp/faq" },
                 ],
             },
             {

@@ -80,9 +80,27 @@ export default async function CityPage(props: { params: Promise<{ prefecture: st
         ],
     };
 
+    const cityPageLd = {
+        "@context": "https://schema.org",
+        "@type": "SearchResultsPage",
+        "@id": `${BASE_URL}/area/${params.prefecture}/${params.city}#webpage`,
+        "name": `${decodedCity}（${decodedPrefecture}）の墓地・永代供養・樹木葬・納骨堂一覧`,
+        "description": `${decodedCity}エリアの墓地・永代供養・樹木葬・納骨堂を検索・比較。清蓮の専門スタッフが無料でサポート。`,
+        "url": `${BASE_URL}/area/${params.prefecture}/${params.city}`,
+        "inLanguage": "ja",
+        "about": { "@type": "Thing", "name": `${decodedCity}の墓地・霊園・供養施設` },
+        "provider": { "@type": "Organization", "name": "清蓮（Seiren）", "url": BASE_URL },
+        "areaServed": {
+            "@type": "City",
+            "name": decodedCity,
+            "containedInPlace": { "@type": "AdministrativeArea", "name": decodedPrefecture, "addressCountry": "JP" },
+        },
+    };
+
     return (
         <div className="min-h-screen flex flex-col bg-white-smoke">
             <JsonLd data={breadcrumbLd} />
+            <JsonLd data={cityPageLd} />
             <Navbar />
 
             <main id="main-content" className="grow pt-20">

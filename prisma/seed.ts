@@ -33,7 +33,67 @@ const BuddhistSect = {
   rinzai: 'rinzai', soto: 'soto', other: 'other', unknown: 'unknown',
 } as const
 
-const temples = [
+type SeedPlan = {
+  category: string
+  name: string
+  subDescription?: string
+  price: number
+  priceNote?: string
+  managementFee?: number
+  availability?: string
+  burialMethod: string
+  periodType?: string
+  periodYears?: number
+  capacity?: string
+  capacityNote?: string
+  petAllowed: string
+  images?: string[]
+  note?: string
+  order?: number
+}
+
+type SeedTemple = {
+  name: string
+  kana: string
+  type: string
+  managementBody?: string
+  religion: string
+  buddhistSect?: string
+  prefecture: string
+  prefectureCode: number
+  cityName: string
+  addressLine: string
+  address: string
+  lat: number
+  lng: number
+  access: string
+  parkingAvailable?: boolean
+  parking?: string
+  indoorOutdoor?: string
+  barrierFree?: boolean
+  barrierFreeLabel?: string
+  petAllowed?: string
+  sects?: string[]
+  supportedMemorialTypes?: string[]
+  nearestStations?: { name: string; line: string; walk: number }[]
+  priceAggMin?: number
+  priceAggMax?: number
+  managementFeeAggType?: string
+  catchphrase?: string
+  overview?: string
+  suitableFor?: string[]
+  notesPoints?: string[]
+  tags?: string[]
+  phone?: string
+  officeHours?: string
+  status?: string
+  listedInSearch?: boolean
+  zipCode?: string
+  planType?: string
+  plans: SeedPlan[]
+}
+
+const temples: SeedTemple[] = [
   // ── 東京都 ──────────────────────────────────────────────────
   {
     name: '清蓮寺 新宿永代供養墓',

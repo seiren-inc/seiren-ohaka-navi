@@ -31,14 +31,23 @@ const STATIC_URLS = [
   `${BASE_URL}/guide/noukotsudou`,
   `${BASE_URL}/guide/grave-basics`,
   `${BASE_URL}/guide/grave-closure`,
+  `${BASE_URL}/guide/haka-jiman-cost`,
+  `${BASE_URL}/guide/eitai-kuyou-dokushin`,
+  `${BASE_URL}/guide/jumokusou-cost`,
+  `${BASE_URL}/guide/noukotsudo-cost`,
+  `${BASE_URL}/guide/flow-after-death`,
   `${BASE_URL}/kaisou`,
   `${BASE_URL}/consult`,
   `${BASE_URL}/consult/grave-search`,
   `${BASE_URL}/consult/grave-closure`,
   `${BASE_URL}/consult/ikotsu-service`,
+  `${BASE_URL}/grave-closure/consult`,
   `${BASE_URL}/about`,
   `${BASE_URL}/about/company`,
+  `${BASE_URL}/about/partner`,
   `${BASE_URL}/about/strength`,
+  `${BASE_URL}/partner`,
+  `${BASE_URL}/contact`,
   `${BASE_URL}/faq`,
 ];
 
@@ -51,7 +60,6 @@ const STATIC_URLS = [
  *          -H "Authorization: Bearer <INDEXNOW_SECRET>"
  */
 export async function POST(request: Request) {
-  // 簡易認証（環境変数 INDEXNOW_SECRET を設定すること）
   // 簡易認証（環境変数 INDEXNOW_SECRET を設定すること）
   const secret = process.env.INDEXNOW_SECRET;
   if (secret) {

@@ -77,7 +77,7 @@ function GraveClosureConsultForm() {
         if (formData.graveTempleName && !templeQuery) {
             setTempleQuery(formData.graveTempleName);
         }
-    }, []);
+    }, [formData.graveTempleName, templeQuery]);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
         const { name, value } = e.target;

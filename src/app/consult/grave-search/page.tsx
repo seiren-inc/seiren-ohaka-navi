@@ -6,7 +6,7 @@ import { Navbar } from "../../components/layout/Navbar";
 import { Footer } from "../../components/layout/Footer";
 import { Button } from "../../components/ui/Button";
 import Link from "next/link";
-import { CheckCircle, Phone, Mail, MapPin, Calendar, FileText, ArrowDown, HelpCircle } from "lucide-react";
+import { CheckCircle, Phone, Mail, FileText, ArrowDown } from "lucide-react";
 
 function GraveSearchConsultForm() {
     const searchParams = useSearchParams();

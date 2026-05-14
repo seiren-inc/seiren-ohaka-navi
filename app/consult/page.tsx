@@ -1,10 +1,28 @@
 import Link from "next/link";
 import { Navbar } from "../components/layout/Navbar";
 import { Footer } from "../components/layout/Footer";
+import { JsonLd } from "../components/seo/JsonLd";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+    title: "無料相談・お問い合わせ｜清蓮 お墓探しナビ",
+    description: "お墓探し・お墓じまい・遺骨サービスについて、専門スタッフが無料でご相談をお受けします。",
+    alternates: { canonical: "https://www.ohakanavi.jp/consult" },
+};
+
+const breadcrumbLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "トップ", "item": "https://www.ohakanavi.jp" },
+        { "@type": "ListItem", "position": 2, "name": "無料相談", "item": "https://www.ohakanavi.jp/consult" },
+    ],
+};
 
 export default function ConsultHubPage() {
     return (
         <div className="min-h-screen flex flex-col bg-slate-50">
+            <JsonLd data={breadcrumbLd} />
             <Navbar />
             <main id="main-content" className="grow pt-32 px-4 max-w-7xl mx-auto w-full">
                 <h1 className="text-3xl font-bold text-primary-dark mb-4">無料相談・お問い合わせ</h1>
