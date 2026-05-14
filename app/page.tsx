@@ -360,23 +360,33 @@ export default function Home() {
                             </div>
 
                             {/* 注目機能：改葬申請書DL */}
-                            <div className="bg-white rounded-xl p-5 mb-4">
-                                <div className="flex items-start gap-4">
-                                    <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center shrink-0">
-                                        <Download className="w-6 h-6 text-forest" />
-                                    </div>
-                                    <div className="flex-1">
-                                        <div className="flex items-center gap-2 mb-1 flex-wrap">
-                                            <span className="font-bold text-gray-800 text-sm md:text-base">全国の自治体の改葬申請書を無料でダウンロード</span>
-                                            <span className="bg-red-100 text-red-600 text-xs font-bold px-2 py-0.5 rounded shrink-0">注目機能</span>
+                            <a
+                                href="https://ohakajimai-navi.jp/"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="block mb-4 group"
+                            >
+                                <div className="bg-white rounded-xl p-5 hover:bg-primary/5 border-2 border-transparent hover:border-primary/30 transition-all cursor-pointer">
+                                    <div className="flex items-start gap-4">
+                                        <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center shrink-0 group-hover:bg-primary/20 transition-colors">
+                                            <Download className="w-6 h-6 text-forest" />
                                         </div>
-                                        <p className="text-gray-500 text-xs md:text-sm leading-relaxed">
-                                            全国の多くの市区町村の「改葬許可申請書」をPDFでその場でダウンロードできます。
-                                            役所に足を運ぶ前に書類を準備して、手続きをスムーズに進められます。
-                                        </p>
+                                        <div className="flex-1">
+                                            <div className="flex items-center gap-2 mb-1 flex-wrap">
+                                                <span className="font-bold text-gray-800 text-sm md:text-base group-hover:text-forest transition-colors">全国の自治体の改葬申請書を無料でダウンロード</span>
+                                                <span className="bg-red-100 text-red-600 text-xs font-bold px-2 py-0.5 rounded shrink-0">注目機能</span>
+                                            </div>
+                                            <p className="text-gray-500 text-xs md:text-sm leading-relaxed">
+                                                全国の多くの市区町村の「改葬許可申請書」をPDFでその場でダウンロードできます。
+                                                役所に足を運ぶ前に書類を準備して、手続きをスムーズに進められます。
+                                            </p>
+                                            <span className="text-forest text-xs font-bold mt-2 flex items-center gap-1">
+                                                書類をDLする <ExternalLink className="w-3 h-3" />
+                                            </span>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                            </a>
 
                             {/* サブ機能 2列 */}
                             <div className="grid sm:grid-cols-2 gap-3 mb-8">
