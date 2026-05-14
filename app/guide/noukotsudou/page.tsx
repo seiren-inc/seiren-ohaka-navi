@@ -11,7 +11,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
     title: "納骨堂とは？種類・費用相場・メリット・選び方を解説｜清蓮",
     description: "納骨堂の種類（ロッカー型・仏壇型・自動搬送式など）、費用相場、メリット・デメリット、失敗しない選び方を専門家が解説します。",
-    alternates: { canonical: "https://ohakanavi.jp/guide/noukotsudou" }
+    alternates: { canonical: "https://www.ohakanavi.jp/guide/noukotsudou" }
 };
 
 export default function GuideNoukotsudouPage() {
@@ -20,13 +20,13 @@ export default function GuideNoukotsudouPage() {
         "@type": "Article",
         "headline": "納骨堂とは？種類・費用相場・メリット・選び方を解説",
         "description": "納骨堂の種類、費用相場、メリット・デメリット、失敗しない選び方を解説。",
-        "author": { "@type": "Organization", "name": "清蓮（Seiren）", "url": "https://ohakanavi.jp/about" },
+        "author": { "@type": "Organization", "name": "清蓮（Seiren）", "url": "https://www.ohakanavi.jp/about" },
         "publisher": {
             "@type": "Organization", "name": "清蓮（Seiren）",
-            "logo": { "@type": "ImageObject", "url": "https://ohakanavi.jp/og-image.jpg" }
+            "logo": { "@type": "ImageObject", "url": "https://www.ohakanavi.jp/og-image.jpg" }
         },
         "datePublished": "2025-01-01",
-        "dateModified": new Date().toISOString().split("T")[0]
+        "dateModified": "2026-03-19"
     };
 
     const faqData = [
@@ -50,10 +50,21 @@ export default function GuideNoukotsudouPage() {
         { label: "納骨堂希望者のうち改葬目的の割合", value: "約38%", note: "既存のお墓からの移転" }
     ];
 
+    const breadcrumbLd = {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "トップ", "item": "https://www.ohakanavi.jp" },
+            { "@type": "ListItem", "position": 2, "name": "供養ガイド", "item": "https://www.ohakanavi.jp/guide" },
+            { "@type": "ListItem", "position": 3, "name": "納骨堂とは", "item": "https://www.ohakanavi.jp/guide/noukotsudou" },
+        ],
+    };
+
     return (
         <div className="min-h-screen flex flex-col bg-white-smoke text-gray-800">
             <JsonLd data={articleLd} />
             <JsonLd data={faqLd} />
+            <JsonLd data={breadcrumbLd} />
             <Navbar />
             <main id="main-content" className="grow pt-24 pb-20">
                 <article className="max-w-3xl mx-auto px-4">

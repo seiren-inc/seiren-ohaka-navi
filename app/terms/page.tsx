@@ -5,7 +5,7 @@ import { Metadata } from "next";
 export const metadata: Metadata = {
     title: "利用規約｜清蓮",
     description: "清蓮（SEIREN）のウェブサイト利用規約です。",
-    alternates: { canonical: "https://ohakanavi.jp/terms" },
+    alternates: { canonical: "https://www.ohakanavi.jp/terms" },
 };
 
 export default function TermsPage() {

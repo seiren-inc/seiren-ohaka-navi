@@ -3,20 +3,12 @@
 import { useState, useMemo, useEffect } from "react";
 import { X, ChevronRight, MapPin } from "lucide-react";
 import Link from "next/link";
-import { PREFECTURES } from "../../../lib/prefectures";
 
 interface AreaSearchModalProps {
     isOpen: boolean;
     onClose: () => void;
     initialPrefecture?: string;
 }
-
-// Group Prefectures for Tabs (simplified)
-const REGIONS = [
-    { name: "関東", prefs: ["東京都", "神奈川県", "埼玉県", "千葉県", "茨城県", "栃木県", "群馬県"] },
-    { name: "関西", prefs: ["大阪府", "兵庫県", "京都府", "奈良県", "滋賀県", "和歌山県"] },
-    { name: "その他", prefs: [] as string[] } // Logic to fill others
-];
 
 export function AreaSearchModal({ isOpen, onClose, initialPrefecture }: AreaSearchModalProps) {
     const [selectedPref, setSelectedPref] = useState(initialPrefecture || "東京都");

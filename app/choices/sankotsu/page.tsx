@@ -9,6 +9,7 @@ import { CheckCircle, AlertCircle, HelpCircle, BookOpen, Info, Calculator, Searc
 export const metadata: Metadata = {
     title: "海洋散骨とは｜方法・費用・注意点を中立に解説｜清蓮",
     description: "海洋散骨とは何か。実施方法の違い（チャーター・合同・代行）、費用の考え方、注意点（法律・粉骨・マナー）を中立の立場で解説します。",
+    alternates: { canonical: "https://www.ohakanavi.jp/choices/sankotsu" },
 };
 
 export default function SankotsuPage() {
@@ -18,16 +19,19 @@ export default function SankotsuPage() {
             {
                 "@type": "BreadcrumbList",
                 "itemListElement": [
-                    { "@type": "ListItem", "position": 1, "name": "清蓮（Seiren）", "item": "https://seiren-ohaka-navi.vercel.app" },
-                    { "@type": "ListItem", "position": 2, "name": "Choices", "item": "https://seiren-ohaka-navi.vercel.app/choices" },
-                    { "@type": "ListItem", "position": 3, "name": "海洋散骨", "item": "https://seiren-ohaka-navi.vercel.app/choices/sankotsu" }
+                    { "@type": "ListItem", "position": 1, "name": "清蓮（Seiren）", "item": "https://www.ohakanavi.jp" },
+                    { "@type": "ListItem", "position": 2, "name": "Choices", "item": "https://www.ohakanavi.jp/choices" },
+                    { "@type": "ListItem", "position": 3, "name": "海洋散骨", "item": "https://www.ohakanavi.jp/choices/sankotsu" }
                 ]
             },
             {
                 "@type": "Article",
                 "headline": "海洋散骨とは｜仕組みと注意点を中立に解説",
                 "description": "海洋散骨の仕組み、方法別の費用、実施時の法的注意点について中立的な視点で解説します。",
-                "author": { "@type": "Organization", "name": "清蓮" }
+                "author": { "@type": "Organization", "name": "清蓮（Seiren）", "url": "https://www.ohakanavi.jp" },
+                "publisher": { "@type": "Organization", "name": "清蓮（Seiren）", "logo": { "@type": "ImageObject", "url": "https://www.ohakanavi.jp/icon.png" } },
+                "datePublished": "2025-01-01",
+                "dateModified": "2026-03-19"
             },
             {
                 "@type": "FAQPage",
@@ -94,6 +98,32 @@ export default function SankotsuPage() {
                                 後悔しないために事前に知っておくべき注意点を整理しました。
                             </p>
                         </div>
+                    </div>
+
+                    {/* 30秒でわかる海洋散骨 */}
+                    <div className="bg-forest text-white rounded-2xl p-6 md:p-8 mb-16">
+                        <h2 className="font-serif text-lg font-bold mb-4 flex items-center gap-2">
+                            <Info className="w-5 h-5 opacity-80" />
+                            30秒でわかる海洋散骨
+                        </h2>
+                        <dl className="space-y-3 text-sm leading-relaxed">
+                            <div className="flex gap-3">
+                                <dt className="font-bold text-white/70 shrink-0 w-28">海洋散骨とは</dt>
+                                <dd>粉骨した遺骨を海に散布する供養。日本の法律上、節度ある範囲で認められており、お墓を持たない「自然葬」の代表的な形です。</dd>
+                            </div>
+                            <div className="flex gap-3">
+                                <dt className="font-bold text-white/70 shrink-0 w-28">費用の目安</dt>
+                                <dd>5万〜30万円程度（代行型5万〜・合同乗船型10万〜・チャーター型20万〜30万円が目安）。</dd>
+                            </div>
+                            <div className="flex gap-3">
+                                <dt className="font-bold text-white/70 shrink-0 w-28">最大のメリット</dt>
+                                <dd>お墓の維持管理・後継ぎが不要。「海に還りたい」という故人の意志を尊重でき、管理費の継続負担もありません。</dd>
+                            </div>
+                            <div className="flex gap-3">
+                                <dt className="font-bold text-white/70 shrink-0 w-28">最大の注意点</dt>
+                                <dd>一度散骨すると遺骨を取り戻せません。「お参りする場所がない」と感じる家族もいるため、全員の合意が極めて重要です。</dd>
+                            </div>
+                        </dl>
                     </div>
 
                     {/* H2: 海洋散骨とは何か */}

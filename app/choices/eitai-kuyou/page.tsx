@@ -9,6 +9,7 @@ import { CheckCircle, AlertCircle, HelpCircle, BookOpen, Info, Calculator, Searc
 export const metadata: Metadata = {
     title: "永代供養とは｜仕組み・費用・メリットを中立に解説｜清蓮",
     description: "永代供養とは何か、仕組みや費用の考え方、メリットと注意点を供養の専門家が中立の立場で解説します。",
+    alternates: { canonical: "https://www.ohakanavi.jp/choices/eitai-kuyou" },
 };
 
 export default function EitaiKuyouPage() {
@@ -18,16 +19,19 @@ export default function EitaiKuyouPage() {
             {
                 "@type": "BreadcrumbList",
                 "itemListElement": [
-                    { "@type": "ListItem", "position": 1, "name": "清蓮（Seiren）", "item": "https://seiren-ohaka-navi.vercel.app" },
-                    { "@type": "ListItem", "position": 2, "name": "Choices", "item": "https://seiren-ohaka-navi.vercel.app/choices" },
-                    { "@type": "ListItem", "position": 3, "name": "永代供養", "item": "https://seiren-ohaka-navi.vercel.app/choices/eitai-kuyou" }
+                    { "@type": "ListItem", "position": 1, "name": "清蓮（Seiren）", "item": "https://www.ohakanavi.jp" },
+                    { "@type": "ListItem", "position": 2, "name": "Choices", "item": "https://www.ohakanavi.jp/choices" },
+                    { "@type": "ListItem", "position": 3, "name": "永代供養", "item": "https://www.ohakanavi.jp/choices/eitai-kuyou" }
                 ]
             },
             {
                 "@type": "Article",
                 "headline": "永代供養とは｜仕組み・費用・メリットを中立に解説",
                 "description": "永代供養の仕組み、費用、メリット・デメリットについて中立的な視点で解説します。",
-                "author": { "@type": "Organization", "name": "清蓮" }
+                "author": { "@type": "Organization", "name": "清蓮（Seiren）", "url": "https://www.ohakanavi.jp" },
+                "publisher": { "@type": "Organization", "name": "清蓮（Seiren）", "logo": { "@type": "ImageObject", "url": "https://www.ohakanavi.jp/icon.png" } },
+                "datePublished": "2025-01-01",
+                "dateModified": "2026-03-19"
             },
             {
                 "@type": "FAQPage",
@@ -98,6 +102,32 @@ export default function EitaiKuyouPage() {
                                 メリット・注意点までを、中立的な立場で整理しています。
                             </p>
                         </div>
+                    </div>
+
+                    {/* AEO: Answer-First Summary Block */}
+                    <div className="bg-forest text-white rounded-2xl p-6 md:p-8 mb-16">
+                        <h2 className="font-serif text-lg font-bold mb-4 flex items-center gap-2">
+                            <Info className="w-5 h-5 opacity-80" />
+                            30秒でわかる永代供養
+                        </h2>
+                        <dl className="space-y-3 text-sm leading-relaxed">
+                            <div className="flex gap-3">
+                                <dt className="font-bold text-white/70 shrink-0 w-28">永代供養とは</dt>
+                                <dd>霊園や寺院が家族に代わって遺骨の管理・供養を継続的に行う仕組み。後継者（墓守）が不要。</dd>
+                            </div>
+                            <div className="flex gap-3">
+                                <dt className="font-bold text-white/70 shrink-0 w-28">費用の目安</dt>
+                                <dd>合祀（ごうし）型で5万〜30万円。個別安置型で30万〜150万円が相場。</dd>
+                            </div>
+                            <div className="flex gap-3">
+                                <dt className="font-bold text-white/70 shrink-0 w-28">最大のメリット</dt>
+                                <dd>継承者不要・年間管理費ゼロのプランが多く、子や孫への負担を残さない。</dd>
+                            </div>
+                            <div className="flex gap-3">
+                                <dt className="font-bold text-white/70 shrink-0 w-28">最大の注意点</dt>
+                                <dd>合祀（他の方と混合埋葬）後は遺骨を個別に取り出せない。契約前に必ず確認を。</dd>
+                            </div>
+                        </dl>
                     </div>
 
                     {/* H2: 永代供養とは何か */}

@@ -34,7 +34,7 @@ const articleLd = {
     "author": { "@type": "Organization", "name": "清蓮（Seiren）", "url": `${BASE_URL}/about` },
     "publisher": { "@type": "Organization", "name": "清蓮（Seiren）", "logo": { "@type": "ImageObject", "url": `${BASE_URL}/og-image.jpg` } },
     "datePublished": "2024-04-01",
-    "dateModified": new Date().toISOString().split("T")[0],
+    "dateModified": "2026-03-19",
 };
 
 const faqLd = {

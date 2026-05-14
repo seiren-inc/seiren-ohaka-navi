@@ -2,7 +2,7 @@
 
 import { useState, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowLeft, ArrowRight, CheckCircle, RefreshCw, Sprout, Building, Wallet, Waves, HeartHandshake, Gem, Landmark, HelpCircle, AlertCircle, Home, BookOpen, Search } from "lucide-react";
+import { ArrowLeft, ArrowRight, RefreshCw, Sprout, Building, Waves, HeartHandshake, Gem, Landmark, AlertCircle, Home, BookOpen, Search } from "lucide-react";
 import Link from "next/link";
 import { Button } from "../../ui/Button";
 
@@ -32,11 +32,6 @@ interface CandidateData {
     suitability: string; // "向いている傾向"
     caution?: string;
     subOptions?: { label: string; link: string; icon?: React.ElementType }[];
-}
-
-interface ScoredCandidate extends CandidateData {
-    score: number;
-    generatedReason: string;
 }
 
 // --- Data Definitions ---

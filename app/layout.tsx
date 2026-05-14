@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Noto_Sans_JP } from "next/font/google";
+import { Noto_Sans_JP, Shippori_Mincho_B1 } from "next/font/google";
 import { DeferredAnalytics } from "./components/analytics/DeferredAnalytics";
 import { FixedCTA } from "./components/layout/FixedCTA";
 import { SkipToMainLink } from "./components/accessibility/SkipToMainLink";
@@ -8,13 +8,13 @@ import "./globals.css";
 const notoSansJP = Noto_Sans_JP({
   variable: "--font-noto-sans-jp",
   subsets: ["latin"],
+  weight: ["400", "500", "700"],
 });
 
-// Replaces Shippori Mincho with Noto Sans JP while maintaining variable compatibility
-// This ensures 'font-serif' classes render as Noto Sans JP
-const shipporiMincho = Noto_Sans_JP({
+const shipporiMincho = Shippori_Mincho_B1({
   variable: "--font-shippori-mincho",
   subsets: ["latin"],
+  weight: ["400", "700", "800"],
 });
 
 export const metadata: Metadata = {

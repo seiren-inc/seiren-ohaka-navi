@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
 import {
   MapPin,
   Tag as TagIcon,
@@ -21,9 +21,11 @@ interface GraveyardCardProps {
 }
 
 export function GraveyardCard({ data }: GraveyardCardProps) {
-  const pathname = usePathname();
-  const currentUrl =
-    typeof window !== "undefined" ? window.location.href : pathname;
+  const [currentUrl, setCurrentUrl] = useState("");
+
+  useEffect(() => {
+    setCurrentUrl(window.location.href);
+  }, []);
 
   const { isFavorite, toggleFavorite, isInitialized } = useFavorites();
   const isFav = isInitialized ? isFavorite(data.id) : false;

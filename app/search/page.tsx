@@ -10,18 +10,24 @@ import { prisma } from "@/lib/prisma";
 import { Metadata } from "next";
 
 function isPrismaConnectivityError(error: unknown): boolean {
+    const message = error instanceof Error ? error.message : "";
+
     return (
-        typeof error === "object" &&
-        error !== null &&
-        "code" in error &&
-        (error as { code?: string }).code === "P1001"
+        (
+            typeof error === "object" &&
+            error !== null &&
+            "code" in error &&
+            (error as { code?: string }).code === "P1001"
+        ) ||
+        message.includes("ENOTFOUND") ||
+        message.includes("Can't reach database")
     );
 }
 
 export const metadata: Metadata = {
     title: "墓地・霊園をさがす｜清蓮(Seiren)",
     description: "条件に合わせて最適な墓地・永代供養墓・樹木葬を検索できます。",
-    alternates: { canonical: "https://ohakanavi.jp/search" },
+    alternates: { canonical: "https://www.ohakanavi.jp/search" },
 };
 
 export default async function SearchPage(props: { searchParams: Promise<{ [key: string]: string | string[] | undefined }> }) {
@@ -40,19 +46,43 @@ export default async function SearchPage(props: { searchParams: Promise<{ [key: 
     // In a real app with many records, we would build a dynamic 'where' clause for Prisma.
     // For MVP, we fetch all public/listed temples and filter in memory as before.
     let allTemplesData: unknown[] = [];
+    let dataUnavailable = false;
     try {
         allTemplesData = await prisma.temple.findMany({
             where: {
                 status: 'public',
                 listedInSearch: true
+            },
+            select: {
+                id: true,
+                name: true,
+                type: true,
+                religion: true,
+                buddhistSect: true,
+                prefecture: true,
+                cityName: true,
+                addressLine: true,
+                address: true,
+                access: true,
+                parkingAvailable: true,
+                barrierFree: true,
+                petAllowed: true,
+                sects: true,
+                supportedMemorialTypes: true,
+                nearestStations: true,
+                priceAggMin: true,
+                status: true,
+                listedInSearch: true,
+                planType: true,
+                isPrSlot: true,
+                tags: true,
+                mainImage: true
             }
         });
     } catch (error) {
-        if (!isPrismaConnectivityError(error)) {
-            console.error("[SearchPage] Temple query failed; falling back to empty search results", error);
-        } else {
-            console.error("[SearchPage] Prisma connectivity error; falling back to empty search results", error);
-        }
+        const reason = isPrismaConnectivityError(error) ? "database_unavailable" : "query_failed";
+        console.error(`[SearchPage] Temple query failed; reason=${reason}; showing unavailable state`);
+        dataUnavailable = true;
         allTemplesData = [];
     }
     const allTemples = allTemplesData as unknown as Temple[];
@@ -95,12 +125,12 @@ export default async function SearchPage(props: { searchParams: Promise<{ [key: 
         // 7. Features (AND Logic)
         if (features.length > 0) {
             for (const f of features) {
-                if (f === 'petAllowed' && t.petAllowed === 'notAllowed') return false;
+                if (f === 'petAllowed' && t.petAllowed !== 'allowed') return false;
                 if (f === 'barrierFree' && !t.barrierFree) return false;
                 if (f === 'parking' && !t.parkingAvailable) return false;
                 if (f === 'station') {
                     // Check if any station is <= 10 min
-                    const isNear = t.nearestStations.some(s => s.walkMinutes <= 10);
+                    const isNear = Array.isArray(t.nearestStations) && t.nearestStations.some(s => s.walkMinutes <= 10);
                     if (!isNear) return false;
                 }
                 if (f === 'religiousFree' && t.religion !== 'unknown') {
@@ -153,7 +183,7 @@ export default async function SearchPage(props: { searchParams: Promise<{ [key: 
         <div className="min-h-screen flex flex-col bg-white-smoke">
             <Navbar />
 
-            <main id="main-content" className="grow pt-24 pb-20">
+            <main id="main-content" className="grow pt-20 pb-20 md:pt-24">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
                     {/* Breadcrumb */}
@@ -161,7 +191,28 @@ export default async function SearchPage(props: { searchParams: Promise<{ [key: 
                         <Breadcrumb />
                     </div>
 
-                    <div className="flex flex-col lg:flex-row gap-8">
+                    <div className="mb-6 rounded-xl border border-primary/15 bg-white px-4 py-5 shadow-sm md:px-6">
+                        <p className="mb-2 text-xs font-bold tracking-[0.18em] text-primary/70 uppercase">
+                            Search
+                        </p>
+                        <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
+                            <div>
+                                <h1 className="font-serif text-2xl font-bold text-primary md:text-3xl">
+                                    {pageTitle}
+                                </h1>
+                                <p className="mt-2 text-sm leading-6 text-gray-600">
+                                    エリア・供養形態・こだわり条件から、ご希望に合う霊園を絞り込めます。
+                                </p>
+                            </div>
+                            <div className="rounded-lg bg-primary/5 px-4 py-3 text-left md:text-right">
+                                <span className="block text-xs font-bold text-gray-500">検索結果</span>
+                                <span className="text-2xl font-bold text-primary">{filteredGraveyards.length}</span>
+                                <span className="ml-1 text-sm text-gray-600">件</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="flex flex-col lg:flex-row gap-6 lg:gap-8">
                         {/* Sidebar (Filter) */}
                         <aside className="w-full lg:w-1/4">
                             {/* We don't pass initialPref anymore as SearchFilter reads URL */}
@@ -173,46 +224,41 @@ export default async function SearchPage(props: { searchParams: Promise<{ [key: 
                         {/* Main Content (Results) */}
                         <div className="w-full lg:w-3/4">
                             {/* Consult Banner */}
-                            <div className="bg-primary/5 border border-primary/20 rounded-lg p-4 mb-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+                            <div className="bg-primary/5 border border-primary/20 rounded-lg p-4 mb-6 flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-center">
                                 <div>
                                     <h3 className="text-primary-dark font-bold text-lg mb-1">条件が決まらない・迷っている方へ</h3>
                                     <p className="text-sm text-gray-600">専門スタッフがご希望に合わせて最適な墓地・霊園をご提案します。</p>
                                 </div>
-                                <Link href="/consult/grave-search" className="shrink-0 px-6 py-2 bg-primary text-white rounded-md font-bold text-sm hover:bg-primary-dark transition-colors shadow-sm">
+                                <Link href="/consult/grave-search" className="inline-flex h-11 w-full shrink-0 items-center justify-center rounded-md bg-primary px-6 text-sm font-bold text-white shadow-sm transition-colors hover:bg-primary-dark sm:w-auto">
                                     無料で相談する
                                 </Link>
                             </div>
 
-                            <div className="flex justify-between items-center mb-6">
-                                <h1 className="font-serif text-2xl font-bold text-primary">
-                                    {pageTitle}
-                                </h1>
-                                <span className="text-gray-500 text-sm">
-                                    <span className="font-bold text-lg text-primary">{filteredGraveyards.length}</span> 件 ヒット
-                                </span>
-                            </div>
-
                             <div className="grid gap-6">
-                                {filteredGraveyards.length > 0 ? (
+                                {dataUnavailable ? (
+                                    <div className="p-8 text-center bg-white rounded-xl border border-primary/10 flex flex-col items-center justify-center gap-3 md:p-12">
+                                        <div className="text-primary font-bold">検索データを取得できませんでした。</div>
+                                        <p className="max-w-md text-sm leading-6 text-gray-500">
+                                            時間をおいて再度お試しいただくか、条件を添えて無料相談をご利用ください。
+                                        </p>
+                                        <Link href="/consult/grave-search" className="inline-flex h-11 items-center justify-center rounded-md bg-primary px-5 text-sm font-bold text-white hover:bg-primary-dark">
+                                            無料相談へ進む
+                                        </Link>
+                                    </div>
+                                ) : filteredGraveyards.length > 0 ? (
                                     filteredGraveyards.map((temple) => (
                                         <GraveyardCard key={temple.id} data={temple} />
                                     ))
                                 ) : (
-                                    <div className="p-12 text-center bg-white rounded-xl border border-gray-100 flex flex-col items-center justify-center gap-4">
-                                        <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center text-gray-400 text-2xl">?</div>
+                                    <div className="p-8 text-center bg-white rounded-xl border border-gray-100 flex flex-col items-center justify-center gap-4 md:p-12">
                                         <div className="text-gray-500 font-bold">条件に一致する霊園・墓地は見つかりませんでした。</div>
                                         <p className="text-sm text-gray-400">条件を緩めて再検索するか、個別にご相談ください。</p>
-                                        <Link href="/consult" className="text-primary underline text-sm hover:text-primary">無料相談はこちら</Link>
+                                        <Link href="/consult/grave-search" className="inline-flex h-11 items-center justify-center rounded-md border border-primary px-5 text-sm font-bold text-primary hover:bg-primary/5">
+                                            無料相談はこちら
+                                        </Link>
                                     </div>
                                 )}
                             </div>
-
-                            {/* Pagination (Visual only for now) */}
-                            {filteredGraveyards.length > 10 && (
-                                <div className="mt-12 flex justify-center gap-2">
-                                    <button className="w-10 h-10 flex items-center justify-center rounded bg-primary text-white font-bold">1</button>
-                                </div>
-                            )}
                         </div>
                     </div>
                 </div>

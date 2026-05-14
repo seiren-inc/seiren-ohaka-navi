@@ -77,7 +77,7 @@ function GraveClosureConsultForm() {
         if (formData.graveTempleName && !templeQuery) {
             setTempleQuery(formData.graveTempleName);
         }
-    }, []);
+    }, [formData.graveTempleName, templeQuery]);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
         const { name, value } = e.target;
@@ -275,6 +275,7 @@ function GraveClosureConsultForm() {
 
     return (
         <div className="min-h-screen bg-slate-50 flex flex-col">
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({ "@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{ "@type": "ListItem", "position": 1, "name": "トップ", "item": "https://www.ohakanavi.jp" }, { "@type": "ListItem", "position": 2, "name": "無料相談", "item": "https://www.ohakanavi.jp/consult" }, { "@type": "ListItem", "position": 3, "name": "墓じまい相談", "item": "https://www.ohakanavi.jp/consult/grave-closure" }] }) }} />
             <Navbar />
 
             {/* Hero */}

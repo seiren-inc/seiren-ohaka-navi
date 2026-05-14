@@ -5,6 +5,7 @@ import { Metadata } from "next";
 export const metadata: Metadata = {
     title: "プライバシーポリシー｜清蓮",
     description: "清蓮（SEIREN）のプライバシーポリシー（個人情報保護方針）についてのページです。",
+    alternates: { canonical: "https://www.ohakanavi.jp/privacy" },
 };
 
 export default function PrivacyPage() {

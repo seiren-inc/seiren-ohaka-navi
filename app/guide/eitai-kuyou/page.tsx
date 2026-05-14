@@ -11,7 +11,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
     title: "永代供養とは？費用相場やメリット・デメリットを徹底解説｜清蓮",
     description: "永代供養（えいたいくよう）にかかる費用相場、一般的なお墓との違い、後悔しない選び方のポイントを供養の専門家が分かりやすく解説します。",
-    alternates: { canonical: "https://ohakanavi.jp/guide/eitai-kuyou" }
+    alternates: { canonical: "https://www.ohakanavi.jp/guide/eitai-kuyou" }
 };
 
 export default function GuideEitaiKuyouPage() {
@@ -23,18 +23,18 @@ export default function GuideEitaiKuyouPage() {
         "author": {
             "@type": "Organization",
             "name": "清蓮（Seiren）",
-            "url": "https://ohakanavi.jp/about"
+            "url": "https://www.ohakanavi.jp/about"
         },
         "publisher": {
             "@type": "Organization",
             "name": "清蓮（Seiren）",
             "logo": {
                 "@type": "ImageObject",
-                "url": "https://ohakanavi.jp/og-image.jpg"
+                "url": "https://www.ohakanavi.jp/og-image.jpg"
             }
         },
         "datePublished": "2025-01-01",
-        "dateModified": new Date().toISOString().split('T')[0]
+        "dateModified": "2026-03-19"
     };
 
     const faqData = [
@@ -62,10 +62,21 @@ export default function GuideEitaiKuyouPage() {
         }))
     };
 
+    const breadcrumbLd = {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "トップ", "item": "https://www.ohakanavi.jp" },
+            { "@type": "ListItem", "position": 2, "name": "供養ガイド", "item": "https://www.ohakanavi.jp/guide" },
+            { "@type": "ListItem", "position": 3, "name": "永代供養とは", "item": "https://www.ohakanavi.jp/guide/eitai-kuyou" },
+        ],
+    };
+
     return (
         <div className="min-h-screen flex flex-col bg-white-smoke text-gray-800">
             <JsonLd data={articleLd} />
             <JsonLd data={faqLd} />
+            <JsonLd data={breadcrumbLd} />
             <Navbar />
             
             <main id="main-content" className="grow pt-24 pb-20">

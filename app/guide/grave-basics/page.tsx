@@ -11,7 +11,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
     title: "お墓の基礎知識｜種類・費用・建て方・選び方を一挙解説｜清蓮",
     description: "一般墓・永代供養墓・樹木葬・納骨堂の種類別の費用相場、寺院墓地・民営霊園・公営霊園の違いと選び方のポイントをわかりやすく解説します。",
-    alternates: { canonical: "https://ohakanavi.jp/guide/grave-basics" }
+    alternates: { canonical: "https://www.ohakanavi.jp/guide/grave-basics" }
 };
 
 export default function GuideGraveBasicsPage() {
@@ -20,13 +20,13 @@ export default function GuideGraveBasicsPage() {
         "@type": "Article",
         "headline": "お墓の基礎知識｜種類・費用・建て方・選び方を一挙解説",
         "description": "一般墓・永代供養墓・樹木葬・納骨堂の種類と費用、霊園選びのポイントを解説。",
-        "author": { "@type": "Organization", "name": "清蓮（Seiren）", "url": "https://ohakanavi.jp/about" },
+        "author": { "@type": "Organization", "name": "清蓮（Seiren）", "url": "https://www.ohakanavi.jp/about" },
         "publisher": {
             "@type": "Organization", "name": "清蓮（Seiren）",
-            "logo": { "@type": "ImageObject", "url": "https://ohakanavi.jp/og-image.jpg" }
+            "logo": { "@type": "ImageObject", "url": "https://www.ohakanavi.jp/og-image.jpg" }
         },
         "datePublished": "2025-01-01",
-        "dateModified": new Date().toISOString().split("T")[0]
+        "dateModified": "2026-03-19"
     };
 
     const faqData = [
@@ -50,10 +50,21 @@ export default function GuideGraveBasicsPage() {
         { label: "供養スタイル変更の相談で最多の理由", value: "後継者不足", note: "清蓮への相談で最多の動機" }
     ];
 
+    const breadcrumbLd = {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "トップ", "item": "https://www.ohakanavi.jp" },
+            { "@type": "ListItem", "position": 2, "name": "供養ガイド", "item": "https://www.ohakanavi.jp/guide" },
+            { "@type": "ListItem", "position": 3, "name": "お墓の基礎知識", "item": "https://www.ohakanavi.jp/guide/grave-basics" },
+        ],
+    };
+
     return (
         <div className="min-h-screen flex flex-col bg-white-smoke text-gray-800">
             <JsonLd data={articleLd} />
             <JsonLd data={faqLd} />
+            <JsonLd data={breadcrumbLd} />
             <Navbar />
             <main id="main-content" className="grow pt-24 pb-20">
                 <article className="max-w-3xl mx-auto px-4">
