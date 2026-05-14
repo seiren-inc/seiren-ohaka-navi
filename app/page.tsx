@@ -10,7 +10,7 @@ import { OpeningAnimation } from "./components/features/OpeningAnimation";
 
 import { Button } from "./components/ui/Button";
 import { Card } from "./components/ui/Card";
-import { ArrowRight, ChevronRight, Phone, ChevronDown } from "lucide-react";
+import { ArrowRight, ChevronRight, Phone, ChevronDown, Download, FileText, ExternalLink, Building2 } from "lucide-react";
 import { KaisouFlow } from "./components/features/KaisouFlow";
 import { RelatedServices } from "./components/features/RelatedServices";
 
@@ -286,10 +286,10 @@ export default function Home() {
             <div className="flex flex-col md:flex-row items-center gap-16">
               <div className="w-full md:w-1/2">
                 <div className="relative aspect-4/3 bg-bg-muted rounded-lg overflow-hidden shadow-card border border-border group">
-                  <Image 
-                      src="/images/concept_support.webp" 
-                      alt="お客様に寄り添う相談窓口" 
-                      fill 
+                  <Image
+                      src="/images/hero-memorial-garden.png"
+                      alt="静かな日本の霊園・供養の場"
+                      fill
                       className="object-cover transform group-hover:scale-105 transition-transform duration-700"
                       sizes="(max-width: 768px) 100vw, 50vw"
                       quality={60}
@@ -341,14 +341,84 @@ export default function Home() {
                 </div>
                 
                 <KaisouFlow />
-                
-                <div className="text-center mt-8">
-                    <Link href="/kaisou">
-                        <Button variant="secondary" className="font-bold">
-                            改葬についてさらに詳しく見る
-                            <ArrowRight className="w-4 h-4 ml-2" />
-                        </Button>
-                    </Link>
+
+                {/* お墓じまいナビ プロモーションバナー */}
+                <div className="mt-12 max-w-3xl mx-auto">
+                    <div className="bg-forest rounded-2xl overflow-hidden shadow-xl">
+                        {/* ヘッダーバー */}
+                        <div className="bg-white/10 px-6 py-3 flex items-center gap-3 border-b border-white/10">
+                            <span className="text-white/60 text-xs font-bold tracking-widest uppercase">提携サービス</span>
+                            <span className="ml-auto bg-lotus-pink text-white text-xs font-bold px-3 py-1 rounded-full">全国対応</span>
+                        </div>
+
+                        <div className="p-8 md:p-10">
+                            <div className="mb-6">
+                                <h3 className="font-serif text-2xl md:text-3xl font-bold text-white mb-2">お墓じまいナビ</h3>
+                                <p className="text-white/70 text-sm leading-relaxed">
+                                    改葬の実務をまるごとサポートする専門サービス。手続きの流れから書類準備まで、これ一つで解決。
+                                </p>
+                            </div>
+
+                            {/* 注目機能：改葬申請書DL */}
+                            <div className="bg-white rounded-xl p-5 mb-4">
+                                <div className="flex items-start gap-4">
+                                    <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center shrink-0">
+                                        <Download className="w-6 h-6 text-forest" />
+                                    </div>
+                                    <div className="flex-1">
+                                        <div className="flex items-center gap-2 mb-1 flex-wrap">
+                                            <span className="font-bold text-gray-800 text-sm md:text-base">全国の自治体の改葬申請書を無料でダウンロード</span>
+                                            <span className="bg-red-100 text-red-600 text-xs font-bold px-2 py-0.5 rounded shrink-0">注目機能</span>
+                                        </div>
+                                        <p className="text-gray-500 text-xs md:text-sm leading-relaxed">
+                                            全国の多くの市区町村の「改葬許可申請書」をPDFでその場でダウンロードできます。
+                                            役所に足を運ぶ前に書類を準備して、手続きをスムーズに進められます。
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {/* サブ機能 2列 */}
+                            <div className="grid sm:grid-cols-2 gap-3 mb-8">
+                                <div className="bg-white/10 rounded-xl p-4">
+                                    <div className="flex items-center gap-2 mb-2">
+                                        <FileText className="w-4 h-4 text-white/80 shrink-0" />
+                                        <span className="font-bold text-white text-sm">わかりやすい流れを全公開</span>
+                                    </div>
+                                    <p className="text-white/60 text-xs leading-relaxed">
+                                        お墓じまいの全ステップ・注意点・費用感を詳しく掲載。初めてでも迷わず進められます。
+                                    </p>
+                                </div>
+                                <div className="bg-white/10 rounded-xl p-4">
+                                    <div className="flex items-center gap-2 mb-2">
+                                        <Building2 className="w-4 h-4 text-white/80 shrink-0" />
+                                        <span className="font-bold text-white text-sm">全国の優良石材店ネットワーク</span>
+                                    </div>
+                                    <p className="text-white/60 text-xs leading-relaxed">
+                                        墓石の解体・撤去を依頼できる全国の石材店を紹介。お見積もりは無料です。
+                                    </p>
+                                </div>
+                            </div>
+
+                            <a
+                                href="https://ohakajimai-navi.jp/"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="block"
+                            >
+                                <div className="w-full bg-white text-forest hover:bg-white/90 font-bold py-4 rounded-xl flex items-center justify-center gap-2 transition-colors cursor-pointer text-sm md:text-base">
+                                    お墓じまいナビで書類をDLする・流れを確認する
+                                    <ExternalLink className="w-4 h-4 shrink-0" />
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div className="text-center mt-5">
+                        <Link href="/kaisou" className="text-sm text-gray-500 hover:text-primary transition-colors">
+                            清蓮のお墓じまい・改葬サポートページを見る →
+                        </Link>
+                    </div>
                 </div>
             </div>
         </section>
