@@ -28,7 +28,10 @@ export default function TemotoKuyouPage() {
                 "@type": "Article",
                 "headline": "自宅供養とは｜手元に遺骨を残す供養の考え方",
                 "description": "自宅供養（手元供養）の仕組み、種類、メリット・デメリットについて中立的な視点で解説します。",
-                "author": { "@type": "Organization", "name": "清蓮" }
+                "author": { "@type": "Organization", "name": "清蓮（Seiren）", "url": "https://www.ohakanavi.jp" },
+                "publisher": { "@type": "Organization", "name": "清蓮（Seiren）", "logo": { "@type": "ImageObject", "url": "https://www.ohakanavi.jp/icon.png" } },
+                "datePublished": "2025-01-01",
+                "dateModified": "2026-03-19"
             },
             {
                 "@type": "FAQPage",
@@ -96,6 +99,32 @@ export default function TemotoKuyouPage() {
                                 このページでは、自宅供養の考え方と具体的な方法を整理しました。
                             </p>
                         </div>
+                    </div>
+
+                    {/* 30秒でわかる自宅供養 */}
+                    <div className="bg-forest text-white rounded-2xl p-6 md:p-8 mb-16">
+                        <h2 className="font-serif text-lg font-bold mb-4 flex items-center gap-2">
+                            <Info className="w-5 h-5 opacity-80" />
+                            30秒でわかる自宅供養（手元供養）
+                        </h2>
+                        <dl className="space-y-3 text-sm leading-relaxed">
+                            <div className="flex gap-3">
+                                <dt className="font-bold text-white/70 shrink-0 w-28">自宅供養とは</dt>
+                                <dd>遺骨を自宅に安置し、身近な場所で故人を供養する形。骨壺のまま安置するほか、手元供養グッズを使う方法もあります。</dd>
+                            </div>
+                            <div className="flex gap-3">
+                                <dt className="font-bold text-white/70 shrink-0 w-28">費用の目安</dt>
+                                <dd>数千円〜数十万円（骨壺・仏具・メモリアルグッズ等の選択による）。お墓と比べて初期費用を大幅に抑えられます。</dd>
+                            </div>
+                            <div className="flex gap-3">
+                                <dt className="font-bold text-white/70 shrink-0 w-28">最大のメリット</dt>
+                                <dd>故人をいつも身近に感じられる。納骨のタイミングを自分のペースで決められ、気持ちの整理がつくまで手元に置けます。</dd>
+                            </div>
+                            <div className="flex gap-3">
+                                <dt className="font-bold text-white/70 shrink-0 w-28">最大の注意点</dt>
+                                <dd>自分が亡くなった後、遺骨をどうするかという「出口」を事前に考えておく必要があります。家族間での合意も重要です。</dd>
+                            </div>
+                        </dl>
                     </div>
 
                     {/* H2: 自宅供養とは何か */}

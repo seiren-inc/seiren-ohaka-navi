@@ -26,7 +26,7 @@ export default function GuideJumokusouPage() {
             "logo": { "@type": "ImageObject", "url": "https://www.ohakanavi.jp/og-image.jpg" }
         },
         "datePublished": "2025-01-01",
-        "dateModified": new Date().toISOString().split("T")[0]
+        "dateModified": "2026-03-19"
     };
 
     const faqData = [
@@ -50,10 +50,21 @@ export default function GuideJumokusouPage() {
         { label: "見学後の申込転換率", value: "約72%", note: "現地見学の重要性を示す数値" }
     ];
 
+    const breadcrumbLd = {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "トップ", "item": "https://www.ohakanavi.jp" },
+            { "@type": "ListItem", "position": 2, "name": "供養ガイド", "item": "https://www.ohakanavi.jp/guide" },
+            { "@type": "ListItem", "position": 3, "name": "樹木葬とは", "item": "https://www.ohakanavi.jp/guide/jumokusou" },
+        ],
+    };
+
     return (
         <div className="min-h-screen flex flex-col bg-white-smoke text-gray-800">
             <JsonLd data={articleLd} />
             <JsonLd data={faqLd} />
+            <JsonLd data={breadcrumbLd} />
             <Navbar />
             <main id="main-content" className="grow pt-24 pb-20">
                 <article className="max-w-3xl mx-auto px-4">

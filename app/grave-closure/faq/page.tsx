@@ -1,6 +1,7 @@
 import { Navbar } from "../../components/layout/Navbar";
 import { Footer } from "../../components/layout/Footer";
 import { Button } from "../../components/ui/Button";
+import { JsonLd } from "../../components/seo/JsonLd";
 import Link from "next/link";
 import { ArrowLeft, HelpCircle } from "lucide-react";
 import { Metadata } from "next";
@@ -21,8 +22,31 @@ export default function GraveClosureFaqPage() {
         { q: "遺骨が土に還ってしまっている場合はどうすれば？", a: "古いお墓で土葬の場合や、骨が土化している場合は、その土を一部採取して新しい供養先へ納める形をとることが一般的です。" },
     ];
 
+    const jsonLd = {
+        "@context": "https://schema.org",
+        "@graph": [
+            {
+                "@type": "BreadcrumbList",
+                "itemListElement": [
+                    { "@type": "ListItem", "position": 1, "name": "トップ", "item": "https://www.ohakanavi.jp" },
+                    { "@type": "ListItem", "position": 2, "name": "墓じまい・改葬", "item": "https://www.ohakanavi.jp/grave-closure" },
+                    { "@type": "ListItem", "position": 3, "name": "よくある質問", "item": "https://www.ohakanavi.jp/grave-closure/faq" },
+                ],
+            },
+            {
+                "@type": "FAQPage",
+                "mainEntity": faqs.map((f) => ({
+                    "@type": "Question",
+                    "name": f.q,
+                    "acceptedAnswer": { "@type": "Answer", "text": f.a },
+                })),
+            },
+        ],
+    };
+
     return (
         <div className="min-h-screen flex flex-col bg-white">
+            <JsonLd data={jsonLd} />
             <Navbar />
 
             <main id="main-content" className="grow pt-32 px-4 pb-20">

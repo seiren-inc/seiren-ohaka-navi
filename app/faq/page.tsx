@@ -116,7 +116,7 @@ export default function FaqPage() {
             {
                 "@type": "BreadcrumbList",
                 "itemListElement": [
-                    { "@type": "ListItem", "position": 1, "name": "清蓮 お墓探しナビ", "item": "https://www.ohakanavi.jp/" },
+                    { "@type": "ListItem", "position": 1, "name": "清蓮 お墓探しナビ", "item": "https://www.ohakanavi.jp" },
                     { "@type": "ListItem", "position": 2, "name": "よくある質問", "item": "https://www.ohakanavi.jp/faq" },
                 ],
             },
@@ -129,6 +129,16 @@ export default function FaqPage() {
                         "acceptedAnswer": { "@type": "Answer", "text": item.a },
                     }))
                 ),
+            },
+            {
+                "@type": "WebPage",
+                "@id": "https://www.ohakanavi.jp/faq#webpage",
+                "url": "https://www.ohakanavi.jp/faq",
+                "name": "よくある質問（FAQ）｜清蓮",
+                "speakable": {
+                    "@type": "SpeakableSpecification",
+                    "cssSelector": ["h1", "details summary span", "details div p"],
+                },
             },
         ],
     };

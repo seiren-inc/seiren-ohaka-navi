@@ -1,9 +1,46 @@
 import { Navbar } from "../../components/layout/Navbar";
 import { Footer } from "../../components/layout/Footer";
 import { Button } from "../../components/ui/Button";
+import { JsonLd } from "../../components/seo/JsonLd";
 import Link from "next/link";
 import { ChevronRight, CheckCircle2, AlertCircle } from "lucide-react";
 import type { Metadata } from "next";
+
+const jsonLd = {
+    "@context": "https://schema.org",
+    "@graph": [
+        {
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+                { "@type": "ListItem", "position": 1, "name": "トップ", "item": "https://www.ohakanavi.jp" },
+                { "@type": "ListItem", "position": 2, "name": "墓じまい・改葬", "item": "https://www.ohakanavi.jp/grave-closure" },
+                { "@type": "ListItem", "position": 3, "name": "お墓じまいとは", "item": "https://www.ohakanavi.jp/grave-closure/what" },
+            ],
+        },
+        {
+            "@type": "Article",
+            "headline": "お墓じまいとは？基礎知識と流れをわかりやすく解説",
+            "description": "お墓じまい（墓じまい）の意味、なぜ増えているのか、基本的な流れ、よくある誤解をわかりやすく解説します。",
+            "author": { "@type": "Organization", "name": "清蓮（Seiren）", "url": "https://www.ohakanavi.jp" },
+            "publisher": {
+                "@type": "Organization",
+                "name": "清蓮（Seiren）",
+                "logo": { "@type": "ImageObject", "url": "https://www.ohakanavi.jp/icon.png" },
+            },
+            "datePublished": "2025-01-01",
+            "dateModified": "2026-03-19",
+            "mainEntityOfPage": "https://www.ohakanavi.jp/grave-closure/what",
+        },
+        {
+            "@type": "FAQPage",
+            "mainEntity": [
+                { "@type": "Question", "name": "墓じまいとは何ですか？", "acceptedAnswer": { "@type": "Answer", "text": "墓じまいとは、お墓を撤去・更地にして霊園や寺院との契約を終了する一連の手続きのことです。遺骨を新しい供養先（永代供養墓・樹木葬など）へ移す「改葬」と合わせて行うのが一般的です。" } },
+                { "@type": "Question", "name": "墓じまいが増えている理由は何ですか？", "acceptedAnswer": { "@type": "Answer", "text": "少子化・核家族化による継承者不在、遠方への転居による管理困難、経済的な維持コスト、宗教観の変化などが主な理由です。近年、年間約15万件以上の改葬許可が発行されています。" } },
+                { "@type": "Question", "name": "墓じまいをすると寺院との関係が壊れますか？", "acceptedAnswer": { "@type": "Answer", "text": "手順を踏んで丁寧にご相談すれば、円満に進めることができます。いきなり告知せず、事前に相談することが大切です。" } },
+            ],
+        },
+    ],
+};
 
 export const metadata: Metadata = {
     title: "お墓じまいとは？基礎知識と流れをわかりやすく解説｜清蓮",
@@ -27,6 +64,7 @@ const misconceptions = [
 export default function GraveClosureWhatPage() {
     return (
         <div className="min-h-screen flex flex-col bg-white text-gray-800">
+            <JsonLd data={jsonLd} />
             <Navbar />
             <main id="main-content" className="grow pt-24 pb-20">
                 <div className="max-w-3xl mx-auto px-4">

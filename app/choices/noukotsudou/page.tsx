@@ -27,7 +27,10 @@ export default function NoukotsudouPage() {
                 "@type": "Article",
                 "headline": "納骨堂とは｜屋内型の供養方法を中立に解説",
                 "description": "納骨堂の仕組み、費用、メリット・デメリットについて中立的な視点で解説します。",
-                "author": { "@type": "Organization", "name": "清蓮" }
+                "author": { "@type": "Organization", "name": "清蓮（Seiren）", "url": "https://www.ohakanavi.jp" },
+                "publisher": { "@type": "Organization", "name": "清蓮（Seiren）", "logo": { "@type": "ImageObject", "url": "https://www.ohakanavi.jp/icon.png" } },
+                "datePublished": "2025-01-01",
+                "dateModified": "2026-03-19"
             },
             {
                 "@type": "FAQPage",
@@ -93,6 +96,32 @@ export default function NoukotsudouPage() {
                                 メリットと注意点を冷静に比較できるよう整理しました。
                             </p>
                         </div>
+                    </div>
+
+                    {/* AEO: Answer-First Summary Block */}
+                    <div className="bg-forest text-white rounded-2xl p-6 md:p-8 mb-16">
+                        <h2 className="font-serif text-lg font-bold mb-4 flex items-center gap-2">
+                            <Info className="w-5 h-5 opacity-80" />
+                            30秒でわかる納骨堂
+                        </h2>
+                        <dl className="space-y-3 text-sm leading-relaxed">
+                            <div className="flex gap-3">
+                                <dt className="font-bold text-white/70 shrink-0 w-28">納骨堂とは</dt>
+                                <dd>屋内施設に遺骨を安置する供養スタイル。天候に左右されず、都市部のアクセス良好な場所に多い。</dd>
+                            </div>
+                            <div className="flex gap-3">
+                                <dt className="font-bold text-white/70 shrink-0 w-28">費用の目安</dt>
+                                <dd>ロッカー型20万〜60万円、仏壇型50万〜150万円、機械式（自動搬送型）50万〜200万円が相場。</dd>
+                            </div>
+                            <div className="flex gap-3">
+                                <dt className="font-bold text-white/70 shrink-0 w-28">最大のメリット</dt>
+                                <dd>雨の日も快適にお参りでき、駅近施設が多い。足腰が弱い方やご高齢の方にも選ばれる。</dd>
+                            </div>
+                            <div className="flex gap-3">
+                                <dt className="font-bold text-white/70 shrink-0 w-28">最大の注意点</dt>
+                                <dd>年間管理費が発生する施設が多い。一定期間後に合祀されるプランでは遺骨の取り出し不可。</dd>
+                            </div>
+                        </dl>
                     </div>
 
                     {/* H2: 納骨堂とは何か */}

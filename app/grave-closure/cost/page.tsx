@@ -1,6 +1,7 @@
 import { Navbar } from "../../components/layout/Navbar";
 import { Footer } from "../../components/layout/Footer";
 import { Button } from "../../components/ui/Button";
+import { JsonLd } from "../../components/seo/JsonLd";
 import Link from "next/link";
 import { ArrowLeft, Calculator } from "lucide-react";
 import { Metadata } from "next";
@@ -11,9 +12,46 @@ export const metadata: Metadata = {
     alternates: { canonical: "https://www.ohakanavi.jp/grave-closure/cost" },
 };
 
+const jsonLd = {
+    "@context": "https://schema.org",
+    "@graph": [
+        {
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+                { "@type": "ListItem", "position": 1, "name": "トップ", "item": "https://www.ohakanavi.jp" },
+                { "@type": "ListItem", "position": 2, "name": "墓じまい・改葬", "item": "https://www.ohakanavi.jp/grave-closure" },
+                { "@type": "ListItem", "position": 3, "name": "墓じまい費用の目安と内訳", "item": "https://www.ohakanavi.jp/grave-closure/cost" },
+            ],
+        },
+        {
+            "@type": "Article",
+            "headline": "墓じまい費用の目安と内訳を徹底解説",
+            "description": "墓じまいにかかる費用の総額や内訳（撤去費、行政手続き、離檀料など）を詳しく解説します。",
+            "author": { "@type": "Organization", "name": "清蓮（Seiren）", "url": "https://www.ohakanavi.jp" },
+            "publisher": {
+                "@type": "Organization",
+                "name": "清蓮（Seiren）",
+                "logo": { "@type": "ImageObject", "url": "https://www.ohakanavi.jp/icon.png" },
+            },
+            "datePublished": "2025-01-01",
+            "dateModified": "2026-03-19",
+            "mainEntityOfPage": "https://www.ohakanavi.jp/grave-closure/cost",
+        },
+        {
+            "@type": "FAQPage",
+            "mainEntity": [
+                { "@type": "Question", "name": "墓じまいの費用相場はいくらですか？", "acceptedAnswer": { "@type": "Answer", "text": "墓じまいの費用は「現在のお墓の撤去費用（10〜30万円）＋行政手続き費用（数千円）＋新しい納骨先の費用（5〜150万円）」の合計です。石材の大きさや立地、新しい納骨先の形式によって総額は大きく異なります。" } },
+                { "@type": "Question", "name": "離檀料はいくらかかりますか？", "acceptedAnswer": { "@type": "Answer", "text": "離檀料に法的な定めはありません。寺院によって異なりますが、一般的に3〜20万円程度が目安です。金額に疑問がある場合は専門家にご相談ください。" } },
+                { "@type": "Question", "name": "墓じまいの費用を抑える方法はありますか？", "acceptedAnswer": { "@type": "Answer", "text": "複数の石材店から相見積もりを取ること、新しい納骨先として費用の低い合祀型永代供養を選ぶこと、などが有効です。清蓮では無料で費用の目安をご案内します。" } },
+            ],
+        },
+    ],
+};
+
 export default function GraveClosureCostPage() {
     return (
         <div className="min-h-screen flex flex-col bg-white">
+            <JsonLd data={jsonLd} />
             <Navbar />
 
             <main id="main-content" className="grow pt-32 px-4 pb-20">

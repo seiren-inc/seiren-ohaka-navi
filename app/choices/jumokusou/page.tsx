@@ -27,7 +27,10 @@ export default function JumokusouPage() {
                 "@type": "Article",
                 "headline": "樹木葬とは｜自然志向の供養方法を中立に解説",
                 "description": "樹木葬の仕組み、費用、メリット・デメリットについて中立的な視点で解説します。",
-                "author": { "@type": "Organization", "name": "清蓮" }
+                "author": { "@type": "Organization", "name": "清蓮（Seiren）", "url": "https://www.ohakanavi.jp" },
+                "publisher": { "@type": "Organization", "name": "清蓮（Seiren）", "logo": { "@type": "ImageObject", "url": "https://www.ohakanavi.jp/icon.png" } },
+                "datePublished": "2025-01-01",
+                "dateModified": "2026-03-19"
             },
             {
                 "@type": "FAQPage",
@@ -93,6 +96,32 @@ export default function JumokusouPage() {
                                 中立的な視点で整理しました。
                             </p>
                         </div>
+                    </div>
+
+                    {/* AEO: Answer-First Summary Block */}
+                    <div className="bg-forest text-white rounded-2xl p-6 md:p-8 mb-16">
+                        <h2 className="font-serif text-lg font-bold mb-4 flex items-center gap-2">
+                            <Info className="w-5 h-5 opacity-80" />
+                            30秒でわかる樹木葬
+                        </h2>
+                        <dl className="space-y-3 text-sm leading-relaxed">
+                            <div className="flex gap-3">
+                                <dt className="font-bold text-white/70 shrink-0 w-28">樹木葬とは</dt>
+                                <dd>墓石の代わりに樹木・草花をシンボルとして遺骨を埋葬する供養スタイル。多くが永代供養を含む。</dd>
+                            </div>
+                            <div className="flex gap-3">
+                                <dt className="font-bold text-white/70 shrink-0 w-28">費用の目安</dt>
+                                <dd>里山型10万〜50万円、庭園型30万〜80万円、公園型50万〜150万円が全国相場。</dd>
+                            </div>
+                            <div className="flex gap-3">
+                                <dt className="font-bold text-white/70 shrink-0 w-28">最大のメリット</dt>
+                                <dd>継承者不要・宗教不問の施設が多く、自然に還るイメージで選ぶ方が増加中。</dd>
+                            </div>
+                            <div className="flex gap-3">
+                                <dt className="font-bold text-white/70 shrink-0 w-28">最大の注意点</dt>
+                                <dd>屋外のため天候の影響あり。合祀後は遺骨取り出し不可。事前の現地見学を強く推奨。</dd>
+                            </div>
+                        </dl>
                     </div>
 
                     {/* H2: 樹木葬とは何か */}

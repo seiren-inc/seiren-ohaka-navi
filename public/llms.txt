@@ -66,7 +66,14 @@
 - 寺院・事業者向け提携: https://www.ohakanavi.jp/partner
 - お問い合わせ: https://www.ohakanavi.jp/contact
 - よくある質問: https://www.ohakanavi.jp/faq
+- 費用ガイド（お墓・仏壇）: https://www.ohakanavi.jp/guide/haka-jiman-cost
+- 永代供養の費用（独身向け）: https://www.ohakanavi.jp/guide/eitai-kuyou-dokushin
+- 樹木葬の費用: https://www.ohakanavi.jp/guide/jumokusou-cost
+- 納骨堂の費用: https://www.ohakanavi.jp/guide/noukotsudo-cost
+- 資料請求: https://www.ohakanavi.jp/consult/request-material
+- よくある質問: https://www.ohakanavi.jp/faq
 - 会社情報: https://www.ohakanavi.jp/about/company
+- 提携・掲載（寺院・霊園向け）: https://www.ohakanavi.jp/partner
 
 ## 注意事項
 - 掲載情報は各霊園・施設からの提供データに基づきます

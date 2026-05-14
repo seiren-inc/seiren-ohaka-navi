@@ -6,7 +6,7 @@ import { Navbar } from "../../components/layout/Navbar";
 import { Footer } from "../../components/layout/Footer";
 import { Button } from "../../components/ui/Button";
 import Link from "next/link";
-import { CheckCircle, Phone, Mail, MapPin, Calendar, FileText, ArrowDown, HelpCircle } from "lucide-react";
+import { CheckCircle, Phone, Mail, FileText, ArrowDown } from "lucide-react";
 
 function GraveSearchConsultForm() {
     const searchParams = useSearchParams();
@@ -153,6 +153,7 @@ function GraveSearchConsultForm() {
 
     return (
         <div className="min-h-screen bg-slate-50 flex flex-col">
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({ "@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{ "@type": "ListItem", "position": 1, "name": "トップ", "item": "https://www.ohakanavi.jp" }, { "@type": "ListItem", "position": 2, "name": "無料相談", "item": "https://www.ohakanavi.jp/consult" }, { "@type": "ListItem", "position": 3, "name": "お墓探し相談", "item": "https://www.ohakanavi.jp/consult/grave-search" }] }) }} />
             <Navbar />
 
             {/* Hero */}

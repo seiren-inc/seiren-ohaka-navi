@@ -1,6 +1,7 @@
 import { Navbar } from "../components/layout/Navbar";
 import { Footer } from "../components/layout/Footer";
 import { Button } from "../components/ui/Button";
+import { JsonLd } from "../components/seo/JsonLd";
 import Link from "next/link";
 import { ArrowRight, CheckCircle, AlertCircle, FileText, Phone, Calculator, HelpCircle } from "lucide-react";
 import { Metadata } from "next";
@@ -11,9 +12,41 @@ export const metadata: Metadata = {
     alternates: { canonical: "https://www.ohakanavi.jp/grave-closure" },
 };
 
+const jsonLd = {
+    "@context": "https://schema.org",
+    "@graph": [
+        {
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+                { "@type": "ListItem", "position": 1, "name": "トップ", "item": "https://www.ohakanavi.jp" },
+                { "@type": "ListItem", "position": 2, "name": "墓じまい・改葬", "item": "https://www.ohakanavi.jp/grave-closure" },
+            ],
+        },
+        {
+            "@type": "Service",
+            "@id": "https://www.ohakanavi.jp/grave-closure#service",
+            "name": "墓じまい・改葬サポート",
+            "description": "お墓の撤去から遺骨の移転先手配まで、墓じまい・改葬をワンストップでサポートするサービスです。",
+            "provider": { "@type": "Organization", "name": "清蓮（Seiren）", "url": "https://www.ohakanavi.jp" },
+            "areaServed": { "@type": "Country", "name": "JP" },
+            "serviceType": "墓じまい・改葬サポート",
+            "offers": { "@type": "Offer", "price": "0", "priceCurrency": "JPY", "description": "無料相談・見積り" },
+        },
+        {
+            "@type": "FAQPage",
+            "mainEntity": [
+                { "@type": "Question", "name": "墓じまいとは何ですか？", "acceptedAnswer": { "@type": "Answer", "text": "墓じまいとは、既存のお墓を撤去・更地にして霊園や寺院との契約を終了する手続きです。遺骨を新しい供養先へ移す「改葬」と合わせて行うのが一般的です。" } },
+                { "@type": "Question", "name": "墓じまいの費用はどのくらいかかりますか？", "acceptedAnswer": { "@type": "Answer", "text": "お墓の撤去費用（10〜30万円）と新しい納骨先の費用（5〜150万円）が主な費用です。石材の大きさや新しい供養の形式によって総額は変わります。清蓮では無料で費用の目安をご案内しています。" } },
+                { "@type": "Question", "name": "墓じまいの相談は無料ですか？", "acceptedAnswer": { "@type": "Answer", "text": "はい、清蓮への墓じまい相談・見積りは完全無料です。電話・Webどちらでも対応しています。" } },
+            ],
+        },
+    ],
+};
+
 export default function GraveClosurePage() {
     return (
         <div className="min-h-screen flex flex-col bg-white">
+            <JsonLd data={jsonLd} />
             <Navbar />
 
             <main id="main-content">

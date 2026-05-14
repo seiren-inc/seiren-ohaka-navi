@@ -1,6 +1,7 @@
 import Image from "next/image";
 import dynamic from "next/dynamic";
 import Link from "next/link";
+import { Metadata } from "next";
 import { PrefectureSelector } from "./components/features/search/PrefectureSelector";
 import { Navbar } from "./components/layout/Navbar";
 import { Footer } from "./components/layout/Footer";
@@ -9,9 +10,63 @@ import { OpeningAnimation } from "./components/features/OpeningAnimation";
 
 import { Button } from "./components/ui/Button";
 import { Card } from "./components/ui/Card";
-import { ArrowRight, ChevronRight, Phone } from "lucide-react";
+import { ArrowRight, ChevronRight, Phone, ChevronDown } from "lucide-react";
 import { KaisouFlow } from "./components/features/KaisouFlow";
 import { RelatedServices } from "./components/features/RelatedServices";
+
+export const metadata: Metadata = {
+    title: "清蓮（Seiren）| お墓探しナビ - 永代供養・樹木葬・納骨堂の比較",
+    description: "墓地、永代供養、樹木葬、納骨堂の検索・比較なら清蓮。専門家が中立な立場で「あなたに合った供養」をご提案。改葬や墓じまいもワンストップサポート。《相談無料》",
+    alternates: { canonical: "https://www.ohakanavi.jp" },
+    openGraph: {
+        url: "https://www.ohakanavi.jp",
+        title: "清蓮（Seiren）| お墓探しナビ",
+        description: "墓地、永代供養、樹木葬、納骨堂の検索・比較なら清蓮。専門家が中立な立場でご提案。",
+    },
+};
+
+const HOME_FAQ = [
+  {
+    q: "お墓探しの相談は本当に無料ですか？",
+    a: "はい、完全無料です。電話・Web相談ともに費用は一切かかりません。清蓮は特定の霊園・寺院から紹介料を受け取る形態ではなく、中立的な立場でご相談を承っております。",
+  },
+  {
+    q: "永代供養と一般墓の違いは何ですか？",
+    a: "一般墓は家族が継承して管理するお墓です。永代供養は霊園や寺院が継続的に管理・供養を行う形態で、後継ぎがいない方や家族への負担を減らしたい方に選ばれています。費用は永代供養の方が一般的に低く抑えられます。",
+  },
+  {
+    q: "樹木葬と納骨堂はどう選べばいいですか？",
+    a: "樹木葬は屋外の自然の中に埋葬する形態で、自然回帰を望む方に人気です。納骨堂は屋内施設のため天候に左右されず、都市部のアクセスが良い場所に多くあります。お参りの頻度・交通手段・費用などを比較してご検討ください。",
+  },
+  {
+    q: "墓じまい（改葬）の費用はどのくらいかかりますか？",
+    a: "費用は「現在のお墓の撤去費用（石材店）＋行政手続き費用＋新しい納骨先の費用」の合計です。撤去費用は墓石の大きさによりますが10〜30万円程度、新しい納骨先は永代供養墓であれば5〜150万円が目安です。",
+  },
+];
+
+const homeFaqLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "FAQPage",
+      "mainEntity": HOME_FAQ.map((item) => ({
+        "@type": "Question",
+        "name": item.q,
+        "acceptedAnswer": { "@type": "Answer", "text": item.a },
+      })),
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://www.ohakanavi.jp/#webpage",
+      "url": "https://www.ohakanavi.jp/",
+      "name": "清蓮（Seiren）| お墓探しナビ",
+      "speakable": {
+        "@type": "SpeakableSpecification",
+        "cssSelector": ["h1", "h2", "details summary dt", "details dd p"],
+      },
+    },
+  ],
+};
 
 const TrustMetrics = dynamic(
   () => import("./components/features/TrustMetrics").then((mod) => mod.TrustMetrics),
@@ -33,13 +88,14 @@ const TrustMetrics = dynamic(
 export default function Home() {
   return (
     <div className="min-h-screen flex flex-col">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(homeFaqLd) }} />
       <OpeningAnimation />
       <Navbar />
 
       <main id="main-content" className="grow pt-section-tablet">
         {/* 1. HERO SECTION & SEARCH */}
         <section
-          className="relative min-h-[85vh] flex items-center justify-center overflow-hidden py-12 md:py-20 lg:py-24"
+          className="relative min-h-[calc(100svh-32px)] md:min-h-[760px] flex items-center justify-center overflow-hidden pt-20 pb-12 md:pt-32 md:pb-24"
         >
           <div className="absolute inset-0 z-0">
             <Image
@@ -56,15 +112,16 @@ export default function Home() {
 
           <div className="relative z-10 w-full max-w-[1280px] mx-auto px-4 flex flex-col items-center">
             {/* Catch Copy */}
-            <div className="text-center mb-12 animate-fade-in">
-              <h1 className="sr-only">清蓮｜お墓探し・永代供養・墓じまいの無料相談</h1>
-              <h2 className="font-serif text-[25px] md:text-5xl font-bold text-white leading-tight mb-6 hero-text-shadow">
-                お墓探し・墓じまいで迷ったら<br />
-                <span className="text-amber-200">清蓮</span>のお墓探しナビ
-              </h2>
-              <p className="text-white/90 text-[18px] md:text-lg tracking-wide max-w-2xl mx-auto leading-relaxed hero-text-shadow">
-                比較も相談も、供養の専門家が中立の立場でご案内します。<br className="hidden sm:block" />
-                あなたとご家族にとって、最適な選択を一緒に探しませんか？
+            <div className="text-center mb-6 md:mb-10 animate-fade-in">
+              <p className="inline-flex items-center rounded-full border border-white/30 bg-white/10 px-4 py-1.5 text-xs font-bold tracking-[0.18em] text-white/90 backdrop-blur-sm mb-5">
+                無料相談・資料請求に対応
+              </p>
+              <h1 className="font-serif text-3xl md:text-5xl font-bold text-white leading-tight mb-4 md:mb-6 hero-text-shadow">
+                清蓮のお墓探しナビ
+              </h1>
+              <p className="text-white/90 text-base md:text-lg tracking-wide max-w-2xl mx-auto leading-relaxed hero-text-shadow">
+                墓地・永代供養・樹木葬・納骨堂を、専門スタッフが中立の立場で整理します。<br className="hidden sm:block" />
+                比較から見学・資料請求まで、迷いを一つずつ減らします。
               </p>
             </div>
 
@@ -85,11 +142,11 @@ export default function Home() {
             <div className="mt-12 text-center animate-fade-in" style={{ animationDelay: "0.4s" }}>
               <p className="text-white/80 text-sm mb-3 hero-text-shadow">＼ どの供養がいいか迷っている方へ ／</p>
               <div className="flex flex-wrap justify-center gap-3">
-                <Link href="/consult/grave-search" className="inline-flex items-center px-5 py-2.5 bg-primary/10 text-primary rounded-full text-sm font-bold hover:bg-primary/20 transition-colors">
+                <Link href="/consult/grave-search" className="inline-flex items-center px-5 py-2.5 bg-white text-forest rounded-full text-sm font-bold hover:bg-bg-muted transition-colors">
                   まずは専門家に相談する
                   <ChevronRight className="w-4 h-4 ml-1" />
                 </Link>
-                <Link href="/kaisou" className="inline-flex items-center px-5 py-2.5 bg-lotus-pink/10 text-lotus-pink rounded-full text-sm font-bold hover:bg-lotus-pink/20 transition-colors">
+                <Link href="/kaisou" className="inline-flex items-center px-5 py-2.5 bg-white/10 text-white border border-white/30 rounded-full text-sm font-bold hover:bg-white/20 transition-colors backdrop-blur-sm">
                   墓じまい・改葬について知る
                   <ChevronRight className="w-4 h-4 ml-1" />
                 </Link>
@@ -98,11 +155,14 @@ export default function Home() {
           </div>
         </section>
 
-        {/* FEATURE BANNERS - テーマ別特集（JTB風） */}
-        <section className="bg-bg py-12 border-b border-border">
+        {/* FEATURE BANNERS */}
+        <section className="bg-bg py-12 md:py-16 border-b border-border">
           <div className="max-w-[1280px] mx-auto px-4">
-            <div className="flex items-center justify-between mb-6">
-              <h2 className="font-serif text-xl font-bold text-gray-800">今週のおすすめ特集</h2>
+            <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3 mb-6">
+              <div>
+                <span className="text-primary font-bold tracking-widest text-xs uppercase mb-2 block">Start Here</span>
+                <h2 className="font-serif text-xl md:text-2xl font-bold text-gray-800">目的から探す</h2>
+              </div>
               <Link href="/search" className="text-sm text-primary font-bold hover:underline flex items-center gap-1">
                 すべて見る <ChevronRight className="w-4 h-4" />
               </Link>
@@ -110,49 +170,33 @@ export default function Home() {
             <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
               {[
                 {
-                  label: "春の見学特集",
-                  sub: "お彼岸前に探しておきたい",
-                  href: "/search?type=jumokusou",
-                  bg: "bg-emerald-50",
-                  border: "border-emerald-100",
-                  labelColor: "text-emerald-700",
-                  emoji: "🌸",
+                  label: "樹木葬を探す",
+                  sub: "自然に近い供養を検討したい",
+                  href: "/search?memorial=樹木葬",
                 },
                 {
-                  label: "駅徒歩10分以内",
-                  sub: "アクセス抜群の都市型納骨堂",
-                  href: "/search?type=noukotsudou",
-                  bg: "bg-blue-50",
-                  border: "border-blue-100",
-                  labelColor: "text-blue-700",
-                  emoji: "🚉",
+                  label: "納骨堂を探す",
+                  sub: "天候や距離の負担を減らしたい",
+                  href: "/search?memorial=納骨堂",
                 },
                 {
                   label: "継承者不要",
                   sub: "永代供養で安心な選択肢",
                   href: "/choices/eitai-kuyou",
-                  bg: "bg-amber-50",
-                  border: "border-amber-100",
-                  labelColor: "text-amber-700",
-                  emoji: "🙏",
                 },
                 {
                   label: "墓じまい相談",
                   sub: "遠方のお墓を整理したい",
                   href: "/kaisou",
-                  bg: "bg-rose-50",
-                  border: "border-rose-100",
-                  labelColor: "text-rose-700",
-                  emoji: "🏡",
                 },
               ].map((item) => (
                 <Link
                   key={item.label}
                   href={item.href}
-                  className={`block ${item.bg} border ${item.border} rounded-xl p-4 md:p-5 hover:shadow-md transition-all group`}
+                  className="block bg-white border border-border rounded-lg p-4 md:p-5 hover:shadow-card-hover hover:border-primary/30 transition-all group"
                 >
-                  <div className="text-2xl md:text-3xl mb-2">{item.emoji}</div>
-                  <div className={`font-bold text-sm md:text-base ${item.labelColor} mb-1`}>{item.label}</div>
+                  <div className="h-1 w-10 rounded-full bg-primary mb-4" />
+                  <div className="font-bold text-sm md:text-base text-forest mb-1">{item.label}</div>
                   <div className="text-xs text-gray-500 leading-snug">{item.sub}</div>
                   <div className="mt-3 flex items-center text-xs font-bold text-gray-400 group-hover:text-gray-600 transition-colors">
                     詳しく見る <ChevronRight className="w-3 h-3 ml-0.5" />
@@ -165,7 +209,7 @@ export default function Home() {
 
         {/* 2. 供養のカタチを知る (Moved up to be prominent) */}
 
-        <section className="py-[120px] bg-white">
+        <section className="py-20 md:py-24 bg-white">
           <div className="max-w-[1280px] mx-auto px-4">
             <div className="text-center mb-16">
               <span className="text-primary font-bold tracking-widest text-xs uppercase mb-2 block">
@@ -182,8 +226,8 @@ export default function Home() {
                 { title: "樹木葬", desc: "自然に還る、新しい供養のカタチ。墓石の代わりに木や花をシンボルにします。", link: "/choices/jumokusou", color: "text-soft-teal", img: "/images/guide_jumokusou.webp" },
                 { title: "納骨堂", desc: "天候に左右されない屋内のお墓。アクセスの良さと管理の手軽さが魅力です。", link: "/choices/noukotsudou", color: "text-primary-soft", img: "/images/guide_noukotsu.webp" },
               ].map((item, i) => (
-                <Link key={i} href={item.link} className="block h-full outline-none focus-visible:ring-2 focus-visible:ring-primary/50 rounded-2xl">
-                  <Card hoverEffect className="h-full flex flex-col p-0 overflow-hidden group cursor-pointer border-border">
+                <Link key={i} href={item.link} className="block h-full outline-none focus-visible:ring-2 focus-visible:ring-primary/50 rounded-lg">
+                  <Card hoverEffect className="h-full flex flex-col p-0 overflow-hidden group cursor-pointer border-border rounded-lg">
                     <div className="h-48 bg-bg-muted relative overflow-hidden flex items-center justify-center">
                        <Image 
                            src={item.img} 
@@ -220,7 +264,7 @@ export default function Home() {
         </section>
 
         {/* 3. TRUST METRICS (New) */}
-        <section className="py-[120px] bg-bg-muted">
+        <section className="py-20 md:py-24 bg-bg-muted">
           <div className="max-w-[1280px] mx-auto px-4">
             <div className="text-center mb-16">
               <span className="text-primary font-bold tracking-widest text-xs uppercase mb-2 block">
@@ -237,11 +281,11 @@ export default function Home() {
         </section>
 
         {/* 4. CONCEPT SECTION */}
-        <section id="about" className="py-[120px] bg-white relative">
+        <section id="about" className="py-20 md:py-24 bg-white relative">
           <div className="max-w-[1280px] mx-auto px-4">
             <div className="flex flex-col md:flex-row items-center gap-16">
               <div className="w-full md:w-1/2">
-                <div className="relative aspect-4/3 bg-bg-muted rounded-2xl overflow-hidden shadow-lg border border-border group">
+                <div className="relative aspect-4/3 bg-bg-muted rounded-lg overflow-hidden shadow-card border border-border group">
                   <Image 
                       src="/images/concept_support.webp" 
                       alt="お客様に寄り添う相談窓口" 
@@ -282,10 +326,10 @@ export default function Home() {
         </section>
 
         {/* 5. 改葬の流れ (New) */}
-        <section className="py-[120px] bg-bg-muted border-y border-border">
+        <section className="py-20 md:py-24 bg-bg-muted border-y border-border">
             <div className="max-w-[1280px] mx-auto px-4">
                 <div className="text-center mb-8">
-                  <span className="text-lotus-pink font-bold tracking-widest text-xs uppercase mb-2 block">
+                  <span className="text-primary font-bold tracking-widest text-xs uppercase mb-2 block">
                     Grave Closure
                   </span>
                   <h2 className="font-serif text-3xl font-bold text-gray-800 mb-4">
@@ -300,7 +344,7 @@ export default function Home() {
                 
                 <div className="text-center mt-8">
                     <Link href="/kaisou">
-                        <Button variant="primary" className="bg-lotus-pink hover:bg-lotus-pink/90 text-primary font-bold border-none shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all">
+                        <Button variant="secondary" className="font-bold">
                             改葬についてさらに詳しく見る
                             <ArrowRight className="w-4 h-4 ml-2" />
                         </Button>
@@ -310,7 +354,7 @@ export default function Home() {
         </section>
 
         {/* 6. 関連サービス (New) */}
-        <section className="py-[120px] bg-white">
+        <section className="py-20 md:py-24 bg-white">
           <div className="max-w-[1280px] mx-auto px-4">
             <div className="text-center mb-16">
               <span className="text-primary font-bold tracking-widest text-xs uppercase mb-2 block">
@@ -328,8 +372,42 @@ export default function Home() {
           </div>
         </section>
 
+        {/* FAQ SECTION */}
+        <section className="py-20 md:py-24 bg-white border-t border-border">
+          <div className="max-w-3xl mx-auto px-4">
+            <div className="text-center mb-12">
+              <span className="text-primary font-bold tracking-widest text-xs uppercase mb-2 block">FAQ</span>
+              <h2 className="font-serif text-3xl font-bold text-gray-800">よくある質問</h2>
+            </div>
+            <dl className="space-y-3">
+              {HOME_FAQ.map((item, i) => (
+                <details key={i} className="group border border-border rounded-xl overflow-hidden">
+                  <summary className="flex items-center justify-between gap-4 px-6 py-5 cursor-pointer list-none select-none bg-bg-muted hover:bg-gray-100 transition-colors">
+                    <dt className="flex items-center gap-3 font-medium text-gray-800 text-sm leading-snug">
+                      <span className="shrink-0 w-6 h-6 rounded-full bg-primary text-white text-xs font-bold flex items-center justify-center">Q</span>
+                      {item.q}
+                    </dt>
+                    <ChevronDown className="w-4 h-4 text-gray-400 shrink-0 transition-transform duration-200 group-open:rotate-180" />
+                  </summary>
+                  <dd className="px-6 py-5 bg-white border-t border-border">
+                    <div className="flex items-start gap-3">
+                      <span className="shrink-0 w-6 h-6 rounded-full bg-feather text-white text-xs font-bold flex items-center justify-center">A</span>
+                      <p className="text-sm text-gray-600 leading-relaxed">{item.a}</p>
+                    </div>
+                  </dd>
+                </details>
+              ))}
+            </dl>
+            <div className="text-center mt-10">
+              <Link href="/faq" className="text-primary hover:text-primary-hover font-bold text-sm border-b border-primary pb-0.5 transition-colors">
+                すべてのよくある質問を見る <ArrowRight className="w-3.5 h-3.5 inline ml-1" />
+              </Link>
+            </div>
+          </div>
+        </section>
+
         {/* CTA SECTION */}
-        <section className="py-[120px] bg-primary text-white relative overflow-hidden">
+        <section className="py-20 md:py-24 bg-primary text-white relative overflow-hidden">
           <div className="absolute inset-0 bg-primary-hover opacity-50" />
           <div className="max-w-4xl mx-auto px-4 text-center relative z-10">
             <h2 className="font-serif text-3xl md:text-4xl font-bold mb-6">

@@ -27,7 +27,10 @@ export default function IkotsuDiamondPage() {
                 "@type": "Article",
                 "headline": "遺骨ダイヤモンドとは｜仕組みと判断ポイントを中立に整理",
                 "description": "遺骨ダイヤモンドの仕組み、費用、製作における注意点について中立的な視点で解説します。",
-                "author": { "@type": "Organization", "name": "清蓮" }
+                "author": { "@type": "Organization", "name": "清蓮（Seiren）", "url": "https://www.ohakanavi.jp" },
+                "publisher": { "@type": "Organization", "name": "清蓮（Seiren）", "logo": { "@type": "ImageObject", "url": "https://www.ohakanavi.jp/icon.png" } },
+                "datePublished": "2025-01-01",
+                "dateModified": "2026-03-19"
             },
             {
                 "@type": "FAQPage",
@@ -93,6 +96,32 @@ export default function IkotsuDiamondPage() {
                                 中立的な視点で整理しました。
                             </p>
                         </div>
+                    </div>
+
+                    {/* 30秒でわかる遺骨ダイヤモンド */}
+                    <div className="bg-forest text-white rounded-2xl p-6 md:p-8 mb-16">
+                        <h2 className="font-serif text-lg font-bold mb-4 flex items-center gap-2">
+                            <Info className="w-5 h-5 opacity-80" />
+                            30秒でわかる遺骨ダイヤモンド
+                        </h2>
+                        <dl className="space-y-3 text-sm leading-relaxed">
+                            <div className="flex gap-3">
+                                <dt className="font-bold text-white/70 shrink-0 w-28">遺骨ダイヤモンドとは</dt>
+                                <dd>遺骨の炭素を高温高圧で結晶化させた人工ダイヤモンド。ジュエリーに加工して身につけられる、手元供養の一形態です。</dd>
+                            </div>
+                            <div className="flex gap-3">
+                                <dt className="font-bold text-white/70 shrink-0 w-28">費用の目安</dt>
+                                <dd>30万〜100万円以上（カラット数・カット・色・加工のジュエリー代によって大きく異なります）。</dd>
+                            </div>
+                            <div className="flex gap-3">
+                                <dt className="font-bold text-white/70 shrink-0 w-28">最大のメリット</dt>
+                                <dd>故人をいつも身につけて側に感じられる。世界に一つだけの形見として、世代を超えて受け継ぐこともできます。</dd>
+                            </div>
+                            <div className="flex gap-3">
+                                <dt className="font-bold text-white/70 shrink-0 w-28">最大の注意点</dt>
+                                <dd>製作期間は6ヶ月〜1年、炭素抽出後のキャンセルは不可。業者の信頼性・第三者鑑定書の有無を必ず確認してください。</dd>
+                            </div>
+                        </dl>
                     </div>
 
                     {/* H2: 遺骨ダイヤモンドとは何か */}

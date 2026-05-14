@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Navbar } from "../../components/layout/Navbar";
 import { Footer } from "../../components/layout/Footer";
 import { Button } from "../../components/ui/Button";
+import { JsonLd } from "../../components/seo/JsonLd";
 import { ChevronRight } from "lucide-react";
 import { Metadata } from "next";
 
@@ -56,9 +57,20 @@ const phases = [
     },
 ];
 
+const breadcrumbLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "トップ", "item": "https://www.ohakanavi.jp" },
+        { "@type": "ListItem", "position": 2, "name": "供養ガイド", "item": "https://www.ohakanavi.jp/guide" },
+        { "@type": "ListItem", "position": 3, "name": "没後の手続きフロー", "item": "https://www.ohakanavi.jp/guide/flow-after-death" },
+    ],
+};
+
 export default function GuideFlowAfterDeathPage() {
     return (
         <div className="min-h-screen flex flex-col bg-white text-gray-800">
+            <JsonLd data={breadcrumbLd} />
             <Navbar />
             <main id="main-content" className="grow pt-24 pb-20">
                 <div className="max-w-3xl mx-auto px-4">
