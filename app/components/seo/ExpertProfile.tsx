@@ -38,8 +38,8 @@ export function ExpertProfile({ reviewedDate }: ExpertProfileProps) {
             />
         <aside className="bg-white border border-gray-200 rounded-2xl p-6 md:p-8 my-12 flex flex-col sm:flex-row gap-6 items-center shadow-sm">
             {/* Avatar */}
-            <div className="w-20 h-20 shrink-0 bg-primary/10 rounded-full flex items-center justify-center border-4 border-white shadow-md overflow-hidden">
-                <span className="text-primary font-bold text-xl font-serif">{EXPERT.avatarChar}</span>
+            <div className="w-20 h-20 shrink-0 bg-stone-800 rounded-full flex items-center justify-center border-4 border-white shadow-md overflow-hidden">
+                <span className="text-stone-100 font-bold text-2xl font-serif">{EXPERT.avatarChar}</span>
             </div>
 
             {/* Info */}
