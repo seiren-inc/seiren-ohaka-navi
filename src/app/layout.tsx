@@ -9,20 +9,13 @@ const notoSansJP = Noto_Sans_JP({
   subsets: ["latin"],
 });
 
-// Replaces Shippori Mincho with Noto Sans JP while maintaining variable compatibility
-// This ensures 'font-serif' classes render as Noto Sans JP
-const shipporiMincho = Noto_Sans_JP({
-  variable: "--font-shippori-mincho",
-  subsets: ["latin"],
-});
-
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://www.ohakanavi.jp"),
   title: {
     default: "清蓮（Seiren）| お墓探しナビ",
     template: "%s | 清蓮",
   },
-  description: "墓地、永代供養、樹木葵、納骨堂の検索・比較なら清蓮。専門家が中立な立場で「あなたに合った供養」をご提案。改葬や墓じまいもワンストップサポート。《相談無料》",
+  description: "墓地、永代供養、樹木葬、納骨堂の検索・比較なら清蓮。専門家が中立な立場で「あなたに合った供養」をご提案。改葬や墓じまいもワンストップサポート。《相談無料》",
 
   openGraph: {
     type: "website",
@@ -79,7 +72,7 @@ export default function RootLayout({
   return (
     <html lang="ja">
       <body
-        className={`${notoSansJP.variable} ${shipporiMincho.variable} antialiased font-sans bg-bg text-text`}
+        className={`${notoSansJP.variable} antialiased font-sans bg-bg text-text`}
       >
         <script
           type="application/ld+json"

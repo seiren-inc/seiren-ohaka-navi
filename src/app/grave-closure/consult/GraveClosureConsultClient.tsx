@@ -120,9 +120,9 @@ function GraveClosureForm() {
                     </div>
 
                     <div className="text-center mb-10">
-                        <h1 className="font-serif text-2xl md:text-3xl font-bold text-primary-dark mb-4">
+                        <div className="font-serif text-2xl md:text-3xl font-bold text-primary-dark mb-4">
                             墓じまい・改葬 無料相談フォーム
-                        </h1>
+                        </div>
                         <p className="text-gray-600 text-sm">
                             {mode === 'estimate' ? "概算見積もりのご依頼もこちらから承ります。" : "まずはお気軽にご相談ください。"}
                         </p>

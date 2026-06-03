@@ -160,9 +160,9 @@ function GraveSearchConsultForm() {
                 <span className="text-secondary font-bold tracking-widest text-xs uppercase mb-4 block">
                     Grave Search
                 </span>
-                <h1 className="font-serif text-3xl md:text-4xl font-bold text-primary-dark mb-4">
+                <div className="font-serif text-3xl md:text-4xl font-bold text-primary-dark mb-4">
                     お墓探しの無料相談
-                </h1>
+                </div>
                 <p className="text-gray-600">
                     永代供養墓、樹木葬、納骨堂など<br className="sm:hidden" />ご希望に合わせてご提案します
                 </p>

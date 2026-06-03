@@ -43,7 +43,7 @@
      Typography & Layout
      ========================================= */
   --font-sans: var(--font-noto-sans-jp), sans-serif;
-  --font-serif: var(--font-shippori-mincho), serif;
+  --font-serif: var(--font-noto-sans-jp), serif;
 
   /* Additional Layout Variables (Doc-27/31) */
   --spacing-section-desktop: 96px;
