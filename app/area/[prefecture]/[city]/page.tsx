@@ -29,7 +29,7 @@ export async function generateMetadata(
     const decodedCity = decodeURIComponent(city);
     const decodedPref = decodeURIComponent(prefecture);
     return {
-        title: `${decodedCity}（${decodedPref}）の墓地・永代供養を探す | 清蓮`,
+        title: `${decodedCity}（${decodedPref}）の墓地・永代供養を探す`,
         description: `${decodedCity}（${decodedPref}）の墓地・永代供養・樹木葬・納骨堂の一覧。地域密着の専門スタッフが無料サポート。宗旨宗派不問・生前購入対応施設も掲載。`,
         alternates: { canonical: `${BASE_URL}/area/${prefecture}/${city}` },
         openGraph: {
