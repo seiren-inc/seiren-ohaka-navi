@@ -32,6 +32,11 @@ export async function generateMetadata(
         title: `${decoded}の墓地・霊園・永代供養を探す`,
         description: `${decoded}の墓地・永代供養・樹木葬・納骨堂一覧。地域に密着した専門スタッフが無料サポート。`,
         alternates: { canonical: `${BASE_URL}/area/${prefecture}` },
+        openGraph: {
+            title: `${decoded}の墓地・霊園・永代供養 | 清蓮`,
+            description: `${decoded}の墓地・永代供養・樹木葬・納骨堂の一覧。無料相談受付中。`,
+            url: `${BASE_URL}/area/${prefecture}`,
+        },
     };
 }
 
