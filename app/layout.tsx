@@ -79,7 +79,10 @@ const organizationLd = {
           "closes": "18:00",
         },
       },
-      "sameAs": [],
+      "sameAs": [
+        // Googleビジネスプロフィール（MEO/エンティティ確立）
+        "https://share.google/JIqe8rG24LekC7rZv",
+      ],
     },
     {
       "@type": "WebSite",

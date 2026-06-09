@@ -26,8 +26,7 @@ npx prisma generate       # クライアント生成
 | React | 19.x |
 | Language | TypeScript 5.x |
 | Styling | Tailwind CSS v4 |
-| Animation | Framer Motion v12 / GSAP 3 / Lenis |
-| 3D | Three.js / @react-three/fiber / @react-three/drei |
+| Animation | Framer Motion v12 |
 | Database | Prisma v7 + PostgreSQL (pg adapter) + Supabase |
 | Auth | Supabase Auth (SSR) |
 | Payment | Stripe |
@@ -59,7 +58,8 @@ export const prisma = new PrismaClient({ adapter })
 
 ```ts
 // next.config.ts
-experimental: { ppr: true }
+// PPR は Next.js canary 限定機能のため、安定版（15.3.x）では有効化しない。
+// canary へ移行する際に experimental: { ppr: true } を追加すること。
 images: { formats: ["image/avif", "image/webp"] }
 ```
 
