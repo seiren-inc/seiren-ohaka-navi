@@ -3,7 +3,7 @@ import { Footer } from "../components/layout/Footer";
 import { Button } from "../components/ui/Button";
 import { JsonLd } from "../components/seo/JsonLd";
 import Link from "next/link";
-import { ArrowRight, CheckCircle, AlertCircle, FileText, Phone, Calculator, HelpCircle } from "lucide-react";
+import { ArrowRight, CheckCircle, AlertCircle, FileText, Phone, Calculator, HelpCircle, ExternalLink, Download } from "lucide-react";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -271,6 +271,57 @@ export default function GraveClosurePage() {
                         <Link href="/grave-closure/faq" className="text-primary font-bold hover:underline">
                             その他の質問を見る
                         </Link>
+                    </div>
+                </div>
+            </section>
+
+            {/* 6.5 提携サービス連携: お墓じまいナビ（手続き・書類・全国施工の専門） */}
+            <section className="py-16 px-4 bg-white">
+                <div className="max-w-4xl mx-auto">
+                    <div className="bg-forest rounded-2xl overflow-hidden shadow-xl">
+                        <div className="bg-white/10 px-6 py-3 flex items-center gap-3 border-b border-white/10">
+                            <span className="text-white/60 text-xs font-bold tracking-widest uppercase">提携サービス</span>
+                            <span className="ml-auto bg-lotus-pink text-white text-xs font-bold px-3 py-1 rounded-full">全国対応</span>
+                        </div>
+                        <div className="p-8 md:p-10">
+                            <h2 className="font-serif text-2xl md:text-3xl font-bold text-white mb-2">
+                                墓じまいの手続き・書類・施工は「お墓じまいナビ」へ
+                            </h2>
+                            <p className="text-white/70 text-sm leading-relaxed mb-6">
+                                改葬許可申請などの行政手続きや、墓石の解体・撤去工事は、専門サイト
+                                「お墓じまいナビ」が全国対応でサポートします。清蓮では、墓じまい後の
+                                <span className="font-bold text-white">新しい供養先（改葬先）のご提案</span>を担当し、両サービスで一貫してお手伝いします。
+                            </p>
+                            <div className="grid sm:grid-cols-2 gap-3 mb-8">
+                                <div className="bg-white/10 rounded-xl p-4">
+                                    <div className="flex items-center gap-2 mb-2">
+                                        <Download className="w-4 h-4 text-white/80 shrink-0" />
+                                        <span className="font-bold text-white text-sm">改葬許可申請書を無料DL</span>
+                                    </div>
+                                    <p className="text-white/60 text-xs leading-relaxed">
+                                        全国の多くの市区町村の改葬許可申請書をPDFでダウンロードできます。
+                                    </p>
+                                </div>
+                                <div className="bg-white/10 rounded-xl p-4">
+                                    <div className="flex items-center gap-2 mb-2">
+                                        <FileText className="w-4 h-4 text-white/80 shrink-0" />
+                                        <span className="font-bold text-white text-sm">手続きの流れを全公開</span>
+                                    </div>
+                                    <p className="text-white/60 text-xs leading-relaxed">
+                                        お墓じまいの全ステップ・注意点・費用感を詳しく解説しています。
+                                    </p>
+                                </div>
+                            </div>
+                            <a
+                                href="https://www.ohakajimai-navi.jp/"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="block w-full bg-white text-forest hover:bg-white/90 font-bold py-4 rounded-xl flex items-center justify-center gap-2 transition-colors text-sm md:text-base"
+                            >
+                                お墓じまいナビで手続き・施工を相談する
+                                <ExternalLink className="w-4 h-4 shrink-0" />
+                            </a>
+                        </div>
                     </div>
                 </div>
             </section>

@@ -45,15 +45,9 @@ export function NavbarDesktop() {
                     </div>
                 </div>
 
-                <a
-                    href="https://www.ohakajimai-navi.jp/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={`${navLinkClass} flex items-center gap-1`}
-                >
+                <Link href="/grave-closure" className={navLinkClass}>
                     墓じまい・改葬
-                    <ExternalLink className="w-3 h-3 opacity-50" />
-                </a>
+                </Link>
 
                 <div className="relative group/service">
                     <button

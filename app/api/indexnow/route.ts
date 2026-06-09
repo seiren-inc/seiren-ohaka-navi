@@ -36,7 +36,6 @@ const STATIC_URLS = [
   `${BASE_URL}/guide/jumokusou-cost`,
   `${BASE_URL}/guide/noukotsudo-cost`,
   `${BASE_URL}/guide/flow-after-death`,
-  `${BASE_URL}/kaisou`,
   `${BASE_URL}/consult`,
   `${BASE_URL}/consult/grave-search`,
   `${BASE_URL}/consult/grave-closure`,

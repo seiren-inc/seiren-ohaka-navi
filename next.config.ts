@@ -27,6 +27,12 @@ const nextConfig: NextConfig = {
         destination: "https://www.ohakanavi.jp/:path*",
         permanent: true,
       },
+      // 内部重複の統合: /kaisou を墓じまい・改葬ハブ /grave-closure へ301（H-1）
+      {
+        source: "/kaisou",
+        destination: "/grave-closure",
+        permanent: true,
+      },
     ];
   },
 };

@@ -50,16 +50,13 @@ export function NavbarMobileMenu() {
                         ))}
                     </div>
 
-                    <a
-                        href="https://www.ohakajimai-navi.jp/"
-                        target="_blank"
-                        rel="noopener noreferrer"
+                    <Link
+                        href="/grave-closure"
                         className="flex items-center justify-between py-3 border-b border-gray-50 hover:text-gray-900 transition-colors"
                         onClick={closeMenu}
                     >
                         <span className="font-medium text-gray-700">墓じまい・改葬</span>
-                        <ExternalLink className="w-3.5 h-3.5 text-gray-400" />
-                    </a>
+                    </Link>
 
                     <Link
                         href="/favorites"
