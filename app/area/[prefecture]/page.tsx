@@ -1,5 +1,4 @@
 import { prisma } from "@/lib/prisma";
-import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { Navbar } from "../../components/layout/Navbar";
 import { Footer } from "../../components/layout/Footer";
