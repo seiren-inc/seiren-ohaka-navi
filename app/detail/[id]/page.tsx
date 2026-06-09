@@ -106,6 +106,36 @@ export default async function TempleDetailPage(props: { params: Promise<{ id: st
         ],
     };
 
+    // --- Product + AggregateOffer: 供養プランの料金を構造化（リッチリザルト/AEO） ---
+    const priceablePlans = plans.filter((p) => typeof p.price === "number" && p.price > 0);
+    const productLd = structuredDataEnabled && priceablePlans.length > 0 ? {
+        "@context": "https://schema.org",
+        "@type": "Product",
+        "name": `${templeData.name} の供養プラン`,
+        "description": templeData.catchphrase || templeData.overview ||
+            `${templeData.name}（${[templeData.cityName, templeData.prefecture].filter(Boolean).join("・")}）の永代供養・樹木葬・納骨堂などの供養プラン。`,
+        ...(templeData.mainImage ? { "image": templeData.mainImage } : {}),
+        "brand": { "@type": "Organization", "name": templeData.name },
+        "category": "墓地・永代供養",
+        "offers": {
+            "@type": "AggregateOffer",
+            "priceCurrency": "JPY",
+            "lowPrice": Math.min(...priceablePlans.map((p) => p.price)),
+            "highPrice": Math.max(...priceablePlans.map((p) => p.price)),
+            "offerCount": priceablePlans.length,
+            "offers": priceablePlans.map((p) => ({
+                "@type": "Offer",
+                "name": p.name,
+                "price": p.price,
+                "priceCurrency": "JPY",
+                "url": `${BASE_URL}/detail/${templeData.id}#plans`,
+                "availability": p.availability === "none"
+                    ? "https://schema.org/SoldOut"
+                    : "https://schema.org/InStock",
+            })),
+        },
+    } : null;
+
     return (
         <div className="min-h-screen flex flex-col bg-white-smoke pb-24 md:pb-0">
             {/* JSON-LD Structured Data */}
@@ -119,6 +149,12 @@ export default async function TempleDetailPage(props: { params: Promise<{ id: st
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }}
             />
+            {productLd && (
+                <script
+                    type="application/ld+json"
+                    dangerouslySetInnerHTML={{ __html: JSON.stringify(productLd) }}
+                />
+            )}
 
             <Navbar />
 
