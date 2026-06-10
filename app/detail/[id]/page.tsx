@@ -108,6 +108,12 @@ export default async function TempleDetailPage(props: { params: Promise<{ id: st
 
     // --- Product + AggregateOffer: 供養プランの料金を構造化（リッチリザルト/AEO） ---
     const priceablePlans = plans.filter((p) => typeof p.price === "number" && p.price > 0);
+    // unknown（要確認）は確証がないため availability を出力しない
+    const availabilitySchema: Partial<Record<Plan["availability"], string>> = {
+        available: "https://schema.org/InStock",
+        limited: "https://schema.org/LimitedAvailability",
+        none: "https://schema.org/SoldOut",
+    };
     const productLd = structuredDataEnabled && priceablePlans.length > 0 ? {
         "@context": "https://schema.org",
         "@type": "Product",
@@ -129,9 +135,9 @@ export default async function TempleDetailPage(props: { params: Promise<{ id: st
                 "price": p.price,
                 "priceCurrency": "JPY",
                 "url": `${BASE_URL}/detail/${templeData.id}#plans`,
-                "availability": p.availability === "none"
-                    ? "https://schema.org/SoldOut"
-                    : "https://schema.org/InStock",
+                ...(availabilitySchema[p.availability]
+                    ? { "availability": availabilitySchema[p.availability] }
+                    : {}),
             })),
         },
     } : null;
