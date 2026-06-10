@@ -48,7 +48,7 @@ const articleLd = {
     "headline": "墓じまいの費用相場【2024年版】内訳・安くする方法を専門家が解説",
     "description": "墓じまいにかかる費用の総額相場、内訳、費用を安くする方法を解説。",
     "author": { "@type": "Organization", "name": "清蓮（Seiren）", "url": `${BASE_URL}/about` },
-    "publisher": { "@type": "Organization", "name": "清蓮（Seiren）", "logo": { "@type": "ImageObject", "url": `${BASE_URL}/og-image.jpg` } },
+    "publisher": { "@type": "Organization", "name": "清蓮（Seiren）", "logo": { "@type": "ImageObject", "url": `${BASE_URL}/logo.png` } },
     "datePublished": "2024-04-01",
     "dateModified": "2026-03-19",
 };

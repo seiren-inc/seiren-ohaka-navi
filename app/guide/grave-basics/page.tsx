@@ -23,7 +23,7 @@ export default function GuideGraveBasicsPage() {
         "author": { "@type": "Organization", "name": "清蓮（Seiren）", "url": "https://www.ohakanavi.jp/about" },
         "publisher": {
             "@type": "Organization", "name": "清蓮（Seiren）",
-            "logo": { "@type": "ImageObject", "url": "https://www.ohakanavi.jp/og-image.jpg" }
+            "logo": { "@type": "ImageObject", "url": "https://www.ohakanavi.jp/logo.png" }
         },
         "datePublished": "2025-01-01",
         "dateModified": "2026-03-19"

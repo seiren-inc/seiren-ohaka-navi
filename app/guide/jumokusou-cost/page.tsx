@@ -32,7 +32,7 @@ const articleLd = {
     "@type": "Article",
     "headline": "樹木葬の費用相場【2024年版】安い理由・選び方・注意点",
     "author": { "@type": "Organization", "name": "清蓮（Seiren）", "url": `${BASE_URL}/about` },
-    "publisher": { "@type": "Organization", "name": "清蓮（Seiren）", "logo": { "@type": "ImageObject", "url": `${BASE_URL}/og-image.jpg` } },
+    "publisher": { "@type": "Organization", "name": "清蓮（Seiren）", "logo": { "@type": "ImageObject", "url": `${BASE_URL}/logo.png` } },
     "datePublished": "2024-04-01",
     "dateModified": "2026-03-19",
 };
