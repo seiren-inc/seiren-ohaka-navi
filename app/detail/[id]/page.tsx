@@ -68,7 +68,10 @@ export default async function TempleDetailPage(props: { params: Promise<{ id: st
 
     // --- SEO: Build JSON-LD ---
     const seo = templeData.seo as Record<string, unknown> | null;
-    const structuredDataEnabled = seo?.structuredDataEnabled !== false;
+    // noindex のテンプルでは構造化データも出さない（generateMetadata の robots:noindex と
+    // 整合させ、非インデックスページが価格付きOfferを宣伝する矛盾シグナルを防ぐ）。
+    const noIndex = (seo?.indexControl as string) === "noindex";
+    const structuredDataEnabled = seo?.structuredDataEnabled !== false && !noIndex;
 
     const localBusinessLd = structuredDataEnabled ? {
         "@context": "https://schema.org",
@@ -151,10 +154,12 @@ export default async function TempleDetailPage(props: { params: Promise<{ id: st
                     dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessLd) }}
                 />
             )}
-            <script
-                type="application/ld+json"
-                dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }}
-            />
+            {structuredDataEnabled && (
+                <script
+                    type="application/ld+json"
+                    dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }}
+                />
+            )}
             {productLd && (
                 <script
                     type="application/ld+json"

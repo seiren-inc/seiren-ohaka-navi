@@ -7,6 +7,7 @@ import { SearchFilter } from "../components/features/search/SearchFilter";
 import { GraveyardCard } from "../components/features/search/GraveyardCard";
 import { FacilityType, MemorialType, Sect, BuddhistSect, Temple } from "@/lib/store";
 import { prisma } from "@/lib/prisma";
+import { hasActiveFacetParams, SEARCH_FACET_KEYS } from "@/lib/seo";
 import { Metadata } from "next";
 
 function isPrismaConnectivityError(error: unknown): boolean {
@@ -24,13 +25,14 @@ function isPrismaConnectivityError(error: unknown): boolean {
     );
 }
 
-// M-5: ファセット（絞り込みパラメータ）付きURLは noindex,follow にして
+// M-5: ファセット（絞り込み）付きURLは noindex,follow にして
 // クロールバジェット消費と重複インデックスを防ぐ。canonical は常に /search。
+// 既知の絞り込みキーのみで判定し、utm等の計測パラメータでは noindex にしない。
 export async function generateMetadata(props: {
     searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 }): Promise<Metadata> {
     const searchParams = await props.searchParams;
-    const hasFilterParams = Object.keys(searchParams).length > 0;
+    const hasFilterParams = hasActiveFacetParams(searchParams, SEARCH_FACET_KEYS);
 
     return {
         title: "墓地・霊園をさがす｜清蓮(Seiren)",

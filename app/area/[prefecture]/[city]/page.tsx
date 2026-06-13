@@ -9,6 +9,7 @@ import { AreaNav } from "../../../components/features/area/AreaNav";
 import { AreaSEOContent } from "../../../components/features/area/AreaSEOContent";
 import { AreaFAQ } from "../../../components/features/area/AreaFAQ";
 import { JsonLd } from "../../../components/seo/JsonLd";
+import { hasActiveFacetParams, AREA_FACET_KEYS } from "@/lib/seo";
 
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://www.ohakanavi.jp";
 
@@ -29,8 +30,9 @@ export async function generateMetadata(
 ): Promise<Metadata> {
     const { prefecture, city } = await props.params;
     const searchParams = await props.searchParams;
-    // M-5: 絞り込みパラメータ付きURLは noindex,follow（canonical は常にクリーンURL）
-    const hasFilterParams = Object.keys(searchParams).length > 0;
+    // M-5: 絞り込みパラメータ付きURLは noindex,follow（canonical は常にクリーンURL）。
+    // 既知の絞り込みキーのみで判定し、utm等の計測パラメータでは noindex にしない。
+    const hasFilterParams = hasActiveFacetParams(searchParams, AREA_FACET_KEYS);
     const decodedCity = decodeURIComponent(city);
     const decodedPref = decodeURIComponent(prefecture);
     return {

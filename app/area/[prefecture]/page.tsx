@@ -10,8 +10,9 @@ import { AreaSEOContent } from "../../components/features/area/AreaSEOContent";
 import { AreaFAQ } from "../../components/features/area/AreaFAQ";
 import { JsonLd } from "../../components/seo/JsonLd";
 import { PREFECTURES } from "../../lib/prefectures";
+import { hasActiveFacetParams, AREA_FACET_KEYS } from "@/lib/seo";
 
-const BASE_URL = "https://www.ohakanavi.jp";
+const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://www.ohakanavi.jp";
 
 function isPrismaConnectivityError(error: unknown): boolean {
     return (
@@ -30,8 +31,9 @@ export async function generateMetadata(
 ): Promise<Metadata> {
     const { prefecture } = await props.params;
     const searchParams = await props.searchParams;
-    // M-5: 絞り込みパラメータ付きURLは noindex,follow（canonical は常にクリーンURL）
-    const hasFilterParams = Object.keys(searchParams).length > 0;
+    // M-5: 絞り込みパラメータ付きURLは noindex,follow（canonical は常にクリーンURL）。
+    // 既知の絞り込みキーのみで判定し、utm等の計測パラメータでは noindex にしない。
+    const hasFilterParams = hasActiveFacetParams(searchParams, AREA_FACET_KEYS);
     const decoded = decodeURIComponent(prefecture);
     return {
         title: `${decoded}の墓地・霊園・永代供養を探す`,
