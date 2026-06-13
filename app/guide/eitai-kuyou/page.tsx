@@ -30,7 +30,7 @@ export default function GuideEitaiKuyouPage() {
             "name": "清蓮（Seiren）",
             "logo": {
                 "@type": "ImageObject",
-                "url": "https://www.ohakanavi.jp/og-image.jpg"
+                "url": "https://www.ohakanavi.jp/logo.png"
             }
         },
         "datePublished": "2025-01-01",

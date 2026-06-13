@@ -65,3 +65,8 @@ public/design-e-*.html
 
 # ローカルスーパーパワーズ
 .superpowers/
+
+# Serena MCP（キャッシュ・メモリはローカルのみ）
+.serena/cache/
+.serena/memories/
+.serena/logs/

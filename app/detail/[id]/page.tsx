@@ -68,7 +68,10 @@ export default async function TempleDetailPage(props: { params: Promise<{ id: st
 
     // --- SEO: Build JSON-LD ---
     const seo = templeData.seo as Record<string, unknown> | null;
-    const structuredDataEnabled = seo?.structuredDataEnabled !== false;
+    // noindex のテンプルでは構造化データも出さない（generateMetadata の robots:noindex と
+    // 整合させ、非インデックスページが価格付きOfferを宣伝する矛盾シグナルを防ぐ）。
+    const noIndex = (seo?.indexControl as string) === "noindex";
+    const structuredDataEnabled = seo?.structuredDataEnabled !== false && !noIndex;
 
     const localBusinessLd = structuredDataEnabled ? {
         "@context": "https://schema.org",
@@ -106,6 +109,42 @@ export default async function TempleDetailPage(props: { params: Promise<{ id: st
         ],
     };
 
+    // --- Product + AggregateOffer: 供養プランの料金を構造化（リッチリザルト/AEO） ---
+    const priceablePlans = plans.filter((p) => typeof p.price === "number" && p.price > 0);
+    // unknown（要確認）は確証がないため availability を出力しない
+    const availabilitySchema: Partial<Record<Plan["availability"], string>> = {
+        available: "https://schema.org/InStock",
+        limited: "https://schema.org/LimitedAvailability",
+        none: "https://schema.org/SoldOut",
+    };
+    const productLd = structuredDataEnabled && priceablePlans.length > 0 ? {
+        "@context": "https://schema.org",
+        "@type": "Product",
+        "name": `${templeData.name} の供養プラン`,
+        "description": templeData.catchphrase || templeData.overview ||
+            `${templeData.name}（${[templeData.cityName, templeData.prefecture].filter(Boolean).join("・")}）の永代供養・樹木葬・納骨堂などの供養プラン。`,
+        ...(templeData.mainImage ? { "image": templeData.mainImage } : {}),
+        "brand": { "@type": "Organization", "name": templeData.name },
+        "category": "墓地・永代供養",
+        "offers": {
+            "@type": "AggregateOffer",
+            "priceCurrency": "JPY",
+            "lowPrice": Math.min(...priceablePlans.map((p) => p.price)),
+            "highPrice": Math.max(...priceablePlans.map((p) => p.price)),
+            "offerCount": priceablePlans.length,
+            "offers": priceablePlans.map((p) => ({
+                "@type": "Offer",
+                "name": p.name,
+                "price": p.price,
+                "priceCurrency": "JPY",
+                "url": `${BASE_URL}/detail/${templeData.id}#plans`,
+                ...(availabilitySchema[p.availability]
+                    ? { "availability": availabilitySchema[p.availability] }
+                    : {}),
+            })),
+        },
+    } : null;
+
     return (
         <div className="min-h-screen flex flex-col bg-white-smoke pb-24 md:pb-0">
             {/* JSON-LD Structured Data */}
@@ -115,10 +154,18 @@ export default async function TempleDetailPage(props: { params: Promise<{ id: st
                     dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessLd) }}
                 />
             )}
-            <script
-                type="application/ld+json"
-                dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }}
-            />
+            {structuredDataEnabled && (
+                <script
+                    type="application/ld+json"
+                    dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }}
+                />
+            )}
+            {productLd && (
+                <script
+                    type="application/ld+json"
+                    dangerouslySetInnerHTML={{ __html: JSON.stringify(productLd) }}
+                />
+            )}
 
             <Navbar />
 

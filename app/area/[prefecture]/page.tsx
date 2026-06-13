@@ -1,5 +1,4 @@
 import { prisma } from "@/lib/prisma";
-import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { Navbar } from "../../components/layout/Navbar";
 import { Footer } from "../../components/layout/Footer";
@@ -11,8 +10,9 @@ import { AreaSEOContent } from "../../components/features/area/AreaSEOContent";
 import { AreaFAQ } from "../../components/features/area/AreaFAQ";
 import { JsonLd } from "../../components/seo/JsonLd";
 import { PREFECTURES } from "../../lib/prefectures";
+import { hasActiveFacetParams, AREA_FACET_KEYS } from "@/lib/seo";
 
-const BASE_URL = "https://www.ohakanavi.jp";
+const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://www.ohakanavi.jp";
 
 function isPrismaConnectivityError(error: unknown): boolean {
     return (
@@ -24,14 +24,29 @@ function isPrismaConnectivityError(error: unknown): boolean {
 }
 
 export async function generateMetadata(
-    props: { params: Promise<{ prefecture: string }> }
+    props: {
+        params: Promise<{ prefecture: string }>;
+        searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
+    }
 ): Promise<Metadata> {
     const { prefecture } = await props.params;
+    const searchParams = await props.searchParams;
+    // M-5: 絞り込みパラメータ付きURLは noindex,follow（canonical は常にクリーンURL）。
+    // 既知の絞り込みキーのみで判定し、utm等の計測パラメータでは noindex にしない。
+    const hasFilterParams = hasActiveFacetParams(searchParams, AREA_FACET_KEYS);
     const decoded = decodeURIComponent(prefecture);
     return {
         title: `${decoded}の墓地・霊園・永代供養を探す`,
         description: `${decoded}の墓地・永代供養・樹木葬・納骨堂一覧。地域に密着した専門スタッフが無料サポート。`,
         alternates: { canonical: `${BASE_URL}/area/${prefecture}` },
+        robots: hasFilterParams
+            ? { index: false, follow: true }
+            : { index: true, follow: true },
+        openGraph: {
+            title: `${decoded}の墓地・霊園・永代供養 | 清蓮`,
+            description: `${decoded}の墓地・永代供養・樹木葬・納骨堂の一覧。無料相談受付中。`,
+            url: `${BASE_URL}/area/${prefecture}`,
+        },
     };
 }
 

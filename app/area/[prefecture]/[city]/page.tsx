@@ -1,5 +1,4 @@
 import { prisma } from "@/lib/prisma";
-import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { Navbar } from "../../../components/layout/Navbar";
 import { Footer } from "../../../components/layout/Footer";
@@ -10,6 +9,7 @@ import { AreaNav } from "../../../components/features/area/AreaNav";
 import { AreaSEOContent } from "../../../components/features/area/AreaSEOContent";
 import { AreaFAQ } from "../../../components/features/area/AreaFAQ";
 import { JsonLd } from "../../../components/seo/JsonLd";
+import { hasActiveFacetParams, AREA_FACET_KEYS } from "@/lib/seo";
 
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://www.ohakanavi.jp";
 
@@ -23,15 +23,25 @@ function isPrismaConnectivityError(error: unknown): boolean {
 }
 
 export async function generateMetadata(
-    props: { params: Promise<{ prefecture: string; city: string }> }
+    props: {
+        params: Promise<{ prefecture: string; city: string }>;
+        searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
+    }
 ): Promise<Metadata> {
     const { prefecture, city } = await props.params;
+    const searchParams = await props.searchParams;
+    // M-5: 絞り込みパラメータ付きURLは noindex,follow（canonical は常にクリーンURL）。
+    // 既知の絞り込みキーのみで判定し、utm等の計測パラメータでは noindex にしない。
+    const hasFilterParams = hasActiveFacetParams(searchParams, AREA_FACET_KEYS);
     const decodedCity = decodeURIComponent(city);
     const decodedPref = decodeURIComponent(prefecture);
     return {
         title: `${decodedCity}（${decodedPref}）の墓地・永代供養を探す`,
         description: `${decodedCity}（${decodedPref}）の墓地・永代供養・樹木葬・納骨堂の一覧。地域密着の専門スタッフが無料サポート。宗旨宗派不問・生前購入対応施設も掲載。`,
         alternates: { canonical: `${BASE_URL}/area/${prefecture}/${city}` },
+        robots: hasFilterParams
+            ? { index: false, follow: true }
+            : { index: true, follow: true },
         openGraph: {
             title: `${decodedCity}（${decodedPref}）の墓地・永代供養 | 清蓮`,
             description: `${decodedCity}（${decodedPref}）の墓地・永代供養・樹木葬・納骨堂の一覧。無料相談受付中。`,

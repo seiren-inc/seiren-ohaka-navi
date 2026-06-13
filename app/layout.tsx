@@ -36,8 +36,8 @@ export const metadata: Metadata = {
     ],
   },
   twitter: {
+    // images は固定指定せず、各ページの og:image（動的OG含む）にフォールバックさせる
     card: "summary_large_image",
-    images: ["/og-image.jpg"],
   },
   verification: {
     google: "hFeAEOVFWvv-7Cp5dnkeWkMV8qmkOKzWr8vySu-inYQ",
@@ -79,7 +79,10 @@ const organizationLd = {
           "closes": "18:00",
         },
       },
-      "sameAs": [],
+      "sameAs": [
+        // Googleビジネスプロフィール（MEO/エンティティ確立）
+        "https://share.google/JIqe8rG24LekC7rZv",
+      ],
     },
     {
       "@type": "WebSite",

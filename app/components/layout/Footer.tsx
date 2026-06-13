@@ -33,7 +33,7 @@ export function Footer() {
                             <li><Link href="/search?type=tree" className="hover:text-primary text-gray-600 transition-colors">樹木葬</Link></li>
                             <li><Link href="/search?type=nokotsu" className="hover:text-primary text-gray-600 transition-colors">納骨堂</Link></li>
                             <li className="pt-2"><Link href="/guide" className="hover:text-primary font-bold text-gray-700 transition-colors">供養の知識コラム</Link></li>
-                            <li><Link href="/kaisou" className="hover:text-primary font-bold text-gray-700 transition-colors">改葬・お墓じまいについて</Link></li>
+                            <li><Link href="/grave-closure" className="hover:text-primary font-bold text-gray-700 transition-colors">改葬・お墓じまいについて</Link></li>
                         </ul>
                     </div>
 

@@ -146,7 +146,7 @@ export default function Home() {
                   まずは専門家に相談する
                   <ChevronRight className="w-4 h-4 ml-1" />
                 </Link>
-                <Link href="/kaisou" className="inline-flex items-center px-5 py-2.5 bg-white/10 text-white border border-white/30 rounded-full text-sm font-bold hover:bg-white/20 transition-colors backdrop-blur-sm">
+                <Link href="/grave-closure" className="inline-flex items-center px-5 py-2.5 bg-white/10 text-white border border-white/30 rounded-full text-sm font-bold hover:bg-white/20 transition-colors backdrop-blur-sm">
                   墓じまい・改葬について知る
                   <ChevronRight className="w-4 h-4 ml-1" />
                 </Link>
@@ -187,7 +187,7 @@ export default function Home() {
                 {
                   label: "墓じまい相談",
                   sub: "遠方のお墓を整理したい",
-                  href: "/kaisou",
+                  href: "/grave-closure",
                 },
               ].map((item) => (
                 <Link
@@ -415,7 +415,7 @@ export default function Home() {
                     </div>
 
                     <div className="text-center mt-5">
-                        <Link href="/kaisou" className="text-sm text-gray-500 hover:text-primary transition-colors">
+                        <Link href="/grave-closure" className="text-sm text-gray-500 hover:text-primary transition-colors">
                             清蓮のお墓じまい・改葬サポートページを見る →
                         </Link>
                     </div>

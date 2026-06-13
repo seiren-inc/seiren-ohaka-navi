@@ -40,7 +40,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         { url: `${BASE_URL}/guide/eitai-kuyou-dokushin`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
         { url: `${BASE_URL}/guide/jumokusou-cost`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
         { url: `${BASE_URL}/guide/noukotsudo-cost`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
-        { url: `${BASE_URL}/kaisou`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
         { url: `${BASE_URL}/consult`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
         { url: `${BASE_URL}/consult/grave-search`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
         { url: `${BASE_URL}/consult/grave-closure`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },

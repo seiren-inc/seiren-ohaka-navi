@@ -7,6 +7,7 @@ import { SearchFilter } from "../components/features/search/SearchFilter";
 import { GraveyardCard } from "../components/features/search/GraveyardCard";
 import { FacilityType, MemorialType, Sect, BuddhistSect, Temple } from "@/lib/store";
 import { prisma } from "@/lib/prisma";
+import { hasActiveFacetParams, SEARCH_FACET_KEYS } from "@/lib/seo";
 import { Metadata } from "next";
 
 function isPrismaConnectivityError(error: unknown): boolean {
@@ -24,11 +25,24 @@ function isPrismaConnectivityError(error: unknown): boolean {
     );
 }
 
-export const metadata: Metadata = {
-    title: "墓地・霊園をさがす｜清蓮(Seiren)",
-    description: "条件に合わせて最適な墓地・永代供養墓・樹木葬を検索できます。",
-    alternates: { canonical: "https://www.ohakanavi.jp/search" },
-};
+// M-5: ファセット（絞り込み）付きURLは noindex,follow にして
+// クロールバジェット消費と重複インデックスを防ぐ。canonical は常に /search。
+// 既知の絞り込みキーのみで判定し、utm等の計測パラメータでは noindex にしない。
+export async function generateMetadata(props: {
+    searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
+}): Promise<Metadata> {
+    const searchParams = await props.searchParams;
+    const hasFilterParams = hasActiveFacetParams(searchParams, SEARCH_FACET_KEYS);
+
+    return {
+        title: "墓地・霊園をさがす｜清蓮(Seiren)",
+        description: "条件に合わせて最適な墓地・永代供養墓・樹木葬を検索できます。",
+        alternates: { canonical: "https://www.ohakanavi.jp/search" },
+        robots: hasFilterParams
+            ? { index: false, follow: true }
+            : { index: true, follow: true },
+    };
+}
 
 export default async function SearchPage(props: { searchParams: Promise<{ [key: string]: string | string[] | undefined }> }) {
     const searchParams = await props.searchParams;
