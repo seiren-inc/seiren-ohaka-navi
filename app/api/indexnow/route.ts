@@ -48,6 +48,8 @@ const STATIC_URLS = [
   `${BASE_URL}/partner`,
   `${BASE_URL}/contact`,
   `${BASE_URL}/faq`,
+  `${BASE_URL}/privacy`,
+  `${BASE_URL}/terms`,
 ];
 
 /**
